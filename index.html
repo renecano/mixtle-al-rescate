@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="es-MX">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+    <meta name="theme-color" content="#1F6B4A" />
+    <meta name="description" content="Caco al rescate: un juego para cuidar a los animales del parque y aprender a separar la basura." />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <title>Caco al rescate</title>
+    <style>
+      html, body { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background: #123d2b; }
+      body { touch-action: none; -webkit-user-select: none; user-select: none; -webkit-tap-highlight-color: transparent; }
+      #juego { width: 100vw; height: 100vh; height: 100dvh; }
+      #juego canvas { display: block; }
+      noscript { color: #fff; font: 24px sans-serif; display: block; padding: 32px; }
+    </style>
+  </head>
+  <body>
+    <div id="juego"></div>
+    <noscript>Para jugar a "Caco al rescate" necesitas activar JavaScript.</noscript>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

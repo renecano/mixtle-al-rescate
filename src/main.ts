@@ -1,0 +1,22 @@
+import Phaser from 'phaser';
+import { ALTO, ANCHO, PALETA } from './config';
+import { BootScene } from './scenes/BootScene';
+import { InicioScene } from './scenes/InicioScene';
+
+const juego = new Phaser.Game({
+  type: Phaser.AUTO,
+  parent: 'juego',
+  backgroundColor: PALETA.verde,
+  scale: {
+    mode: Phaser.Scale.FIT,
+    autoCenter: Phaser.Scale.CENTER_BOTH,
+    width: ANCHO,
+    height: ALTO,
+  },
+  dom: { createContainer: true },
+  input: { activePointers: 3 },
+  render: { antialias: true, roundPixels: false },
+  scene: [BootScene, InicioScene],
+});
+
+export default juego;
