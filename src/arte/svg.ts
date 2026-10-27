@@ -19,6 +19,10 @@ export function arte(clave: string, ancho: number, alto: number, contenido: stri
   return { clave, svg: svg(ancho, alto, contenido), ancho: Math.round(ancho * escala), alto: Math.round(alto * escala) };
 }
 
+/** Data URI en base64 (el cargador de Phaser decodifica los data URI como base64). Soporta UTF-8. */
 export function aDataUri(svgTexto: string): string {
-  return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svgTexto)}`;
+  const bytes = new TextEncoder().encode(svgTexto);
+  let binario = '';
+  for (const b of bytes) binario += String.fromCharCode(b);
+  return `data:image/svg+xml;base64,${btoa(binario)}`;
 }

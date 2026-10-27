@@ -30,6 +30,7 @@ export class BootScene extends Phaser.Scene {
   }
 
   create(): void {
-    this.scene.start('Inicio');
+    const params = new URLSearchParams(window.location.search);
+    this.scene.start(params.has('galeria') ? 'Galeria' : 'Inicio');
   }
 }

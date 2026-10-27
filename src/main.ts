@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 import { ALTO, ANCHO, PALETA } from './config';
 import { BootScene } from './scenes/BootScene';
+import { GaleriaScene } from './scenes/GaleriaScene';
 import { InicioScene } from './scenes/InicioScene';
 
 const juego = new Phaser.Game({
@@ -16,7 +17,7 @@ const juego = new Phaser.Game({
   dom: { createContainer: true },
   input: { activePointers: 3 },
   render: { antialias: true, roundPixels: false },
-  scene: [BootScene, InicioScene],
+  scene: [BootScene, InicioScene, GaleriaScene],
 });
 
 export default juego;
