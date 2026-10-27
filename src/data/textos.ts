@@ -19,5 +19,13 @@ export const TEXTOS = {
     celebraciones: ['¡Muy bien!', '¡Excelente!', '¡Eso es!', '¡Bravo!', '¡Así se hace!'],
     fin: '¡Separaste toda la basura! Ahora vamos a darles un hogar a los animales.',
   },
+  nivel3: {
+    instruccion: 'Donde había basura, ahora podemos sembrar. Toca la tierra.',
+    pista: 'Toca la tierra para sembrar un árbol o unas flores.',
+    llegaMariposa: '¡Mira! Llegó una mariposa monarca a las flores.',
+    llegaColibri: '¡El colibrí encontró un árbol nuevo!',
+    llegaArdilla: '¡A la ardilla le encanta su árbol nuevo!',
+    fin: '¡El parque es otra vez un hogar para los animales!',
+  },
   seguir: '¡Sigamos!',
 } as const;

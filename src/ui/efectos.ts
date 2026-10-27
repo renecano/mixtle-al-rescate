@@ -46,8 +46,13 @@ export function confeti(scene: Phaser.Scene, cantidad = 80): void {
 }
 
 /** Botón grande de "seguir" abajo a la derecha, que late para invitar a tocarlo. */
-export function botonSiguiente(scene: Phaser.Scene, alPresionar: () => void, texto = '¡Sigamos!'): Boton {
-  const boton = new Boton(scene, ANCHO - 260, ALTO - 110, {
+export function botonSiguiente(
+  scene: Phaser.Scene,
+  alPresionar: () => void,
+  texto = '¡Sigamos!',
+  posicion = { x: ANCHO - 260, y: ALTO - 110 },
+): Boton {
+  const boton = new Boton(scene, posicion.x, posicion.y, {
     texto,
     icono: 'icono-siguiente',
     ancho: 440,

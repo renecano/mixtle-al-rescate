@@ -23,6 +23,15 @@ describe('progreso de la partida', () => {
     expect(p.separados.size).toBe(0);
   });
 
+  it('sembrar cuenta plantas y mariposas que llegan (nunca negativas)', () => {
+    const p = new Progreso();
+    p.plantar(1);
+    p.plantar(0);
+    p.plantar(-3);
+    expect(p.plantados).toBe(3);
+    expect(p.mariposasNuevas).toBe(1);
+  });
+
   it('reiniciar deja una partida nueva', () => {
     progreso().recolectar('lata');
     const nuevo = reiniciarProgreso();
