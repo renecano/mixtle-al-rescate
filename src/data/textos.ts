@@ -8,5 +8,10 @@ export const TEXTOS = {
     'El parque está lleno de basura y los animales están tristes.',
     '¿Me ayudas a rescatarlos?',
   ],
-  tocaParaSeguir: 'Toca para seguir',
+  nivel1: {
+    instruccion: 'Toca la basura para guardarla en mi bolsa.',
+    pista: '¡Todavía hay basura! Tócala para guardarla en mi bolsa.',
+    fin: '¡Lo lograste! El parque está limpio. Ahora vamos a separar la basura.',
+  },
+  seguir: '¡Sigamos!',
 } as const;

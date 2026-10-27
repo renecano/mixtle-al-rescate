@@ -1,10 +1,14 @@
 import Phaser from 'phaser';
 import { ALTO, ANCHO, PALETA, hex } from '../config';
 import { catalogoArte } from '../arte/catalogo';
+import { claveImagenResiduo, esArchivo } from '../arte/residuos';
 import { aDataUri } from '../arte/svg';
+import { CATEGORIAS } from '../data/categorias';
+import { RESIDUOS } from '../data/residuos';
+import { validarConfiguracion } from '../logica/clasificacion';
 import { estiloTexto } from '../ui/texto';
 
-/** Rasteriza todas las ilustraciones SVG y muestra una barra de carga. */
+/** Rasteriza las ilustraciones SVG, carga imágenes propias de residuos y muestra una barra de carga. */
 export class BootScene extends Phaser.Scene {
   constructor() {
     super('Boot');
@@ -27,6 +31,13 @@ export class BootScene extends Phaser.Scene {
     for (const a of catalogoArte()) {
       this.load.svg(a.clave, aDataUri(a.svg), { width: a.ancho, height: a.alto });
     }
+    // Imágenes propias de residuos (archivos en /public), si Eco Urban agrega alguna.
+    for (const r of RESIDUOS) {
+      if (esArchivo(r.imagen)) this.load.image(claveImagenResiduo(r.imagen), r.imagen);
+    }
+
+    const errores = validarConfiguracion(CATEGORIAS, RESIDUOS);
+    if (errores.length) console.error('Revisa src/data/categorias.ts y src/data/residuos.ts:\n' + errores.join('\n'));
   }
 
   create(): void {

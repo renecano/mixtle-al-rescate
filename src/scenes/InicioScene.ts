@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 import { ALTO, ANCHO, PALETA } from '../config';
 import { escenaSiguiente } from '../logica/flujo';
+import { reiniciarProgreso } from '../logica/progreso';
 import { sonido } from '../servicios/sonido';
 import { voz } from '../servicios/voz';
 import { Ardilla, Colibri, Mariposa } from '../ui/animales';
@@ -58,6 +59,7 @@ export class InicioScene extends Phaser.Scene {
       alPresionar: () => {
         sonido.desbloquear();
         voz.desbloquear();
+        reiniciarProgreso();
         irA(this, escenaSiguiente('Inicio'));
       },
     }).latir();

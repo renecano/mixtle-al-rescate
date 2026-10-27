@@ -5,6 +5,9 @@ import { Boton } from './Boton';
 import type { Caco } from './Caco';
 import { Globo, type OpcionesGlobo } from './Globo';
 
+/** Margen extra tras la duración estimada antes de seguir aunque la voz no haya avisado. */
+const MARGEN_MS = 1200;
+
 /**
  * Une a Caco, su globo de texto y la voz. Todo lo que Caco dice se narra en voz alta
  * y se muestra en el globo; el botón de repetir (o tocar a Caco) lo vuelve a decir.
@@ -12,6 +15,7 @@ import { Globo, type OpcionesGlobo } from './Globo';
 export class Narrador {
   readonly globo: Globo;
   private repetir: Boton;
+  private activo = true;
 
   constructor(
     private readonly scene: Phaser.Scene,
@@ -31,18 +35,32 @@ export class Narrador {
     this.repetir.setVisible(false);
 
     caco.hacerTocable().on('pointerup', () => this.repetirFrase());
-    scene.events.once('shutdown', () => voz.callar());
+    scene.events.once('shutdown', () => {
+      this.activo = false;
+      voz.callar();
+    });
   }
 
-  /** Caco dice la frase (voz + globo). Devuelve la duración estimada en ms. */
+  /**
+   * Caco dice la frase (voz + globo). `alTerminar` se llama una sola vez: al acabar la voz
+   * o, si se interrumpe o no hay voz, poco después de la duración estimada.
+   */
   decir(texto: string, alTerminar?: () => void): number {
     this.globo.mostrar(texto);
     this.repetir.setPosition(this.globo.x + this.globo.ancho - 70, this.globo.y + 66).setVisible(true);
-    const ms = voz.decir(texto, () => {
-      this.caco.callar();
+    let hecho = false;
+    const fin = () => {
+      if (hecho || !this.activo) return;
+      hecho = true;
       alTerminar?.();
+    };
+    const ms = voz.decir(texto, () => {
+      if (!this.activo) return;
+      this.caco.callar();
+      fin();
     });
     this.caco.hablar(ms);
+    if (alTerminar) this.scene.time.delayedCall(ms + MARGEN_MS, fin);
     return ms;
   }
 
@@ -53,7 +71,9 @@ export class Narrador {
 
   private repetirFrase(): void {
     if (!this.globo.visible || !this.globo.contenido) return;
-    const ms = voz.decir(this.globo.contenido, () => this.caco.callar());
+    const ms = voz.decir(this.globo.contenido, () => {
+      if (this.activo) this.caco.callar();
+    });
     this.caco.hablar(ms);
     this.scene.tweens.add({ targets: this.globo, scale: 1.03, duration: 120, yoyo: true });
   }

@@ -1,7 +1,11 @@
 import Phaser from 'phaser';
 import { ALTO, ANCHO, PALETA } from '../config';
+import { claveImagenResiduo } from '../arte/residuos';
+import { RESIDUOS } from '../data/residuos';
 import { TEXTOS } from '../data/textos';
 import { escenaSiguiente } from '../logica/flujo';
+import { crearAleatorio, repartir } from '../logica/reparto';
+import { ZONAS } from '../ui/layoutParque';
 import { AnimalesParque } from '../ui/animalesParque';
 import { Boton } from '../ui/Boton';
 import { agregarBotonSonido } from '../ui/BotonSonido';
@@ -25,6 +29,11 @@ export class IntroScene extends Phaser.Scene {
     this.paso = 0;
     agregarParque(this);
     new AnimalesParque(this);
+    // La basura regada (solo de adorno: en el nivel 1 se recoge).
+    for (const c of repartir(RESIDUOS, ZONAS.map((z) => z.reparto), crearAleatorio(7))) {
+      const img = this.add.image(c.x, c.y, claveImagenResiduo(c.item.imagen)).setAngle(c.angulo).setDepth(10);
+      img.setScale(124 / Math.max(img.width, img.height));
+    }
 
     const caco = new Caco(this, 280, ALTO - 30, 1.1).setDepth(20);
     this.narrador = new Narrador(this, caco, {

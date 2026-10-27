@@ -1,13 +1,26 @@
 import type { Animal } from '../data/animales';
+import type { ZonaReparto } from '../logica/reparto';
 
 /** Posiciones en el parque (px del juego, 1920×1080). Se comparten entre la intro y los niveles. */
-export const CACO_NIVEL = { x: 190, y: 1060, escala: 0.72 };
-export const BOLSA = { x: 370, y: 990 };
+export const CACO_NIVEL = { x: 200, y: 1065, escala: 0.72 };
+export const BOLSA = { x: 400, y: 1000 };
+/** Globo de Caco en los niveles del parque: arriba de él, sin tapar a los animales. */
+export const GLOBO_NIVEL = { x: 40, y: 250, ancho: 860, apuntaA: { x: 230, y: 900 }, tamanoTexto: 48 };
+
+export const POS_ANIMALES = {
+  ardilla: { x: 650, y: 790, escala: 0.62 },
+  arbusto: { x: 1100, y: 830, escala: 0.85 },
+  colibri: { x: 1100, y: 650, escala: 0.62 },
+  mariposas: [
+    { x: 1500, y: 790 },
+    { x: 1640, y: 760 },
+    { x: 1780, y: 800 },
+  ],
+} as const;
 
 export interface ZonaParque {
   animal: Animal['id'];
-  /** Rectángulo donde aparece la basura de esta zona. */
-  basura: { x: number; y: number; ancho: number; alto: number };
+  reparto: ZonaReparto;
   /** Lugares donde se planta en el nivel 3. */
   plantar: { x: number; y: number; que: 'arbol' | 'flores' }[];
 }
@@ -15,38 +28,36 @@ export interface ZonaParque {
 export const ZONAS: readonly ZonaParque[] = [
   {
     animal: 'ardilla',
-    basura: { x: 560, y: 820, ancho: 300, alto: 200 },
+    reparto: {
+      rect: { x: 530, y: 820, ancho: 380, alto: 200 },
+      evitar: [{ x: 650, y: 720, r: 120 }],
+    },
     plantar: [
-      { x: 640, y: 900, que: 'arbol' },
-      { x: 800, y: 1000, que: 'flores' },
+      { x: 820, y: 860, que: 'arbol' },
+      { x: 600, y: 990, que: 'flores' },
     ],
   },
   {
     animal: 'colibri',
-    basura: { x: 920, y: 880, ancho: 320, alto: 150 },
+    reparto: {
+      rect: { x: 950, y: 870, ancho: 380, alto: 150 },
+      evitar: [{ x: 1100, y: 760, r: 130 }],
+    },
     plantar: [
-      { x: 1000, y: 1010, que: 'flores' },
-      { x: 1180, y: 960, que: 'arbol' },
+      { x: 1000, y: 1000, que: 'flores' },
+      { x: 1270, y: 900, que: 'arbol' },
     ],
   },
   {
     animal: 'mariposas',
-    basura: { x: 1380, y: 860, ancho: 420, alto: 170 },
+    reparto: {
+      rect: { x: 1390, y: 860, ancho: 460, alto: 160 },
+      evitar: POS_ANIMALES.mariposas.map((m) => ({ x: m.x, y: m.y, r: 70 })),
+    },
     plantar: [
-      { x: 1460, y: 1010, que: 'flores' },
-      { x: 1640, y: 960, que: 'flores' },
-      { x: 1800, y: 1030, que: 'flores' },
+      { x: 1460, y: 990, que: 'flores' },
+      { x: 1640, y: 940, que: 'flores' },
+      { x: 1810, y: 1000, que: 'flores' },
     ],
   },
 ];
-
-export const POS_ANIMALES = {
-  ardilla: { x: 640, y: 800, escala: 0.62 },
-  arbusto: { x: 1060, y: 820, escala: 0.85 },
-  colibri: { x: 1060, y: 640, escala: 0.62 },
-  mariposas: [
-    { x: 1470, y: 800 },
-    { x: 1610, y: 770 },
-    { x: 1750, y: 810 },
-  ],
-} as const;

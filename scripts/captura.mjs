@@ -3,6 +3,8 @@
 //   c:x,y      toca en coordenadas del juego (1920×1080), sin importar el tamaño de ventana
 //   w:ms       espera
 //   s:ruta.png guarda una captura
+//   t:nombre   toca el primer objeto tocable cuyo nombre empieza así (requiere el gancho __caco)
+//   T:nombre   toca, uno por uno, todos los que empiezan así
 // Usa el Chrome instalado en la máquina (no descarga navegadores).
 import { chromium } from '@playwright/test';
 
@@ -28,11 +30,21 @@ for (const paso of pasos) {
   }
   if (tipo === 'c') {
     const [gx, gy] = valor.split(',').map(Number);
-    const caja = await pagina.locator('canvas').boundingBox();
-    const x = caja.x + (gx / 1920) * caja.width;
-    const y = caja.y + (gy / 1080) * caja.height;
-    await pagina.mouse.click(x, y);
+    await tocar(gx, gy);
   }
+  if (tipo === 't' || tipo === 'T') {
+    const objetos = await pagina.evaluate((p) => window.__caco.tocables().filter((o) => o.nombre.startsWith(p)), valor);
+    if (!objetos.length) console.log(`No hay tocables "${valor}"`);
+    for (const o of tipo === 't' ? objetos.slice(0, 1) : objetos) {
+      await tocar(o.x, o.y);
+      await pagina.waitForTimeout(tipo === 'T' ? 900 : 100);
+    }
+  }
+}
+
+async function tocar(gx, gy) {
+  const caja = await pagina.locator('canvas').boundingBox();
+  await pagina.mouse.click(caja.x + (gx / 1920) * caja.width, caja.y + (gy / 1080) * caja.height);
 }
 await navegador.close();
 if (errores.length) console.log(errores.join('\n'));
