@@ -3,6 +3,7 @@ import { ALTO, ANCHO, PALETA } from './config';
 import { BootScene } from './scenes/BootScene';
 import { GaleriaScene } from './scenes/GaleriaScene';
 import { InicioScene } from './scenes/InicioScene';
+import { IntroScene } from './scenes/IntroScene';
 
 const juego = new Phaser.Game({
   type: Phaser.AUTO,
@@ -17,7 +18,7 @@ const juego = new Phaser.Game({
   dom: { createContainer: true },
   input: { activePointers: 3 },
   render: { antialias: true, roundPixels: false },
-  scene: [BootScene, InicioScene, GaleriaScene],
+  scene: [BootScene, InicioScene, IntroScene, GaleriaScene],
 });
 
 export default juego;

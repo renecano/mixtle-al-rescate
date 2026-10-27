@@ -1,6 +1,8 @@
 import Phaser from 'phaser';
 import { ALTO, ANCHO, PALETA } from '../config';
+import { escenaSiguiente } from '../logica/flujo';
 import { sonido } from '../servicios/sonido';
+import { voz } from '../servicios/voz';
 import { Ardilla, Colibri, Mariposa } from '../ui/animales';
 import { Boton } from '../ui/Boton';
 import { agregarBotonSonido } from '../ui/BotonSonido';
@@ -55,7 +57,8 @@ export class InicioScene extends Phaser.Scene {
       nombre: 'jugar',
       alPresionar: () => {
         sonido.desbloquear();
-        irA(this, 'Intro');
+        voz.desbloquear();
+        irA(this, escenaSiguiente('Inicio'));
       },
     }).latir();
 

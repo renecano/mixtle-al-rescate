@@ -43,6 +43,17 @@ export class Caco extends Phaser.GameObjects.Container {
     this.programarParpadeo();
   }
 
+  /** Hace que todo el cuerpo de Caco se pueda tocar (el origen está en sus patas). */
+  hacerTocable(): this {
+    // Phaser mide el área de toque desde la esquina del tamaño del contenedor (centrado en las patas).
+    this.setInteractive({
+      hitArea: new Phaser.Geom.Rectangle(0, -this.height / 2, this.width, this.height),
+      hitAreaCallback: Phaser.Geom.Rectangle.Contains,
+      useHandCursor: true,
+    });
+    return this;
+  }
+
   /** Mueve la boca durante `ms` milisegundos. */
   hablar(ms: number): void {
     this.hablando?.remove();
