@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 import { ANIMALES } from '../data/animales';
 import { progreso, resumenDiploma } from '../logica/progreso';
+import { entradaTerminada } from '../ui/transicion';
 import { camarasActivas } from './camara';
 
 export interface ObjetoTocable {
@@ -75,5 +76,10 @@ export function exponerParaPruebas(juego: Phaser.Game): void {
     resumen: () => resumenDiploma(progreso(), ANIMALES),
     camarasActivas,
     fps: () => Math.round(juego.loop.actualFps),
+    /** true cuando ninguna pantalla visible está a media animación de entrada (para capturas). */
+    quieto: () => {
+      const activas = juego.scene.getScenes(true).filter((s) => s.scene.key !== 'Boot');
+      return activas.length > 0 && activas.every(entradaTerminada);
+    },
   };
 }

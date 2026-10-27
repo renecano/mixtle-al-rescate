@@ -57,6 +57,23 @@ export function resumenDiploma(p: Progreso, animales: readonly Animal[]): Resume
   };
 }
 
+export type FiguraAnimal = 'ardilla' | 'colibri' | 'mariposa';
+
+const FIGURA: Record<Animal['id'], FiguraAnimal> = { ardilla: 'ardilla', colibri: 'colibri', mariposas: 'mariposa' };
+
+/**
+ * Un dibujo por cada animal que cuenta el diploma, para que la cifra coincida con lo
+ * que el grupo ve: los animales de las zonas limpias y las mariposas que llegaron a las flores.
+ */
+export function animalesDelDiploma(p: Progreso, animales: readonly Animal[]): FiguraAnimal[] {
+  const figuras: FiguraAnimal[] = [];
+  for (const a of animales) {
+    if (p.animalesFelices.has(a.id)) for (let i = 0; i < a.cantidad; i++) figuras.push(FIGURA[a.id]);
+  }
+  for (let i = 0; i < p.mariposasNuevas; i++) figuras.push('mariposa');
+  return figuras;
+}
+
 /** La partida en curso. Se reinicia al tocar "¡Jugar!" o "Jugar otra vez". */
 let actual = new Progreso();
 

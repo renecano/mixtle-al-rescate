@@ -17,11 +17,15 @@ import type { CategoriaBase, Material } from './residuos';
 
 export type IconoCategoria = 'hoja' | 'reciclaje' | 'basura' | 'papel' | 'botella' | 'lata';
 
-/** Cómo nombra Caco cada ícono en voz alta ("el bote verde de la hojita"). */
+/**
+ * Cómo nombra Caco el dibujo de cada ícono en voz alta, con su artículo:
+ * "Busca el bote naranja con el dibujo del bote de basura". El "de" + artículo
+ * se contrae solo ("de el" → "del").
+ */
 export const NOMBRE_DEL_ICONO: Record<IconoCategoria, string> = {
   hoja: 'la hojita',
   reciclaje: 'las flechas',
-  basura: 'el botecito',
+  basura: 'el bote de basura',
   papel: 'la hoja de papel',
   botella: 'la botella',
   lata: 'la lata',
@@ -57,7 +61,7 @@ export const CATEGORIAS: readonly Categoria[] = [
     color: '#2459A6',
     nombreColor: 'azul',
     icono: 'reciclaje',
-    pista: 'Está limpio y se puede convertir en algo nuevo.',
+    pista: 'Se puede convertir en algo nuevo.',
     acepta: ['reciclable'],
   },
   {
@@ -66,7 +70,7 @@ export const CATEGORIAS: readonly Categoria[] = [
     color: '#B84A14',
     nombreColor: 'naranja',
     icono: 'basura',
-    pista: 'Ya está sucio o no se puede aprovechar.',
+    pista: 'Este ya no se puede reciclar.',
     acepta: ['no-reciclable'],
   },
 ];

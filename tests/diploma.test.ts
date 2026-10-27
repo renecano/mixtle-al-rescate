@@ -4,7 +4,7 @@ import { CATEGORIAS } from '../src/data/categorias';
 import { RESIDUOS } from '../src/data/residuos';
 import { TEXTOS } from '../src/data/textos';
 import { esCorrecto } from '../src/logica/clasificacion';
-import { Progreso, resumenDiploma } from '../src/logica/progreso';
+import { Progreso, animalesDelDiploma, resumenDiploma } from '../src/logica/progreso';
 import { ZONAS } from '../src/ui/layoutParque';
 
 /** Simula una partida completa como la juega un grupo. */
@@ -38,6 +38,16 @@ describe('conteo del diploma', () => {
     // Con los datos actuales: 12 residuos; ardilla + colibrí + 3 mariposas + 5 mariposas nuevas.
     expect(resumenDiploma(p, ANIMALES).residuosSeparados).toBe(12);
     expect(resumenDiploma(p, ANIMALES).animalesAyudados).toBe(10);
+  });
+
+  it('el diploma muestra exactamente un dibujo por cada animal que cuenta', () => {
+    const p = partidaCompleta();
+    const figuras = animalesDelDiploma(p, ANIMALES);
+    expect(figuras).toHaveLength(resumenDiploma(p, ANIMALES).animalesAyudados);
+    expect(figuras.filter((f) => f === 'ardilla')).toHaveLength(1);
+    expect(figuras.filter((f) => f === 'colibri')).toHaveLength(1);
+    expect(figuras.filter((f) => f === 'mariposa')).toHaveLength(8);
+    expect(animalesDelDiploma(new Progreso(), ANIMALES)).toEqual([]);
   });
 
   it('los aciertos del bonus se suman a los residuos separados', () => {

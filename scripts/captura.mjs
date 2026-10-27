@@ -2,7 +2,7 @@
 // Uso: node scripts/captura.mjs <url> <ancho> <alto> [pasos...]
 //   c:x,y      toca en coordenadas del juego (1920×1080), sin importar el tamaño de ventana
 //   w:ms       espera
-//   s:ruta.png guarda una captura
+//   s:ruta.png guarda una captura (espera a que terminen las animaciones de entrada)
 //   t:nombre   toca el primer objeto tocable cuyo nombre empieza así (requiere el gancho __caco)
 //   T:nombre   toca, uno por uno, todos los que empiezan así
 //   d:a>b      arrastra el tocable "a" hasta el tocable "b" (prefijos)
@@ -35,6 +35,7 @@ for (const paso of pasos) {
   const [tipo, valor = ''] = paso.split(/:(.*)/s);
   if (tipo === 'w') await pagina.waitForTimeout(Number(valor));
   if (tipo === 's') {
+    await esperarQuieto();
     await pagina.screenshot({ path: valor });
     console.log(`Captura: ${valor}`);
   }
@@ -57,6 +58,15 @@ for (const paso of pasos) {
     const destino = lista.find((o) => o.nombre.startsWith(b));
     if (!origen || !destino) console.log(`No se pudo arrastrar ${valor}`);
     else await arrastrar(origen, destino);
+  }
+}
+
+/** Espera a que terminen las animaciones de entrada (fundido, título que cae) antes de capturar. */
+async function esperarQuieto() {
+  try {
+    await pagina.waitForFunction(() => window.__caco?.quieto?.() === true, null, { timeout: 15000 });
+  } catch {
+    console.log('Aviso: no se pudo confirmar que terminaran las animaciones (¿falta ?e2e en la URL?).');
   }
 }
 

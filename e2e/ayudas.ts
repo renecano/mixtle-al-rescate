@@ -19,6 +19,7 @@ interface Gancho {
   resumen(): { residuosSeparados: number; animalesAyudados: number; plantados: number };
   camarasActivas(): number;
   fps(): number;
+  quieto(): boolean;
 }
 
 declare global {
@@ -104,6 +105,8 @@ export function resumen(page: Page) {
  * (así se generan las imágenes de docs/capturas).
  */
 export async function captura(page: Page, info: TestInfo, nombre: string): Promise<void> {
+  // Nada de capturas a media animación de entrada (título cortado, pantalla oscura).
+  await page.waitForFunction(() => window.__caco.quieto(), null, { timeout: 15_000 });
   const body = await page.screenshot();
   await info.attach(nombre, { body, contentType: 'image/png' });
   const carpeta = process.env.CAPTURAS;

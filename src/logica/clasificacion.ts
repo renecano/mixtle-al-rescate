@@ -53,9 +53,14 @@ export function validarConfiguracion(categorias: readonly Categoria[], residuos:
   return errores;
 }
 
-/** Cómo se llama el bote en voz alta: "el bote verde de la hojita". */
+/** "de" + frase con artículo, con las contracciones del español: "de el bote" → "del bote". */
+export function conDe(frase: string): string {
+  return /^el\s/i.test(frase) ? `del ${frase.slice(3)}` : `de ${frase}`;
+}
+
+/** Cómo se llama el bote en voz alta: "el bote verde con el dibujo de la hojita". */
 export function descripcionBote(c: Categoria): string {
-  return `el bote ${c.nombreColor} de ${NOMBRE_DEL_ICONO[c.icono]}`;
+  return `el bote ${c.nombreColor} con el dibujo ${conDe(NOMBRE_DEL_ICONO[c.icono])}`;
 }
 
 /**

@@ -72,7 +72,7 @@ describe('textos de Caco', () => {
   it('la pista es amable, corta y describe el bote con color e ícono', () => {
     const texto = textoPista(CATEGORIAS[0]!);
     expect(texto).toMatch(/^¡Casi!/);
-    expect(texto).toContain('el bote verde de la hojita');
+    expect(texto).toContain('el bote verde con el dibujo de la hojita');
     expect(texto.split(/[.!?]\s/).length).toBeLessThanOrEqual(3);
     expect(texto).not.toMatch(/\b(mal|error|incorrecto|perdiste|equivocado)\b/i);
   });
