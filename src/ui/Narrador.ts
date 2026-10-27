@@ -23,11 +23,12 @@ export class Narrador {
     opGlobo: OpcionesGlobo,
   ) {
     this.globo = new Globo(scene, opGlobo);
-    this.globo.margenDerecho = 96;
+    // 124 px del juego ≈ 66 px reales en una tablet de 1024 px (mínimo de toque: 64).
+    this.globo.margenDerecho = 130;
     this.repetir = new Boton(scene, 0, 0, {
       icono: 'icono-repetir',
-      ancho: 96,
-      alto: 96,
+      ancho: 124,
+      alto: 124,
       color: PALETA.verde,
       nombre: 'repetir',
       alPresionar: () => this.repetirFrase(),
@@ -47,7 +48,7 @@ export class Narrador {
    */
   decir(texto: string, alTerminar?: () => void): number {
     this.globo.mostrar(texto);
-    this.repetir.setPosition(this.globo.x + this.globo.ancho - 70, this.globo.y + 66).setVisible(true);
+    this.repetir.setPosition(this.globo.x + this.globo.ancho - 84, this.globo.y + 80).setVisible(true);
     let hecho = false;
     const fin = () => {
       if (hecho || !this.activo) return;

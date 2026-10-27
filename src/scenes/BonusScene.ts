@@ -48,6 +48,7 @@ export class BonusScene extends Phaser.Scene {
   private menu: Phaser.GameObjects.GameObject[] = [];
   private vista: Phaser.GameObjects.GameObject[] = [];
   private botonAdivinar: Boton | null = null;
+  private botonDibujos: Boton | null = null;
   private dibujos: Residuo[] = [];
   private dibujoActual: { residuo: Residuo; imagen: Phaser.GameObjects.Image } | null = null;
   private aciertosCamara = 0;
@@ -64,6 +65,7 @@ export class BonusScene extends Phaser.Scene {
     this.menu = [];
     this.vista = [];
     this.botonAdivinar = null;
+    this.botonDibujos = null;
     this.dibujoActual = null;
     this.clasificador = null;
     this.aciertosCamara = 0;
@@ -122,9 +124,23 @@ export class BonusScene extends Phaser.Scene {
     this.menu.forEach((o) => o.destroy());
     this.menu = [];
     this.narrador.decir(TEXTOS.bonus.pidiendoPermiso);
+    // Mientras se espera el permiso o el modelo, el facilitador puede pasar a dibujos.
+    this.botonDibujos = new Boton(this, 1680, VISTA.y + 200, {
+      texto: TEXTOS.bonus.botonDibujos,
+      ancho: 380,
+      alto: 120,
+      tamanoTexto: 42,
+      color: PALETA.verde,
+      nombre: 'usar-dibujos',
+      alPresionar: () => {
+        this.cerrarCamara();
+        this.modoDibujos(TEXTOS.bonus.conDibujos);
+      },
+    }).setDepth(600);
+    const sigueEnCamara = () => this.activa && this.modo === 'camara';
 
-    const cam = await abrirCamara(VISTA.ancho, VISTA.alto);
-    if (!this.activa) {
+    const cam = await abrirCamara(VISTA.ancho, VISTA.alto, () => !sigueEnCamara());
+    if (!sigueEnCamara()) {
       if (cam.ok) cam.detener();
       return;
     }
@@ -138,20 +154,20 @@ export class BonusScene extends Phaser.Scene {
     const aviso = this.textoPrivacidad(VISTA.y + VISTA.alto / 2 + 60);
     const giro = this.add.image(VISTA.x, VISTA.y, 'brillo').setScale(1.6).setDepth(510);
     this.tweens.add({ targets: giro, angle: 360, duration: 1200, repeat: -1 });
-    this.vista = [dom, aviso];
+    this.vista = [dom, aviso, giro];
     this.narrador.decir(TEXTOS.bonus.cargando);
 
     try {
       this.clasificador = await cargarClasificador();
     } catch (e) {
       console.warn('No se pudo cargar el modelo de visión:', e);
-      if (!this.activa) return;
-      giro.destroy();
+      if (!sigueEnCamara()) return;
       this.cerrarCamara();
       this.modoDibujos(TEXTOS.bonus.sinModelo);
       return;
     }
-    if (!this.activa) return;
+    if (!sigueEnCamara()) return;
+    this.vista = this.vista.filter((o) => o !== giro);
     giro.destroy();
     this.botonAdivinar = new Boton(this, 1680, VISTA.y, {
       texto: TEXTOS.bonus.botonAdivinar,
@@ -201,9 +217,14 @@ export class BonusScene extends Phaser.Scene {
 
   // ─── Dibujos (respaldo sin cámara) ───────────────────────────────────
   private modoDibujos(mensaje: string): void {
+    if (this.modo === 'dibujos') return;
     this.modo = 'dibujos';
+    this.esperado = undefined;
+    this.activarBotes(false);
     this.botonAdivinar?.destroy();
     this.botonAdivinar = null;
+    this.botonDibujos?.destroy();
+    this.botonDibujos = null;
     this.dibujos = Phaser.Utils.Array.Shuffle(RESIDUOS.filter((r) => categoriaDe(r, CATEGORIAS)));
     this.add.circle(VISTA.x, VISTA.y, 178, 0xffffff, 0.5).setDepth(15);
     this.add.circle(VISTA.x, VISTA.y, 152, hex(PALETA.crema), 0.95).setDepth(15).setStrokeStyle(8, hex(PALETA.pasto));
@@ -215,6 +236,8 @@ export class BonusScene extends Phaser.Scene {
     if (!this.dibujos.length) this.dibujos = Phaser.Utils.Array.Shuffle(RESIDUOS.filter((r) => categoriaDe(r, CATEGORIAS)));
     const residuo = this.dibujos.shift()!;
     const imagen = this.add.image(VISTA.x, VISTA.y, claveImagenResiduo(residuo.imagen)).setDepth(20).setName(`dibujo-${residuo.id}`);
+    // Tocar el dibujo hace que Caco repita la pregunta (igual que en el nivel 2).
+    imagen.setInteractive({ useHandCursor: true }).on('pointerup', () => this.narrador.decir(TEXTOS.nivel2.pregunta(residuo.nombre)));
     const escala = 230 / Math.max(imagen.width, imagen.height);
     imagen.setScale(0);
     this.tweens.add({ targets: imagen, scale: escala, duration: 420, ease: 'Back.easeOut' });
@@ -269,6 +292,7 @@ export class BonusScene extends Phaser.Scene {
       const { residuo, imagen } = this.dibujoActual;
       progreso().separarEnBonus(`dibujo-${residuo.id}`);
       this.dibujoActual = null;
+      imagen.disableInteractive();
       this.tweens.add({ targets: imagen, x: bote.boca.x, y: bote.boca.y, scale: 0, duration: 500, ease: 'Quad.easeIn', onComplete: () => imagen.destroy() });
       this.esperado = undefined;
       this.activarBotes(false);

@@ -87,7 +87,7 @@ export class Nivel2Scene extends Phaser.Scene {
       const bote = new Bote(this, fila.xs[i]!, BOTES.yBase, c, fila.ancho).setDepth(20);
       bote.on('pointerup', () => {
         // Tocar un bote también sirve (mouse del facilitador o si cuesta arrastrar).
-        if (this.time.now - this.finArrastre < 250) return;
+        if (performance.now() - this.finArrastre < 250) return;
         if (this.actual && this.estado === 'esperando') this.soltarEn(bote);
       });
       return bote;
@@ -114,7 +114,7 @@ export class Nivel2Scene extends Phaser.Scene {
     });
     this.input.on('dragend', (p: Phaser.Input.Pointer, obj: Phaser.GameObjects.Image) => {
       if (this.estado !== 'esperando' || obj !== this.actual?.imagen) return;
-      this.finArrastre = this.time.now;
+      this.finArrastre = performance.now();
       this.botes.forEach((b) => b.resaltar(false));
       const movio = Phaser.Math.Distance.Between(p.downX, p.downY, p.upX, p.upY) > 20;
       const bote = this.botes.find((b) => b.zonaSoltar.contains(obj.x, obj.y));

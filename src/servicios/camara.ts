@@ -2,7 +2,14 @@
  * Acceso a la cámara para el bonus. Solo se pide cuando alguien toca "Muéstrale a Caco".
  * El video se muestra en pantalla y se clasifica en memoria; nunca se graba ni se envía.
  */
-export type MotivoSinCamara = 'sin-soporte' | 'denegada' | 'sin-camara' | 'ocupada' | 'error';
+export type MotivoSinCamara = 'sin-soporte' | 'denegada' | 'sin-camara' | 'ocupada' | 'sin-respuesta' | 'error';
+
+/** Flujos de cámara abiertos ahora mismo (para comprobar que se apagan al salir del bonus). */
+const activos = new Set<MediaStream>();
+
+export function camarasActivas(): number {
+  return [...activos].filter((f) => f.getTracks().some((t) => t.readyState === 'live')).length;
+}
 
 export type ResultadoCamara =
   | { ok: true; video: HTMLVideoElement; espejo: boolean; detener: () => void }
@@ -17,17 +24,36 @@ export function motivoDeError(error: unknown): MotivoSinCamara {
   return 'error';
 }
 
-export async function abrirCamara(ancho: number, alto: number): Promise<ResultadoCamara> {
+/** Si nadie responde el aviso de permiso en este tiempo, se sigue sin cámara. */
+const ESPERA_PERMISO_MS = 30_000;
+
+/**
+ * Pide la cámara. `cancelada` permite abandonar la espera (por ejemplo, si el facilitador
+ * elige jugar con dibujos); si la cámara llega tarde, se apaga en ese momento.
+ */
+export async function abrirCamara(
+  ancho: number,
+  alto: number,
+  cancelada: () => boolean = () => false,
+  esperaMaxMs = ESPERA_PERMISO_MS,
+): Promise<ResultadoCamara> {
   if (typeof navigator === 'undefined' || !navigator.mediaDevices?.getUserMedia) return { ok: false, motivo: 'sin-soporte' };
-  let flujo: MediaStream;
+  const pedido = navigator.mediaDevices.getUserMedia({
+    audio: false,
+    // En tablet preferimos la cámara de atrás (se apunta al objeto); en laptop se usa la que haya.
+    video: { facingMode: { ideal: 'environment' }, width: { ideal: 640 }, height: { ideal: 480 } },
+  });
+  let flujo: MediaStream | 'tiempo';
   try {
-    flujo = await navigator.mediaDevices.getUserMedia({
-      audio: false,
-      // En tablet preferimos la cámara de atrás (se apunta al objeto); en laptop se usa la que haya.
-      video: { facingMode: { ideal: 'environment' }, width: { ideal: 640 }, height: { ideal: 480 } },
-    });
+    flujo = await Promise.race([pedido, new Promise<'tiempo'>((r) => window.setTimeout(() => r('tiempo'), esperaMaxMs))]);
   } catch (e) {
     return { ok: false, motivo: motivoDeError(e) };
+  }
+  if (flujo === 'tiempo' || cancelada()) {
+    // Si el permiso se concede después, se apaga de inmediato: nadie está mirando.
+    void pedido.then((tarde) => tarde.getTracks().forEach((t) => t.stop())).catch(() => undefined);
+    if (flujo !== 'tiempo') flujo.getTracks().forEach((t) => t.stop());
+    return { ok: false, motivo: 'sin-respuesta' };
   }
 
   const video = document.createElement('video');
@@ -50,8 +76,10 @@ export async function abrirCamara(ancho: number, alto: number): Promise<Resultad
   const espejo = ajustes?.facingMode !== 'environment';
   if (espejo) video.style.transform = 'scaleX(-1)';
 
+  activos.add(flujo);
   const detener = () => {
     flujo.getTracks().forEach((t) => t.stop());
+    activos.delete(flujo);
     video.srcObject = null;
   };
   try {

@@ -2,8 +2,18 @@ import Phaser from 'phaser';
 import { ALTO, ANCHO, PALETA } from '../config';
 import { Boton } from './Boton';
 
+/** Si el sistema pide reducir el movimiento, las celebraciones son más discretas. */
+export function menosMovimiento(): boolean {
+  try {
+    return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  } catch {
+    return false;
+  }
+}
+
 /** Estallido de brillitos alrededor de un punto. */
 export function chispas(scene: Phaser.Scene, x: number, y: number, cantidad = 10, radio = 140): void {
+  if (menosMovimiento()) cantidad = Math.ceil(cantidad / 3);
   for (let i = 0; i < cantidad; i++) {
     const ang = (i / cantidad) * Math.PI * 2 + Math.random() * 0.4;
     const b = scene.add.image(x, y, 'brillo').setScale(0.3).setDepth(900).setAngle(Math.random() * 90);
@@ -25,6 +35,7 @@ const COLORES_CONFETI = [0x1f6b4a, 0x2459a6, 0xb84a14, 0x6345a8, 0xffd23f, 0xf05
 
 /** Lluvia de confeti para las grandes celebraciones. */
 export function confeti(scene: Phaser.Scene, cantidad = 80): void {
+  if (menosMovimiento()) cantidad = Math.ceil(cantidad / 4);
   for (let i = 0; i < cantidad; i++) {
     const color = COLORES_CONFETI[i % COLORES_CONFETI.length]!;
     const x = Math.random() * ANCHO;

@@ -3,6 +3,10 @@
  * Frases cortas: el público es de 6 a 8 años y muchos todavía leen con dificultad.
  */
 export const TEXTOS = {
+  inicio: {
+    titulo: 'Caco\nal rescate',
+    jugar: '¡Jugar!',
+  },
   intro: [
     '¡Hola! Soy Caco, el cacomixtle del parque.',
     'El parque está lleno de basura y los animales están tristes.',
@@ -46,9 +50,12 @@ export const TEXTOS = {
       'sin-camara': 'No encontré una cámara. ¡Juguemos con dibujos!',
       'sin-soporte': 'Aquí no puedo usar la cámara. ¡Juguemos con dibujos!',
       ocupada: 'La cámara está ocupada en otro programa. ¡Juguemos con dibujos!',
+      'sin-respuesta': 'No pude abrir la cámara. ¡Juguemos con dibujos!',
       error: 'La cámara no funcionó. ¡Juguemos con dibujos!',
     },
     sinModelo: 'No pude ponerme mis lentes. ¡Juguemos con dibujos!',
+    botonDibujos: 'Usar dibujos',
+    conDibujos: '¡Muy bien! Juguemos con dibujos.',
   },
   diploma: {
     titulo: 'Guardianes del parque',

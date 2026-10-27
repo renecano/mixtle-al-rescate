@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import { ALTO, ANCHO, PALETA } from '../config';
+import { TEXTOS } from '../data/textos';
 import { escenaSiguiente } from '../logica/flujo';
 import { reiniciarProgreso } from '../logica/progreso';
 import { sonido } from '../servicios/sonido';
@@ -23,14 +24,22 @@ export class InicioScene extends Phaser.Scene {
     agregarParque(this);
 
     const titulo = this.add
-      .text(ANCHO / 2 + 160, 200, 'Caco\nal rescate', estiloTexto(150, PALETA.blanco, {
+      .text(ANCHO / 2 + 160, 200, TEXTOS.inicio.titulo, estiloTexto(150, PALETA.blanco, {
         stroke: PALETA.verde,
         strokeThickness: 24,
         lineSpacing: -20,
       }))
       .setOrigin(0.5)
       .setShadow(0, 10, 'rgba(18,61,43,0.35)', 0, true, true);
-    this.tweens.add({ targets: titulo, y: 214, duration: 1800, yoyo: true, repeat: -1, ease: 'Sine.easeInOut' });
+    // Entra cayendo con rebote y luego flota.
+    titulo.setY(-200);
+    this.tweens.add({
+      targets: titulo,
+      y: 200,
+      duration: 900,
+      ease: 'Bounce.easeOut',
+      onComplete: () => this.tweens.add({ targets: titulo, y: 214, duration: 1800, yoyo: true, repeat: -1, ease: 'Sine.easeInOut' }),
+    });
 
     new Caco(this, 330, ALTO - 50, 1.25);
 
@@ -49,7 +58,7 @@ export class InicioScene extends Phaser.Scene {
     }
 
     new Boton(this, ANCHO / 2 + 160, ALTO - 170, {
-      texto: '¡Jugar!',
+      texto: TEXTOS.inicio.jugar,
       icono: 'icono-jugar',
       ancho: 540,
       alto: 176,
@@ -65,5 +74,22 @@ export class InicioScene extends Phaser.Scene {
     }).latir();
 
     agregarBotonSonido(this);
+    this.agregarPantallaCompleta();
+  }
+
+  /** Pantalla completa (útil en tablets). Solo aparece si el navegador lo permite. */
+  private agregarPantallaCompleta(): void {
+    if (!this.scale.fullscreen.available) return;
+    new Boton(this, ANCHO - 240, 88, {
+      icono: 'icono-pantalla',
+      ancho: 132,
+      alto: 132,
+      color: PALETA.verde,
+      nombre: 'pantalla-completa',
+      alPresionar: () => {
+        if (this.scale.isFullscreen) this.scale.stopFullscreen();
+        else this.scale.startFullscreen();
+      },
+    }).setDepth(1000);
   }
 }

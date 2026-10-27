@@ -6,3 +6,4 @@ playwright-report/
 *.log
 .vercel
 .DS_Store
+resultados-e2e.json

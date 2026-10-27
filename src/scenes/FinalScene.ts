@@ -15,6 +15,7 @@ import { Narrador } from '../ui/Narrador';
 import { estiloTexto } from '../ui/texto';
 import { entrar, irA } from '../ui/transicion';
 
+/** El diploma se dibuja en las capas 450-452: encima del confeti (400) y debajo del globo de Caco (500). */
 const DIPLOMA = { x: 1100, y: 440, ancho: 1160, alto: 740 };
 
 /** Diploma "Guardianes del parque" para el grupo, con lo que lograron en la partida. */
@@ -38,16 +39,16 @@ export class FinalScene extends Phaser.Scene {
     CATEGORIAS.forEach((c, i) => {
       const paso = 80;
       const x = izquierda - ((CATEGORIAS.length - 1) * paso) / 2 + i * paso;
-      this.add.image(x, yDato - 120, `bote-${c.id}`).setScale(0.3 / 1.2).setDepth(12);
+      this.add.image(x, yDato - 120, `bote-${c.id}`).setScale(0.3 / 1.2).setDepth(452);
     });
     const numResiduos = this.numero(izquierda, yDato, PALETA.azul);
-    this.add.text(izquierda, yDato + 90, TEXTOS.diploma.residuos(resumen.residuosSeparados), estiloTexto(40, PALETA.tinta)).setOrigin(0.5).setDepth(12);
+    this.add.text(izquierda, yDato + 90, TEXTOS.diploma.residuos(resumen.residuosSeparados), estiloTexto(40, PALETA.tinta)).setOrigin(0.5).setDepth(452);
 
     // Animales.
-    this.add.image(derecha - 70, yDato - 120, 'ardilla-feliz').setScale(0.36 / 1.2).setDepth(12);
-    this.add.image(derecha + 60, yDato - 130, 'mariposa-feliz').setScale(0.36 / 1.2).setDepth(12);
+    this.add.image(derecha - 70, yDato - 120, 'ardilla-feliz').setScale(0.36 / 1.2).setDepth(452);
+    this.add.image(derecha + 60, yDato - 130, 'mariposa-feliz').setScale(0.36 / 1.2).setDepth(452);
     const numAnimales = this.numero(derecha, yDato, PALETA.naranja);
-    this.add.text(derecha, yDato + 90, TEXTOS.diploma.animales(resumen.animalesAyudados), estiloTexto(40, PALETA.tinta)).setOrigin(0.5).setDepth(12);
+    this.add.text(derecha, yDato + 90, TEXTOS.diploma.animales(resumen.animalesAyudados), estiloTexto(40, PALETA.tinta)).setOrigin(0.5).setDepth(452);
 
     const caco = new Caco(this, 230, ALTO - 20, 0.85).setDepth(30);
     caco.ponerFeliz(true);
@@ -97,7 +98,7 @@ export class FinalScene extends Phaser.Scene {
 
   private dibujarDiploma(): void {
     const { x, y, ancho, alto } = DIPLOMA;
-    const g = this.add.graphics().setDepth(10);
+    const g = this.add.graphics().setDepth(450);
     g.fillStyle(0x000000, 0.18).fillRoundedRect(x - ancho / 2 + 10, y - alto / 2 + 16, ancho, alto, 36);
     g.fillStyle(hex(PALETA.crema), 1).fillRoundedRect(x - ancho / 2, y - alto / 2, ancho, alto, 36);
     g.lineStyle(14, hex(PALETA.verde), 1).strokeRoundedRect(x - ancho / 2 + 22, y - alto / 2 + 22, ancho - 44, alto - 44, 26);
@@ -108,33 +109,33 @@ export class FinalScene extends Phaser.Scene {
       [x - ancho / 2 + 44, y + alto / 2 - 44],
       [x + ancho / 2 - 44, y + alto / 2 - 44],
     ]) {
-      this.add.image(ex!, ey!, 'icono-estrella').setScale(0.7).setDepth(11);
+      this.add.image(ex!, ey!, 'icono-estrella').setScale(0.7).setDepth(451);
     }
 
     this.add
       .text(x, y - alto / 2 + 130, TEXTOS.diploma.titulo, estiloTexto(92, PALETA.blanco, { stroke: PALETA.verde, strokeThickness: 18 }))
       .setOrigin(0.5)
-      .setDepth(12);
-    this.add.text(x, y - alto / 2 + 230, TEXTOS.diploma.para, estiloTexto(44, PALETA.morado)).setOrigin(0.5).setDepth(12);
+      .setDepth(452);
+    this.add.text(x, y - alto / 2 + 230, TEXTOS.diploma.para, estiloTexto(44, PALETA.morado)).setOrigin(0.5).setDepth(452);
 
     const fecha = new Intl.DateTimeFormat('es-MX', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date());
     const yPie = y + alto / 2 - 100;
-    const pie = this.add.graphics().setDepth(11);
+    const pie = this.add.graphics().setDepth(451);
     pie.lineStyle(4, hex(PALETA.tinta), 0.5);
     pie.lineBetween(x - 470, yPie, x - 90, yPie).lineBetween(x + 90, yPie, x + 470, yPie);
     // Arriba de cada línea va el dato; abajo, qué es.
-    this.add.text(x - 280, yPie - 30, fecha, estiloTexto(34, PALETA.tinta)).setOrigin(0.5).setDepth(12);
-    this.add.text(x - 280, yPie + 30, TEXTOS.diploma.fecha, estiloTexto(26, PALETA.tinta)).setOrigin(0.5).setDepth(12);
-    this.add.text(x + 280, yPie - 30, TEXTOS.diploma.firma, estiloTexto(36, PALETA.verde, { fontStyle: 'italic bold' })).setOrigin(0.5).setDepth(12);
-    this.add.text(x + 280, yPie + 30, TEXTOS.diploma.pie, estiloTexto(26, PALETA.tinta)).setOrigin(0.5).setDepth(12);
-    this.add.image(x, yPie, 'icono-corazon').setScale(0.8).setDepth(12);
+    this.add.text(x - 280, yPie - 30, fecha, estiloTexto(34, PALETA.tinta)).setOrigin(0.5).setDepth(452);
+    this.add.text(x - 280, yPie + 30, TEXTOS.diploma.fecha, estiloTexto(26, PALETA.tinta)).setOrigin(0.5).setDepth(452);
+    this.add.text(x + 280, yPie - 30, TEXTOS.diploma.firma, estiloTexto(36, PALETA.verde, { fontStyle: 'italic bold' })).setOrigin(0.5).setDepth(452);
+    this.add.text(x + 280, yPie + 30, TEXTOS.diploma.pie, estiloTexto(26, PALETA.tinta)).setOrigin(0.5).setDepth(452);
+    this.add.image(x, yPie, 'icono-corazon').setScale(0.8).setDepth(452);
   }
 
   private numero(x: number, y: number, color: string): Phaser.GameObjects.Text {
     return this.add
       .text(x, y, '0', estiloTexto(130, color, { stroke: PALETA.blanco, strokeThickness: 12 }))
       .setOrigin(0.5)
-      .setDepth(12)
+      .setDepth(452)
       .setName(`numero-${color}`);
   }
 

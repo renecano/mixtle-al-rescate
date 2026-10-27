@@ -49,6 +49,12 @@ export const ICONOS: ArteSvg[] = [
      <rect x="43" y="58" width="14" height="24" rx="3" fill="#1F6B4A"/>`,
   ),
   arte(
+    'icono-pantalla',
+    100,
+    100,
+    `<path d="M16 38V16h22M62 16h22v22M84 62v22H62M38 84H16V62" fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>`,
+  ),
+  arte(
     'icono-estrella',
     100,
     100,

@@ -1,14 +1,34 @@
 import Phaser from 'phaser';
 import { ANIMALES } from '../data/animales';
 import { progreso, resumenDiploma } from '../logica/progreso';
+import { camarasActivas } from './camara';
 
 export interface ObjetoTocable {
   nombre: string;
   escena: string;
+  /** Centro visual, en coordenadas del juego. */
   x: number;
   y: number;
   ancho: number;
   alto: number;
+  /** Tamaño real del área de toque, en coordenadas del juego. */
+  toqueAncho: number;
+  toqueAlto: number;
+}
+
+type ConTransformacion = Phaser.GameObjects.GameObject &
+  Phaser.GameObjects.Components.GetBounds & { getWorldTransformMatrix(): Phaser.GameObjects.Components.TransformMatrix };
+
+/** Tamaño del área de toque (no del dibujo), con la escala de todos sus contenedores. */
+function zonaDeToque(o: ConTransformacion): { ancho: number; alto: number } {
+  const m = o.getWorldTransformMatrix();
+  const sx = Math.hypot(m.a, m.b);
+  const sy = Math.hypot(m.c, m.d);
+  const h = o.input?.hitArea as unknown;
+  if (h instanceof Phaser.Geom.Circle) return { ancho: h.radius * 2 * sx, alto: h.radius * 2 * sy };
+  if (h instanceof Phaser.Geom.Rectangle) return { ancho: h.width * sx, alto: h.height * sy };
+  const b = o.getBounds();
+  return { ancho: b.width, alto: b.height };
 }
 
 /**
@@ -26,9 +46,20 @@ export function exponerParaPruebas(juego: Phaser.Game): void {
         for (const o of objetos) {
           const visible = (o as unknown as { visible?: boolean }).visible !== false;
           if (!visible) continue;
-          if (o.input?.enabled && o.name && 'getBounds' in o) {
-            const b = (o as unknown as Phaser.GameObjects.Components.GetBounds).getBounds();
-            lista.push({ nombre: o.name, escena: escena.scene.key, x: b.centerX, y: b.centerY, ancho: b.width, alto: b.height });
+          if (o.input?.enabled && o.name && 'getBounds' in o && 'getWorldTransformMatrix' in o) {
+            const t = o as ConTransformacion;
+            const b = t.getBounds();
+            const z = zonaDeToque(t);
+            lista.push({
+              nombre: o.name,
+              escena: escena.scene.key,
+              x: b.centerX,
+              y: b.centerY,
+              ancho: b.width,
+              alto: b.height,
+              toqueAncho: z.ancho,
+              toqueAlto: z.alto,
+            });
           }
           if (o instanceof Phaser.GameObjects.Container) visitar(o.list);
         }
@@ -42,5 +73,7 @@ export function exponerParaPruebas(juego: Phaser.Game): void {
     escenas: () => juego.scene.getScenes(true).map((s) => s.scene.key),
     tocables,
     resumen: () => resumenDiploma(progreso(), ANIMALES),
+    camarasActivas,
+    fps: () => Math.round(juego.loop.actualFps),
   };
 }

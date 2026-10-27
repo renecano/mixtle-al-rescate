@@ -137,6 +137,11 @@ export class Nivel1Scene extends Phaser.Scene {
     this.contador.setText(String(total));
     this.tweens.add({ targets: this.bolsa, scaleY: this.bolsa.scaleY * 0.88, duration: 90, yoyo: true });
     this.tweens.add({ targets: this.contador, scale: 1.5, duration: 120, yoyo: true });
+    const masUno = this.add
+      .text(this.bolsa.x, this.bolsa.y - 170, '+1', estiloTexto(54, PALETA.naranja, { stroke: PALETA.blanco, strokeThickness: 10 }))
+      .setOrigin(0.5)
+      .setDepth(850);
+    this.tweens.add({ targets: masUno, y: masUno.y - 90, alpha: 0, duration: 900, ease: 'Quad.easeOut', onComplete: () => masUno.destroy() });
 
     const quedanEnZona = this.piezas.some((p) => p.zona === pieza.zona);
     const alFinal = this.piezas.length ? undefined : () => this.terminar();

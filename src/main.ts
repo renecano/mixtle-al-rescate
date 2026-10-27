@@ -28,5 +28,7 @@ const juego = new Phaser.Game({
 });
 
 exponerParaPruebas(juego);
+// Quita el mensaje de "Cargando…" en navegadores sin soporte para :has().
+juego.events.once(Phaser.Core.Events.READY, () => document.getElementById('cargando')?.remove());
 
 export default juego;

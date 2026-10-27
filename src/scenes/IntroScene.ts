@@ -29,8 +29,12 @@ export class IntroScene extends Phaser.Scene {
     this.paso = 0;
     agregarParque(this);
     new AnimalesParque(this);
-    // La basura regada (solo de adorno: en el nivel 1 se recoge).
-    for (const c of repartir(RESIDUOS, ZONAS.map((z) => z.reparto), crearAleatorio(7))) {
+    // La basura regada (solo de adorno: en el nivel 1 se recoge). Aquí Caco es más grande,
+    // así que se omite la que quedaría detrás de su cola o del botón de seguir.
+    const visibles = repartir(RESIDUOS, ZONAS.map((z) => z.reparto), crearAleatorio(7)).filter(
+      (c) => c.x > 660 && !(c.x > ANCHO - 330 && c.y > ALTO - 230),
+    );
+    for (const c of visibles) {
       const img = this.add.image(c.x, c.y, claveImagenResiduo(c.item.imagen)).setAngle(c.angulo).setDepth(10);
       img.setScale(124 / Math.max(img.width, img.height));
     }
@@ -69,7 +73,8 @@ export class IntroScene extends Phaser.Scene {
   }
 
   private avanzar(): void {
-    const ahora = this.time.now;
+    // Tiempo real (no el reloj de la escena, que solo avanza por cuadro y puede atrasarse).
+    const ahora = performance.now();
     if (ahora - this.ultimoToque < 350) return; // evita dobles toques accidentales
     this.ultimoToque = ahora;
     this.paso += 1;
