@@ -40,21 +40,30 @@ export class Boton extends Phaser.GameObjects.Container {
     this.add(fondo);
 
     const tamIcono = Math.min(this.alto * 0.62, 96);
-    let xTexto = 0;
-    if (op.icono) {
-      const soloIcono = !op.texto;
-      const xIcono = soloIcono ? 0 : -this.ancho / 2 + this.alto * 0.58;
-      this.add(scene.add.image(xIcono, 0, op.icono).setDisplaySize(tamIcono, tamIcono));
-      xTexto = soloIcono ? 0 : tamIcono * 0.45;
-    }
+    const icono = op.icono ? scene.add.image(0, 0, op.icono).setDisplaySize(tamIcono, tamIcono) : null;
+    let texto: Phaser.GameObjects.Text | null = null;
     if (op.texto) {
-      const texto = scene.add.text(
-        xTexto,
+      texto = scene.add.text(
+        0,
         -2,
         op.texto,
         estiloTexto(op.tamanoTexto ?? 56, PALETA.blanco, { stroke: color.clone().darken(30).rgba, strokeThickness: 6 }),
       );
       texto.setOrigin(0.5);
+      // Si el texto no cabe, se reduce para no salirse del botón.
+      const disponible = this.ancho - 60 - (icono ? tamIcono + 20 : 0);
+      if (texto.width > disponible) texto.setScale(disponible / texto.width);
+    }
+    // Ícono y texto se centran juntos, como un solo grupo.
+    const separacion = 20;
+    const anchoTexto = texto ? texto.displayWidth : 0;
+    const total = (icono ? tamIcono : 0) + (icono && texto ? separacion : 0) + anchoTexto;
+    if (icono) {
+      icono.setX(-total / 2 + tamIcono / 2);
+      this.add(icono);
+    }
+    if (texto) {
+      texto.setX(total / 2 - anchoTexto / 2);
       this.add(texto);
     }
 

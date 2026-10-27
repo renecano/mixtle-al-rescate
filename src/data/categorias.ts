@@ -7,7 +7,7 @@ import type { CategoriaBase, Material } from './residuos';
  * El juego funciona con 2, 3 o 4 categorías cambiando SOLO este archivo:
  *  - Cada bote dice qué acepta en `acepta`: una categoría base de los residuos
  *    ('organico', 'reciclable', 'no-reciclable') o un material ('papel', 'plastico',
- *    'metal', 'multicapa', 'sanitario', 'organico').
+ *    'metal', 'vidrio', 'multicapa', 'sanitario', 'organico').
  *  - Si un residuo coincide por material con un bote, ese bote gana sobre uno que
  *    coincide solo por categoría base. Así se puede separar, por ejemplo, "Papel y cartón".
  *  - Cada residuo debe ir a exactamente un bote (las pruebas lo revisan).

@@ -13,7 +13,7 @@
 export type CategoriaBase = 'organico' | 'reciclable' | 'no-reciclable';
 
 /** Material, por si Eco Urban quiere botes más finos (por ejemplo, papel aparte). */
-export type Material = 'organico' | 'papel' | 'plastico' | 'metal' | 'multicapa' | 'sanitario';
+export type Material = 'organico' | 'papel' | 'plastico' | 'metal' | 'vidrio' | 'multicapa' | 'sanitario';
 
 export interface Residuo {
   id: string;

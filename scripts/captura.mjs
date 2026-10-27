@@ -11,8 +11,17 @@ import { chromium } from '@playwright/test';
 
 const [url = 'http://localhost:5173/', ancho = '1920', alto = '1080', ...pasos] = process.argv.slice(2);
 
-const navegador = await chromium.launch({ channel: 'chrome' });
-const pagina = await navegador.newPage({ viewport: { width: Number(ancho), height: Number(alto) } });
+// CAMARA=falsa usa la cámara de prueba de Chrome (patrón verde) y concede el permiso.
+const camaraFalsa = process.env.CAMARA === 'falsa';
+const navegador = await chromium.launch({
+  channel: 'chrome',
+  args: camaraFalsa ? ['--use-fake-ui-for-media-stream', '--use-fake-device-for-media-stream'] : [],
+});
+const contexto = await navegador.newContext({
+  viewport: { width: Number(ancho), height: Number(alto) },
+  permissions: camaraFalsa ? ['camera'] : [],
+});
+const pagina = await contexto.newPage();
 const errores = [];
 pagina.on('pageerror', (e) => errores.push(String(e)));
 pagina.on('console', (m) => {

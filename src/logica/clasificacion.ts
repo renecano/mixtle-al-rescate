@@ -1,24 +1,30 @@
 import { NOMBRE_DEL_ICONO, type Categoria } from '../data/categorias';
-import type { Residuo } from '../data/residuos';
+import type { CategoriaBase, Material, Residuo } from '../data/residuos';
 
 const MIN_CATEGORIAS = 2;
 const MAX_CATEGORIAS = 4;
 
-/** Botes que aceptan el residuo, con prioridad para los que coinciden por material. */
-function candidatos(residuo: Residuo, categorias: readonly Categoria[]): Categoria[] {
-  const porMaterial = categorias.filter((c) => c.acepta.includes(residuo.material));
+/** Lo mínimo para saber a qué bote va algo: su categoría base y, si se conoce, su material. */
+export interface Clasificable {
+  categoria: CategoriaBase;
+  material?: Material;
+}
+
+/** Botes que aceptan el objeto, con prioridad para los que coinciden por material. */
+function candidatos(objeto: Clasificable, categorias: readonly Categoria[]): Categoria[] {
+  const porMaterial = objeto.material ? categorias.filter((c) => c.acepta.includes(objeto.material!)) : [];
   if (porMaterial.length) return porMaterial;
-  return categorias.filter((c) => c.acepta.includes(residuo.categoria));
+  return categorias.filter((c) => c.acepta.includes(objeto.categoria));
 }
 
 /** El bote correcto para un residuo, o null si la configuración no lo cubre o es ambigua. */
-export function categoriaDe(residuo: Residuo, categorias: readonly Categoria[]): Categoria | null {
-  const c = candidatos(residuo, categorias);
+export function categoriaDe(objeto: Clasificable, categorias: readonly Categoria[]): Categoria | null {
+  const c = candidatos(objeto, categorias);
   return c.length === 1 ? c[0]! : null;
 }
 
-export function esCorrecto(residuo: Residuo, categoriaId: string, categorias: readonly Categoria[]): boolean {
-  return categoriaDe(residuo, categorias)?.id === categoriaId;
+export function esCorrecto(objeto: Clasificable, categoriaId: string, categorias: readonly Categoria[]): boolean {
+  return categoriaDe(objeto, categorias)?.id === categoriaId;
 }
 
 /** Lista de problemas en la configuración de botes y residuos (vacía si todo está bien). */
