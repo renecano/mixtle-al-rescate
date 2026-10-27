@@ -5,6 +5,7 @@
 //   s:ruta.png guarda una captura
 //   t:nombre   toca el primer objeto tocable cuyo nombre empieza así (requiere el gancho __caco)
 //   T:nombre   toca, uno por uno, todos los que empiezan así
+//   d:a>b      arrastra el tocable "a" hasta el tocable "b" (prefijos)
 // Usa el Chrome instalado en la máquina (no descarga navegadores).
 import { chromium } from '@playwright/test';
 
@@ -40,6 +41,28 @@ for (const paso of pasos) {
       await pagina.waitForTimeout(tipo === 'T' ? 900 : 100);
     }
   }
+  if (tipo === 'd') {
+    const [a, b] = valor.split('>');
+    const lista = await pagina.evaluate(() => window.__caco.tocables());
+    const origen = lista.find((o) => o.nombre.startsWith(a));
+    const destino = lista.find((o) => o.nombre.startsWith(b));
+    if (!origen || !destino) console.log(`No se pudo arrastrar ${valor}`);
+    else await arrastrar(origen, destino);
+  }
+}
+
+async function aPantalla(gx, gy) {
+  const caja = await pagina.locator('canvas').boundingBox();
+  return { x: caja.x + (gx / 1920) * caja.width, y: caja.y + (gy / 1080) * caja.height };
+}
+
+async function arrastrar(o, d) {
+  const a = await aPantalla(o.x, o.y);
+  const b = await aPantalla(d.x, d.y);
+  await pagina.mouse.move(a.x, a.y);
+  await pagina.mouse.down();
+  await pagina.mouse.move(b.x, b.y, { steps: 12 });
+  await pagina.mouse.up();
 }
 
 async function tocar(gx, gy) {

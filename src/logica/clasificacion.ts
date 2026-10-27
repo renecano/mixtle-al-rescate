@@ -47,18 +47,17 @@ export function validarConfiguracion(categorias: readonly Categoria[], residuos:
   return errores;
 }
 
-function mayuscula(texto: string): string {
-  return texto.charAt(0).toUpperCase() + texto.slice(1);
-}
-
 /** Cómo se llama el bote en voz alta: "el bote verde de la hojita". */
 export function descripcionBote(c: Categoria): string {
   return `el bote ${c.nombreColor} de ${NOMBRE_DEL_ICONO[c.icono]}`;
 }
 
-/** Pista amable cuando el residuo fue a otro bote. Nunca regaña. */
-export function textoPista(residuo: Residuo, correcta: Categoria): string {
-  return `¡Casi! ${mayuscula(residuo.nombre)} va en otro bote. ${correcta.pista} Busca ${descripcionBote(correcta)}.`;
+/**
+ * Pista amable cuando el residuo fue a otro bote. Nunca regaña. Son tres frases cortas:
+ * el residuo ya está a la vista, así que la pista se centra en cómo reconocer su bote.
+ */
+export function textoPista(correcta: Categoria): string {
+  return `¡Casi! ${correcta.pista} Busca ${descripcionBote(correcta)}.`;
 }
 
 /** Frase al acertar: celebración + dato curioso. */

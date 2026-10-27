@@ -13,5 +13,11 @@ export const TEXTOS = {
     pista: '¡Todavía hay basura! Tócala para guardarla en mi bolsa.',
     fin: '¡Lo lograste! El parque está limpio. Ahora vamos a separar la basura.',
   },
+  nivel2: {
+    instruccion: 'Ahora arrastra cada basura a su bote.',
+    pregunta: (nombre: string) => `¿A qué bote va ${nombre}?`,
+    celebraciones: ['¡Muy bien!', '¡Excelente!', '¡Eso es!', '¡Bravo!', '¡Así se hace!'],
+    fin: '¡Separaste toda la basura! Ahora vamos a darles un hogar a los animales.',
+  },
   seguir: '¡Sigamos!',
 } as const;

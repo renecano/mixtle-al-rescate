@@ -69,11 +69,11 @@ describe('el juego funciona con 2 a 4 categorías cambiando solo categorias.ts',
 });
 
 describe('textos de Caco', () => {
-  it('la pista es amable, nombra el residuo y describe el bote con color e ícono', () => {
-    const texto = textoPista(residuo('platano'), CATEGORIAS[0]!);
+  it('la pista es amable, corta y describe el bote con color e ícono', () => {
+    const texto = textoPista(CATEGORIAS[0]!);
     expect(texto).toMatch(/^¡Casi!/);
-    expect(texto).toContain('La cáscara de plátano');
     expect(texto).toContain('el bote verde de la hojita');
+    expect(texto.split(/[.!?]\s/).length).toBeLessThanOrEqual(3);
     expect(texto).not.toMatch(/\b(mal|error|incorrecto|perdiste|equivocado)\b/i);
   });
 
