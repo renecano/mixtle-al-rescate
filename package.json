@@ -14,7 +14,10 @@
     "test:e2e:sin-camara": "playwright test --project=proyector-1920x1080 --project=tablet-1024x768",
     "typecheck": "tsc --noEmit && tsc --noEmit -p e2e",
     "lint": "eslint .",
-    "verificar": "npm run typecheck && npm run lint && npm test && npm run build"
+    "verificar": "npm run typecheck && npm run lint && npm test && npm run build",
+    "voz:preparar": "node scripts/voz/preparar.mjs",
+    "voz:muestras": "node scripts/voz/muestras.mjs",
+    "musica:muestras": "node scripts/musica/muestras.mjs"
   },
   "license": "UNLICENSED",
   "dependencies": {

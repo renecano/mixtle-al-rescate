@@ -1,0 +1,31 @@
+{
+  "pistas": [
+    {
+      "id": "tranquila",
+      "nombre": "Tranquila: menú y camino",
+      "candidatas": [
+        { "id": "happy-lullaby", "titulo": "Happy Lullaby (song17)", "autor": "cynicmusic", "licencia": "CC0", "pagina": "https://opengameart.org/content/happy-lullaby-song17", "url": "https://opengameart.org/sites/default/files/song17.mp3" },
+        { "id": "feel-good-island", "titulo": "Feel Good Island", "autor": "Brandon75689", "licencia": "CC0 (también ofrecida como OGA-BY 3.0)", "pagina": "https://opengameart.org/content/feel-good-island", "url": "https://opengameart.org/sites/default/files/island_0.ogg" },
+        { "id": "where-was-i", "titulo": "Where was I?", "autor": "yd", "licencia": "CC0", "pagina": "https://opengameart.org/content/where-was-i", "url": "https://opengameart.org/sites/default/files/WereWasI_0.ogg" }
+      ]
+    },
+    {
+      "id": "lecciones",
+      "nombre": "Alegre y suave: lecciones",
+      "candidatas": [
+        { "id": "apple-cider", "titulo": "Apple Cider", "autor": "Zane Little Music", "licencia": "CC0", "pagina": "https://opengameart.org/content/apple-cider", "url": "https://opengameart.org/sites/default/files/apple_cider.ogg" },
+        { "id": "childrens-march", "titulo": "Children's March Theme", "autor": "CleytonKauffman", "licencia": "CC0", "pagina": "https://opengameart.org/content/childrens-march-theme", "url": "https://opengameart.org/sites/default/files/childrens_march_theme.zip", "dentroDelZip": "[.]mp3$" },
+        { "id": "happy-adventure", "titulo": "Happy Adventure (Loop)", "autor": "TinyWorlds", "licencia": "CC0", "pagina": "https://opengameart.org/content/happy-adventure-loop", "url": "https://opengameart.org/sites/default/files/happy_adveture.mp3" }
+      ]
+    },
+    {
+      "id": "celebracion",
+      "nombre": "Jingle de celebración: al terminar una lección o unidad",
+      "candidatas": [
+        { "id": "cozy-clear", "titulo": "Cozy Puzzle Jingle & Result — Clear (Jingle)", "autor": "MintoDog", "licencia": "CC0", "pagina": "https://opengameart.org/content/cozy-puzzle-jingle-result", "url": "https://opengameart.org/sites/default/files/mp3_cozy_puzzle_jingle_result.zip", "dentroDelZip": "clear.*jingle.*[.]mp3$" },
+        { "id": "level-finished", "titulo": "Level Finished! (versión lenta con piano)", "autor": "Umplix", "licencia": "CC0", "pagina": "https://opengameart.org/content/level-complete", "url": "https://opengameart.org/sites/default/files/level_finished_3.wav" },
+        { "id": "level-complete", "titulo": "Level Complete!", "autor": "Umplix", "licencia": "CC0", "pagina": "https://opengameart.org/content/level-complete", "url": "https://opengameart.org/sites/default/files/level_complete_1.wav" }
+      ]
+    }
+  ]
+}

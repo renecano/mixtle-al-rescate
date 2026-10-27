@@ -9,3 +9,5 @@ playwright-report/
 resultados-e2e.json
 dev-dist/
 .venv-voz/
+.voz-modelos/
+.musica-descargas/

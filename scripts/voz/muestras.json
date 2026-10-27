@@ -1,0 +1,21 @@
+{
+  "frases": [
+    { "id": "saludo", "texto": "¡Hola! Soy Caco, el cacomixtle del parque. ¿Me ayudas a cuidarlo?" },
+    { "id": "felicitacion", "texto": "¡Muy bien! Lo lograste. ¡Eres un gran guardián del parque!" },
+    { "id": "pista", "texto": "¡Casi! Este ya no se puede reciclar. Busca el bote naranja con el dibujo del bote de basura." }
+  ],
+  "opciones": [
+    { "id": "piper-ald-normal", "proveedor": "piper", "voz": "es_MX-ald-medium", "nombre": "Piper · ald (México) · normal", "ajustes": { "length_scale": 1.0 } },
+    { "id": "piper-ald-amigable", "proveedor": "piper", "voz": "es_MX-ald-medium", "nombre": "Piper · ald (México) · más lenta", "ajustes": { "length_scale": 1.15 } },
+    { "id": "piper-claude-normal", "proveedor": "piper", "voz": "es_MX-claude-high", "nombre": "Piper · claude (México) · normal", "ajustes": { "length_scale": 1.0 } },
+    { "id": "piper-claude-amigable", "proveedor": "piper", "voz": "es_MX-claude-high", "nombre": "Piper · claude (México) · más lenta", "ajustes": { "length_scale": 1.15 } },
+    { "id": "kokoro-dora-normal", "proveedor": "kokoro", "voz": "ef_dora", "nombre": "Kokoro · dora · normal", "ajustes": { "speed": 1.0 } },
+    { "id": "kokoro-dora-amigable", "proveedor": "kokoro", "voz": "ef_dora", "nombre": "Kokoro · dora · más lenta", "ajustes": { "speed": 0.88 } },
+    { "id": "kokoro-alex-normal", "proveedor": "kokoro", "voz": "em_alex", "nombre": "Kokoro · alex · normal", "ajustes": { "speed": 1.0 } },
+    { "id": "kokoro-alex-amigable", "proveedor": "kokoro", "voz": "em_alex", "nombre": "Kokoro · alex · más lenta", "ajustes": { "speed": 0.88 } },
+    { "id": "edge-dalia-normal", "proveedor": "edge", "voz": "es-MX-DaliaNeural", "nombre": "edge-tts · Dalia (México) · normal", "ajustes": { "rate": "+0%", "pitch": "+0Hz" } },
+    { "id": "edge-dalia-amigable", "proveedor": "edge", "voz": "es-MX-DaliaNeural", "nombre": "edge-tts · Dalia (México) · más lenta y aguda", "ajustes": { "rate": "-10%", "pitch": "+20Hz" } },
+    { "id": "edge-jorge-normal", "proveedor": "edge", "voz": "es-MX-JorgeNeural", "nombre": "edge-tts · Jorge (México) · normal", "ajustes": { "rate": "+0%", "pitch": "+0Hz" } },
+    { "id": "edge-jorge-amigable", "proveedor": "edge", "voz": "es-MX-JorgeNeural", "nombre": "edge-tts · Jorge (México) · más lenta y aguda", "ajustes": { "rate": "-10%", "pitch": "+20Hz" } }
+  ]
+}
