@@ -27,5 +27,17 @@ export const TEXTOS = {
     llegaArdilla: '¡A la ardilla le encanta su árbol nuevo!',
     fin: '¡El parque es otra vez un hogar para los animales!',
   },
+  diploma: {
+    titulo: 'Guardianes del parque',
+    para: 'Diploma para todo el grupo',
+    residuos: (n: number) => (n === 1 ? 'residuo bien separado' : 'residuos bien separados'),
+    animales: (n: number) => (n === 1 ? 'animal ayudado' : 'animales ayudados'),
+    narracion: (residuos: number, animales: number) =>
+      `¡Felicidades, guardianes del parque! Separaron bien ${residuos} ${residuos === 1 ? 'residuo' : 'residuos'} y ayudaron a ${animales} ${animales === 1 ? 'animal' : 'animales'}.`,
+    firma: 'Caco, el cacomixtle',
+    fecha: 'Fecha',
+    pie: 'Caco al rescate · Eco Urban A.C.',
+    jugarOtraVez: 'Jugar otra vez',
+  },
   seguir: '¡Sigamos!',
 } as const;
