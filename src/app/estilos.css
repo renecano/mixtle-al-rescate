@@ -1,0 +1,38 @@
+@import 'tailwindcss';
+
+/* Identidad de Eco Urban y Caco (no la de otras apps): paleta del prompt y Nunito. */
+@theme {
+  --color-verde: #1f6b4a;
+  --color-verde-oscuro: #123d2b;
+  --color-verde-claro: #ddf0cc;
+  --color-azul: #2459a6;
+  --color-naranja: #b84a14;
+  --color-morado: #6345a8;
+  --color-crema: #fff8e7;
+  --color-tinta: #1d2b24;
+  --color-cielo: #cfeaf7;
+  --color-pasto: #bfe3a6;
+  --font-sans: 'Nunito', 'Arial Rounded MT Bold', 'Segoe UI', system-ui, sans-serif;
+}
+
+html,
+body,
+#app {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+  background: var(--color-verde-oscuro);
+  color: var(--color-tinta);
+  font-family: var(--font-sans);
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* El lienzo de las aventuras maneja sus propios gestos (arrastrar residuos). */
+[data-pantalla='aventura'] {
+  touch-action: none;
+}

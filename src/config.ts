@@ -23,9 +23,8 @@ export function hex(color: string): number {
   return parseInt(color.replace('#', ''), 16);
 }
 
-/** Tipografía del sistema (sin fuentes externas: así no hay licencias que no sean CC0). */
-export const FUENTE =
-  '"Arial Rounded MT Bold", "Segoe UI Rounded", "Nunito", "Trebuchet MS", "Segoe UI", system-ui, sans-serif';
+/** Nunito (licencia OFL), autoalojada con @fontsource: no se descarga nada de Google Fonts. */
+export const FUENTE = '"Nunito", "Arial Rounded MT Bold", "Segoe UI", system-ui, sans-serif';
 
 /** Tamaño mínimo de cualquier zona de toque, en píxeles del juego. */
 export const TOQUE_MINIMO = 64;

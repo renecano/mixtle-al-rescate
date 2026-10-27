@@ -13,7 +13,7 @@ import { chispas, confeti } from '../ui/efectos';
 import { agregarParque } from '../ui/fondo';
 import { Narrador } from '../ui/Narrador';
 import { estiloTexto } from '../ui/texto';
-import { entrar, irA } from '../ui/transicion';
+import { entrar, salirDeAventura } from '../ui/transicion';
 
 /** El diploma se dibuja en las capas 450-452: encima del confeti (400) y debajo del globo de Caco (500). */
 const DIPLOMA = { x: 1100, y: 440, ancho: 1160, alto: 740 };
@@ -73,7 +73,7 @@ export class FinalScene extends Phaser.Scene {
       nombre: 'jugar-otra-vez',
       alPresionar: () => {
         reiniciarProgreso();
-        irA(this, 'Inicio');
+        salirDeAventura(this);
       },
     }).setDepth(800);
     otraVez.setVisible(false);

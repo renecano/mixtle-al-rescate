@@ -8,10 +8,12 @@ import {
   arrastrar,
   captura,
   esperarEscena,
+  esperarPantalla,
   esperarTocable,
   resumen,
   tocables,
   tocar,
+  tocarBoton,
 } from './ayudas';
 
 function boteCorrecto(idResiduo: string): string {
@@ -35,10 +37,10 @@ test('recorrido completo: inicio → intro → 3 niveles → bonus sin cámara �
   }
   const { errores, peticiones } = await abrir(page);
 
-  // Inicio
-  await esperarEscena(page, 'Inicio');
+  // Inicio (pantalla de React)
+  await esperarPantalla(page, 'inicio');
   await captura(page, info, '1-inicio');
-  await tocar(page, 'jugar');
+  await tocarBoton(page, /¡Jugar!/);
 
   // Intro: tres frases, se avanza tocando.
   await esperarEscena(page, 'Intro');
@@ -119,10 +121,11 @@ test('recorrido completo: inicio → intro → 3 niveles → bonus sin cámara �
   expect(await resumen(page)).toMatchObject({ residuosSeparados: RESIDUOS.length + 1, animalesAyudados: 10 });
   expect(await page.evaluate(() => window.__caco.camarasActivas())).toBe(0);
 
-  // Jugar otra vez reinicia todo.
+  // Jugar otra vez: se sale de la aventura (Phaser se destruye) y "¡Jugar!" reinicia todo.
   await tocar(page, 'jugar-otra-vez');
-  await esperarEscena(page, 'Inicio');
-  await tocar(page, 'jugar');
+  await esperarPantalla(page, 'inicio');
+  expect(await page.locator('canvas').count()).toBe(0);
+  await tocarBoton(page, /¡Jugar!/);
   await esperarEscena(page, 'Intro');
   expect(await resumen(page)).toMatchObject({ residuosSeparados: 0, animalesAyudados: 0 });
 
@@ -133,11 +136,12 @@ test('recorrido completo: inicio → intro → 3 niveles → bonus sin cámara �
 
 test('el botón de sonido se recuerda y el juego no se rompe sin localStorage', async ({ page, context }) => {
   await abrir(page);
-  await esperarEscena(page, 'Inicio');
-  await tocar(page, 'sonido');
+  await esperarPantalla(page, 'inicio');
+  await tocarBoton(page, 'Apagar el sonido');
   await expect.poll(() => page.evaluate(() => localStorage.getItem('caco-al-rescate:sonido'))).toBe('no');
   await page.reload();
   await page.waitForFunction(() => !!window.__caco);
+  await expect(page.getByRole('button', { name: 'Encender el sonido' })).toBeVisible();
   expect(await page.evaluate(() => localStorage.getItem('caco-al-rescate:sonido'))).toBe('no');
   // Lo único guardado es esa preferencia.
   expect(await page.evaluate(() => Object.keys(localStorage))).toEqual(['caco-al-rescate:sonido']);
@@ -152,8 +156,8 @@ test('el botón de sonido se recuerda y el juego no se rompe sin localStorage', 
     });
   });
   const { errores } = await abrir(bloqueada);
-  await esperarEscena(bloqueada, 'Inicio');
-  await tocar(bloqueada, 'jugar');
+  await esperarPantalla(bloqueada, 'inicio');
+  await tocarBoton(bloqueada, /¡Jugar!/);
   await esperarEscena(bloqueada, 'Intro');
   expect(errores).toEqual([]);
 });
@@ -186,8 +190,18 @@ test('bonus: si el permiso de cámara no llega, "Usar dibujos" sigue el juego y 
   expect(errores).toEqual([]);
 });
 
+test('Inicio: cada botón mide al menos 64 px reales en esta pantalla', async ({ page }) => {
+  await abrir(page);
+  await esperarPantalla(page, 'inicio');
+  const botones = await page.getByRole('button').all();
+  expect(botones.length).toBeGreaterThan(0);
+  for (const b of botones) {
+    const caja = (await b.boundingBox())!;
+    expect.soft(Math.min(caja.width, caja.height), `${await b.getAttribute('aria-label') ?? await b.textContent()}`).toBeGreaterThanOrEqual(64);
+  }
+});
+
 const PANTALLAS: [string, string][] = [
-  ['Inicio', 'jugar'],
   ['Nivel1', 'residuo-'],
   ['Nivel2', 'residuo-'],
   ['Nivel3', 'tierra-'],

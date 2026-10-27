@@ -28,7 +28,7 @@ pagina.on('console', (m) => {
   if (m.type() === 'error' || m.type() === 'warning') errores.push(`${m.type()}: ${m.text()}`);
 });
 await pagina.goto(url);
-await pagina.waitForSelector('canvas');
+await pagina.waitForFunction(() => !!window.__caco?.pantalla?.(), null, { timeout: 30000 });
 await pagina.waitForTimeout(1200);
 
 for (const paso of pasos) {

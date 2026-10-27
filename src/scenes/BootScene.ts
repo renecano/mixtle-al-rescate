@@ -6,7 +6,7 @@ import { aDataUri } from '../arte/svg';
 import { CATEGORIAS } from '../data/categorias';
 import { RESIDUOS } from '../data/residuos';
 import { validarConfiguracion } from '../logica/clasificacion';
-import { ORDEN_ESCENAS } from '../logica/flujo';
+import { esEscena } from '../logica/flujo';
 import { estiloTexto } from '../ui/texto';
 
 /** Rasteriza las ilustraciones SVG, carga imágenes propias de residuos y muestra una barra de carga. */
@@ -42,18 +42,8 @@ export class BootScene extends Phaser.Scene {
   }
 
   create(): void {
-    const params = new URLSearchParams(window.location.search);
-    if (params.has('galeria')) {
-      this.scene.start('Galeria');
-      return;
-    }
-    // Atajo para revisar una pantalla directamente (solo en desarrollo o pruebas): ?escena=Nivel2
-    const escena = params.get('escena');
-    const permitido = import.meta.env.DEV || params.has('e2e');
-    if (permitido && escena && (ORDEN_ESCENAS as readonly string[]).includes(escena)) {
-      this.scene.start(escena);
-      return;
-    }
-    this.scene.start('Inicio');
+    // La app de React decide dónde empieza: la intro, una escena para revisar, o la galería de arte.
+    const escena = this.registry.get('escenaInicial') as string | undefined;
+    this.scene.start(escena === 'Galeria' || esEscena(escena) ? escena : 'Intro');
   }
 }

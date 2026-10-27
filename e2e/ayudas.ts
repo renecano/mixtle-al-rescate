@@ -15,6 +15,7 @@ export interface Tocable {
 
 interface Gancho {
   escenas(): string[];
+  pantalla(): string | null;
   tocables(): Tocable[];
   resumen(): { residuosSeparados: number; animalesAyudados: number; plantados: number };
   camarasActivas(): number;
@@ -41,7 +42,7 @@ export async function abrir(page: Page, ruta = '/?e2e') {
   });
   page.on('request', (r) => peticiones.push(r));
   await page.goto(ruta);
-  await page.waitForFunction(() => !!window.__caco && window.__caco.escenas().length > 0);
+  await page.waitForFunction(() => !!window.__caco && !!window.__caco.pantalla());
   return { errores, peticiones };
 }
 
@@ -51,6 +52,23 @@ export function escenas(page: Page): Promise<string[]> {
 
 export async function esperarEscena(page: Page, clave: string, timeout = 30_000): Promise<void> {
   await expect.poll(() => escenas(page), { timeout }).toContain(clave);
+}
+
+/** Pantalla de React visible: "inicio" o "aventura". */
+export async function esperarPantalla(page: Page, nombre: string, timeout = 30_000): Promise<void> {
+  await expect.poll(() => page.evaluate(() => window.__caco.pantalla()), { timeout }).toBe(nombre);
+}
+
+/** Toca un botón de React (DOM) por su nombre accesible, con el dedo si el dispositivo es táctil. */
+export async function tocarBoton(page: Page, nombre: string | RegExp): Promise<void> {
+  const boton = page.getByRole('button', { name: nombre });
+  await expect(boton).toBeVisible();
+  await expect(boton).toBeEnabled();
+  // Algunos botones "laten" sin parar para invitar a tocarlos: Playwright nunca los vería quietos,
+  // así que se tocan sin esperar a que dejen de moverse (ya se comprobó que están visibles).
+  const tactil = await page.evaluate(() => navigator.maxTouchPoints > 0);
+  if (tactil) await boton.tap({ force: true });
+  else await boton.click({ force: true });
 }
 
 export function tocables(page: Page): Promise<Tocable[]> {

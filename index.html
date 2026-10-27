@@ -4,30 +4,27 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
     <meta name="theme-color" content="#1F6B4A" />
-    <meta name="description" content="Caco al rescate: un juego para cuidar a los animales del parque y aprender a separar la basura." />
+    <meta name="description" content="Caco al rescate: aprende a cuidar el parque, a sus animales y a separar la basura con Caco el cacomixtle." />
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="apple-touch-icon" href="./iconos/icono-192.png" />
     <title>Caco al rescate</title>
     <style>
-      html, body { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background: #123d2b; }
-      body { touch-action: none; -webkit-user-select: none; user-select: none; -webkit-tap-highlight-color: transparent;
-        font-family: "Arial Rounded MT Bold", "Segoe UI Rounded", "Trebuchet MS", "Segoe UI", system-ui, sans-serif; }
-      #juego { width: 100vw; height: 100vh; height: 100dvh; }
-      #juego canvas { display: block; }
-      /* Mensaje mientras se descarga el juego; desaparece cuando Phaser crea el lienzo. */
-      #cargando { position: fixed; inset: 0; display: grid; place-items: center; color: #fff8e7; font-size: clamp(24px, 4vw, 48px); font-weight: bold; pointer-events: none; }
-      #juego:has(canvas) ~ #cargando { display: none; }
+      /* Solo lo necesario antes de que cargue la app (el resto está en src/app/estilos.css). */
+      html, body { margin: 0; height: 100%; background: #123d2b; }
+      #cargando { position: fixed; inset: 0; display: grid; place-items: center; color: #fff8e7; font: bold clamp(24px, 4vw, 48px) system-ui, sans-serif; pointer-events: none; }
+      #app:not(:empty) ~ #cargando { display: none; }
       /* En tablet vertical el juego (16:9) se vería muy chico: pedimos girarla. */
-      #girar { display: none; position: fixed; inset: 0; background: #1F6B4A; color: #fff8e7; text-align: center; padding: 32px;
-        font-size: clamp(28px, 6vw, 44px); font-weight: bold; align-content: center; z-index: 10; }
+      #girar { display: none; position: fixed; inset: 0; background: #1f6b4a; color: #fff8e7; text-align: center; padding: 32px;
+        font: bold clamp(28px, 6vw, 44px) system-ui, sans-serif; align-content: center; z-index: 10; }
       @media (orientation: portrait) and (max-width: 900px) { #girar { display: grid; } }
       noscript { color: #fff; font: 24px sans-serif; display: block; padding: 32px; }
     </style>
   </head>
   <body>
-    <div id="juego"></div>
+    <div id="app"></div>
     <div id="cargando">Cargando a Caco…</div>
     <div id="girar"><div>📱↻<br />Gira la tablet para jugar</div></div>
     <noscript>Para jugar a "Caco al rescate" necesitas activar JavaScript.</noscript>
-    <script type="module" src="/src/main.ts"></script>
+    <script type="module" src="/src/app/main.tsx"></script>
   </body>
 </html>

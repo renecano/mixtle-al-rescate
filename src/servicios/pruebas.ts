@@ -1,7 +1,8 @@
-import Phaser from 'phaser';
+import type Phaser from 'phaser';
 import { ANIMALES } from '../data/animales';
 import { progreso, resumenDiploma } from '../logica/progreso';
 import { entradaTerminada } from '../ui/transicion';
+import { juegoActual } from '../aventuras/juegoActual';
 import { camarasActivas } from './camara';
 
 export interface ObjetoTocable {
@@ -17,6 +18,7 @@ export interface ObjetoTocable {
   toqueAlto: number;
 }
 
+// Ojo: aquí no se importa Phaser como valor, para no cargarlo antes de entrar a una aventura.
 type ConTransformacion = Phaser.GameObjects.GameObject &
   Phaser.GameObjects.Components.GetBounds & { getWorldTransformMatrix(): Phaser.GameObjects.Components.TransformMatrix };
 
@@ -25,9 +27,9 @@ function zonaDeToque(o: ConTransformacion): { ancho: number; alto: number } {
   const m = o.getWorldTransformMatrix();
   const sx = Math.hypot(m.a, m.b);
   const sy = Math.hypot(m.c, m.d);
-  const h = o.input?.hitArea as unknown;
-  if (h instanceof Phaser.Geom.Circle) return { ancho: h.radius * 2 * sx, alto: h.radius * 2 * sy };
-  if (h instanceof Phaser.Geom.Rectangle) return { ancho: h.width * sx, alto: h.height * sy };
+  const h = o.input?.hitArea as { radius?: number; width?: number; height?: number } | undefined;
+  if (h && typeof h.radius === 'number') return { ancho: h.radius * 2 * sx, alto: h.radius * 2 * sy };
+  if (h && typeof h.width === 'number' && typeof h.height === 'number') return { ancho: h.width * sx, alto: h.height * sy };
   const b = o.getBounds();
   return { ancho: b.width, alto: b.height };
 }
@@ -36,13 +38,16 @@ function zonaDeToque(o: ConTransformacion): { ancho: number; alto: number } {
  * Ganchos para las pruebas automáticas de recorrido (Playwright). Solo se activan en
  * desarrollo o con `?e2e` en la dirección; no exponen ni guardan datos de nadie.
  */
-export function exponerParaPruebas(juego: Phaser.Game): void {
+export function exponerParaPruebas(): void {
   const params = new URLSearchParams(window.location.search);
   if (!import.meta.env.DEV && !params.has('e2e')) return;
 
+  /** Escenas de Phaser activas (ninguna si se están viendo pantallas de React). */
+  const escenasActivas = () => juegoActual()?.scene.getScenes(true) ?? [];
+
   const tocables = (): ObjetoTocable[] => {
     const lista: ObjetoTocable[] = [];
-    for (const escena of juego.scene.getScenes(true)) {
+    for (const escena of escenasActivas()) {
       const visitar = (objetos: Phaser.GameObjects.GameObject[]) => {
         for (const o of objetos) {
           const visible = (o as unknown as { visible?: boolean }).visible !== false;
@@ -62,7 +67,8 @@ export function exponerParaPruebas(juego: Phaser.Game): void {
               toqueAlto: z.alto,
             });
           }
-          if (o instanceof Phaser.GameObjects.Container) visitar(o.list);
+          const hijos = (o as unknown as { list?: unknown }).list;
+          if (o.type === 'Container' && Array.isArray(hijos)) visitar(hijos as Phaser.GameObjects.GameObject[]);
         }
       };
       visitar(escena.children.list);
@@ -71,15 +77,19 @@ export function exponerParaPruebas(juego: Phaser.Game): void {
   };
 
   (window as unknown as Record<string, unknown>).__caco = {
-    escenas: () => juego.scene.getScenes(true).map((s) => s.scene.key),
+    escenas: () => escenasActivas().map((s) => s.scene.key),
+    /** Pantalla de React visible (por ejemplo "inicio" o "aventura"). */
+    pantalla: () => document.querySelector<HTMLElement>('[data-pantalla]')?.dataset.pantalla ?? null,
     tocables,
     resumen: () => resumenDiploma(progreso(), ANIMALES),
     camarasActivas,
-    fps: () => Math.round(juego.loop.actualFps),
+    fps: () => Math.round(juegoActual()?.loop.actualFps ?? 0),
     /** true cuando ninguna pantalla visible está a media animación de entrada (para capturas). */
     quieto: () => {
-      const activas = juego.scene.getScenes(true).filter((s) => s.scene.key !== 'Boot');
-      return activas.length > 0 && activas.every(entradaTerminada);
+      const activas = escenasActivas().filter((s) => s.scene.key !== 'Boot');
+      if (activas.length) return activas.every(entradaTerminada);
+      if (juegoActual()) return false; // la aventura aún está cargando
+      return !!document.querySelector('[data-pantalla][data-entrada-lista="true"]');
     },
   };
 }

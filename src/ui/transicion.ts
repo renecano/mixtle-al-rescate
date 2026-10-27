@@ -19,6 +19,19 @@ export function irA(scene: Phaser.Scene, clave: string, datos?: object): void {
   });
 }
 
+/** Termina la aventura: fundido y aviso a la app de React (que vuelve a sus pantallas). */
+export function salirDeAventura(scene: Phaser.Scene): void {
+  if (scene.registry.get('transicionando')) return;
+  scene.registry.set('transicionando', true);
+  scene.input.enabled = false;
+  scene.cameras.main.fadeOut(DURACION, 18, 61, 43);
+  scene.cameras.main.once('camerafadeoutcomplete', () => {
+    scene.registry.set('transicionando', false);
+    const alTerminar = scene.registry.get('alTerminar') as (() => void) | undefined;
+    alTerminar?.();
+  });
+}
+
 /** Fundido de entrada; llamar al inicio de `create()`. */
 export function entrar(scene: Phaser.Scene): void {
   scene.input.enabled = true;
