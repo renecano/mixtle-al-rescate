@@ -27,8 +27,8 @@ export function Album() {
         <BotonGrande color="verde" etiqueta={TEXTOS_APP.leccion.alCamino} className="size-[clamp(4rem,9vmin,5.5rem)]" icono={<Arte clave="icono-casa" className="size-[60%]" />} onClick={() => alCamino()} />
         <h1 className="text-[clamp(1.8rem,5vmin,3.6rem)] font-black text-morado">{TEXTOS_APP.album.titulo}</h1>
       </div>
-      {/* auto-fill: con pocas unidades, cada estampa conserva su tamaño en lugar de estirarse. */}
-      <div className="grid w-full max-w-[80rem] grid-cols-[repeat(auto-fill,minmax(clamp(10rem,22vmin,14rem),1fr))] gap-[clamp(1rem,3vmin,2rem)]">
+      {/* Las 5 estampas siempre (las que faltan, en silueta), centradas en el espacio libre. */}
+      <div className="flex w-full max-w-[80rem] flex-1 flex-wrap content-center items-start justify-center gap-[clamp(1rem,3vmin,2rem)]">
         {UNIDADES.map((u) => {
           const ganada = !!grupo?.progreso.estampas.includes(u.estampa.id);
           return (
@@ -40,7 +40,7 @@ export function Album() {
               data-ganada={ganada}
               aria-label={ganada ? u.estampa.nombre : TEXTOS_APP.album.bloqueada}
               onClick={() => decir(ganada ? [u.estampa.nombre, u.estampa.dato] : TEXTOS_APP.album.bloqueada, { expresion: ganada ? 'feliz' : 'pensando' })}
-              className={`flex cursor-pointer flex-col items-center gap-2 rounded-[1.75rem] border-[6px] p-4 shadow-[0_0.45rem_0_rgba(18,61,43,0.2)] ${ganada ? 'border-[#FFD23F] bg-white' : 'border-white bg-white/60'}`}
+              className={`flex w-[clamp(10rem,17vw,14rem)] cursor-pointer flex-col items-center gap-2 rounded-[1.75rem] border-[6px] p-4 shadow-[0_0.45rem_0_rgba(18,61,43,0.2)] ${ganada ? 'border-[#FFD23F] bg-white' : 'border-white bg-white/60'}`}
             >
               <div className="flex h-[clamp(7rem,20vmin,12rem)] w-full items-center justify-center overflow-hidden">
                 {/* Sin ganar: silueta oscura (se adivina el animal, pero aún no se ve). */}

@@ -151,6 +151,8 @@ test('un grupo nuevo completa una lección con un error, ve la pantalla final y 
   // Álbum: aún sin estampas.
   await tocarBoton(page, /Álbum/);
   await esperarPantalla(page, 'album');
+  // Las 5 estampas se ven siempre (las que aún no se ganan, en silueta).
+  await expect(page.locator('[data-estampa]')).toHaveCount(UNIDADES.length);
   await expect(page.locator('[data-ganada="true"]')).toHaveCount(0);
   await captura(page, info, 'v2-7-album');
 
