@@ -7,6 +7,8 @@ import {
   abrir,
   arrastrar,
   captura,
+  crearGrupo,
+  desbloquearTodo,
   esperarEscena,
   esperarPantalla,
   esperarTocable,
@@ -26,7 +28,7 @@ function boteIncorrecto(idResiduo: string): string {
   return `bote-${CATEGORIAS.find((c) => `bote-${c.id}` !== correcto)!.id}`;
 }
 
-test('recorrido completo: inicio → intro → 3 niveles → bonus sin cámara → diploma', async ({ page }, info) => {
+test('aventura de la unidad 1 completa: grupo → facilitador → intro → 3 niveles → bonus sin cámara → diploma → estampa', async ({ page }, info) => {
   // Sin cámara de forma determinista: en el proyector, permiso negado; en la tablet, navegador sin cámara.
   if (info.project.name.startsWith('proyector')) {
     await page.addInitScript(() => {
@@ -37,10 +39,14 @@ test('recorrido completo: inicio → intro → 3 niveles → bonus sin cámara �
   }
   const { errores, peticiones } = await abrir(page);
 
-  // Inicio (pantalla de React)
+  // Inicio (pantalla de React) → crear un grupo → camino.
   await esperarPantalla(page, 'inicio');
   await captura(page, info, '1-inicio');
   await tocarBoton(page, /¡Jugar!/);
+  await crearGrupo(page, 'ardilla');
+  // Modo facilitador (mantener el logo 3 s) para abrir directo la aventura de la unidad 1.
+  await desbloquearTodo(page);
+  await page.locator('[data-nodo="aventura:u1"]').click({ force: true });
 
   // Intro: tres frases, se avanza tocando.
   await esperarEscena(page, 'Intro');
@@ -116,18 +122,19 @@ test('recorrido completo: inicio → intro → 3 niveles → bonus sin cámara �
 
   // Diploma con los números de la partida.
   await esperarEscena(page, 'Final');
-  await esperarTocable(page, 'jugar-otra-vez');
+  await esperarTocable(page, 'terminar-aventura');
   await captura(page, info, '9-diploma');
   expect(await resumen(page)).toMatchObject({ residuosSeparados: RESIDUOS.length + 1, animalesAyudados: 10 });
   expect(await page.evaluate(() => window.__caco.camarasActivas())).toBe(0);
 
-  // Jugar otra vez: se sale de la aventura (Phaser se destruye) y "¡Jugar!" reinicia todo.
-  await tocar(page, 'jugar-otra-vez');
-  await esperarPantalla(page, 'inicio');
+  // Al terminar se sale de la aventura (Phaser se destruye) y el grupo gana la estampa de la unidad 1.
+  await tocar(page, 'terminar-aventura');
+  await esperarPantalla(page, 'camino');
   expect(await page.locator('canvas').count()).toBe(0);
-  await tocarBoton(page, /¡Jugar!/);
-  await esperarEscena(page, 'Intro');
-  expect(await resumen(page)).toMatchObject({ residuosSeparados: 0, animalesAyudados: 0 });
+  await expect(page.getByRole('dialog')).toContainText('El cacomixtle');
+  await captura(page, info, '10-estampa');
+  await tocarBoton(page, /¡Sigamos!/);
+  await expect(page.locator('[data-nodo="aventura:u1"]')).toHaveAttribute('data-estado', 'hecho');
 
   // Caco habló siempre con su voz grabada (nunca con la del navegador) y sonó la música.
   const cuentaVoz = await page.evaluate(() => window.__caco.voz());

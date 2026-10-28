@@ -28,6 +28,15 @@ export function leerInterruptor(clave: string, almacen: Almacen | null = almacen
   }
 }
 
+/** Lee un interruptor que viene apagado por defecto (solo es true si se guardó "si"). Nunca lanza. */
+export function leerInterruptorApagado(clave: string, almacen: Almacen | null = almacenPorDefecto()): boolean {
+  try {
+    return almacen?.getItem(clave) === 'si';
+  } catch {
+    return false;
+  }
+}
+
 /** Guarda un interruptor. Si no se puede, el juego sigue con la preferencia en memoria. */
 export function guardarInterruptor(clave: string, activo: boolean, almacen: Almacen | null = almacenPorDefecto()): void {
   try {

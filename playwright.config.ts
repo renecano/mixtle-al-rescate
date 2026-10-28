@@ -1,9 +1,14 @@
 import { defineConfig } from '@playwright/test';
 
 const enCI = !!process.env.CI;
+/**
+ * Con BASE_URL (por ejemplo, el link de producción de Vercel) las pruebas corren contra ese sitio
+ * y no se construye nada en local. Sin BASE_URL: build de producción + `vite preview`.
+ */
+const urlBase = process.env.BASE_URL?.replace(//$/, '');
 
 /**
- * Recorridos completos del juego en el navegador (build de producción + `vite preview`).
+ * Recorridos completos del juego en el navegador.
  * En local usa el Chrome instalado; en CI, el Chromium de Playwright.
  */
 export default defineConfig({
@@ -17,7 +22,7 @@ export default defineConfig({
   reporter: [['list'], ['html', { open: 'never' }]],
   outputDir: 'test-results',
   use: {
-    baseURL: 'http://localhost:4173',
+    baseURL: urlBase ?? 'http://localhost:4173',
     channel: enCI ? undefined : 'chrome',
     trace: 'retain-on-failure',
   },
@@ -38,10 +43,12 @@ export default defineConfig({
       },
     },
   ],
-  webServer: {
-    command: 'npm run build && npm run preview -- --port 4173 --strictPort',
-    url: 'http://localhost:4173',
-    reuseExistingServer: !enCI,
-    timeout: 180_000,
-  },
+  webServer: urlBase
+    ? undefined
+    : {
+        command: 'npm run build && npm run preview -- --port 4173 --strictPort',
+        url: 'http://localhost:4173',
+        reuseExistingServer: !enCI,
+        timeout: 180_000,
+      },
 });

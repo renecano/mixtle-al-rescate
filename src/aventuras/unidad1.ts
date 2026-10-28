@@ -8,14 +8,8 @@ import { IntroScene } from '../scenes/IntroScene';
 import { Nivel1Scene } from '../scenes/Nivel1Scene';
 import { Nivel2Scene } from '../scenes/Nivel2Scene';
 import { Nivel3Scene } from '../scenes/Nivel3Scene';
+import type { OpcionesAventura } from './index';
 import { fijarJuegoActual } from './juegoActual';
-
-export interface OpcionesAventura {
-  /** Escena donde empieza (por defecto, la intro). 'Galeria' muestra todo el arte. */
-  escenaInicial?: string;
-  /** Se llama cuando el grupo termina la aventura (botón del diploma). */
-  alTerminar: () => void;
-}
 
 /**
  * Aventura de la unidad 1: los tres niveles de la v1 con su intro, bonus y diploma.

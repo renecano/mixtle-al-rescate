@@ -40,7 +40,7 @@ export const RESIDUOS: readonly Residuo[] = [
     categoria: 'reciclable',
     material: 'multicapa',
     imagen: 'jugo',
-    dato: 'Las cajitas de jugo tienen capas de cartón, plástico y aluminio, y se pueden reciclar.',
+    dato: 'Las cajitas de jugo tienen cartón, plástico y aluminio; se pueden reciclar en un centro de acopio.',
   },
   {
     id: 'botella',
@@ -72,7 +72,7 @@ export const RESIDUOS: readonly Residuo[] = [
     categoria: 'no-reciclable',
     material: 'sanitario',
     imagen: 'servilleta',
-    dato: 'Una servilleta sucia ya no se puede reciclar; por eso usamos solo las que necesitamos.',
+    dato: 'Una servilleta sucia de comida ya no se puede reciclar; por eso usamos solo las que necesitamos.',
   },
   {
     id: 'frituras',
@@ -88,7 +88,7 @@ export const RESIDUOS: readonly Residuo[] = [
     categoria: 'organico',
     material: 'organico',
     imagen: 'huevo',
-    dato: 'La cáscara de huevo tiene calcio, y en la composta ayuda a que crezcan las plantas.',
+    dato: 'La cáscara de huevo tiene calcio; triturada en la composta, se lo da a la tierra.',
   },
   {
     id: 'carton',
@@ -96,7 +96,7 @@ export const RESIDUOS: readonly Residuo[] = [
     categoria: 'reciclable',
     material: 'papel',
     imagen: 'carton',
-    dato: 'Si aplastas la caja de cartón, ocupa menos lugar y se recicla más fácil.',
+    dato: 'Si aplastas la caja de cartón, ocupa menos lugar en el bote.',
   },
   {
     id: 'popote',
@@ -112,7 +112,7 @@ export const RESIDUOS: readonly Residuo[] = [
     categoria: 'organico',
     material: 'organico',
     imagen: 'hojas',
-    dato: 'Las hojas secas se vuelven tierra nueva y son casita para muchos bichitos.',
+    dato: 'Las hojas secas también sirven para hacer composta, que alimenta a las plantas.',
   },
   {
     id: 'manzana',

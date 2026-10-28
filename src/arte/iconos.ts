@@ -70,6 +70,59 @@ export const ICONOS: ArteSvg[] = [
     `<path d="M16 38V16h22M62 16h22v22M84 62v22H62M38 84H16V62" fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>`,
   ),
   arte(
+    'hojita',
+    100,
+    100,
+    `<path d="M14 86 C 14 42 46 14 88 12 C 88 56 60 88 14 86 Z" fill="#3FA56B" stroke="#1F6B4A" stroke-width="5" stroke-linejoin="round"/>
+     <path d="M14 86 C 38 64 58 44 80 22" stroke="#DDF0CC" stroke-width="5" fill="none" stroke-linecap="round"/>`,
+  ),
+  arte(
+    'candado',
+    100,
+    100,
+    `<path d="M30 46 V 34 a20 20 0 0 1 40 0 V 46" fill="none" stroke="#fff" stroke-width="10"/>
+     <rect x="20" y="44" width="60" height="44" rx="10" fill="#fff"/><circle cx="50" cy="64" r="7" fill="#5B6770"/>`,
+  ),
+  arte(
+    'palomita',
+    100,
+    100,
+    `<path d="M18 52 L 42 76 L 84 26" fill="none" stroke="#fff" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>`,
+  ),
+  arte(
+    'calendario',
+    100,
+    100,
+    `<rect x="12" y="20" width="76" height="68" rx="12" fill="#fff"/><rect x="12" y="20" width="76" height="20" rx="10" fill="#F0567A"/>
+     <path d="M32 12 v16 M68 12 v16" stroke="#fff" stroke-width="8" stroke-linecap="round"/>
+     <circle cx="34" cy="58" r="6" fill="#1F6B4A"/><circle cx="50" cy="58" r="6" fill="#1F6B4A"/><circle cx="66" cy="58" r="6" fill="#1F6B4A"/><circle cx="34" cy="74" r="6" fill="#1F6B4A"/>`,
+  ),
+  arte(
+    'cofre',
+    200,
+    170,
+    `<ellipse cx="100" cy="160" rx="86" ry="8" fill="#000" opacity=".15"/>
+     <rect x="20" y="72" width="160" height="84" rx="12" fill="#B07D4B" stroke="#7A4E2E" stroke-width="7"/>
+     <path d="M20 76 C 20 30 180 30 180 76 Z" fill="#C8955F" stroke="#7A4E2E" stroke-width="7" stroke-linejoin="round"/>
+     <rect x="16" y="68" width="168" height="14" rx="6" fill="#FFD23F" stroke="#B88A00" stroke-width="4"/>
+     <rect x="84" y="62" width="32" height="40" rx="6" fill="#FFD23F" stroke="#B88A00" stroke-width="4"/>
+     <circle cx="100" cy="82" r="6" fill="#7A4E2E"/>
+     <path d="M48 96 v52 M152 96 v52" stroke="#7A4E2E" stroke-width="6" opacity=".5"/>`,
+  ),
+  arte(
+    'cofre-abierto',
+    200,
+    170,
+    `<ellipse cx="100" cy="160" rx="86" ry="8" fill="#000" opacity=".15"/>
+     <path d="M28 70 C 40 20 160 20 172 70 Z" fill="#FFE07A" opacity=".7"/>
+     <path d="M30 40 L 20 12 M100 26 V 0 M170 40 L 180 12" stroke="#FFD23F" stroke-width="7" stroke-linecap="round"/>
+     <rect x="20" y="72" width="160" height="84" rx="12" fill="#B07D4B" stroke="#7A4E2E" stroke-width="7"/>
+     <path d="M54 70 C 64 46 92 50 100 62 C 112 46 138 48 146 70 Z" fill="#3FA56B"/>
+     <path d="M20 72 C 30 50 170 50 180 72 L 172 82 C 160 66 40 66 28 82 Z" fill="#7A4E2E"/>
+     <rect x="16" y="76" width="168" height="12" rx="6" fill="#FFD23F" stroke="#B88A00" stroke-width="4"/>
+     <path d="M48 96 v52 M152 96 v52" stroke="#7A4E2E" stroke-width="6" opacity=".5"/>`,
+  ),
+  arte(
     'icono-estrella',
     100,
     100,

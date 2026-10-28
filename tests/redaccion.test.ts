@@ -30,7 +30,7 @@ describe('redacción de las pistas', () => {
     expect(CATEGORIAS.map(textoPista)).toEqual([
       '¡Casi! Viene de una planta o de un animal y se puede volver tierra. Busca el bote verde con el dibujo de la hojita.',
       '¡Casi! Se puede convertir en algo nuevo. Busca el bote azul con el dibujo de las flechas.',
-      '¡Casi! Este ya no se puede reciclar. Busca el bote naranja con el dibujo del bote de basura.',
+      '¡Casi! Este casi nunca se puede reciclar. Busca el bote naranja con el dibujo del bote de basura.',
     ]);
   });
 

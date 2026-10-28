@@ -6,6 +6,8 @@
 //   t:nombre   toca el primer objeto tocable cuyo nombre empieza así (requiere el gancho __caco)
 //   T:nombre   toca, uno por uno, todos los que empiezan así
 //   d:a>b      arrastra el tocable "a" hasta el tocable "b" (prefijos)
+//   b:Nombre   toca un botón de la app (React) por su nombre accesible
+//   k:selector toca un elemento de la app por selector CSS
 // Usa el Chrome instalado en la máquina (no descarga navegadores).
 import { chromium } from '@playwright/test';
 
@@ -51,6 +53,8 @@ for (const paso of pasos) {
       await pagina.waitForTimeout(tipo === 'T' ? 900 : 100);
     }
   }
+  if (tipo === 'b') await pagina.getByRole('button', { name: valor }).first().click({ force: true });
+  if (tipo === 'k') await pagina.locator(valor).first().click({ force: true });
   if (tipo === 'd') {
     const [a, b] = valor.split('>');
     const lista = await pagina.evaluate(() => window.__caco.tocables());

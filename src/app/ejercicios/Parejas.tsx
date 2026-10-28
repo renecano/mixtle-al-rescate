@@ -1,0 +1,67 @@
+import { useMemo, useState } from 'react';
+import type { Parejas as Datos } from '../../contenido/tipos';
+import { sonido } from '../../servicios/sonido';
+import { Tarjeta, revolver, type PropsEjercicio } from './comun';
+
+type Lado = 'izquierda' | 'derecha';
+
+/** 3. Parejas: tocar una tarjeta de un lado y luego su pareja del otro lado. */
+export function Parejas({ ejercicio, responder, bloqueado }: PropsEjercicio<Datos>) {
+  const derechas = useMemo(() => revolver(ejercicio.pares.map((p) => p.derecha)), [ejercicio]);
+  const [elegida, setElegida] = useState<{ lado: Lado; id: string } | null>(null);
+  const [unidas, setUnidas] = useState<string[]>([]);
+  const [error, setError] = useState<{ ids: string[]; vez: number } | null>(null);
+
+  const parDe = (lado: Lado, id: string) => ejercicio.pares.find((p) => p[lado].id === id)!;
+
+  const tocar = (lado: Lado, id: string) => {
+    if (bloqueado) return;
+    const par = parDe(lado, id);
+    if (unidas.includes(par.izquierda.id)) return;
+    if (!elegida || elegida.lado === lado) {
+      setElegida({ lado, id });
+      sonido.tocar('toque');
+      return;
+    }
+    const otro = parDe(elegida.lado, elegida.id);
+    if (otro === par) {
+      const nuevas = [...unidas, par.izquierda.id];
+      setUnidas(nuevas);
+      setElegida(null);
+      if (nuevas.length === ejercicio.pares.length) responder({ correcto: true, terminado: true });
+      else sonido.tocar('acierto');
+    } else {
+      setError((e) => ({ ids: [id, elegida.id], vez: (e?.vez ?? 0) + 1 }));
+      setElegida(null);
+      responder({ correcto: false, terminado: false });
+    }
+  };
+
+  const estado = (lado: Lado, id: string) => {
+    const par = parDe(lado, id);
+    if (unidas.includes(par.izquierda.id)) return 'bien' as const;
+    if (elegida?.lado === lado && elegida.id === id) return 'elegida' as const;
+    if (error?.ids.includes(id)) return 'mal' as const;
+    return 'normal' as const;
+  };
+
+  const tamano = 'clamp(6.5rem,15vmin,10.5rem)';
+  return (
+    <div className="flex items-center justify-center gap-[clamp(2rem,10vmin,8rem)]" data-ejercicio="parejas">
+      {(['izquierda', 'derecha'] as const).map((lado) => (
+        <div key={lado} className="flex flex-col gap-[clamp(0.75rem,2vmin,1.5rem)]">
+          {(lado === 'izquierda' ? ejercicio.pares.map((p) => p.izquierda) : derechas).map((t) => (
+            <Tarjeta
+              key={t.id}
+              tarjeta={t}
+              tamano={tamano}
+              estado={estado(lado, t.id)}
+              sacudir={error?.ids.includes(t.id) ? error.vez : 0}
+              onClick={() => tocar(lado, t.id)}
+            />
+          ))}
+        </div>
+      ))}
+    </div>
+  );
+}

@@ -8,16 +8,18 @@ import { Arte } from './Arte';
 const CUERPO = { ancho: 360, alto: 440 };
 const COLA = { ancho: 260, alto: 440, x: 212, origenX: 28 / 260, origenY: 400 / 440 };
 
-export type ExpresionCaco = 'normal' | 'feliz' | 'habla';
+export type ExpresionCaco = 'normal' | 'feliz' | 'habla' | 'pensando' | 'sorprendido' | 'celebrando' | 'senalando';
 
 interface Props {
   /** Alto de Caco (cualquier medida CSS). */
   alto: string;
   expresion?: ExpresionCaco;
+  /** Mirar hacia la izquierda (por ejemplo, para señalar algo que está a su izquierda). */
+  espejo?: boolean;
   className?: string;
 }
 
-export function CacoFigura({ alto, expresion = 'normal', className = '' }: Props) {
+export function CacoFigura({ alto, expresion = 'normal', espejo = false, className = '' }: Props) {
   const anchoTotal = COLA.x + COLA.ancho;
   const pct = (v: number, total: number) => `${(v / total) * 100}%`;
   // Las partes van en posición absoluta: el contenedor necesita estar posicionado (relative si no se indica otra).
@@ -25,7 +27,7 @@ export function CacoFigura({ alto, expresion = 'normal', className = '' }: Props
   return (
     <div
       className={`${posicion} ${className}`}
-      style={{ height: alto, aspectRatio: `${anchoTotal} / ${CUERPO.alto}` }}
+      style={{ height: alto, aspectRatio: `${anchoTotal} / ${CUERPO.alto}`, transform: espejo ? 'scaleX(-1)' : undefined }}
       role="img"
       aria-label="Caco, el cacomixtle"
     >
@@ -37,16 +39,16 @@ export function CacoFigura({ alto, expresion = 'normal', className = '' }: Props
           height: '100%',
           transformOrigin: `${COLA.origenX * 100}% ${COLA.origenY * 100}%`,
         }}
-        animate={{ rotate: [-6, 7, -6] }}
-        transition={{ duration: 2.8, repeat: Infinity, ease: 'easeInOut' }}
+        animate={{ rotate: expresion === 'celebrando' ? [-12, 14, -12] : [-6, 7, -6] }}
+        transition={{ duration: expresion === 'celebrando' ? 0.8 : 2.8, repeat: Infinity, ease: 'easeInOut' }}
       >
         <Arte clave="caco-cola" className="h-full w-full" />
       </motion.div>
       <motion.div
         className="absolute top-0 left-0 h-full origin-bottom"
         style={{ width: pct(CUERPO.ancho, anchoTotal) }}
-        animate={{ scaleY: [1, 1.025, 1] }}
-        transition={{ duration: 3.2, repeat: Infinity, ease: 'easeInOut' }}
+        animate={expresion === 'celebrando' ? { y: ['0%', '-6%', '0%'] } : { scaleY: [1, 1.025, 1] }}
+        transition={{ duration: expresion === 'celebrando' ? 0.5 : 3.2, repeat: Infinity, ease: 'easeInOut' }}
       >
         <Arte clave={expresion === 'normal' ? 'caco' : `caco-${expresion}`} className="h-full w-full" />
       </motion.div>

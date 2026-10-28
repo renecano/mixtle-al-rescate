@@ -70,7 +70,7 @@ export const CATEGORIAS: readonly Categoria[] = [
     color: '#B84A14',
     nombreColor: 'naranja',
     icono: 'basura',
-    pista: 'Este ya no se puede reciclar.',
+    pista: 'Este casi nunca se puede reciclar.',
     acepta: ['no-reciclable'],
   },
 ];

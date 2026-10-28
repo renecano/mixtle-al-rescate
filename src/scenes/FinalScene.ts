@@ -70,7 +70,7 @@ export class FinalScene extends Phaser.Scene {
       alto: 130,
       tamanoTexto: 48,
       color: PALETA.naranja,
-      nombre: 'jugar-otra-vez',
+      nombre: 'terminar-aventura',
       alPresionar: () => {
         reiniciarProgreso();
         salirDeAventura(this);

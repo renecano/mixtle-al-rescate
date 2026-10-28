@@ -19,26 +19,45 @@ const C = {
   lengua: '#E87B7B',
 };
 
-type ExpresionCaco = 'normal' | 'habla' | 'feliz' | 'parpadeo';
+type ExpresionCaco = 'normal' | 'habla' | 'feliz' | 'parpadeo' | 'pensando' | 'sorprendido' | 'celebrando' | 'senalando';
+
+const CONTENTO: readonly ExpresionCaco[] = ['feliz', 'habla', 'celebrando'];
 
 function ojosCaco(expresion: ExpresionCaco): string {
-  if (expresion === 'feliz') {
+  if (expresion === 'feliz' || expresion === 'celebrando') {
     return `<path d="M118 158 Q 137 134 156 158 M204 158 Q 223 134 242 158" fill="none" stroke="${TINTA}" stroke-width="7" stroke-linecap="round"/>`;
   }
   if (expresion === 'parpadeo') {
     return `<path d="M118 152 Q 137 164 156 152 M204 152 Q 223 164 242 152" fill="none" stroke="${TINTA}" stroke-width="6" stroke-linecap="round"/>`;
   }
-  const ojo = (x: number) =>
-    `<circle cx="${x}" cy="152" r="20" fill="${TINTA}"/>
-     <circle cx="${x - 7}" cy="144" r="7.5" fill="#fff"/>
-     <circle cx="${x + 7}" cy="160" r="3.5" fill="#fff"/>`;
+  if (expresion === 'sorprendido') {
+    const grande = (x: number) =>
+      `<circle cx="${x}" cy="150" r="24" fill="${TINTA}"/><circle cx="${x - 8}" cy="141" r="9" fill="#fff"/><circle cx="${x + 8}" cy="160" r="4" fill="#fff"/>`;
+    return grande(137) + grande(223);
+  }
+  // Pensando mira hacia arriba; señalando mira hacia donde apunta.
+  const dx = expresion === 'pensando' || expresion === 'senalando' ? 8 : 0;
+  const dy = expresion === 'pensando' ? -8 : 0;
+  const ojo = (x0: number) => {
+    const x = x0 + dx;
+    const y = 152 + dy;
+    return `<circle cx="${x}" cy="${y}" r="20" fill="${TINTA}"/>
+     <circle cx="${x - 7}" cy="${y - 8}" r="7.5" fill="#fff"/>
+     <circle cx="${x + 7}" cy="${y + 8}" r="3.5" fill="#fff"/>`;
+  };
   return ojo(137) + ojo(223);
 }
 
 function bocaCaco(expresion: ExpresionCaco): string {
   const linea = `<path d="M180 196 V 206" stroke="${TINTA}" stroke-width="4" stroke-linecap="round"/>`;
-  if (expresion === 'habla' || expresion === 'feliz') {
-    const alto = expresion === 'feliz' ? 236 : 228;
+  if (expresion === 'sorprendido') {
+    return `${linea}<ellipse cx="180" cy="218" rx="10" ry="13" fill="${C.boca}" stroke="${TINTA}" stroke-width="3"/>`;
+  }
+  if (expresion === 'pensando') {
+    return `${linea}<path d="M168 212 Q 182 206 194 213" fill="none" stroke="${TINTA}" stroke-width="4" stroke-linecap="round"/>`;
+  }
+  if (expresion === 'habla' || expresion === 'feliz' || expresion === 'celebrando') {
+    const alto = expresion === 'habla' ? 228 : 236;
     return `${linea}
       <path d="M163 205 Q 180 ${alto} 197 205 Z" fill="${C.boca}" stroke="${TINTA}" stroke-width="3" stroke-linejoin="round"/>
       <path d="M171 ${alto - 13} Q 180 ${alto - 5} 189 ${alto - 13} Q 180 ${alto - 18} 171 ${alto - 13} Z" fill="${C.lengua}"/>`;
@@ -53,8 +72,8 @@ function cuerpoCaco(expresion: ExpresionCaco): string {
        <ellipse cx="${x}" cy="86" rx="23" ry="42" fill="${C.rosa}"/>
      </g>`;
   const mejillas =
-    expresion === 'feliz' || expresion === 'habla'
-      ? `<ellipse cx="112" cy="196" rx="15" ry="9" fill="#F0907E" opacity=".55"/><ellipse cx="248" cy="196" rx="15" ry="9" fill="#F0907E" opacity=".55"/>`
+    CONTENTO.includes(expresion)
+      ?`<ellipse cx="112" cy="196" rx="15" ry="9" fill="#F0907E" opacity=".55"/><ellipse cx="248" cy="196" rx="15" ry="9" fill="#F0907E" opacity=".55"/>`
       : '';
   return `
     <ellipse cx="180" cy="428" rx="125" ry="12" fill="#000" opacity=".12"/>
@@ -64,10 +83,7 @@ function cuerpoCaco(expresion: ExpresionCaco): string {
     <ellipse cx="116" cy="414" rx="46" ry="18" fill="${C.pielOscura}"/>
     <ellipse cx="244" cy="414" rx="46" ry="18" fill="${C.pielOscura}"/>
     <path d="M112 318 C 90 352 94 396 122 408 M248 318 C 270 352 266 396 238 408" fill="none" stroke="${C.pielOscura}" stroke-width="5" stroke-linecap="round" opacity=".6"/>
-    <path d="M152 326 L 150 396 M208 326 L 210 396" stroke="${C.piel}" stroke-width="26" stroke-linecap="round"/>
-    <ellipse cx="148" cy="402" rx="21" ry="12" fill="${C.pielOscura}"/>
-    <ellipse cx="212" cy="402" rx="21" ry="12" fill="${C.pielOscura}"/>
-    <path d="M141 398 v8 M149 398 v8 M205 398 v8 M213 398 v8" stroke="${C.piel}" stroke-width="3" stroke-linecap="round"/>
+    ${patasDelanteras(expresion)}
     <path d="M180 70 C 252 70 282 120 274 166 C 266 206 226 236 180 240 C 134 236 94 206 86 166 C 78 120 108 70 180 70 Z" fill="${C.piel}"/>
     <path d="M98 176 C 118 216 150 234 180 234 C 210 234 242 216 262 176 C 240 192 214 198 180 198 C 146 198 120 192 98 176 Z" fill="${C.crema}"/>
     <path d="M180 74 C 166 100 166 128 180 146 C 194 128 194 100 180 74 Z" fill="${C.pielOscura}" opacity=".55"/>
@@ -81,7 +97,24 @@ function cuerpoCaco(expresion: ExpresionCaco): string {
     ${bocaCaco(expresion)}
     <g stroke="${TINTA}" stroke-width="2.5" stroke-linecap="round" opacity=".5">
       <path d="M148 196 L 100 186 M148 204 L 102 212 M212 196 L 260 186 M212 204 L 258 212"/>
-    </g>`;
+    </g>
+    ${expresion === 'pensando' ? `<ellipse cx="200" cy="238" rx="22" ry="15" fill="${C.pielOscura}"/><path d="M190 232 v8 M200 232 v9 M210 232 v8" stroke="${C.piel}" stroke-width="3" stroke-linecap="round"/>` : ''}`;
+}
+
+/** Patas delanteras: abajo (sentado), arriba (celebrando), una apuntando o una en la barbilla (pensando). */
+function patasDelanteras(expresion: ExpresionCaco): string {
+  const brazo = (x1: number, y1: number, x2: number, y2: number) =>
+    `<path d="M${x1} ${y1} L ${x2} ${y2}" stroke="${C.piel}" stroke-width="26" stroke-linecap="round"/>`;
+  const mano = (x: number, y: number) => `<ellipse cx="${x}" cy="${y}" rx="21" ry="15" fill="${C.pielOscura}"/>`;
+  const abajo = (x1: number, x2: number) => {
+    const pata = x2 - 2 * Math.sign(180 - x2); // un poco hacia afuera, como en el dibujo original
+    return `${brazo(x1, 326, x2, 396)}<ellipse cx="${pata}" cy="402" rx="21" ry="12" fill="${C.pielOscura}"/>
+     <path d="M${pata - 7} 398 v8 M${pata + 1} 398 v8" stroke="${C.piel}" stroke-width="3" stroke-linecap="round"/>`;
+  };
+  if (expresion === 'celebrando') return `${brazo(146, 300, 76, 214)}${mano(72, 208)}${brazo(214, 300, 284, 214)}${mano(288, 208)}`;
+  if (expresion === 'senalando') return `${abajo(152, 150)}${brazo(212, 300, 318, 282)}${mano(332, 280)}`;
+  if (expresion === 'pensando') return `${abajo(152, 150)}${brazo(208, 320, 202, 262)}`;
+  return `${abajo(152, 150)}${abajo(208, 210)}`;
 }
 
 const ESCALA_CACO = 1.3;
@@ -188,6 +221,10 @@ export const PERSONAJES: ArteSvg[] = [
   arte('caco-habla', 360, 440, cuerpoCaco('habla'), ESCALA_CACO),
   arte('caco-feliz', 360, 440, cuerpoCaco('feliz'), ESCALA_CACO),
   arte('caco-parpadeo', 360, 440, cuerpoCaco('parpadeo'), ESCALA_CACO),
+  arte('caco-pensando', 360, 440, cuerpoCaco('pensando'), ESCALA_CACO),
+  arte('caco-sorprendido', 360, 440, cuerpoCaco('sorprendido'), ESCALA_CACO),
+  arte('caco-celebrando', 360, 440, cuerpoCaco('celebrando'), ESCALA_CACO),
+  arte('caco-senalando', 360, 440, cuerpoCaco('senalando'), ESCALA_CACO),
   arte('caco-cola', 260, 440, COLA_CACO, ESCALA_CACO),
   arte('ardilla-triste', 270, 280, ardilla(false), 1.2),
   arte('ardilla-feliz', 270, 280, ardilla(true), 1.2),

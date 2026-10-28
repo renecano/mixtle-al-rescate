@@ -3,7 +3,12 @@ import { CATEGORIAS } from '../data/categorias';
 import { MAPEO_IMAGENET } from '../data/mapeoImagenet';
 import { RESIDUOS } from '../data/residuos';
 import { TEXTOS } from '../data/textos';
+import { TEXTOS_APP } from '../contenido/textosApp';
+import type { Ejercicio } from '../contenido/tipos';
+import { UNIDADES } from '../contenido/unidades';
+import { HOJITAS_COFRE } from '../logica/camino';
 import { descripcionBote, textoPista } from '../logica/clasificacion';
+import { MASCOTAS } from '../logica/grupos';
 import { archivoDeFrase } from './hash';
 import { NUMERO_MAXIMO, normalizarFrase, piezasDeTexto, type Locucion } from './locucion';
 
@@ -59,6 +64,42 @@ export function todasLasFrases(): FraseNarrada[] {
     u1('aventura-bonus', `bonus.creoQueEs.${i + 1}`, b.creoQueEs(nombre)),
   );
 
+  // Camino de aprendizaje: cada unidad, lección y ejercicio (src/contenido/unidades/).
+  for (const unidad of UNIDADES) {
+    const enUnidad = (leccion: string, id: string, l: Locucion) => agregar(String(unidad.numero), leccion, id, l);
+    enUnidad('camino', `${unidad.id}.encabezado`, [TEXTOS_APP.camino.encabezadoUnidad(unidad.numero, unidad.titulo), unidad.tema]);
+    enUnidad('album', `${unidad.id}.estampa`, [TEXTOS_APP.album.nueva(unidad.estampa.nombre), unidad.estampa.dato]);
+    enUnidad('album', `${unidad.id}.estampa.nombre`, unidad.estampa.nombre);
+    for (const leccion of unidad.lecciones) {
+      const enLeccion = (id: string, l: Locucion) => enUnidad(leccion.id, id, l);
+      enLeccion(`${leccion.id}.bienvenida`, leccion.bienvenida);
+      for (const e of todosLosEjercicios(leccion.ejercicios)) {
+        enLeccion(`${e.id}.consigna`, e.consigna);
+        enLeccion(`${e.id}.pista`, e.pista);
+        if (e.tipo === 'si-no') enLeccion(`${e.id}.porque`, e.porque);
+      }
+    }
+  }
+
+  // Pantallas de la app: grupos, camino, cofre, lección, álbum.
+  const app = (leccion: string, id: string, l: Locucion) => agregar('app', leccion, id, l);
+  const t = TEXTOS_APP;
+  app('grupos', 'grupos.bienvenida', t.grupos.bienvenida);
+  app('grupos', 'grupos.crear', [t.grupos.crear, t.grupos.aviso]);
+  MASCOTAS.forEach((m) => app('camino', `camino.hola.${m.id}`, t.camino.hola(m.nombre)));
+  app('camino', 'camino.terminaron', t.camino.terminaron);
+  app('camino', 'camino.bloqueada', t.camino.bloqueada);
+  app('cofre', 'cofre.llegaron', t.cofre.llegaron);
+  app('cofre', 'cofre.abierto', t.cofre.abierto(HOJITAS_COFRE));
+  t.leccion.animos.forEach((a, i) => app('leccion', `leccion.animo.${i + 1}`, a));
+  app('leccion', 'leccion.casi', '¡Casi!');
+  app('leccion', 'leccion.salirPregunta', t.leccion.salirPregunta);
+  app('leccion', 'leccion.repaso', t.leccion.repaso);
+  app('leccion', 'leccion.terminada', t.leccion.terminada(12, 5, 6));
+  app('leccion', 'leccion.parqueCrece', t.leccion.parqueCrece);
+  app('album', 'album.bienvenida', t.album.bienvenida);
+  app('album', 'album.bloqueada', t.album.bloqueada);
+
   // Diploma: las piezas fijas; los números se encadenan desde la lista común.
   for (const residuos of [1, 2]) for (const animales of [1, 2]) u1('aventura-diploma', 'diploma', TEXTOS.diploma.narracion(residuos, animales));
 
@@ -68,4 +109,9 @@ export function todasLasFrases(): FraseNarrada[] {
     agregar('comun', 'numeros', `numero.${n}.ante-sustantivo`, [{ numero: n, antesDeSustantivo: true }]);
   }
   return lista;
+}
+
+/** Los ejercicios de una lección, incluido el respaldo con dibujos de "Muéstrale a Caco". */
+export function todosLosEjercicios(ejercicios: readonly Ejercicio[]): Ejercicio[] {
+  return ejercicios.flatMap((e): Ejercicio[] => (e.tipo === 'muestrale' ? [e, e.respaldo] : [e]));
 }

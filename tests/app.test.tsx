@@ -35,17 +35,23 @@ describe('pantalla de inicio', () => {
     expect(estadoSonido.estaActivo).toBe(true);
   });
 
-  it('"¡Jugar!" reinicia la partida y monta la aventura de la unidad 1', async () => {
+  it('"¡Jugar!" reinicia la partida y lleva a elegir el grupo', async () => {
     progreso().recolectar('lata');
     render(<App />);
     await userEvent.click(screen.getByRole('button', { name: /¡Jugar!/ }));
     expect(progreso().recolectados).toEqual([]);
-    expect(useApp.getState().pantalla).toBe('aventura');
+    expect(useApp.getState().pantalla).toBe('grupos');
+    expect(await screen.findByRole('heading', { name: '¿Quién va a jugar?' })).toBeInTheDocument();
+  });
+
+  it('la aventura de la unidad 1 monta Phaser', async () => {
+    useApp.setState({ pantalla: 'aventura', unidadId: 'u1' });
+    render(<App />);
     await vi.waitFor(() => expect(crearAventura).toHaveBeenCalledTimes(1));
   });
 
-  it('al terminar la aventura se vuelve al inicio', async () => {
-    useApp.setState({ pantalla: 'aventura' });
+  it('al terminar la aventura sin grupo elegido se vuelve al inicio', async () => {
+    useApp.setState({ pantalla: 'aventura', unidadId: 'u1' });
     render(<App />);
     await vi.waitFor(() => expect(crearAventura).toHaveBeenCalled());
     const [, opciones] = crearAventura.mock.calls[0] as unknown as [HTMLElement, { alTerminar: () => void }];
@@ -56,8 +62,8 @@ describe('pantalla de inicio', () => {
 
 describe('atajos para revisar', () => {
   it('?escena=Nivel2 entra directo solo en desarrollo o con ?e2e', () => {
-    expect(pantallaInicial('?escena=Nivel2', true)).toEqual({ pantalla: 'aventura', escenaInicial: 'Nivel2' });
-    expect(pantallaInicial('?escena=Nivel2&e2e', false)).toEqual({ pantalla: 'aventura', escenaInicial: 'Nivel2' });
+    expect(pantallaInicial('?escena=Nivel2', true)).toEqual({ pantalla: 'aventura', escenaInicial: 'Nivel2', unidadId: 'u1' });
+    expect(pantallaInicial('?escena=Nivel2&e2e', false)).toEqual({ pantalla: 'aventura', escenaInicial: 'Nivel2', unidadId: 'u1' });
     expect(pantallaInicial('?escena=Nivel2', false)).toEqual({ pantalla: 'inicio' });
     expect(pantallaInicial('?escena=Cualquiera', true)).toEqual({ pantalla: 'inicio' });
   });

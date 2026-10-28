@@ -1,0 +1,182 @@
+import { expect, test, type Page } from '@playwright/test';
+import { CATEGORIAS } from '../src/data/categorias';
+import { RESIDUOS } from '../src/data/residuos';
+import type { Ejercicio } from '../src/contenido/tipos';
+import { UNIDADES } from '../src/contenido/unidades';
+import { categoriaDe } from '../src/logica/clasificacion';
+import { todosLosEjercicios } from '../src/voz/frases';
+import { abrir, captura, crearGrupo, esperarPantalla, tocarBoton } from './ayudas';
+
+const EJERCICIOS = new Map(UNIDADES.flatMap((u) => u.lecciones.flatMap((l) => todosLosEjercicios(l.ejercicios))).map((e) => [e.id, e]));
+
+/**
+ * Toca un elemento cuando ya dejó de desplazarse (el camino se mueve suave hacia la siguiente parada).
+ * Se compara el centro: la parada siguiente "late" (cambia de tamaño) pero su centro no se mueve.
+ */
+async function clic(page: Page, selector: string): Promise<void> {
+  const el = page.locator(selector).first();
+  // Desplazamiento del DOM: scrollIntoViewIfNeeded esperaría a que la burbuja deje de latir.
+  await el.evaluate((e) => e.scrollIntoView({ block: 'nearest' }));
+  let anterior = '';
+  await expect
+    .poll(async () => {
+      const c = await el.boundingBox();
+      const actual = c ? `${Math.round((c.x + c.width / 2) / 3)},${Math.round((c.y + c.height / 2) / 3)}` : '';
+      const quieto = actual !== '' && actual === anterior;
+      anterior = actual;
+      return quieto;
+    }, { intervals: [150], timeout: 10_000 })
+    .toBe(true);
+  await el.click({ force: true });
+}
+
+/** Resuelve bien el ejercicio que está en pantalla (como lo haría el grupo). */
+async function resolver(page: Page, e: Ejercicio): Promise<void> {
+  const zona = `[data-ejercicio-id="${e.id}"]`;
+  switch (e.tipo) {
+    case 'elige-imagen':
+    case 'escucha-toca':
+      return clic(page, `${zona} [data-tarjeta="${e.correcta}"]`);
+    case 'si-no':
+      return clic(page, `${zona} [data-respuesta="${e.respuesta ? 'si' : 'no'}"]`);
+    case 'al-bote':
+      for (const id of e.residuos) {
+        const categoria = categoriaDe(RESIDUOS.find((r) => r.id === id)!, CATEGORIAS)!;
+        await expect(page.locator(`${zona} [data-residuo="${id}"]`)).toBeVisible();
+        await clic(page, `${zona} [data-bote="${categoria.id}"]`);
+      }
+      return;
+    case 'parejas':
+      for (const p of e.pares) {
+        await clic(page, `${zona} [data-tarjeta="${p.izquierda.id}"]`);
+        await clic(page, `${zona} [data-tarjeta="${p.derecha.id}"]`);
+      }
+      return;
+    case 'ordena':
+      for (const paso of e.pasos) await clic(page, `${zona} [data-tarjeta="${paso.id}"]`);
+      return;
+    case 'encuentra-error':
+      for (const o of e.objetos.filter((x) => x.mal)) await clic(page, `${zona} [data-objeto="${o.id}"]`);
+      return;
+    case 'muestrale':
+      // En las pruebas no hay cámara: "Usar dibujos" y se juega el respaldo.
+      await tocarBoton(page, 'Usar dibujos');
+      return clic(page, `${zona} [data-tarjeta="${e.respaldo.correcta}"]`);
+  }
+}
+
+/** Una respuesta equivocada para el ejercicio en pantalla (solo tipos de una tarjeta). */
+async function equivocarse(page: Page, e: Ejercicio): Promise<void> {
+  if (e.tipo !== 'escucha-toca' && e.tipo !== 'elige-imagen') throw new Error('Usar un ejercicio de tarjetas');
+  const mala = e.opciones.find((o) => o.id !== e.correcta)!;
+  await clic(page, `[data-ejercicio-id="${e.id}"] [data-tarjeta="${mala.id}"]`);
+}
+
+test('un grupo nuevo completa una lección con un error, ve la pantalla final y su parque crece; el avance se guarda', async ({ page }, info) => {
+  await page.addInitScript(() => Object.defineProperty(navigator, 'mediaDevices', { value: undefined }));
+  const { errores, peticiones } = await abrir(page);
+  await esperarPantalla(page, 'inicio');
+  await tocarBoton(page, /¡Jugar!/);
+  await captura(page, info, 'v2-1-grupos');
+  await crearGrupo(page, 'ajolote', '1°A');
+  await expect(page.locator('[data-grupo]').first()).toContainText('Ajolote 1°A');
+  await captura(page, info, 'v2-2-camino');
+
+  const parque = page.locator('[data-parque-basura]').first();
+  const basuraAntes = Number(await parque.getAttribute('data-parque-basura'));
+  expect(basuraAntes).toBe(8);
+
+  // Lección 1 de la unidad 1.
+  const leccion = UNIDADES[0]!.lecciones[0]!;
+  await clic(page, `[data-nodo="leccion:${leccion.id}"]`);
+  await esperarPantalla(page, 'leccion');
+
+  let errorHecho = false;
+  let repasos = 0;
+  for (let paso = 0; paso < 30; paso++) {
+    const pantalla = await page.evaluate(() => window.__caco.pantalla());
+    if (pantalla === 'fin-leccion') break;
+    const caja = page.locator('[data-ejercicio-id]');
+    await expect(caja).toBeVisible();
+    const id = (await caja.getAttribute('data-ejercicio-id'))!;
+    if ((await caja.getAttribute('data-repaso')) === 'true') repasos += 1;
+    const e = EJERCICIOS.get(id)!;
+    if (!errorHecho && (e.tipo === 'escucha-toca' || e.tipo === 'elige-imagen')) {
+      // Un error a propósito: banner naranja con pista e "Intentar otra vez"; nunca se pierde nada.
+      await equivocarse(page, e);
+      await expect(page.locator('[data-banner="casi"]')).toBeVisible();
+      await page.waitForTimeout(800); // que el banner termine de subir
+      await captura(page, info, 'v2-3-casi');
+      await tocarBoton(page, 'Intentar otra vez');
+      errorHecho = true;
+    }
+    await resolver(page, e);
+    await expect(page.locator('[data-banner="bien"]')).toBeVisible();
+    if (paso === 1) {
+      await page.waitForTimeout(800);
+      await captura(page, info, 'v2-4-bien');
+    }
+    await tocarBoton(page, /¡Sigamos!/);
+  }
+
+  // El ejercicio fallado volvió al final para repasar.
+  expect(repasos).toBe(1);
+  await esperarPantalla(page, 'fin-leccion');
+  const total = leccion.ejercicios.length;
+  await expect(page.locator('[data-a-la-primera]')).toHaveAttribute('data-a-la-primera', String(total - 1));
+  await expect(page.locator('[data-hojitas]')).toHaveAttribute('data-hojitas', String(10 + total - 1));
+  await page.waitForTimeout(2000);
+  await captura(page, info, 'v2-5-fin');
+  await tocarBoton(page, 'Volver al camino');
+
+  // El parque creció y la lección quedó hecha; la siguiente parada (el cofre) ya se puede abrir.
+  await esperarPantalla(page, 'camino');
+  const basuraDespues = Number(await page.locator('[data-parque-basura]').first().getAttribute('data-parque-basura'));
+  expect(basuraDespues).toBeLessThan(basuraAntes);
+  await expect(page.locator(`[data-nodo="leccion:${leccion.id}"]`)).toHaveAttribute('data-estado', 'hecho');
+  await expect(page.locator('[data-nodo="cofre:u1"]')).toHaveAttribute('data-estado', 'disponible');
+  await expect(page.locator('[data-hojitas-grupo]')).toHaveAttribute('data-hojitas-grupo', String(10 + total - 1));
+
+  // Cofre: hojitas extra.
+  await clic(page, '[data-nodo="cofre:u1"]');
+  await tocarBoton(page, 'Abrir');
+  await tocarBoton(page, /¡Sigamos!/);
+  await expect(page.locator('[data-hojitas-grupo]')).toHaveAttribute('data-hojitas-grupo', String(10 + total - 1 + 15));
+  await captura(page, info, 'v2-6-camino-despues');
+
+  // Otro día (recargar): el grupo y su avance siguen ahí, guardados solo en este aparato.
+  await page.reload();
+  await page.waitForFunction(() => !!window.__caco?.pantalla());
+  await tocarBoton(page, /¡Jugar!/);
+  await esperarPantalla(page, 'grupos');
+  await clic(page, '[data-grupo]');
+  await esperarPantalla(page, 'camino');
+  await expect(page.locator(`[data-nodo="leccion:${leccion.id}"]`)).toHaveAttribute('data-estado', 'hecho');
+
+  // Álbum: aún sin estampas.
+  await tocarBoton(page, /Álbum/);
+  await esperarPantalla(page, 'album');
+  await expect(page.locator('[data-ganada="true"]')).toHaveCount(0);
+  await captura(page, info, 'v2-7-album');
+
+  expect(peticiones.filter((r) => r.method() !== 'GET').map((r) => `${r.method()} ${r.url()}`)).toEqual([]);
+  expect(errores).toEqual([]);
+});
+
+test('camino, lección y álbum: cada botón mide al menos 64 px reales', async ({ page }) => {
+  await abrir(page);
+  await tocarBoton(page, /¡Jugar!/);
+  await crearGrupo(page, 'colibri');
+  const revisar = async (donde: string) => {
+    for (const b of await page.locator('main button:visible, header button:visible').all()) {
+      const caja = await b.boundingBox();
+      if (!caja) continue;
+      expect.soft(Math.min(caja.width, caja.height), `${donde}: ${(await b.getAttribute('aria-label')) ?? (await b.textContent())}`).toBeGreaterThanOrEqual(64);
+    }
+  };
+  await revisar('camino');
+  await clic(page, '[data-nodo="leccion:u1-l1"]');
+  await esperarPantalla(page, 'leccion');
+  await page.waitForTimeout(800);
+  await revisar('lección');
+});

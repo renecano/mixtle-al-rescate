@@ -63,14 +63,47 @@ export async function esperarPantalla(page: Page, nombre: string, timeout = 30_0
 
 /** Toca un botón de React (DOM) por su nombre accesible, con el dedo si el dispositivo es táctil. */
 export async function tocarBoton(page: Page, nombre: string | RegExp): Promise<void> {
-  const boton = page.getByRole('button', { name: nombre });
+  // Con texto se busca el nombre exacto; con expresión regular, lo que coincida.
+  const boton = page.getByRole('button', { name: nombre, exact: typeof nombre === 'string' });
   await expect(boton).toBeVisible();
   await expect(boton).toBeEnabled();
+  // Algunos botones entran deslizándose (el banner de respuesta): se espera a que estén en pantalla.
+  const alto = page.viewportSize()?.height ?? 0;
+  await expect
+    .poll(async () => {
+      const caja = await boton.first().boundingBox();
+      return !!caja && caja.y >= 0 && caja.y + caja.height <= alto + 1;
+    })
+    .toBe(true);
   // Algunos botones "laten" sin parar para invitar a tocarlos: Playwright nunca los vería quietos,
   // así que se tocan sin esperar a que dejen de moverse (ya se comprobó que están visibles).
   const tactil = await page.evaluate(() => navigator.maxTouchPoints > 0);
   if (tactil) await boton.tap({ force: true });
   else await boton.click({ force: true });
+}
+
+/** Crea un grupo con el animal dado (sin etiqueta) y entra a su camino. */
+export async function crearGrupo(page: Page, mascota: string, etiqueta = ''): Promise<void> {
+  await esperarPantalla(page, 'grupos');
+  await tocarBoton(page, 'Nuevo grupo');
+  await page.locator(`[data-mascota="${mascota}"]`).click({ force: true });
+  if (etiqueta) await page.locator('input[name="etiqueta-grupo"]').fill(etiqueta);
+  await tocarBoton(page, /¡Listo!/);
+  await esperarPantalla(page, 'camino');
+}
+
+/** Modo facilitador: mantener presionado el logo 3 segundos y abrir todas las lecciones. */
+export async function desbloquearTodo(page: Page): Promise<void> {
+  const logo = page.locator('[data-logo]');
+  const caja = (await logo.boundingBox())!;
+  await page.mouse.move(caja.x + caja.width / 2, caja.y + caja.height / 2);
+  await page.mouse.down();
+  await page.waitForTimeout(3300);
+  await page.mouse.up();
+  const dialogo = page.getByRole('dialog', { name: 'Modo facilitador' });
+  await expect(dialogo).toBeVisible();
+  await dialogo.getByRole('checkbox').first().check({ force: true });
+  await tocarBoton(page, 'Cerrar');
 }
 
 export function tocables(page: Page): Promise<Tocable[]> {

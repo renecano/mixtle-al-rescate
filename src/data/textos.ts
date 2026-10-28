@@ -75,7 +75,7 @@ export const TEXTOS = {
     firma: 'Caco, el cacomixtle',
     fecha: 'Fecha',
     pie: 'Caco al rescate · Eco Urban A.C.',
-    jugarOtraVez: 'Jugar otra vez',
+    jugarOtraVez: 'Volver al camino',
   },
   seguir: '¡Sigamos!',
 } as const;

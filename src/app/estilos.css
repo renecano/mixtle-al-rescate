@@ -32,6 +32,11 @@ body {
   -webkit-tap-highlight-color: transparent;
 }
 
+/* Modo proyector (panel del facilitador): todo lo que se mide en rem crece un 25 %. */
+html[data-proyector] {
+  font-size: 125%;
+}
+
 /* El lienzo de las aventuras maneja sus propios gestos (arrastrar residuos). */
 [data-pantalla='aventura'] {
   touch-action: none;
