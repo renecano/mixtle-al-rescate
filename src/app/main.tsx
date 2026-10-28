@@ -3,6 +3,7 @@ import '@fontsource/nunito/latin-800.css';
 import '@fontsource/nunito/latin-900.css';
 import '@fontsource/baloo-2/latin-800.css';
 import './estilos.css';
+import './animaciones.css';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { vigilarActualizaciones } from '../servicios/actualizacion';

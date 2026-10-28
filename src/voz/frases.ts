@@ -97,6 +97,7 @@ export function todasLasFrases(): FraseNarrada[] {
   // Pantallas de la app: grupos, camino, cofre, lección, álbum.
   const app = (leccion: string, id: string, l: Locucion) => agregar('app', leccion, id, l);
   const t = TEXTOS_APP;
+  app('inicio', 'inicio.alRescate', t.inicio.alRescate);
   app('grupos', 'grupos.bienvenida', t.grupos.bienvenida);
   app('grupos', 'grupos.crear', [t.grupos.crear, t.grupos.aviso]);
   MASCOTAS.forEach((m) => app('camino', `camino.hola.${m.id}`, t.camino.hola(m.nombre)));

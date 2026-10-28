@@ -35,6 +35,16 @@ export const musica = new Musica(
 );
 estadoMusica.escuchar(() => musica.cambioDeInterruptor());
 
+/** ¿El audio ya está desbloqueado (hubo un toque)? Antes de eso los navegadores no dejan sonar nada. */
+export function audioListo(): boolean {
+  if (!hayAudio()) return false;
+  try {
+    return (Howler.ctx as AudioContext | undefined)?.state === 'running';
+  } catch {
+    return false;
+  }
+}
+
 /** Llamar en el primer toque: desbloquea el audio (tablets) y deja empezar la música. */
 export function desbloquearAudio(): void {
   if (!hayAudio()) return;

@@ -1,93 +1,209 @@
-import { motion } from 'motion/react';
-import { useEffect, useState } from 'react';
+import { lazy, Suspense, useEffect, useRef, useState, type CSSProperties } from 'react';
+import { MANOS_COLGADO } from '../../arte/escenas';
+import { FRASE_MIXTLE } from '../../arte/marca';
 import { TEXTOS } from '../../data/textos';
 import { reiniciarProgreso } from '../../logica/progreso';
-import { musica } from '../../servicios/audio/motor';
+import { audioListo, musica } from '../../servicios/audio/motor';
 import { sonido } from '../../servicios/sonido';
 import { voz } from '../../servicios/voz';
 import { Arte } from '../componentes/Arte';
 import { BotonesSistema } from '../componentes/BotonesSistema';
 import { BotonGrande } from '../componentes/BotonGrande';
-import { MixtleFigura } from '../componentes/MixtleFigura';
+import { Logo } from '../componentes/Logo';
 import { useApp } from '../estado/app';
+import { decir } from '../estado/narrador';
+
+const Vitrina = lazy(() => import('./Vitrina').then((m) => ({ default: m.Vitrina })));
+
+/** Capas del parque, de la más lejana a la más cercana. `prof`: cuánto se mueve con el paralaje. */
+const CAPAS = [
+  { clave: 'inicio-cielo', prof: 0.2 },
+  { clave: 'inicio-nubes', prof: 0.5, clase: 'inicio-nubes' },
+  { clave: 'inicio-nevado', prof: 0.9 },
+  { clave: 'inicio-lomas', prof: 1.5 },
+  { clave: 'inicio-arbol', prof: 2.4, mixtle: true },
+  { clave: 'inicio-frente', prof: 3.2 },
+] as const;
 
 const MARIPOSAS = [
-  { left: '61%', top: '55%', retraso: 0 },
-  { left: '74%', top: '42%', retraso: 0.6 },
-  { left: '95%', top: '70%', retraso: 1.2 },
+  { left: '58%', top: '62%', retraso: 0 },
+  { left: '84%', top: '48%', retraso: 0.6 },
+  { left: '93%', top: '70%', retraso: 1.2 },
 ];
 
-/** Pantalla tipo póster: título, Mixtle, los animales del parque y el botón "¡Jugar!". */
+/** Cuando aterriza el logo (en ms desde que entra la pantalla): ahí suena su remate musical. */
+const LOGO_ATERRIZA_MS = 1450;
+/** Cuando termina la entrada: el botón ya está listo para tocarse. */
+const ENTRADA_MS = 2300;
+/** Sin tocar la pantalla este tiempo, en modo proyector empieza el modo vitrina. */
+export const VITRINA_TRAS_MS = 60_000;
+
+/** Dónde está la mano de Mixtle sobre la rama del árbol (en % del escenario de 1920×1080). */
+const RAMA = { x: 700 / 1920, y: 320 / 1080 };
+const ALTO_COLGADO = 0.3;
+
+function sinMovimiento(): boolean {
+  if (typeof window === 'undefined') return true;
+  return document.documentElement.hasAttribute('data-suave') || !!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+}
+
+/**
+ * Pantalla de inicio: el parque en capas con paralaje y el Nevado de Toluca al fondo, Mixtle que
+ * llega columpiándose de una rama, el logo que aterriza con su remate musical y un solo botón.
+ * En modo proyector, si nadie toca la pantalla en 60 s, empieza el modo vitrina (una demo en bucle).
+ */
 export function Inicio() {
   const jugar = useApp((s) => s.jugar);
-  const [entradaLista, setEntradaLista] = useState(false);
+  const proyector = useApp((s) => s.proyector);
+  const escena = useRef<HTMLElement>(null);
+  const [entradaLista, setEntradaLista] = useState(sinMovimiento);
+  const [saliendo, setSaliendo] = useState(false);
+  const [vitrina, setVitrina] = useState(() => typeof location !== 'undefined' && new URLSearchParams(location.search).has('vitrina'));
+  const remateSonado = useRef(false);
+
   useEffect(() => musica.poner('tranquila'), []);
 
+  // Entrada: el remate suena cuando aterriza el logo (si el audio ya está desbloqueado; si no, al primer toque).
+  useEffect(() => {
+    const t1 = window.setTimeout(() => {
+      if (audioListo()) {
+        remateSonado.current = true;
+        sonido.tocar('remate');
+      }
+    }, LOGO_ATERRIZA_MS);
+    const t2 = window.setTimeout(() => setEntradaLista(true), ENTRADA_MS);
+    return () => {
+      window.clearTimeout(t1);
+      window.clearTimeout(t2);
+    };
+  }, []);
+
+  // Paralaje: las capas siguen al puntero (ratón en el proyector, dedo en la tablet), cada una a su profundidad.
+  useEffect(() => {
+    const el = escena.current;
+    if (!el || sinMovimiento()) return;
+    let cuadro = 0;
+    const mover = (e: PointerEvent) => {
+      if (cuadro) return;
+      cuadro = requestAnimationFrame(() => {
+        cuadro = 0;
+        const r = el.getBoundingClientRect();
+        el.style.setProperty('--px', (((e.clientX - r.left) / r.width) * 2 - 1).toFixed(3));
+        el.style.setProperty('--py', (((e.clientY - r.top) / r.height) * 2 - 1).toFixed(3));
+      });
+    };
+    el.addEventListener('pointermove', mover);
+    return () => {
+      el.removeEventListener('pointermove', mover);
+      cancelAnimationFrame(cuadro);
+    };
+  }, []);
+
+  // Modo vitrina: solo en el proyector y solo si nadie toca la pantalla en 60 s.
+  useEffect(() => {
+    if (!proyector || vitrina) return;
+    let t = window.setTimeout(() => setVitrina(true), VITRINA_TRAS_MS);
+    const reiniciar = () => {
+      window.clearTimeout(t);
+      t = window.setTimeout(() => setVitrina(true), VITRINA_TRAS_MS);
+    };
+    window.addEventListener('pointerdown', reiniciar);
+    window.addEventListener('keydown', reiniciar);
+    return () => {
+      window.clearTimeout(t);
+      window.removeEventListener('pointerdown', reiniciar);
+      window.removeEventListener('keydown', reiniciar);
+    };
+  }, [proyector, vitrina]);
+
+  /** Primer toque en el inicio: si el remate no pudo sonar (audio bloqueado), el logo rebota con él. */
+  const primerToque = () => {
+    sonido.desbloquear();
+    if (remateSonado.current) return;
+    remateSonado.current = true;
+    escena.current?.classList.add('inicio-logo-rebota');
+    window.setTimeout(() => sonido.tocar('remate'), 60);
+  };
+
+  const alJugar = () => {
+    if (saliendo) return;
+    sonido.desbloquear();
+    voz.desbloquear();
+    reiniciarProgreso();
+    setSaliendo(true);
+    // "¡Al rescate!" y al terminar la frase (o si no hay voz, poco después), a elegir grupo.
+    decir(FRASE_MIXTLE, { expresion: 'celebrando', alTerminar: jugar });
+  };
+
+  const colgado: CSSProperties = {
+    left: `${(RAMA.x - (ALTO_COLGADO * (1080 / 1920) * (360 / 440)) / 2) * 100}%`,
+    top: `${(RAMA.y - ALTO_COLGADO * MANOS_COLGADO.y) * 100}%`,
+    height: `${ALTO_COLGADO * 100}%`,
+    transformOrigin: `${MANOS_COLGADO.x * 100}% ${MANOS_COLGADO.y * 100}%`,
+  };
+
   return (
-    <main data-pantalla="inicio" data-entrada-lista={entradaLista} className="relative h-full w-full overflow-hidden">
-      <Arte clave="parque" className="absolute inset-0 h-full w-full object-cover object-bottom" />
+    <main
+      ref={escena}
+      data-pantalla="inicio"
+      data-entrada-lista={entradaLista}
+      data-saliendo={saliendo || undefined}
+      className="inicio relative h-full w-full overflow-hidden"
+      onPointerDown={primerToque}
+    >
+      <div className="inicio-escenario">
+        {CAPAS.map((c) => (
+          <div key={c.clave} className="inicio-capa" style={{ '--prof': c.prof } as CSSProperties}>
+            <div className={`inicio-capa-deriva ${'clase' in c ? c.clase : ''}`}>
+              <div className="inicio-capa-paralaje">
+                <Arte clave={c.clave} className="absolute inset-0 h-full w-full" />
+                {'mixtle' in c && (
+                  <div className="inicio-columpio" style={colgado} role="img" aria-label="Mixtle, el cacomixtle">
+                    <div className="inicio-columpio-vaiven">
+                      <Arte clave="mixtle-colgado" className="h-full" />
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
 
-      <motion.h1
-        initial={{ y: '-120%' }}
-        animate={{ y: 0 }}
-        transition={{ type: 'spring', stiffness: 120, damping: 11 }}
-        onAnimationComplete={() => setEntradaLista(true)}
-        className="absolute top-[4%] left-[58%] -translate-x-1/2 text-center text-[clamp(3.5rem,11vmin,9.5rem)] leading-[0.9] font-black whitespace-pre text-white"
-        style={{ WebkitTextStroke: '0.12em var(--color-verde)', paintOrder: 'stroke fill', textShadow: '0 0.08em 0 rgba(18,61,43,0.35)' }}
-      >
-        {TEXTOS.inicio.titulo}
-        <span className="mt-[0.35em] block text-[0.32em] leading-none tracking-wide text-[#FFD23F]" style={{ WebkitTextStroke: '0.1em var(--color-verde)' }}>
-          {TEXTOS.inicio.lema}
-        </span>
-      </motion.h1>
+      <Logo comoTitulo sinMixtle className="inicio-logo absolute top-[3%] left-[47%] w-[46%]" />
 
-      <MixtleFigura alto="min(64%, 48vw)" className="absolute bottom-[4%] left-[5%]" />
+      <div className="inicio-animales" aria-hidden="true">
+        <div className="absolute right-[2%] bottom-[4%] h-[20%] animate-[brinco_2.1s_ease-out_infinite]">
+          <Arte clave="ardilla-feliz" className="h-full" />
+        </div>
+        <div className="absolute top-[52%] right-[4%] h-[11%] animate-[flotar_1.8s_ease-in-out_infinite]">
+          <Arte clave="colibri-feliz" className="h-full" />
+        </div>
+        {MARIPOSAS.map((m, i) => (
+          <div key={i} className="inicio-mariposa absolute h-[8%]" style={{ left: m.left, top: m.top, animationDelay: `${m.retraso}s` }}>
+            <Arte clave="mariposa-feliz" className="h-full" />
+          </div>
+        ))}
+      </div>
 
-      <motion.div
-        className="absolute right-[10%] bottom-[6%] h-[24%]"
-        animate={{ y: [0, -24, 0] }}
-        transition={{ duration: 0.5, repeat: Infinity, repeatDelay: 1.6, ease: 'easeOut' }}
-      >
-        <Arte clave="ardilla-feliz" className="h-full" />
-      </motion.div>
-
-      <motion.div
-        className="absolute top-[47%] right-[5%] h-[13%]"
-        animate={{ y: [0, -18, 0] }}
-        transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
-      >
-        <Arte clave="colibri-feliz" className="h-full" />
-      </motion.div>
-
-      {MARIPOSAS.map((m, i) => (
-        <motion.div
-          key={i}
-          className="absolute h-[9%]"
-          style={{ left: m.left, top: m.top }}
-          animate={{ scaleX: [1, 0.2, 1], y: [0, -20, 0] }}
-          transition={{ scaleX: { duration: 0.4, repeat: Infinity, delay: m.retraso }, y: { duration: 3, repeat: Infinity, delay: m.retraso } }}
-        >
-          <Arte clave="mariposa-feliz" className="h-full" />
-        </motion.div>
-      ))}
-
-      <div className="absolute bottom-[9%] left-[58%] -translate-x-1/2">
+      <div className="inicio-boton absolute bottom-[9%] left-[66%] -translate-x-1/2">
         <BotonGrande
-          latir
-          className="h-[clamp(5rem,16vmin,11rem)] px-[clamp(2rem,5vmin,4rem)] text-[clamp(2.5rem,8vmin,5.5rem)]"
+          latir={!saliendo}
+          className="h-[clamp(5rem,16vmin,11rem)] px-[clamp(2rem,5vmin,4rem)] font-titulo text-[clamp(2.5rem,8vmin,5.5rem)]"
           icono={<Arte clave="icono-jugar" className="h-[0.8em]" />}
-          onClick={() => {
-            sonido.desbloquear();
-            voz.desbloquear();
-            reiniciarProgreso();
-            jugar();
-          }}
+          onClick={alJugar}
         >
           {TEXTOS.inicio.jugar}
         </BotonGrande>
       </div>
 
       <BotonesSistema />
+
+      {vitrina && (
+        <Suspense fallback={null}>
+          <Vitrina alSalir={() => setVitrina(false)} />
+        </Suspense>
+      )}
     </main>
   );
 }

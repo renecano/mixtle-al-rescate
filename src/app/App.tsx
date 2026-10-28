@@ -1,7 +1,8 @@
 import { MotionConfig } from 'motion/react';
 import { lazy, Suspense } from 'react';
 import { PantallaCarga } from './componentes/PantallaCarga';
-import { useApp } from './estado/app';
+import { PanelTransicion, useTransicionMarca } from './componentes/TransicionMarca';
+import { useApp, type Pantalla as NombrePantalla } from './estado/app';
 import { Inicio } from './pantallas/Inicio';
 
 /*
@@ -14,8 +15,7 @@ const Leccion = lazy(() => import('./pantallas/Leccion').then((m) => ({ default:
 const Aventura = lazy(() => import('./pantallas/Aventura').then((m) => ({ default: m.Aventura })));
 const Album = lazy(() => import('./pantallas/Album').then((m) => ({ default: m.Album })));
 
-function Pantalla() {
-  const pantalla = useApp((s) => s.pantalla);
+function Pantalla({ pantalla }: { pantalla: NombrePantalla }) {
   switch (pantalla) {
     case 'grupos':
       return <Grupos />;
@@ -34,12 +34,14 @@ function Pantalla() {
 
 export function App() {
   const suave = useApp((s) => s.suave);
+  const { mostrada, fase } = useTransicionMarca();
   return (
     // Movimiento reducido: el del sistema ("user") o, con "animaciones suaves", siempre.
     <MotionConfig reducedMotion={suave ? 'always' : 'user'}>
       <Suspense fallback={<PantallaCarga />}>
-        <Pantalla />
+        <Pantalla pantalla={mostrada} />
       </Suspense>
+      <PanelTransicion fase={fase} />
     </MotionConfig>
   );
 }

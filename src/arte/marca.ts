@@ -1,3 +1,4 @@
+import { TEXTOS_APP } from '../contenido/textosApp';
 import { TEXTO_LOGO } from './logoTexto.generado';
 import { cuerpoDeMixtle, mixtleCompleto } from './personajes';
 
@@ -21,7 +22,7 @@ export const COLORES_MARCA = {
 export const LOGO = { ancho: 670, alto: 330 } as const;
 
 export const LEMA = 'Guardianes del parque';
-export const FRASE_MIXTLE = '¡Al rescate!';
+export const FRASE_MIXTLE = TEXTOS_APP.inicio.alRescate;
 
 /** Hojita verde que acompaña a la "M". */
 const HOJA = `<path d="M86 112 q22 -34 52 -26 q-14 30 -52 26z" fill="${COLORES_MARCA.hoja}" stroke="${COLORES_MARCA.verde}" stroke-width="5" stroke-linejoin="round"/>

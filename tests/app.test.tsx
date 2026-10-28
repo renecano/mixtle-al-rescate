@@ -40,7 +40,8 @@ describe('pantalla de inicio', () => {
     render(<App />);
     await userEvent.click(screen.getByRole('button', { name: /¡Jugar!/ }));
     expect(progreso().recolectados).toEqual([]);
-    expect(useApp.getState().pantalla).toBe('grupos');
+    // Primero Mixtle dice "¡Al rescate!" (sin voz en las pruebas: espera su duración estimada).
+    await vi.waitFor(() => expect(useApp.getState().pantalla).toBe('grupos'), { timeout: 4000 });
     expect(await screen.findByRole('heading', { name: '¿Quién va a jugar?' })).toBeInTheDocument();
   });
 
@@ -56,7 +57,8 @@ describe('pantalla de inicio', () => {
     await vi.waitFor(() => expect(crearAventura).toHaveBeenCalled());
     const [, opciones] = crearAventura.mock.calls[0] as unknown as [HTMLElement, { alTerminar: () => void }];
     act(() => opciones.alTerminar());
-    expect(screen.getByRole('button', { name: /¡Jugar!/ })).toBeInTheDocument();
+    // La transición de marca cubre la pantalla y luego muestra el inicio.
+    expect(await screen.findByRole('button', { name: /¡Jugar!/ })).toBeInTheDocument();
   });
 });
 

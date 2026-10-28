@@ -6,6 +6,10 @@ import type { Locucion } from '../voz/locucion';
  * TODO(Eco Urban): revisar redacción con las educadoras y educadores.
  */
 export const TEXTOS_APP = {
+  inicio: {
+    /** La frase de Mixtle (marca): la dice al tocar "¡Jugar!". */
+    alRescate: '¡Al rescate!',
+  },
   grupos: {
     titulo: '¿Quién va a jugar?',
     bienvenida: '¿Quién va a jugar? Elijan su grupo o creen uno nuevo.',

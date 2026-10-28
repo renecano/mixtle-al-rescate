@@ -80,6 +80,21 @@ export const RECETAS = {
     { t: 1.2, d: 0.7, f: E5, onda: 'sine', vol: 0.16 },
     { t: 1.2, d: 0.7, f: C4, onda: 'sine', vol: 0.16 },
   ],
+  // Remate musical del logo: arpegio que sube y un brillo (v3).
+  remate: [
+    { t: 0, d: 0.12, f: C5, onda: 'triangle', vol: 0.3 },
+    { t: 0.1, d: 0.12, f: E5, onda: 'triangle', vol: 0.3 },
+    { t: 0.2, d: 0.12, f: G5, onda: 'triangle', vol: 0.3 },
+    { t: 0.3, d: 0.5, f: C6, onda: 'triangle', vol: 0.34 },
+    { t: 0.3, d: 0.5, f: E6, onda: 'sine', vol: 0.14 },
+    { t: 0.3, d: 0.5, f: C4, onda: 'sine', vol: 0.18 },
+    { t: 0.32, d: 0.3, f: 6000, onda: 'ruido', vol: 0.05 },
+  ],
+  // Transición entre pantallas: un soplido suave que pasa.
+  barrido: [
+    { t: 0, d: 0.42, f: 500, f2: 2400, onda: 'ruido', vol: 0.12 },
+    { t: 0.08, d: 0.2, f: 660, f2: 990, onda: 'sine', vol: 0.08 },
+  ],
   pagina: [
     { t: 0, d: 0.09, f: 1800, onda: 'ruido', vol: 0.08 },
     { t: 0.02, d: 0.09, f: D5, f2: A5, onda: 'sine', vol: 0.18 },
