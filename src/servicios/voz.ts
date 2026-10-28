@@ -43,7 +43,8 @@ class Voz {
   /** Carga public/voz/manifiesto.json. Sin manifiesto, todo se dice con la voz del navegador. */
   async cargarManifiesto(): Promise<void> {
     try {
-      const r = await fetch(rutaAudio('voz/manifiesto.json'));
+      // Siempre la lista más nueva (sin la caché HTTP); sin internet, el service worker da la guardada.
+      const r = await fetch(rutaAudio('voz/manifiesto.json'), { cache: 'no-cache' });
       if (r.ok) this.manifiesto = (await r.json()) as Manifiesto;
     } catch {
       this.manifiesto = null;

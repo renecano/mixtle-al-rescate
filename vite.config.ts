@@ -33,6 +33,16 @@ export default defineConfig({
       workbox: {
         // Todo el juego (código, fuente, arte, voz y música) queda disponible sin conexión.
         globPatterns: ['**/*.{js,css,html,svg,png,woff2,mp3,json}'],
+        // La lista de audios va aparte: primero la de internet (siempre la más nueva) y, sin conexión,
+        // la última guardada. Así una versión vieja en caché nunca deja a Caco con la lista vieja.
+        globIgnores: ['**/voz/manifiesto.json'],
+        runtimeCaching: [
+          {
+            urlPattern: /\/voz\/manifiesto\.json$/,
+            handler: 'NetworkFirst',
+            options: { cacheName: 'caco-voz-manifiesto', networkTimeoutSeconds: 4 },
+          },
+        ],
         maximumFileSizeToCacheInBytes: 3 * 1024 * 1024,
         cleanupOutdatedCaches: true,
         navigateFallback: 'index.html',
