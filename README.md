@@ -75,6 +75,10 @@ Hasta la v2, el personaje se llamaba **Caco** y el juego, "Caco al rescate" (la 
 - **Repositorio:** `renecano/mixtle-al-rescate` (GitHub redirige el nombre anterior).
 - **Carpeta local:** se sigue llamando `caco_al_rescate` en la laptop donde se desarrolló; no se renombró porque se estaba trabajando en ella. No afecta en nada al juego.
 
+## Direcciones visuales de la v3
+
+`docs/direccion-visual/index.html` muestra tres direcciones para la v3 (A · Parque de día, B · ¡Al rescate!, C · Fiesta del Nevado): logo con Mixtle, inicio, lección, recompensa, paleta, tipografía y contraste WCAG medido en la misma página. Usa el arte real del juego (`npm run docs:direccion` lo exporta de `src/arte/`). TODO(René / Eco Urban): elegir una.
+
 ## Correrlo en Windows
 
 Requisitos: [Node.js](https://nodejs.org) 22.12 o más nuevo (la versión LTS sirve) y Chrome o Edge.

@@ -22,7 +22,8 @@
     "sonidos:generar": "node scripts/sonidos/generar.mjs",
     "musica:instalar": "node scripts/musica/instalar.mjs",
     "capturas": "node scripts/capturas.mjs",
-    "voz:usar": "node scripts/voz/usar.mjs"
+    "voz:usar": "node scripts/voz/usar.mjs",
+    "docs:direccion": "node scripts/direccion-visual.mjs"
   },
   "license": "UNLICENSED",
   "dependencies": {
