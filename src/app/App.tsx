@@ -1,12 +1,20 @@
+import { MotionConfig } from 'motion/react';
+import { lazy, Suspense } from 'react';
+import { PantallaCarga } from './componentes/PantallaCarga';
 import { useApp } from './estado/app';
-import { Album } from './pantallas/Album';
-import { Aventura } from './pantallas/Aventura';
-import { Camino } from './pantallas/Camino';
-import { Grupos } from './pantallas/Grupos';
 import { Inicio } from './pantallas/Inicio';
-import { Leccion } from './pantallas/Leccion';
 
-export function App() {
+/*
+ * La pantalla de inicio viene con la app; las demás se descargan al necesitarlas (así lo que baja
+ * antes de la primera pantalla se queda en ~250 KB). Mientras baja una, se ve la pantalla de carga.
+ */
+const Grupos = lazy(() => import('./pantallas/Grupos').then((m) => ({ default: m.Grupos })));
+const Camino = lazy(() => import('./pantallas/Camino').then((m) => ({ default: m.Camino })));
+const Leccion = lazy(() => import('./pantallas/Leccion').then((m) => ({ default: m.Leccion })));
+const Aventura = lazy(() => import('./pantallas/Aventura').then((m) => ({ default: m.Aventura })));
+const Album = lazy(() => import('./pantallas/Album').then((m) => ({ default: m.Album })));
+
+function Pantalla() {
   const pantalla = useApp((s) => s.pantalla);
   switch (pantalla) {
     case 'grupos':
@@ -22,4 +30,16 @@ export function App() {
     default:
       return <Inicio />;
   }
+}
+
+export function App() {
+  const suave = useApp((s) => s.suave);
+  return (
+    // Movimiento reducido: el del sistema ("user") o, con "animaciones suaves", siempre.
+    <MotionConfig reducedMotion={suave ? 'always' : 'user'}>
+      <Suspense fallback={<PantallaCarga />}>
+        <Pantalla />
+      </Suspense>
+    </MotionConfig>
+  );
 }

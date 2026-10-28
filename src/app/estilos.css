@@ -13,6 +13,10 @@
   --color-cielo: #cfeaf7;
   --color-pasto: #bfe3a6;
   --font-sans: 'Nunito', 'Arial Rounded MT Bold', 'Segoe UI', system-ui, sans-serif;
+  /* Títulos y botones grandes (dirección visual A): Baloo 2 ExtraBold. */
+  --font-titulo: 'Baloo 2', 'Nunito', 'Arial Rounded MT Bold', system-ui, sans-serif;
+  --color-sol: #ffd23f;
+  --color-hoja: #4caf50;
 }
 
 html,
@@ -41,3 +45,39 @@ html[data-proyector] {
 [data-pantalla='aventura'] {
   touch-action: none;
 }
+
+/* ─── Mixtle en reposo: parpadea y mueve las orejas (MixtleFigura). Cada Mixtle con su propio ritmo. ─── */
+.mixtle-vivo .mx-parpadeo {
+  animation: mx-parpadeo 4.8s linear infinite;
+  animation-delay: var(--mx-retraso, 0s);
+}
+.mixtle-vivo .mx-oreja {
+  transform-box: fill-box;
+  transform-origin: 50% 90%;
+  animation: mx-oreja 6.5s ease-in-out infinite;
+  animation-delay: var(--mx-retraso, 0s);
+}
+.mixtle-vivo .mx-oreja-der {
+  animation-name: mx-oreja-der;
+}
+@keyframes mx-parpadeo {
+  0%, 93%, 100% { opacity: 0; }
+  95%, 97% { opacity: 1; }
+}
+@keyframes mx-oreja {
+  0%, 78%, 100% { transform: rotate(0deg); }
+  82% { transform: rotate(-9deg); }
+  86% { transform: rotate(4deg); }
+  90% { transform: rotate(0deg); }
+}
+@keyframes mx-oreja-der {
+  0%, 40%, 62%, 100% { transform: rotate(0deg); }
+  46% { transform: rotate(9deg); }
+  52% { transform: rotate(-4deg); }
+}
+
+/* Movimiento reducido (sistema o "animaciones suaves" del modo facilitador): sin orejas ni adornos en bucle. */
+@media (prefers-reduced-motion: reduce) {
+  .mixtle-vivo .mx-oreja { animation: none; }
+}
+html[data-suave] .mixtle-vivo .mx-oreja { animation: none; }

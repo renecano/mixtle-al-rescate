@@ -80,6 +80,7 @@ export const TEXTOS_APP = {
     reiniciarConfirmar: '¿Seguro? Se borra todo el avance de este grupo en este aparato.',
     desbloquear: 'Desbloquear todas las lecciones',
     proyector: 'Modo proyector (todo más grande)',
+    suave: 'Animaciones suaves (menos movimiento)',
     cerrar: 'Cerrar',
     ayuda: 'Mantén presionado el logo 3 segundos para abrir este panel.',
   },

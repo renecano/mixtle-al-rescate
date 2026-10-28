@@ -1,18 +1,28 @@
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 import { VitePWA } from 'vite-plugin-pwa';
-import { defineConfig } from 'vitest/config';
+import { defineConfig, type Plugin } from 'vitest/config';
+import { logoSvg } from './src/arte/marca';
+
+/** Pone el logo (SVG con letras en trazos) en la pantalla de carga de index.html: se ve antes que el código. */
+function logoDeCarga(): Plugin {
+  return {
+    name: 'mixtle-logo-de-carga',
+    transformIndexHtml: (html) => html.replace('<!--logo-carga-->', logoSvg({ atributos: 'class="pantalla-carga-logo" aria-hidden="true"' })),
+  };
+}
 
 export default defineConfig({
   base: './',
   plugins: [
     react(),
     tailwindcss(),
+    logoDeCarga(),
     VitePWA({
       // El juego se guarda en el dispositivo tras la primera visita y funciona sin internet.
       registerType: 'autoUpdate',
       injectRegister: 'auto',
-      includeAssets: ['favicon.svg', 'iconos/*.png'],
+      includeAssets: ['favicon.svg', 'iconos/*.png', 'marca/*.svg'],
       manifest: {
         name: 'Mixtle al rescate',
         short_name: 'Mixtle',
@@ -22,12 +32,12 @@ export default defineConfig({
         scope: './',
         display: 'fullscreen',
         orientation: 'landscape',
-        background_color: '#123d2b',
+        background_color: '#D3EEF9',
         theme_color: '#1F6B4A',
         icons: [
           { src: 'iconos/icono-192.png', sizes: '192x192', type: 'image/png' },
           { src: 'iconos/icono-512.png', sizes: '512x512', type: 'image/png' },
-          { src: 'iconos/icono-512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
+          { src: 'iconos/icono-maskable-512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
         ],
       },
       workbox: {

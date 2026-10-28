@@ -5,6 +5,7 @@ import { guardarInterruptor, leerInterruptorApagado } from '../../servicios/pref
 export type Pantalla = 'inicio' | 'grupos' | 'camino' | 'leccion' | 'aventura' | 'album';
 
 const CLAVE_PROYECTOR = 'mixtle-al-rescate:proyector';
+const CLAVE_SUAVE = 'mixtle-al-rescate:suave';
 
 interface EstadoApp {
   pantalla: Pantalla;
@@ -14,6 +15,8 @@ interface EstadoApp {
   escenaInicial?: string;
   /** Modo proyector: todo más grande (se recuerda en el dispositivo). */
   proyector: boolean;
+  /** "Animaciones suaves" (modo facilitador): menos movimiento, para quien se marea o se distrae. */
+  suave: boolean;
   /** Estampa recién ganada para mostrar al volver al camino. */
   estampaNueva?: string;
   jugar: () => void;
@@ -24,6 +27,7 @@ interface EstadoApp {
   abrirAlbum: () => void;
   irAGrupos: () => void;
   alternarProyector: () => void;
+  alternarSuave: () => void;
   olvidarEstampaNueva: () => void;
 }
 
@@ -43,16 +47,19 @@ export function pantallaInicial(busqueda: string, desarrollo: boolean): Pick<Est
   return { pantalla: 'inicio' };
 }
 
-function aplicarProyector(si: boolean): void {
-  if (typeof document !== 'undefined') document.documentElement.toggleAttribute('data-proyector', si);
+function aplicarAtributo(nombre: string, si: boolean): void {
+  if (typeof document !== 'undefined') document.documentElement.toggleAttribute(nombre, si);
 }
 
 export const useApp = create<EstadoApp>((set, get) => {
   const proyector = leerInterruptorApagado(CLAVE_PROYECTOR);
-  aplicarProyector(proyector);
+  const suave = leerInterruptorApagado(CLAVE_SUAVE);
+  aplicarAtributo('data-proyector', proyector);
+  aplicarAtributo('data-suave', suave);
   return {
     ...pantallaInicial(typeof window === 'undefined' ? '' : window.location.search, import.meta.env.DEV),
     proyector,
+    suave,
     jugar: () => set({ pantalla: 'grupos', escenaInicial: undefined }),
     volverAlInicio: () => set({ pantalla: 'inicio', escenaInicial: undefined, leccionId: undefined, unidadId: undefined }),
     alCamino: (estampaNueva) => set({ pantalla: 'camino', escenaInicial: undefined, leccionId: undefined, estampaNueva }),
@@ -63,8 +70,14 @@ export const useApp = create<EstadoApp>((set, get) => {
     alternarProyector: () => {
       const si = !get().proyector;
       guardarInterruptor(CLAVE_PROYECTOR, si);
-      aplicarProyector(si);
+      aplicarAtributo('data-proyector', si);
       set({ proyector: si });
+    },
+    alternarSuave: () => {
+      const si = !get().suave;
+      guardarInterruptor(CLAVE_SUAVE, si);
+      aplicarAtributo('data-suave', si);
+      set({ suave: si });
     },
     olvidarEstampaNueva: () => set({ estampaNueva: undefined }),
   };

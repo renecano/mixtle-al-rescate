@@ -6,12 +6,23 @@
     <meta name="theme-color" content="#1F6B4A" />
     <meta name="description" content="Mixtle al rescate. Guardianes del parque: aprende a cuidar el parque, a sus animales y a separar la basura con Mixtle el cacomixtle." />
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
-    <link rel="apple-touch-icon" href="./iconos/icono-192.png" />
+    <link rel="apple-touch-icon" href="./iconos/apple-touch-icon.png" />
     <title>Mixtle al rescate</title>
     <style>
       /* Solo lo necesario antes de que cargue la app (el resto está en src/app/estilos.css). */
-      html, body { margin: 0; height: 100%; background: #123d2b; }
-      #cargando { position: fixed; inset: 0; display: grid; place-items: center; color: #fff8e7; font: bold clamp(24px, 4vw, 48px) system-ui, sans-serif; pointer-events: none; }
+      html, body { margin: 0; height: 100%; background: #d3eef9; }
+      /* Pantalla de carga con la marca (la misma usa React mientras baja una pantalla: PantallaCarga.tsx). */
+      .pantalla-carga { position: fixed; inset: 0; z-index: 30; display: grid; place-content: center; justify-items: center; gap: 4vmin;
+        background: radial-gradient(circle at 50% 38%, #fff8e7 0, transparent 55%), linear-gradient(#d3eef9, #eef8e4); pointer-events: none; }
+      .pantalla-carga-logo { width: min(72vw, 120vh); aspect-ratio: 670 / 330; height: auto; animation: carga-flotar 2.4s ease-in-out infinite; }
+      .pantalla-carga-hojas { display: flex; gap: 2.2vmin; }
+      .pantalla-carga-hojas i { width: 3.4vmin; height: 3.4vmin; background: #4caf50; border: 0.5vmin solid #1f6b4a; border-radius: 0 75% 0 75%; animation: carga-hoja 1.1s ease-in-out infinite; }
+      .pantalla-carga-hojas i:nth-child(2) { animation-delay: 0.15s; }
+      .pantalla-carga-hojas i:nth-child(3) { animation-delay: 0.3s; }
+      @keyframes carga-flotar { 50% { transform: translateY(-1.2vmin); } }
+      @keyframes carga-hoja { 0%, 60%, 100% { transform: translateY(0) rotate(0); } 30% { transform: translateY(-2.4vmin) rotate(-20deg); } }
+      @media (prefers-reduced-motion: reduce) { .pantalla-carga-logo, .pantalla-carga-hojas i { animation: none; } }
+      #cargando .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
       #app:not(:empty) ~ #cargando { display: none; }
       /* En tablet vertical el juego (16:9) se vería muy chico: pedimos girarla. */
       #girar { display: none; position: fixed; inset: 0; background: #1f6b4a; color: #fff8e7; text-align: center; padding: 32px;
@@ -22,7 +33,7 @@
   </head>
   <body>
     <div id="app"></div>
-    <div id="cargando">Cargando a Mixtle…</div>
+    <div id="cargando" class="pantalla-carga" role="status"><!--logo-carga--><div class="pantalla-carga-hojas" aria-hidden="true"><i></i><i></i><i></i></div><span class="sr-only">Cargando a Mixtle…</span></div>
     <div id="girar"><div>📱↻<br />Gira la tablet para jugar</div></div>
     <noscript>Para jugar a "Mixtle al rescate" necesitas activar JavaScript.</noscript>
     <script type="module" src="/src/app/main.tsx"></script>

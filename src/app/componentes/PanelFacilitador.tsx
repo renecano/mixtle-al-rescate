@@ -12,7 +12,7 @@ import { Modal } from './Modal';
  */
 export function PanelFacilitador({ grupo, alCerrar }: { grupo: Grupo; alCerrar: () => void }) {
   const { reiniciar, desbloquearTodo } = useGrupos();
-  const { proyector, alternarProyector } = useApp();
+  const { proyector, alternarProyector, suave, alternarSuave } = useApp();
   const [confirmar, setConfirmar] = useState(false);
   const fila = 'flex w-full items-center justify-between gap-4 rounded-2xl bg-white px-5 py-3 text-left text-[clamp(1.1rem,2.4vmin,1.5rem)] font-extrabold';
 
@@ -27,6 +27,10 @@ export function PanelFacilitador({ grupo, alCerrar }: { grupo: Grupo; alCerrar: 
       <label className={fila}>
         {TEXTOS_APP.facilitador.proyector}
         <input type="checkbox" className="size-10 accent-verde" checked={proyector} onChange={alternarProyector} />
+      </label>
+      <label className={fila}>
+        {TEXTOS_APP.facilitador.suave}
+        <input type="checkbox" className="size-10 accent-verde" checked={suave} onChange={alternarSuave} />
       </label>
       {confirmar ? (
         <div className="flex w-full flex-col items-center gap-3 rounded-2xl border-4 border-naranja bg-white p-4">

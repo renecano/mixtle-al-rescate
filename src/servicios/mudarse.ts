@@ -13,7 +13,7 @@ export async function mudarse(): Promise<void> {
   try {
     const grupos = gruposValidos(await almacenIndexedDb.leer());
     const preferencias: Mudanza['preferencias'] = {};
-    for (const clave of ['sonido', 'musica', 'proyector']) {
+    for (const clave of ['sonido', 'musica', 'proyector', 'suave']) {
       const valor = localStorage.getItem(`${PREFIJO}:${clave}`);
       if (valor === 'si' || valor === 'no') preferencias[clave] = valor;
     }

@@ -19,21 +19,48 @@ const C = {
   lengua: '#E87B7B',
 };
 
-type ExpresionMixtle = 'normal' | 'habla' | 'feliz' | 'parpadeo' | 'pensando' | 'sorprendido' | 'celebrando' | 'senalando';
+export type ExpresionMixtle =
+  | 'normal'
+  | 'habla'
+  | 'feliz'
+  | 'parpadeo'
+  | 'pensando'
+  | 'sorprendido'
+  | 'celebrando'
+  | 'senalando'
+  | 'saluda'
+  | 'animo'
+  | 'duerme';
 
-const CONTENTO: readonly ExpresionMixtle[] = ['feliz', 'habla', 'celebrando'];
+const CONTENTO: readonly ExpresionMixtle[] = ['feliz', 'habla', 'celebrando', 'saluda', 'animo'];
+/** Expresiones con los ojos abiertos y redondos: son las que parpadean en reposo. */
+const PARPADEAN: readonly ExpresionMixtle[] = ['normal', 'habla', 'pensando', 'senalando', 'sorprendido'];
+
+/*
+ * Luz y sombra (arte más rico, v3): la piel y la crema llevan un degradado con la luz arriba a la
+ * izquierda, la cabeza un brillo suave y una sombra sobre el cuerpo. Los id son iguales en todas las
+ * poses, así que varias Mixtle en la misma página comparten las mismas definiciones sin chocar.
+ */
+const DEFS_MIXTLE = `<defs>
+    <radialGradient id="mx-piel" cx="38%" cy="28%" r="80%"><stop offset="0" stop-color="#C9B6A4"/><stop offset=".55" stop-color="${C.piel}"/><stop offset="1" stop-color="#937D6A"/></radialGradient>
+    <radialGradient id="mx-crema" cx="42%" cy="30%" r="75%"><stop offset="0" stop-color="#FFFBF3"/><stop offset="1" stop-color="#E9DDCB"/></radialGradient>
+    <linearGradient id="mx-oreja" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F3BCAE"/><stop offset="1" stop-color="#D98E7F"/></linearGradient>
+  </defs>`;
 
 function ojosMixtle(expresion: ExpresionMixtle): string {
-  if (expresion === 'feliz' || expresion === 'celebrando') {
-    return `<path d="M118 158 Q 137 134 156 158 M204 158 Q 223 134 242 158" fill="none" stroke="${TINTA}" stroke-width="7" stroke-linecap="round"/>`;
-  }
+  const feliz = (x: number) => `<path d="M${x - 19} 158 Q ${x} 134 ${x + 19} 158" fill="none" stroke="${TINTA}" stroke-width="7" stroke-linecap="round"/>`;
+  if (expresion === 'feliz' || expresion === 'celebrando' || expresion === 'saluda') return feliz(137) + feliz(223);
   if (expresion === 'parpadeo') {
     return `<path d="M118 152 Q 137 164 156 152 M204 152 Q 223 164 242 152" fill="none" stroke="${TINTA}" stroke-width="6" stroke-linecap="round"/>`;
+  }
+  if (expresion === 'duerme') {
+    return `<path d="M120 156 Q 137 168 154 156 M206 156 Q 223 168 240 156" fill="none" stroke="${TINTA}" stroke-width="6" stroke-linecap="round"/>
+      <path d="M122 160 l-6 6 M152 160 l6 6 M208 160 l-6 6 M238 160 l6 6" stroke="${TINTA}" stroke-width="3" stroke-linecap="round" opacity=".5"/>`;
   }
   if (expresion === 'sorprendido') {
     const grande = (x: number) =>
       `<circle cx="${x}" cy="150" r="24" fill="${TINTA}"/><circle cx="${x - 8}" cy="141" r="9" fill="#fff"/><circle cx="${x + 8}" cy="160" r="4" fill="#fff"/>`;
-    return grande(137) + grande(223);
+    return `${grande(137) + grande(223)}<path d="M112 108 Q 137 94 162 106 M198 106 Q 223 94 248 108" fill="none" stroke="${TINTA}" stroke-width="6" stroke-linecap="round"/>`;
   }
   // Pensando mira hacia arriba; señalando mira hacia donde apunta.
   const dx = expresion === 'pensando' || expresion === 'senalando' ? 8 : 0;
@@ -45,6 +72,10 @@ function ojosMixtle(expresion: ExpresionMixtle): string {
      <circle cx="${x - 7}" cy="${y - 8}" r="7.5" fill="#fff"/>
      <circle cx="${x + 7}" cy="${y + 8}" r="3.5" fill="#fff"/>`;
   };
+  // Da ánimo: guiña un ojo, con las cejas de "¡tú puedes!".
+  if (expresion === 'animo') {
+    return `${ojo(137)}${feliz(223)}<path d="M116 118 Q 137 108 158 116 M202 120 Q 223 112 244 118" fill="none" stroke="${TINTA}" stroke-width="6" stroke-linecap="round"/>`;
+  }
   return ojo(137) + ojo(223);
 }
 
@@ -56,7 +87,10 @@ function bocaMixtle(expresion: ExpresionMixtle): string {
   if (expresion === 'pensando') {
     return `${linea}<path d="M168 212 Q 182 206 194 213" fill="none" stroke="${TINTA}" stroke-width="4" stroke-linecap="round"/>`;
   }
-  if (expresion === 'habla' || expresion === 'feliz' || expresion === 'celebrando') {
+  if (expresion === 'duerme') {
+    return `${linea}<ellipse cx="180" cy="214" rx="6" ry="5" fill="${C.boca}" stroke="${TINTA}" stroke-width="2.5"/>`;
+  }
+  if (expresion === 'habla' || CONTENTO.includes(expresion)) {
     const alto = expresion === 'habla' ? 228 : 236;
     return `${linea}
       <path d="M163 205 Q 180 ${alto} 197 205 Z" fill="${C.boca}" stroke="${TINTA}" stroke-width="3" stroke-linejoin="round"/>
@@ -65,32 +99,55 @@ function bocaMixtle(expresion: ExpresionMixtle): string {
   return `${linea}<path d="M164 206 Q 172 215 180 206 Q 188 215 196 206" fill="none" stroke="${TINTA}" stroke-width="4" stroke-linecap="round"/>`;
 }
 
+/** Ojos cerrados encima de los abiertos; en reposo se muestran un instante (parpadeo, clase mx-parpadeo). */
+function parpadeoMixtle(expresion: ExpresionMixtle): string {
+  if (!PARPADEAN.includes(expresion)) return '';
+  const y = expresion === 'pensando' ? 144 : 152;
+  return `<g class="mx-parpadeo" opacity="0">
+      <ellipse cx="137" cy="${y}" rx="34" ry="30" fill="url(#mx-crema)"/><ellipse cx="223" cy="${y}" rx="34" ry="30" fill="url(#mx-crema)"/>
+      <path d="M118 ${y} Q 137 ${y + 12} 156 ${y} M204 ${y} Q 223 ${y + 12} 242 ${y}" fill="none" stroke="${TINTA}" stroke-width="6" stroke-linecap="round"/>
+    </g>`;
+}
+
+/** Zetas de "dormido" dibujadas con trazos (sin texto: no dependen de ninguna fuente). */
+const ZETAS = `<g fill="none" stroke="#2459A6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M42 70 h24 l-24 26 h24" stroke-width="7"/><path d="M20 36 h16 l-16 17 h16" stroke-width="5"/><path d="M6 10 h11 l-11 12 h11" stroke-width="4"/>
+  </g>`;
+
 function cuerpoMixtle(expresion: ExpresionMixtle): string {
-  const oreja = (x: number, giro: number) =>
-    `<g transform="rotate(${giro} ${x} 78)">
+  // Cada oreja va en su propio grupo (clase mx-oreja) para que en reposo se mueva sola.
+  const oreja = (x: number, giro: number, lado: string) =>
+    `<g class="mx-oreja mx-oreja-${lado}"><g transform="rotate(${giro} ${x} 78)">
        <ellipse cx="${x}" cy="78" rx="38" ry="60" fill="${C.pielOscura}"/>
-       <ellipse cx="${x}" cy="86" rx="23" ry="42" fill="${C.rosa}"/>
-     </g>`;
-  const mejillas =
-    CONTENTO.includes(expresion)
-      ?`<ellipse cx="112" cy="196" rx="15" ry="9" fill="#F0907E" opacity=".55"/><ellipse cx="248" cy="196" rx="15" ry="9" fill="#F0907E" opacity=".55"/>`
-      : '';
-  return `
+       <ellipse cx="${x}" cy="86" rx="23" ry="42" fill="url(#mx-oreja)"/>
+       <ellipse cx="${x - 8}" cy="66" rx="7" ry="16" fill="#fff" opacity=".18"/>
+     </g></g>`;
+  const mejillas = CONTENTO.includes(expresion)
+    ? `<ellipse cx="112" cy="196" rx="15" ry="9" fill="#F0907E" opacity=".55"/><ellipse cx="248" cy="196" rx="15" ry="9" fill="#F0907E" opacity=".55"/>`
+    : '';
+  // Dormido, la cabeza (con las orejas) se ladea un poco.
+  const ladeo = expresion === 'duerme' ? ' transform="rotate(9 180 236)"' : '';
+  return `${DEFS_MIXTLE}
     <ellipse cx="180" cy="428" rx="125" ry="12" fill="#000" opacity=".12"/>
-    ${oreja(104, -22)}${oreja(256, 22)}
-    <path d="M108 252 C 92 330 98 400 128 420 L 232 420 C 262 400 268 330 252 252 C 236 214 124 214 108 252 Z" fill="${C.piel}"/>
-    <ellipse cx="180" cy="332" rx="52" ry="80" fill="${C.crema}"/>
+    <g${ladeo}>${oreja(104, -22, 'izq')}${oreja(256, 22, 'der')}</g>
+    <path d="M108 252 C 92 330 98 400 128 420 L 232 420 C 262 400 268 330 252 252 C 236 214 124 214 108 252 Z" fill="url(#mx-piel)"/>
+    <ellipse cx="180" cy="332" rx="52" ry="80" fill="url(#mx-crema)"/>
     <ellipse cx="116" cy="414" rx="46" ry="18" fill="${C.pielOscura}"/>
     <ellipse cx="244" cy="414" rx="46" ry="18" fill="${C.pielOscura}"/>
     <path d="M112 318 C 90 352 94 396 122 408 M248 318 C 270 352 266 396 238 408" fill="none" stroke="${C.pielOscura}" stroke-width="5" stroke-linecap="round" opacity=".6"/>
+    <ellipse cx="180" cy="242" rx="54" ry="9" fill="#6E5A4A" opacity=".16"/>
     ${patasDelanteras(expresion)}
-    <path d="M180 70 C 252 70 282 120 274 166 C 266 206 226 236 180 240 C 134 236 94 206 86 166 C 78 120 108 70 180 70 Z" fill="${C.piel}"/>
-    <path d="M98 176 C 118 216 150 234 180 234 C 210 234 242 216 262 176 C 240 192 214 198 180 198 C 146 198 120 192 98 176 Z" fill="${C.crema}"/>
+    <g${ladeo}>
+    <path d="M180 70 C 252 70 282 120 274 166 C 266 206 226 236 180 240 C 134 236 94 206 86 166 C 78 120 108 70 180 70 Z" fill="url(#mx-piel)"/>
+    <path d="M88 172 l-14 8 l16 4 l-10 10 l18 -2 M272 172 l14 8 l-16 4 l10 10 l-18 -2" fill="${C.piel}" stroke="${C.piel}" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M98 176 C 118 216 150 234 180 234 C 210 234 242 216 262 176 C 240 192 214 198 180 198 C 146 198 120 192 98 176 Z" fill="url(#mx-crema)"/>
     <path d="M180 74 C 166 100 166 128 180 146 C 194 128 194 100 180 74 Z" fill="${C.pielOscura}" opacity=".55"/>
-    <ellipse cx="137" cy="152" rx="35" ry="31" fill="${C.crema}"/>
-    <ellipse cx="223" cy="152" rx="35" ry="31" fill="${C.crema}"/>
+    <path d="M124 98 Q 150 80 186 80" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" opacity=".22"/>
+    <ellipse cx="137" cy="152" rx="35" ry="31" fill="url(#mx-crema)"/>
+    <ellipse cx="223" cy="152" rx="35" ry="31" fill="url(#mx-crema)"/>
     ${ojosMixtle(expresion)}
-    <ellipse cx="180" cy="194" rx="37" ry="26" fill="${C.crema}"/>
+    ${parpadeoMixtle(expresion)}
+    <ellipse cx="180" cy="194" rx="37" ry="26" fill="url(#mx-crema)"/>
     ${mejillas}
     <path d="M165 180 Q 180 171 195 180 Q 193 192 180 197 Q 167 192 165 180 Z" fill="${TINTA}"/>
     <ellipse cx="175" cy="179" rx="5" ry="2.5" fill="#fff" opacity=".6"/>
@@ -98,10 +155,15 @@ function cuerpoMixtle(expresion: ExpresionMixtle): string {
     <g stroke="${TINTA}" stroke-width="2.5" stroke-linecap="round" opacity=".5">
       <path d="M148 196 L 100 186 M148 204 L 102 212 M212 196 L 260 186 M212 204 L 258 212"/>
     </g>
-    ${expresion === 'pensando' ? `<ellipse cx="200" cy="238" rx="22" ry="15" fill="${C.pielOscura}"/><path d="M190 232 v8 M200 232 v9 M210 232 v8" stroke="${C.piel}" stroke-width="3" stroke-linecap="round"/>` : ''}`;
+    ${expresion === 'pensando' ? `<ellipse cx="200" cy="238" rx="22" ry="15" fill="${C.pielOscura}"/><path d="M190 232 v8 M200 232 v9 M210 232 v8" stroke="${C.piel}" stroke-width="3" stroke-linecap="round"/>` : ''}
+    </g>
+    ${expresion === 'duerme' ? ZETAS : ''}`;
 }
 
-/** Patas delanteras: abajo (sentado), arriba (celebrando), una apuntando o una en la barbilla (pensando). */
+/**
+ * Patas delanteras: abajo (sentado), arriba (celebrando), una apuntando, una en la barbilla
+ * (pensando), una saludando o con el pulgar arriba (da ánimo).
+ */
 function patasDelanteras(expresion: ExpresionMixtle): string {
   const brazo = (x1: number, y1: number, x2: number, y2: number) =>
     `<path d="M${x1} ${y1} L ${x2} ${y2}" stroke="${C.piel}" stroke-width="26" stroke-linecap="round"/>`;
@@ -114,6 +176,17 @@ function patasDelanteras(expresion: ExpresionMixtle): string {
   if (expresion === 'celebrando') return `${brazo(146, 300, 76, 214)}${mano(72, 208)}${brazo(214, 300, 284, 214)}${mano(288, 208)}`;
   if (expresion === 'senalando') return `${abajo(152, 150)}${brazo(212, 300, 318, 282)}${mano(332, 280)}`;
   if (expresion === 'pensando') return `${abajo(152, 150)}${brazo(208, 320, 202, 262)}`;
+  if (expresion === 'saluda') {
+    // Mano abierta en alto, con los dedos separados.
+    return `${abajo(152, 150)}${brazo(214, 300, 292, 214)}
+      <g fill="${C.pielOscura}"><ellipse cx="298" cy="204" rx="22" ry="18"/><ellipse cx="282" cy="184" rx="7" ry="11"/><ellipse cx="297" cy="180" rx="7" ry="12"/><ellipse cx="312" cy="184" rx="7" ry="11"/><ellipse cx="320" cy="200" rx="7" ry="10"/></g>`;
+  }
+  if (expresion === 'animo') {
+    // "¡Vamos!": brazo doblado y el puño en alto, con los nudillos marcados (sin dedos sueltos).
+    return `${abajo(152, 150)}${brazo(212, 304, 290, 272)}${brazo(290, 272, 286, 218)}
+      <ellipse cx="286" cy="206" rx="24" ry="21" fill="${C.pielOscura}"/>
+      <path d="M270 198 q5 -6 10 0 M282 196 q5 -6 10 0 M294 198 q5 -6 10 0" fill="none" stroke="${C.piel}" stroke-width="3.5" stroke-linecap="round"/>`;
+  }
   return `${abajo(152, 150)}${abajo(208, 210)}`;
 }
 
@@ -216,6 +289,16 @@ function mariposa(feliz: boolean): string {
     ${cara}`;
 }
 
+/** Cuerpo de Mixtle (sin cola) para dibujarlo en línea, por ejemplo en React (caja de 360×440). */
+export function cuerpoDeMixtle(expresion: ExpresionMixtle): string {
+  return cuerpoMixtle(expresion);
+}
+
+/** Mixtle completo, con la cola, para una caja de 472×440 (el logo y la hoja de personaje). */
+export function mixtleCompleto(expresion: ExpresionMixtle): string {
+  return `<g transform="translate(212 0)">${COLA_MIXTLE}</g>${cuerpoMixtle(expresion)}`;
+}
+
 export const PERSONAJES: ArteSvg[] = [
   arte('mixtle', 360, 440, cuerpoMixtle('normal'), ESCALA_MIXTLE),
   arte('mixtle-habla', 360, 440, cuerpoMixtle('habla'), ESCALA_MIXTLE),
@@ -225,6 +308,9 @@ export const PERSONAJES: ArteSvg[] = [
   arte('mixtle-sorprendido', 360, 440, cuerpoMixtle('sorprendido'), ESCALA_MIXTLE),
   arte('mixtle-celebrando', 360, 440, cuerpoMixtle('celebrando'), ESCALA_MIXTLE),
   arte('mixtle-senalando', 360, 440, cuerpoMixtle('senalando'), ESCALA_MIXTLE),
+  arte('mixtle-saluda', 360, 440, cuerpoMixtle('saluda'), ESCALA_MIXTLE),
+  arte('mixtle-animo', 360, 440, cuerpoMixtle('animo'), ESCALA_MIXTLE),
+  arte('mixtle-duerme', 360, 440, cuerpoMixtle('duerme'), ESCALA_MIXTLE),
   arte('mixtle-cola', 260, 440, COLA_MIXTLE, ESCALA_MIXTLE),
   arte('ardilla-triste', 270, 280, ardilla(false), 1.2),
   arte('ardilla-feliz', 270, 280, ardilla(true), 1.2),

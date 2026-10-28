@@ -1,14 +1,45 @@
 import { motion } from 'motion/react';
+import { useId } from 'react';
+import { cuerpoDeMixtle } from '../../arte/personajes';
 import { Arte } from './Arte';
 
 /*
  * Mixtle en React, armado igual que en las aventuras: el cuerpo (360×440 en el dibujo)
  * y la cola aparte (260×440), unida a la cadera en el punto (240, 400) del cuerpo.
+ * El cuerpo va en línea (SVG dentro de la página) para que en reposo parpadee y mueva las orejas
+ * (clases mixtle-vivo, mx-parpadeo y mx-oreja en estilos.css); la cola se mece aparte.
  */
 const CUERPO = { ancho: 360, alto: 440 };
 const COLA = { ancho: 260, alto: 440, x: 212, origenX: 28 / 260, origenY: 400 / 440 };
 
-export type ExpresionMixtle = 'normal' | 'feliz' | 'habla' | 'pensando' | 'sorprendido' | 'celebrando' | 'senalando';
+export type ExpresionMixtle = 'normal' | 'feliz' | 'habla' | 'pensando' | 'sorprendido' | 'celebrando' | 'senalando' | 'saluda' | 'animo' | 'duerme';
+
+/** El SVG de cada expresión se arma una sola vez. */
+const SVG_CUERPO = new Map<ExpresionMixtle, string>();
+function svgCuerpo(expresion: ExpresionMixtle): string {
+  let svg = SVG_CUERPO.get(expresion);
+  if (!svg) {
+    svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${CUERPO.ancho} ${CUERPO.alto}" width="100%" height="100%" aria-hidden="true">${cuerpoDeMixtle(expresion)}</svg>`;
+    SVG_CUERPO.set(expresion, svg);
+  }
+  return svg;
+}
+
+/** Desfase estable (de 0 a -4 s) a partir de un texto, para que cada Mixtle tenga su propio ritmo. */
+function desfaseDe(texto: string): string {
+  let h = 0;
+  for (const c of texto) h = (h * 31 + c.charCodeAt(0)) % 997;
+  return `${-((h % 40) / 10).toFixed(1)}s`;
+}
+
+/** Cómo se mueve el cuerpo con cada expresión (la cola tiene su propio ritmo). */
+function movimiento(expresion: ExpresionMixtle) {
+  if (expresion === 'celebrando') return { animate: { y: ['0%', '-6%', '0%'] }, transition: { duration: 0.5, repeat: Infinity, ease: 'easeInOut' as const } };
+  if (expresion === 'saluda') return { animate: { rotate: [0, 3, -2, 0] }, transition: { duration: 1.1, repeat: Infinity, ease: 'easeInOut' as const } };
+  if (expresion === 'animo') return { animate: { y: ['0%', '-2.5%', '0%'] }, transition: { duration: 0.7, repeat: Infinity, ease: 'easeOut' as const } };
+  if (expresion === 'duerme') return { animate: { scaleY: [1, 1.035, 1] }, transition: { duration: 4.2, repeat: Infinity, ease: 'easeInOut' as const } };
+  return { animate: { scaleY: [1, 1.025, 1] }, transition: { duration: 3.2, repeat: Infinity, ease: 'easeInOut' as const } };
+}
 
 interface Props {
   /** Alto de Mixtle (cualquier medida CSS). */
@@ -24,12 +55,17 @@ export function MixtleFigura({ alto, expresion = 'normal', espejo = false, class
   const pct = (v: number, total: number) => `${(v / total) * 100}%`;
   // Las partes van en posición absoluta: el contenedor necesita estar posicionado (relative si no se indica otra).
   const posicion = /\b(absolute|fixed|relative|sticky)\b/.test(className) ? '' : 'relative';
+  // Cada Mixtle parpadea a su ritmo (si hay dos en pantalla, no parpadean a la vez): el desfase sale de su id.
+  const retraso = desfaseDe(useId());
+  const cuerpo = movimiento(expresion);
+  const animado = expresion === 'celebrando';
   return (
     <div
       className={`${posicion} ${className}`}
       style={{ height: alto, aspectRatio: `${anchoTotal} / ${CUERPO.alto}`, transform: espejo ? 'scaleX(-1)' : undefined }}
       role="img"
       aria-label="Mixtle, el cacomixtle"
+      data-expresion={expresion}
     >
       <motion.div
         className="absolute top-0"
@@ -39,19 +75,18 @@ export function MixtleFigura({ alto, expresion = 'normal', espejo = false, class
           height: '100%',
           transformOrigin: `${COLA.origenX * 100}% ${COLA.origenY * 100}%`,
         }}
-        animate={{ rotate: expresion === 'celebrando' ? [-12, 14, -12] : [-6, 7, -6] }}
-        transition={{ duration: expresion === 'celebrando' ? 0.8 : 2.8, repeat: Infinity, ease: 'easeInOut' }}
+        animate={{ rotate: animado ? [-12, 14, -12] : expresion === 'duerme' ? [-2, 2, -2] : [-6, 7, -6] }}
+        transition={{ duration: animado ? 0.8 : 2.8, repeat: Infinity, ease: 'easeInOut' }}
       >
         <Arte clave="mixtle-cola" className="h-full w-full" />
       </motion.div>
       <motion.div
-        className="absolute top-0 left-0 h-full origin-bottom"
-        style={{ width: pct(CUERPO.ancho, anchoTotal) }}
-        animate={expresion === 'celebrando' ? { y: ['0%', '-6%', '0%'] } : { scaleY: [1, 1.025, 1] }}
-        transition={{ duration: expresion === 'celebrando' ? 0.5 : 3.2, repeat: Infinity, ease: 'easeInOut' }}
-      >
-        <Arte clave={expresion === 'normal' ? 'mixtle' : `mixtle-${expresion}`} className="h-full w-full" />
-      </motion.div>
+        className="mixtle-vivo absolute top-0 left-0 h-full origin-bottom"
+        style={{ width: pct(CUERPO.ancho, anchoTotal), ['--mx-retraso' as string]: retraso }}
+        animate={cuerpo.animate}
+        transition={cuerpo.transition}
+        dangerouslySetInnerHTML={{ __html: svgCuerpo(expresion) }}
+      />
     </div>
   );
 }
