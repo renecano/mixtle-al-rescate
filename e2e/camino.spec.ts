@@ -159,9 +159,12 @@ test('camino, lección y álbum: cada botón mide al menos 64 px reales', async 
   await crearGrupo(page, 'colibri');
   const revisar = async (donde: string) => {
     for (const b of await page.locator('main button:visible, header button:visible').all()) {
-      const caja = await b.boundingBox();
+      // Algunos botones se van solos mientras se miden (el de repetir del globo de Caco se oculta
+      // al terminar de hablar): si ya no está, se salta en lugar de esperarlo hasta el límite.
+      const caja = await b.boundingBox({ timeout: 2000 }).catch(() => null);
       if (!caja) continue;
-      expect.soft(Math.min(caja.width, caja.height), `${donde}: ${(await b.getAttribute('aria-label')) ?? (await b.textContent())}`).toBeGreaterThanOrEqual(64);
+      const nombre = (await b.getAttribute('aria-label', { timeout: 1000 }).catch(() => null)) ?? (await b.textContent({ timeout: 1000 }).catch(() => '')) ?? '';
+      expect.soft(Math.min(caja.width, caja.height), `${donde}: ${nombre}`).toBeGreaterThanOrEqual(64);
     }
   };
   await revisar('camino');

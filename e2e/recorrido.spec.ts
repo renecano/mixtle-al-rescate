@@ -174,8 +174,10 @@ test('el botón de sonido se recuerda y el juego no se rompe sin localStorage', 
   });
   const { errores } = await abrir(bloqueada);
   await esperarPantalla(bloqueada, 'inicio');
+  // En la v2, "¡Jugar!" lleva a elegir el grupo (la aventura de la v1 ya no es lo primero).
   await tocarBoton(bloqueada, /¡Jugar!/);
-  await esperarEscena(bloqueada, 'Intro');
+  await esperarPantalla(bloqueada, 'grupos');
+  await expect(bloqueada.getByRole('heading', { name: '¿Quién va a jugar?' })).toBeVisible();
   expect(errores).toEqual([]);
 });
 

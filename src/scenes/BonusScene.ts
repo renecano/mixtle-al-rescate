@@ -34,7 +34,7 @@ export class BonusScene extends Phaser.Scene {
   private caco!: Caco;
   private narrador!: Narrador;
   private cola: Residuo[] = [];
-  private actual: { residuo: Residuo; imagen: Phaser.GameObjects.Image; caida: Phaser.Tweens.Tween | null } | null = null;
+  private actual: { residuo: Residuo; imagen: Phaser.GameObjects.Image; caida: Phaser.Tweens.Tween | null; enElSuelo: boolean } | null = null;
   private ocupado = false;
   private aciertos = 0;
 
@@ -79,7 +79,7 @@ export class BonusScene extends Phaser.Scene {
     // Tocar la basura repite la pregunta.
     imagen.setInteractive({ useHandCursor: true }).setName(`cae-${residuo.id}`);
     imagen.on('pointerdown', () => this.narrador.decir(TEXTOS.nivel2.pregunta(residuo.nombre)));
-    this.actual = { residuo, imagen, caida: null };
+    this.actual = { residuo, imagen, caida: null, enElSuelo: false };
     this.ocupado = false;
     this.narrador.decir(TEXTOS.nivel2.pregunta(residuo.nombre));
     this.caer();
@@ -90,6 +90,7 @@ export class BonusScene extends Phaser.Scene {
     const actual = this.actual;
     if (!actual) return;
     const { imagen } = actual;
+    actual.enElSuelo = false;
     imagen.setPosition(CAIDA.x, CAIDA.desde);
     this.tweens.add({ targets: imagen, angle: { from: -10, to: 10 }, duration: 900, yoyo: true, repeat: -1, ease: 'Sine.easeInOut' });
     actual.caida = this.tweens.add({
@@ -101,16 +102,18 @@ export class BonusScene extends Phaser.Scene {
     });
   }
 
-  /** Llegó al suelo sin que se eligiera bote: no pasa nada, vuelve a caer. */
+  /**
+   * Llegó al suelo sin que se eligiera bote: no pasa nada. Mientras Caco lo dice, los botes siguen
+   * respondiendo (un toque en ese momento cuenta); si nadie elige, la basura vuelve a caer.
+   */
   private llegoAlSuelo(): void {
     const actual = this.actual;
     if (!actual || this.ocupado) return;
-    this.ocupado = true;
+    actual.enElSuelo = true;
     sonido.tocar('toque');
     this.tweens.killTweensOf(actual.imagen);
     this.narrador.decir(TEXTOS.bonus.seCayo, () => {
-      this.ocupado = false;
-      this.caer();
+      if (this.actual === actual && actual.enElSuelo) this.caer();
     });
   }
 
