@@ -1,14 +1,20 @@
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 import { VitePWA } from 'vite-plugin-pwa';
+import { readFileSync } from 'node:fs';
 import { defineConfig, type Plugin } from 'vitest/config';
-import { logoSvg } from './src/arte/marca';
 
-/** Pone el logo (SVG con letras en trazos) en la pantalla de carga de index.html: se ve antes que el código. */
+/**
+ * Pone el logo (SVG con letras en trazos) en la pantalla de carga de index.html: se ve antes que el código.
+ * Usa public/marca/logo.svg, que genera npm run marca:generar (una prueba revisa que esté al día).
+ */
 function logoDeCarga(): Plugin {
   return {
     name: 'mixtle-logo-de-carga',
-    transformIndexHtml: (html) => html.replace('<!--logo-carga-->', logoSvg({ atributos: 'class="pantalla-carga-logo" aria-hidden="true"' })),
+    transformIndexHtml: (html) => {
+      const logo = readFileSync(new URL('./public/marca/logo.svg', import.meta.url), 'utf8').trim();
+      return html.replace('<!--logo-carga-->', logo.replace('<svg ', '<svg class="pantalla-carga-logo" aria-hidden="true" '));
+    },
   };
 }
 

@@ -35,8 +35,10 @@ export const TEXTOS_APP = {
     aventura: (titulo: string) => `¡Aventura! ${titulo}.`,
   },
   cofre: {
-    llegaron: '¡Un cofre! Tóquenlo para abrirlo.',
-    abierto: (hojitas: number): Locucion => ['¡Sorpresa! Ganaron', { numero: hojitas, antesDeSustantivo: true }, 'hojitas.'],
+    // Lo que trae el cofre se dice desde antes: la sorpresa está en la animación, no en el premio.
+    llegaron: (hojitas: number): Locucion => ['¡Un cofre! Trae', { numero: hojitas, antesDeSustantivo: true }, 'hojitas. Tóquenlo para abrirlo.'],
+    abierto: (hojitas: number): Locucion => ['¡Ganaron', { numero: hojitas, antesDeSustantivo: true }, 'hojitas!'],
+    trae: 'Trae',
     titulo: '¡Un cofre!',
     abrir: 'Abrir',
     seguir: '¡Sigamos!',
@@ -68,6 +70,8 @@ export const TEXTOS_APP = {
     racha: (n: number) => `¡${n} seguidas!`,
     rachaDicha: { 3: '¡Tres seguidas!', 5: '¡Cinco seguidas!', 7: '¡Siete seguidas!', 10: '¡Diez seguidas!' } as Record<number, string>,
     mitad: '¡Ya van a la mitad! ¡Vamos!',
+    antes: 'Antes',
+    ahora: '¡Ahora!',
     hojitas: 'Hojitas del grupo',
     tituloFin: '¡Lección terminada!',
     aLaPrimera: (n: number, total: number) => `${n} de ${total} a la primera`,
@@ -76,11 +80,29 @@ export const TEXTOS_APP = {
     siEstaBien: 'Sí, está bien',
     noEstaBien: 'No está bien',
   },
+  unidad: {
+    /** Fin de unidad (narrado): el número va en palabras para que Mixtle lo diga de corrido. */
+    terminada: (numero: number) => `¡Terminaron la unidad ${['', 'uno', 'dos', 'tres', 'cuatro', 'cinco'][numero] ?? numero}! Aquí está su diploma.`,
+    titulo: (numero: number) => `¡Unidad ${numero} terminada!`,
+    verDiploma: 'Ver su diploma',
+  },
+  diploma: {
+    titulo: 'Diploma',
+    para: 'Para todo el grupo',
+    porque: 'por terminar la unidad',
+    lecciones: (n: number) => (n === 1 ? 'lección' : 'lecciones'),
+    hojitas: 'hojitas',
+    aLaPrimera: 'a la primera',
+    firma: 'Mixtle, guardián del parque',
+    imprimir: 'Imprimir',
+    cerrar: 'Cerrar',
+  },
   album: {
     titulo: 'Álbum de animales de Toluca',
     bienvenida: 'Cada unidad que terminen les da una estampa nueva.',
     bloqueada: 'Terminen una unidad para ganar esta estampa.',
     nueva: (nombre: string) => `¡Ganaron una estampa nueva: ${nombre}!`,
+    diploma: 'Diploma',
   },
   facilitador: {
     titulo: 'Modo facilitador',

@@ -112,6 +112,37 @@ export const RECETAS = {
     { t: 0.06, d: 0.12, f: E6, onda: 'sine', vol: 0.16 },
     { t: 0.12, d: 0.3, f: G5 * 2, onda: 'sine', vol: 0.14 },
   ],
+  // Cofre: se sacude (golpecitos de madera) y estalla al abrirse.
+  sacude: [
+    { t: 0, d: 0.05, f: 300, onda: 'ruido', vol: 0.16 },
+    { t: 0.11, d: 0.05, f: 340, onda: 'ruido', vol: 0.16 },
+    { t: 0.22, d: 0.05, f: 300, onda: 'ruido', vol: 0.16 },
+    { t: 0.33, d: 0.05, f: 360, onda: 'ruido', vol: 0.18 },
+    { t: 0.44, d: 0.05, f: 320, onda: 'ruido', vol: 0.18 },
+    { t: 0.55, d: 0.05, f: 380, onda: 'ruido', vol: 0.2 },
+  ],
+  estallido: [
+    { t: 0, d: 0.3, f: 1800, f2: 400, onda: 'ruido', vol: 0.22 },
+    { t: 0, d: 0.18, f: 180, f2: 90, onda: 'sine', vol: 0.4 },
+    { t: 0.06, d: 0.3, f: G5, onda: 'triangle', vol: 0.22 },
+    { t: 0.12, d: 0.4, f: C6, onda: 'triangle', vol: 0.24 },
+    { t: 0.12, d: 0.4, f: E6, onda: 'sine', vol: 0.1 },
+  ],
+  // Estampa que se revela: un brillo que sube.
+  revelar: [
+    { t: 0, d: 0.5, f: 2000, f2: 6000, onda: 'ruido', vol: 0.06 },
+    { t: 0.05, d: 0.12, f: G5, onda: 'sine', vol: 0.16 },
+    { t: 0.15, d: 0.12, f: C6, onda: 'sine', vol: 0.16 },
+    { t: 0.25, d: 0.4, f: E6, onda: 'sine', vol: 0.16 },
+  ],
+  // El parque se transforma: un barrido mágico.
+  transformar: [
+    { t: 0, d: 0.9, f: 300, f2: 1200, onda: 'triangle', vol: 0.12 },
+    { t: 0, d: 0.9, f: 900, f2: 5000, onda: 'ruido', vol: 0.05 },
+    { t: 0.5, d: 0.12, f: E6, onda: 'sine', vol: 0.14 },
+    { t: 0.62, d: 0.12, f: G5 * 2, onda: 'sine', vol: 0.12 },
+    { t: 0.74, d: 0.3, f: C6 * 2, onda: 'sine', vol: 0.1 },
+  ],
   pagina: [
     { t: 0, d: 0.09, f: 1800, onda: 'ruido', vol: 0.08 },
     { t: 0.02, d: 0.09, f: D5, f2: A5, onda: 'sine', vol: 0.18 },

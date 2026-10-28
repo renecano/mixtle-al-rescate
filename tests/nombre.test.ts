@@ -27,17 +27,20 @@ describe('el personaje se llama Mixtle', () => {
     expect(frases.some((f) => /\bMixtle\b/.test(f.texto))).toBe(true);
   });
 
-  it('ningún texto del juego (código, página, manifiesto de la app) dice "Caco"', () => {
+  it('ningún texto ni identificador del juego (código, pruebas e2e, scripts, página, manifiesto) dice "Caco"', () => {
     // Solo la migración y la mudanza pueden nombrar la dirección y las claves anteriores ("caco-al-rescate").
     const permitidos = ['src/servicios/migracion.ts', 'src/servicios/mudanza.ts'].map((r) => join(RAIZ, r));
-    const revisar = [...archivos(join(RAIZ, 'src')), join(RAIZ, 'index.html'), join(RAIZ, 'vite.config.ts')].filter(
-      (f) => /\.(tsx?|html|css|json)$/.test(f) && !permitidos.includes(f),
+    const revisar = [...archivos(join(RAIZ, 'src')), ...archivos(join(RAIZ, 'e2e')), ...archivos(join(RAIZ, 'scripts')), join(RAIZ, 'index.html'), join(RAIZ, 'vite.config.ts')].filter(
+      (f) => /\.(tsx?|mjs|html|css|json)$/.test(f) && !permitidos.includes(f),
     );
+    // En el código, "caco" seguido de cualquier cosa que no sea "mixtle" (también en identificadores como
+    // window.__caco, donde \b no separa "_" de "c"). La carpeta local (caco_al_rescate) no se renombró.
+    const EN_CODIGO = /caco(?!mixtle|míkstle)/i;
     const hallazgos = revisar.flatMap((f) =>
       readFileSync(f, 'utf8')
         .split('\n')
         .map((linea, i) => ({ f, i: i + 1, linea }))
-        .filter(({ linea }) => COMO_NOMBRE.test(linea.replace(/caco-al-rescate/g, ''))),
+        .filter(({ linea }) => EN_CODIGO.test(linea.replace(/caco-al-rescate|caco_al_rescate/gi, ''))),
     );
     expect(hallazgos.map(({ f, i, linea }) => `${f.slice(RAIZ.length + 1)}:${i}: ${linea.trim()}`)).toEqual([]);
   });

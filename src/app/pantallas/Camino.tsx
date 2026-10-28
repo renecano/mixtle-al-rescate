@@ -2,11 +2,15 @@ import { motion } from 'motion/react';
 import { Fragment, useEffect, useMemo, useRef, useState } from 'react';
 import { TEXTOS_APP } from '../../contenido/textosApp';
 import { UNIDADES } from '../../contenido/unidades';
-import { estadosDelCamino, HOJITAS_COFRE, nodosDelCamino, siguienteNodo, type EstadoNodo, type Nodo } from '../../logica/camino';
+import { estadosDelCamino, HOJITAS_COFRE, nodosDelCamino, siguienteNodo, unidadCompleta, type EstadoNodo, type Nodo } from '../../logica/camino';
+import { datosDiplomaUnidad, type DatosDiplomaUnidad } from '../../logica/diplomaUnidad';
 import { mascota } from '../../logica/grupos';
 import { sonido } from '../../servicios/sonido';
 import { Arte } from '../componentes/Arte';
 import { BotonGrande } from '../componentes/BotonGrande';
+import { CofreAnimado, type FaseCofre } from '../componentes/CofreAnimado';
+import { DiplomaUnidad } from '../componentes/DiplomaUnidad';
+import { centroDe, estallido, hojitasAlContador, lluviaDeHojitas } from '../efectos/efectos';
 import { MixtleGuia } from '../componentes/MixtleGuia';
 import { Encabezado } from '../componentes/Encabezado';
 import { Modal } from '../componentes/Modal';
@@ -65,7 +69,7 @@ export function Camino() {
     else if (n.tipo === 'aventura') abrirAventura(n.unidad.id);
     else if (estado === 'disponible') {
       setCofre(n.unidad.id);
-      decir(TEXTOS_APP.cofre.llegaron, { expresion: 'sorprendido' });
+      decir(TEXTOS_APP.cofre.llegaron(HOJITAS_COFRE), { expresion: 'sorprendido' });
     }
   };
 
@@ -89,7 +93,8 @@ export function Camino() {
                   <div className="absolute top-1/2 -translate-x-1/2 -translate-y-1/2" style={{ left: `${x}%` }}>
                     <BurbujaNodo nodo={n} estado={estados[i]!} siguiente={esSiguiente} alTocar={() => tocar(n, estados[i]!)} hecho={estados[i] === 'hecho'} />
                   </div>
-                  {esSiguiente && (
+                  {/* Con una ventana abierta (cofre, estampa, facilitador) habla el Mixtle de la ventana: uno solo. */}
+                  {esSiguiente && !cofre && !estampaNueva && !facilitador && (
                     // Un solo Mixtle: el que señala la siguiente parada es el que habla, con su globo a un lado,
                     // del lado contrario de la parada (el camino zigzaguea: ahí siempre hay espacio libre).
                     <motion.div
@@ -125,7 +130,9 @@ export function Camino() {
 
       {cofre && (
         <ModalCofre
-          alAbrir={() => {
+          alAbrir={(caja) => {
+            // Las hojitas del cofre vuelan al contador del encabezado (que sube contando).
+            if (caja) hojitasAlContador(centroDe(caja), document.querySelector('[data-contador-grupo]'), HOJITAS_COFRE);
             abrirCofre(cofre);
             sonido.celebrar();
             decir(TEXTOS_APP.cofre.abierto(HOJITAS_COFRE), { expresion: 'celebrando' });
@@ -204,53 +211,94 @@ function BurbujaNodo({ nodo, estado, siguiente, hecho, alTocar }: { nodo: Nodo; 
   );
 }
 
-function ModalCofre({ alAbrir, alCerrar }: { alAbrir: () => void; alCerrar: () => void }) {
-  const [abierto, setAbierto] = useState(false);
+/** Cuánto se sacude el cofre antes de abrirse (ms). */
+const SACUDIDA_MS = 750;
+
+function ModalCofre({ alAbrir, alCerrar }: { alAbrir: (caja: HTMLElement | null) => void; alCerrar: () => void }) {
+  const [fase, setFase] = useState<FaseCofre>('cerrado');
+  const caja = useRef<HTMLDivElement>(null);
+  const espera = useRef(0);
+  useEffect(() => () => window.clearTimeout(espera.current), []);
+  const abrir = () => {
+    if (fase !== 'cerrado') return;
+    setFase('sacude');
+    sonido.tocar('sacude');
+    espera.current = window.setTimeout(() => {
+      setFase('abierto');
+      sonido.tocar('estallido');
+      alAbrir(caja.current);
+    }, SACUDIDA_MS);
+  };
   return (
     <Modal etiqueta={TEXTOS_APP.cofre.titulo}>
-      <motion.div key={String(abierto)} initial={{ scale: 0.6, rotate: -8 }} animate={{ scale: 1, rotate: 0 }} transition={{ type: 'spring' }}>
-        <Arte clave={abierto ? 'cofre-abierto' : 'cofre'} className="h-[clamp(9rem,28vmin,16rem)]" />
-      </motion.div>
-      {abierto && (
-        <div className="flex items-center gap-3 text-[clamp(2rem,6vmin,4rem)] font-black text-verde">
-          <Arte clave="hojita" className="size-[1.2em]" />+{HOJITAS_COFRE}
-        </div>
-      )}
+      <div ref={caja} data-fase-cofre={fase}>
+        <button type="button" className="cursor-pointer disabled:cursor-default" onClick={abrir} disabled={fase !== 'cerrado'} aria-label={`${TEXTOS_APP.cofre.abrir}: ${TEXTOS_APP.cofre.trae} ${HOJITAS_COFRE} ${TEXTOS_APP.camino.hojitas}`}>
+          <CofreAnimado fase={fase} hojitas={HOJITAS_COFRE} className="h-[clamp(11rem,34vmin,19rem)] w-[clamp(13rem,40vmin,23rem)]" />
+        </button>
+      </div>
       <MixtleGuia alto="clamp(5rem,13vmin,8rem)" />
-      <BotonGrande
-        latir
-        className="h-20 text-[clamp(1.4rem,3.2vmin,2.2rem)]"
-        onClick={() => {
-          if (!abierto) {
-            setAbierto(true);
-            alAbrir();
-          } else alCerrar();
-        }}
-      >
-        {abierto ? TEXTOS_APP.cofre.seguir : TEXTOS_APP.cofre.abrir}
+      <BotonGrande latir={fase !== 'sacude'} className="h-20 text-[clamp(1.4rem,3.2vmin,2.2rem)]" onClick={() => (fase === 'abierto' ? alCerrar() : abrir())}>
+        {fase === 'abierto' ? TEXTOS_APP.cofre.seguir : TEXTOS_APP.cofre.abrir}
       </BotonGrande>
     </Modal>
   );
 }
 
+/** Cuánto tarda la estampa en voltearse (ms): primero se ve su reverso, luego se revela. */
+const REVELA_MS = 800;
+
 function ModalEstampa({ id, alCerrar }: { id: string; alCerrar: () => void }) {
   const u = UNIDADES.find((x) => x.estampa.id === id);
+  const grupo = useGrupoActual();
+  const completa = !!u && !!grupo && unidadCompleta(u, grupo.progreso);
+  const [revelada, setRevelada] = useState(false);
+  const [diploma, setDiploma] = useState<DatosDiplomaUnidad | null>(null);
+  const carta = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (!u) return;
     sonido.celebrar();
-    decir([TEXTOS_APP.album.nueva(u.estampa.nombre), u.estampa.dato], { expresion: 'celebrando' });
+    if (completa) lluviaDeHojitas(22);
+    decir(completa ? [TEXTOS_APP.album.nueva(u.estampa.nombre), u.estampa.dato, TEXTOS_APP.unidad.terminada(u.numero)] : [TEXTOS_APP.album.nueva(u.estampa.nombre), u.estampa.dato], {
+      expresion: 'celebrando',
+    });
+    const t = window.setTimeout(() => {
+      setRevelada(true);
+      sonido.tocar('revelar');
+      estallido(carta.current);
+    }, REVELA_MS);
+    return () => window.clearTimeout(t);
+    // Solo al ganarla.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [u]);
   if (!u) return null;
   return (
     <Modal etiqueta={TEXTOS_APP.album.titulo}>
-      <motion.div initial={{ rotate: -20, scale: 0.4 }} animate={{ rotate: 0, scale: 1 }} transition={{ type: 'spring' }} className="grid size-[clamp(10rem,30vmin,16rem)] place-items-center rounded-[2rem] border-[6px] border-[#FFD23F] bg-white p-4">
-        <Arte clave={u.estampa.arte} className="max-h-full max-w-full object-contain" />
-      </motion.div>
+      {completa && (
+        <p className="titulo-unidad-terminada font-titulo text-[clamp(1.8rem,5vmin,3.2rem)] leading-none font-extrabold text-white" style={{ ['--color-unidad' as string]: u.color }}>
+          {TEXTOS_APP.unidad.titulo(u.numero)}
+        </p>
+      )}
+      <div ref={carta} className="estampa-carta size-[clamp(10rem,30vmin,16rem)]" data-revelada={revelada || undefined}>
+        <div className="estampa-cara estampa-reverso" aria-hidden="true">
+          <Arte clave="hojita" className="size-[45%]" />
+        </div>
+        <div className="estampa-cara estampa-frente">
+          <Arte clave={u.estampa.arte} className="max-h-full max-w-full object-contain" />
+        </div>
+      </div>
       <p className="text-[clamp(1.6rem,4vmin,2.6rem)] font-black text-verde">{u.estampa.nombre}</p>
       <MixtleGuia alto="clamp(5rem,13vmin,8rem)" />
-      <BotonGrande latir className="h-20 text-[clamp(1.4rem,3.2vmin,2.2rem)]" onClick={alCerrar}>
-        {TEXTOS_APP.cofre.seguir}
-      </BotonGrande>
+      <div className="flex flex-wrap justify-center gap-4">
+        {completa && grupo && (
+          <BotonGrande color="morado" className="h-20 text-[clamp(1.3rem,3vmin,2rem)]" onClick={() => setDiploma(datosDiplomaUnidad(grupo, u, new Date()))}>
+            {TEXTOS_APP.unidad.verDiploma}
+          </BotonGrande>
+        )}
+        <BotonGrande latir className="h-20 text-[clamp(1.4rem,3.2vmin,2.2rem)]" onClick={alCerrar}>
+          {TEXTOS_APP.cofre.seguir}
+        </BotonGrande>
+      </div>
+      {diploma && <DiplomaUnidad datos={diploma} alCerrar={() => setDiploma(null)} />}
     </Modal>
   );
 }

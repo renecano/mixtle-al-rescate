@@ -271,7 +271,10 @@ function FinLeccion({ sesion, unidadColor }: { sesion: SesionLeccion; unidadColo
   // La recompensa se ve en el momento: el parque aparece como estaba y, en cuanto termina de entrar
   // la pantalla, cambia al nuevo estado (se va la basura, recupera el color, brota la flor).
   useEffect(() => {
-    const t = window.setTimeout(() => setMostrarDespues(true), MOSTRAR_CAMBIO_MS);
+    const t = window.setTimeout(() => {
+      setMostrarDespues(true);
+      sonido.tocar('transformar');
+    }, MOSTRAR_CAMBIO_MS);
     return () => window.clearTimeout(t);
   }, []);
 
@@ -301,7 +304,15 @@ function FinLeccion({ sesion, unidadColor }: { sesion: SesionLeccion; unidadColo
           </span>
         </div>
       </div>
-      {parque && <ParqueGrupo progreso={parque} className="aspect-[16/6] w-[min(90vw,calc(40vh*16/6))]" />}
+      {parque && (
+        // Antes y después: la etiqueta cambia, pasa un barrido de luz y suena la transformación.
+        <div className="parque-transforma" data-cambio={mostrarDespues ? 'si' : 'no'}>
+          <span key={String(mostrarDespues)} className="etiqueta-parque" data-ahora={mostrarDespues || undefined}>
+            {mostrarDespues ? TEXTOS_APP.leccion.ahora : TEXTOS_APP.leccion.antes}
+          </span>
+          <ParqueGrupo progreso={parque} className="aspect-[16/6] w-[min(90vw,calc(40vh*16/6))]" />
+        </div>
+      )}
       <div className="flex items-center gap-4">
         <MixtleGuia alto="clamp(5rem,13vmin,8rem)" />
         <BotonGrande latir className="h-[clamp(4.5rem,11vmin,6.5rem)] text-[clamp(1.3rem,3vmin,2.2rem)]" icono={<Arte clave="icono-casa" className="size-[1.3em]" />} onClick={() => alCamino()}>

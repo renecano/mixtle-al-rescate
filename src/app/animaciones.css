@@ -610,3 +610,272 @@ html[data-suave] .barra-avance::after {
 .transicion-logo .logo-lema path {
   fill: #fff;
 }
+
+/* ─── Estampa nueva: primero el reverso, luego se voltea y brilla ─── */
+.estampa-carta {
+  position: relative;
+  perspective: 900px;
+}
+.estampa-cara {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 8%;
+  border-radius: 2rem;
+  border: 6px solid var(--color-sol);
+  backface-visibility: hidden;
+  transition: transform 0.7s cubic-bezier(0.34, 1.4, 0.64, 1);
+  box-shadow: 0 0.5rem 0 rgb(18 61 43 / 0.2);
+}
+.estampa-reverso {
+  background: repeating-linear-gradient(45deg, #2a8a5e 0 14px, var(--color-verde) 14px 28px);
+}
+.estampa-frente {
+  overflow: hidden;
+  background: #fff;
+  transform: rotateY(180deg);
+}
+.estampa-carta[data-revelada] .estampa-reverso {
+  transform: rotateY(-180deg);
+}
+.estampa-carta[data-revelada] .estampa-frente {
+  transform: rotateY(0deg);
+}
+.estampa-frente::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 30%, rgb(255 255 255 / 0.85) 50%, transparent 70%);
+  transform: translateX(-120%);
+}
+.estampa-carta[data-revelada] .estampa-frente::after {
+  animation: brillo-estampa 1.1s ease-out 0.5s;
+}
+@keyframes brillo-estampa {
+  to {
+    transform: translateX(120%);
+  }
+}
+.titulo-unidad-terminada {
+  -webkit-text-stroke: 0.14em var(--color-unidad, var(--color-verde));
+  paint-order: stroke fill;
+  animation: pop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ─── El parque se transforma (fin de lección): un barrido de luz mientras cambia ─── */
+.parque-transforma {
+  position: relative;
+}
+.parque-transforma::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 1.75rem;
+  pointer-events: none;
+  background: linear-gradient(100deg, transparent 35%, rgb(255 250 210 / 0.75) 50%, transparent 65%);
+  transform: translateX(-110%);
+}
+.parque-transforma[data-cambio='si']::after {
+  animation: barrido-parque 1.3s ease-in-out;
+}
+@keyframes barrido-parque {
+  to {
+    transform: translateX(110%);
+  }
+}
+.etiqueta-parque {
+  position: absolute;
+  top: 0.6rem;
+  left: 0.8rem;
+  z-index: 2;
+  padding: 0.1em 0.8em;
+  border-radius: 999px;
+  border: 0.18em solid #fff;
+  font-family: var(--font-titulo);
+  font-weight: 800;
+  font-size: clamp(1.1rem, 2.8vmin, 1.8rem);
+  color: #fff;
+  background: #5b6770;
+  animation: pop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.etiqueta-parque[data-ahora] {
+  background: var(--color-verde);
+}
+
+/* ─── Diploma de fin de unidad (en pantalla y para imprimir) ─── */
+.diploma-imprimible {
+  container-type: inline-size;
+  width: min(92vw, calc(74vh * 1.414));
+  aspect-ratio: 1.414;
+  background: radial-gradient(circle at 50% 30%, #fffdf6, var(--color-crema));
+  border-radius: 1.2rem;
+  padding: 1.6cqi;
+  box-shadow: 0 0.8rem 2rem rgb(0 0 0 / 0.35);
+  color: var(--color-tinta);
+  text-align: center;
+}
+.diploma-borde {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6cqi;
+  padding: 2cqi 4cqi;
+  border-radius: 1cqi;
+  border: 0.9cqi solid var(--color-unidad, var(--color-verde));
+  outline: 0.35cqi solid var(--color-sol);
+  outline-offset: -1.9cqi;
+}
+.diploma-logo {
+  width: 26cqi;
+  aspect-ratio: 670 / 330;
+}
+.diploma-titulo {
+  margin: 0;
+  font-family: var(--font-titulo);
+  font-weight: 800;
+  font-size: 6.4cqi;
+  line-height: 0.9;
+  color: var(--color-unidad, var(--color-verde));
+}
+.diploma-para,
+.diploma-tema {
+  margin: 0;
+  font-size: 1.9cqi;
+  font-weight: 800;
+}
+.diploma-tema {
+  max-width: 70cqi;
+  font-weight: 700;
+  font-size: 1.6cqi;
+  opacity: 0.85;
+}
+.diploma-grupo {
+  display: flex;
+  align-items: center;
+  gap: 2cqi;
+  font-family: var(--font-titulo);
+  font-weight: 800;
+  font-size: 4.6cqi;
+  line-height: 1;
+  color: var(--color-verde-oscuro);
+}
+.diploma-mascota {
+  height: 11cqi;
+}
+.diploma-porque {
+  margin: 0;
+  font-size: 2.3cqi;
+  font-weight: 800;
+}
+.diploma-cifras {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 2.4cqi;
+}
+.diploma-cifras > div {
+  display: flex;
+  min-width: 13cqi;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3cqi;
+  padding: 0.8cqi 1.6cqi;
+  border-radius: 1.4cqi;
+  background: #fff;
+  border: 0.3cqi solid #e6e1d3;
+  font-size: 1.5cqi;
+  font-weight: 800;
+}
+.diploma-cifras b {
+  display: flex;
+  align-items: center;
+  gap: 0.4cqi;
+  font-family: var(--font-titulo);
+  font-size: 4cqi;
+  line-height: 1;
+  color: var(--color-verde);
+}
+.diploma-hojita {
+  width: 3.2cqi;
+}
+.diploma-estampa img {
+  height: 6.4cqi;
+}
+.diploma-pie {
+  display: flex;
+  width: 100%;
+  align-items: flex-end;
+  justify-content: space-between;
+  font-size: 1.6cqi;
+  font-weight: 800;
+}
+.diploma-firma {
+  display: flex;
+  align-items: center;
+  gap: 0.8cqi;
+  font-family: var(--font-titulo);
+  font-size: 2cqi;
+  color: var(--color-verde);
+}
+.diploma-firma-mixtle {
+  height: 6cqi;
+}
+
+@media print {
+  @page {
+    size: landscape;
+    margin: 8mm;
+  }
+  /* El diploma vive en un portal directo en <body>: todo lo demás se quita (ni ocupa espacio). */
+  body > *:not(.diploma-fondo) {
+    display: none !important;
+  }
+  html,
+  body {
+    height: auto !important;
+    overflow: visible !important;
+    background: #fff !important;
+  }
+  .diploma-fondo {
+    position: static !important;
+    display: block !important;
+    overflow: visible !important;
+    background: none !important;
+    padding: 0 !important;
+  }
+  .diploma-fondo > div {
+    display: block !important;
+  }
+  /* Cabe en una sola hoja horizontal (carta u A4): limitado por el alto de la página. */
+  .diploma-imprimible {
+    margin: 0 auto;
+    width: min(100vw, calc(100vh * 1.38));
+    box-shadow: none;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .diploma-botones {
+    display: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .estampa-cara,
+  .estampa-frente::after,
+  .parque-transforma::after,
+  .titulo-unidad-terminada {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+html[data-suave] .estampa-cara,
+html[data-suave] .estampa-frente::after,
+html[data-suave] .parque-transforma::after,
+html[data-suave] .titulo-unidad-terminada {
+  animation: none !important;
+  transition: none !important;
+}

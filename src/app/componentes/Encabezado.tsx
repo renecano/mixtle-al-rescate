@@ -1,6 +1,8 @@
 import { useRef } from 'react';
 import { TEXTOS_APP } from '../../contenido/textosApp';
+import { hojitasDisponibles } from '../../logica/accesorios';
 import { mascota, nombreDelGrupo, type Grupo } from '../../logica/grupos';
+import { ContadorHojitas } from '../efectos/ContadorHojitas';
 import { Arte } from './Arte';
 import { BotonesSistema } from './BotonesSistema';
 import { BotonGrande } from './BotonGrande';
@@ -50,9 +52,9 @@ export function Encabezado({ grupo, alAlbum, alCambiarGrupo, alFacilitador }: Pr
         <span className="truncate text-[clamp(1.1rem,2.6vmin,1.8rem)] font-black">{nombreDelGrupo(grupo)}</span>
       </div>
 
-      <div className="flex items-center gap-2 rounded-full bg-white/15 px-3 py-1" aria-label={`${TEXTOS_APP.camino.hojitas}: ${grupo.progreso.hojitas}`} data-hojitas-grupo={grupo.progreso.hojitas}>
-        <Arte clave="hojita" className="size-[clamp(2rem,5vmin,3rem)]" />
-        <span className="text-[clamp(1.2rem,3vmin,2rem)] font-black">{grupo.progreso.hojitas}</span>
+      {/* Hojitas para gastar (las ganadas menos las de accesorios). Aquí llegan volando las del cofre. */}
+      <div data-contador-grupo data-hojitas-grupo={hojitasDisponibles(grupo.progreso)}>
+        <ContadorHojitas valor={hojitasDisponibles(grupo.progreso)} etiqueta={TEXTOS_APP.camino.hojitas} className="rounded-full bg-white/15 px-3 py-1 text-[clamp(1.2rem,3vmin,2rem)]" />
       </div>
       <div className="flex items-center gap-2 rounded-full bg-white/15 px-3 py-1" aria-label={`${TEXTOS_APP.camino.dias}: ${dias}`}>
         <Arte clave="calendario" className="size-[clamp(2rem,5vmin,3rem)]" />

@@ -3,7 +3,7 @@
 //   c:x,y      toca en coordenadas del juego (1920×1080), sin importar el tamaño de ventana
 //   w:ms       espera
 //   s:ruta.png guarda una captura (espera a que terminen las animaciones de entrada)
-//   t:nombre   toca el primer objeto tocable cuyo nombre empieza así (requiere el gancho __caco)
+//   t:nombre   toca el primer objeto tocable cuyo nombre empieza así (requiere el gancho __mixtle)
 //   T:nombre   toca, uno por uno, todos los que empiezan así
 //   d:a>b      arrastra el tocable "a" hasta el tocable "b" (prefijos)
 //   b:Nombre   toca un botón de la app (React) por su nombre accesible
@@ -26,7 +26,7 @@ pagina.on('console', (m) => {
   if (m.type() === 'error' || m.type() === 'warning') errores.push(`${m.type()}: ${m.text()}`);
 });
 await pagina.goto(url);
-await pagina.waitForFunction(() => !!window.__caco?.pantalla?.(), null, { timeout: 30000 });
+await pagina.waitForFunction(() => !!window.__mixtle?.pantalla?.(), null, { timeout: 30000 });
 await pagina.waitForTimeout(1200);
 
 for (const paso of pasos) {
@@ -42,7 +42,7 @@ for (const paso of pasos) {
     await tocar(gx, gy);
   }
   if (tipo === 't' || tipo === 'T') {
-    const objetos = await pagina.evaluate((p) => window.__caco.tocables().filter((o) => o.nombre.startsWith(p)), valor);
+    const objetos = await pagina.evaluate((p) => window.__mixtle.tocables().filter((o) => o.nombre.startsWith(p)), valor);
     if (!objetos.length) console.log(`No hay tocables "${valor}"`);
     for (const o of tipo === 't' ? objetos.slice(0, 1) : objetos) {
       await tocar(o.x, o.y);
@@ -53,7 +53,7 @@ for (const paso of pasos) {
   if (tipo === 'k') await pagina.locator(valor).first().click({ force: true });
   if (tipo === 'd') {
     const [a, b] = valor.split('>');
-    const lista = await pagina.evaluate(() => window.__caco.tocables());
+    const lista = await pagina.evaluate(() => window.__mixtle.tocables());
     const origen = lista.find((o) => o.nombre.startsWith(a));
     const destino = lista.find((o) => o.nombre.startsWith(b));
     if (!origen || !destino) console.log(`No se pudo arrastrar ${valor}`);
@@ -64,7 +64,7 @@ for (const paso of pasos) {
 /** Espera a que terminen las animaciones de entrada (fundido, título que cae) antes de capturar. */
 async function esperarQuieto() {
   try {
-    await pagina.waitForFunction(() => window.__caco?.quieto?.() === true, null, { timeout: 15000 });
+    await pagina.waitForFunction(() => window.__mixtle?.quieto?.() === true, null, { timeout: 15000 });
   } catch {
     console.log('Aviso: no se pudo confirmar que terminaran las animaciones (¿falta ?e2e en la URL?).');
   }

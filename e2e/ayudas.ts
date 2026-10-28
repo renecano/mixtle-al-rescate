@@ -23,11 +23,12 @@ interface Gancho {
   voz(): { conAudio: number; conNavegador: number };
   musica(): string | null;
   marcador(): Record<string, number> | null;
+  estampaNueva(id: string): void;
 }
 
 declare global {
   interface Window {
-    __caco: Gancho;
+    __mixtle: Gancho;
   }
 }
 
@@ -42,12 +43,12 @@ export async function abrir(page: Page, ruta = '/?e2e') {
   });
   page.on('request', (r) => peticiones.push(r));
   await page.goto(ruta);
-  await page.waitForFunction(() => !!window.__caco && !!window.__caco.pantalla());
+  await page.waitForFunction(() => !!window.__mixtle && !!window.__mixtle.pantalla());
   return { errores, peticiones };
 }
 
 export function escenas(page: Page): Promise<string[]> {
-  return page.evaluate(() => window.__caco.escenas());
+  return page.evaluate(() => window.__mixtle.escenas());
 }
 
 export async function esperarEscena(page: Page, clave: string, timeout = 30_000): Promise<void> {
@@ -56,7 +57,7 @@ export async function esperarEscena(page: Page, clave: string, timeout = 30_000)
 
 /** Pantalla de React visible: "inicio" o "aventura". */
 export async function esperarPantalla(page: Page, nombre: string, timeout = 30_000): Promise<void> {
-  await expect.poll(() => page.evaluate(() => window.__caco.pantalla()), { timeout }).toBe(nombre);
+  await expect.poll(() => page.evaluate(() => window.__mixtle.pantalla()), { timeout }).toBe(nombre);
 }
 
 /** Toca un botón de React (DOM) por su nombre accesible, con el dedo si el dispositivo es táctil. */
@@ -105,7 +106,7 @@ export async function desbloquearTodo(page: Page): Promise<void> {
 }
 
 export function tocables(page: Page): Promise<Tocable[]> {
-  return page.evaluate(() => window.__caco.tocables());
+  return page.evaluate(() => window.__mixtle.tocables());
 }
 
 export async function esperarTocable(page: Page, prefijo: string, timeout = 60_000): Promise<Tocable> {
@@ -148,7 +149,7 @@ export async function arrastrar(page: Page, de: Tocable, a: Tocable): Promise<vo
 }
 
 export function resumen(page: Page) {
-  return page.evaluate(() => window.__caco.resumen());
+  return page.evaluate(() => window.__mixtle.resumen());
 }
 
 /**
@@ -157,7 +158,7 @@ export function resumen(page: Page) {
  */
 export async function captura(page: Page, info: TestInfo, nombre: string): Promise<void> {
   // Nada de capturas a media animación de entrada (título cortado, pantalla oscura).
-  await page.waitForFunction(() => window.__caco.quieto(), null, { timeout: 15_000 });
+  await page.waitForFunction(() => window.__mixtle.quieto(), null, { timeout: 15_000 });
   const body = await page.screenshot();
   await info.attach(nombre, { body, contentType: 'image/png' });
   const carpeta = process.env.CAPTURAS;

@@ -65,6 +65,7 @@ export function todasLasFrases(): FraseNarrada[] {
     const enUnidad = (leccion: string, id: string, l: Locucion) => agregar(String(unidad.numero), leccion, id, l);
     enUnidad('camino', `${unidad.id}.encabezado`, [TEXTOS_APP.camino.encabezadoUnidad(unidad.numero, unidad.titulo), unidad.tema]);
     enUnidad('album', `${unidad.id}.estampa`, [TEXTOS_APP.album.nueva(unidad.estampa.nombre), unidad.estampa.dato]);
+    enUnidad('album', `${unidad.id}.terminada`, TEXTOS_APP.unidad.terminada(unidad.numero));
     enUnidad('album', `${unidad.id}.estampa.nombre`, unidad.estampa.nombre);
     for (const leccion of unidad.lecciones) {
       const enLeccion = (id: string, l: Locucion) => enUnidad(leccion.id, id, l);
@@ -103,7 +104,7 @@ export function todasLasFrases(): FraseNarrada[] {
   MASCOTAS.forEach((m) => app('camino', `camino.hola.${m.id}`, t.camino.hola(m.nombre)));
   app('camino', 'camino.terminaron', t.camino.terminaron);
   app('camino', 'camino.bloqueada', t.camino.bloqueada);
-  app('cofre', 'cofre.llegaron', t.cofre.llegaron);
+  app('cofre', 'cofre.llegaron', t.cofre.llegaron(HOJITAS_COFRE));
   app('cofre', 'cofre.abierto', t.cofre.abierto(HOJITAS_COFRE));
   t.leccion.animos.forEach((a, i) => app('leccion', `leccion.animo.${i + 1}`, a));
   app('leccion', 'leccion.casi', '¡Casi!');
@@ -146,6 +147,7 @@ export function narracionesCompletas(): { id: string; unidad: string; leccion: s
     for (const a of hasta(total))
       lista.push({ id: `leccion.terminada.${total}.${a}`, unidad: 'app', leccion: 'leccion', locucion: TEXTOS_APP.leccion.terminada(HOJITAS_POR_LECCION + a, a, total) });
   lista.push({ id: 'cofre.abierto.completa', unidad: 'app', leccion: 'cofre', locucion: TEXTOS_APP.cofre.abierto(HOJITAS_COFRE) });
+  lista.push({ id: 'cofre.llegaron.completa', unidad: 'app', leccion: 'cofre', locucion: TEXTOS_APP.cofre.llegaron(HOJITAS_COFRE) });
 
   // Unidad 1: 12 residuos del nivel 2 + hasta 5 de la lluvia de basura; animales de 4 a 10.
   for (const r of hasta(RESIDUOS.length + 5).filter((x) => x >= RESIDUOS.length))

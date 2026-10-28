@@ -7,7 +7,7 @@
 //       LECCIONES=u1-l1,u2-l3 (además, cada ejercicio de esas lecciones), CARPETA=<otra carpeta>.
 //
 // Usa el Chrome instalado y un solo navegador a la vez (pensado para una laptop de 8 GB).
-// Cada captura espera a que terminen las animaciones de entrada (window.__caco.quieto()).
+// Cada captura espera a que terminen las animaciones de entrada (window.__mixtle.quieto()).
 import { mkdir } from 'node:fs/promises';
 import { chromium } from '@playwright/test';
 import { runnerImport } from 'vite';
@@ -40,11 +40,11 @@ try {
     const page = await contexto.newPage();
     page.on('pageerror', (e) => errores.push(`${t.nombre}: ${e}`));
     const guardar = async (nombre) => {
-      await page.waitForFunction(() => window.__caco?.quieto?.() === true, null, { timeout: 20000 }).catch(() => console.log(`Aviso: ${nombre} sin confirmar animaciones`));
+      await page.waitForFunction(() => window.__mixtle?.quieto?.() === true, null, { timeout: 20000 }).catch(() => console.log(`Aviso: ${nombre} sin confirmar animaciones`));
       await page.screenshot({ path: `${carpeta}/${t.nombre}-${nombre}.png` });
       console.log(`Captura: ${t.nombre}-${nombre}.png`);
     };
-    const pantalla = (nombre) => page.waitForFunction((n) => window.__caco?.pantalla?.() === n, nombre, { timeout: 30000 });
+    const pantalla = (nombre) => page.waitForFunction((n) => window.__mixtle?.pantalla?.() === n, nombre, { timeout: 30000 });
     const boton = async (nombre) => {
       const b = page.getByRole('button', { name: nombre, exact: typeof nombre === 'string' }).first();
       await b.waitFor({ state: 'visible' });
@@ -78,7 +78,7 @@ try {
     await pantalla('leccion');
     let error = false;
     for (let paso = 0; paso < 30; paso++) {
-      if ((await page.evaluate(() => window.__caco.pantalla())) === 'fin-leccion') break;
+      if ((await page.evaluate(() => window.__mixtle.pantalla())) === 'fin-leccion') break;
       const caja = page.locator('[data-ejercicio-id]');
       await caja.waitFor({ state: 'visible' });
       const e = EJERCICIOS.get(await caja.getAttribute('data-ejercicio-id'));
@@ -127,7 +127,7 @@ try {
       await clic(`[data-nodo="leccion:${id}"]`);
       await pantalla('leccion');
       for (let paso = 0; paso < 12; paso++) {
-        if ((await page.evaluate(() => window.__caco.pantalla())) === 'fin-leccion') break;
+        if ((await page.evaluate(() => window.__mixtle.pantalla())) === 'fin-leccion') break;
         const caja = page.locator('[data-ejercicio-id]');
         await caja.waitFor({ state: 'visible' });
         const e = EJERCICIOS.get(await caja.getAttribute('data-ejercicio-id'));
@@ -149,18 +149,18 @@ try {
     const p2 = await aventura.newPage();
     p2.on('pageerror', (e) => errores.push(`${t.nombre}: ${e}`));
     const guardarAventura = async (nombre) => {
-      await p2.waitForFunction(() => window.__caco?.quieto?.() === true, null, { timeout: 20000 }).catch(() => {});
+      await p2.waitForFunction(() => window.__mixtle?.quieto?.() === true, null, { timeout: 20000 }).catch(() => {});
       await p2.screenshot({ path: `${carpeta}/${t.nombre}-${nombre}.png` });
       console.log(`Captura: ${t.nombre}-${nombre}.png`);
     };
     const tocar = async (prefijo) => {
-      const o = await p2.evaluate((p) => window.__caco.tocables().find((x) => x.nombre.startsWith(p)), prefijo);
+      const o = await p2.evaluate((p) => window.__mixtle.tocables().find((x) => x.nombre.startsWith(p)), prefijo);
       if (!o) return false;
       const caja = await p2.locator('canvas').boundingBox();
       await p2.mouse.click(caja.x + (o.x / 1920) * caja.width, caja.y + (o.y / 1080) * caja.height);
       return true;
     };
-    const escena = (clave) => p2.waitForFunction((c) => window.__caco?.escenas?.().includes(c), clave, { timeout: 30000 });
+    const escena = (clave) => p2.waitForFunction((c) => window.__mixtle?.escenas?.().includes(c), clave, { timeout: 30000 });
 
     await p2.goto(`${base}?e2e&escena=Rescate&unidad=u2`);
     await escena('Rescate');
@@ -168,18 +168,18 @@ try {
     await guardarAventura('aventura-u2-rescate');
     while (await tocar('basura-')) await p2.waitForTimeout(800);
     for (let i = 0; i < 12; i++) {
-      await p2.waitForFunction(() => window.__caco.tocables().some((x) => x.nombre.startsWith('pieza-') || x.nombre === 'siguiente'), null, { timeout: 30000 });
-      const pieza = await p2.evaluate(() => window.__caco.tocables().find((x) => x.nombre.startsWith('pieza-'))?.nombre);
+      await p2.waitForFunction(() => window.__mixtle.tocables().some((x) => x.nombre.startsWith('pieza-') || x.nombre === 'siguiente'), null, { timeout: 30000 });
+      const pieza = await p2.evaluate(() => window.__mixtle.tocables().find((x) => x.nombre.startsWith('pieza-'))?.nombre);
       if (!pieza) break;
       if (i === 0) await guardarAventura('aventura-u2-separar');
       await tocar(`bote-${boteDe(pieza.replace('pieza-', ''))}`);
       await p2.waitForTimeout(600);
-      await p2.waitForFunction((n) => !window.__caco.tocables().some((x) => x.nombre === n), pieza, { timeout: 30000 });
+      await p2.waitForFunction((n) => !window.__mixtle.tocables().some((x) => x.nombre === n), pieza, { timeout: 30000 });
     }
-    await p2.waitForFunction(() => window.__caco.tocables().some((x) => x.nombre === 'siguiente'), null, { timeout: 30000 });
+    await p2.waitForFunction(() => window.__mixtle.tocables().some((x) => x.nombre === 'siguiente'), null, { timeout: 30000 });
     await tocar('siguiente');
     await escena('Final');
-    await p2.waitForFunction(() => window.__caco.tocables().some((x) => x.nombre === 'terminar-aventura'), null, { timeout: 30000 });
+    await p2.waitForFunction(() => window.__mixtle.tocables().some((x) => x.nombre === 'terminar-aventura'), null, { timeout: 30000 });
     await guardarAventura('aventura-u2-diploma');
 
     for (const [clave, unidad, nombre, espera] of [

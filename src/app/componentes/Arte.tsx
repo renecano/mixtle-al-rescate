@@ -1,10 +1,11 @@
 import type { ImgHTMLAttributes } from 'react';
 import { catalogoArte } from '../../arte/catalogo';
+import { ARTE_ACCESORIOS } from '../../arte/accesorios';
 import { ARTE_ESCENAS } from '../../arte/escenas';
 import { aDataUri } from '../../arte/svg';
 
 /** Las mismas ilustraciones SVG de las aventuras, más las que solo usa React (escenas), listas para usarse. */
-const URLS = new Map([...catalogoArte(), ...ARTE_ESCENAS].map((a) => [a.clave, aDataUri(a.svg)]));
+const URLS = new Map([...catalogoArte(), ...ARTE_ESCENAS, ...ARTE_ACCESORIOS].map((a) => [a.clave, aDataUri(a.svg)]));
 
 export function urlArte(clave: string): string {
   const url = URLS.get(clave);

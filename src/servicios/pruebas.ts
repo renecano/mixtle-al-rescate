@@ -1,3 +1,4 @@
+import { useApp } from '../app/estado/app';
 import type Phaser from 'phaser';
 import { ANIMALES } from '../data/animales';
 import { progreso, resumenDiploma } from '../logica/progreso';
@@ -77,7 +78,7 @@ export function exponerParaPruebas(): void {
     return lista;
   };
 
-  (window as unknown as Record<string, unknown>).__caco = {
+  (window as unknown as Record<string, unknown>).__mixtle = {
     escenas: () => escenasActivas().map((s) => s.scene.key),
     /** Pantalla de React visible (por ejemplo "inicio" o "aventura"). */
     pantalla: () => document.querySelector<HTMLElement>('[data-pantalla]')?.dataset.pantalla ?? null,
@@ -90,6 +91,8 @@ export function exponerParaPruebas(): void {
     /** Pista de música de fondo que está sonando (o null). */
     musica: () => musica.pistaActual,
     fps: () => Math.round(juegoActual()?.loop.actualFps ?? 0),
+    /** Vuelve al camino como si se acabara de ganar esa estampa (revisar la recompensa y grabar el tráiler). */
+    estampaNueva: (id: string) => useApp.getState().alCamino(id),
     /** true cuando ninguna pantalla visible está a media animación de entrada (para capturas). */
     quieto: () => {
       const activas = escenasActivas().filter((s) => s.scene.key !== 'Boot');

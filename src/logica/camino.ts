@@ -10,6 +10,10 @@ export interface ProgresoGrupo {
   hojitas: number;
   /** Días en que jugó el grupo (AAAA-MM-DD, hora local). */
   dias: string[];
+  /** Accesorios de la mascota (v3): los comprados, los puestos y las hojitas gastadas en ellos. */
+  accesorios?: string[];
+  puestos?: string[];
+  gastadas?: number;
 }
 
 export const PROGRESO_VACIO: ProgresoGrupo = { lecciones: {}, cofres: [], aventuras: [], estampas: [], hojitas: 0, dias: [] };

@@ -54,7 +54,7 @@ test('aventura de la unidad 1 completa: grupo → facilitador → intro → 3 ni
   await page.waitForTimeout(800);
   await captura(page, info, '3-nivel1');
   await page.waitForTimeout(1500);
-  info.annotations.push({ type: 'fps nivel 1', description: String(await page.evaluate(() => window.__caco.fps())) });
+  info.annotations.push({ type: 'fps nivel 1', description: String(await page.evaluate(() => window.__mixtle.fps())) });
   for (let i = 0; i < RESIDUOS.length; i++) {
     await tocar(page, 'residuo-');
     await page.waitForTimeout(250);
@@ -138,11 +138,11 @@ test('aventura de la unidad 1 completa: grupo → facilitador → intro → 3 ni
   await expect(page.locator('[data-nodo="aventura:u1"]')).toHaveAttribute('data-estado', 'hecho');
 
   // Mixtle habló siempre con su voz grabada (nunca con la del navegador) y sonó la música.
-  const cuentaVoz = await page.evaluate(() => window.__caco.voz());
+  const cuentaVoz = await page.evaluate(() => window.__mixtle.voz());
   info.annotations.push({ type: 'voz', description: JSON.stringify(cuentaVoz) });
   expect(cuentaVoz.conAudio).toBeGreaterThan(20);
   expect(cuentaVoz.conNavegador).toBe(0);
-  expect(await page.evaluate(() => window.__caco.musica())).not.toBeNull();
+  expect(await page.evaluate(() => window.__mixtle.musica())).not.toBeNull();
   const audios = peticiones.map((r) => r.url()).filter((u) => /\/voz\/[0-9a-f]{14}\.mp3$/.test(u));
   expect(audios.length).toBeGreaterThan(20);
 
@@ -157,7 +157,7 @@ test('el botón de sonido se recuerda y el juego no se rompe sin localStorage', 
   await tocarBoton(page, 'Apagar la voz');
   await expect.poll(() => page.evaluate(() => localStorage.getItem('mixtle-al-rescate:sonido'))).toBe('no');
   await page.reload();
-  await page.waitForFunction(() => !!window.__caco);
+  await page.waitForFunction(() => !!window.__mixtle);
   await expect(page.getByRole('button', { name: 'Encender la voz' })).toBeVisible();
   expect(await page.evaluate(() => localStorage.getItem('mixtle-al-rescate:sonido'))).toBe('no');
   // Lo único guardado es esa preferencia.

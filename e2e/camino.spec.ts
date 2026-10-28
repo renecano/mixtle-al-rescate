@@ -89,7 +89,7 @@ test('un grupo nuevo completa una lección con un error, ve la pantalla final y 
   let errorHecho = false;
   let repasos = 0;
   for (let paso = 0; paso < 30; paso++) {
-    const pantalla = await page.evaluate(() => window.__caco.pantalla());
+    const pantalla = await page.evaluate(() => window.__mixtle.pantalla());
     if (pantalla === 'fin-leccion') break;
     const caja = page.locator('[data-ejercicio-id]');
     await expect(caja).toBeVisible();
@@ -141,7 +141,7 @@ test('un grupo nuevo completa una lección con un error, ve la pantalla final y 
 
   // Otro día (recargar): el grupo y su avance siguen ahí, guardados solo en este aparato.
   await page.reload();
-  await page.waitForFunction(() => !!window.__caco?.pantalla());
+  await page.waitForFunction(() => !!window.__mixtle?.pantalla());
   await tocarBoton(page, /¡Jugar!/);
   await esperarPantalla(page, 'grupos');
   await clic(page, '[data-grupo]');

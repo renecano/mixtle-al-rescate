@@ -101,11 +101,6 @@
    "ms": 5740,
    "config": "120a4a13879681"
   },
-  "0178db704ec861.mp3": {
-   "texto": "¡Un cofre! Tóquenlo para abrirlo.",
-   "ms": 1970,
-   "config": "0c6f528fa64664"
-  },
   "017a9fc9ba2ed6.mp3": {
    "texto": "¿Y la servilleta de tela?",
    "ms": 1660,
@@ -185,6 +180,11 @@
    "texto": "¡Gracias! Ya puedo buscar algodoncillo para mis huevitos.",
    "ms": 3140,
    "config": "099d350006ac4e"
+  },
+  "01d5b79eb7530a.mp3": {
+   "texto": "hojitas!",
+   "ms": 840,
+   "config": "114d56afcf44a2"
   },
   "01ddac9a0a7c4a.mp3": {
    "texto": "sesenta y siete",
@@ -430,6 +430,11 @@
    "texto": "¿Usar los dos lados de la hoja ayuda a hacer menos basura?",
    "ms": 3360,
    "config": "193072dbe32a48"
+  },
+  "03b43162ea6bd7.mp3": {
+   "texto": "¡Terminaron la unidad dos! Aquí está su diploma.",
+   "ms": 2930,
+   "config": "1db42150ae055d"
   },
   "03b8805dc98be0.mp3": {
    "texto": "¡Bien pensado! Mejor tu lonchera; la bolsa se usa una vez.",
@@ -720,6 +725,11 @@
    "texto": "Toca la tierra para sembrar un árbol o unas flores.",
    "ms": 3050,
    "config": "0c7d8cc5029853"
+  },
+  "05f08ed2f7e90f.mp3": {
+   "texto": "¡Terminaron la unidad cuatro! Aquí está su diploma.",
+   "ms": 3020,
+   "config": "12893bcd1d9cef"
   },
   "05f43ae4d84243.mp3": {
    "texto": "seis",
@@ -1746,6 +1756,11 @@
    "ms": 5950,
    "config": "0bd35aa8885906"
   },
+  "0f22b9593e3d62.mp3": {
+   "texto": "¡Un cofre! Trae quince hojitas. Tóquenlo para abrirlo.",
+   "ms": 3140,
+   "config": "0211a7d918e822"
+  },
   "0f34403d4d1c31.mp3": {
    "texto": "¡Felicidades, guardianes del parque! Sembraron seis árboles y les dieron doce riegos.",
    "ms": 4920,
@@ -2481,6 +2496,11 @@
    "ms": 3020,
    "config": "1b15915ed2b0d8"
   },
+  "15e7900bd34def.mp3": {
+   "texto": "¡Un cofre! Trae",
+   "ms": 1200,
+   "config": "118d3a054b826d"
+  },
   "15ea7598f78ccb.mp3": {
    "texto": "Cada una tiene su camino.",
    "ms": 1700,
@@ -2685,6 +2705,11 @@
    "texto": "¡Llegamos a la escuela sin echar humo!",
    "ms": 2060,
    "config": "1e3ffc1cd88fc9"
+  },
+  "175eca345dd94b.mp3": {
+   "texto": "¡Ganaron",
+   "ms": 790,
+   "config": "172354524404d1"
   },
   "1771e35c84339d.mp3": {
    "texto": "Toca la servilleta de tela.",
@@ -2931,6 +2956,11 @@
    "ms": 5980,
    "config": "115e2c6ea45fc4"
   },
+  "19868df599062a.mp3": {
+   "texto": "¡Terminaron la unidad tres! Aquí está su diploma.",
+   "ms": 2980,
+   "config": "019052101903f7"
+  },
   "19878b467ddff7.mp3": {
    "texto": "¿A qué bote va el corazón de manzana?",
    "ms": 2280,
@@ -2975,6 +3005,11 @@
    "texto": "doce",
    "ms": 650,
    "config": "15e7a2e6e405f2"
+  },
+  "19e7e96307dc6b.mp3": {
+   "texto": "¡Terminaron la unidad cinco! Aquí está su diploma.",
+   "ms": 3120,
+   "config": "1152ff8e94deb2"
   },
   "19e9065a76da0a.mp3": {
    "texto": "¡Lección terminada! Ganaron once hojitas, y uno de siete ejercicios salió a la primera.",
@@ -3201,11 +3236,6 @@
    "ms": 2860,
    "config": "1751ad3b37ebd1"
   },
-  "1b60e24679ac28.mp3": {
-   "texto": "¡Sorpresa! Ganaron quince hojitas.",
-   "ms": 2180,
-   "config": "15501f2b228345"
-  },
   "1b654d71eb4592.mp3": {
    "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: uno. Nubes de humo que esquivaron: uno. ¡Bravo!",
    "ms": 5760,
@@ -3280,11 +3310,6 @@
    "texto": "Hoy el aire de afuera está sucio.",
    "ms": 2060,
    "config": "199c5887800699"
-  },
-  "1c47255ae4d66b.mp3": {
-   "texto": "¡Sorpresa! Ganaron",
-   "ms": 1250,
-   "config": "07b2136ab34385"
   },
   "1c50ec0a530dc1.mp3": {
    "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: dos. Nubes de humo que esquivaron: seis. ¡Bravo!",
@@ -3606,6 +3631,11 @@
    "ms": 1970,
    "config": "0e2e174600790a"
   },
+  "1ece447d3534cf.mp3": {
+   "texto": "¡Ganaron quince hojitas!",
+   "ms": 1700,
+   "config": "1be4affe8d6a8a"
+  },
   "1edeb1263157ee.mp3": {
    "texto": "Al final, el aire queda sucio.",
    "ms": 1940,
@@ -3641,10 +3671,10 @@
    "ms": 2300,
    "config": "02ece7d06f4bbe"
   },
-  "1f1a3bc660c539.mp3": {
-   "texto": "hojitas.",
-   "ms": 840,
-   "config": "0bc9ae2a4b97d5"
+  "1f17a737f6e6d6.mp3": {
+   "texto": "hojitas. Tóquenlo para abrirlo.",
+   "ms": 1920,
+   "config": "04edbbc03877ac"
   },
   "1f3d816a40e776.mp3": {
    "texto": "Mira el lapicero.",
@@ -3715,6 +3745,11 @@
    "texto": "¿Reciclar papel ayuda a cuidar los árboles?",
    "ms": 2690,
    "config": "149a366aff7941"
+  },
+  "1fd6d931e708d6.mp3": {
+   "texto": "¡Terminaron la unidad uno! Aquí está su diploma.",
+   "ms": 2950,
+   "config": "12f8fb691cebbb"
   },
   "1fdc2e636b9330.mp3": {
    "texto": "riego.",

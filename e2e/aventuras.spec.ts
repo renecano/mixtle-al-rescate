@@ -10,7 +10,7 @@ import { abrir, captura, esperarEscena, esperarPantalla, esperarTocable, tocable
  * `?e2e&escena=<Escena>&unidad=<id>`. Sin grupo elegido, al terminar se vuelve al inicio.
  */
 
-const marcador = (page: Page) => page.evaluate(() => window.__caco.marcador());
+const marcador = (page: Page) => page.evaluate(() => window.__mixtle.marcador());
 
 function boteDe(idResiduo: string): string {
   const r = RESIDUOS.find((x) => x.id === idResiduo)!;
