@@ -32,6 +32,11 @@ interface PropsTarjeta {
   /** Cambia cada vez que hay que sacudirla (error). */
   sacudir?: number;
   tamano?: string;
+  /**
+   * Tarjeta acostada: dibujo a la izquierda y nombre a la derecha, con el ancho dado. Sirve cuando hay
+   * que apilar varias con texto (parejas) y no cabrían de pie.
+   */
+  ancho?: string;
   onClick?: () => void;
 }
 
@@ -47,7 +52,8 @@ const BORDES: Record<EstadoTarjeta, string> = {
 export const TAMANO_TARJETA = 'clamp(9rem,min(30vmin,22vw),20rem)';
 
 /** Tarjeta ilustrada grande para tocar (siempre ≥ 64 px; el nombre se lee también en voz). */
-export function Tarjeta({ tarjeta, estado = 'normal', conTexto = false, sacudir = 0, tamano = TAMANO_TARJETA, onClick }: PropsTarjeta) {
+export function Tarjeta({ tarjeta, estado = 'normal', conTexto = false, sacudir = 0, tamano = TAMANO_TARJETA, ancho, onClick }: PropsTarjeta) {
+  const acostada = conTexto && !!ancho;
   return (
     <motion.button
       type="button"
@@ -62,13 +68,15 @@ export function Tarjeta({ tarjeta, estado = 'normal', conTexto = false, sacudir 
       animate={sacudir ? { x: [0, -14, 14, -10, 10, 0] } : { x: 0 }}
       transition={{ duration: 0.4 }}
       whileTap={{ scale: 0.95 }}
-      className={`relative flex cursor-pointer flex-col items-center justify-center gap-1 rounded-[1.75rem] border-[6px] p-3 shadow-[0_0.45rem_0_rgba(18,61,43,0.25)] disabled:cursor-default ${BORDES[estado]}`}
+      className={`relative flex cursor-pointer ${acostada ? 'flex-row gap-3 px-4' : 'flex-col gap-1'} items-center justify-center rounded-[1.75rem] border-[6px] p-3 shadow-[0_0.45rem_0_rgba(18,61,43,0.25)] disabled:cursor-default ${BORDES[estado]}`}
       // Alto fijo (no mínimo): "la botella" y "el corazón de manzana" miden lo mismo.
-      style={{ width: tamano, height: conTexto ? `calc(${tamano} * 1.3)` : tamano }}
+      style={acostada ? { width: ancho, height: tamano } : { width: tamano, height: conTexto ? `calc(${tamano} * 1.3)` : tamano }}
     >
-      <Arte clave={tarjeta.arte} className="min-h-0 w-[82%] flex-1 object-contain" />
+      <Arte clave={tarjeta.arte} className={acostada ? 'h-[82%] w-[40%] shrink-0 object-contain' : 'min-h-0 w-[82%] flex-1 object-contain'} />
       {conTexto && (
-        <span className="flex h-[2.5em] shrink-0 items-center text-center text-[clamp(1rem,2.4vmin,1.7rem)] leading-tight font-extrabold text-tinta">
+        <span
+          className={`flex items-center text-[clamp(1rem,2.4vmin,1.7rem)] leading-tight font-extrabold text-tinta ${acostada ? 'min-w-0 flex-1 text-left' : 'h-[2.5em] shrink-0 text-center'}`}
+        >
           {tarjeta.nombre}
         </span>
       )}

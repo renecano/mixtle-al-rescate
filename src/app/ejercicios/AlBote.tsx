@@ -45,7 +45,7 @@ export function AlBote({ ejercicio, responder, bloqueado }: PropsEjercicio<Datos
           <span key={r.id} className={`size-4 rounded-full ${i < indice ? 'bg-verde' : i === indice ? 'bg-naranja' : 'bg-white/70'}`} />
         ))}
       </div>
-      <div className="grid h-[clamp(9rem,26vmin,17rem)] place-items-center">
+      <div className="grid h-[clamp(8rem,22vmin,17rem)] place-items-center">
         {actual && (
           <motion.div
             key={actual.id}
@@ -56,7 +56,7 @@ export function AlBote({ ejercicio, responder, bloqueado }: PropsEjercicio<Datos
             initial={{ scale: 0.6, opacity: 0 }}
             animate={{ scale: arrastre ? 1.08 : 1, opacity: 1, x: arrastre?.x ?? 0, y: arrastre?.y ?? 0 }}
             transition={arrastre ? { duration: 0 } : { type: 'spring', stiffness: 300, damping: 22 }}
-            className="relative z-10 grid size-[clamp(9rem,26vmin,17rem)] cursor-grab touch-none place-items-center rounded-full bg-crema shadow-[0_0.5rem_0_rgba(18,61,43,0.2)] active:cursor-grabbing"
+            className="relative z-10 grid size-[clamp(8rem,22vmin,17rem)] cursor-grab touch-none place-items-center rounded-full bg-crema shadow-[0_0.5rem_0_rgba(18,61,43,0.2)] active:cursor-grabbing"
             onPointerDown={(e) => {
               if (bloqueado) return;
               sonido.desbloquear();
@@ -99,7 +99,7 @@ export function AlBote({ ejercicio, responder, bloqueado }: PropsEjercicio<Datos
             whileTap={{ scale: 0.95 }}
             className="flex cursor-pointer flex-col items-center gap-1"
           >
-            <Arte clave={`bote-${c.id}`} className="h-[clamp(8rem,26vmin,17rem)]" />
+            <Arte clave={`bote-${c.id}`} className="h-[clamp(7rem,22vmin,16rem)]" />
             <span className="rounded-full border-4 bg-white px-4 py-1 text-[clamp(1rem,2.3vmin,1.6rem)] font-extrabold" style={{ borderColor: c.color, color: c.color }}>
               {c.nombre}
             </span>

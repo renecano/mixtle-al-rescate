@@ -45,16 +45,23 @@ export function Parejas({ ejercicio, responder, bloqueado }: PropsEjercicio<Dato
     return 'normal' as const;
   };
 
-  const tamano = ejercicio.pares.length >= 4 ? 'clamp(6rem,min(13vh,20vw),11rem)' : 'clamp(7rem,min(17vh,22vw),14rem)';
+  // La columna (2 a 4 tarjetas, más altas si llevan texto) tiene que caber con margen en el espacio
+  // del ejercicio (≈60 % del alto de la pantalla, debajo de Caco): el tamaño sale de ahí.
+  const filas = ejercicio.pares.length;
+  const separacion = 'clamp(0.75rem,2vmin,1.5rem)';
+  const tamano = `max(5rem, min(22vw, 14rem, calc((58vh - ${filas - 1} * ${separacion}) / ${filas})))`;
+  // Con texto, las tarjetas van acostadas (dibujo y nombre lado a lado): mismo alto, más anchas.
+  const ancho = ejercicio.conTexto ? 'min(32vw, 21rem)' : undefined;
   return (
     <div className="flex items-center justify-center gap-[clamp(2rem,10vmin,8rem)]" data-ejercicio="parejas">
       {(['izquierda', 'derecha'] as const).map((lado) => (
-        <div key={lado} className="flex flex-col gap-[clamp(0.75rem,2vmin,1.5rem)]">
+        <div key={lado} className="flex flex-col" style={{ gap: separacion }}>
           {(lado === 'izquierda' ? ejercicio.pares.map((p) => p.izquierda) : derechas).map((t) => (
             <Tarjeta
               key={t.id}
               tarjeta={t}
               tamano={tamano}
+              ancho={ancho}
               conTexto={!!ejercicio.conTexto}
               estado={estado(lado, t.id)}
               sacudir={error?.ids.includes(t.id) ? error.vez : 0}
