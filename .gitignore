@@ -15,3 +15,5 @@ __pycache__/
 
 .vercel
 .env*
+# Uso mensual de Azure Speech (local)
+.voz-uso.json

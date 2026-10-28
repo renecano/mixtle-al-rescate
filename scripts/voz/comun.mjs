@@ -33,3 +33,26 @@ export function correrPython(script, args = []) {
     env: { ...process.env, PYTHONIOENCODING: 'utf-8', PYTHONUTF8: '1' },
   });
 }
+
+/** Quita las claves de comentario ("$comentario"). */
+export function sinComentarios(objeto = {}) {
+  return Object.fromEntries(Object.entries(objeto).filter(([k]) => !k.startsWith('$')));
+}
+
+/**
+ * Cambia cómo se escriben algunas palabras solo para la voz ("Mixtle" → "Míkstle",
+ * "cacomixtle" → "cacomíkstle"), respetando mayúsculas y límites de palabra. El texto en pantalla no cambia.
+ */
+export function aplicadorDePronunciacion(diccionario = {}) {
+  const entradas = Object.entries(sinComentarios(diccionario));
+  return (texto) => {
+    let resultado = texto;
+    for (const [palabra, dicha] of entradas) {
+      resultado = resultado.replace(new RegExp(`(?<![\\p{L}])${palabra}(?![\\p{L}])`, 'giu'), (encontrada) =>
+        // Se respeta la mayúscula inicial de lo escrito ("Mixtle" → "Míkstle", "mixtle" → "míkstle").
+        (encontrada[0] === encontrada[0].toUpperCase() ? dicha[0].toUpperCase() : dicha[0].toLowerCase()) + dicha.slice(1),
+      );
+    }
+    return resultado;
+  };
+}

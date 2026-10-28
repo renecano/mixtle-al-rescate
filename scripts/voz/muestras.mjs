@@ -1,9 +1,30 @@
 // Genera docs/muestras-voz/: las mismas 3 frases de Mixtle con cada proveedor, voz y ajuste,
 // y una página (index.html) para escucharlas lado a lado y elegir.
 // Uso: npm run voz:muestras   (antes: npm run voz:preparar)
-import { readFileSync, writeFileSync } from 'node:fs';
+import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { RAIZ, correrPython } from './comun.mjs';
+import { RAIZ, aplicadorDePronunciacion, correrPython, MODELOS } from './comun.mjs';
+
+// npm run voz:muestras -- --proveedor=azure   → voces de Azure (docs/muestras-voz/azure.html)
+if (process.argv.includes('--proveedor=azure')) {
+  const { correr } = await import('./muestras-azure.mjs');
+  const config = JSON.parse(readFileSync(join(RAIZ, 'voz.config.json'), 'utf8'));
+  const kokoro = config.proveedor === 'kokoro' ? config : config.alternos?.kokoro;
+  await correr({
+    raiz: RAIZ,
+    aplicarPronunciacion: aplicadorDePronunciacion(config.pronunciacion),
+    // Referencia: las mismas frases con la voz local actual (Kokoro), sin gastar caracteres de Azure.
+    generarReferencia: (carpeta, frases) => {
+      const trabajos = frases.map((f) => ({ proveedor: 'kokoro', voz: kokoro.voz, ajustes: kokoro.ajustes, texto: aplicadorDePronunciacion(config.pronunciacion)(f.texto), destino: join(carpeta, `referencia-kokoro--${f.id}.mp3`) }));
+      mkdirSync(MODELOS, { recursive: true });
+      const ruta = join(MODELOS, 'referencia.json');
+      writeFileSync(ruta, JSON.stringify(trabajos));
+      correrPython('referencia.py', [ruta]);
+      return Object.fromEntries(frases.map((f) => [f.id, `referencia-kokoro--${f.id}.mp3`]));
+    },
+  });
+  process.exit(0);
+}
 
 correrPython('muestras.py');
 

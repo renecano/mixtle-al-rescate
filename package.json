@@ -21,7 +21,8 @@
     "voz:lista": "node scripts/voz/lista.mjs",
     "sonidos:generar": "node scripts/sonidos/generar.mjs",
     "musica:instalar": "node scripts/musica/instalar.mjs",
-    "capturas": "node scripts/capturas.mjs"
+    "capturas": "node scripts/capturas.mjs",
+    "voz:usar": "node scripts/voz/usar.mjs"
   },
   "license": "UNLICENSED",
   "dependencies": {

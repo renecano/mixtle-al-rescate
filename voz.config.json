@@ -1,10 +1,23 @@
 {
-  "$comentario": "Voz de Mixtle. Elegida por René en docs/muestras-voz (kokoro-alex-normal). Cambiar algo aquí regenera todas las frases con npm run voz:generar.",
+  "$comentario": "Voz de Mixtle. Activo: proveedor/voz/ajustes. En \"alternos\" se guardan los otros proveedores listos para usar: npm run voz:usar -- <nombre>. Cambiar la voz o un ajuste regenera todas las frases con npm run voz:generar; cambiar una palabra de la pronunciación solo las que la tienen.",
   "proveedor": "kokoro",
   "voz": "em_alex",
   "ajustes": {
     "speed": 1,
     "lang": "es-419"
+  },
+  "alternos": {
+    "azure": {
+      "$comentario": "Azure AI Speech (plan gratuito F0). La voz se elige con las muestras: npm run voz:muestras -- --proveedor=azure. Llave en .env.local: AZURE_SPEECH_KEY y AZURE_SPEECH_REGION.",
+      "voz": "es-MX-JorgeNeural",
+      "ajustes": {
+        "idioma": "es-MX",
+        "estilo": "",
+        "tono": "+0%",
+        "velocidad": 1,
+        "esperaMs": 3100
+      }
+    }
   },
   "pronunciacion": {
     "$comentario": "Solo cambia cómo se pronuncia en el audio; el texto en pantalla no cambia. Clave: palabra escrita; valor: cómo debe leerla la voz. \"Mixtle\" suena \"miks-tle\" (con \"ks\", como \"mix\"), igual que la segunda parte de \"cacomixtle\" (confirmado por René). Kokoro es-419: /mˈikstle/ y /kˌakomˈikstle/.",

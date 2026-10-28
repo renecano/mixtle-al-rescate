@@ -33,7 +33,7 @@ for i, t in enumerate(trabajos, 1):
     destino = salida / t["archivo"]
     if "grabacion" in t:
         a_mp3(Path(t["grabacion"]), destino)
-        origen = "grabación"
+        origen = t.get("origen", "grabación")
     else:
         generar(config["proveedor"], config["voz"], config["ajustes"], t["texto"], destino)
         origen = config["voz"]
