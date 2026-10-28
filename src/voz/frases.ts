@@ -3,6 +3,7 @@ import { CATEGORIAS } from '../data/categorias';
 import { MAPEO_IMAGENET } from '../data/mapeoImagenet';
 import { RESIDUOS } from '../data/residuos';
 import { TEXTOS } from '../data/textos';
+import { TEXTOS_AVENTURAS } from '../contenido/aventuras';
 import { TEXTOS_APP } from '../contenido/textosApp';
 import type { Ejercicio } from '../contenido/tipos';
 import { UNIDADES } from '../contenido/unidades';
@@ -79,6 +80,23 @@ export function todasLasFrases(): FraseNarrada[] {
         if (e.tipo === 'si-no') enLeccion(`${e.id}.porque`, e.porque);
       }
     }
+  }
+
+  // Aventuras de las unidades 2 a 5 (src/contenido/aventuras.ts). Los textos de botones no se narran;
+  // del diploma se narran las piezas fijas (los números se encadenan desde la lista común).
+  for (const [unidadId, textos] of Object.entries(TEXTOS_AVENTURAS)) {
+    const numero = unidadId.replace('u', '');
+    const visitar = (valor: unknown, ruta: string) => {
+      if (typeof valor === 'string') agregar(numero, 'aventura', `${unidadId}.${ruta}`, valor);
+      else if (Array.isArray(valor)) valor.forEach((v, i) => visitar(v, `${ruta}.${i + 1}`));
+      else if (valor && typeof valor === 'object')
+        for (const [clave, v] of Object.entries(valor)) {
+          if (clave === 'diploma' || clave.startsWith('boton')) continue;
+          visitar(v, ruta ? `${ruta}.${clave}` : clave);
+        }
+    };
+    visitar(textos, '');
+    for (const a of [1, 2]) for (const b of [1, 2]) agregar(numero, 'aventura-diploma', `${unidadId}.diploma`, textos.diploma.narracion(a, b));
   }
 
   // Pantallas de la app: grupos, camino, cofre, lección, álbum.

@@ -1,89 +1,61 @@
+import { readdirSync, readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
+import { TEXTOS_AVENTURAS } from '../src/contenido/aventuras';
 import { ANIMALES } from '../src/data/animales';
 import { CATEGORIAS } from '../src/data/categorias';
-import { RESIDUOS } from '../src/data/residuos';
-import { TEXTOS } from '../src/data/textos';
+import { diplomaUnidad1, figurasRepetidas, segun } from '../src/logica/diploma';
+import { Progreso } from '../src/logica/progreso';
 import { textoDeLocucion } from '../src/voz/locucion';
-import { esCorrecto } from '../src/logica/clasificacion';
-import { Progreso, animalesDelDiploma, resumenDiploma } from '../src/logica/progreso';
-import { ZONAS } from '../src/ui/layoutParque';
 
-/** Simula una partida completa como la juega un grupo. */
-function partidaCompleta(): Progreso {
-  const p = new Progreso();
-  // Nivel 1: se recoge todo y quedan felices los tres animales.
-  RESIDUOS.forEach((r) => p.recolectar(r.id));
-  ANIMALES.forEach((a) => p.ayudarAnimal(a.id));
-  // Nivel 2: un intento fallido no cuenta; solo cuenta cuando llega a su bote.
-  for (const r of RESIDUOS) {
-    const incorrecta = CATEGORIAS.find((c) => !esCorrecto(r, c.id, CATEGORIAS))!;
-    if (esCorrecto(r, incorrecta.id, CATEGORIAS)) p.separar(r.id); // nunca pasa
-    const correcta = CATEGORIAS.find((c) => esCorrecto(r, c.id, CATEGORIAS))!;
-    if (esCorrecto(r, correcta.id, CATEGORIAS)) p.separar(r.id);
-  }
-  // Nivel 3: cada flor atrae una mariposa; los árboles no.
-  for (const z of ZONAS) for (const lugar of z.plantar) p.plantar(lugar.que === 'flores' ? 1 : 0);
-  return p;
-}
-
-describe('conteo del diploma', () => {
-  it('una partida completa cuenta los 12 residuos y todos los animales', () => {
-    const p = partidaCompleta();
-    const flores = ZONAS.flatMap((z) => z.plantar).filter((l) => l.que === 'flores').length;
-    const animalesBase = ANIMALES.reduce((s, a) => s + a.cantidad, 0);
-    expect(resumenDiploma(p, ANIMALES)).toEqual({
-      residuosSeparados: RESIDUOS.length,
-      animalesAyudados: animalesBase + flores,
-      plantados: ZONAS.flatMap((z) => z.plantar).length,
-    });
-    // Con los datos actuales: 12 residuos; ardilla + colibrí + 3 mariposas + 5 mariposas nuevas.
-    expect(resumenDiploma(p, ANIMALES).residuosSeparados).toBe(12);
-    expect(resumenDiploma(p, ANIMALES).animalesAyudados).toBe(10);
+describe('diploma de unidad', () => {
+  it('singular y plural según el número', () => {
+    expect(segun(1, 'animal', 'animales')).toBe('animal');
+    expect(segun(0, 'animal', 'animales')).toBe('animales');
+    expect(segun(7, 'animal', 'animales')).toBe('animales');
   });
 
-  it('el diploma muestra exactamente un dibujo por cada animal que cuenta', () => {
-    const p = partidaCompleta();
-    const figuras = animalesDelDiploma(p, ANIMALES);
-    expect(figuras).toHaveLength(resumenDiploma(p, ANIMALES).animalesAyudados);
-    expect(figuras.filter((f) => f === 'ardilla')).toHaveLength(1);
-    expect(figuras.filter((f) => f === 'colibri')).toHaveLength(1);
-    expect(figuras.filter((f) => f === 'mariposa')).toHaveLength(8);
-    expect(animalesDelDiploma(new Progreso(), ANIMALES)).toEqual([]);
+  it('una figura por cada cosa contada', () => {
+    expect(figurasRepetidas('arbol', 3)).toEqual(['arbol', 'arbol', 'arbol']);
+    expect(figurasRepetidas('arbol', -1)).toEqual([]);
   });
 
-  it('los aciertos del bonus se suman a los residuos separados', () => {
-    const p = partidaCompleta();
-    p.separarEnBonus('camara-1');
-    p.separarEnBonus('camara-2');
-    p.separarEnBonus('camara-2');
-    expect(resumenDiploma(p, ANIMALES).residuosSeparados).toBe(14);
-  });
-
-  it('solo cuentan los animales de zonas limpias', () => {
+  it('la unidad 1 conserva el diploma de la v1: residuos con los botes, animales con sus dibujos', () => {
     const p = new Progreso();
-    p.ayudarAnimal('mariposas');
-    expect(resumenDiploma(p, ANIMALES).animalesAyudados).toBe(3);
-    p.ayudarAnimal('ardilla');
-    p.ayudarAnimal('ardilla');
-    expect(resumenDiploma(p, ANIMALES).animalesAyudados).toBe(4);
-  });
-
-  it('separar algo que no se recogió no suma', () => {
-    const p = new Progreso();
+    p.recolectar('lata');
     p.separar('lata');
-    expect(resumenDiploma(p, ANIMALES).residuosSeparados).toBe(0);
+    p.ayudarAnimal('ardilla');
+    const d = diplomaUnidad1(p, ANIMALES, CATEGORIAS);
+    expect(d.subtitulo).toBeUndefined();
+    expect(d.izquierda).toMatchObject({ numero: 1, etiqueta: 'residuo bien separado' });
+    expect(d.izquierda.iconos).toEqual(CATEGORIAS.map((c) => `bote-${c.id}`));
+    expect(d.derecha.figuras?.length).toBe(d.derecha.numero);
+    expect(textoDeLocucion(d.narracion)).toContain('Separaron bien 1 residuo');
+  });
+
+  it.each(Object.entries(TEXTOS_AVENTURAS))('%s: el diploma narra los números con buena concordancia', (_id, t) => {
+    expect(t.diploma.subtitulo.length).toBeGreaterThan(3);
+    for (const [a, b] of [
+      [1, 1],
+      [2, 5],
+    ] as const) {
+      const texto = textoDeLocucion(t.diploma.narracion(a, b));
+      expect(texto).toMatch(/[.!]$/);
+      expect(texto).not.toMatch(/\b1 \w+s\b/); // nunca "1 animales"
+      expect(t.diploma.izquierda(a).length).toBeGreaterThan(3);
+      expect(t.diploma.derecha(b).length).toBeGreaterThan(3);
+    }
   });
 });
 
-describe('textos del diploma', () => {
-  it('usa singular y plural correctos', () => {
-    expect(TEXTOS.diploma.residuos(1)).toBe('residuo bien separado');
-    expect(TEXTOS.diploma.residuos(12)).toBe('residuos bien separados');
-    expect(TEXTOS.diploma.animales(1)).toBe('animal ayudado');
-    expect(TEXTOS.diploma.animales(0)).toBe('animales ayudados');
-    expect(textoDeLocucion(TEXTOS.diploma.narracion(12, 10))).toBe(
-      '¡Felicidades, guardianes del parque! Separaron bien 12 residuos y ayudaron a 10 animales.',
-    );
-    expect(textoDeLocucion(TEXTOS.diploma.narracion(1, 1))).toContain('1 residuo y ayudaron a 1 animal.');
+describe('contenido marcado para revisión de Eco Urban', () => {
+  it('cada archivo de contenido lleva TODO(Eco Urban)', () => {
+    const carpeta = join(__dirname, '../src/contenido/unidades');
+    const archivos = readdirSync(carpeta)
+      .filter((f) => f !== 'index.ts')
+      .map((f) => join(carpeta, f));
+    for (const archivo of [...archivos, join(__dirname, '../src/contenido/aventuras.ts')]) {
+      expect(readFileSync(archivo, 'utf8'), archivo).toContain('TODO(Eco Urban)');
+    }
   });
 });

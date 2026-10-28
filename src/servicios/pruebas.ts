@@ -84,6 +84,8 @@ export function exponerParaPruebas(): void {
     pantalla: () => document.querySelector<HTMLElement>('[data-pantalla]')?.dataset.pantalla ?? null,
     tocables,
     resumen: () => resumenDiploma(progreso(), ANIMALES),
+    /** Marcador de la aventura de las unidades 2 a 5 (lo que llevan rescatado, sembrado, etc.). */
+    marcador: () => (juegoActual()?.registry.get('marcador') as Record<string, number> | undefined) ?? null,
     camarasActivas,
     /** Frases dichas con audio grabado y con la voz del navegador. */
     voz: () => ({ ...voz.cuenta }),

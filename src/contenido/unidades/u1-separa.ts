@@ -4,6 +4,7 @@ import type { Unidad } from '../tipos';
  * Unidad 1 — Separa tu basura.
  * TODO(Eco Urban): validar consignas, pistas y clasificación con las educadoras y educadores.
  * Las categorías siguen src/data/categorias.ts (orgánico / reciclable / no reciclable).
+ * Fuentes de cada dato: docs/fuentes-contenido.md (D4–D12 y la tabla de residuos).
  */
 export const U1: Unidad = {
   id: 'u1',
@@ -11,12 +12,13 @@ export const U1: Unidad = {
   titulo: 'Separa tu basura',
   tema: 'Aprendemos a separar la basura en orgánica, reciclable y no reciclable.',
   color: '#1F6B4A',
-  cofreTrasLeccion: 0,
+  cofreTrasLeccion: 1,
   estampa: {
     id: 'cacomixtle',
     arte: 'caco',
     nombre: 'El cacomixtle',
-    dato: 'El cacomixtle sale de noche y tiene una cola larga con anillos blancos y negros.',
+    // A1, A3
+    dato: 'El cacomixtle sale sobre todo de noche y tiene una cola larga con anillos negros y blancos.',
   },
   aventura: { id: 'u1-aventura', titulo: 'Limpia el parque', arte: 'bolsa' },
   lecciones: [
@@ -119,14 +121,16 @@ export const U1: Unidad = {
           ],
         },
         {
+          // D4: lo orgánico se vuelve composta, que alimenta a las plantas.
           tipo: 'ordena',
           id: 'u1-l2-e2',
-          consigna: 'Ordena cómo crece una planta, del principio al final.',
-          pista: 'Primero va la tierra, luego algo pequeñito.',
+          consigna: 'Ordena qué le pasa a la cáscara de plátano.',
+          pista: 'Primero va la cáscara y al final, la planta.',
           pasos: [
-            { id: 'tierra', arte: 'hoyo', nombre: 'la tierra' },
-            { id: 'brote', arte: 'brote', nombre: 'el brote' },
-            { id: 'arbol', arte: 'arbolito', nombre: 'el árbol' },
+            { id: 'cascara', arte: 'residuo-platano', nombre: 'la cáscara' },
+            { id: 'bote-verde', arte: 'bote-organico', nombre: 'el bote verde' },
+            { id: 'composta', arte: 'composta', nombre: 'la composta' },
+            { id: 'planta', arte: 'brote', nombre: 'la planta nueva' },
           ],
         },
         {
@@ -169,6 +173,187 @@ export const U1: Unidad = {
           ],
           correcta: 'servilleta',
           conTexto: true,
+        },
+      ],
+    },
+    {
+      id: 'u1-l3',
+      titulo: 'Una segunda vida',
+      arte: 'composta',
+      bienvenida: '¡Vamos a ver en qué se convierte la basura bien separada!',
+      ejercicios: [
+        {
+          // D6, D7, D4
+          tipo: 'parejas',
+          id: 'u1-l3-e1',
+          consigna: 'Une cada basura con lo que puede llegar a ser.',
+          pista: 'Piensa de qué está hecha cada cosa.',
+          pares: [
+            { izquierda: { id: 'botella', arte: 'residuo-botella', nombre: 'la botella' }, derecha: { id: 'playera', arte: 'playera', nombre: 'la playera' } },
+            { izquierda: { id: 'periodico', arte: 'residuo-periodico', nombre: 'el periódico' }, derecha: { id: 'cuaderno', arte: 'cuaderno', nombre: 'el cuaderno' } },
+            { izquierda: { id: 'platano', arte: 'residuo-platano', nombre: 'la cáscara de plátano' }, derecha: { id: 'composta', arte: 'composta', nombre: 'la composta' } },
+          ],
+        },
+        {
+          // D6
+          tipo: 'elige-imagen',
+          id: 'u1-l3-e2',
+          consigna: '¿Con cuál se pueden hacer playeras?',
+          pista: 'Es de plástico y va en el bote azul.',
+          opciones: [
+            { id: 'botella', arte: 'residuo-botella', nombre: 'la botella' },
+            { id: 'servilleta', arte: 'residuo-servilleta', nombre: 'la servilleta usada' },
+            { id: 'popote', arte: 'residuo-popote', nombre: 'el popote' },
+          ],
+          correcta: 'botella',
+          conTexto: true,
+        },
+        {
+          // D5
+          tipo: 'si-no',
+          id: 'u1-l3-e3',
+          consigna: '¿Una lata se puede reciclar para hacer otra lata?',
+          pista: 'Piensa en el bote azul.',
+          arte: 'residuo-lata',
+          respuesta: true,
+          porque: 'Las latas se pueden reciclar muchas veces.',
+        },
+        {
+          tipo: 'escucha-toca',
+          id: 'u1-l3-e4',
+          consigna: 'Toca la composta.',
+          pista: 'Es tierra oscura con cáscaras y hojas.',
+          opciones: [
+            { id: 'composta', arte: 'composta', nombre: 'la composta' },
+            { id: 'revuelto', arte: 'bote-revuelto', nombre: 'el bote revuelto' },
+            { id: 'cuaderno', arte: 'cuaderno', nombre: 'el cuaderno' },
+          ],
+          correcta: 'composta',
+        },
+        {
+          // D7
+          tipo: 'si-no',
+          id: 'u1-l3-e5',
+          consigna: '¿Reciclar papel ayuda a cuidar los árboles?',
+          pista: 'El papel se hace con árboles.',
+          arte: 'cuaderno',
+          junto: 'arbol',
+          respuesta: true,
+          porque: 'Con papel reciclado se cortan menos árboles.',
+        },
+        {
+          tipo: 'al-bote',
+          id: 'u1-l3-e6',
+          consigna: 'Lleva cada basura a su bote.',
+          pista: 'Mira el dibujo de cada bote.',
+          residuos: ['periodico', 'huevo', 'popote'],
+        },
+        {
+          tipo: 'ordena',
+          id: 'u1-l3-e7',
+          consigna: 'Ordena el viaje de la botella.',
+          pista: 'Primero se tira en su bote.',
+          pasos: [
+            { id: 'botella', arte: 'residuo-botella', nombre: 'la botella' },
+            { id: 'bote-azul', arte: 'bote-reciclable', nombre: 'el bote azul' },
+            { id: 'playera', arte: 'playera', nombre: 'la playera' },
+          ],
+        },
+      ],
+    },
+    {
+      id: 'u1-l4',
+      titulo: '¿Y si se revuelve?',
+      arte: 'bote-revuelto',
+      bienvenida: '¿Qué pasa si echamos todo junto? ¡Vamos a ver!',
+      ejercicios: [
+        {
+          // D12
+          tipo: 'si-no',
+          id: 'u1-l4-e1',
+          consigna: '¿Está bien echar toda la basura revuelta en un solo bote?',
+          pista: 'Piensa en los tres botes.',
+          arte: 'bote-revuelto',
+          respuesta: false,
+          porque: 'Revuelta, la basura se ensucia y muchas veces ya no se puede reciclar.',
+        },
+        {
+          // D12
+          tipo: 'elige-imagen',
+          id: 'u1-l4-e2',
+          consigna: '¿Cuál se echa a perder si lo revuelves con comida?',
+          pista: 'El papel sucio de comida ya no se recicla.',
+          opciones: [
+            { id: 'periodico', arte: 'residuo-periodico', nombre: 'el periódico' },
+            { id: 'platano', arte: 'residuo-platano', nombre: 'la cáscara de plátano' },
+            { id: 'hojas', arte: 'residuo-hojas', nombre: 'las hojas secas' },
+          ],
+          correcta: 'periodico',
+          conTexto: true,
+        },
+        {
+          tipo: 'encuentra-error',
+          id: 'u1-l4-e3',
+          consigna: 'Toca la basura que cayó en el bote equivocado.',
+          pista: 'Mira el dibujo de cada bote y lo que tiene encima.',
+          escena: 'parque',
+          objetos: [
+            { id: 'bote-verde', arte: 'bote-organico', nombre: 'el bote verde', x: 24, y: 74, ancho: 13, mal: false },
+            { id: 'lata-en-verde', arte: 'residuo-lata', nombre: 'la lata', x: 24, y: 48, ancho: 8, mal: true },
+            { id: 'bote-azul', arte: 'bote-reciclable', nombre: 'el bote azul', x: 50, y: 74, ancho: 13, mal: false },
+            { id: 'botella-en-azul', arte: 'residuo-botella', nombre: 'la botella', x: 50, y: 48, ancho: 8, mal: false },
+            { id: 'bote-naranja', arte: 'bote-no-reciclable', nombre: 'el bote naranja', x: 76, y: 74, ancho: 13, mal: false },
+            { id: 'platano-en-naranja', arte: 'residuo-platano', nombre: 'la cáscara de plátano', x: 76, y: 48, ancho: 8, mal: true },
+          ],
+        },
+        {
+          tipo: 'al-bote',
+          id: 'u1-l4-e4',
+          consigna: 'Ahora sepáralas tú, sin revolver.',
+          pista: 'Cada basura tiene su bote.',
+          residuos: ['jugo', 'manzana', 'servilleta'],
+        },
+        {
+          tipo: 'escucha-toca',
+          id: 'u1-l4-e5',
+          consigna: 'Toca el bote revuelto.',
+          pista: 'Es el bote gris que tiene de todo.',
+          opciones: [
+            { id: 'organico', arte: 'bote-organico', nombre: 'el bote verde' },
+            { id: 'revuelto', arte: 'bote-revuelto', nombre: 'el bote revuelto' },
+            { id: 'reciclable', arte: 'bote-reciclable', nombre: 'el bote azul' },
+          ],
+          correcta: 'revuelto',
+        },
+        {
+          // D12: lo que se recicla va vacío y limpio.
+          tipo: 'si-no',
+          id: 'u1-l4-e6',
+          consigna: '¿Está bien tirar una botella llena de jugo en el bote azul?',
+          pista: 'Lo que se recicla va vacío y limpio.',
+          arte: 'residuo-botella',
+          junto: 'residuo-jugo',
+          respuesta: false,
+          porque: 'Primero se vacía; lo que se recicla va limpio.',
+        },
+        {
+          tipo: 'muestrale',
+          id: 'u1-l4-e7',
+          consigna: 'Muéstrale a Caco otra basura de verdad.',
+          pista: 'Ponla cerca de la cámara para que Caco la vea.',
+          respaldo: {
+            tipo: 'elige-imagen',
+            id: 'u1-l4-e7-respaldo',
+            consigna: '¿Cuál va en el bote verde?',
+            pista: 'En el bote verde va lo que viene de plantas o animales.',
+            opciones: [
+              { id: 'hojas', arte: 'residuo-hojas', nombre: 'las hojas secas' },
+              { id: 'lata', arte: 'residuo-lata', nombre: 'la lata' },
+              { id: 'popote', arte: 'residuo-popote', nombre: 'el popote' },
+            ],
+            correcta: 'hojas',
+            conTexto: true,
+          },
         },
       ],
     },

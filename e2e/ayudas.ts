@@ -23,6 +23,7 @@ interface Gancho {
   quieto(): boolean;
   voz(): { conAudio: number; conNavegador: number };
   musica(): string | null;
+  marcador(): Record<string, number> | null;
 }
 
 declare global {

@@ -3,7 +3,9 @@ import { catalogoArte } from '../src/arte/catalogo';
 import { CATEGORIAS } from '../src/data/categorias';
 import { RESIDUOS } from '../src/data/residuos';
 import type { Ejercicio, Leccion } from '../src/contenido/tipos';
+import { TEXTOS_AVENTURAS } from '../src/contenido/aventuras';
 import { UNIDADES } from '../src/contenido/unidades';
+import { UNIDADES_CON_AVENTURA } from '../src/aventuras';
 import { categoriaDe } from '../src/logica/clasificacion';
 import { todosLosEjercicios } from '../src/voz/frases';
 
@@ -20,7 +22,7 @@ function arteDe(e: Ejercicio): string[] {
     case 'parejas':
       return e.pares.flatMap((p) => [p.izquierda.arte, p.derecha.arte]);
     case 'si-no':
-      return [e.arte];
+      return e.junto ? [e.arte, e.junto] : [e.arte];
     case 'ordena':
       return e.pasos.map((p) => p.arte);
     case 'encuentra-error':
@@ -36,6 +38,22 @@ describe('unidades', () => {
     UNIDADES.forEach((u, i) => expect(u.numero).toBe(i + 1));
     const ids = [...LECCIONES.map(([, l]) => l.id), ...EJERCICIOS.map(([, e]) => e.id)];
     expect(new Set(ids).size).toBe(ids.length);
+  });
+
+  it('cada unidad tiene de 4 a 5 lecciones y su aventura registrada', () => {
+    for (const u of UNIDADES) {
+      expect(u.lecciones.length, u.id).toBeGreaterThanOrEqual(4);
+      expect(u.lecciones.length, u.id).toBeLessThanOrEqual(5);
+      expect(UNIDADES_CON_AVENTURA, u.id).toContain(u.id);
+      // La aventura 1 usa los textos de la v1; las demás, src/contenido/aventuras.ts.
+      if (u.id !== 'u1') expect(Object.keys(TEXTOS_AVENTURAS), u.id).toContain(u.id);
+    }
+  });
+
+  it('cada estampa es un animal distinto del álbum', () => {
+    const ids = UNIDADES.map((u) => u.estampa.id);
+    expect(new Set(ids).size).toBe(ids.length);
+    for (const id of ids) expect(['cacomixtle', 'tlacuache', 'colibri', 'monarca', 'ajolote']).toContain(id);
   });
 
   it.each(UNIDADES.map((u) => [u.id, u] as const))('%s: cofre a la mitad, estampa y aventura con arte que existe', (_id, u) => {

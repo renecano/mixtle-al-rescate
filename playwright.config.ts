@@ -5,7 +5,7 @@ const enCI = !!process.env.CI;
  * Con BASE_URL (por ejemplo, el link de producción de Vercel) las pruebas corren contra ese sitio
  * y no se construye nada en local. Sin BASE_URL: build de producción + `vite preview`.
  */
-const urlBase = process.env.BASE_URL?.replace(//$/, '');
+const urlBase = process.env.BASE_URL?.replace(/\/$/, '');
 
 /**
  * Recorridos completos del juego en el navegador.

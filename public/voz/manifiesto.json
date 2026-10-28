@@ -31,14 +31,19 @@
    "ms": 1370,
    "config": "0377892f781d16"
   },
+  "0088eab4232ca0.mp3": {
+   "texto": "¡Vamos a conocer a los animales del parque!",
+   "ms": 2590,
+   "config": "0377892f781d16"
+  },
   "008b4b1d820b16.mp3": {
    "texto": "¡Creo que es una chirimoya! ¿A qué bote va?",
    "ms": 2420,
    "config": "0377892f781d16"
   },
-  "00a664fae50214.mp3": {
-   "texto": "Primero va la tierra, luego algo pequeñito.",
-   "ms": 2710,
+  "00e46da0a5d5ab.mp3": {
+   "texto": "¡Gracias! Ahora puedo ir a buscar bellotas.",
+   "ms": 2520,
    "config": "0377892f781d16"
   },
   "00ea8261800818.mp3": {
@@ -71,14 +76,34 @@
    "ms": 5810,
    "config": "0377892f781d16"
   },
+  "018f1d052fb8b4.mp3": {
+   "texto": "¿Está bien perseguir a los animales para tocarlos?",
+   "ms": 2930,
+   "config": "0377892f781d16"
+  },
+  "01a11cf8ee6655.mp3": {
+   "texto": "animal y separaron",
+   "ms": 1370,
+   "config": "0377892f781d16"
+  },
   "01a30eb1ba9857.mp3": {
    "texto": "veintisiete",
    "ms": 1080,
    "config": "0377892f781d16"
   },
+  "01b34b038a1339.mp3": {
+   "texto": "Al final, la ardilla está feliz.",
+   "ms": 2020,
+   "config": "0377892f781d16"
+  },
   "01c3e2fe0129e2.mp3": {
    "texto": "¡Hola, grupo Cacomixtle! Toquen la lección que señalo.",
    "ms": 3170,
+   "config": "0377892f781d16"
+  },
+  "01d31e6dc22cec.mp3": {
+   "texto": "¡Gracias! Ya puedo buscar algodoncillo para mis huevitos.",
+   "ms": 3140,
    "config": "0377892f781d16"
   },
   "01ddac9a0a7c4a.mp3": {
@@ -101,6 +126,11 @@
    "ms": 2740,
    "config": "0377892f781d16"
   },
+  "02207adfe4deb3.mp3": {
+   "texto": "Piensa dónde lo has visto.",
+   "ms": 1900,
+   "config": "0377892f781d16"
+  },
   "022748075f2ef2.mp3": {
    "texto": "Pon la basura frente a la cámara y toca el botón.",
    "ms": 2930,
@@ -109,6 +139,11 @@
   "02286df2170fbe.mp3": {
    "texto": "¿A qué bote va la servilleta usada?",
    "ms": 2280,
+   "config": "0377892f781d16"
+  },
+  "022a3eddbcb214.mp3": {
+   "texto": "Unidad 2: Los animales del parque.",
+   "ms": 2330,
    "config": "0377892f781d16"
   },
   "0230a7b1dc0412.mp3": {
@@ -131,6 +166,11 @@
    "ms": 980,
    "config": "0377892f781d16"
   },
+  "02a6939289dc93.mp3": {
+   "texto": "¿Está bien dejar una bolsa de plástico en el pasto?",
+   "ms": 3020,
+   "config": "0377892f781d16"
+  },
   "02aebe8d4e4fa2.mp3": {
    "texto": "¿Me ayudas a rescatarlos?",
    "ms": 1780,
@@ -139,6 +179,11 @@
   "02da45eb965d31.mp3": {
    "texto": "cuarenta",
    "ms": 820,
+   "config": "0377892f781d16"
+  },
+  "02dc203cd09053.mp3": {
+   "texto": "¿Quién tiene una cola larga con anillos negros y blancos?",
+   "ms": 3220,
    "config": "0377892f781d16"
   },
   "02f3239466d898.mp3": {
@@ -186,9 +231,19 @@
    "ms": 1300,
    "config": "0377892f781d16"
   },
+  "037c6a10848f6a.mp3": {
+   "texto": "Los animales de Toluca son nuestros vecinos. ¡Vamos a cuidarlos!",
+   "ms": 3940,
+   "config": "0377892f781d16"
+  },
   "038a070b652cbd.mp3": {
    "texto": "¡Creo que es una calabacita! ¿A qué bote va?",
    "ms": 2690,
+   "config": "0377892f781d16"
+  },
+  "03bd6e760b5f05.mp3": {
+   "texto": "Ninguno come dulces ni papitas.",
+   "ms": 2210,
    "config": "0377892f781d16"
   },
   "03eaf6acfe2de3.mp3": {
@@ -226,6 +281,11 @@
    "ms": 740,
    "config": "0377892f781d16"
   },
+  "048e8be574ce7e.mp3": {
+   "texto": "Tienen muchos hoyos redondos.",
+   "ms": 1870,
+   "config": "0377892f781d16"
+  },
   "04a3e338f2f428.mp3": {
    "texto": "¿A qué bote va la lata?",
    "ms": 1580,
@@ -241,6 +301,16 @@
    "ms": 4800,
    "config": "0377892f781d16"
   },
+  "04fa73c39da65b.mp3": {
+   "texto": "Las latas se pueden reciclar muchas veces.",
+   "ms": 2740,
+   "config": "0377892f781d16"
+  },
+  "050096b2c5f6ad.mp3": {
+   "texto": "Es tierra oscura con cáscaras y hojas.",
+   "ms": 2380,
+   "config": "0377892f781d16"
+  },
   "051729f462edaa.mp3": {
    "texto": "¡Bonus! Muéstrale a Caco una basura de verdad y juntos la separamos.",
    "ms": 3890,
@@ -249,6 +319,16 @@
   "051d3a08f63480.mp3": {
    "texto": "ochenta y siete",
    "ms": 1340,
+   "config": "0377892f781d16"
+  },
+  "052375e1baa458.mp3": {
+   "texto": "Ordena cómo ayudamos a la ardilla.",
+   "ms": 2230,
+   "config": "0377892f781d16"
+  },
+  "05359e8ec2e18a.mp3": {
+   "texto": "Es nuestro amigo Caco.",
+   "ms": 1510,
    "config": "0377892f781d16"
   },
   "054419edfcd5ac.mp3": {
@@ -281,6 +361,11 @@
    "ms": 1390,
    "config": "0377892f781d16"
   },
+  "05d5d5df8ab0f8.mp3": {
+   "texto": "residuo.",
+   "ms": 840,
+   "config": "0377892f781d16"
+  },
   "05d99b22700bc5.mp3": {
    "texto": "Toca la tierra para sembrar un árbol o unas flores.",
    "ms": 3050,
@@ -301,9 +386,19 @@
    "ms": 1180,
    "config": "0377892f781d16"
   },
+  "060a44fbba5fba.mp3": {
+   "texto": "¿Qué pasa si echamos todo junto? ¡Vamos a ver!",
+   "ms": 2740,
+   "config": "0377892f781d16"
+  },
   "062f313d2532fc.mp3": {
    "texto": "Los popotes casi nunca se reciclan; puedes tomar tu agua sin popote.",
    "ms": 4300,
+   "config": "0377892f781d16"
+  },
+  "064c040c3d3853.mp3": {
+   "texto": "Viene de un árbol.",
+   "ms": 1220,
    "config": "0377892f781d16"
   },
   "064d3ee920dedc.mp3": {
@@ -329,6 +424,11 @@
   "06eed27cc306ea.mp3": {
    "texto": "ochenta y un",
    "ms": 1180,
+   "config": "0377892f781d16"
+  },
+  "070d01253324fc.mp3": {
+   "texto": "Piensa en el bote azul.",
+   "ms": 1660,
    "config": "0377892f781d16"
   },
   "07182454311cc4.mp3": {
@@ -366,6 +466,16 @@
    "ms": 2690,
    "config": "0377892f781d16"
   },
+  "07ba9d78e03ed8.mp3": {
+   "texto": "Piensa en los tres botes.",
+   "ms": 1630,
+   "config": "0377892f781d16"
+  },
+  "07d7d490aeef84.mp3": {
+   "texto": "Une a cada animal con su comida.",
+   "ms": 2140,
+   "config": "0377892f781d16"
+  },
   "07ebfcba784a67.mp3": {
    "texto": "¡Muy bien! Va en el bote naranja con el dibujo del bote de basura.",
    "ms": 3550,
@@ -374,6 +484,11 @@
   "08029eb0a33c27.mp3": {
    "texto": "¡Creo que es una revista! ¿A qué bote va?",
    "ms": 2350,
+   "config": "0377892f781d16"
+  },
+  "0804dabe46464c.mp3": {
+   "texto": "Toca la bellota.",
+   "ms": 1250,
    "config": "0377892f781d16"
   },
   "0834af73a3f617.mp3": {
@@ -406,6 +521,11 @@
    "ms": 2880,
    "config": "0377892f781d16"
   },
+  "089b24d04326eb.mp3": {
+   "texto": "Tiene alas naranjas con líneas negras.",
+   "ms": 2420,
+   "config": "0377892f781d16"
+  },
   "089eb442d70de9.mp3": {
    "texto": "un",
    "ms": 480,
@@ -419,6 +539,11 @@
   "08d18ec37103a2.mp3": {
    "texto": "¡Gracias por enseñarme! Muéstrame otra cosa.",
    "ms": 2740,
+   "config": "0377892f781d16"
+  },
+  "08e20523603f30.mp3": {
+   "texto": "Tiene branquias rosas, como plumitas.",
+   "ms": 2330,
    "config": "0377892f781d16"
   },
   "08f5c820348916.mp3": {
@@ -436,14 +561,29 @@
    "ms": 1220,
    "config": "0377892f781d16"
   },
+  "091ca2633fa17b.mp3": {
+   "texto": "Es un pájaro pequeñito que mueve sus alas muy rápido.",
+   "ms": 3410,
+   "config": "0377892f781d16"
+  },
   "091cab2f322e5b.mp3": {
    "texto": "veintitrés",
    "ms": 1030,
    "config": "0377892f781d16"
   },
+  "092b365bcac300.mp3": {
+   "texto": "Toca al colibrí.",
+   "ms": 1200,
+   "config": "0377892f781d16"
+  },
   "0941c89c0ae43f.mp3": {
    "texto": "¡Creo que es una botella de plástico! ¿A qué bote va?",
    "ms": 2980,
+   "config": "0377892f781d16"
+  },
+  "09533805027494.mp3": {
+   "texto": "El papel sucio de comida ya no se recicla.",
+   "ms": 2860,
    "config": "0377892f781d16"
   },
   "099958b7de84b2.mp3": {
@@ -466,9 +606,24 @@
    "ms": 5570,
    "config": "0377892f781d16"
   },
-  "09f117b0ef9367.mp3": {
-   "texto": "El cacomixtle sale de noche y tiene una cola larga con anillos blancos y negros.",
-   "ms": 4700,
+  "09ee2a6ff06ba7.mp3": {
+   "texto": "Une a cada animal con el lugar donde vive.",
+   "ms": 2570,
+   "config": "0377892f781d16"
+  },
+  "0a04d90045bbeb.mp3": {
+   "texto": "Toca a la ardilla.",
+   "ms": 1270,
+   "config": "0377892f781d16"
+  },
+  "0a195eead153a2.mp3": {
+   "texto": "¿El cacomixtle sale sobre todo de noche?",
+   "ms": 2540,
+   "config": "0377892f781d16"
+  },
+  "0a245f7ea13e57.mp3": {
+   "texto": "Ahora sepáralas tú, sin revolver.",
+   "ms": 2020,
    "config": "0377892f781d16"
   },
   "0a2500633abe36.mp3": {
@@ -521,11 +676,6 @@
    "ms": 2350,
    "config": "0377892f781d16"
   },
-  "0b24cd3c2825e1.mp3": {
-   "texto": "Ordena cómo crece una planta, del principio al final.",
-   "ms": 3310,
-   "config": "0377892f781d16"
-  },
   "0b2a0813ad1690.mp3": {
    "texto": "veinticuatro",
    "ms": 1150,
@@ -534,6 +684,11 @@
   "0b371ea167017f.mp3": {
    "texto": "trece",
    "ms": 720,
+   "config": "0377892f781d16"
+  },
+  "0b79d378323466.mp3": {
+   "texto": "Une a cada animal con lo que come.",
+   "ms": 2110,
    "config": "0377892f781d16"
   },
   "0b9dd6e514a00a.mp3": {
@@ -561,14 +716,39 @@
    "ms": 2500,
    "config": "0377892f781d16"
   },
+  "0be15e2959a881.mp3": {
+   "texto": "¡Hay animales atrapados en la basura! Toca la basura para liberarlos.",
+   "ms": 3980,
+   "config": "0377892f781d16"
+  },
+  "0c0c49a8268e10.mp3": {
+   "texto": "¿Está bien darle papitas a la ardilla?",
+   "ms": 2400,
+   "config": "0377892f781d16"
+  },
   "0c16b0f311c39a.mp3": {
    "texto": "setenta y cuatro",
    "ms": 1340,
    "config": "0377892f781d16"
   },
+  "0c4f117d310e1e.mp3": {
+   "texto": "Primero va la cáscara y al final, la planta.",
+   "ms": 2740,
+   "config": "0377892f781d16"
+  },
   "0c621a29d770b1.mp3": {
    "texto": "tres",
    "ms": 620,
+   "config": "0377892f781d16"
+  },
+  "0c7768720dbe0f.mp3": {
+   "texto": "Caco duerme de día.",
+   "ms": 1440,
+   "config": "0377892f781d16"
+  },
+  "0c837c9e99aef8.mp3": {
+   "texto": "El papel se hace con árboles.",
+   "ms": 1940,
    "config": "0377892f781d16"
   },
   "0ccaf33561f370.mp3": {
@@ -606,8 +786,18 @@
    "ms": 1700,
    "config": "0377892f781d16"
   },
+  "0d1893921a254b.mp3": {
+   "texto": "Busca lo que viene en envoltura.",
+   "ms": 1970,
+   "config": "0377892f781d16"
+  },
   "0d2d572994b821.mp3": {
    "texto": "¡Creo que es un pedazo de pizza! ¿A qué bote va?",
+   "ms": 2740,
+   "config": "0377892f781d16"
+  },
+  "0d451a95122af8.mp3": {
+   "texto": "¿Quién vive en los arroyos del Nevado de Toluca?",
    "ms": 2740,
    "config": "0377892f781d16"
   },
@@ -616,9 +806,19 @@
    "ms": 1220,
    "config": "0377892f781d16"
   },
+  "0d6b8e6914a64a.mp3": {
+   "texto": "¿Está bien darle dulces al colibrí?",
+   "ms": 2450,
+   "config": "0377892f781d16"
+  },
   "0d796602c98ad2.mp3": {
    "texto": "¡Lo lograste! El parque está limpio. Ahora vamos a separar la basura.",
    "ms": 4080,
+   "config": "0377892f781d16"
+  },
+  "0d8114c7809dca.mp3": {
+   "texto": "Muchas vuelan miles de kilómetros desde Canadá y Estados Unidos.",
+   "ms": 3890,
    "config": "0377892f781d16"
   },
   "0d8d8953e76ff5.mp3": {
@@ -661,9 +861,24 @@
    "ms": 2540,
    "config": "0377892f781d16"
   },
+  "0de703e1604be0.mp3": {
+   "texto": "¿Las mariposas monarca vienen a pasar el invierno a los bosques del Estado de México?",
+   "ms": 4870,
+   "config": "0377892f781d16"
+  },
+  "0dea6d31df1f4e.mp3": {
+   "texto": "¡Felicidades, guardianes del parque! Rescataron a",
+   "ms": 2930,
+   "config": "0377892f781d16"
+  },
   "0e0eac91bdcaf0.mp3": {
    "texto": "setenta y seis",
    "ms": 1220,
+   "config": "0377892f781d16"
+  },
+  "0e1afd7b504638.mp3": {
+   "texto": "El colibrí toma néctar de las flores y come insectos pequeños.",
+   "ms": 3500,
    "config": "0377892f781d16"
   },
   "0e1c2d5921c62d.mp3": {
@@ -691,9 +906,24 @@
    "ms": 2950,
    "config": "0377892f781d16"
   },
+  "0e67e90de1d967.mp3": {
+   "texto": "Lo que se recicla va vacío y limpio.",
+   "ms": 2400,
+   "config": "0377892f781d16"
+  },
+  "0e6e51c1f4649e.mp3": {
+   "texto": "¡Vamos a ver en qué se convierte la basura bien separada!",
+   "ms": 3460,
+   "config": "0377892f781d16"
+  },
   "0e71cb998c9cdc.mp3": {
    "texto": "¡Lección terminada! Ganaron",
    "ms": 1780,
+   "config": "0377892f781d16"
+  },
+  "0ea76ef9396d1e.mp3": {
+   "texto": "¡Ganaron una estampa nueva: La mariposa monarca!",
+   "ms": 3000,
    "config": "0377892f781d16"
   },
   "0eb18e2e9ea20a.mp3": {
@@ -716,6 +946,11 @@
    "ms": 1320,
    "config": "0377892f781d16"
   },
+  "0ee335895a9681.mp3": {
+   "texto": "Así ayudamos a los animales.",
+   "ms": 2020,
+   "config": "0377892f781d16"
+  },
   "0efe3cc5f11b04.mp3": {
    "texto": "No pude ponerme mis lentes. ¡Juguemos con dibujos!",
    "ms": 2930,
@@ -731,9 +966,24 @@
    "ms": 700,
    "config": "0377892f781d16"
   },
+  "0f8436bb6bbb7c.mp3": {
+   "texto": "Es mejor mirarlos con calma, desde lejos.",
+   "ms": 2660,
+   "config": "0377892f781d16"
+  },
+  "0f8c6ad055b430.mp3": {
+   "texto": "Mira el dibujo de cada bote y lo que tiene encima.",
+   "ms": 3050,
+   "config": "0377892f781d16"
+  },
   "0fac1355de1caf.mp3": {
    "texto": "treinta",
    "ms": 840,
+   "config": "0377892f781d16"
+  },
+  "0faf82c9d9aa08.mp3": {
+   "texto": "Revuelta, la basura se ensucia y muchas veces ya no se puede reciclar.",
+   "ms": 4270,
    "config": "0377892f781d16"
   },
   "0fb834fb755bd3.mp3": {
@@ -756,6 +1006,11 @@
    "ms": 2980,
    "config": "0377892f781d16"
   },
+  "0fe5abb1680a44.mp3": {
+   "texto": "¿Está bien recoger la basura del parque?",
+   "ms": 2400,
+   "config": "0377892f781d16"
+  },
   "0fed46117ae88b.mp3": {
    "texto": "cincuenta y cuatro",
    "ms": 1440,
@@ -764,6 +1019,11 @@
   "0ff39c1196d68e.mp3": {
    "texto": "setenta y un",
    "ms": 1150,
+   "config": "0377892f781d16"
+  },
+  "0ff4941dfe806b.mp3": {
+   "texto": "Vienen desde muy lejos.",
+   "ms": 1630,
    "config": "0377892f781d16"
   },
   "0ff6fed56c8a16.mp3": {
@@ -796,6 +1056,11 @@
    "ms": 3620,
    "config": "0377892f781d16"
   },
+  "109324617359d2.mp3": {
+   "texto": "residuos.",
+   "ms": 960,
+   "config": "0377892f781d16"
+  },
   "10a826789568fe.mp3": {
    "texto": "¡Creo que es un garrafón de plástico! ¿A qué bote va?",
    "ms": 2950,
@@ -811,9 +1076,24 @@
    "ms": 1300,
    "config": "0377892f781d16"
   },
+  "10f9dec4cec8ef.mp3": {
+   "texto": "Ahora separemos la basura que recogimos. Lleva cada una a su bote.",
+   "ms": 3910,
+   "config": "0377892f781d16"
+  },
   "11006120a9752f.mp3": {
    "texto": "sesenta y tres",
    "ms": 1200,
+   "config": "0377892f781d16"
+  },
+  "1109d66868cba6.mp3": {
+   "texto": "La comida de las personas puede enfermar a los animales.",
+   "ms": 3240,
+   "config": "0377892f781d16"
+  },
+  "110f4e54e47e84.mp3": {
+   "texto": "Primero se tira en su bote.",
+   "ms": 1820,
    "config": "0377892f781d16"
   },
   "11210acafda5bf.mp3": {
@@ -831,6 +1111,11 @@
    "ms": 1970,
    "config": "0377892f781d16"
   },
+  "118c1a6e3e0976.mp3": {
+   "texto": "De día duerme y de noche busca su comida.",
+   "ms": 2710,
+   "config": "0377892f781d16"
+  },
   "118f14cf52f70d.mp3": {
    "texto": "¡Creo que es una col! ¿A qué bote va?",
    "ms": 2160,
@@ -841,6 +1126,11 @@
    "ms": 3140,
    "config": "0377892f781d16"
   },
+  "11b5507c54b799.mp3": {
+   "texto": "¡Rescataron a todos los animales y separaron la basura!",
+   "ms": 3430,
+   "config": "0377892f781d16"
+  },
   "11ba43771cfeb2.mp3": {
    "texto": "La lata se recicla en el bote azul.",
    "ms": 2400,
@@ -849,6 +1139,11 @@
   "11ec0912c2a158.mp3": {
    "texto": "veintinueve",
    "ms": 1010,
+   "config": "0377892f781d16"
+  },
+  "1203efb562850a.mp3": {
+   "texto": "Las papitas no son comida de ardilla.",
+   "ms": 2500,
    "config": "0377892f781d16"
   },
   "12311cd445a810.mp3": {
@@ -864,6 +1159,11 @@
   "1239a84d0537d7.mp3": {
    "texto": "¡Así se hace!",
    "ms": 1200,
+   "config": "0377892f781d16"
+  },
+  "124d69bcfc0cd8.mp3": {
+   "texto": "¿La mamá tlacuache lleva a sus bebés en una bolsa de su panza?",
+   "ms": 3620,
    "config": "0377892f781d16"
   },
   "1264326cf863b3.mp3": {
@@ -886,14 +1186,39 @@
    "ms": 1300,
    "config": "0377892f781d16"
   },
+  "12b91077b9fb8f.mp3": {
+   "texto": "Con papel reciclado se cortan menos árboles.",
+   "ms": 2930,
+   "config": "0377892f781d16"
+  },
   "12bb27779f503c.mp3": {
    "texto": "Con papel reciclado se hace papel nuevo, y así se cortan menos árboles.",
    "ms": 4460,
    "config": "0377892f781d16"
   },
+  "12f3f70300dc30.mp3": {
+   "texto": "Tiene un gorrito café.",
+   "ms": 1560,
+   "config": "0377892f781d16"
+  },
   "1325e72e6b9ac9.mp3": {
    "texto": "En el bote naranja va lo que casi nunca se recicla.",
    "ms": 3190,
+   "config": "0377892f781d16"
+  },
+  "13363ab02dd4c5.mp3": {
+   "texto": "Es de plástico y va en el bote azul.",
+   "ms": 2330,
+   "config": "0377892f781d16"
+  },
+  "134d782ee17721.mp3": {
+   "texto": "Une cada basura con lo que puede llegar a ser.",
+   "ms": 2760,
+   "config": "0377892f781d16"
+  },
+  "1358446e362e0f.mp3": {
+   "texto": "Tiene una bolsa, como el canguro.",
+   "ms": 2060,
    "config": "0377892f781d16"
   },
   "135a47ca3ae023.mp3": {
@@ -921,6 +1246,11 @@
    "ms": 2300,
    "config": "0377892f781d16"
   },
+  "13d03aa4e79a90.mp3": {
+   "texto": "Muéstrale a Caco otra basura de verdad.",
+   "ms": 2470,
+   "config": "0377892f781d16"
+  },
   "141cd11ec43409.mp3": {
    "texto": "treinta y cinco",
    "ms": 1320,
@@ -929,6 +1259,11 @@
   "1425dc4e9b265f.mp3": {
    "texto": "noventa",
    "ms": 820,
+   "config": "0377892f781d16"
+  },
+  "14485df1dec396.mp3": {
+   "texto": "Lleva al bote la basura que lastimaba a los animales.",
+   "ms": 3100,
    "config": "0377892f781d16"
   },
   "147761ac27e069.mp3": {
@@ -951,9 +1286,24 @@
    "ms": 2570,
    "config": "0377892f781d16"
   },
+  "14b4aa1789cf44.mp3": {
+   "texto": "Y cuando crecen, los carga en la espalda.",
+   "ms": 2350,
+   "config": "0377892f781d16"
+  },
+  "14dde4212590c5.mp3": {
+   "texto": "¿Qué come la oruga de la mariposa monarca?",
+   "ms": 2690,
+   "config": "0377892f781d16"
+  },
   "14de6015a2c9b0.mp3": {
    "texto": "¡Creo que es un plátano! ¿A qué bote va?",
    "ms": 2350,
+   "config": "0377892f781d16"
+  },
+  "14f6c5d84990fa.mp3": {
+   "texto": "¿Está bien tirar una botella llena de jugo en el bote azul?",
+   "ms": 3310,
    "config": "0377892f781d16"
   },
   "14f71d4c8fb9ea.mp3": {
@@ -1001,6 +1351,11 @@
    "ms": 1250,
    "config": "0377892f781d16"
   },
+  "159f5551225099.mp3": {
+   "texto": "Piensa de qué está hecha cada cosa.",
+   "ms": 2230,
+   "config": "0377892f781d16"
+  },
   "15c0782314367a.mp3": {
    "texto": "setenta y nueve",
    "ms": 1340,
@@ -1009,6 +1364,16 @@
   "15de960e83d81f.mp3": {
    "texto": "Las hojas secas también sirven para hacer composta, que alimenta a las plantas.",
    "ms": 4440,
+   "config": "0377892f781d16"
+  },
+  "15e0e9c94f778a.mp3": {
+   "texto": "Toca la basura que puede lastimar a los animales.",
+   "ms": 3020,
+   "config": "0377892f781d16"
+  },
+  "15f8e00fe8567f.mp3": {
+   "texto": "Una bolsa puede atorar a un animal, o se la puede tragar.",
+   "ms": 3220,
    "config": "0377892f781d16"
   },
   "161dfc9788d3ac.mp3": {
@@ -1021,9 +1386,24 @@
    "ms": 1200,
    "config": "0377892f781d16"
   },
+  "16460d303dcd37.mp3": {
+   "texto": "Cada basura tiene su bote.",
+   "ms": 1920,
+   "config": "0377892f781d16"
+  },
+  "1665454f269e49.mp3": {
+   "texto": "Sin basura, los animales no se lastiman.",
+   "ms": 2660,
+   "config": "0377892f781d16"
+  },
   "1670c4aa97c6cb.mp3": {
    "texto": "Es amarilla y viene de una fruta.",
    "ms": 2140,
+   "config": "0377892f781d16"
+  },
+  "1674315a2b5ece.mp3": {
+   "texto": "¡Gracias! Ya puedo cargar a mis bebés en la espalda.",
+   "ms": 2710,
    "config": "0377892f781d16"
   },
   "169edda62f4dcb.mp3": {
@@ -1051,6 +1431,11 @@
    "ms": 770,
    "config": "0377892f781d16"
   },
+  "16d5c98def822d.mp3": {
+   "texto": "¿Con cuál se pueden hacer playeras?",
+   "ms": 2090,
+   "config": "0377892f781d16"
+  },
   "16ef6f842209c4.mp3": {
    "texto": "cuarenta y cuatro",
    "ms": 1370,
@@ -1076,6 +1461,11 @@
    "ms": 1180,
    "config": "0377892f781d16"
   },
+  "177e0f2cc4dabc.mp3": {
+   "texto": "Ordena qué le pasa a la cáscara de plátano.",
+   "ms": 2570,
+   "config": "0377892f781d16"
+  },
   "1781b179759424.mp3": {
    "texto": "La cáscara de plátano se convierte en composta, un abono que alimenta a las plantas.",
    "ms": 4750,
@@ -1091,6 +1481,11 @@
    "ms": 1920,
    "config": "0377892f781d16"
   },
+  "17b22338dce041.mp3": {
+   "texto": "Toca la comida que no es para los animales.",
+   "ms": 2470,
+   "config": "0377892f781d16"
+  },
   "17ba240b759900.mp3": {
    "texto": "cinco",
    "ms": 740,
@@ -1104,6 +1499,11 @@
   "17ce9d450e6ace.mp3": {
    "texto": "noventa y nueve",
    "ms": 1320,
+   "config": "0377892f781d16"
+  },
+  "17d824bf5c1f5a.mp3": {
+   "texto": "Toca a la mariposa monarca.",
+   "ms": 1850,
    "config": "0377892f781d16"
   },
   "17d9a6b903bd08.mp3": {
@@ -1131,9 +1531,24 @@
    "ms": 720,
    "config": "0377892f781d16"
   },
+  "18462c8a0b13dc.mp3": {
+   "texto": "Solo come una planta: el algodoncillo.",
+   "ms": 2400,
+   "config": "0377892f781d16"
+  },
+  "18467806706c8b.mp3": {
+   "texto": "Toca el bote revuelto.",
+   "ms": 1660,
+   "config": "0377892f781d16"
+  },
   "186310162c2dcd.mp3": {
    "texto": "¡Creo que es papel de baño! ¿A qué bote va?",
    "ms": 2400,
+   "config": "0377892f781d16"
+  },
+  "1870b0a87490f9.mp3": {
+   "texto": "Es el bote gris que tiene de todo.",
+   "ms": 2110,
    "config": "0377892f781d16"
   },
   "187a748e418548.mp3": {
@@ -1151,6 +1566,16 @@
    "ms": 2350,
    "config": "0377892f781d16"
   },
+  "18a96ca6e3bfae.mp3": {
+   "texto": "¿Qué comen los animales del parque? ¡Vamos a descubrirlo!",
+   "ms": 3120,
+   "config": "0377892f781d16"
+  },
+  "18bc73e31ed94e.mp3": {
+   "texto": "Los animales del parque son silvestres.",
+   "ms": 2420,
+   "config": "0377892f781d16"
+  },
   "18c4c092528e47.mp3": {
    "texto": "¿Está bien tirar la lata en el bote azul?",
    "ms": 2520,
@@ -1161,6 +1586,16 @@
    "ms": 1130,
    "config": "0377892f781d16"
   },
+  "18d43ce8c60dad.mp3": {
+   "texto": "El cacomixtle sale sobre todo de noche y tiene una cola larga con anillos negros y blancos.",
+   "ms": 5380,
+   "config": "0377892f781d16"
+  },
+  "18ddef7feb7406.mp3": {
+   "texto": "Ordena el viaje de la botella.",
+   "ms": 1900,
+   "config": "0377892f781d16"
+  },
   "193dacf11516fc.mp3": {
    "texto": "Fíjate en el dibujo de cada bote.",
    "ms": 2110,
@@ -1169,6 +1604,11 @@
   "19426abc25c73d.mp3": {
    "texto": "ochenta y cuatro",
    "ms": 1370,
+   "config": "0377892f781d16"
+  },
+  "196a28a5b157ef.mp3": {
+   "texto": "¿Qué come la ardilla en el bosque?",
+   "ms": 1970,
    "config": "0377892f781d16"
   },
   "196cd6b4d93f64.mp3": {
@@ -1201,9 +1641,19 @@
    "ms": 1850,
    "config": "0377892f781d16"
   },
+  "1a44acd3d36ca1.mp3": {
+   "texto": "Busca cosas de plástico y metal en el pasto.",
+   "ms": 2810,
+   "config": "0377892f781d16"
+  },
   "1a4bbc14954a60.mp3": {
    "texto": "¿A qué bote va el popote?",
    "ms": 1680,
+   "config": "0377892f781d16"
+  },
+  "1a571ce8d058fc.mp3": {
+   "texto": "La basura puede lastimar a los animales. ¡Vamos a ayudarlos!",
+   "ms": 3600,
    "config": "0377892f781d16"
   },
   "1a57d739df84b2.mp3": {
@@ -1221,9 +1671,19 @@
    "ms": 2350,
    "config": "0377892f781d16"
   },
+  "1ad3a8cba5406a.mp3": {
+   "texto": "¡Gracias! Ya puedo volar de flor en flor.",
+   "ms": 2350,
+   "config": "0377892f781d16"
+  },
   "1af0d8767507e1.mp3": {
    "texto": "veinte",
    "ms": 740,
+   "config": "0377892f781d16"
+  },
+  "1afd94652f396f.mp3": {
+   "texto": "Toca la basura que cayó en el bote equivocado.",
+   "ms": 2900,
    "config": "0377892f781d16"
   },
   "1b092364a798ef.mp3": {
@@ -1236,6 +1696,11 @@
    "ms": 4510,
    "config": "0377892f781d16"
   },
+  "1b2637bf207caf.mp3": {
+   "texto": "Primero se vacía; lo que se recicla va limpio.",
+   "ms": 2980,
+   "config": "0377892f781d16"
+  },
   "1b40ed80ff4a0b.mp3": {
    "texto": "cincuenta y un",
    "ms": 1250,
@@ -1246,9 +1711,29 @@
    "ms": 580,
    "config": "0377892f781d16"
   },
+  "1b4fa23ecd1736.mp3": {
+   "texto": "¿Cuál se echa a perder si lo revuelves con comida?",
+   "ms": 2860,
+   "config": "0377892f781d16"
+  },
   "1b55b16f3615c8.mp3": {
    "texto": "uno",
    "ms": 580,
+   "config": "0377892f781d16"
+  },
+  "1b56fcee0d47f1.mp3": {
+   "texto": "animales y separaron",
+   "ms": 1460,
+   "config": "0377892f781d16"
+  },
+  "1b5c3e44d4fdcb.mp3": {
+   "texto": "¿Una lata se puede reciclar para hacer otra lata?",
+   "ms": 2860,
+   "config": "0377892f781d16"
+  },
+  "1b86f8727b4ae6.mp3": {
+   "texto": "Toca la basura que tiene atrapado a un animal.",
+   "ms": 2830,
    "config": "0377892f781d16"
   },
   "1bc6875e58ddf6.mp3": {
@@ -1291,6 +1776,16 @@
    "ms": 1250,
    "config": "0377892f781d16"
   },
+  "1c6b9382eea3fa.mp3": {
+   "texto": "Tiene la cola esponjada.",
+   "ms": 1580,
+   "config": "0377892f781d16"
+  },
+  "1ca0ef17eaadd4.mp3": {
+   "texto": "Toca la composta.",
+   "ms": 1370,
+   "config": "0377892f781d16"
+  },
   "1ca416b1a2146a.mp3": {
    "texto": "Ahora arrastra cada basura a su bote.",
    "ms": 2260,
@@ -1301,14 +1796,29 @@
    "ms": 2930,
    "config": "0377892f781d16"
   },
+  "1cced770f8f5fc.mp3": {
+   "texto": "El colibrí busca flores.",
+   "ms": 1780,
+   "config": "0377892f781d16"
+  },
   "1cdbd0b119cb17.mp3": {
    "texto": "animales.",
    "ms": 910,
    "config": "0377892f781d16"
   },
+  "1cf5aba79231e6.mp3": {
+   "texto": "Piensa qué come cada uno en el parque.",
+   "ms": 2380,
+   "config": "0377892f781d16"
+  },
   "1d09702384542b.mp3": {
    "texto": "¡Creo que es un sobre de papel! ¿A qué bote va?",
    "ms": 2640,
+   "config": "0377892f781d16"
+  },
+  "1d111122968aa5.mp3": {
+   "texto": "Muchas mariposas monarca vuelan miles de kilómetros para pasar el invierno en los bosques del Estado de México y Michoacán.",
+   "ms": 7060,
    "config": "0377892f781d16"
   },
   "1d123ac9c884ac.mp3": {
@@ -1319,6 +1829,11 @@
   "1d1cd73f87bcd1.mp3": {
    "texto": "¡Creo que es una botella de vidrio! ¿A qué bote va?",
    "ms": 2810,
+   "config": "0377892f781d16"
+  },
+  "1d23a3b349cbf4.mp3": {
+   "texto": "Un animal se puede atorar en ella.",
+   "ms": 2090,
    "config": "0377892f781d16"
   },
   "1d5e7a361bbb00.mp3": {
@@ -1333,6 +1848,11 @@
   },
   "1d75e5c34e0ddc.mp3": {
    "texto": "¿A qué bote va las hojas secas?",
+   "ms": 1970,
+   "config": "0377892f781d16"
+  },
+  "1db35103d61329.mp3": {
+   "texto": "Es de plástico y tiene hoyos.",
    "ms": 1970,
    "config": "0377892f781d16"
   },
@@ -1366,6 +1886,11 @@
    "ms": 1300,
    "config": "0377892f781d16"
   },
+  "1e9099926b7ee2.mp3": {
+   "texto": "¿Cuál puede atorar a un animal?",
+   "ms": 1870,
+   "config": "0377892f781d16"
+  },
   "1e97d83d5d8716.mp3": {
    "texto": "¡Creo que es una hoja de papel! ¿A qué bote va?",
    "ms": 2540,
@@ -1379,6 +1904,11 @@
   "1ec56985407b96.mp3": {
    "texto": "Toca la basura para guardarla en mi bolsa.",
    "ms": 2690,
+   "config": "0377892f781d16"
+  },
+  "1ef75ac84c28e9.mp3": {
+   "texto": "Toca los anillos de plástico.",
+   "ms": 1850,
    "config": "0377892f781d16"
   },
   "1f0b6cb1ee3a9a.mp3": {
@@ -1396,6 +1926,11 @@
    "ms": 1250,
    "config": "0377892f781d16"
   },
+  "1fa086a0bfbff6.mp3": {
+   "texto": "Conocemos a los animales del parque y cómo cuidarlos de la basura.",
+   "ms": 3740,
+   "config": "0377892f781d16"
+  },
   "1fa71f58fcd19d.mp3": {
    "texto": "¡Creo que es una coliflor! ¿A qué bote va?",
    "ms": 2420,
@@ -1406,6 +1941,16 @@
    "ms": 2330,
    "config": "0377892f781d16"
   },
+  "1fccd37fabe3ba.mp3": {
+   "texto": "La mariposa monarca",
+   "ms": 1540,
+   "config": "0377892f781d16"
+  },
+  "1fd3b562559aaf.mp3": {
+   "texto": "¿Reciclar papel ayuda a cuidar los árboles?",
+   "ms": 2690,
+   "config": "0377892f781d16"
+  },
   "1fe762ff1ac3a7.mp3": {
    "texto": "¡Vamos a conocer los tres botes!",
    "ms": 2160,
@@ -1414,6 +1959,11 @@
   "1fe83168df6a2b.mp3": {
    "texto": "Ponla cerca de la cámara para que Caco la vea.",
    "ms": 2740,
+   "config": "0377892f781d16"
+  },
+  "1ff9ee172432ef.mp3": {
+   "texto": "¿Está bien echar toda la basura revuelta en un solo bote?",
+   "ms": 3170,
    "config": "0377892f781d16"
   }
  }

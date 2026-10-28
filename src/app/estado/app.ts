@@ -29,13 +29,17 @@ interface EstadoApp {
 
 /**
  * Pantalla inicial. Atajos para revisar (solo en desarrollo o con ?e2e):
- * `?escena=Nivel2` entra directo a esa escena de la aventura 1; `?galeria` muestra todo el arte.
+ * `?escena=Nivel2` entra directo a esa escena de la aventura 1 (con `&unidad=u2`, a la de esa unidad);
+ * `?galeria` muestra todo el arte.
  */
 export function pantallaInicial(busqueda: string, desarrollo: boolean): Pick<EstadoApp, 'pantalla' | 'escenaInicial' | 'unidadId'> {
   const params = new URLSearchParams(busqueda);
   if (params.has('galeria')) return { pantalla: 'aventura', escenaInicial: 'Galeria' };
   const escena = params.get('escena');
-  if ((desarrollo || params.has('e2e')) && esEscena(escena)) return { pantalla: 'aventura', escenaInicial: escena, unidadId: 'u1' };
+  if (!(desarrollo || params.has('e2e')) || !escena) return { pantalla: 'inicio' };
+  const unidadId = params.get('unidad') ?? 'u1';
+  // En la aventura 1 solo se aceptan sus escenas; en las demás, la aventura misma revisa la clave.
+  if (unidadId === 'u1' ? esEscena(escena) : /^[A-Z][A-Za-z0-9]+$/.test(escena)) return { pantalla: 'aventura', escenaInicial: escena, unidadId };
   return { pantalla: 'inicio' };
 }
 

@@ -47,6 +47,8 @@ export interface Parejas extends Base {
 export interface SiNo extends Base {
   tipo: 'si-no';
   arte: string;
+  /** Un segundo dibujo junto al primero, para mostrar la acción (la ardilla y las papitas). */
+  junto?: string;
   /** true: carita feliz (está bien); false: carita triste (no está bien). */
   respuesta: boolean;
   /** Por qué, dicho al acertar (una frase corta). */

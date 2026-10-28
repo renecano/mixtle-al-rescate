@@ -3,6 +3,7 @@ import { arteBote, arteTapa } from './botes';
 import { ESCENARIO } from './escenario';
 import { FAUNA } from './fauna';
 import { ICONOS } from './iconos';
+import { OBJETOS } from './objetos';
 import { PERSONAJES } from './personajes';
 import { ARTE_RESIDUOS } from './residuos';
 import type { ArteSvg } from './svg';
@@ -13,6 +14,7 @@ export function catalogoArte(): ArteSvg[] {
     ...ICONOS,
     ...PERSONAJES,
     ...FAUNA,
+    ...OBJETOS,
     ...ESCENARIO,
     ...ARTE_RESIDUOS,
     ...CATEGORIAS.flatMap((c) => [arteBote(c), arteTapa(c)]),
