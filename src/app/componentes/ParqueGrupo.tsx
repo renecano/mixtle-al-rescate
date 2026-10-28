@@ -50,22 +50,22 @@ export function ParqueGrupo({ progreso, className = '' }: Props) {
     >
       <Arte
         clave="parque"
-        className="absolute inset-0 h-full w-full object-cover object-bottom transition-[filter] duration-[2500ms] ease-out"
+        className="absolute inset-0 h-full w-full object-cover object-bottom transition-[filter] delay-300 duration-[2000ms] ease-out"
         style={{ filter: `grayscale(${gris}) saturate(${1 + etapa.avance * 0.25}) brightness(${1 - gris * 0.15})` }}
       />
       <AnimatePresence>
         {ARBOLES.slice(0, etapa.arboles).map(([x, y], i) => (
-          <motion.div key={`a${i}`} className="absolute h-[38%] -translate-x-1/2 -translate-y-full" style={{ left: `${x}%`, top: `${y}%` }} initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: i * 0.08, type: 'spring' }}>
+          <motion.div key={`a${i}`} className="absolute h-[38%] -translate-x-1/2 -translate-y-full" style={{ left: `${x}%`, top: `${y}%` }} initial={{ scale: 0 }} animate={{ scale: [0, 1.15, 1] }} transition={{ delay: 1 + i * 0.08, duration: 0.7 }}>
             <Arte clave="arbolito" className="h-full origin-bottom" />
           </motion.div>
         ))}
         {FLORES.slice(0, etapa.flores).map(([x, y], i) => (
-          <motion.div key={`f${i}`} className="absolute h-[18%] -translate-x-1/2 -translate-y-full" style={{ left: `${x}%`, top: `${y}%` }} initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.2 + i * 0.06, type: 'spring' }}>
+          <motion.div key={`f${i}`} className="absolute h-[18%] -translate-x-1/2 -translate-y-full" style={{ left: `${x}%`, top: `${y}%` }} initial={{ scale: 0, y: 10 }} animate={{ scale: [0, 1.3, 1], y: 0 }} transition={{ delay: 1.2 + i * 0.06, duration: 0.7 }}>
             <Arte clave={['flores-naranja', 'flores-morada', 'flores-amarilla'][i % 3]!} className="h-full" />
           </motion.div>
         ))}
         {BASURA.slice(0, etapa.basura).map(([x, y], i) => (
-          <motion.div key={`b${i}`} className="absolute h-[13%] -translate-x-1/2 -translate-y-full" style={{ left: `${x}%`, top: `${y}%` }} exit={{ scale: 0, opacity: 0, y: -30 }} transition={{ duration: 0.6 }}>
+          <motion.div key={`b${i}`} className="absolute h-[13%] -translate-x-1/2 -translate-y-full" style={{ left: `${x}%`, top: `${y}%` }} exit={{ scale: 0.2, opacity: 0, y: -60, rotate: 160 }} transition={{ duration: 0.7, ease: 'easeIn' }}>
             <Arte clave={claveImagenResiduo(RESIDUOS[i % RESIDUOS.length]!.imagen)} className="h-full" />
           </motion.div>
         ))}

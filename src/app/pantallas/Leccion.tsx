@@ -159,6 +159,9 @@ function PreguntaSalir({ alQuedarse, alSalir }: { alQuedarse: () => void; alSali
   );
 }
 
+/** Cuánto se ve el parque "como estaba" antes de que cambie en la pantalla final. */
+const MOSTRAR_CAMBIO_MS = 1200;
+
 /** Pantalla final: hojitas, cuántos salieron a la primera, el parque creciendo y el jingle. */
 function FinLeccion({ sesion, unidadColor }: { sesion: SesionLeccion; unidadColor: string }) {
   const alCamino = useApp((s) => s.alCamino);
@@ -175,18 +178,18 @@ function FinLeccion({ sesion, unidadColor }: { sesion: SesionLeccion; unidadColo
     guardado.current = true;
     terminarLeccion(sesion.leccion.id, resumen);
     sonido.celebrar();
-    // El parque cambia justo cuando Caco dice "miren cómo mejora su parque" (o a los 7 s, sin voz).
-    const crecer = () => setMostrarDespues(true);
     decir(TEXTOS_APP.leccion.terminada(resumen.hojitas, resumen.aLaPrimera, resumen.ejercicios), {
       expresion: 'celebrando',
-      alTerminar: () => {
-        crecer();
-        decir(TEXTOS_APP.leccion.parqueCrece, { expresion: 'feliz' });
-      },
+      alTerminar: () => decir(TEXTOS_APP.leccion.parqueCrece, { expresion: 'feliz' }),
     });
-    const t = window.setTimeout(crecer, 7000);
-    return () => window.clearTimeout(t);
   }, [sesion, resumen, terminarLeccion]);
+
+  // La recompensa se ve en el momento: el parque aparece como estaba y, en cuanto termina de entrar
+  // la pantalla, cambia al nuevo estado (se va la basura, recupera el color, brota la flor).
+  useEffect(() => {
+    const t = window.setTimeout(() => setMostrarDespues(true), MOSTRAR_CAMBIO_MS);
+    return () => window.clearTimeout(t);
+  }, []);
 
   const despues = antes ? completarLeccion(antes, sesion.leccion.id, resumen, hoyLocal()) : null;
   const parque = mostrarDespues ? despues : antes;

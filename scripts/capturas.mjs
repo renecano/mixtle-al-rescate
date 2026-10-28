@@ -3,6 +3,8 @@
 //
 // Uso:  npm run build && npm run preview   (en otra terminal)
 //       npm run capturas                    (o: node scripts/capturas.mjs <url-base>)
+//       Opciones: TAMANO=proyector o TAMANO=tablet (un solo tamaño), SOLO=leccion (sin aventuras),
+//       LECCIONES=u1-l1,u2-l3 (además, cada ejercicio de esas lecciones), CARPETA=<otra carpeta>.
 //
 // Usa el Chrome instalado y un solo navegador a la vez (pensado para una laptop de 8 GB).
 // Cada captura espera a que terminen las animaciones de entrada (window.__caco.quieto()).
@@ -32,7 +34,8 @@ const TAMANOS = [
 const navegador = await chromium.launch({ channel: 'chrome' });
 const errores = [];
 try {
-  for (const t of TAMANOS) {
+  // TAMANO=tablet o TAMANO=proyector: solo ese tamaño. SOLO=leccion: sin las aventuras (más rápido).
+  for (const t of TAMANOS.filter((x) => !process.env.TAMANO || x.nombre.startsWith(process.env.TAMANO))) {
     const contexto = await navegador.newContext({ viewport: t.viewport, hasTouch: t.hasTouch });
     const page = await contexto.newPage();
     page.on('pageerror', (e) => errores.push(`${t.nombre}: ${e}`));
@@ -98,8 +101,10 @@ try {
       await boton(/¡Sigamos!/);
     }
     await pantalla('fin-leccion');
-    // El parque cambia cuando Caco dice "miren cómo mejora su parque" (o a los 7 s) y se colorea en 2.5 s.
-    await page.waitForTimeout(10_000);
+    // El parque aparece como estaba y en seguida cambia: se captura el antes y el después.
+    await page.screenshot({ path: `${carpeta}/${t.nombre}-v2-5a-fin-antes.png` });
+    console.log(`Captura: ${t.nombre}-v2-5a-fin-antes.png`);
+    await page.waitForTimeout(4500);
     await guardar('v2-5-fin');
     await boton('Volver al camino');
     await pantalla('camino');
@@ -139,6 +144,7 @@ try {
     await contexto.close();
 
     // 3. Aventuras: la de la unidad 2 de principio a fin; de las otras, la primera pantalla.
+    if (process.env.SOLO === 'leccion') continue;
     const aventura = await navegador.newContext({ viewport: t.viewport, hasTouch: t.hasTouch });
     const p2 = await aventura.newPage();
     p2.on('pageerror', (e) => errores.push(`${t.nombre}: ${e}`));

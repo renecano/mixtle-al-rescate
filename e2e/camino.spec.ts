@@ -117,6 +117,11 @@ test('un grupo nuevo completa una lección con un error, ve la pantalla final y 
   // El ejercicio fallado volvió al final para repasar.
   expect(repasos).toBe(1);
   await esperarPantalla(page, 'fin-leccion');
+  // La recompensa se ve ahí mismo: el parque empieza como estaba y en seguida pierde una basura y gana color.
+  const parqueFin = page.locator('[data-pantalla="fin-leccion"] [data-parque-basura]');
+  await expect(parqueFin).toHaveAttribute('data-parque-basura', String(basuraAntes));
+  await expect(parqueFin).toHaveAttribute('data-parque-basura', String(basuraAntes - 1), { timeout: 4000 });
+  expect(Number(await parqueFin.getAttribute('data-parque-color'))).toBeGreaterThan(0.3);
   const total = leccion.ejercicios.length;
   await expect(page.locator('[data-a-la-primera]')).toHaveAttribute('data-a-la-primera', String(total - 1));
   await expect(page.locator('[data-hojitas]')).toHaveAttribute('data-hojitas', String(10 + total - 1));
