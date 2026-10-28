@@ -175,11 +175,16 @@ function FinLeccion({ sesion, unidadColor }: { sesion: SesionLeccion; unidadColo
     guardado.current = true;
     terminarLeccion(sesion.leccion.id, resumen);
     sonido.celebrar();
+    // El parque cambia justo cuando Caco dice "miren cómo mejora su parque" (o a los 7 s, sin voz).
+    const crecer = () => setMostrarDespues(true);
     decir(TEXTOS_APP.leccion.terminada(resumen.hojitas, resumen.aLaPrimera, resumen.ejercicios), {
       expresion: 'celebrando',
-      alTerminar: () => decir(TEXTOS_APP.leccion.parqueCrece, { expresion: 'feliz' }),
+      alTerminar: () => {
+        crecer();
+        decir(TEXTOS_APP.leccion.parqueCrece, { expresion: 'feliz' });
+      },
     });
-    const t = window.setTimeout(() => setMostrarDespues(true), 1500);
+    const t = window.setTimeout(crecer, 7000);
     return () => window.clearTimeout(t);
   }, [sesion, resumen, terminarLeccion]);
 

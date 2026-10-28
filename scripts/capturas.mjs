@@ -34,8 +34,6 @@ const errores = [];
 try {
   for (const t of TAMANOS) {
     const contexto = await navegador.newContext({ viewport: t.viewport, hasTouch: t.hasTouch });
-    // Sin cámara: "Muéstrale a Caco" se juega con dibujos.
-    await contexto.addInitScript(() => Object.defineProperty(navigator, 'mediaDevices', { value: undefined }));
     const page = await contexto.newPage();
     page.on('pageerror', (e) => errores.push(`${t.nombre}: ${e}`));
     const guardar = async (nombre) => {
@@ -100,7 +98,8 @@ try {
       await boton(/¡Sigamos!/);
     }
     await pantalla('fin-leccion');
-    await page.waitForTimeout(2500); // el parque termina de crecer
+    // El parque cambia cuando Caco dice "miren cómo mejora su parque" (o a los 7 s) y se colorea en 2.5 s.
+    await page.waitForTimeout(10_000);
     await guardar('v2-5-fin');
     await boton('Volver al camino');
     await pantalla('camino');
@@ -237,8 +236,5 @@ async function resolver(page, clic, boton, e, zona) {
     case 'encuentra-error':
       for (const o of e.objetos.filter((x) => x.mal)) await clic(`${zona} [data-objeto="${o.id}"]`);
       return;
-    case 'muestrale':
-      await boton('Usar dibujos');
-      return clic(`${zona} [data-tarjeta="${e.respaldo.correcta}"]`);
   }
 }

@@ -76,7 +76,7 @@ describe('lecciones', () => {
 });
 
 describe('ejercicios: datos válidos y ninguno imposible', () => {
-  it.each(EJERCICIOS.map(([u, e]) => [`${u}/${e.id} (${e.tipo})`, u, e] as const))('%s', (_id, unidad, e) => {
+  it.each(EJERCICIOS.map(([u, e]) => [`${u}/${e.id} (${e.tipo})`, u, e] as const))('%s', (_id, _unidad, e) => {
     expect(e.consigna.trim().length).toBeGreaterThan(5);
     expect(e.pista.trim().length).toBeGreaterThan(5);
     for (const clave of arteDe(e)) expect(ARTE.has(clave), `arte "${clave}"`).toBe(true);
@@ -129,16 +129,26 @@ describe('ejercicios: datos válidos y ninguno imposible', () => {
         }
         break;
       }
-      case 'muestrale':
-        // La cámara es opcional y solo aparece en la unidad 1; siempre hay respaldo con dibujos.
-        expect(unidad).toBe('u1');
-        expect(e.respaldo.tipo).toBe('elige-imagen');
-        break;
     }
   });
 
-  it('están los 8 tipos de ejercicio', () => {
+  it('están los 7 tipos de ejercicio', () => {
     const tipos = new Set(EJERCICIOS.map(([, e]) => e.tipo));
-    expect([...tipos].sort()).toEqual(['al-bote', 'elige-imagen', 'encuentra-error', 'escucha-toca', 'muestrale', 'ordena', 'parejas', 'si-no']);
+    expect([...tipos].sort()).toEqual(['al-bote', 'elige-imagen', 'encuentra-error', 'escucha-toca', 'ordena', 'parejas', 'si-no']);
+  });
+
+  it('cuando se pregunta por un bote, se dice su color y su nombre, y se muestra', () => {
+    for (const [, e] of EJERCICIOS) {
+      const textos = [e.consigna, e.pista, e.tipo === 'si-no' ? e.porque : ''].join(' ');
+      for (const c of CATEGORIAS) {
+        // "el bote naranja" siempre va con lo que recibe: "el bote naranja de no reciclable".
+        const soloColor = new RegExp(`bote ${c.nombreColor}(?! de ${c.nombre.toLowerCase()})`);
+        expect(textos, `${e.id}: "${textos}"`).not.toMatch(soloColor);
+      }
+      if (e.tipo === 'elige-imagen' && /¿Cuál va en el bote/.test(e.consigna)) {
+        expect(e.bote, e.id).toBeDefined();
+        expect(CATEGORIAS.map((c) => c.id)).toContain(e.bote);
+      }
+    }
   });
 });

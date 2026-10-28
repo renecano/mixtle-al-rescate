@@ -4,7 +4,6 @@ import { progreso, resumenDiploma } from '../logica/progreso';
 import { entradaTerminada } from '../ui/transicion';
 import { juegoActual } from '../aventuras/juegoActual';
 import { musica } from './audio/motor';
-import { camarasActivas } from './camara';
 import { voz } from './voz';
 
 export interface ObjetoTocable {
@@ -86,7 +85,6 @@ export function exponerParaPruebas(): void {
     resumen: () => resumenDiploma(progreso(), ANIMALES),
     /** Marcador de la aventura de las unidades 2 a 5 (lo que llevan rescatado, sembrado, etc.). */
     marcador: () => (juegoActual()?.registry.get('marcador') as Record<string, number> | undefined) ?? null,
-    camarasActivas,
     /** Frases dichas con audio grabado y con la voz del navegador. */
     voz: () => ({ ...voz.cuenta }),
     /** Pista de música de fondo que está sonando (o null). */

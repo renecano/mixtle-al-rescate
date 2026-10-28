@@ -58,10 +58,6 @@ async function resolver(page: Page, e: Ejercicio): Promise<void> {
     case 'encuentra-error':
       for (const o of e.objetos.filter((x) => x.mal)) await clic(page, `${zona} [data-objeto="${o.id}"]`);
       return;
-    case 'muestrale':
-      // En las pruebas no hay cámara: "Usar dibujos" y se juega el respaldo.
-      await tocarBoton(page, 'Usar dibujos');
-      return clic(page, `${zona} [data-tarjeta="${e.respaldo.correcta}"]`);
   }
 }
 
@@ -73,7 +69,6 @@ async function equivocarse(page: Page, e: Ejercicio): Promise<void> {
 }
 
 test('un grupo nuevo completa una lección con un error, ve la pantalla final y su parque crece; el avance se guarda', async ({ page }, info) => {
-  await page.addInitScript(() => Object.defineProperty(navigator, 'mediaDevices', { value: undefined }));
   const { errores, peticiones } = await abrir(page);
   await esperarPantalla(page, 'inicio');
   await tocarBoton(page, /¡Jugar!/);

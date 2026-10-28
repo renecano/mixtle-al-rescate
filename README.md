@@ -6,6 +6,7 @@ Caco, un cacomixtle que vive en los árboles del parque, guía a cada grupo de s
 
 - **Para quién:** niñas y niños de 1º a 3º de primaria (6 a 8 años). Caco narra todo en voz alta; el texto acompaña, pero no hace falta saber leer.
 - **Dónde:** en la laptop de Eco Urban proyectada en el salón (todo el grupo participa) o en tablets táctiles.
+- **Dónde jugarlo:** <https://caco-al-rescate.vercel.app> (producción en Vercel).
 - **Qué es:** un prototipo jugable para revisar con el equipo educativo. No tiene servidor, cuentas ni analítica. El avance de cada grupo se guarda solo en el aparato.
 
 ![El camino de aprendizaje](docs/capturas/proyector-1920x1080-v2-2-camino.png)
@@ -17,11 +18,11 @@ Caco, un cacomixtle que vive en los árboles del parque, guía a cada grupo de s
 | Una sola partida de 5 pantallas (Phaser) | **Camino de aprendizaje** con 5 unidades, 20 lecciones y 5 aventuras |
 | Voz del navegador (distinta en cada equipo) | **Voz pregenerada** de Caco (Kokoro `em_alex`), igual en todos lados, más música CC0 con *ducking* |
 | Nada se guardaba | **Grupos de salón** (animal mascota, color y etiqueta como "1°A"); el avance se guarda en el aparato |
-| Solo arrastrar a los botes | **8 tipos de ejercicio** dirigidos por datos |
+| Solo arrastrar a los botes | **7 tipos de ejercicio** dirigidos por datos |
 | Diploma al final | Hojitas, parque del grupo que crece, cofre, álbum de animales de Toluca, días jugados y **diploma por unidad** |
 | Todo en Phaser | Interfaz en **React + Tailwind + Motion**; Phaser solo dentro de las aventuras (se descarga al entrar y se destruye al salir) |
 
-La aventura de la unidad 1 son los tres niveles de la v1 con su bonus de cámara, adaptados al camino.
+La aventura de la unidad 1 son los tres niveles de la v1, adaptados al camino, y un bonus nuevo sin cámara: **"Lluvia de basura"**. **El juego ya no usa la cámara** en ninguna parte (se quitó a petición de Eco Urban): no pide permisos ni descarga modelos de visión.
 
 ## Cómo se juega
 
@@ -43,13 +44,13 @@ La aventura de la unidad 1 son los tres niveles de la v1 con su bonus de cámara
 
 | Unidad | Lecciones | Aventura | Estampa |
 |---|---|---|---|
-| 1. Separa tu basura | Los tres botes · Basura en su lugar · Una segunda vida · ¿Y si se revuelve? | **Limpia el parque**: los 3 niveles de la v1 y el bonus "Muéstrale a Caco" | Cacomixtle |
+| 1. Separa tu basura | Los tres botes · Basura en su lugar · Una segunda vida · ¿Y si se revuelve? | **Limpia el parque**: los 3 niveles de la v1 y el bonus "Lluvia de basura" (cae una basura a la vez y se toca su bote; si llega al suelo, vuelve a caer) | Cacomixtle |
 | 2. Los animales del parque | ¿Quién vive aquí? · La basura los lastima · Nada de comida chatarra · Vecinos de Toluca | **Rescate en el parque**: liberar animales atrapados en basura y separarla | Mariposa monarca |
 | 3. Árboles y áreas verdes | ¿Para qué sirven? · Plantamos un árbol · Lo cuidamos · Casa de animales | **Siembra un bosquecito**: plantar seis arbolitos y regarlos hasta que crezcan (amplía el nivel 3 de la v1) | Colibrí |
 | 4. Aire limpio | A pie o en bici · ¿Qué es el humo? · Días de contingencia · Cuidamos el aire | **En bici a la escuela**: cambiar de carril para esquivar el humo y juntar hojitas | Ajolote de montaña |
 | 5. Reduce y reutiliza | Mi botella y mi lonchera · Menos desechables · Una segunda vida · Menos basura | **Mi lonchera sin basura**: cada cosa a la lonchera o a "Mejor no" | Tlacuache |
 
-### Los 8 tipos de ejercicio
+### Los 7 tipos de ejercicio
 
 Todos funcionan con toque y con mouse, con zonas de toque de 64 px o más.
 
@@ -60,7 +61,6 @@ Todos funcionan con toque y con mouse, con zonas de toque de 64 px o más.
 5. **Ordena los pasos:** se tocan 3 o 4 tarjetas en orden (cómo se planta un árbol).
 6. **Encuentra el error:** una escena con 1 a 3 cosas mal (basura en el pasto, una llave goteando, basura quemándose).
 7. **Escucha y toca:** Caco nombra algo y se toca su dibujo, sin texto. Es para quienes todavía no leen.
-8. **Muéstrale a Caco:** la cámara de la v1, solo en la unidad 1. Sin cámara se cambia por "Elige la imagen".
 
 ### Modo facilitador
 
@@ -92,11 +92,11 @@ Todos los comandos son scripts de npm; ninguno necesita bash. Funcionan en Power
 
 Atajos para revisar (solo en desarrollo o con `?e2e` en la dirección): `?galeria` muestra todo el arte; `?escena=Rescate&unidad=u2` entra directo a una aventura (`Bosque`/`u3`, `Bici`/`u4`, `Lonchera`/`u5`, o una escena de la v1 como `Nivel2`).
 
-> **Cámara en tablets:** los navegadores solo permiten la cámara en `https://` o en `localhost`. Para usar "Muéstrale a Caco" en una tablet, abre la versión publicada en Vercel (que ya es https).
-
 ## Desplegar en Vercel
 
 El proyecto es un sitio estático y ya incluye `vercel.json` (Vite, `npm run build`, carpeta `dist`, cabeceras de seguridad y caché; el *service worker* nunca se guarda en caché para que las actualizaciones lleguen).
+
+**Hoy:** el repositorio es privado en GitHub (`renecano/caco-al-rescate`) y el proyecto de Vercel `caco-al-rescate` está ligado a él. Producción: <https://caco-al-rescate.vercel.app>. El primer despliegue se hizo desde la terminal (`npx vercel deploy --prod`) porque el *push* a `main` todavía no disparó un despliegue automático: para eso, la app de Vercel en GitHub necesita acceso al repositorio privado (*GitHub → Settings → Applications → Vercel → Repository access*).
 
 **Con GitHub (recomendado):** en [vercel.com](https://vercel.com), *Add New → Project* e importa el repositorio. Cada rama o *pull request* genera una **versión de prueba** (*preview*) con su propia dirección; lo que llega a `main` se publica en **producción**. Así Eco Urban puede revisar cambios antes de que lleguen a los salones.
 
@@ -171,19 +171,19 @@ Los efectos de sonido se generan con `npm run sonidos:generar`.
 - **No se guarda nada de las niñas y los niños.** Los grupos se identifican con un animal, un color y una etiqueta corta; la pantalla pide no escribir nombres, y la etiqueta acepta solo 8 caracteres.
 - El avance de cada grupo se guarda **solo en este aparato** (IndexedDB). No viaja a ningún servidor. Si el navegador bloquea el almacenamiento, el juego funciona igual y el avance dura mientras la página esté abierta.
 - Las preferencias de voz, música y modo proyector se guardan en `localStorage`, siempre dentro de `try/catch`.
-- **La cámara solo se pide al tocar "Muéstrale a Caco"**, nunca al cargar el juego. Cada imagen se clasifica en memoria, en el propio aparato. **No se guarda ni se envía ninguna imagen**, y el aviso aparece en pantalla.
+- **No se usa la cámara ni el micrófono.** `vercel.json` los bloquea con `Permissions-Policy: camera=(), microphone=()`.
 - El juego **solo hace descargas** (peticiones GET). Las pruebas de recorrido verifican que no haya ninguna petición que envíe datos.
 
 ## Pruebas y evidencia medida
 
 **Pruebas unitarias (Vitest)**, en `tests/`: **1260 pruebas en 23 archivos, todas pasan.** Entre ellas:
 
-- **Contenido válido:** cada unidad tiene 4 o 5 lecciones; cada lección tiene de 6 a 8 ejercicios con al menos 3 tipos; las respuestas correctas existen, los dibujos existen, no hay ejercicios imposibles (parejas sin repetir, "encuentra el error" con 1 a 3 errores dentro de la escena) y "Muéstrale a Caco" solo aparece en la unidad 1. Cada archivo de contenido está marcado con `TODO(Eco Urban)`.
+- **Contenido válido:** cada unidad tiene 4 o 5 lecciones; cada lección tiene de 6 a 8 ejercicios con al menos 3 tipos; las respuestas correctas existen, los dibujos existen, no hay ejercicios imposibles (parejas sin repetir, "encuentra el error" con 1 a 3 errores dentro de la escena). Cuando una pregunta habla de un bote, dice su color **y su nombre** ("el bote naranja de no reciclable") y el bote se ve en pantalla. Cada archivo de contenido está marcado con `TODO(Eco Urban)`.
 - **Voz:** **toda frase narrada (631) tiene su audio en el manifiesto** y su mp3 existe.
 - **Camino y grupos:** las lecciones se desbloquean en orden; el cofre y la aventura se abren a su tiempo; el avance de cada grupo se guarda y se recupera por separado, y **la app no falla si IndexedDB está bloqueado**.
 - **Música:** el *ducking* baja la música mientras habla Caco y la sube al terminar (también si dos cosas la agachan a la vez); fundido entre pistas, jingle y nada antes del primer toque.
 - **Aventuras y diploma:** el recorrido en bici nunca pone humo en los dos carriles a la vez; la lonchera tiene cosas de los dos tipos, sin patrón para adivinar; la concordancia de los números ("1 animal", "2 animales").
-- Las de la v1 siguen: cada residuo va a exactamente un bote (con 2, 3 o 4 botes), pistas amables, mapeo de MobileNet con clases reales, contraste AA, cámara que se apaga.
+- Las de la v1 siguen: cada residuo va a exactamente un bote (con 2, 3 o 4 botes), pistas amables que nombran el color, el nombre y el dibujo de cada bote, y contraste AA.
 
 **Recorridos en el navegador (Playwright)**, en `e2e/`, a **1920×1080 (proyector)** y **1024×768 (tablet táctil)**:
 
@@ -191,7 +191,6 @@ Los efectos de sonido se generan con `npm run sonidos:generar`.
 - Jugar las **cinco aventuras** de principio a fin (la de la unidad 1, con el facilitador y la estampa ganada).
 - Cada botón mide **al menos 64 px reales** en el camino, la lección y el inicio.
 - **Ninguna petición envía datos** (solo GET) y no hay errores en la consola.
-- Con cámara de prueba y el MobileNet real: clasifica en el navegador y la cámara se apaga al salir.
 
 Para correrlos contra un sitio ya publicado, sin construir nada en local: `$env:BASE_URL="https://…"; npm run test:e2e`. En una laptop de 8 GB usan **un solo navegador a la vez**; con varios, la memoria se agotó y el sistema cerró las pruebas.
 
@@ -203,12 +202,19 @@ Para correrlos contra un sitio ya publicado, sin construir nada en local: `$env:
 |---|---|
 | Lo que se descarga al abrir el juego | **≈ 158 KB** comprimidos (React 44 KB + app 107 KB + estilos 7 KB) y 48 KB de la fuente Nunito |
 | Phaser (solo al entrar a una aventura) | ≈ 310 KB comprimidos, más 2 a 7 KB por aventura |
-| TensorFlow.js + MobileNet (código) | ≈ 289 KB comprimidos, **solo** al tocar "Muéstrale a Caco"; el modelo pesa 14 MB más |
+
 | Voces de Caco | 631 frases, **11.0 MB** en total (mono, 64 kbps) |
 | Música y efectos | 1.3 MB (3 pistas) y 78 KB (12 efectos) |
 | Juego sin internet (PWA) | En la primera visita, el *service worker* descarga en segundo plano 678 archivos (**15.2 MB**: juego, voces, música y efectos); después se juega sin internet |
 
-<!-- CARGA -->
+**En el sitio publicado** (27 de octubre de 2026, <https://caco-al-rescate.vercel.app>, Chrome en Windows 11, conexión doméstica):
+
+| Qué | Resultado |
+|---|---|
+| Pantalla de inicio lista (primera visita, sin caché) | **0.61 s**, 170 KB transferidos |
+| Voz y música | Caco habla con su voz grabada (0 frases con la voz del navegador) y suena la música de fondo |
+| El *service worker* termina de guardar el juego | 675 archivos en **79 s** (en segundo plano; se puede jugar mientras tanto) |
+| Sin internet, después de eso | El juego abre, Caco habla y suena la música |
 
 ## Limitaciones conocidas
 
@@ -216,22 +222,22 @@ Para correrlos contra un sitio ya publicado, sin construir nada en local: `$env:
 - **No se ha probado con niñas y niños** ni en un iPad real con Safari. Se probó con Chrome en Windows (también con emulación táctil a 1024×768). Esa prueba de uso es el siguiente paso recomendado.
 - **El avance vive en un solo aparato.** Si se borran los datos del navegador o se cambia de laptop, el grupo empieza de nuevo. Es a propósito (no hay servidor ni cuentas), pero hay que saberlo.
 - **La voz es sintética.** Kokoro suena natural, pero algunas palabras pueden sonar raras. El diccionario de pronunciación y la grabación humana (ver arriba) son la forma de corregirlas sin tocar código.
-- **La primera visita necesita internet:** el *service worker* descarga unos 15 MB (sobre todo las voces) para que después funcione sin conexión. Conviene abrir el juego una vez con buena señal antes del taller. La cámara del bonus necesita https y unos 14 MB más.
-- **El mapeo de MobileNet es aproximado.** Reconoce bien frutas, botellas, latas o papel, pero casi nunca envolturas sucias o servilletas arrugadas; por eso Caco pide ayuda cuando duda. Un modelo de Teachable Machine entrenado con la basura real de los talleres funcionaría mucho mejor.
+- **La primera visita necesita internet:** el *service worker* descarga unos 15 MB (sobre todo las voces) para que después funcione sin conexión. Conviene abrir el juego una vez con buena señal antes del taller.
+
 - **Las aventuras son minijuegos cortos** (2 a 4 minutos). Las del bosquecito y la lonchera siempre tienen el mismo número de cosas: los diplomas muestran el esfuerzo, no un puntaje para comparar grupos.
-- Solo los aciertos que se pueden comprobar suman al diploma de la unidad 1. En el bonus con cámara, cuando Caco pide ayuda, la respuesta del grupo se agradece pero no se cuenta.
+- El diploma de la unidad 1 cuenta los residuos separados en el nivel 2 y en la lluvia de basura (12 + 5) y los animales ayudados.
 
 ## Estructura
 
 ```
 src/
   app/         interfaz en React: pantallas (inicio, grupos, camino, lección, álbum, aventura),
-               componentes, ejercicios (los 8 tipos) y estado (Zustand)
+               componentes, ejercicios (los 7 tipos) y estado (Zustand)
   contenido/   lo que se enseña: unidades y lecciones, textos de la app y de las aventuras
   aventuras/   una entrada por unidad; monta Phaser solo al entrar a la aventura
   scenes/      escenas de Phaser: niveles de la v1, Rescate, Bosque, Bici, Lonchera y el diploma
   logica/      reglas puras y probadas: lección, camino, grupos, clasificación, diploma
-  servicios/   voz, música y efectos, almacenamiento (IndexedDB), cámara y clasificadores
+  servicios/   voz, música y efectos, almacenamiento (IndexedDB)
   voz/         frases narradas, hash de audios y encadenado de piezas
   arte/        ilustraciones originales en SVG (como código)
   ui/          piezas de Phaser: Caco, botones, globo, botes, animales, clasificador
@@ -243,4 +249,4 @@ docs/          fuentes del contenido, lista de frases, capturas y muestras
 
 ## Créditos y licencias
 
-El arte es original de este proyecto: ilustraciones SVG hechas en código. Los efectos de sonido se sintetizan con scripts propios, la voz se genera con Kokoro (Apache-2.0) y la música es CC0. La tipografía es Nunito (OFL-1.1). Las bibliotecas son React, Phaser, Motion, Zustand y Howler (MIT), idb-keyval y TensorFlow.js con MobileNet (Apache-2.0). El detalle completo está en [`CREDITOS.md`](CREDITOS.md).
+El arte es original de este proyecto: ilustraciones SVG hechas en código. Los efectos de sonido se sintetizan con scripts propios, la voz se genera con Kokoro (Apache-2.0) y la música es CC0. La tipografía es Nunito (OFL-1.1). Las bibliotecas son React, Phaser, Motion, Zustand y Howler (MIT), idb-keyval (Apache-2.0). El detalle completo está en [`CREDITOS.md`](CREDITOS.md).

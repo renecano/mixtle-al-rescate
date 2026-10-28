@@ -10,7 +10,10 @@ const BASURA = [
   [12, 84], [24, 92], [37, 82], [48, 93], [60, 85], [71, 94], [83, 84], [93, 92],
 ] as const;
 const ARBOLES = [[8, 80], [30, 74], [52, 72], [68, 76], [86, 74], [97, 82]] as const;
-const FLORES = [[18, 96], [34, 98], [44, 90], [58, 98], [66, 90], [78, 98], [90, 96], [4, 98]] as const;
+const FLORES = [
+  [18, 96], [34, 98], [44, 90], [58, 98], [66, 90], [78, 98], [90, 96], [4, 98],
+  [26, 88], [52, 95], [73, 89], [96, 88], [11, 90], [84, 99],
+] as const;
 
 /** Dónde aparece cada animal del álbum cuando el grupo gana su estampa. */
 const ANIMALES: Record<string, { arte: string; x: number; y: number; alto: number }> = {
@@ -33,7 +36,8 @@ interface Props {
  */
 export function ParqueGrupo({ progreso, className = '' }: Props) {
   const etapa = etapaParque(progreso, UNIDADES);
-  const gris = 1 - Math.min(1, etapa.avance / 0.35);
+  // De gris a verde: el color sigue el avance del grupo (cada lección se nota).
+  const gris = 1 - etapa.avance;
   return (
     <div
       className={`relative overflow-hidden rounded-[1.75rem] border-[6px] border-white shadow-[0_0.5rem_0_rgba(18,61,43,0.25)] ${className}`}
@@ -42,11 +46,12 @@ export function ParqueGrupo({ progreso, className = '' }: Props) {
       data-parque-basura={etapa.basura}
       data-parque-arboles={etapa.arboles}
       data-parque-flores={etapa.flores}
+      data-parque-color={etapa.avance.toFixed(2)}
     >
       <Arte
         clave="parque"
-        className="absolute inset-0 h-full w-full object-cover object-bottom transition-[filter] duration-1000"
-        style={{ filter: `grayscale(${gris}) brightness(${1 - gris * 0.15})` }}
+        className="absolute inset-0 h-full w-full object-cover object-bottom transition-[filter] duration-[2500ms] ease-out"
+        style={{ filter: `grayscale(${gris}) saturate(${1 + etapa.avance * 0.25}) brightness(${1 - gris * 0.15})` }}
       />
       <AnimatePresence>
         {ARBOLES.slice(0, etapa.arboles).map(([x, y], i) => (
@@ -60,7 +65,7 @@ export function ParqueGrupo({ progreso, className = '' }: Props) {
           </motion.div>
         ))}
         {BASURA.slice(0, etapa.basura).map(([x, y], i) => (
-          <motion.div key={`b${i}`} className="absolute h-[13%] -translate-x-1/2 -translate-y-full" style={{ left: `${x}%`, top: `${y}%` }} exit={{ scale: 0, opacity: 0 }}>
+          <motion.div key={`b${i}`} className="absolute h-[13%] -translate-x-1/2 -translate-y-full" style={{ left: `${x}%`, top: `${y}%` }} exit={{ scale: 0, opacity: 0, y: -30 }} transition={{ duration: 0.6 }}>
             <Arte clave={claveImagenResiduo(RESIDUOS[i % RESIDUOS.length]!.imagen)} className="h-full" />
           </motion.div>
         ))}

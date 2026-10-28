@@ -55,6 +55,7 @@ export function Parejas({ ejercicio, responder, bloqueado }: PropsEjercicio<Dato
               key={t.id}
               tarjeta={t}
               tamano={tamano}
+              conTexto={!!ejercicio.conTexto}
               estado={estado(lado, t.id)}
               sacudir={error?.ids.includes(t.id) ? error.vez : 0}
               onClick={() => tocar(lado, t.id)}

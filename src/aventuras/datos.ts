@@ -5,6 +5,9 @@ import { TEXTOS_AVENTURAS } from '../contenido/aventuras';
  * Datos de juego de las aventuras (sin Phaser), para poder revisarlos y probarlos aparte.
  */
 
+/** Cuántas basuras caen en el bonus "Lluvia de basura" de la aventura 1. */
+export const BASURAS_BONUS = 5;
+
 export type Carril = 'arriba' | 'abajo';
 export type IdCosa = keyof typeof TEXTOS_AVENTURAS.u5.preguntas;
 

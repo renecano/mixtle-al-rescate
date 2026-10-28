@@ -25,23 +25,11 @@ export default defineConfig({
     baseURL: urlBase ?? 'http://localhost:4173',
     channel: enCI ? undefined : 'chrome',
     trace: 'retain-on-failure',
+    screenshot: 'only-on-failure',
   },
   projects: [
-    { name: 'proyector-1920x1080', testIgnore: /camara/, use: { viewport: { width: 1920, height: 1080 } } },
-    { name: 'tablet-1024x768', testIgnore: /camara/, use: { viewport: { width: 1024, height: 768 }, hasTouch: true } },
-    {
-      // Cámara de prueba de Chrome con permiso concedido; descarga el modelo real (requiere internet).
-      name: 'camara',
-      testMatch: /camara/,
-      // Corre al final, sola: cargar MobileNet en un navegador sin GPU es pesado.
-      dependencies: ['proyector-1920x1080', 'tablet-1024x768'],
-      timeout: 10 * 60_000,
-      use: {
-        viewport: { width: 1920, height: 1080 },
-        permissions: ['camera'],
-        launchOptions: { args: ['--use-fake-ui-for-media-stream', '--use-fake-device-for-media-stream'] },
-      },
-    },
+    { name: 'proyector-1920x1080', use: { viewport: { width: 1920, height: 1080 } } },
+    { name: 'tablet-1024x768', use: { viewport: { width: 1024, height: 768 }, hasTouch: true } },
   ],
   webServer: urlBase
     ? undefined

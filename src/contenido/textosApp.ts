@@ -63,8 +63,6 @@ export const TEXTOS_APP = {
     escucharOtraVez: 'Escuchar otra vez',
     siEstaBien: 'Sí, está bien',
     noEstaBien: 'No está bien',
-    camaraNo: 'No hay cámara. ¡Juguemos con dibujos!',
-    adivina: '¡Adivina, Caco!',
   },
   album: {
     titulo: 'Álbum de animales de Toluca',

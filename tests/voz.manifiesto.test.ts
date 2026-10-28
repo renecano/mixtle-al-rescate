@@ -2,10 +2,9 @@ import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { CATEGORIAS } from '../src/data/categorias';
-import { MAPEO_IMAGENET } from '../src/data/mapeoImagenet';
 import { RESIDUOS } from '../src/data/residuos';
 import { TEXTOS } from '../src/data/textos';
-import { descripcionBote, textoAcierto, textoPista } from '../src/logica/clasificacion';
+import { textoAcierto, textoPista } from '../src/logica/clasificacion';
 import { todasLasFrases } from '../src/voz/frases';
 import { archivoDeFrase, cyrb53 } from '../src/voz/hash';
 import { numeroEnPalabras, piezasDeTexto, textoDeLocucion, type Locucion } from '../src/voz/locucion';
@@ -88,9 +87,9 @@ describe('toda frase narrada tiene su audio', () => {
       ...RESIDUOS.flatMap((r) => TEXTOS.nivel2.celebraciones.map((c) => textoAcierto(r, c))),
       ...CATEGORIAS.map(textoPista),
       ...Object.values(TEXTOS.nivel3),
-      ...Object.values(TEXTOS.bonus.sinCamara),
-      ...CATEGORIAS.flatMap((c) => RESIDUOS.map((r) => [TEXTOS.bonus.acierto(descripcionBote(c)), r.dato])),
-      ...Object.values(MAPEO_IMAGENET).map((e) => TEXTOS.bonus.creoQueEs(e.nombre)),
+      TEXTOS.bonus.bienvenida,
+      TEXTOS.bonus.seCayo,
+      TEXTOS.bonus.fin,
     ];
     expect(locuciones.flatMap(sinAudio)).toEqual([]);
   });

@@ -1,9 +1,9 @@
 import { expect, test } from '@playwright/test';
 import { CATEGORIAS } from '../src/data/categorias';
 import { RESIDUOS } from '../src/data/residuos';
+import { BASURAS_BONUS } from '../src/aventuras/datos';
 import { categoriaDe } from '../src/logica/clasificacion';
 import {
-  HOSTS_MODELO,
   abrir,
   arrastrar,
   captura,
@@ -28,15 +28,7 @@ function boteIncorrecto(idResiduo: string): string {
   return `bote-${CATEGORIAS.find((c) => `bote-${c.id}` !== correcto)!.id}`;
 }
 
-test('aventura de la unidad 1 completa: grupo → facilitador → intro → 3 niveles → bonus sin cámara → diploma → estampa', async ({ page }, info) => {
-  // Sin cámara de forma determinista: en el proyector, permiso negado; en la tablet, navegador sin cámara.
-  if (info.project.name.startsWith('proyector')) {
-    await page.addInitScript(() => {
-      navigator.mediaDevices.getUserMedia = () => Promise.reject(new DOMException('negado', 'NotAllowedError'));
-    });
-  } else {
-    await page.addInitScript(() => Object.defineProperty(navigator, 'mediaDevices', { value: undefined }));
-  }
+test('aventura de la unidad 1 completa: grupo → facilitador → intro → 3 niveles → lluvia de basura → diploma → estampa', async ({ page }, info) => {
   const { errores, peticiones } = await abrir(page);
 
   // Inicio (pantalla de React) → crear un grupo → camino.
@@ -106,26 +98,35 @@ test('aventura de la unidad 1 completa: grupo → facilitador → intro → 3 ni
   }
   await tocar(page, 'siguiente');
 
-  // Bonus: hasta aquí no se ha descargado ningún modelo de visión.
+  // Bonus "Lluvia de basura": cae una basura a la vez y se toca su bote. La primera, a propósito,
+  // al bote equivocado (no castiga) y la segunda se deja caer hasta el suelo (vuelve a caer).
   await esperarEscena(page, 'Bonus');
-  expect(peticiones.filter((r) => HOSTS_MODELO.test(r.url()))).toHaveLength(0);
-  await page.waitForTimeout(900); // que termine el fundido de entrada
-  await captura(page, info, '7-bonus');
-  await tocar(page, 'muestrale-a-caco');
-  // Sin permiso de cámara se juega con dibujos y botones.
-  const dibujo = await esperarTocable(page, 'dibujo-');
-  await page.waitForTimeout(900); // que termine de aparecer el dibujo
-  await captura(page, info, '8-bonus-dibujos');
-  await tocar(page, boteCorrecto(dibujo.nombre.replace('dibujo-', '')));
-  await expect.poll(async () => (await resumen(page)).residuosSeparados).toBe(RESIDUOS.length + 1);
+  for (let i = 0; i < BASURAS_BONUS; i++) {
+    const cae = await esperarTocable(page, 'cae-', 90_000);
+    const id = cae.nombre.replace('cae-', '');
+    if (i === 0) {
+      await page.waitForTimeout(1500);
+      await captura(page, info, '7-bonus');
+      await tocar(page, boteIncorrecto(id));
+      await page.waitForTimeout(800);
+      expect((await resumen(page)).residuosSeparados).toBe(RESIDUOS.length);
+    }
+    if (i === 1) {
+      // Llega al suelo sin elegir bote: Caco avisa y vuelve a caer; nada se pierde.
+      await page.waitForTimeout(11_000);
+      await esperarTocable(page, `cae-${id}`);
+    }
+    await tocar(page, boteCorrecto(id));
+    await expect.poll(async () => (await resumen(page)).residuosSeparados, { timeout: 15_000 }).toBe(RESIDUOS.length + i + 1);
+  }
+  await captura(page, info, '8-bonus-fin');
   await tocar(page, 'ir-al-diploma');
 
   // Diploma con los números de la partida.
   await esperarEscena(page, 'Final');
   await esperarTocable(page, 'terminar-aventura');
   await captura(page, info, '9-diploma');
-  expect(await resumen(page)).toMatchObject({ residuosSeparados: RESIDUOS.length + 1, animalesAyudados: 10 });
-  expect(await page.evaluate(() => window.__caco.camarasActivas())).toBe(0);
+  expect(await resumen(page)).toMatchObject({ residuosSeparados: RESIDUOS.length + BASURAS_BONUS, animalesAyudados: 10 });
 
   // Al terminar se sale de la aventura (Phaser se destruye) y el grupo gana la estampa de la unidad 1.
   await tocar(page, 'terminar-aventura');
@@ -178,34 +179,6 @@ test('el botón de sonido se recuerda y el juego no se rompe sin localStorage', 
   expect(errores).toEqual([]);
 });
 
-test('bonus: si el permiso de cámara no llega, "Usar dibujos" sigue el juego y apaga la cámara que llegue tarde', async ({ page }) => {
-  await page.addInitScript(() => {
-    // El permiso "se concede" 3 s después, cuando ya se eligió jugar con dibujos.
-    navigator.mediaDevices.getUserMedia = () =>
-      new Promise((resolver) =>
-        setTimeout(() => {
-          const flujo = document.createElement('canvas').captureStream(5);
-          (window as unknown as { __flujoTarde: MediaStream }).__flujoTarde = flujo;
-          resolver(flujo);
-        }, 3000),
-      );
-  });
-  const { errores } = await abrir(page, '/?e2e&escena=Bonus');
-  await tocar(page, 'muestrale-a-caco');
-  await tocar(page, 'usar-dibujos');
-  await esperarTocable(page, 'dibujo-');
-  await page.waitForFunction(() => !!(window as unknown as { __flujoTarde?: MediaStream }).__flujoTarde);
-  await expect
-    .poll(() =>
-      page.evaluate(() =>
-        (window as unknown as { __flujoTarde: MediaStream }).__flujoTarde.getTracks().every((t) => t.readyState === 'ended'),
-      ),
-    )
-    .toBe(true);
-  expect(await page.evaluate(() => window.__caco.camarasActivas())).toBe(0);
-  expect(errores).toEqual([]);
-});
-
 test('Inicio: cada botón mide al menos 64 px reales en esta pantalla', async ({ page }) => {
   await abrir(page);
   await esperarPantalla(page, 'inicio');
@@ -221,7 +194,7 @@ const PANTALLAS: [string, string][] = [
   ['Nivel1', 'residuo-'],
   ['Nivel2', 'residuo-'],
   ['Nivel3', 'tierra-'],
-  ['Bonus', 'muestrale-a-caco'],
+  ['Bonus', 'cae-'],
 ];
 
 for (const [escena, espera] of PANTALLAS) {

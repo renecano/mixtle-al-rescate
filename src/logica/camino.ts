@@ -136,7 +136,7 @@ export function hojitasPosibles(unidades: readonly Unidad[]): number {
 }
 
 export interface EtapaParque {
-  /** 0 = parque gris y sucio; 1 = parque lleno de vida. */
+  /** 0 = parque gris y sucio; 1 = parque lleno de vida (cuánto color tiene). */
   avance: number;
   /** Basura que aún se ve (de 8 a 0). */
   basura: number;
@@ -144,20 +144,32 @@ export interface EtapaParque {
   flores: number;
 }
 
-export const MAXIMOS_PARQUE = { basura: 8, arboles: 6, flores: 8 } as const;
+export const MAXIMOS_PARQUE = { basura: 8, arboles: 6, flores: 14 } as const;
+
+/** Color que gana el parque con la primera parada (0 = gris, 1 = verde). */
+const COLOR_INICIAL = 0.35;
+
+/** Cuánto pesa cada parada en el color del parque: una aventura vale lo de dos lecciones. */
+const PESO = { leccion: 1, cofre: 0.5, aventura: 2 } as const;
 
 /**
- * Cómo se ve el parque del grupo. Primero desaparece la basura, luego crecen árboles y flores.
- * Los animales llegan con las estampas del álbum (unidades completadas).
+ * Cómo se ve el parque del grupo. **Cada lección se nota**: quita una basura, siembra una flor y
+ * le da más color al parque. Cada aventura quita dos basuras y planta un árbol. Los animales
+ * llegan con las estampas del álbum (unidades completadas).
+ *
+ * El color da un salto grande con la primera lección (de gris a casi la mitad de verde) y luego
+ * sigue subiendo con cada parada (raíz cuadrada): el grupo ve que su esfuerzo sirve desde el día uno.
  */
 export function etapaParque(p: ProgresoGrupo, unidades: readonly Unidad[]): EtapaParque {
-  const avance = Math.min(1, p.hojitas / Math.max(1, hojitasPosibles(unidades)));
-  const limpiar = Math.min(1, avance / 0.35);
-  const crecer = Math.max(0, (avance - 0.15) / 0.85);
+  const lecciones = Object.keys(p.lecciones).length;
+  const cofres = p.cofres.length;
+  const aventuras = p.aventuras.length;
+  const hecho = lecciones * PESO.leccion + cofres * PESO.cofre + aventuras * PESO.aventura;
+  const total = unidades.reduce((s, u) => s + u.lecciones.length * PESO.leccion + PESO.cofre + PESO.aventura, 0);
   return {
-    avance,
-    basura: Math.round(MAXIMOS_PARQUE.basura * (1 - limpiar)),
-    arboles: Math.round(MAXIMOS_PARQUE.arboles * crecer),
-    flores: Math.round(MAXIMOS_PARQUE.flores * Math.min(1, crecer * 1.3)),
+    avance: hecho <= 0 ? 0 : Math.min(1, COLOR_INICIAL + (1 - COLOR_INICIAL) * Math.sqrt(hecho / Math.max(1, total))),
+    basura: Math.max(0, MAXIMOS_PARQUE.basura - lecciones - 2 * aventuras),
+    arboles: Math.min(MAXIMOS_PARQUE.arboles, Math.floor(lecciones / 3) + aventuras),
+    flores: Math.min(MAXIMOS_PARQUE.flores, lecciones + cofres),
   };
 }

@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { CATEGORIAS } from '../../data/categorias';
+import { Arte } from '../componentes/Arte';
 import type { EligeImagen as Datos, EscuchaToca } from '../../contenido/tipos';
 import { Tarjeta, type PropsEjercicio } from './comun';
 
@@ -10,9 +12,19 @@ export function EligeImagen({ ejercicio, responder, bloqueado }: PropsEjercicio<
   const [acertada, setAcertada] = useState<string | null>(null);
   const [error, setError] = useState<{ id: string; vez: number } | null>(null);
   const conTexto = ejercicio.tipo === 'elige-imagen' && !!ejercicio.conTexto;
+  // Si la pregunta es sobre un bote, el bote se ve a la izquierda con su nombre: no hace falta adivinar cuál es.
+  const bote = ejercicio.tipo === 'elige-imagen' && ejercicio.bote ? CATEGORIAS.find((c) => c.id === ejercicio.bote) : undefined;
 
   return (
     <div className="flex flex-wrap items-center justify-center gap-[clamp(1rem,3vmin,2.5rem)]" data-ejercicio={ejercicio.tipo}>
+      {bote && (
+        <div className="flex flex-col items-center gap-2 pr-[clamp(0.5rem,2vmin,2rem)]" data-bote-pregunta={bote.id}>
+          <Arte clave={`bote-${bote.id}`} className="h-[clamp(7rem,24vmin,15rem)]" />
+          <span className="rounded-full border-4 bg-white px-4 py-1 text-[clamp(1.1rem,2.6vmin,1.8rem)] font-black" style={{ borderColor: bote.color, color: bote.color }}>
+            {bote.nombre}
+          </span>
+        </div>
+      )}
       {ejercicio.opciones.map((op) => (
         <Tarjeta
           key={op.id}

@@ -59,9 +59,17 @@ export function conDe(frase: string): string {
   return /^el\s/i.test(frase) ? `del ${frase.slice(3)}` : `de ${frase}`;
 }
 
-/** Cómo se llama el bote en voz alta: "el bote verde con el dibujo de la hojita". */
+/** El bote con su color y lo que recibe, como está escrito en él: "el bote naranja de no reciclable". */
+export function nombreBote(c: Categoria): string {
+  return `el bote ${c.nombreColor} de ${c.nombre.toLowerCase()}`;
+}
+
+/**
+ * Cómo se describe el bote en voz alta: color, nombre y dibujo, para que no haya que adivinar
+ * cuál es "el naranja": "el bote naranja de no reciclable, con el dibujo del bote de basura".
+ */
 export function descripcionBote(c: Categoria): string {
-  return `el bote ${c.nombreColor} con el dibujo ${conDe(NOMBRE_DEL_ICONO[c.icono])}`;
+  return `${nombreBote(c)}, con el dibujo ${conDe(NOMBRE_DEL_ICONO[c.icono])}`;
 }
 
 /**

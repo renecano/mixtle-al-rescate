@@ -1,6 +1,5 @@
 import { ANIMALES } from '../data/animales';
 import { CATEGORIAS } from '../data/categorias';
-import { MAPEO_IMAGENET } from '../data/mapeoImagenet';
 import { RESIDUOS } from '../data/residuos';
 import { TEXTOS } from '../data/textos';
 import { TEXTOS_AVENTURAS } from '../contenido/aventuras';
@@ -8,7 +7,7 @@ import { TEXTOS_APP } from '../contenido/textosApp';
 import type { Ejercicio } from '../contenido/tipos';
 import { UNIDADES } from '../contenido/unidades';
 import { HOJITAS_COFRE } from '../logica/camino';
-import { descripcionBote, textoPista } from '../logica/clasificacion';
+import { textoPista } from '../logica/clasificacion';
 import { MASCOTAS } from '../logica/grupos';
 import { archivoDeFrase } from './hash';
 import { NUMERO_MAXIMO, normalizarFrase, piezasDeTexto, type Locucion } from './locucion';
@@ -55,15 +54,9 @@ export function todasLasFrases(): FraseNarrada[] {
   u1('aventura-nivel2', 'nivel2.fin', TEXTOS.nivel2.fin);
   for (const [clave, texto] of Object.entries(TEXTOS.nivel3)) u1('aventura-nivel3', `nivel3.${clave}`, texto);
 
+  // Bonus "Lluvia de basura": las preguntas, aciertos y pistas son las del nivel 2.
   const b = TEXTOS.bonus;
-  for (const clave of ['bienvenida', 'pidiendoPermiso', 'cargando', 'listo', 'pensando', 'meAyudas', 'gracias', 'sinModelo', 'conDibujos'] as const) {
-    u1('aventura-bonus', `bonus.${clave}`, b[clave]);
-  }
-  for (const [motivo, texto] of Object.entries(b.sinCamara)) u1('aventura-bonus', `bonus.sinCamara.${motivo}`, texto);
-  CATEGORIAS.forEach((c) => u1('aventura-bonus', `bonus.acierto.${c.id}`, b.acierto(descripcionBote(c))));
-  [...new Set(Object.values(MAPEO_IMAGENET).map((e) => e.nombre))].forEach((nombre, i) =>
-    u1('aventura-bonus', `bonus.creoQueEs.${i + 1}`, b.creoQueEs(nombre)),
-  );
+  for (const clave of ['bienvenida', 'seCayo', 'fin'] as const) u1('aventura-bonus', `bonus.${clave}`, b[clave]);
 
   // Camino de aprendizaje: cada unidad, lección y ejercicio (src/contenido/unidades/).
   for (const unidad of UNIDADES) {
@@ -129,7 +122,7 @@ export function todasLasFrases(): FraseNarrada[] {
   return lista;
 }
 
-/** Los ejercicios de una lección, incluido el respaldo con dibujos de "Muéstrale a Caco". */
+/** Los ejercicios de una lección (una lista plana, para revisarlos y narrarlos). */
 export function todosLosEjercicios(ejercicios: readonly Ejercicio[]): Ejercicio[] {
-  return ejercicios.flatMap((e): Ejercicio[] => (e.tipo === 'muestrale' ? [e, e.respaldo] : [e]));
+  return [...ejercicios];
 }

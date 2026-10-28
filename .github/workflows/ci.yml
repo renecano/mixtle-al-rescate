@@ -31,7 +31,7 @@ jobs:
       - run: npm run build
 
   e2e:
-    name: Recorridos en navegador (1920×1080, 1024×768 y cámara)
+    name: Recorridos en navegador (1920×1080 y 1024×768)
     needs: calidad
     runs-on: ubuntu-latest
     steps:

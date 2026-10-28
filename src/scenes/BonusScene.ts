@@ -1,57 +1,42 @@
 import Phaser from 'phaser';
-import { ANCHO, PALETA, hex } from '../config';
+import { ANCHO } from '../config';
 import { claveImagenResiduo } from '../arte/residuos';
-import { CATEGORIAS, type Categoria } from '../data/categorias';
-import { MAPEO_IMAGENET } from '../data/mapeoImagenet';
-import { MODELO } from '../data/modelo';
+import { BASURAS_BONUS } from '../aventuras/datos';
+import { CATEGORIAS } from '../data/categorias';
 import { RESIDUOS, type Residuo } from '../data/residuos';
 import { TEXTOS } from '../data/textos';
-import { categoriaDe, descripcionBote, textoPista } from '../logica/clasificacion';
+import { categoriaDe, esCorrecto, textoAcierto, textoPista } from '../logica/clasificacion';
 import { enFila } from '../logica/disposicion';
 import { escenaSiguiente } from '../logica/flujo';
-import { interpretar } from '../logica/interpretacion';
 import { progreso } from '../logica/progreso';
-import { abrirCamara } from '../servicios/camara';
-import { cargarClasificador, type Clasificador } from '../servicios/clasificador';
+import { crearAleatorio } from '../logica/reparto';
 import { sonido } from '../servicios/sonido';
-import { Boton } from '../ui/Boton';
-import { agregarBotonSonido } from '../ui/BotonSonido';
 import { Bote } from '../ui/Bote';
+import { agregarBotonSonido } from '../ui/BotonSonido';
 import { Caco } from '../ui/Caco';
-import { chispas } from '../ui/efectos';
+import { botonSiguiente, chispas, confeti } from '../ui/efectos';
 import { agregarParque } from '../ui/fondo';
 import { CACO_NIVEL } from '../ui/layoutParque';
 import { Narrador } from '../ui/Narrador';
-import { estiloTexto } from '../ui/texto';
 import { entrar, irA } from '../ui/transicion';
 
-const VISTA = { x: 1150, y: 370, ancho: 560, alto: 420 };
-const BOTES = { desde: 560, hasta: 1880, yBase: 975, anchoMaximo: 230 };
-
-type Modo = 'menu' | 'camara' | 'dibujos';
+const BOTES = { desde: 560, hasta: 1880, yBase: 975, anchoMaximo: 290 };
+const CAIDA = { x: 1220, desde: -120, hasta: 600 };
+/** Tarda en caer: tranquilo, para que el grupo se ponga de acuerdo. */
+const DURACION_CAIDA_MS = 9000;
+const TAMANO = 200;
 
 /**
- * Bonus "Muéstrale a Caco". La cámara solo se pide al tocar el botón; el modelo se descarga
- * en ese momento. Sin cámara, sin permiso o sin modelo, se juega con dibujos y botones.
+ * Bonus "Lluvia de basura": cae una basura a la vez y el grupo toca el bote correcto antes
+ * de que llegue al suelo. Si llega, no pasa nada: vuelve a subir y cae otra vez. Nunca hay castigo.
  */
 export class BonusScene extends Phaser.Scene {
-  private modo: Modo = 'menu';
-  private activa = false;
   private caco!: Caco;
   private narrador!: Narrador;
-  private botes: Bote[] = [];
-  /** Bote que el niño debe elegir; null si Caco pidió ayuda (no se puede verificar). */
-  private esperado: Categoria | null | undefined = undefined;
-  private detenerCamara: (() => void) | null = null;
-  private video: HTMLVideoElement | null = null;
-  private clasificador: Clasificador | null = null;
-  private menu: Phaser.GameObjects.GameObject[] = [];
-  private vista: Phaser.GameObjects.GameObject[] = [];
-  private botonAdivinar: Boton | null = null;
-  private botonDibujos: Boton | null = null;
-  private dibujos: Residuo[] = [];
-  private dibujoActual: { residuo: Residuo; imagen: Phaser.GameObjects.Image } | null = null;
-  private aciertosCamara = 0;
+  private cola: Residuo[] = [];
+  private actual: { residuo: Residuo; imagen: Phaser.GameObjects.Image; caida: Phaser.Tweens.Tween | null } | null = null;
+  private ocupado = false;
+  private aciertos = 0;
 
   constructor() {
     super('Bonus');
@@ -59,262 +44,120 @@ export class BonusScene extends Phaser.Scene {
 
   create(): void {
     entrar(this);
-    this.modo = 'menu';
-    this.activa = true;
-    this.esperado = undefined;
-    this.menu = [];
-    this.vista = [];
-    this.botonAdivinar = null;
-    this.botonDibujos = null;
-    this.dibujoActual = null;
-    this.clasificador = null;
-    this.aciertosCamara = 0;
-    this.events.once('shutdown', () => this.limpiar());
+    this.actual = null;
+    this.ocupado = false;
+    this.aciertos = 0;
+    // Cinco basuras distintas, en otro orden cada vez.
+    const azar = crearAleatorio(Date.now());
+    this.cola = [...RESIDUOS.filter((r) => categoriaDe(r, CATEGORIAS))].sort(() => azar() - 0.5).slice(0, BASURAS_BONUS);
 
     agregarParque(this);
-    this.add.rectangle(ANCHO / 2, 540, ANCHO, 1080, 0xffffff, 0.25).setDepth(-50);
+    this.add.rectangle(ANCHO / 2, 540, ANCHO, 1080, 0xffffff, 0.22).setDepth(-50);
     this.caco = new Caco(this, CACO_NIVEL.x, CACO_NIVEL.y, CACO_NIVEL.escala).setDepth(30);
     this.narrador = new Narrador(this, this.caco, { x: 40, y: 280, ancho: 780, apuntaA: { x: 230, y: 900 }, tamanoTexto: 44 });
     this.crearBotes();
     agregarBotonSonido(this);
-
-    new Boton(this, ANCHO - 560, 88, {
-      texto: TEXTOS.bonus.botonDiploma,
-      icono: 'icono-siguiente',
-      ancho: 420,
-      alto: 120,
-      tamanoTexto: 42,
-      color: PALETA.naranja,
-      nombre: 'ir-al-diploma',
-      alPresionar: () => irA(this, escenaSiguiente('Bonus')),
-    }).setDepth(900);
-
-    this.mostrarMenu();
+    this.time.delayedCall(450, () => this.narrador.decir(TEXTOS.bonus.bienvenida, () => this.siguiente()));
   }
 
-  // ─── Menú ────────────────────────────────────────────────────────────
-  private mostrarMenu(): void {
-    const boton = new Boton(this, VISTA.x, VISTA.y, {
-      texto: TEXTOS.bonus.botonCamara,
-      icono: 'icono-camara',
-      ancho: 640,
-      alto: 190,
-      tamanoTexto: 60,
-      color: PALETA.azul,
-      nombre: 'muestrale-a-caco',
-      alPresionar: () => void this.iniciarCamara(),
-    }).setDepth(600);
-    boton.latir();
-    this.menu = [boton, this.textoPrivacidad(VISTA.y + 170)];
-    this.time.delayedCall(450, () => this.narrador.decir(TEXTOS.bonus.bienvenida));
-  }
-
-  private textoPrivacidad(y: number): Phaser.GameObjects.Container {
-    const texto = this.add.text(0, 0, TEXTOS.bonus.privacidad, estiloTexto(28, PALETA.tinta, { wordWrap: { width: 620 }, align: 'center' }));
-    texto.setOrigin(0.5);
-    const fondo = this.add.graphics();
-    fondo.fillStyle(0xffffff, 0.92).fillRoundedRect(-texto.width / 2 - 24, -texto.height / 2 - 14, texto.width + 48, texto.height + 28, 22);
-    return this.add.container(VISTA.x, y, [fondo, texto]).setDepth(600).setName('aviso-privacidad');
-  }
-
-  // ─── Cámara ──────────────────────────────────────────────────────────
-  private async iniciarCamara(): Promise<void> {
-    if (this.modo !== 'menu') return;
-    this.modo = 'camara';
-    this.menu.forEach((o) => o.destroy());
-    this.menu = [];
-    this.narrador.decir(TEXTOS.bonus.pidiendoPermiso);
-    // Mientras se espera el permiso o el modelo, el facilitador puede pasar a dibujos.
-    this.botonDibujos = new Boton(this, 1680, VISTA.y + 200, {
-      texto: TEXTOS.bonus.botonDibujos,
-      ancho: 380,
-      alto: 120,
-      tamanoTexto: 42,
-      color: PALETA.verde,
-      nombre: 'usar-dibujos',
-      alPresionar: () => {
-        this.cerrarCamara();
-        this.modoDibujos(TEXTOS.bonus.conDibujos);
-      },
-    }).setDepth(600);
-    const sigueEnCamara = () => this.activa && this.modo === 'camara';
-
-    const cam = await abrirCamara(VISTA.ancho, VISTA.alto, () => !sigueEnCamara());
-    if (!sigueEnCamara()) {
-      if (cam.ok) cam.detener();
-      return;
-    }
-    if (!cam.ok) {
-      this.modoDibujos(TEXTOS.bonus.sinCamara[cam.motivo]);
-      return;
-    }
-    this.detenerCamara = cam.detener;
-    this.video = cam.video;
-    const dom = this.add.dom(VISTA.x, VISTA.y, cam.video).setDepth(500);
-    const aviso = this.textoPrivacidad(VISTA.y + VISTA.alto / 2 + 60);
-    const giro = this.add.image(VISTA.x, VISTA.y, 'brillo').setScale(1.6).setDepth(510);
-    this.tweens.add({ targets: giro, angle: 360, duration: 1200, repeat: -1 });
-    this.vista = [dom, aviso, giro];
-    this.narrador.decir(TEXTOS.bonus.cargando);
-
-    try {
-      this.clasificador = await cargarClasificador();
-    } catch (e) {
-      console.warn('No se pudo cargar el modelo de visión:', e);
-      if (!sigueEnCamara()) return;
-      this.cerrarCamara();
-      this.modoDibujos(TEXTOS.bonus.sinModelo);
-      return;
-    }
-    if (!sigueEnCamara()) return;
-    this.vista = this.vista.filter((o) => o !== giro);
-    giro.destroy();
-    this.botonAdivinar = new Boton(this, 1680, VISTA.y, {
-      texto: TEXTOS.bonus.botonAdivinar,
-      ancho: 380,
-      alto: 170,
-      tamanoTexto: 46,
-      color: PALETA.morado,
-      nombre: 'adivina',
-      alPresionar: () => void this.adivinar(),
-    })
-      .setDepth(600)
-      .latir();
-    this.narrador.decir(TEXTOS.bonus.listo);
-  }
-
-  private async adivinar(): Promise<void> {
-    if (!this.clasificador || !this.video || this.esperado !== undefined) return;
-    this.botonAdivinar?.habilitar(false);
-    this.narrador.decir(TEXTOS.bonus.pensando);
-    let interp;
-    try {
-      // Se clasifica el cuadro actual directamente desde el video, en memoria.
-      const predicciones = await this.clasificador.clasificar(this.video);
-      interp = interpretar(predicciones, MAPEO_IMAGENET, CATEGORIAS, MODELO.umbralConfianza);
-    } catch (e) {
-      console.warn('Error al clasificar:', e);
-      interp = { tipo: 'duda' as const, mejor: null };
-    }
-    if (!this.activa) return;
-    if (interp.tipo === 'seguro') {
-      this.esperado = interp.categoria;
-      this.narrador.decir(TEXTOS.bonus.creoQueEs(interp.nombre));
-    } else {
-      this.esperado = null;
-      this.narrador.decir(TEXTOS.bonus.meAyudas);
-    }
-    this.activarBotes(true);
-  }
-
-  private cerrarCamara(): void {
-    this.detenerCamara?.();
-    this.detenerCamara = null;
-    this.video = null;
-    this.vista.forEach((o) => o.destroy());
-    this.vista = [];
-  }
-
-  // ─── Dibujos (respaldo sin cámara) ───────────────────────────────────
-  private modoDibujos(mensaje: string): void {
-    if (this.modo === 'dibujos') return;
-    this.modo = 'dibujos';
-    this.esperado = undefined;
-    this.activarBotes(false);
-    this.botonAdivinar?.destroy();
-    this.botonAdivinar = null;
-    this.botonDibujos?.destroy();
-    this.botonDibujos = null;
-    this.dibujos = Phaser.Utils.Array.Shuffle(RESIDUOS.filter((r) => categoriaDe(r, CATEGORIAS)));
-    this.add.circle(VISTA.x, VISTA.y, 178, 0xffffff, 0.5).setDepth(15);
-    this.add.circle(VISTA.x, VISTA.y, 152, hex(PALETA.crema), 0.95).setDepth(15).setStrokeStyle(8, hex(PALETA.pasto));
-    this.narrador.decir(mensaje, () => this.siguienteDibujo());
-  }
-
-  private siguienteDibujo(): void {
-    if (!this.activa) return;
-    if (!this.dibujos.length) this.dibujos = Phaser.Utils.Array.Shuffle(RESIDUOS.filter((r) => categoriaDe(r, CATEGORIAS)));
-    const residuo = this.dibujos.shift()!;
-    const imagen = this.add.image(VISTA.x, VISTA.y, claveImagenResiduo(residuo.imagen)).setDepth(20).setName(`dibujo-${residuo.id}`);
-    // Tocar el dibujo hace que Caco repita la pregunta (igual que en el nivel 2).
-    imagen.setInteractive({ useHandCursor: true }).on('pointerup', () => this.narrador.decir(TEXTOS.nivel2.pregunta(residuo.nombre)));
-    const escala = 230 / Math.max(imagen.width, imagen.height);
-    imagen.setScale(0);
-    this.tweens.add({ targets: imagen, scale: escala, duration: 420, ease: 'Back.easeOut' });
-    this.dibujoActual = { residuo, imagen };
-    this.esperado = categoriaDe(residuo, CATEGORIAS);
-    this.activarBotes(true);
-    this.narrador.decir(TEXTOS.nivel2.pregunta(residuo.nombre));
-  }
-
-  // ─── Botes ───────────────────────────────────────────────────────────
   private crearBotes(): void {
     const fila = enFila(CATEGORIAS.length, BOTES.desde, BOTES.hasta, BOTES.anchoMaximo);
-    this.botes = CATEGORIAS.map((c, i) => {
+    CATEGORIAS.forEach((c, i) => {
       const bote = new Bote(this, fila.xs[i]!, BOTES.yBase, c, fila.ancho).setDepth(20);
       bote.on('pointerup', () => this.elegir(bote));
-      return bote;
     });
-    this.activarBotes(false);
   }
 
-  private activarBotes(si: boolean): void {
-    for (const b of this.botes) {
-      b.setAlpha(si ? 1 : 0.55);
-      if (si) b.setInteractive();
-      else b.disableInteractive();
+  private siguiente(): void {
+    const residuo = this.cola.shift();
+    if (!residuo) {
+      this.terminar();
+      return;
     }
+    const imagen = this.add.image(CAIDA.x, CAIDA.desde, claveImagenResiduo(residuo.imagen)).setDepth(700);
+    imagen.setScale(TAMANO / Math.max(imagen.width, imagen.height));
+    // Tocar la basura repite la pregunta.
+    imagen.setInteractive({ useHandCursor: true }).setName(`cae-${residuo.id}`);
+    imagen.on('pointerdown', () => this.narrador.decir(TEXTOS.nivel2.pregunta(residuo.nombre)));
+    this.actual = { residuo, imagen, caida: null };
+    this.ocupado = false;
+    this.narrador.decir(TEXTOS.nivel2.pregunta(residuo.nombre));
+    this.caer();
+  }
+
+  /** Cae despacio, meciéndose como una hoja. */
+  private caer(): void {
+    const actual = this.actual;
+    if (!actual) return;
+    const { imagen } = actual;
+    imagen.setPosition(CAIDA.x, CAIDA.desde);
+    this.tweens.add({ targets: imagen, angle: { from: -10, to: 10 }, duration: 900, yoyo: true, repeat: -1, ease: 'Sine.easeInOut' });
+    actual.caida = this.tweens.add({
+      targets: imagen,
+      y: CAIDA.hasta,
+      duration: DURACION_CAIDA_MS,
+      ease: 'Sine.easeIn',
+      onComplete: () => this.llegoAlSuelo(),
+    });
+  }
+
+  /** Llegó al suelo sin que se eligiera bote: no pasa nada, vuelve a caer. */
+  private llegoAlSuelo(): void {
+    const actual = this.actual;
+    if (!actual || this.ocupado) return;
+    this.ocupado = true;
+    sonido.tocar('toque');
+    this.tweens.killTweensOf(actual.imagen);
+    this.narrador.decir(TEXTOS.bonus.seCayo, () => {
+      this.ocupado = false;
+      this.caer();
+    });
   }
 
   private elegir(bote: Bote): void {
-    if (this.esperado === undefined) return;
-    const esperado = this.esperado;
-    if (esperado === null) {
-      // Caco pidió ayuda: no hay forma de verificar, así que solo agradece (no suma al diploma).
-      sonido.tocar('feliz');
-      bote.celebrar();
-      this.narrador.decir(TEXTOS.bonus.gracias);
-      this.terminarRonda();
-      return;
-    }
-    if (bote.categoria.id !== esperado.id) {
-      sonido.tocar('otraVez');
+    const actual = this.actual;
+    if (!actual || this.ocupado) return;
+    const { residuo, imagen } = actual;
+    if (!esCorrecto(residuo, bote.categoria.id, CATEGORIAS)) {
       bote.sacudir();
-      this.narrador.decir(textoPista(esperado));
+      sonido.tocar('otraVez');
+      // La pista no detiene la caída; si llega al suelo, vuelve a empezar.
+      this.narrador.decir(textoPista(categoriaDe(residuo, CATEGORIAS)!));
       return;
     }
-    sonido.tocar('acierto');
+    this.ocupado = true;
+    this.actual = null;
+    this.tweens.killTweensOf(imagen);
+    imagen.disableInteractive();
+    progreso().separarEnBonus(`lluvia-${residuo.id}`);
+    this.registry.set('marcador', { bonus: progreso().separadosBonus.size });
     bote.abrir();
-    bote.celebrar();
+    const boca = bote.boca;
+    this.tweens.add({
+      targets: imagen,
+      x: boca.x,
+      y: boca.y - 60,
+      angle: 0,
+      scale: imagen.scale * 0.45,
+      duration: 380,
+      ease: 'Quad.easeIn',
+      onComplete: () => {
+        imagen.destroy();
+        bote.celebrar();
+        sonido.tocar('acierto');
+        chispas(this, boca.x, boca.y - 80, 12, 160);
+        this.caco.celebrar();
+        const lista = TEXTOS.nivel2.celebraciones;
+        this.narrador.decir(textoAcierto(residuo, lista[this.aciertos++ % lista.length]!), () => this.siguiente());
+      },
+    });
+  }
+
+  private terminar(): void {
     this.caco.celebrar();
-    chispas(this, bote.boca.x, bote.boca.y - 80, 12, 160);
-    if (this.modo === 'dibujos' && this.dibujoActual) {
-      const { residuo, imagen } = this.dibujoActual;
-      progreso().separarEnBonus(`dibujo-${residuo.id}`);
-      this.dibujoActual = null;
-      imagen.disableInteractive();
-      this.tweens.add({ targets: imagen, x: bote.boca.x, y: bote.boca.y, scale: 0, duration: 500, ease: 'Quad.easeIn', onComplete: () => imagen.destroy() });
-      this.esperado = undefined;
-      this.activarBotes(false);
-      this.narrador.decir([TEXTOS.bonus.acierto(descripcionBote(esperado)), residuo.dato], () => this.siguienteDibujo());
-      return;
-    }
-    this.aciertosCamara += 1;
-    progreso().separarEnBonus(`camara-${this.aciertosCamara}`);
-    this.narrador.decir(TEXTOS.bonus.acierto(descripcionBote(esperado)));
-    this.terminarRonda();
-  }
-
-  private terminarRonda(): void {
-    this.esperado = undefined;
-    this.activarBotes(false);
-    this.botonAdivinar?.habilitar(true);
-  }
-
-  private limpiar(): void {
-    this.activa = false;
-    this.detenerCamara?.();
-    this.detenerCamara = null;
-    this.video = null;
+    confeti(this);
+    sonido.celebrar();
+    this.narrador.decir(TEXTOS.bonus.fin);
+    botonSiguiente(this, () => irA(this, escenaSiguiente('Bonus')), TEXTOS.bonus.botonDiploma, { x: ANCHO - 300, y: 300 }).setName('ir-al-diploma');
   }
 }

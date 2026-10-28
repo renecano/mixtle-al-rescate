@@ -117,22 +117,46 @@ describe('el parque del grupo', () => {
     expect(etapaParque(PROGRESO_VACIO, UNIDADES)).toEqual({ avance: 0, basura: MAXIMOS_PARQUE.basura, arboles: 0, flores: 0 });
   });
 
-  it('crece de forma constante: la basura baja y los árboles y flores suben', () => {
-    let anterior = etapaParque(PROGRESO_VACIO, UNIDADES);
-    const total = hojitasPosibles(UNIDADES);
-    for (let h = 0; h <= total; h += Math.ceil(total / 25)) {
-      const e = etapaParque({ ...PROGRESO_VACIO, hojitas: h }, UNIDADES);
+  it('cada parada del camino lo mejora: más color, menos basura, más árboles y flores', () => {
+    let p = PROGRESO_VACIO;
+    let anterior = etapaParque(p, UNIDADES);
+    for (const n of nodos) {
+      if (n.tipo === 'leccion') p = completarLeccion(p, n.leccion.id, { hojitas: 10 + n.leccion.ejercicios.length, aLaPrimera: 0 }, HOY);
+      if (n.tipo === 'cofre') p = abrirCofre(p, n.unidad.id, HOY);
+      if (n.tipo === 'aventura') p = completarAventura(p, n.unidad, HOY);
+      const e = etapaParque(p, UNIDADES);
+      expect(e.avance, n.id).toBeGreaterThan(anterior.avance);
       expect(e.basura).toBeLessThanOrEqual(anterior.basura);
       expect(e.arboles).toBeGreaterThanOrEqual(anterior.arboles);
       expect(e.flores).toBeGreaterThanOrEqual(anterior.flores);
+      // Mientras el parque tenga lugar, cada lección cambia algo que se ve además del color:
+      // una basura menos, una flor más o un árbol más.
+      const hayLugar = anterior.basura > 0 || anterior.flores < MAXIMOS_PARQUE.flores;
+      if (n.tipo === 'leccion' && hayLugar) {
+        const cambio = anterior.basura - e.basura + (e.flores - anterior.flores) + (e.arboles - anterior.arboles);
+        expect(cambio, n.id).toBeGreaterThan(0);
+      }
       anterior = e;
     }
   });
 
-  it('una sola lección ya se nota (el grupo ve que su esfuerzo sirve)', () => {
+  it('una sola lección ya se nota a simple vista (el grupo ve que su esfuerzo sirve)', () => {
     const l = u1.lecciones[0]!;
     const p = completarLeccion(PROGRESO_VACIO, l.id, { hojitas: 10 + l.ejercicios.length, aLaPrimera: l.ejercicios.length }, HOY);
-    expect(etapaParque(p, UNIDADES).basura).toBeLessThan(MAXIMOS_PARQUE.basura);
+    const e = etapaParque(p, UNIDADES);
+    expect(e.avance).toBeGreaterThanOrEqual(0.4); // de gris a verde a simple vista: más de 40 % de color
+    expect(e.basura).toBe(MAXIMOS_PARQUE.basura - 1);
+    expect(e.flores).toBe(1);
+  });
+
+  it('al terminar la unidad 1 ya tiene más de la mitad del color', () => {
+    let p = PROGRESO_VACIO;
+    for (const n of nodos.filter((x) => x.unidad.id === 'u1')) {
+      if (n.tipo === 'leccion') p = completarLeccion(p, n.leccion.id, { hojitas: 10, aLaPrimera: 0 }, HOY);
+      if (n.tipo === 'cofre') p = abrirCofre(p, n.unidad.id, HOY);
+      if (n.tipo === 'aventura') p = completarAventura(p, n.unidad, HOY);
+    }
+    expect(etapaParque(p, UNIDADES).avance).toBeGreaterThan(0.6);
   });
 
   it('al terminar todo está limpio y lleno de vida', () => {

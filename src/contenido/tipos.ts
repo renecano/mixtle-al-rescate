@@ -28,6 +28,11 @@ export interface EligeImagen extends Base {
   correcta: string;
   /** Se muestra el nombre bajo cada tarjeta (false para quienes aún no leen: solo dibujo). */
   conTexto?: boolean;
+  /**
+   * Si la pregunta es sobre un bote ("¿Cuál va en el bote verde de orgánico?"), su id en
+   * src/data/categorias.ts: el bote se muestra con su nombre arriba de las tarjetas.
+   */
+  bote?: string;
 }
 
 /** 2. Al bote: arrastrar (o tocar el bote) cada residuo a su bote. Usa la lógica de la v1. */
@@ -40,6 +45,8 @@ export interface AlBote extends Base {
 /** 3. Parejas: unir cada tarjeta de la izquierda con su pareja de la derecha. */
 export interface Parejas extends Base {
   tipo: 'parejas';
+  /** Mostrar el nombre bajo cada tarjeta (por ejemplo, el de cada bote). */
+  conTexto?: boolean;
   pares: { izquierda: Tarjeta; derecha: Tarjeta }[];
 }
 
@@ -78,13 +85,7 @@ export interface EscuchaToca extends Base {
   correcta: string;
 }
 
-/** 8. Muéstrale a Caco: mostrar un residuo real a la cámara. Sin cámara se juega `respaldo`. */
-export interface Muestrale extends Base {
-  tipo: 'muestrale';
-  respaldo: EligeImagen;
-}
-
-export type Ejercicio = EligeImagen | AlBote | Parejas | SiNo | Ordena | EncuentraError | EscuchaToca | Muestrale;
+export type Ejercicio = EligeImagen | AlBote | Parejas | SiNo | Ordena | EncuentraError | EscuchaToca;
 export type TipoEjercicio = Ejercicio['tipo'];
 
 export interface Leccion {

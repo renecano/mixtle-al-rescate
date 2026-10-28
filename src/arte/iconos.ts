@@ -48,14 +48,6 @@ export const ICONOS: ArteSvg[] = [
     `<path d="M20 50h52M50 24l26 26-26 26" fill="none" stroke="#fff" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>`,
   ),
   arte(
-    'icono-camara',
-    100,
-    100,
-    `<rect x="10" y="30" width="80" height="54" rx="12" fill="#fff"/>
-     <path d="M34 31l7-11h18l7 11z" fill="#fff"/>
-     <circle cx="50" cy="57" r="16" fill="none" stroke="#2459A6" stroke-width="7"/>`,
-  ),
-  arte(
     'icono-casa',
     100,
     100,

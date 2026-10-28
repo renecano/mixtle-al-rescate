@@ -156,7 +156,7 @@ export const U2: Unidad = {
           pasos: [
             { id: 'basura', arte: 'residuo-frituras', nombre: 'la basura en el pasto' },
             { id: 'bolsa', arte: 'bolsa', nombre: 'la bolsa para recoger' },
-            { id: 'bote', arte: 'bote-no-reciclable', nombre: 'el bote naranja' },
+            { id: 'bote', arte: 'bote-no-reciclable', nombre: 'el bote naranja de no reciclable' },
             { id: 'feliz', arte: 'ardilla-feliz', nombre: 'la ardilla feliz' },
           ],
         },

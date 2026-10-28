@@ -19,7 +19,7 @@ export type IconoCategoria = 'hoja' | 'reciclaje' | 'basura' | 'papel' | 'botell
 
 /**
  * Cómo nombra Caco el dibujo de cada ícono en voz alta, con su artículo:
- * "Busca el bote naranja con el dibujo del bote de basura". El "de" + artículo
+ * "Busca el bote naranja de no reciclable, con el dibujo del bote de basura". El "de" + artículo
  * se contrae solo ("de el" → "del").
  */
 export const NOMBRE_DEL_ICONO: Record<IconoCategoria, string> = {

@@ -28,9 +28,9 @@ describe('redacción de las pistas', () => {
 
   it('las pistas por defecto suenan como se espera en voz alta', () => {
     expect(CATEGORIAS.map(textoPista)).toEqual([
-      '¡Casi! Viene de una planta o de un animal y se puede volver tierra. Busca el bote verde con el dibujo de la hojita.',
-      '¡Casi! Se puede convertir en algo nuevo. Busca el bote azul con el dibujo de las flechas.',
-      '¡Casi! Este casi nunca se puede reciclar. Busca el bote naranja con el dibujo del bote de basura.',
+      '¡Casi! Viene de una planta o de un animal y se puede volver tierra. Busca el bote verde de orgánico, con el dibujo de la hojita.',
+      '¡Casi! Se puede convertir en algo nuevo. Busca el bote azul de reciclable, con el dibujo de las flechas.',
+      '¡Casi! Este casi nunca se puede reciclar. Busca el bote naranja de no reciclable, con el dibujo del bote de basura.',
     ]);
   });
 

@@ -9,7 +9,7 @@
 | Parque con el Nevado de Toluca, nubes, arbusto, árboles, flores, brote, tierra, bolsa | `src/arte/escenario.ts` | Dibujado en código SVG para este proyecto | Igual que arriba |
 | 12 residuos | `src/arte/residuos.ts` | Dibujado en código SVG para este proyecto | Igual que arriba |
 | Botes, tapas e íconos de categoría | `src/arte/botes.ts` | Dibujado en código SVG para este proyecto | Igual que arriba |
-| Íconos de interfaz (voz, música, repetir, cámara, etc.) y de la app | `src/arte/iconos.ts`, `public/favicon.svg`, `public/iconos/` | Dibujado en código SVG para este proyecto | Igual que arriba |
+| Íconos de interfaz (voz, música, repetir, etc.) y de la app | `src/arte/iconos.ts`, `public/favicon.svg`, `public/iconos/` | Dibujado en código SVG para este proyecto | Igual que arriba |
 
 Caco es un personaje original: se dibujó a partir de rasgos reales del cacomixtle (*Bassariscus astutus*): cuerpo esbelto gris-pardo, orejas grandes, anillos claros alrededor de los ojos y cola larga con anillos blancos y negros.
 
@@ -60,9 +60,6 @@ Si Eco Urban graba la voz de una persona (ver README), sus grabaciones reemplaza
 | [Motion](https://motion.dev) 14 | Animaciones de la interfaz | MIT |
 | [Zustand](https://zustand.docs.pmnd.rs) 5 | Estado de la app | MIT |
 | [Tailwind CSS](https://tailwindcss.com) 4 | Estilos | MIT |
-| [TensorFlow.js](https://www.tensorflow.org/js) 4.22 | Clasificar la imagen de la cámara en el navegador | Apache-2.0 |
-| [@tensorflow-models/mobilenet](https://github.com/tensorflow/tfjs-models/tree/master/mobilenet) 2.1 | Cargar MobileNet v2 | Apache-2.0 |
-| Pesos de MobileNet v2 (ImageNet) | Se descargan al entrar al bonus (servidores de Google/Kaggle) | Apache-2.0 |
 | Workbox (vía vite-plugin-pwa) | Funcionar sin internet | MIT |
 
 Herramientas de desarrollo (no se incluyen en el juego publicado): Vite (MIT), TypeScript (Apache-2.0), Vitest (MIT), Testing Library (MIT), happy-dom (MIT), Playwright (Apache-2.0), ESLint y typescript-eslint (MIT), vite-plugin-pwa (MIT), Piper (GPL-3.0), edge-tts (LGPL-3.0), imageio-ffmpeg/ffmpeg (BSD-2/LGPL), soundfile (BSD-3).

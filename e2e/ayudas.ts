@@ -18,7 +18,6 @@ interface Gancho {
   pantalla(): string | null;
   tocables(): Tocable[];
   resumen(): { residuosSeparados: number; animalesAyudados: number; plantados: number };
-  camarasActivas(): number;
   fps(): number;
   quieto(): boolean;
   voz(): { conAudio: number; conNavegador: number };
@@ -32,8 +31,6 @@ declare global {
   }
 }
 
-/** Hosts desde donde TensorFlow.js descarga MobileNet. */
-export const HOSTS_MODELO = /tfhub\.dev|kaggle|storage\.googleapis\.com|tensorflow/;
 
 /** Abre el juego y registra errores de consola y todas las peticiones de red. */
 export async function abrir(page: Page, ruta = '/?e2e') {
