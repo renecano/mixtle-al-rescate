@@ -105,13 +105,14 @@ export class Clasificador {
     imagen.setInteractive({ useHandCursor: true, draggable: true });
     imagen.setName(`pieza-${pieza.id}`);
     this.actual = { pieza, imagen };
+    // Se puede llevar a su lugar desde que aparece (un toque rápido no se pierde).
+    this.esperando = true;
     this.scene.tweens.add({
       targets: imagen,
       scale: escala,
       duration: 380,
       ease: 'Back.easeOut',
       onComplete: () => {
-        this.esperando = true;
         this.scene.tweens.add({ targets: imagen, angle: { from: -4, to: 4 }, duration: 900, yoyo: true, repeat: -1, ease: 'Sine.easeInOut' });
       },
     });

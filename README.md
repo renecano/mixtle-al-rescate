@@ -1,32 +1,70 @@
 # Caco al rescate
 
-Prototipo jugable de un videojuego educativo para **Eco Urban A.C.** (Toluca, Estado de México), pensado para el programa *Escuelas Comprometidas con el Medio Ambiente*.
+Videojuego educativo para **Eco Urban A.C.** (Toluca, Estado de México), pensado para el programa *Escuelas Comprometidas con el Medio Ambiente*.
 
-Caco, un cacomixtle que vive en los árboles del parque, guía al grupo para **cuidar a los animales del parque y aprender a separar la basura**: la basura mal tirada lastima a la ardilla, al colibrí y a las mariposas monarca.
+Caco, un cacomixtle que vive en los árboles del parque, guía a cada grupo de salón por un **camino de aprendizaje** con cinco unidades: separar la basura, los animales del parque, los árboles, el aire limpio y reducir y reutilizar. Cada lección dura unos 3 minutos y cada unidad termina con una **aventura**: un minijuego con escena.
 
-- **Para quién:** niñas y niños de 1º a 3º de primaria (6 a 8 años). Todo se narra en voz alta; el texto acompaña, pero no hace falta saber leer.
+- **Para quién:** niñas y niños de 1º a 3º de primaria (6 a 8 años). Caco narra todo en voz alta; el texto acompaña, pero no hace falta saber leer.
 - **Dónde:** en la laptop de Eco Urban proyectada en el salón (todo el grupo participa) o en tablets táctiles.
-- **Qué es:** un prototipo para revisar, jugar y aprobar. No es un producto final. No tiene servidor, cuentas ni analítica.
+- **Qué es:** un prototipo jugable para revisar con el equipo educativo. No tiene servidor, cuentas ni analítica. El avance de cada grupo se guarda solo en el aparato.
 
-![Pantalla de inicio](docs/capturas/proyector-1920x1080-1-inicio.png)
+![El camino de aprendizaje](docs/capturas/proyector-1920x1080-v2-2-camino.png)
+
+## Qué cambió en la v2
+
+| v1 | v2 |
+|---|---|
+| Una sola partida de 5 pantallas (Phaser) | **Camino de aprendizaje** con 5 unidades, 20 lecciones y 5 aventuras |
+| Voz del navegador (distinta en cada equipo) | **Voz pregenerada** de Caco (Kokoro `em_alex`), igual en todos lados, más música CC0 con *ducking* |
+| Nada se guardaba | **Grupos de salón** (animal mascota, color y etiqueta como "1°A"); el avance se guarda en el aparato |
+| Solo arrastrar a los botes | **8 tipos de ejercicio** dirigidos por datos |
+| Diploma al final | Hojitas, parque del grupo que crece, cofre, álbum de animales de Toluca, días jugados y **diploma por unidad** |
+| Todo en Phaser | Interfaz en **React + Tailwind + Motion**; Phaser solo dentro de las aventuras (se descarga al entrar y se destruye al salir) |
+
+La aventura de la unidad 1 son los tres niveles de la v1 con su bonus de cámara, adaptados al camino.
 
 ## Cómo se juega
 
-1. **Inicio:** botón grande "¡Jugar!" y botón de sonido.
-2. **Intro:** Caco se presenta en tres frases cortas; se avanza tocando la pantalla.
-3. **Nivel 1, limpia el parque:** se toca la basura y vuela a la bolsa de Caco. Cuando una zona queda limpia, su animal se pone feliz.
-4. **Nivel 2, ¿a qué bote va?:** cada residuo se arrastra (o se toca el bote) al bote correcto. Si acierta, hay celebración y un dato curioso; si no, el residuo regresa y Caco da una pista amable. No hay castigo ni vidas.
-5. **Nivel 3, un hogar para los animales:** se siembran árboles y flores donde había basura; llegan las mariposas monarca a las flores y el colibrí al árbol.
-6. **Bonus, "Muéstrale a Caco":** se muestra una basura real a la cámara y Caco intenta reconocerla. Es opcional: sin cámara se juega con dibujos.
-7. **Diploma "Guardianes del parque"** para el grupo, con cuántos residuos separaron bien y cuántos animales ayudaron.
+1. **Inicio → ¿Quién va a jugar?** Se elige el grupo o se crea uno: un animal (colibrí, ardilla, monarca, ajolote, tlacuache o cacomixtle), un color y, si se quiere, una etiqueta corta como "1°A". **Nunca se piden nombres de niñas ni niños**, y la pantalla lo recuerda.
+2. **El camino.** Arriba está el **parque del grupo**: empieza gris y con basura, y se limpia y llena de árboles, flores y animales conforme el grupo avanza. Abajo, el camino en zigzag con las lecciones de cada unidad, un **cofre** a la mitad y la **aventura** al final. Caco se para junto a la siguiente lección y la señala. Las lecciones se abren en orden y las terminadas se pueden repetir.
+3. **Una lección** (6 a 8 ejercicios, unos 3 minutos). Barra de avance arriba, botón para salir con confirmación amable, y Caco narra cada consigna.
+   - **Bien:** banner verde, Caco feliz, un sonido y una frase de ánimo distinta cada vez.
+   - **Casi:** banner naranja con una pista y "Intentar otra vez". No hay vidas ni castigos; lo que salió mal vuelve al final para repasar.
+   - **Al terminar:** hojitas ganadas, cuántos ejercicios salieron a la primera, el parque creciendo y el jingle.
+4. **Recompensas.** Hojitas por lección y por cofre; una **estampa del álbum** por cada unidad terminada (cacomixtle, mariposa monarca, colibrí, ajolote de montaña y tlacuache, cada una con un dato narrado), y los **días jugados**, sin culpa ni presión si un día no se juega.
 
-| Nivel 1 | Nivel 2 (pista amable) |
+| Lección: un error con pista | Lección terminada |
 |---|---|
-| ![Nivel 1](docs/capturas/proyector-1920x1080-3-nivel1.png) | ![Nivel 2](docs/capturas/proyector-1920x1080-5-nivel2-pista.png) |
-| **Nivel 3** | **Diploma** |
-| ![Nivel 3](docs/capturas/proyector-1920x1080-6-nivel3.png) | ![Diploma](docs/capturas/proyector-1920x1080-9-diploma.png) |
+| ![Casi](docs/capturas/proyector-1920x1080-v2-3-casi.png) | ![Fin](docs/capturas/proyector-1920x1080-v2-5-fin.png) |
+| **Aventura de la unidad 2** | **Diploma de unidad** |
+| ![Rescate](docs/capturas/proyector-1920x1080-aventura-u2-rescate.png) | ![Diploma](docs/capturas/proyector-1920x1080-aventura-u2-diploma.png) |
 
-Las capturas de todas las pantallas a 1920×1080 y 1024×768 están en [`docs/capturas/`](docs/capturas/). Las genera la prueba de recorrido (ver *Pruebas*).
+### Las cinco unidades
+
+| Unidad | Lecciones | Aventura | Estampa |
+|---|---|---|---|
+| 1. Separa tu basura | Los tres botes · Basura en su lugar · Una segunda vida · ¿Y si se revuelve? | **Limpia el parque**: los 3 niveles de la v1 y el bonus "Muéstrale a Caco" | Cacomixtle |
+| 2. Los animales del parque | ¿Quién vive aquí? · La basura los lastima · Nada de comida chatarra · Vecinos de Toluca | **Rescate en el parque**: liberar animales atrapados en basura y separarla | Mariposa monarca |
+| 3. Árboles y áreas verdes | ¿Para qué sirven? · Plantamos un árbol · Lo cuidamos · Casa de animales | **Siembra un bosquecito**: plantar seis arbolitos y regarlos hasta que crezcan (amplía el nivel 3 de la v1) | Colibrí |
+| 4. Aire limpio | A pie o en bici · ¿Qué es el humo? · Días de contingencia · Cuidamos el aire | **En bici a la escuela**: cambiar de carril para esquivar el humo y juntar hojitas | Ajolote de montaña |
+| 5. Reduce y reutiliza | Mi botella y mi lonchera · Menos desechables · Una segunda vida · Menos basura | **Mi lonchera sin basura**: cada cosa a la lonchera o a "Mejor no" | Tlacuache |
+
+### Los 8 tipos de ejercicio
+
+Todos funcionan con toque y con mouse, con zonas de toque de 64 px o más.
+
+1. **Elige la imagen:** Caco pregunta y se toca una de 2 a 4 tarjetas.
+2. **Al bote:** se arrastra cada residuo a su bote (o se toca el bote). Usa la lógica de la v1.
+3. **Parejas:** se toca una tarjeta y luego su pareja (residuo y bote, animal y su comida, animal y su casa).
+4. **¿Sí o no?:** una acción ilustrada y dos caritas propias (feliz y triste), que se distinguen por la boca y no solo por el color.
+5. **Ordena los pasos:** se tocan 3 o 4 tarjetas en orden (cómo se planta un árbol).
+6. **Encuentra el error:** una escena con 1 a 3 cosas mal (basura en el pasto, una llave goteando, basura quemándose).
+7. **Escucha y toca:** Caco nombra algo y se toca su dibujo, sin texto. Es para quienes todavía no leen.
+8. **Muéstrale a Caco:** la cámara de la v1, solo en la unidad 1. Sin cámara se cambia por "Elige la imagen".
+
+### Modo facilitador
+
+Para la persona que facilita: **mantén presionado el logo de Caco (arriba a la izquierda) 3 segundos.** Ahí se puede reiniciar el avance del grupo, abrir todas las lecciones para saltar directo a una y activar el **modo proyector** (todo más grande).
 
 ## Correrlo en Windows
 
@@ -37,30 +75,30 @@ npm install
 npm run dev
 ```
 
-Abre <http://localhost:5173> en Chrome o Edge. Para proyectar, pon el navegador en pantalla completa (F11).
+Abre <http://localhost:5173> en Chrome o Edge. Para proyectar, usa el botón de pantalla completa del juego (o F11).
 
 Todos los comandos son scripts de npm; ninguno necesita bash. Funcionan en PowerShell o en el símbolo del sistema.
 
 | Comando | Qué hace |
 |---|---|
 | `npm run dev` | Juego en modo desarrollo, con recarga automática |
-| `npm run build` | Revisa tipos y genera el sitio estático en `dist/` |
+| `npm run build` | Genera el sitio estático en `dist/` (con su *service worker* para jugar sin internet) |
 | `npm run preview` | Sirve `dist/` para probar la versión final |
 | `npm test` | Pruebas unitarias (Vitest) |
 | `npm run test:e2e` | Recorridos completos en el navegador (Playwright) |
 | `npm run verificar` | Tipos + lint + pruebas + build, todo junto |
+| `npm run voz:generar` / `voz:lista` | Voces de Caco y lista de frases para grabar (ver abajo) |
+| `npm run capturas` | Regenera las capturas de `docs/capturas/` jugando un recorrido (con `npm run preview` abierto) |
 
-> **Cámara en tablets:** los navegadores solo permiten la cámara en `https://` o en `localhost`. Para usar el bonus en una tablet, abre la versión publicada en Vercel (que ya es https), no la dirección local de la laptop.
+Atajos para revisar (solo en desarrollo o con `?e2e` en la dirección): `?galeria` muestra todo el arte; `?escena=Rescate&unidad=u2` entra directo a una aventura (`Bosque`/`u3`, `Bici`/`u4`, `Lonchera`/`u5`, o una escena de la v1 como `Nivel2`).
+
+> **Cámara en tablets:** los navegadores solo permiten la cámara en `https://` o en `localhost`. Para usar "Muéstrale a Caco" en una tablet, abre la versión publicada en Vercel (que ya es https).
 
 ## Desplegar en Vercel
 
-El proyecto es un sitio estático y ya incluye `vercel.json` (Vite, `npm run build`, carpeta `dist`, cabeceras de seguridad y caché).
+El proyecto es un sitio estático y ya incluye `vercel.json` (Vite, `npm run build`, carpeta `dist`, cabeceras de seguridad y caché; el *service worker* nunca se guarda en caché para que las actualizaciones lleguen).
 
-**Con GitHub (recomendado):**
-
-1. Sube el repositorio a GitHub.
-2. En [vercel.com](https://vercel.com), entra a *Add New → Project* e importa el repositorio. Vercel detecta la configuración sola.
-3. Cada rama o *pull request* genera una **versión de prueba** (*preview*) con su propia dirección; lo que llega a `main` se publica en **producción**. Así Eco Urban puede revisar cambios antes de que lleguen a los salones.
+**Con GitHub (recomendado):** en [vercel.com](https://vercel.com), *Add New → Project* e importa el repositorio. Cada rama o *pull request* genera una **versión de prueba** (*preview*) con su propia dirección; lo que llega a `main` se publica en **producción**. Así Eco Urban puede revisar cambios antes de que lleguen a los salones.
 
 **Desde la terminal:**
 
@@ -69,75 +107,51 @@ npx vercel          # versión de prueba
 npx vercel --prod   # producción
 ```
 
-**Integración continua:** `.github/workflows/ci.yml` corre en cada *push* y *pull request*. Revisa tipos, lint, pruebas y build en Ubuntu **y en Windows**, y después los recorridos en el navegador. Hasta hoy el flujo solo se ha validado localmente; todavía no se ha corrido en GitHub porque el repositorio no tiene remoto.
+**Integración continua:** `.github/workflows/ci.yml` corre en cada *push* y *pull request*. Revisa tipos, lint, pruebas y build en Ubuntu **y en Windows**, y después los recorridos en el navegador.
 
-## Cambiar residuos y categorías
+## Editar el contenido
 
-Todo el contenido está en archivos de datos; no hay que tocar la lógica.
+Todo el contenido vive en archivos de datos, separado de la lógica, para que el equipo educativo lo revise y lo cambie. Cada archivo está marcado con `TODO(Eco Urban)`.
 
-- **`src/data/residuos.ts`:** los 12 residuos. Cada uno tiene:
-  - `nombre` con artículo, como lo diría Caco ("la cáscara de plátano").
-  - `categoria` base (`organico`, `reciclable` o `no-reciclable`).
-  - `material` (`organico`, `papel`, `plastico`, `metal`, `vidrio`, `multicapa`, `sanitario`).
-  - `imagen`: un dibujo incluido o la ruta a tu propia imagen en `public/`, por ejemplo `'residuos/tapita.png'`.
-  - `dato`: un dato curioso de una sola frase.
-- **`src/data/categorias.ts`:** los botes. Cada bote tiene:
-  - `nombre`, `color` (con buen contraste para texto blanco) y `nombreColor` (para la voz: "el bote verde").
-  - `icono`: `hoja`, `reciclaje`, `basura`, `papel`, `botella` o `lata`.
-  - `pista`, la frase que da Caco si un residuo de ese bote se fue a otro.
-  - `acepta`: qué categorías base o materiales recibe.
-- **`src/data/textos.ts`:** todo lo que dice Caco.
-- **`src/data/animales.ts`:** los animales y cuánto cuentan para el diploma.
+- **`src/contenido/unidades/u1-separa.ts` … `u5-reutiliza.ts`:** una unidad por archivo, con su título, tema, color, cofre, estampa (con su dato), aventura y lecciones. Cada lección es una lista de ejercicios; cada ejercicio tiene `tipo`, `consigna`, `pista` y sus datos. Los tipos están documentados en `src/contenido/tipos.ts`. Los dibujos se nombran por su clave; para verlos todos, abre `?galeria`.
+- **`src/contenido/aventuras.ts`:** lo que dice Caco en las aventuras 2 a 5 y en su diploma.
+- **`src/contenido/textosApp.ts`:** lo que dice Caco en las pantallas (grupos, camino, cofre, lección, álbum).
+- **`src/data/residuos.ts` y `src/data/categorias.ts`:** los residuos y los botes, configurables como en la v1 (de 2 a 4 botes cambiando solo `categorias.ts`; los ejemplos están al final del archivo).
 
-**De 2 a 4 botes cambiando solo `categorias.ts`.** Los ejemplos están al final del archivo:
-- **2 botes:** "Orgánico" acepta `['organico']` e "Inorgánico" acepta `['reciclable', 'no-reciclable']`.
-- **4 botes (papel aparte):** un bote "Papel y cartón" que acepta `['papel']`. Si un residuo coincide por material, ese bote gana sobre el que coincide solo por categoría base.
+Las pruebas revisan que el contenido sea válido: 4 o 5 lecciones por unidad, de 6 a 8 ejercicios con al menos 3 tipos distintos, respuestas correctas que existen, dibujos que existen, ningún ejercicio imposible y todos los residuos con exactamente un bote.
 
-Cada residuo debe ir a **exactamente un** bote. Si la configuración tiene un error, el juego lo avisa en la consola del navegador al iniciar y `npm test` falla con un mensaje claro (por ejemplo: `Ningún bote acepta "servilleta"`).
+**Datos verdaderos.** Cada dato que dice Caco tiene su fuente en [`docs/fuentes-contenido.md`](docs/fuentes-contenido.md) (CONABIO, CONANP, SEMARNAT, CONAFOR, UNAM, OMS, EPA, entre otras). Ahí también está lo que **no** se usa por no tener fuente confiable (por ejemplo, "un popote tarda 500 años en degradarse"). Si se agrega un dato, hay que anotar su fuente.
 
-Para revisar el arte: abre `http://localhost:5173/?galeria`.
-
-## Cambiar MobileNet por un modelo de Teachable Machine
-
-La carga del modelo está detrás de la interfaz `Clasificador` (`src/servicios/clasificador/`). Para cambiar MobileNet por un modelo propio no hay que tocar código:
-
-1. En [Teachable Machine](https://teachablemachine.withgoogle.com/), crea un proyecto de **Imagen** con una clase por bote. Nombra cada clase igual que el `id` de su categoría: `organico`, `reciclable`, `no-reciclable` (sin importar mayúsculas ni acentos). Puedes agregar una clase `nada` para cuando no se muestra ningún residuo.
-2. Entrena y exporta: *Exportar modelo → TensorFlow.js → Subir mi modelo* (o descárgalo y copia la carpeta a `public/modelo/`).
-3. Pon la URL del modelo (la que termina en `/`), o la ruta `modelo/`, de cualquiera de estas dos formas:
-   - en `src/data/modelo.ts` → `teachableMachineUrl`, o
-   - como variable de entorno `VITE_TEACHABLE_URL` (en Vercel: *Settings → Environment Variables*; luego vuelve a desplegar).
-
-Con un modelo propio, la confianza mínima se ajusta en `umbralConfianza` del mismo archivo. Para usar MobileNet sin depender de los servidores de Google, se puede servir una copia propia con `VITE_MOBILENET_URL`.
+Después de cambiar cualquier texto, corre `npm run voz:generar` para que Caco lo diga con su voz.
 
 ## Voz de Caco y música
 
 ### Cómo se generan las voces
 
-Caco habla con audios **pregenerados** que están en el repositorio (`public/voz/`). El juego solo los reproduce: no sintetiza voz en el navegador ni usa servicios de pago. Hoy la voz es **Kokoro `em_alex`** en español latinoamericano, elegida entre las muestras de `docs/muestras-voz/`.
+Caco habla con audios **pregenerados** que están en el repositorio (`public/voz/`). El juego solo los reproduce: no sintetiza voz en el navegador ni usa servicios de pago. La voz es **Kokoro `em_alex`** en español latinoamericano, elegida entre las muestras de `docs/muestras-voz/`.
 
-Para regenerarlas (por ejemplo, después de cambiar un texto), en PowerShell:
+Para regenerarlas, en PowerShell:
 
 ```powershell
 npm run voz:preparar   # solo la primera vez: crea .venv-voz (Python 3.10–3.12) y descarga los modelos (~250 MB)
 npm run voz:generar    # genera solo las frases nuevas o cambiadas
 ```
 
-- **Qué necesita.** `voz:preparar` busca un Python 3.10–3.12; si no lo encuentra, dice cuál instalar. ffmpeg y espeak-ng vienen dentro de los paquetes de Python, así que no hay que instalarlos aparte.
+- **Qué necesita.** `voz:preparar` busca un Python 3.10–3.12; si no lo encuentra, dice cuál instalar. ffmpeg y espeak-ng vienen dentro de los paquetes de Python.
 - **Qué hace `voz:generar`:**
-  - junta automáticamente todo lo que dice Caco desde los archivos de contenido (`src/voz/frases.ts`);
-  - aplica la configuración de `voz.config.json` (proveedor, voz, velocidad y diccionario de pronunciación);
+  - junta automáticamente todo lo que dice Caco desde los archivos de contenido (`src/voz/frases.ts`), incluidas las unidades, las lecciones y las aventuras;
+  - aplica `voz.config.json` (proveedor, voz, velocidad y diccionario de pronunciación);
   - guarda `public/voz/<hash-del-texto>.mp3` (mono, 64 kbps, volumen normalizado) y `public/voz/manifiesto.json`;
-  - compara el texto y la configuración de cada frase, y solo regenera las que cambiaron;
-  - borra los audios que ya no se usan.
-- **Pronunciación.** El diccionario de `voz.config.json` cambia cómo se lee una palabra solo en el audio. Por ejemplo, "cacomixtle" se le pasa a la voz como "cacomistle" para que no diga "ks". El texto en pantalla no cambia.
-- **Números.** Las frases con números ("Separaron bien 13 residuos") no se generan una por cada número. Se pregeneran los números del 0 al 100 y el juego encadena las piezas.
-- **Respaldo.** Si una frase no tiene audio, el juego usa la voz del navegador y, en modo desarrollo, lo avisa en la consola. Una prueba unitaria revisa que toda frase narrada tenga su audio en el manifiesto.
+  - solo regenera las frases cuyo texto o configuración cambiaron, y borra los audios que ya no se usan.
+- **Pronunciación.** El diccionario de `voz.config.json` cambia cómo se lee una palabra solo en el audio ("cacomixtle" → "cacomistle"). El texto en pantalla no cambia.
+- **Números.** Las frases con números no se generan una por número: se pregeneran del 0 al 100 (con "un" y "veintiún" antes de sustantivo) y se encadenan.
+- **Respaldo.** Si una frase no tiene audio, el juego usa la voz del navegador y, en desarrollo, lo avisa en la consola. Una prueba unitaria revisa que **toda** frase narrada tenga su audio en el manifiesto.
 - **En una máquina lenta** se puede generar por partes: `npm run voz:generar -- --max=50`. Cada corrida sigue donde se quedó la anterior.
 
 ### Grabar una voz humana
 
 1. Corre `npm run voz:lista`. Genera `docs/frases-caco.csv` con columnas `id`, `archivo`, `texto`, `unidad` y `lección`; se abre bien en Excel.
-2. Graba cada frase (por ejemplo, una persona de Eco Urban, o con Canva) y guarda el audio en `voz-grabaciones/` con el **mismo nombre de archivo** de la columna `archivo` (se acepta mp3, wav, m4a u ogg).
+2. Graba cada frase (por ejemplo, una persona de Eco Urban, o con Canva) y guarda el audio en `voz-grabaciones/` con el **mismo nombre de archivo** de la columna `archivo` (mp3, wav, m4a u ogg).
 3. Corre `npm run voz:generar`. Las grabaciones reemplazan a la voz generada: se normalizan al mismo volumen y quedan marcadas como humanas en el manifiesto. Las frases sin grabar conservan la voz generada.
 
 ### Cambiar la música
@@ -148,71 +162,85 @@ Las tres pistas (tranquila, lecciones y celebración) son CC0 y están en `publi
 2. Pon su `id` en `scripts/musica/elegidas.json` y corre `npm run musica:instalar`.
 3. Anótala en `CREDITOS.md`.
 
-En el juego la música va baja (≈25 %), baja a ≈8 % mientras habla Caco y sube suave al terminar. Entre pistas hay un fundido, y solo empieza después del primer toque. Música y voz tienen botones separados, y cada uno se recuerda en el dispositivo.
+En el juego la música va baja (≈25 %), baja a ≈8 % mientras habla Caco y sube suave al terminar. Entre pistas hay un fundido, y solo empieza después del primer toque. Música y voz tienen botones separados, y cada uno se recuerda en el aparato.
 
-Los efectos de sonido se generan a partir de `src/servicios/recetasSonido.ts` con `npm run sonidos:generar`.
+Los efectos de sonido se generan con `npm run sonidos:generar`.
 
 ## Privacidad y datos
 
-- **No se guarda nada de las niñas y los niños.** El progreso de la partida vive solo en memoria y se borra al recargar o al tocar "Jugar otra vez".
-- Lo único que se guarda (en `localStorage`, siempre dentro de `try/catch`) es si el sonido está encendido.
-- **La cámara solo se pide al tocar "Muéstrale a Caco"**, nunca al cargar el juego. Cada imagen se clasifica en memoria, en el propio dispositivo. **No se guarda ni se envía ninguna imagen**, y el aviso aparece en pantalla.
-- La cámara se apaga al salir del bonus. Si el permiso llega tarde (por ejemplo, cuando ya se eligió jugar con dibujos), se apaga en ese momento.
-- El juego **solo hace descargas** (peticiones GET): los archivos del juego y, al entrar al bonus, el modelo MobileNet. Las pruebas de recorrido verifican que no haya ninguna petición que envíe datos.
+- **No se guarda nada de las niñas y los niños.** Los grupos se identifican con un animal, un color y una etiqueta corta; la pantalla pide no escribir nombres, y la etiqueta acepta solo 8 caracteres.
+- El avance de cada grupo se guarda **solo en este aparato** (IndexedDB). No viaja a ningún servidor. Si el navegador bloquea el almacenamiento, el juego funciona igual y el avance dura mientras la página esté abierta.
+- Las preferencias de voz, música y modo proyector se guardan en `localStorage`, siempre dentro de `try/catch`.
+- **La cámara solo se pide al tocar "Muéstrale a Caco"**, nunca al cargar el juego. Cada imagen se clasifica en memoria, en el propio aparato. **No se guarda ni se envía ninguna imagen**, y el aviso aparece en pantalla.
+- El juego **solo hace descargas** (peticiones GET). Las pruebas de recorrido verifican que no haya ninguna petición que envíe datos.
 
 ## Pruebas y evidencia medida
 
-**Pruebas unitarias (Vitest)**, en `tests/`: 251 pruebas en 13 archivos, todas pasan:
+**Pruebas unitarias (Vitest)**, en `tests/`: **1260 pruebas en 23 archivos, todas pasan.** Entre ellas:
 
-- Todo residuo tiene una categoría válida y va a exactamente un bote.
-- El mapeo de ImageNet usa solo clases reales de MobileNet (se compara con su lista oficial de 1000 clases) y apunta solo a categorías existentes, también con 2 botes.
-- El conteo del diploma es correcto: se simula una partida completa, incluidos intentos fallidos, el bonus y los duplicados.
-- La configuración funciona con 2, 3 y 4 botes y detecta errores comunes.
-- Las pistas son amables: no regañan y nombran el color y el ícono.
-- Elección de voz es-MX, preferencia de sonido con `localStorage` bloqueado, reparto de basura sin encimarse, arte SVG bien formado, contraste de color AA de los botes, espera y apagado de la cámara.
+- **Contenido válido:** cada unidad tiene 4 o 5 lecciones; cada lección tiene de 6 a 8 ejercicios con al menos 3 tipos; las respuestas correctas existen, los dibujos existen, no hay ejercicios imposibles (parejas sin repetir, "encuentra el error" con 1 a 3 errores dentro de la escena) y "Muéstrale a Caco" solo aparece en la unidad 1. Cada archivo de contenido está marcado con `TODO(Eco Urban)`.
+- **Voz:** **toda frase narrada (631) tiene su audio en el manifiesto** y su mp3 existe.
+- **Camino y grupos:** las lecciones se desbloquean en orden; el cofre y la aventura se abren a su tiempo; el avance de cada grupo se guarda y se recupera por separado, y **la app no falla si IndexedDB está bloqueado**.
+- **Música:** el *ducking* baja la música mientras habla Caco y la sube al terminar (también si dos cosas la agachan a la vez); fundido entre pistas, jingle y nada antes del primer toque.
+- **Aventuras y diploma:** el recorrido en bici nunca pone humo en los dos carriles a la vez; la lonchera tiene cosas de los dos tipos, sin patrón para adivinar; la concordancia de los números ("1 animal", "2 animales").
+- Las de la v1 siguen: cada residuo va a exactamente un bote (con 2, 3 o 4 botes), pistas amables, mapeo de MobileNet con clases reales, contraste AA, cámara que se apaga.
 
-**Recorridos en el navegador (Playwright)**, en `e2e/`. Corren sobre el build de producción, a **1920×1080 (proyector)** y **1024×768 (tablet táctil)**: 17 pruebas, todas pasan (7.7 min en total con un solo navegador a la vez):
+**Recorridos en el navegador (Playwright)**, en `e2e/`, a **1920×1080 (proyector)** y **1024×768 (tablet táctil)**:
 
-- El juego completo de inicio a diploma, con un intento fallido en el nivel 2 y la alternativa de tocar el bote. El diploma muestra 13 residuos (12 + 1 del bonus) y 10 animales, y "Jugar otra vez" reinicia en cero.
-- El bonus sin cámara: con permiso negado (proyector), con un navegador sin cámara (tablet) y con un permiso que no llega (botón "Usar dibujos").
-- Cada zona de toque mide **al menos 64 px reales** en la pantalla de la tablet, en cinco pantallas distintas.
-- El modelo no se descarga antes del bonus, no hay ninguna petición que envíe datos y no hay errores en la consola.
-- **Con cámara de prueba y el MobileNet real:** clasifica y, si no reconoce el objeto, Caco pide ayuda; al salir no queda ninguna cámara encendida.
+- Crear un grupo, completar una lección **con un error**, ver la pantalla final, ver **crecer el parque**, recargar y encontrar el avance guardado, y abrir el álbum.
+- Jugar las **cinco aventuras** de principio a fin (la de la unidad 1, con el facilitador y la estampa ganada).
+- Cada botón mide **al menos 64 px reales** en el camino, la lección y el inicio.
+- **Ninguna petición envía datos** (solo GET) y no hay errores en la consola.
+- Con cámara de prueba y el MobileNet real: clasifica en el navegador y la cámara se apaga al salir.
 
-**Mediciones** (26 de octubre de 2026, Chrome en Windows 11, laptop sin GPU dedicada, Chrome sin interfaz):
+Para correrlos contra un sitio ya publicado, sin construir nada en local: `$env:BASE_URL="https://…"; npm run test:e2e`. En una laptop de 8 GB usan **un solo navegador a la vez**; con varios, la memoria se agotó y el sistema cerró las pruebas.
+
+<!-- RESULTADO-E2E -->
+
+**Mediciones** (27 de octubre de 2026, build de producción):
 
 | Qué | Resultado |
 |---|---|
-| Lo que se descarga al abrir el juego | ≈ 350 KB comprimidos (Phaser 318 KB + juego 31 KB). Ningún archivo de arte ni de sonido: todo se genera en código |
-| TensorFlow.js + MobileNet (código) | ≈ 297 KB comprimidos, **solo** al tocar "Muéstrale a Caco" |
-| Modelo MobileNet v2 | 15 archivos, **14.0 MB**; listo en **22.7 s** desde que se toca el botón (incluye el permiso de cámara y la descarga) |
-| Cuadros por segundo en el nivel 1 | 59 fps a 1920×1080 y 59 fps a 1024×768 |
+| Lo que se descarga al abrir el juego | **≈ 158 KB** comprimidos (React 44 KB + app 107 KB + estilos 7 KB) y 48 KB de la fuente Nunito |
+| Phaser (solo al entrar a una aventura) | ≈ 310 KB comprimidos, más 2 a 7 KB por aventura |
+| TensorFlow.js + MobileNet (código) | ≈ 289 KB comprimidos, **solo** al tocar "Muéstrale a Caco"; el modelo pesa 14 MB más |
+| Voces de Caco | 631 frases, **11.0 MB** en total (mono, 64 kbps) |
+| Música y efectos | 1.3 MB (3 pistas) y 78 KB (12 efectos) |
+| Juego sin internet (PWA) | En la primera visita, el *service worker* descarga en segundo plano 678 archivos (**15.2 MB**: juego, voces, música y efectos); después se juega sin internet |
 
-Con varios navegadores de prueba a la vez en la misma laptop de 8 GB, la memoria se agotó y el sistema cerró las pruebas. Por eso, en una computadora local, `npm run test:e2e` usa un solo navegador a la vez (en CI, dos). Esto afecta a las pruebas, no al juego: una persona jugando usa un solo navegador.
+<!-- CARGA -->
 
 ## Limitaciones conocidas
 
-- **El mapeo de MobileNet es aproximado.** MobileNet se entrenó con ImageNet, no con basura. Reconoce bien frutas, botellas, latas o papel de baño, pero casi nunca envolturas sucias o servilletas arrugadas. Por eso Caco pide ayuda cuando duda, y lo dudoso (bolsas de plástico, vasos, platos) se dejó fuera del mapeo a propósito. Un modelo de Teachable Machine entrenado con la basura real de los talleres funcionaría mucho mejor.
-- **La voz depende del navegador y del sistema.** En Windows, Chrome y Edge suelen tener voces en español de México (Edge incluye voces "naturales"). Si no hay voz es-MX, se usa otra en español; si no hay ninguna, el texto sigue en pantalla y el juego avanza igual. Conviene probar la laptop de Eco Urban antes del taller.
-- **Las categorías están por confirmar** con Eco Urban (ver el `TODO` en `src/data/categorias.ts`). La clasificación actual sigue el criterio común en México. Algunos residuos varían según el municipio; por ejemplo, el envase de jugo multicapa se marcó como reciclable. Los datos curiosos también deben revisarlos las educadoras y educadores.
-- **El bonus necesita internet la primera vez** (descarga unos 14 MB) y https para la cámara en tablets.
-- **Probado con Chrome en Windows** (también la emulación táctil de 1024×768). No se ha probado todavía en un iPad real con Safari, ni con niñas y niños. Esa prueba de uso es el siguiente paso recomendado.
-- Solo los aciertos que se pueden comprobar suman al diploma. En el bonus con cámara, cuando Caco pide ayuda, la respuesta del grupo se agradece pero no se cuenta, porque no hay forma de saber si fue correcta.
+- **El contenido lo debe revisar el equipo educativo de Eco Urban.** Todo está marcado con `TODO(Eco Urban)`. Los datos tienen fuente verificada (`docs/fuentes-contenido.md`), pero la redacción para cada grado, las categorías de separación de Toluca y la ley citada sobre quemar basura (artículo por confirmar en el PDF oficial) necesitan su visto bueno.
+- **No se ha probado con niñas y niños** ni en un iPad real con Safari. Se probó con Chrome en Windows (también con emulación táctil a 1024×768). Esa prueba de uso es el siguiente paso recomendado.
+- **El avance vive en un solo aparato.** Si se borran los datos del navegador o se cambia de laptop, el grupo empieza de nuevo. Es a propósito (no hay servidor ni cuentas), pero hay que saberlo.
+- **La voz es sintética.** Kokoro suena natural, pero algunas palabras pueden sonar raras. El diccionario de pronunciación y la grabación humana (ver arriba) son la forma de corregirlas sin tocar código.
+- **La primera visita necesita internet:** el *service worker* descarga unos 15 MB (sobre todo las voces) para que después funcione sin conexión. Conviene abrir el juego una vez con buena señal antes del taller. La cámara del bonus necesita https y unos 14 MB más.
+- **El mapeo de MobileNet es aproximado.** Reconoce bien frutas, botellas, latas o papel, pero casi nunca envolturas sucias o servilletas arrugadas; por eso Caco pide ayuda cuando duda. Un modelo de Teachable Machine entrenado con la basura real de los talleres funcionaría mucho mejor.
+- **Las aventuras son minijuegos cortos** (2 a 4 minutos). Las del bosquecito y la lonchera siempre tienen el mismo número de cosas: los diplomas muestran el esfuerzo, no un puntaje para comparar grupos.
+- Solo los aciertos que se pueden comprobar suman al diploma de la unidad 1. En el bonus con cámara, cuando Caco pide ayuda, la respuesta del grupo se agradece pero no se cuenta.
 
 ## Estructura
 
 ```
 src/
-  scenes/      una escena de Phaser por pantalla (Boot, Inicio, Intro, Nivel1-3, Bonus, Final, Galeria)
-  data/        contenido editable: residuos, categorías, textos, animales, mapeo de ImageNet, modelo
-  logica/      reglas puras y probadas: clasificación, progreso/diploma, reparto, flujo, interpretación
-  servicios/   voz, sonido sintetizado, preferencias, cámara y clasificadores (MobileNet / Teachable Machine)
+  app/         interfaz en React: pantallas (inicio, grupos, camino, lección, álbum, aventura),
+               componentes, ejercicios (los 8 tipos) y estado (Zustand)
+  contenido/   lo que se enseña: unidades y lecciones, textos de la app y de las aventuras
+  aventuras/   una entrada por unidad; monta Phaser solo al entrar a la aventura
+  scenes/      escenas de Phaser: niveles de la v1, Rescate, Bosque, Bici, Lonchera y el diploma
+  logica/      reglas puras y probadas: lección, camino, grupos, clasificación, diploma
+  servicios/   voz, música y efectos, almacenamiento (IndexedDB), cámara y clasificadores
+  voz/         frases narradas, hash de audios y encadenado de piezas
   arte/        ilustraciones originales en SVG (como código)
-  ui/          piezas visuales: Caco, botones, globo de diálogo, botes, animales, efectos
+  ui/          piezas de Phaser: Caco, botones, globo, botes, animales, clasificador
 tests/         pruebas unitarias (Vitest)
 e2e/           recorridos en el navegador (Playwright)
+scripts/       voces, música, efectos, íconos y capturas
+docs/          fuentes del contenido, lista de frases, capturas y muestras
 ```
 
 ## Créditos y licencias
 
-Todo el arte y los sonidos son originales de este proyecto: ilustraciones SVG hechas en código y efectos sintetizados con Web Audio. No hay recursos de terceros. Las bibliotecas usadas son Phaser (MIT), TensorFlow.js y MobileNet (Apache-2.0). El detalle completo está en [`CREDITOS.md`](CREDITOS.md).
+El arte es original de este proyecto: ilustraciones SVG hechas en código. Los efectos de sonido se sintetizan con scripts propios, la voz se genera con Kokoro (Apache-2.0) y la música es CC0. La tipografía es Nunito (OFL-1.1). Las bibliotecas son React, Phaser, Motion, Zustand y Howler (MIT), idb-keyval y TensorFlow.js con MobileNet (Apache-2.0). El detalle completo está en [`CREDITOS.md`](CREDITOS.md).

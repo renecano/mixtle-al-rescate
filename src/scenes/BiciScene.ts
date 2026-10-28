@@ -19,6 +19,7 @@ const BICI_X = 430;
 /** Velocidad del recorrido (px del juego por segundo): tranquila, para niñas y niños de 6 años. */
 const VELOCIDAD = 380;
 const DISTANCIA_CHOQUE = 75;
+const MARCADOR = { x: 1205 };
 
 
 interface Cosa {
@@ -117,12 +118,14 @@ export class BiciScene extends Phaser.Scene {
 
   private crearMarcador(): void {
     const g = this.add.graphics().setDepth(600);
-    g.fillStyle(0xffffff, 0.92).fillRoundedRect(ANCHO - 700, 30, 440, 116, 40);
-    g.lineStyle(6, hex(PALETA.verde), 1).strokeRoundedRect(ANCHO - 700, 30, 440, 116, 40);
-    this.add.image(ANCHO - 640, 88, 'hojita').setDisplaySize(72, 72).setDepth(601);
-    this.textoHojitas = this.add.text(ANCHO - 590, 88, '0', estiloTexto(56, PALETA.verde)).setOrigin(0, 0.5).setDepth(601);
-    this.add.image(ANCHO - 430, 88, 'humo').setDisplaySize(76, 76).setDepth(601);
-    this.textoHumo = this.add.text(ANCHO - 380, 88, '0', estiloTexto(56, PALETA.tinta)).setOrigin(0, 0.5).setDepth(601);
+    // Entre el globo de Caco (termina en x≈1180) y los botones de sonido (empiezan en x≈1610).
+    const x = MARCADOR.x;
+    g.fillStyle(0xffffff, 0.92).fillRoundedRect(x, 30, 390, 116, 40);
+    g.lineStyle(6, hex(PALETA.verde), 1).strokeRoundedRect(x, 30, 390, 116, 40);
+    this.add.image(x + 60, 88, 'hojita').setDisplaySize(72, 72).setDepth(601);
+    this.textoHojitas = this.add.text(x + 110, 88, '0', estiloTexto(56, PALETA.verde)).setOrigin(0, 0.5).setDepth(601);
+    this.add.image(x + 245, 88, 'humo').setDisplaySize(76, 76).setDepth(601);
+    this.textoHumo = this.add.text(x + 295, 88, '0', estiloTexto(56, PALETA.tinta)).setOrigin(0, 0.5).setDepth(601);
   }
 
   private cambiarA(carril: Carril): void {
@@ -195,7 +198,7 @@ export class BiciScene extends Phaser.Scene {
     this.tweens.killTweensOf(img);
     this.tweens.add({
       targets: img,
-      x: ANCHO - 640,
+      x: MARCADOR.x + 60,
       y: 88,
       scale: img.scale * 0.6,
       duration: 520,
