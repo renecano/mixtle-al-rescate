@@ -16,6 +16,9 @@ export type CrearAventura = (padre: HTMLElement, op: OpcionesAventura) => Phaser
 const AVENTURAS: Record<string, () => Promise<CrearAventura>> = {
   u1: () => import('./unidad1').then((m) => m.crearAventuraUnidad1),
   u2: () => import('./unidad2').then((m) => m.crearAventuraUnidad2),
+  u3: () => import('./unidad3').then((m) => m.crearAventuraUnidad3),
+  u4: () => import('./unidad4').then((m) => m.crearAventuraUnidad4),
+  u5: () => import('./unidad5').then((m) => m.crearAventuraUnidad5),
 };
 
 /** Unidades que ya tienen su aventura registrada (para las pruebas de contenido). */

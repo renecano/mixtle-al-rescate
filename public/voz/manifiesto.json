@@ -31,6 +31,16 @@
    "ms": 1370,
    "config": "0377892f781d16"
   },
+  "007177ed496c08.mp3": {
+   "texto": "¿Cuál ensucia el aire?",
+   "ms": 1510,
+   "config": "0377892f781d16"
+  },
+  "00794d7c6f6c06.mp3": {
+   "texto": "Toca la pala.",
+   "ms": 1010,
+   "config": "0377892f781d16"
+  },
   "0088eab4232ca0.mp3": {
    "texto": "¡Vamos a conocer a los animales del parque!",
    "ms": 2590,
@@ -51,14 +61,29 @@
    "ms": 2380,
    "config": "0377892f781d16"
   },
+  "00fb57061e4e9c.mp3": {
+   "texto": "¡Cof, cof! El humo nos hace toser. ¡Cambiemos de carril!",
+   "ms": 2950,
+   "config": "0377892f781d16"
+  },
   "010f5fa64a84a6.mp3": {
    "texto": "cuarenta y seis",
    "ms": 1220,
    "config": "0377892f781d16"
   },
+  "0118c32efda7e4.mp3": {
+   "texto": "Tiene rayas amarillas, blancas y negras.",
+   "ms": 2470,
+   "config": "0377892f781d16"
+  },
   "01239efb518411.mp3": {
    "texto": "¡Creo que es pasto seco! ¿A qué bote va?",
    "ms": 2300,
+   "config": "0377892f781d16"
+  },
+  "012ab6bffbbed9.mp3": {
+   "texto": "Toca a la oruga.",
+   "ms": 1250,
    "config": "0377892f781d16"
   },
   "014968ddca0f3b.mp3": {
@@ -71,6 +96,16 @@
    "ms": 1970,
    "config": "0377892f781d16"
   },
+  "017a9fc9ba2ed6.mp3": {
+   "texto": "¿Y la servilleta de tela?",
+   "ms": 1660,
+   "config": "0377892f781d16"
+  },
+  "018ac601a861f8.mp3": {
+   "texto": "¿Los coches echan humo?",
+   "ms": 1660,
+   "config": "0377892f781d16"
+  },
   "018e5c5b624034.mp3": {
    "texto": "Una servilleta sucia de comida ya no se puede reciclar; por eso usamos solo las que necesitamos.",
    "ms": 5810,
@@ -79,6 +114,16 @@
   "018f1d052fb8b4.mp3": {
    "texto": "¿Está bien perseguir a los animales para tocarlos?",
    "ms": 2930,
+   "config": "0377892f781d16"
+  },
+  "019733689736f8.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron:",
+   "ms": 3290,
+   "config": "0377892f781d16"
+  },
+  "01a0a69686ac36.mp3": {
+   "texto": "El colibrí visita muchas flores.",
+   "ms": 2210,
    "config": "0377892f781d16"
   },
   "01a11cf8ee6655.mp3": {
@@ -91,6 +136,11 @@
    "ms": 1080,
    "config": "0377892f781d16"
   },
+  "01b3474fe9028f.mp3": {
+   "texto": "¿Y la bolsa de plástico?",
+   "ms": 1610,
+   "config": "0377892f781d16"
+  },
   "01b34b038a1339.mp3": {
    "texto": "Al final, la ardilla está feliz.",
    "ms": 2020,
@@ -98,6 +148,16 @@
   },
   "01c3e2fe0129e2.mp3": {
    "texto": "¡Hola, grupo Cacomixtle! Toquen la lección que señalo.",
+   "ms": 3170,
+   "config": "0377892f781d16"
+  },
+  "01c8c932168e08.mp3": {
+   "texto": "Toca lo que lastima al árbol.",
+   "ms": 1900,
+   "config": "0377892f781d16"
+  },
+  "01cc3af0424267.mp3": {
+   "texto": "Une cada desechable con lo que se usa muchas veces.",
    "ms": 3170,
    "config": "0377892f781d16"
   },
@@ -126,6 +186,11 @@
    "ms": 2740,
    "config": "0377892f781d16"
   },
+  "020233252d34da.mp3": {
+   "texto": "¿Un árbol recién plantado necesita que lo rieguen seguido?",
+   "ms": 3410,
+   "config": "0377892f781d16"
+  },
   "02207adfe4deb3.mp3": {
    "texto": "Piensa dónde lo has visto.",
    "ms": 1900,
@@ -146,9 +211,19 @@
    "ms": 2330,
    "config": "0377892f781d16"
   },
+  "022f6fb422261f.mp3": {
+   "texto": "Busca ramas altas.",
+   "ms": 1510,
+   "config": "0377892f781d16"
+  },
   "0230a7b1dc0412.mp3": {
    "texto": "¡Hola, grupo Ardilla! Toquen la lección que señalo.",
    "ms": 2980,
+   "config": "0377892f781d16"
+  },
+  "02639dc2b17001.mp3": {
+   "texto": "Cuando el colibrí toma néctar, lleva polen de flor en flor y así ayuda a las plantas.",
+   "ms": 4780,
    "config": "0377892f781d16"
   },
   "026a029e59714b.mp3": {
@@ -156,9 +231,24 @@
    "ms": 1180,
    "config": "0377892f781d16"
   },
+  "0276c875e12962.mp3": {
+   "texto": "Une cada cosa con lo que deja en el aire.",
+   "ms": 2640,
+   "config": "0377892f781d16"
+  },
   "0278d3b5e34692.mp3": {
    "texto": "¡Terminaron todo el camino! El parque está lleno de vida.",
    "ms": 3240,
+   "config": "0377892f781d16"
+  },
+  "027ed11dcecd1b.mp3": {
+   "texto": "¡Felicidades, guardianes del parque! Sembraron",
+   "ms": 2660,
+   "config": "0377892f781d16"
+  },
+  "028c649a80a7ee.mp3": {
+   "texto": "Caminar no echa humo; el aire se queda limpio.",
+   "ms": 2740,
    "config": "0377892f781d16"
   },
   "02933c4b32d053.mp3": {
@@ -166,9 +256,19 @@
    "ms": 980,
    "config": "0377892f781d16"
   },
+  "0297a2e5283364.mp3": {
+   "texto": "Tiene cola esponjada y sube por las ramas.",
+   "ms": 2520,
+   "config": "0377892f781d16"
+  },
   "02a6939289dc93.mp3": {
    "texto": "¿Está bien dejar una bolsa de plástico en el pasto?",
    "ms": 3020,
+   "config": "0377892f781d16"
+  },
+  "02a8a8fb43ec0c.mp3": {
+   "texto": "Toca la botella que se usa muchas veces.",
+   "ms": 2660,
    "config": "0377892f781d16"
   },
   "02aebe8d4e4fa2.mp3": {
@@ -191,6 +291,11 @@
    "ms": 1200,
    "config": "0377892f781d16"
   },
+  "02fcb552366446.mp3": {
+   "texto": "Busca lo que se usa una vez y se tira.",
+   "ms": 2400,
+   "config": "0377892f781d16"
+  },
   "03007aa90b5b38.mp3": {
    "texto": "sesenta y ocho",
    "ms": 1270,
@@ -211,6 +316,11 @@
    "ms": 1200,
    "config": "0377892f781d16"
   },
+  "0331da4f17440c.mp3": {
+   "texto": "Une cada cosa con lo que hacemos con ella.",
+   "ms": 2520,
+   "config": "0377892f781d16"
+  },
   "0339f2773fd157.mp3": {
    "texto": "setenta y ocho",
    "ms": 1300,
@@ -226,9 +336,19 @@
    "ms": 3020,
    "config": "0377892f781d16"
   },
+  "03646b3a3aa839.mp3": {
+   "texto": "¿Quién puede vivir en un árbol?",
+   "ms": 1900,
+   "config": "0377892f781d16"
+  },
   "036e808762b893.mp3": {
    "texto": "cincuenta y seis",
    "ms": 1300,
+   "config": "0377892f781d16"
+  },
+  "03706236d399f6.mp3": {
+   "texto": "¿Un frasco vacío puede servir para guardar lápices?",
+   "ms": 3240,
    "config": "0377892f781d16"
   },
   "037c6a10848f6a.mp3": {
@@ -241,9 +361,29 @@
    "ms": 2690,
    "config": "0377892f781d16"
   },
+  "038a1ea7e70931.mp3": {
+   "texto": "Con el cielo gris, mejor adentro.",
+   "ms": 2060,
+   "config": "0377892f781d16"
+  },
+  "03b0e462aef58d.mp3": {
+   "texto": "¿Usar los dos lados de la hoja ayuda a hacer menos basura?",
+   "ms": 3360,
+   "config": "0377892f781d16"
+  },
+  "03b8805dc98be0.mp3": {
+   "texto": "¡Bien pensado! Mejor tu lonchera; la bolsa se usa una vez.",
+   "ms": 3580,
+   "config": "0377892f781d16"
+  },
   "03bd6e760b5f05.mp3": {
    "texto": "Ninguno come dulces ni papitas.",
    "ms": 2210,
+   "config": "0377892f781d16"
+  },
+  "03e5ac1d4df9ee.mp3": {
+   "texto": "¡Una hojita!",
+   "ms": 1030,
    "config": "0377892f781d16"
   },
   "03eaf6acfe2de3.mp3": {
@@ -251,9 +391,19 @@
    "ms": 1340,
    "config": "0377892f781d16"
   },
+  "03ebdf0e977698.mp3": {
+   "texto": "¡Ganaron una estampa nueva: El ajolote de montaña!",
+   "ms": 3020,
+   "config": "0377892f781d16"
+  },
   "03ee7a0f102b7c.mp3": {
    "texto": "¿A qué bote va el envase de jugo?",
    "ms": 2060,
+   "config": "0377892f781d16"
+  },
+  "041aeb2fe4069a.mp3": {
+   "texto": "Toca el cielo gris.",
+   "ms": 1420,
    "config": "0377892f781d16"
   },
   "041e6c50e71674.mp3": {
@@ -266,14 +416,49 @@
    "ms": 2060,
    "config": "0377892f781d16"
   },
+  "042cb7e6913b80.mp3": {
+   "texto": "¿Dónde hace su nido el colibrí?",
+   "ms": 1940,
+   "config": "0377892f781d16"
+  },
+  "044a16ccaddf76.mp3": {
+   "texto": "Toman dióxido de carbono del aire y sueltan oxígeno.",
+   "ms": 3310,
+   "config": "0377892f781d16"
+  },
   "044f9a60583bd7.mp3": {
    "texto": "¿Cuál va en el bote naranja?",
    "ms": 1850,
    "config": "0377892f781d16"
   },
+  "0459cc8e0da96e.mp3": {
+   "texto": "¡Miren! Llegaron el colibrí, la ardilla y las mariposas. Los árboles son su casa.",
+   "ms": 4730,
+   "config": "0377892f781d16"
+  },
   "045b72276b93a9.mp3": {
    "texto": "¡Creo que es un limón! ¿A qué bote va?",
    "ms": 2180,
+   "config": "0377892f781d16"
+  },
+  "046e13e620f6dc.mp3": {
+   "texto": "Es la casita de los pájaros, con huevitos.",
+   "ms": 2400,
+   "config": "0377892f781d16"
+  },
+  "04766cda250572.mp3": {
+   "texto": "¿Está bien tirar basura al pie de un árbol?",
+   "ms": 2500,
+   "config": "0377892f781d16"
+  },
+  "047fe7bb24fc29.mp3": {
+   "texto": "¿Con cuál regamos el arbolito?",
+   "ms": 2040,
+   "config": "0377892f781d16"
+  },
+  "0485e5b6b09209.mp3": {
+   "texto": "Ordena el camino a la escuela.",
+   "ms": 1850,
    "config": "0377892f781d16"
   },
   "048865e40107a5.mp3": {
@@ -291,9 +476,24 @@
    "ms": 1580,
    "config": "0377892f781d16"
   },
+  "04a946050030d7.mp3": {
+   "texto": "Busca una rama rota y basura.",
+   "ms": 2020,
+   "config": "0377892f781d16"
+  },
   "04dbab184d0832.mp3": {
    "texto": "cuarenta y nueve",
    "ms": 1270,
+   "config": "0377892f781d16"
+  },
+  "04e9e5b2a92305.mp3": {
+   "texto": "¿Hay que cerrar bien la llave cuando no usamos el agua?",
+   "ms": 3140,
+   "config": "0377892f781d16"
+  },
+  "04ebd8e52e1e90.mp3": {
+   "texto": "La tierra va sobre las raíces.",
+   "ms": 1970,
    "config": "0377892f781d16"
   },
   "04ec4d7884a439.mp3": {
@@ -309,6 +509,11 @@
   "050096b2c5f6ad.mp3": {
    "texto": "Es tierra oscura con cáscaras y hojas.",
    "ms": 2380,
+   "config": "0377892f781d16"
+  },
+  "050d4f8294d32f.mp3": {
+   "texto": "El ajolote de montaña",
+   "ms": 1580,
    "config": "0377892f781d16"
   },
   "051729f462edaa.mp3": {
@@ -331,9 +536,19 @@
    "ms": 1510,
    "config": "0377892f781d16"
   },
+  "053c5585b97486.mp3": {
+   "texto": "La ciclovía es un camino hecho para las bicis.",
+   "ms": 2860,
+   "config": "0377892f781d16"
+  },
   "054419edfcd5ac.mp3": {
    "texto": "cincuenta y dos",
    "ms": 1340,
+   "config": "0377892f781d16"
+  },
+  "05496da9f58632.mp3": {
+   "texto": "¡Felicidades, guardianes del parque! Su lonchera lleva",
+   "ms": 3100,
    "config": "0377892f781d16"
   },
   "054c3d8454235a.mp3": {
@@ -356,14 +571,34 @@
    "ms": 1010,
    "config": "0377892f781d16"
   },
+  "0594eaeedb4f44.mp3": {
+   "texto": "Piensa en el aire que respiramos.",
+   "ms": 2060,
+   "config": "0377892f781d16"
+  },
   "05971b1878bde6.mp3": {
    "texto": "cincuenta y nueve",
    "ms": 1390,
    "config": "0377892f781d16"
   },
+  "05caddfc547949.mp3": {
+   "texto": "Caminar no echa humo.",
+   "ms": 1540,
+   "config": "0377892f781d16"
+  },
+  "05d546e29ad260.mp3": {
+   "texto": "Toca la lonchera.",
+   "ms": 1270,
+   "config": "0377892f781d16"
+  },
   "05d5d5df8ab0f8.mp3": {
    "texto": "residuo.",
    "ms": 840,
+   "config": "0377892f781d16"
+  },
+  "05d6c2f945ea84.mp3": {
+   "texto": "Se lava y se usa otra vez.",
+   "ms": 1780,
    "config": "0377892f781d16"
   },
   "05d99b22700bc5.mp3": {
@@ -389,6 +624,11 @@
   "060a44fbba5fba.mp3": {
    "texto": "¿Qué pasa si echamos todo junto? ¡Vamos a ver!",
    "ms": 2740,
+   "config": "0377892f781d16"
+  },
+  "0614364b3e1166.mp3": {
+   "texto": "El coche echa humo.",
+   "ms": 1510,
    "config": "0377892f781d16"
   },
   "062f313d2532fc.mp3": {
@@ -421,9 +661,44 @@
    "ms": 2420,
    "config": "0377892f781d16"
   },
+  "06847155861d49.mp3": {
+   "texto": "El fuego hace humo.",
+   "ms": 1460,
+   "config": "0377892f781d16"
+  },
+  "069ea6c4fa3684.mp3": {
+   "texto": "Es el que se ve sucio.",
+   "ms": 1490,
+   "config": "0377892f781d16"
+  },
+  "06b45c51aae57c.mp3": {
+   "texto": "árboles y les dieron",
+   "ms": 1370,
+   "config": "0377892f781d16"
+  },
+  "06bf0a9da6f3dd.mp3": {
+   "texto": "¿Está bien pedir una bolsa de plástico para todo?",
+   "ms": 2860,
+   "config": "0377892f781d16"
+  },
+  "06ed6abe7d8d1d.mp3": {
+   "texto": "Sales de tu casa y llegas a la escuela.",
+   "ms": 2380,
+   "config": "0377892f781d16"
+  },
   "06eed27cc306ea.mp3": {
    "texto": "ochenta y un",
    "ms": 1180,
+   "config": "0377892f781d16"
+  },
+  "06fe2c656b896a.mp3": {
+   "texto": "Hay que cuidar los pulmones.",
+   "ms": 1730,
+   "config": "0377892f781d16"
+  },
+  "07011e4feb58de.mp3": {
+   "texto": "¿Cómo podemos llegar a la escuela sin ensuciar el aire?",
+   "ms": 3000,
    "config": "0377892f781d16"
   },
   "070d01253324fc.mp3": {
@@ -434,6 +709,11 @@
   "07182454311cc4.mp3": {
    "texto": "Primero terminen la lección anterior.",
    "ms": 2350,
+   "config": "0377892f781d16"
+  },
+  "0721918d1584e8.mp3": {
+   "texto": "¿Qué hace menos basura?",
+   "ms": 1610,
    "config": "0377892f781d16"
   },
   "07250247935588.mp3": {
@@ -456,6 +736,16 @@
    "ms": 2350,
    "config": "0377892f781d16"
   },
+  "077ea960b51d2c.mp3": {
+   "texto": "¡Vamos a plantar un arbolito, paso a paso!",
+   "ms": 2540,
+   "config": "0377892f781d16"
+  },
+  "0783966ad472ab.mp3": {
+   "texto": "¡Sí! Se lava y se usa otra vez.",
+   "ms": 1970,
+   "config": "0377892f781d16"
+  },
   "07b4701cf336f4.mp3": {
    "texto": "siete",
    "ms": 700,
@@ -469,6 +759,11 @@
   "07ba9d78e03ed8.mp3": {
    "texto": "Piensa en los tres botes.",
    "ms": 1630,
+   "config": "0377892f781d16"
+  },
+  "07c75526c4aa9d.mp3": {
+   "texto": "objetos reutilizables, y evitaron",
+   "ms": 2180,
    "config": "0377892f781d16"
   },
   "07d7d490aeef84.mp3": {
@@ -501,9 +796,19 @@
    "ms": 1220,
    "config": "0377892f781d16"
   },
+  "08409529ecd059.mp3": {
+   "texto": "Lleva agua adentro.",
+   "ms": 1370,
+   "config": "0377892f781d16"
+  },
   "085367590e59de.mp3": {
    "texto": "diecisiete",
    "ms": 1030,
+   "config": "0377892f781d16"
+  },
+  "085d0b65881744.mp3": {
+   "texto": "¡Su bosquecito dará sombra y oxígeno! ¡Lo lograron!",
+   "ms": 2950,
    "config": "0377892f781d16"
   },
   "0861c4743e9f8f.mp3": {
@@ -516,9 +821,24 @@
    "ms": 6430,
    "config": "0377892f781d16"
   },
+  "088367e9054a3a.mp3": {
+   "texto": "Hoy hay contingencia ambiental. ¿Dónde jugamos?",
+   "ms": 2780,
+   "config": "0377892f781d16"
+  },
   "0891e13de0b0f2.mp3": {
    "texto": "¡Creo que es un pañuelo desechable! ¿A qué bote va?",
    "ms": 2880,
+   "config": "0377892f781d16"
+  },
+  "08965af2777ef3.mp3": {
+   "texto": "Piensa en tus pulmones.",
+   "ms": 1560,
+   "config": "0377892f781d16"
+  },
+  "0898ba4e33de40.mp3": {
+   "texto": "Al tomar néctar, lleva polen y así ayuda a las plantas.",
+   "ms": 3260,
    "config": "0377892f781d16"
   },
   "089b24d04326eb.mp3": {
@@ -541,6 +861,11 @@
    "ms": 2740,
    "config": "0377892f781d16"
   },
+  "08da3f410b70a3.mp3": {
+   "texto": "¡Ese sí sirve! Se usa muchas veces; llévalo en la lonchera.",
+   "ms": 3430,
+   "config": "0377892f781d16"
+  },
   "08e20523603f30.mp3": {
    "texto": "Tiene branquias rosas, como plumitas.",
    "ms": 2330,
@@ -561,6 +886,11 @@
    "ms": 1220,
    "config": "0377892f781d16"
   },
+  "09022dd3a25ad5.mp3": {
+   "texto": "La rellenas muchas veces y no se vuelve basura.",
+   "ms": 2900,
+   "config": "0377892f781d16"
+  },
   "091ca2633fa17b.mp3": {
    "texto": "Es un pájaro pequeñito que mueve sus alas muy rápido.",
    "ms": 3410,
@@ -576,6 +906,11 @@
    "ms": 1200,
    "config": "0377892f781d16"
   },
+  "0932f04ace4baa.mp3": {
+   "texto": "Mmm, eso se vuelve basura después de usarlo. Mejor no.",
+   "ms": 3500,
+   "config": "0377892f781d16"
+  },
   "0941c89c0ae43f.mp3": {
    "texto": "¡Creo que es una botella de plástico! ¿A qué bote va?",
    "ms": 2980,
@@ -586,9 +921,29 @@
    "ms": 2860,
    "config": "0377892f781d16"
   },
+  "0955e629865213.mp3": {
+   "texto": "¿Con cuál tomas agua sin hacer basura?",
+   "ms": 2380,
+   "config": "0377892f781d16"
+  },
+  "0982ae85ba5839.mp3": {
+   "texto": "Vamos a conocer al humo y por qué nos hace toser.",
+   "ms": 2950,
+   "config": "0377892f781d16"
+  },
+  "0987285899f4c1.mp3": {
+   "texto": "Piensa qué come cada uno.",
+   "ms": 1780,
+   "config": "0377892f781d16"
+  },
   "099958b7de84b2.mp3": {
    "texto": "¡Hola, grupo Tlacuache! Toquen la lección que señalo.",
    "ms": 3070,
+   "config": "0377892f781d16"
+  },
+  "099cfe4f26cd87.mp3": {
+   "texto": "Busca el vaso, el tenedor y la bolsa.",
+   "ms": 2350,
    "config": "0377892f781d16"
   },
   "09a423505a9718.mp3": {
@@ -596,9 +951,24 @@
    "ms": 1200,
    "config": "0377892f781d16"
   },
+  "09a43b97f232dc.mp3": {
+   "texto": "¿Y esta botella que se rellena?",
+   "ms": 2020,
+   "config": "0377892f781d16"
+  },
   "09b0eb7d831caf.mp3": {
    "texto": "¡A la ardilla le encanta su árbol nuevo!",
    "ms": 2280,
+   "config": "0377892f781d16"
+  },
+  "09b516562a0a58.mp3": {
+   "texto": "La bolsa se usa una vez y se tira.",
+   "ms": 2300,
+   "config": "0377892f781d16"
+  },
+  "09c712f87681e1.mp3": {
+   "texto": "Los árboles dan sombra.",
+   "ms": 1630,
    "config": "0377892f781d16"
   },
   "09cb222964c8ff.mp3": {
@@ -611,9 +981,24 @@
    "ms": 2570,
    "config": "0377892f781d16"
   },
+  "09f967facc6786.mp3": {
+   "texto": "¡Sí! Se lava y no se vuelve basura.",
+   "ms": 2110,
+   "config": "0377892f781d16"
+  },
   "0a04d90045bbeb.mp3": {
    "texto": "Toca a la ardilla.",
    "ms": 1270,
+   "config": "0377892f781d16"
+  },
+  "0a099a844cb799.mp3": {
+   "texto": "El colibrí",
+   "ms": 1010,
+   "config": "0377892f781d16"
+  },
+  "0a1226cb3d9e7f.mp3": {
+   "texto": "¡Bien pensado! Mejor tu taza o tu botella.",
+   "ms": 2710,
    "config": "0377892f781d16"
   },
   "0a195eead153a2.mp3": {
@@ -631,9 +1016,24 @@
    "ms": 720,
    "config": "0377892f781d16"
   },
+  "0a3c4ef2c44426.mp3": {
+   "texto": "En un día de sol, ¿dónde hace más fresco?",
+   "ms": 2400,
+   "config": "0377892f781d16"
+  },
+  "0a4d5cb18a3982.mp3": {
+   "texto": "Toca el hoyo.",
+   "ms": 1080,
+   "config": "0377892f781d16"
+  },
   "0a672450070244.mp3": {
    "texto": "noventa y cinco",
    "ms": 1320,
+   "config": "0377892f781d16"
+  },
+  "0a69d07cbb729a.mp3": {
+   "texto": "Separa la basura del recreo.",
+   "ms": 1940,
    "config": "0377892f781d16"
   },
   "0a7dd9a3fe40a0.mp3": {
@@ -651,6 +1051,16 @@
    "ms": 2420,
    "config": "0377892f781d16"
   },
+  "0aa894b7d49b9f.mp3": {
+   "texto": "Por eso es mejor tomar sin popote.",
+   "ms": 2260,
+   "config": "0377892f781d16"
+  },
+  "0ab6ab3f2f781f.mp3": {
+   "texto": "Es una nube gris.",
+   "ms": 1340,
+   "config": "0377892f781d16"
+  },
   "0ac8c35483f2d1.mp3": {
    "texto": "cuarenta y cinco",
    "ms": 1340,
@@ -659,6 +1069,16 @@
   "0ad2e3763f0fc7.mp3": {
    "texto": "cuarenta y dos",
    "ms": 1200,
+   "config": "0377892f781d16"
+  },
+  "0ae71444587708.mp3": {
+   "texto": "Toca lo que está mal en el parque.",
+   "ms": 2040,
+   "config": "0377892f781d16"
+  },
+  "0aeddb93c02a04.mp3": {
+   "texto": "¿Y la bolsita de papitas?",
+   "ms": 1660,
    "config": "0377892f781d16"
   },
   "0af322bc3b950c.mp3": {
@@ -674,6 +1094,16 @@
   "0b174e618f4dce.mp3": {
    "texto": "No escriban nombres de niñas ni niños.",
    "ms": 2350,
+   "config": "0377892f781d16"
+  },
+  "0b1f07ffca0ded.mp3": {
+   "texto": "Toca el frasco.",
+   "ms": 1200,
+   "config": "0377892f781d16"
+  },
+  "0b20abe74aa294.mp3": {
+   "texto": "¿Y esta manzana?",
+   "ms": 1270,
    "config": "0377892f781d16"
   },
   "0b2a0813ad1690.mp3": {
@@ -706,9 +1136,19 @@
    "ms": 840,
    "config": "0377892f781d16"
   },
+  "0bb59e3e9b70d5.mp3": {
+   "texto": "Descubrimos para qué sirven los árboles, cómo se planta uno y cómo se cuida.",
+   "ms": 4440,
+   "config": "0377892f781d16"
+  },
   "0bca5b5e055712.mp3": {
    "texto": "¡El parque es otra vez un hogar para los animales!",
    "ms": 2930,
+   "config": "0377892f781d16"
+  },
+  "0bd6a26cc1637b.mp3": {
+   "texto": "Ahora hay que regarlos. Toca cada arbolito para darle agua.",
+   "ms": 3460,
    "config": "0377892f781d16"
   },
   "0bdf71d65c6ca3.mp3": {
@@ -721,6 +1161,16 @@
    "ms": 3980,
    "config": "0377892f781d16"
   },
+  "0bea91f50130c7.mp3": {
+   "texto": "¡Vamos a armar una lonchera que no deja basura!",
+   "ms": 2860,
+   "config": "0377892f781d16"
+  },
+  "0bfd10d2ec6386.mp3": {
+   "texto": "Tu botella se rellena muchas veces.",
+   "ms": 2380,
+   "config": "0377892f781d16"
+  },
   "0c0c49a8268e10.mp3": {
    "texto": "¿Está bien darle papitas a la ardilla?",
    "ms": 2400,
@@ -729,6 +1179,11 @@
   "0c16b0f311c39a.mp3": {
    "texto": "setenta y cuatro",
    "ms": 1340,
+   "config": "0377892f781d16"
+  },
+  "0c23461d3ed286.mp3": {
+   "texto": ". ¡Bravo!",
+   "ms": 790,
    "config": "0377892f781d16"
   },
   "0c4f117d310e1e.mp3": {
@@ -751,9 +1206,34 @@
    "ms": 1940,
    "config": "0377892f781d16"
   },
+  "0c975508a21bd5.mp3": {
+   "texto": "Tiene cuadritos y se lava.",
+   "ms": 1780,
+   "config": "0377892f781d16"
+  },
+  "0cbff43e308bf0.mp3": {
+   "texto": "Es de vidrio y tiene tapa.",
+   "ms": 1820,
+   "config": "0377892f781d16"
+  },
+  "0cc1993fc1b8f4.mp3": {
+   "texto": "A veces el aire está muy sucio. ¿Qué hacemos?",
+   "ms": 2520,
+   "config": "0377892f781d16"
+  },
+  "0cc5fc7d279d97.mp3": {
+   "texto": "¿Los árboles son casa de pájaros, ardillas e insectos?",
+   "ms": 3220,
+   "config": "0377892f781d16"
+  },
   "0ccaf33561f370.mp3": {
    "texto": "animal.",
    "ms": 820,
+   "config": "0377892f781d16"
+  },
+  "0cd71155a83114.mp3": {
+   "texto": "¡Vamos en bici a la escuela! Toca el carril de arriba o el de abajo para esquivar el humo y juntar hojitas.",
+   "ms": 5830,
    "config": "0377892f781d16"
   },
   "0cdad559d89c1c.mp3": {
@@ -771,6 +1251,11 @@
    "ms": 3100,
    "config": "0377892f781d16"
   },
+  "0ced6310af85d9.mp3": {
+   "texto": "Toca la regadera.",
+   "ms": 1270,
+   "config": "0377892f781d16"
+  },
   "0cf2bd60d194e2.mp3": {
    "texto": "sesenta y dos",
    "ms": 1200,
@@ -779,6 +1264,26 @@
   "0cfd9de4ab301c.mp3": {
    "texto": "¡Creo que es una granada! ¿A qué bote va?",
    "ms": 2330,
+   "config": "0377892f781d16"
+  },
+  "0d01a30f0b4d31.mp3": {
+   "texto": "desechables.",
+   "ms": 1060,
+   "config": "0377892f781d16"
+  },
+  "0d0611cb94dc42.mp3": {
+   "texto": "Es donde va el arbolito.",
+   "ms": 1660,
+   "config": "0377892f781d16"
+  },
+  "0d076094ce8c7a.mp3": {
+   "texto": "¡Ganaron una estampa nueva: El tlacuache!",
+   "ms": 2540,
+   "config": "0377892f781d16"
+  },
+  "0d0e086c89397e.mp3": {
+   "texto": "¡Vamos a descubrir todo lo que hacen los árboles!",
+   "ms": 2930,
    "config": "0377892f781d16"
   },
   "0d1789b4e6ac8f.mp3": {
@@ -796,14 +1301,29 @@
    "ms": 2740,
    "config": "0377892f781d16"
   },
+  "0d36206086fe33.mp3": {
+   "texto": "Recoge la basura del pie del árbol.",
+   "ms": 2230,
+   "config": "0377892f781d16"
+  },
   "0d451a95122af8.mp3": {
    "texto": "¿Quién vive en los arroyos del Nevado de Toluca?",
    "ms": 2740,
    "config": "0377892f781d16"
   },
+  "0d54efda52657d.mp3": {
+   "texto": "¡Sí! La rellenas muchas veces y tiras menos botellas.",
+   "ms": 3170,
+   "config": "0377892f781d16"
+  },
   "0d6859de1b765d.mp3": {
    "texto": "setenta y tres",
    "ms": 1220,
+   "config": "0377892f781d16"
+  },
+  "0d6ac22f6a2876.mp3": {
+   "texto": "¡Sí! La manzana no trae envoltura, y su corazón va a la composta.",
+   "ms": 3840,
    "config": "0377892f781d16"
   },
   "0d6b8e6914a64a.mp3": {
@@ -819,6 +1339,11 @@
   "0d8114c7809dca.mp3": {
    "texto": "Muchas vuelan miles de kilómetros desde Canadá y Estados Unidos.",
    "ms": 3890,
+   "config": "0377892f781d16"
+  },
+  "0d831b530d4552.mp3": {
+   "texto": "Un árbol necesita cuidados. ¡Vamos a cuidarlo!",
+   "ms": 3000,
    "config": "0377892f781d16"
   },
   "0d8d8953e76ff5.mp3": {
@@ -871,6 +1396,11 @@
    "ms": 2930,
    "config": "0377892f781d16"
   },
+  "0e058bfa77232c.mp3": {
+   "texto": "Toca la cuchara de metal.",
+   "ms": 1750,
+   "config": "0377892f781d16"
+  },
   "0e0eac91bdcaf0.mp3": {
    "texto": "setenta y seis",
    "ms": 1220,
@@ -889,6 +1419,16 @@
   "0e31e22065aebe.mp3": {
    "texto": "¡Mira! Llegó una mariposa monarca a las flores.",
    "ms": 2640,
+   "config": "0377892f781d16"
+  },
+  "0e3f66785a8ae3.mp3": {
+   "texto": "La basura tiene su bote.",
+   "ms": 1700,
+   "config": "0377892f781d16"
+  },
+  "0e45c9c680983c.mp3": {
+   "texto": "¿Y la cuchara de metal?",
+   "ms": 1490,
    "config": "0377892f781d16"
   },
   "0e52265bb0d3dd.mp3": {
@@ -919,6 +1459,21 @@
   "0e71cb998c9cdc.mp3": {
    "texto": "¡Lección terminada! Ganaron",
    "ms": 1780,
+   "config": "0377892f781d16"
+  },
+  "0e731f8af4e7b3.mp3": {
+   "texto": "La tela se lava.",
+   "ms": 1200,
+   "config": "0377892f781d16"
+  },
+  "0e82b92fa1b07b.mp3": {
+   "texto": "¿Está bien ir en bici por la ciclovía?",
+   "ms": 2350,
+   "config": "0377892f781d16"
+  },
+  "0e9b5d10294166.mp3": {
+   "texto": "Es de metal y tiene forma de vaso.",
+   "ms": 2210,
    "config": "0377892f781d16"
   },
   "0ea76ef9396d1e.mp3": {
@@ -956,6 +1511,11 @@
    "ms": 2930,
    "config": "0377892f781d16"
   },
+  "0f418b773b8773.mp3": {
+   "texto": "Toman dióxido de carbono y sueltan oxígeno.",
+   "ms": 2830,
+   "config": "0377892f781d16"
+  },
   "0f4a2142bc9e17.mp3": {
    "texto": "sesenta y seis",
    "ms": 1200,
@@ -976,6 +1536,11 @@
    "ms": 3050,
    "config": "0377892f781d16"
   },
+  "0f988fa38f9df4.mp3": {
+   "texto": "¿Y el vaso desechable?",
+   "ms": 1660,
+   "config": "0377892f781d16"
+  },
   "0fac1355de1caf.mp3": {
    "texto": "treinta",
    "ms": 840,
@@ -984,6 +1549,11 @@
   "0faf82c9d9aa08.mp3": {
    "texto": "Revuelta, la basura se ensucia y muchas veces ya no se puede reciclar.",
    "ms": 4270,
+   "config": "0377892f781d16"
+  },
+  "0fb518798f4df1.mp3": {
+   "texto": "Toca los tenis.",
+   "ms": 1180,
    "config": "0377892f781d16"
   },
   "0fb834fb755bd3.mp3": {
@@ -1051,6 +1621,16 @@
    "ms": 2590,
    "config": "0377892f781d16"
   },
+  "1034408ef03ede.mp3": {
+   "texto": "Ordena cómo la lata se vuelve maceta.",
+   "ms": 2540,
+   "config": "0377892f781d16"
+  },
+  "1059788971cfe9.mp3": {
+   "texto": "El ajolote de montaña vive en los arroyos del Nevado de Toluca y solo existe en México.",
+   "ms": 5230,
+   "config": "0377892f781d16"
+  },
   "107da02952a9ce.mp3": {
    "texto": "No tengo permiso para usar la cámara. ¡Juguemos con dibujos!",
    "ms": 3620,
@@ -1064,6 +1644,11 @@
   "10a826789568fe.mp3": {
    "texto": "¡Creo que es un garrafón de plástico! ¿A qué bote va?",
    "ms": 2950,
+   "config": "0377892f781d16"
+  },
+  "10cf4b4ca375b3.mp3": {
+   "texto": "Si el aire está muy sucio, ¿es buena idea correr y jugar afuera?",
+   "ms": 3670,
    "config": "0377892f781d16"
   },
   "10d77d7b55b7e9.mp3": {
@@ -1081,6 +1666,11 @@
    "ms": 3910,
    "config": "0377892f781d16"
   },
+  "10feda94066e64.mp3": {
+   "texto": "riegos.",
+   "ms": 820,
+   "config": "0377892f781d16"
+  },
   "11006120a9752f.mp3": {
    "texto": "sesenta y tres",
    "ms": 1200,
@@ -1089,6 +1679,11 @@
   "1109d66868cba6.mp3": {
    "texto": "La comida de las personas puede enfermar a los animales.",
    "ms": 3240,
+   "config": "0377892f781d16"
+  },
+  "110bd2840831dd.mp3": {
+   "texto": "Así le das una segunda vida y hay menos basura.",
+   "ms": 2980,
    "config": "0377892f781d16"
   },
   "110f4e54e47e84.mp3": {
@@ -1101,6 +1696,21 @@
    "ms": 1320,
    "config": "0377892f781d16"
   },
+  "112383e0534cf6.mp3": {
+   "texto": "¿El humo nos puede hacer toser?",
+   "ms": 1900,
+   "config": "0377892f781d16"
+  },
+  "1155f6462a1169.mp3": {
+   "texto": "objeto reutilizable, y evitaron",
+   "ms": 2110,
+   "config": "0377892f781d16"
+  },
+  "115af6708d1d47.mp3": {
+   "texto": "¿Cuál no echa humo?",
+   "ms": 1220,
+   "config": "0377892f781d16"
+  },
   "11690eace560e5.mp3": {
    "texto": "dieciocho",
    "ms": 1010,
@@ -1109,6 +1719,16 @@
   "116e0b22d35687.mp3": {
    "texto": "Une cada basura con su bote.",
    "ms": 1970,
+   "config": "0377892f781d16"
+  },
+  "1173f8ca829837.mp3": {
+   "texto": "Mira lo que sale por detrás.",
+   "ms": 1870,
+   "config": "0377892f781d16"
+  },
+  "118abcb363c725.mp3": {
+   "texto": "La mamá tlacuache lleva a sus bebés en una bolsa de su panza y, cuando crecen, en la espalda.",
+   "ms": 5140,
    "config": "0377892f781d16"
   },
   "118c1a6e3e0976.mp3": {
@@ -1136,6 +1756,16 @@
    "ms": 2400,
    "config": "0377892f781d16"
   },
+  "11e2e25c40024a.mp3": {
+   "texto": "Antes de tirar algo, ¡piensa si le puedes dar otra vida!",
+   "ms": 3260,
+   "config": "0377892f781d16"
+  },
+  "11e4ef1febfb8c.mp3": {
+   "texto": "¿Cuál puedes volver a usar como maceta?",
+   "ms": 2520,
+   "config": "0377892f781d16"
+  },
   "11ec0912c2a158.mp3": {
    "texto": "veintinueve",
    "ms": 1010,
@@ -1144,6 +1774,26 @@
   "1203efb562850a.mp3": {
    "texto": "Las papitas no son comida de ardilla.",
    "ms": 2500,
+   "config": "0377892f781d16"
+  },
+  "1217346346f081.mp3": {
+   "texto": "Unidad 5: Reduce y reutiliza.",
+   "ms": 2280,
+   "config": "0377892f781d16"
+  },
+  "121bc4c697db74.mp3": {
+   "texto": "Reutilizar es darle una segunda vida.",
+   "ms": 2520,
+   "config": "0377892f781d16"
+  },
+  "121da4cb2c304f.mp3": {
+   "texto": "Busca el fuego.",
+   "ms": 1130,
+   "config": "0377892f781d16"
+  },
+  "121f08f5d3d4aa.mp3": {
+   "texto": "Sirve para hacer el hoyo.",
+   "ms": 1460,
    "config": "0377892f781d16"
   },
   "12311cd445a810.mp3": {
@@ -1166,6 +1816,11 @@
    "ms": 3620,
    "config": "0377892f781d16"
   },
+  "124e40618a49ef.mp3": {
+   "texto": "Busca agua que se tira, una rama rota y basura.",
+   "ms": 2930,
+   "config": "0377892f781d16"
+  },
   "1264326cf863b3.mp3": {
    "texto": "En el bote azul va lo que se puede reciclar.",
    "ms": 2690,
@@ -1181,9 +1836,19 @@
    "ms": 1340,
    "config": "0377892f781d16"
   },
+  "1298ef57fe4a2c.mp3": {
+   "texto": "Quemar basura llena el aire de humo dañino.",
+   "ms": 2640,
+   "config": "0377892f781d16"
+  },
   "12a7af9bc108dd.mp3": {
    "texto": "noventa y ocho",
    "ms": 1300,
+   "config": "0377892f781d16"
+  },
+  "12b827704a8048.mp3": {
+   "texto": "¿Caminar a la escuela echa humo?",
+   "ms": 1850,
    "config": "0377892f781d16"
   },
   "12b91077b9fb8f.mp3": {
@@ -1196,9 +1861,34 @@
    "ms": 4460,
    "config": "0377892f781d16"
   },
+  "12d9611dc2982f.mp3": {
+   "texto": "¿Hay que tapar con tierra todo el tronco?",
+   "ms": 2350,
+   "config": "0377892f781d16"
+  },
+  "12de24c6f93b45.mp3": {
+   "texto": "Une a cada animal con lo que busca en las plantas.",
+   "ms": 2780,
+   "config": "0377892f781d16"
+  },
   "12f3f70300dc30.mp3": {
    "texto": "Tiene un gorrito café.",
    "ms": 1560,
+   "config": "0377892f781d16"
+  },
+  "131577aa2702bb.mp3": {
+   "texto": "Si usas tu propia botella, ¿tiras menos botellas de plástico?",
+   "ms": 3650,
+   "config": "0377892f781d16"
+  },
+  "13163967e936b8.mp3": {
+   "texto": "La que se rellena.",
+   "ms": 1220,
+   "config": "0377892f781d16"
+  },
+  "13253866258323.mp3": {
+   "texto": "¡Ganaron una estampa nueva: El colibrí!",
+   "ms": 2350,
    "config": "0377892f781d16"
   },
   "1325e72e6b9ac9.mp3": {
@@ -1206,9 +1896,24 @@
    "ms": 3190,
    "config": "0377892f781d16"
   },
+  "1329438976963c.mp3": {
+   "texto": "Une cada cielo con lo que hacemos.",
+   "ms": 2060,
+   "config": "0377892f781d16"
+  },
+  "1330dc243b936e.mp3": {
+   "texto": "Se mueve con la fuerza de tus piernas.",
+   "ms": 2210,
+   "config": "0377892f781d16"
+  },
   "13363ab02dd4c5.mp3": {
    "texto": "Es de plástico y va en el bote azul.",
    "ms": 2330,
+   "config": "0377892f781d16"
+  },
+  "133a4a77cffc7b.mp3": {
+   "texto": "¿El colibrí lleva polen de flor en flor?",
+   "ms": 2380,
    "config": "0377892f781d16"
   },
   "134d782ee17721.mp3": {
@@ -1241,6 +1946,11 @@
    "ms": 1010,
    "config": "0377892f781d16"
   },
+  "13baf4604ee79a.mp3": {
+   "texto": "Toca lo que se vuelve basura en un solo uso.",
+   "ms": 2780,
+   "config": "0377892f781d16"
+  },
   "13c2e87eef7a06.mp3": {
    "texto": "¡Creo que es una lata! ¿A qué bote va?",
    "ms": 2300,
@@ -1256,6 +1966,11 @@
    "ms": 1320,
    "config": "0377892f781d16"
   },
+  "141da4028ffece.mp3": {
+   "texto": "¿Y el tenedor de plástico?",
+   "ms": 1750,
+   "config": "0377892f781d16"
+  },
   "1425dc4e9b265f.mp3": {
    "texto": "noventa",
    "ms": 820,
@@ -1266,9 +1981,29 @@
    "ms": 3100,
    "config": "0377892f781d16"
   },
+  "146a6e7ab786e3.mp3": {
+   "texto": "Hacemos menos basura: botella y lonchera reutilizables, y una segunda vida para las cosas.",
+   "ms": 5520,
+   "config": "0377892f781d16"
+  },
+  "1472e45d49da0a.mp3": {
+   "texto": "Une cada cosa con su segunda vida.",
+   "ms": 2300,
+   "config": "0377892f781d16"
+  },
   "147761ac27e069.mp3": {
    "texto": "¡Muy bien! Juguemos con dibujos.",
    "ms": 1920,
+   "config": "0377892f781d16"
+  },
+  "147bf98f6dbe3b.mp3": {
+   "texto": "El agua no se debe tirar.",
+   "ms": 1780,
+   "config": "0377892f781d16"
+  },
+  "148285e0dcff5b.mp3": {
+   "texto": "Unidad 3: Árboles y áreas verdes.",
+   "ms": 2470,
    "config": "0377892f781d16"
   },
   "149b6c0a1a9809.mp3": {
@@ -1286,9 +2021,19 @@
    "ms": 2570,
    "config": "0377892f781d16"
   },
+  "14b468b95db360.mp3": {
+   "texto": "Ordena qué pasa si quemamos basura.",
+   "ms": 2210,
+   "config": "0377892f781d16"
+  },
   "14b4aa1789cf44.mp3": {
    "texto": "Y cuando crecen, los carga en la espalda.",
    "ms": 2350,
+   "config": "0377892f781d16"
+  },
+  "14cfd3523d4ab3.mp3": {
+   "texto": "Ordena cómo crece un árbol.",
+   "ms": 1970,
    "config": "0377892f781d16"
   },
   "14dde4212590c5.mp3": {
@@ -1331,6 +2076,11 @@
    "ms": 1220,
    "config": "0377892f781d16"
   },
+  "1536cbed085a07.mp3": {
+   "texto": "¿La servilleta de tela se puede lavar y usar otra vez?",
+   "ms": 3240,
+   "config": "0377892f781d16"
+  },
   "15409ce3e65ddb.mp3": {
    "texto": "treinta y seis",
    "ms": 1180,
@@ -1346,6 +2096,21 @@
    "ms": 1610,
    "config": "0377892f781d16"
   },
+  "156e4923c4f1e8.mp3": {
+   "texto": "Vamos a armar una lonchera sin basura. Lleva cada cosa a la lonchera, o a \"Mejor no\".",
+   "ms": 5160,
+   "config": "0377892f781d16"
+  },
+  "15722b5aaf6f86.mp3": {
+   "texto": "Así la hoja dura el doble.",
+   "ms": 1820,
+   "config": "0377892f781d16"
+  },
+  "1573eb4f4e0218.mp3": {
+   "texto": "¿Qué hacemos con la basura en lugar de quemarla?",
+   "ms": 2690,
+   "config": "0377892f781d16"
+  },
   "15893772750d71.mp3": {
    "texto": "setenta y uno",
    "ms": 1250,
@@ -1354,6 +2119,11 @@
   "159f5551225099.mp3": {
    "texto": "Piensa de qué está hecha cada cosa.",
    "ms": 2230,
+   "config": "0377892f781d16"
+  },
+  "15a2ea6d381244.mp3": {
+   "texto": "¡Vamos a repasar todo lo que aprendimos!",
+   "ms": 2420,
    "config": "0377892f781d16"
   },
   "15c0782314367a.mp3": {
@@ -1371,9 +2141,29 @@
    "ms": 3020,
    "config": "0377892f781d16"
   },
+  "15ea7598f78ccb.mp3": {
+   "texto": "Cada una tiene su camino.",
+   "ms": 1700,
+   "config": "0377892f781d16"
+  },
   "15f8e00fe8567f.mp3": {
    "texto": "Una bolsa puede atorar a un animal, o se la puede tragar.",
    "ms": 3220,
+   "config": "0377892f781d16"
+  },
+  "1604edd5db43b1.mp3": {
+   "texto": "En bici no echamos humo. ¡Ya casi llegamos!",
+   "ms": 2660,
+   "config": "0377892f781d16"
+  },
+  "160d98f74cbc03.mp3": {
+   "texto": "Tiene un pico largo para echar agua.",
+   "ms": 2260,
+   "config": "0377892f781d16"
+  },
+  "161767089358ee.mp3": {
+   "texto": "Toca lo que ensucia el aire.",
+   "ms": 1800,
    "config": "0377892f781d16"
   },
   "161dfc9788d3ac.mp3": {
@@ -1381,9 +2171,34 @@
    "ms": 960,
    "config": "0377892f781d16"
   },
+  "162422ee4f3588.mp3": {
+   "texto": "Primero se hace el hoyo y al final se riega.",
+   "ms": 2640,
+   "config": "0377892f781d16"
+  },
+  "1625a1e40daf79.mp3": {
+   "texto": "Aprendemos qué ensucia el aire y cómo cuidarlo: caminar, usar la bici y no quemar basura.",
+   "ms": 5210,
+   "config": "0377892f781d16"
+  },
   "16289772a923e0.mp3": {
    "texto": "sesenta y uno",
    "ms": 1200,
+   "config": "0377892f781d16"
+  },
+  "1632509f90d1a4.mp3": {
+   "texto": "¿Y este recipiente con fruta?",
+   "ms": 1940,
+   "config": "0377892f781d16"
+  },
+  "16344ce7a9a4ef.mp3": {
+   "texto": "Arrastra la cosa, o toca la lonchera o \"Mejor no\".",
+   "ms": 3020,
+   "config": "0377892f781d16"
+  },
+  "1635e084a089f7.mp3": {
+   "texto": "¿Está bien quemar basura?",
+   "ms": 1730,
    "config": "0377892f781d16"
   },
   "16460d303dcd37.mp3": {
@@ -1396,6 +2211,16 @@
    "ms": 2660,
    "config": "0377892f781d16"
   },
+  "166b52926482ca.mp3": {
+   "texto": "Si dejamos el coche y caminamos, ¿el aire se ensucia menos?",
+   "ms": 3480,
+   "config": "0377892f781d16"
+  },
+  "166e89245ff8da.mp3": {
+   "texto": "El humo lastima los pulmones, sobre todo de niñas y niños.",
+   "ms": 3360,
+   "config": "0377892f781d16"
+  },
   "1670c4aa97c6cb.mp3": {
    "texto": "Es amarilla y viene de una fruta.",
    "ms": 2140,
@@ -1406,6 +2231,16 @@
    "ms": 2710,
    "config": "0377892f781d16"
   },
+  "1696eb6114a567.mp3": {
+   "texto": "¡Su lonchera está lista y no deja basura!",
+   "ms": 2710,
+   "config": "0377892f781d16"
+  },
+  "169c774d997a3d.mp3": {
+   "texto": "Toca el humo.",
+   "ms": 1030,
+   "config": "0377892f781d16"
+  },
   "169edda62f4dcb.mp3": {
    "texto": "¡Muy bien! Va en el bote azul con el dibujo de las flechas.",
    "ms": 3140,
@@ -1414,6 +2249,11 @@
   "16ad807864b9cc.mp3": {
    "texto": "Es el bote con las flechas.",
    "ms": 1780,
+   "config": "0377892f781d16"
+  },
+  "16b6ce732274e6.mp3": {
+   "texto": "Toca el hoyo o el arbolito que brilla.",
+   "ms": 2470,
    "config": "0377892f781d16"
   },
   "16c2980822c0b6.mp3": {
@@ -1441,9 +2281,19 @@
    "ms": 1370,
    "config": "0377892f781d16"
   },
+  "1700372d51f0e6.mp3": {
+   "texto": "Es verde y tiene tapa.",
+   "ms": 1680,
+   "config": "0377892f781d16"
+  },
   "17117e5c4919fa.mp3": {
    "texto": "¡Creo que es una curita! ¿A qué bote va?",
    "ms": 2380,
+   "config": "0377892f781d16"
+  },
+  "17311264aebfad.mp3": {
+   "texto": "¡Bien pensado! Mejor tu cuchara de metal; el tenedor se usa una vez.",
+   "ms": 4010,
    "config": "0377892f781d16"
   },
   "173b44fdde7e71.mp3": {
@@ -1454,6 +2304,31 @@
   "173d169f0f7ddd.mp3": {
    "texto": "¡A buscar la basura que está fuera de su lugar!",
    "ms": 2520,
+   "config": "0377892f781d16"
+  },
+  "1741c2c8af3137.mp3": {
+   "texto": "árbol y le dieron",
+   "ms": 1270,
+   "config": "0377892f781d16"
+  },
+  "1745e461d329e6.mp3": {
+   "texto": "¡Bien pensado! Mejor fruta; la bolsita casi nunca se recicla.",
+   "ms": 3910,
+   "config": "0377892f781d16"
+  },
+  "174afebc303237.mp3": {
+   "texto": "¡Llegamos a la escuela sin echar humo!",
+   "ms": 2060,
+   "config": "0377892f781d16"
+  },
+  "1771e35c84339d.mp3": {
+   "texto": "Toca la servilleta de tela.",
+   "ms": 1850,
+   "config": "0377892f781d16"
+  },
+  "1773658349977a.mp3": {
+   "texto": "Por eso, cuando se puede, es mejor caminar o ir en bici.",
+   "ms": 3380,
    "config": "0377892f781d16"
   },
   "177d9bee416785.mp3": {
@@ -1469,6 +2344,11 @@
   "1781b179759424.mp3": {
    "texto": "La cáscara de plátano se convierte en composta, un abono que alimenta a las plantas.",
    "ms": 4750,
+   "config": "0377892f781d16"
+  },
+  "179560524823cf.mp3": {
+   "texto": "Te los pones para caminar.",
+   "ms": 1630,
    "config": "0377892f781d16"
   },
   "179fc203cd8968.mp3": {
@@ -1489,6 +2369,11 @@
   "17ba240b759900.mp3": {
    "texto": "cinco",
    "ms": 740,
+   "config": "0377892f781d16"
+  },
+  "17c23eb0250570.mp3": {
+   "texto": "desechable.",
+   "ms": 1100,
    "config": "0377892f781d16"
   },
   "17ca2dd349c05c.mp3": {
@@ -1531,6 +2416,11 @@
    "ms": 720,
    "config": "0377892f781d16"
   },
+  "18378a67239ebc.mp3": {
+   "texto": "Ordena cómo se planta un arbolito.",
+   "ms": 2300,
+   "config": "0377892f781d16"
+  },
   "18462c8a0b13dc.mp3": {
    "texto": "Solo come una planta: el algodoncillo.",
    "ms": 2400,
@@ -1551,6 +2441,11 @@
    "ms": 2110,
    "config": "0377892f781d16"
   },
+  "18729e73af7368.mp3": {
+   "texto": "Así no se desperdicia el agua.",
+   "ms": 2060,
+   "config": "0377892f781d16"
+  },
   "187a748e418548.mp3": {
    "texto": "Aquí no puedo usar la cámara. ¡Juguemos con dibujos!",
    "ms": 3070,
@@ -1561,9 +2456,24 @@
    "ms": 1730,
    "config": "0377892f781d16"
   },
+  "18889d934d69c0.mp3": {
+   "texto": "Al principio necesita mucha ayuda.",
+   "ms": 2420,
+   "config": "0377892f781d16"
+  },
+  "188ad6a01be8a0.mp3": {
+   "texto": "¿Cuál aire está limpio?",
+   "ms": 1580,
+   "config": "0377892f781d16"
+  },
   "188f04fd320d46.mp3": {
    "texto": "Muéstrale a Caco una basura de verdad.",
    "ms": 2350,
+   "config": "0377892f781d16"
+  },
+  "18a7233fbe1f87.mp3": {
+   "texto": "Unidad 4: Aire limpio.",
+   "ms": 1920,
    "config": "0377892f781d16"
   },
   "18a96ca6e3bfae.mp3": {
@@ -1596,6 +2506,16 @@
    "ms": 1900,
    "config": "0377892f781d16"
   },
+  "18e83cc4389176.mp3": {
+   "texto": "Al final, la planta crece en la lata.",
+   "ms": 2260,
+   "config": "0377892f781d16"
+  },
+  "1935765862fc5e.mp3": {
+   "texto": "En los árboles y las flores viven muchos animales. ¡Vamos a verlos!",
+   "ms": 4130,
+   "config": "0377892f781d16"
+  },
   "193dacf11516fc.mp3": {
    "texto": "Fíjate en el dibujo de cada bote.",
    "ms": 2110,
@@ -1604,6 +2524,16 @@
   "19426abc25c73d.mp3": {
    "texto": "ochenta y cuatro",
    "ms": 1370,
+   "config": "0377892f781d16"
+  },
+  "195fdb85d971aa.mp3": {
+   "texto": "Mira el nido en las ramas.",
+   "ms": 1630,
+   "config": "0377892f781d16"
+  },
+  "19616c2c52a5f6.mp3": {
+   "texto": "En la escuela también podemos hacer menos basura.",
+   "ms": 2900,
    "config": "0377892f781d16"
   },
   "196a28a5b157ef.mp3": {
@@ -1621,9 +2551,24 @@
    "ms": 2280,
    "config": "0377892f781d16"
   },
+  "1990d7b676e11e.mp3": {
+   "texto": "Así no se vuelve basura.",
+   "ms": 1750,
+   "config": "0377892f781d16"
+  },
   "199ffb3366709f.mp3": {
    "texto": "¿Me ayudas? ¿A qué bote va?",
    "ms": 1780,
+   "config": "0377892f781d16"
+  },
+  "19c29946e88647.mp3": {
+   "texto": "La basura va en su bote, no junto al árbol.",
+   "ms": 2540,
+   "config": "0377892f781d16"
+  },
+  "19cd5fc7349647.mp3": {
+   "texto": "Une cada uno con lo que deja en el aire.",
+   "ms": 2540,
    "config": "0377892f781d16"
   },
   "19e5a159a77b87.mp3": {
@@ -1636,9 +2581,19 @@
    "ms": 1850,
    "config": "0377892f781d16"
   },
+  "1a032be2315fbf.mp3": {
+   "texto": "En lugar de quemarla, sepárala.",
+   "ms": 1990,
+   "config": "0377892f781d16"
+  },
   "1a06db2c82d59b.mp3": {
    "texto": "Mira el dibujo de cada bote.",
    "ms": 1850,
+   "config": "0377892f781d16"
+  },
+  "1a276fac2fb6c4.mp3": {
+   "texto": "El cielo limpio es azul.",
+   "ms": 1700,
    "config": "0377892f781d16"
   },
   "1a44acd3d36ca1.mp3": {
@@ -1661,6 +2616,11 @@
    "ms": 1130,
    "config": "0377892f781d16"
   },
+  "1a58b7654f3457.mp3": {
+   "texto": "Un popote se usa unos minutos. ¿Su plástico dura muchísimos años?",
+   "ms": 4270,
+   "config": "0377892f781d16"
+  },
   "1a59140ab18b9e.mp3": {
    "texto": "¡Creo que es un pimiento! ¿A qué bote va?",
    "ms": 2350,
@@ -1671,14 +2631,39 @@
    "ms": 2350,
    "config": "0377892f781d16"
   },
+  "1a78f186b441c6.mp3": {
+   "texto": "La tierra cubre las raíces, no el tronco.",
+   "ms": 2470,
+   "config": "0377892f781d16"
+  },
+  "1a9e7e888836c2.mp3": {
+   "texto": "¿Los árboles sueltan oxígeno, el aire que respiramos?",
+   "ms": 3170,
+   "config": "0377892f781d16"
+  },
+  "1ac208406f56de.mp3": {
+   "texto": "Toca la bici.",
+   "ms": 1150,
+   "config": "0377892f781d16"
+  },
   "1ad3a8cba5406a.mp3": {
    "texto": "¡Gracias! Ya puedo volar de flor en flor.",
    "ms": 2350,
    "config": "0377892f781d16"
   },
+  "1adae4a4625369.mp3": {
+   "texto": "¡Vamos a sembrar un bosquecito! Toca cada hoyo para plantar un arbolito.",
+   "ms": 4080,
+   "config": "0377892f781d16"
+  },
   "1af0d8767507e1.mp3": {
    "texto": "veinte",
    "ms": 740,
+   "config": "0377892f781d16"
+  },
+  "1af5eb1b58c024.mp3": {
+   "texto": "¿Cuál va en una lonchera sin basura?",
+   "ms": 2210,
    "config": "0377892f781d16"
   },
   "1afd94652f396f.mp3": {
@@ -1696,9 +2681,29 @@
    "ms": 4510,
    "config": "0377892f781d16"
   },
+  "1b218526df920f.mp3": {
+   "texto": "Mejor llevar una bolsa o mochila que se use muchas veces.",
+   "ms": 3530,
+   "config": "0377892f781d16"
+  },
   "1b2637bf207caf.mp3": {
    "texto": "Primero se vacía; lo que se recicla va limpio.",
    "ms": 2980,
+   "config": "0377892f781d16"
+  },
+  "1b2960f49fdec9.mp3": {
+   "texto": "Piensa en tus pies.",
+   "ms": 1390,
+   "config": "0377892f781d16"
+  },
+  "1b2964c709beb9.mp3": {
+   "texto": "Es el más alto de todos.",
+   "ms": 1700,
+   "config": "0377892f781d16"
+  },
+  "1b3a23d49deb07.mp3": {
+   "texto": "¿Se planta el arbolito con todo y su bolsa de plástico?",
+   "ms": 3380,
    "config": "0377892f781d16"
   },
   "1b40ed80ff4a0b.mp3": {
@@ -1706,9 +2711,19 @@
    "ms": 1250,
    "config": "0377892f781d16"
   },
+  "1b42a2f1a86759.mp3": {
+   "texto": "Busca el que hace lo mismo y se lava.",
+   "ms": 2260,
+   "config": "0377892f781d16"
+  },
   "1b42f8c8c42691.mp3": {
    "texto": "dos",
    "ms": 580,
+   "config": "0377892f781d16"
+  },
+  "1b433efa370bd3.mp3": {
+   "texto": "Sobre todo al principio, necesita agua seguido.",
+   "ms": 2980,
    "config": "0377892f781d16"
   },
   "1b4fa23ecd1736.mp3": {
@@ -1729,6 +2744,11 @@
   "1b5c3e44d4fdcb.mp3": {
    "texto": "¿Una lata se puede reciclar para hacer otra lata?",
    "ms": 2860,
+   "config": "0377892f781d16"
+  },
+  "1b6c80ceb8ff4c.mp3": {
+   "texto": "Muchas cosas tienen otra vida.",
+   "ms": 2060,
    "config": "0377892f781d16"
   },
   "1b86f8727b4ae6.mp3": {
@@ -1756,6 +2776,11 @@
    "ms": 2300,
    "config": "0377892f781d16"
   },
+  "1c08414c75ebd7.mp3": {
+   "texto": "¿Y la cajita de jugo?",
+   "ms": 1510,
+   "config": "0377892f781d16"
+  },
   "1c09ec73dc9b58.mp3": {
    "texto": "No pude abrir la cámara. ¡Juguemos con dibujos!",
    "ms": 2760,
@@ -1771,14 +2796,34 @@
    "ms": 5900,
    "config": "0377892f781d16"
   },
+  "1c42693b698f07.mp3": {
+   "texto": "Hoy el aire de afuera está sucio.",
+   "ms": 2060,
+   "config": "0377892f781d16"
+  },
   "1c47255ae4d66b.mp3": {
    "texto": "¡Sorpresa! Ganaron",
    "ms": 1250,
    "config": "0377892f781d16"
   },
+  "1c5345481193af.mp3": {
+   "texto": "Mira cuánto humo sale.",
+   "ms": 1560,
+   "config": "0377892f781d16"
+  },
   "1c6b9382eea3fa.mp3": {
    "texto": "Tiene la cola esponjada.",
    "ms": 1580,
+   "config": "0377892f781d16"
+  },
+  "1c88a908dc7338.mp3": {
+   "texto": "¡Sí! Se lava y dura mucho.",
+   "ms": 1780,
+   "config": "0377892f781d16"
+  },
+  "1c8b084e642fe5.mp3": {
+   "texto": "Antes de tirar algo, ¿hay que pensar si se puede usar otra vez?",
+   "ms": 3790,
    "config": "0377892f781d16"
   },
   "1ca0ef17eaadd4.mp3": {
@@ -1791,6 +2836,11 @@
    "ms": 2260,
    "config": "0377892f781d16"
   },
+  "1cbaab5aee705a.mp3": {
+   "texto": "La bolsa se quita antes de plantar.",
+   "ms": 2210,
+   "config": "0377892f781d16"
+  },
   "1cc08ffb0f607a.mp3": {
    "texto": "¡Creo que es una botella de refresco! ¿A qué bote va?",
    "ms": 2930,
@@ -1801,9 +2851,19 @@
    "ms": 1780,
    "config": "0377892f781d16"
   },
+  "1cd954f3993a11.mp3": {
+   "texto": "Por eso, cuidar un árbol es cuidar a muchos animales.",
+   "ms": 3140,
+   "config": "0377892f781d16"
+  },
   "1cdbd0b119cb17.mp3": {
    "texto": "animales.",
    "ms": 910,
+   "config": "0377892f781d16"
+  },
+  "1ce964be5a61f1.mp3": {
+   "texto": "El plástico tarda mucho en desaparecer.",
+   "ms": 2690,
    "config": "0377892f781d16"
   },
   "1cf5aba79231e6.mp3": {
@@ -1826,6 +2886,11 @@
    "ms": 650,
    "config": "0377892f781d16"
   },
+  "1d12dab945c9b0.mp3": {
+   "texto": "¿Los árboles toman dióxido de carbono del aire?",
+   "ms": 2810,
+   "config": "0377892f781d16"
+  },
   "1d1cd73f87bcd1.mp3": {
    "texto": "¡Creo que es una botella de vidrio! ¿A qué bote va?",
    "ms": 2810,
@@ -1836,9 +2901,34 @@
    "ms": 2090,
    "config": "0377892f781d16"
   },
+  "1d2f7afd40311f.mp3": {
+   "texto": "Es morada y tiene asa.",
+   "ms": 1680,
+   "config": "0377892f781d16"
+  },
+  "1d351e8b4f7c61.mp3": {
+   "texto": "Así usamos menos papel.",
+   "ms": 1800,
+   "config": "0377892f781d16"
+  },
+  "1d3553e89863fb.mp3": {
+   "texto": "Es gris y brilla.",
+   "ms": 1340,
+   "config": "0377892f781d16"
+  },
   "1d5e7a361bbb00.mp3": {
    "texto": "treinta y cuatro",
    "ms": 1320,
+   "config": "0377892f781d16"
+  },
+  "1d641c0c3e33aa.mp3": {
+   "texto": "La ciclovía es el camino de las bicis.",
+   "ms": 2470,
+   "config": "0377892f781d16"
+  },
+  "1d6ed836e58ba6.mp3": {
+   "texto": "El tlacuache",
+   "ms": 1150,
    "config": "0377892f781d16"
   },
   "1d70df5751a601.mp3": {
@@ -1851,9 +2941,24 @@
    "ms": 1970,
    "config": "0377892f781d16"
   },
+  "1d76ff072193ee.mp3": {
+   "texto": "Busca de dónde sale humo.",
+   "ms": 1800,
+   "config": "0377892f781d16"
+  },
+  "1d90bd55bd77ed.mp3": {
+   "texto": "Piensa en lo que aprendimos de los árboles.",
+   "ms": 2400,
+   "config": "0377892f781d16"
+  },
   "1db35103d61329.mp3": {
    "texto": "Es de plástico y tiene hoyos.",
    "ms": 1970,
+   "config": "0377892f781d16"
+  },
+  "1dc28fcb8f9e25.mp3": {
+   "texto": "¡Vamos a repasar todo lo que ayuda al aire!",
+   "ms": 2660,
    "config": "0377892f781d16"
   },
   "1de5ed9c0af75a.mp3": {
@@ -1866,6 +2971,11 @@
    "ms": 2980,
    "config": "0377892f781d16"
   },
+  "1df4de12cca046.mp3": {
+   "texto": "Empieza muy pequeñito.",
+   "ms": 1750,
+   "config": "0377892f781d16"
+  },
   "1df67b06ab5748.mp3": {
    "texto": "¡Casi! Este casi nunca se puede reciclar. Busca el bote naranja con el dibujo del bote de basura.",
    "ms": 5620,
@@ -1876,9 +2986,34 @@
    "ms": 2380,
    "config": "0377892f781d16"
   },
+  "1e18f04722774e.mp3": {
+   "texto": "Piensa para qué más puede servir.",
+   "ms": 2060,
+   "config": "0377892f781d16"
+  },
+  "1e1f4233fec9db.mp3": {
+   "texto": "Los árboles necesitan agua.",
+   "ms": 1990,
+   "config": "0377892f781d16"
+  },
   "1e28d909867013.mp3": {
    "texto": "¿Está bien tirar la envoltura de frituras en el pasto?",
    "ms": 3050,
+   "config": "0377892f781d16"
+  },
+  "1e3aa6afb0972a.mp3": {
+   "texto": "Tiene dos ruedas y pedales.",
+   "ms": 1920,
+   "config": "0377892f781d16"
+  },
+  "1e4863c1b2bec9.mp3": {
+   "texto": "Toca el nido.",
+   "ms": 1060,
+   "config": "0377892f781d16"
+  },
+  "1e67e2dc530924.mp3": {
+   "texto": "¡Bien pensado! Mejor agua en tu botella; la cajita se vuelve basura.",
+   "ms": 4080,
    "config": "0377892f781d16"
   },
   "1e7b1b36fea697.mp3": {
@@ -1896,14 +3031,34 @@
    "ms": 2540,
    "config": "0377892f781d16"
   },
+  "1e9adae796e84e.mp3": {
+   "texto": "¡Muy bien! Un arbolito necesita agua seguido. Riégalo otra vez.",
+   "ms": 3650,
+   "config": "0377892f781d16"
+  },
   "1e9f469f624a59.mp3": {
    "texto": "Busca el bote con el mismo dibujo que le toca.",
    "ms": 2740,
    "config": "0377892f781d16"
   },
+  "1eb014f6816b4f.mp3": {
+   "texto": "¿Qué le ayuda al arbolito?",
+   "ms": 1750,
+   "config": "0377892f781d16"
+  },
   "1ec56985407b96.mp3": {
    "texto": "Toca la basura para guardarla en mi bolsa.",
    "ms": 2690,
+   "config": "0377892f781d16"
+  },
+  "1ece1dcc01443c.mp3": {
+   "texto": ". Nubes de humo que esquivaron:",
+   "ms": 1970,
+   "config": "0377892f781d16"
+  },
+  "1edeb1263157ee.mp3": {
+   "texto": "Al final, el aire queda sucio.",
+   "ms": 1940,
    "config": "0377892f781d16"
   },
   "1ef75ac84c28e9.mp3": {
@@ -1916,14 +3071,44 @@
    "ms": 890,
    "config": "0377892f781d16"
   },
+  "1f176bf02b2983.mp3": {
+   "texto": "Toca lo que se usa una vez y se tira.",
+   "ms": 2300,
+   "config": "0377892f781d16"
+  },
   "1f1a3bc660c539.mp3": {
    "texto": "hojitas.",
    "ms": 840,
    "config": "0377892f781d16"
   },
+  "1f3d816a40e776.mp3": {
+   "texto": "Mira el lapicero.",
+   "ms": 1220,
+   "config": "0377892f781d16"
+  },
   "1f4d7611186220.mp3": {
    "texto": "ochenta y dos",
    "ms": 1250,
+   "config": "0377892f781d16"
+  },
+  "1f7d1f3cfadcb0.mp3": {
+   "texto": "Primero se le quita la bolsa con cuidado.",
+   "ms": 2540,
+   "config": "0377892f781d16"
+  },
+  "1f83113ec39bfc.mp3": {
+   "texto": "Toca el árbol grande.",
+   "ms": 1510,
+   "config": "0377892f781d16"
+  },
+  "1f8533056d85f4.mp3": {
+   "texto": "Es mejor jugar adentro hasta que el aire mejore.",
+   "ms": 2900,
+   "config": "0377892f781d16"
+  },
+  "1f98378d8807a6.mp3": {
+   "texto": "Lo que no se pudo reutilizar, sepáralo.",
+   "ms": 2470,
    "config": "0377892f781d16"
   },
   "1fa086a0bfbff6.mp3": {
@@ -1949,6 +3134,11 @@
   "1fd3b562559aaf.mp3": {
    "texto": "¿Reciclar papel ayuda a cuidar los árboles?",
    "ms": 2690,
+   "config": "0377892f781d16"
+  },
+  "1fdc2e636b9330.mp3": {
+   "texto": "riego.",
+   "ms": 820,
    "config": "0377892f781d16"
   },
   "1fe762ff1ac3a7.mp3": {

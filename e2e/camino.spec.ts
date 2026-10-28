@@ -129,19 +129,14 @@ test('un grupo nuevo completa una lección con un error, ve la pantalla final y 
   await captura(page, info, 'v2-5-fin');
   await tocarBoton(page, 'Volver al camino');
 
-  // El parque creció y la lección quedó hecha; la siguiente parada (el cofre) ya se puede abrir.
+  // El parque creció y la lección quedó hecha; la siguiente lección se abre y el cofre (a la mitad) aún no.
   await esperarPantalla(page, 'camino');
   const basuraDespues = Number(await page.locator('[data-parque-basura]').first().getAttribute('data-parque-basura'));
   expect(basuraDespues).toBeLessThan(basuraAntes);
   await expect(page.locator(`[data-nodo="leccion:${leccion.id}"]`)).toHaveAttribute('data-estado', 'hecho');
-  await expect(page.locator('[data-nodo="cofre:u1"]')).toHaveAttribute('data-estado', 'disponible');
+  await expect(page.locator('[data-nodo="leccion:u1-l2"]')).toHaveAttribute('data-estado', 'disponible');
+  await expect(page.locator('[data-nodo="cofre:u1"]')).toHaveAttribute('data-estado', 'bloqueado');
   await expect(page.locator('[data-hojitas-grupo]')).toHaveAttribute('data-hojitas-grupo', String(10 + total - 1));
-
-  // Cofre: hojitas extra.
-  await clic(page, '[data-nodo="cofre:u1"]');
-  await tocarBoton(page, 'Abrir');
-  await tocarBoton(page, /¡Sigamos!/);
-  await expect(page.locator('[data-hojitas-grupo]')).toHaveAttribute('data-hojitas-grupo', String(10 + total - 1 + 15));
   await captura(page, info, 'v2-6-camino-despues');
 
   // Otro día (recargar): el grupo y su avance siguen ahí, guardados solo en este aparato.

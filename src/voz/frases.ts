@@ -91,7 +91,7 @@ export function todasLasFrases(): FraseNarrada[] {
       else if (Array.isArray(valor)) valor.forEach((v, i) => visitar(v, `${ruta}.${i + 1}`));
       else if (valor && typeof valor === 'object')
         for (const [clave, v] of Object.entries(valor)) {
-          if (clave === 'diploma' || clave.startsWith('boton')) continue;
+          if (clave === 'diploma' || clave.startsWith('boton') || clave.startsWith('etiqueta')) continue;
           visitar(v, ruta ? `${ruta}.${clave}` : clave);
         }
     };
