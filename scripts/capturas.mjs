@@ -11,7 +11,9 @@ import { chromium } from '@playwright/test';
 import { runnerImport } from 'vite';
 
 const base = (process.argv[2] ?? 'http://localhost:4173/').replace(/\/?$/, '/');
-const carpeta = 'docs/capturas';
+const carpeta = process.env.CARPETA ?? 'docs/capturas';
+// LECCIONES=u1-l1,u2-l2 captura además cada ejercicio de esas lecciones (para revisar el diseño).
+const revisar = (process.env.LECCIONES ?? '').split(',').filter(Boolean);
 await mkdir(carpeta, { recursive: true });
 
 const { UNIDADES } = (await runnerImport('./src/contenido/unidades/index.ts')).module;
@@ -107,6 +109,34 @@ try {
     await boton(/Álbum/);
     await pantalla('album');
     await guardar('v2-7-album');
+    // 2b. Revisión: cada ejercicio de las lecciones pedidas (con el modo facilitador abierto).
+    if (revisar.length) {
+      await page.goto(`${base}?e2e`);
+      await pantalla('inicio');
+      await boton(/¡Jugar!/);
+      await pantalla('grupos');
+      await clic('[data-grupo]');
+      await pantalla('camino');
+      await abrirTodo(page);
+    }
+    for (const id of revisar) {
+      await clic(`[data-nodo="leccion:${id}"]`);
+      await pantalla('leccion');
+      for (let paso = 0; paso < 12; paso++) {
+        if ((await page.evaluate(() => window.__caco.pantalla())) === 'fin-leccion') break;
+        const caja = page.locator('[data-ejercicio-id]');
+        await caja.waitFor({ state: 'visible' });
+        const e = EJERCICIOS.get(await caja.getAttribute('data-ejercicio-id'));
+        await page.waitForTimeout(1500);
+        await guardar(`revision-${e.id}-${e.tipo}`);
+        await resolver(page, clic, boton, e, `[data-ejercicio-id="${e.id}"]`);
+        await page.locator('[data-banner="bien"]').waitFor({ state: 'visible' });
+        await boton(/¡Sigamos!/);
+      }
+      await pantalla('fin-leccion');
+      await boton('Volver al camino');
+      await pantalla('camino');
+    }
     await contexto.close();
 
     // 3. Aventuras: la de la unidad 2 de principio a fin; de las otras, la primera pantalla.
@@ -165,6 +195,20 @@ try {
 if (errores.length) {
   console.log('Errores en la página:\n' + errores.join('\n'));
   process.exitCode = 1;
+}
+
+/** Modo facilitador: mantener el logo 3 s y abrir todas las lecciones. */
+async function abrirTodo(page) {
+  const caja = await page.locator('[data-logo]').boundingBox();
+  await page.mouse.move(caja.x + caja.width / 2, caja.y + caja.height / 2);
+  await page.mouse.down();
+  await page.waitForTimeout(3300);
+  await page.mouse.up();
+  const dialogo = page.getByRole('dialog', { name: 'Modo facilitador' });
+  await dialogo.waitFor({ state: 'visible' });
+  const casilla = dialogo.getByRole('checkbox').first();
+  if (!(await casilla.isChecked())) await casilla.check({ force: true });
+  await page.getByRole('button', { name: 'Cerrar', exact: true }).click({ force: true });
 }
 
 /** Resuelve bien el ejercicio que está en pantalla. */

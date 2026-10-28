@@ -45,7 +45,7 @@ export function Parejas({ ejercicio, responder, bloqueado }: PropsEjercicio<Dato
     return 'normal' as const;
   };
 
-  const tamano = 'clamp(6.5rem,15vmin,10.5rem)';
+  const tamano = ejercicio.pares.length >= 4 ? 'clamp(6rem,min(13vh,20vw),11rem)' : 'clamp(7rem,min(17vh,22vw),14rem)';
   return (
     <div className="flex items-center justify-center gap-[clamp(2rem,10vmin,8rem)]" data-ejercicio="parejas">
       {(['izquierda', 'derecha'] as const).map((lado) => (

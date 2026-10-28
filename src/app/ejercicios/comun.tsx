@@ -43,8 +43,11 @@ const BORDES: Record<EstadoTarjeta, string> = {
   apagada: 'border-white bg-white opacity-40',
 };
 
+/** Tamaño de las tarjetas: grande en el proyector, sin salirse en una tablet de 1024×768. */
+export const TAMANO_TARJETA = 'clamp(9rem,min(30vmin,22vw),20rem)';
+
 /** Tarjeta ilustrada grande para tocar (siempre ≥ 64 px; el nombre se lee también en voz). */
-export function Tarjeta({ tarjeta, estado = 'normal', conTexto = false, sacudir = 0, tamano = 'clamp(7.5rem,19vmin,13rem)', onClick }: PropsTarjeta) {
+export function Tarjeta({ tarjeta, estado = 'normal', conTexto = false, sacudir = 0, tamano = TAMANO_TARJETA, onClick }: PropsTarjeta) {
   return (
     <motion.button
       type="button"
@@ -60,10 +63,15 @@ export function Tarjeta({ tarjeta, estado = 'normal', conTexto = false, sacudir 
       transition={{ duration: 0.4 }}
       whileTap={{ scale: 0.95 }}
       className={`relative flex cursor-pointer flex-col items-center justify-center gap-1 rounded-[1.75rem] border-[6px] p-3 shadow-[0_0.45rem_0_rgba(18,61,43,0.25)] disabled:cursor-default ${BORDES[estado]}`}
-      style={{ width: tamano, minHeight: tamano }}
+      // Alto fijo (no mínimo): "la botella" y "el corazón de manzana" miden lo mismo.
+      style={{ width: tamano, height: conTexto ? `calc(${tamano} * 1.3)` : tamano }}
     >
-      <Arte clave={tarjeta.arte} className="h-[72%] max-h-[10rem] w-[80%] object-contain" />
-      {conTexto && <span className="text-center text-[clamp(1rem,2.2vmin,1.5rem)] leading-tight font-extrabold text-tinta">{tarjeta.nombre}</span>}
+      <Arte clave={tarjeta.arte} className="min-h-0 w-[82%] flex-1 object-contain" />
+      {conTexto && (
+        <span className="flex h-[2.5em] shrink-0 items-center text-center text-[clamp(1rem,2.4vmin,1.7rem)] leading-tight font-extrabold text-tinta">
+          {tarjeta.nombre}
+        </span>
+      )}
       {estado === 'bien' && (
         <span className="absolute -top-4 -right-4 grid size-12 place-items-center rounded-full border-4 border-white bg-verde">
           <Arte clave="palomita" className="size-7" />

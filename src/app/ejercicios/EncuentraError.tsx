@@ -33,7 +33,7 @@ export function EncuentraError({ ejercicio, responder, bloqueado }: PropsEjercic
           </span>
         ))}
       </div>
-      <div className="relative aspect-video w-[min(92vw,calc(58vh*16/9))] overflow-hidden rounded-[1.75rem] border-[6px] border-white shadow-[0_0.5rem_0_rgba(18,61,43,0.25)]">
+      <div className="relative aspect-video w-[min(92vw,calc(56vh*16/9))] overflow-hidden rounded-[1.75rem] border-[6px] border-white shadow-[0_0.5rem_0_rgba(18,61,43,0.25)]">
         <Arte clave={ejercicio.escena} className="absolute inset-0 h-full w-full object-cover" />
         {ejercicio.objetos.map((o) => {
           const hallado = encontrados.includes(o.id);

@@ -110,13 +110,19 @@ export function Leccion() {
         <BotonesSistema enLinea />
       </header>
 
-      <div className="flex min-h-0 flex-1 flex-col items-center justify-center gap-[clamp(0.75rem,2.5vmin,2rem)] px-4 pb-[clamp(7rem,18vmin,11rem)]">
-        <CacoGuia alto="clamp(6rem,17vmin,11rem)" sinGlobo={!!banner} className="self-start pl-[2vw]" />
-        {actual && (
-          <div className="flex w-full justify-center" data-ejercicio-id={actual.id} data-repaso={esRepaso}>
-            <Ejercicio key={claveEjercicio} ejercicio={actual} responder={responder} bloqueado={!!banner} />
-          </div>
-        )}
+      <div className="flex min-h-0 flex-1 flex-col px-4 pb-[clamp(3rem,8vmin,6rem)]">
+        {/* Caco y su globo siempre en el mismo lugar, sin importar el tamaño del ejercicio. */}
+        <div className="flex h-[clamp(7rem,19vmin,12rem)] shrink-0 items-center pl-[2vw]">
+          <CacoGuia alto="clamp(6rem,17vmin,11rem)" sinGlobo={!!banner} />
+        </div>
+        {/* El ejercicio ocupa y se centra en todo el espacio que queda. */}
+        <div className="flex min-h-0 flex-1 items-center justify-center">
+          {actual && (
+            <div className="flex w-full justify-center" data-ejercicio-id={actual.id} data-repaso={esRepaso}>
+              <Ejercicio key={claveEjercicio} ejercicio={actual} responder={responder} bloqueado={!!banner} />
+            </div>
+          )}
+        </div>
       </div>
 
       {banner && <BannerRespuesta banner={banner} alContinuar={continuar} />}

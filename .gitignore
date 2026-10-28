@@ -12,3 +12,6 @@ dev-dist/
 .voz-modelos/
 .musica-descargas/
 __pycache__/
+
+.vercel
+.env*

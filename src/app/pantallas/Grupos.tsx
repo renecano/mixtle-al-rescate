@@ -87,7 +87,8 @@ function CrearGrupo({ alCerrar }: { alCerrar: () => void }) {
   return (
     <Modal etiqueta={TEXTOS_APP.grupos.nuevo}>
       <h2 className="text-[clamp(1.6rem,4vmin,2.4rem)] font-black text-verde">{TEXTOS_APP.grupos.nuevo}</h2>
-      <div className="flex flex-wrap justify-center gap-3" role="radiogroup" aria-label="Animal del grupo">
+      {/* Cuadrícula pareja: 3 y 3. */}
+      <div className="grid grid-cols-3 justify-items-center gap-3" role="radiogroup" aria-label="Animal del grupo">
         {MASCOTAS.map((m) => (
           <button
             key={m.id}
@@ -97,7 +98,7 @@ function CrearGrupo({ alCerrar }: { alCerrar: () => void }) {
             aria-label={m.nombre}
             data-mascota={m.id}
             onClick={() => setMascota(m.id)}
-            className={`flex w-[clamp(6rem,13vmin,8rem)] cursor-pointer flex-col items-center gap-1 rounded-2xl border-[5px] bg-white p-2 font-extrabold ${mascota === m.id ? 'border-verde ring-8 ring-verde/30' : 'border-white'}`}
+            className={`flex w-[clamp(6.5rem,15vmin,9rem)] cursor-pointer flex-col items-center gap-1 rounded-2xl border-[5px] bg-white p-2 font-extrabold ${mascota === m.id ? 'border-verde ring-8 ring-verde/30' : 'border-white'}`}
           >
             <Arte clave={m.arte} className="h-[clamp(3.5rem,8vmin,5rem)] object-contain" />
             {m.nombre}

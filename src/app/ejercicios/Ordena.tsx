@@ -12,7 +12,7 @@ export function Ordena({ ejercicio, responder, bloqueado }: PropsEjercicio<Datos
   const revueltas = useMemo(() => revolver(ejercicio.pasos), [ejercicio]);
   const [puestas, setPuestas] = useState(0);
   const [error, setError] = useState<{ id: string; vez: number } | null>(null);
-  const tamano = 'clamp(6.5rem,15vmin,10.5rem)';
+  const tamano = 'clamp(7rem,min(21vmin,16vw),14rem)';
 
   const tocar = (id: string) => {
     if (bloqueado) return;
