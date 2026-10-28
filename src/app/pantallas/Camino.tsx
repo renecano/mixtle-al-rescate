@@ -7,7 +7,6 @@ import { mascota } from '../../logica/grupos';
 import { sonido } from '../../servicios/sonido';
 import { Arte } from '../componentes/Arte';
 import { BotonGrande } from '../componentes/BotonGrande';
-import { CacoFigura } from '../componentes/CacoFigura';
 import { CacoGuia } from '../componentes/CacoGuia';
 import { Encabezado } from '../componentes/Encabezado';
 import { Modal } from '../componentes/Modal';
@@ -76,7 +75,7 @@ export function Camino() {
     <main data-pantalla="camino" data-entrada-lista="true" className="flex h-full w-full flex-col bg-gradient-to-b from-cielo to-verde-claro">
       <Encabezado grupo={grupo} alAlbum={abrirAlbum} alCambiarGrupo={irAGrupos} alFacilitador={() => setFacilitador(true)} />
       <div className="relative min-h-0 flex-1 overflow-y-auto">
-        <div className="mx-auto flex max-w-[70rem] flex-col items-center gap-4 px-4 pt-4 pb-40">
+        <div className="mx-auto flex max-w-[70rem] flex-col items-center gap-4 px-4 pt-4 pb-16">
           <ParqueGrupo progreso={progreso} className="aspect-[16/6] w-full max-w-[calc(30vh*16/6)]" />
           {nodos.map((n, i) => {
             const nuevaUnidad = i === 0 || nodos[i - 1]!.unidad.id !== n.unidad.id;
@@ -85,28 +84,43 @@ export function Camino() {
             return (
               <Fragment key={n.id}>
                 {nuevaUnidad && <EncabezadoUnidad unidadId={n.unidad.id} />}
-                <div ref={esSiguiente ? siguiente : undefined} className="relative h-[clamp(7.5rem,17vmin,11rem)] w-full">
+                {/* scroll-mt: al desplazarse a la siguiente parada queda espacio para el globo de Caco bajo el encabezado. */}
+                <div ref={esSiguiente ? siguiente : undefined} className={`relative h-[clamp(7.5rem,17vmin,11rem)] w-full scroll-mt-[clamp(10rem,24vmin,15rem)] scroll-mb-8 ${esSiguiente ? 'z-10' : ''}`}>
                   <div className="absolute top-1/2 -translate-x-1/2 -translate-y-1/2" style={{ left: `${x}%` }}>
                     <BurbujaNodo nodo={n} estado={estados[i]!} siguiente={esSiguiente} alTocar={() => tocar(n, estados[i]!)} hecho={estados[i] === 'hecho'} />
                   </div>
                   {esSiguiente && (
+                    // Un solo Caco: el que señala la siguiente parada es el que habla, con su globo a un lado,
+                    // del lado contrario de la parada (el camino zigzaguea: ahí siempre hay espacio libre).
                     <motion.div
-                      className="pointer-events-none absolute top-1/2 -translate-y-[60%]"
-                      style={x > 50 ? { left: `calc(${x}% - clamp(13rem,30vmin,19rem))` } : { left: `calc(${x}% + clamp(5rem,11vmin,7rem))` }}
+                      // w-max: el globo conserva su ancho (si no, se encoge al espacio que queda en la columna).
+                      className="absolute top-0 w-max"
+                      style={x > 50 ? { right: `calc(${100 - x}% + clamp(4rem,9vmin,6rem))` } : { left: `calc(${x}% + clamp(4rem,9vmin,6rem))` }}
                       initial={{ opacity: 0, x: x > 50 ? -30 : 30 }}
                       animate={{ opacity: 1, x: 0 }}
                     >
-                      <CacoFigura alto="clamp(7rem,17vmin,11rem)" expresion="senalando" espejo={x <= 50} />
+                      <CacoGuia
+                        alto="clamp(7rem,17vmin,11rem)"
+                        globo={x > 50 ? 'izquierda' : 'derecha'}
+                        anchoGlobo="min(22rem,26vw)"
+                        globoDesdeArriba
+                        expresionFija="senalando"
+                        espejo={x <= 50}
+                        soloMientrasHabla
+                      />
                     </motion.div>
                   )}
                 </div>
               </Fragment>
             );
           })}
+          {/* Camino terminado: no hay parada que señalar; Caco habla al final del camino. */}
+          {indiceSiguiente === null && (
+            <div ref={siguiente} className="flex w-full justify-center pt-4">
+              <CacoGuia alto="clamp(7rem,17vmin,11rem)" globo="arriba" anchoGlobo="min(28rem,60vw)" expresionFija="celebrando" soloMientrasHabla />
+            </div>
+          )}
         </div>
-      </div>
-      <div className="fixed bottom-3 left-3 z-30">
-        <CacoGuia alto="clamp(5rem,12vmin,8rem)" soloMientrasHabla />
       </div>
 
       {cofre && (
