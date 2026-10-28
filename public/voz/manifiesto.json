@@ -906,6 +906,11 @@
    "ms": 5640,
    "config": "03ddda34a1afeb"
   },
+  "082fd932eca6e4.mp3": {
+   "texto": "¡Siete seguidas!",
+   "ms": 1100,
+   "config": "002b74014ec72c"
+  },
   "0838141b5c2caa.mp3": {
    "texto": "noventa y seis",
    "ms": 1220,
@@ -1055,6 +1060,11 @@
    "texto": "El papel sucio de comida ya no se recicla.",
    "ms": 2860,
    "config": "1cf7eae326e08e"
+  },
+  "0953603f36b7ce.mp3": {
+   "texto": "¡Cinco seguidas!",
+   "ms": 1100,
+   "config": "1b792d14132330"
   },
   "0955e629865213.mp3": {
    "texto": "¿Con cuál tomas agua sin hacer basura?",
@@ -2196,6 +2206,11 @@
    "ms": 2380,
    "config": "0668516506fcd8"
   },
+  "134b6e115c1cc3.mp3": {
+   "texto": "¡Diez seguidas!",
+   "ms": 1010,
+   "config": "18c3f0a5d7f40b"
+  },
   "134d782ee17721.mp3": {
    "texto": "Une cada basura con lo que puede llegar a ser.",
    "ms": 2760,
@@ -2825,6 +2840,11 @@
    "texto": "¿Qué comen los animales del parque? ¡Vamos a descubrirlo!",
    "ms": 3120,
    "config": "0c51e23e2a74e9"
+  },
+  "18b6e1425959c4.mp3": {
+   "texto": "¡Tres seguidas!",
+   "ms": 1060,
+   "config": "0ecd80bfa0a03d"
   },
   "18bc47ed2cee9b.mp3": {
    "texto": "¡Lección terminada! Ganaron dieciséis hojitas, y seis de seis ejercicios salieron a la primera.",
@@ -3485,6 +3505,11 @@
    "texto": "¡Felicidades, guardianes del parque! Separaron bien doce residuos y ayudaron a seis animales.",
    "ms": 5520,
    "config": "18365ecb924aff"
+  },
+  "1deed27bbba5e0.mp3": {
+   "texto": "¡Ya van a la mitad! ¡Vamos!",
+   "ms": 1680,
+   "config": "0eb4775b9a5a5e"
   },
   "1df38086f5a2f6.mp3": {
    "texto": "Cada unidad que terminen les da una estampa nueva.",

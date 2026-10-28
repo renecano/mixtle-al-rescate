@@ -3,6 +3,7 @@ import type { Tarjeta as DatosTarjeta } from '../../contenido/tipos';
 import type { Locucion } from '../../voz/locucion';
 import { sonido } from '../../servicios/sonido';
 import { Arte } from '../componentes/Arte';
+import { chispas } from '../efectos/efectos';
 
 /** Lo que un ejercicio le avisa a la lección cada vez que el grupo intenta algo. */
 export interface Respuesta {
@@ -62,12 +63,16 @@ export function Tarjeta({ tarjeta, estado = 'normal', conTexto = false, sacudir 
       data-tarjeta={tarjeta.id}
       disabled={estado === 'apagada' || estado === 'bien'}
       onPointerDown={() => sonido.desbloquear()}
-      onClick={onClick}
+      onClick={(e) => {
+        // Cada toque responde: unas chispas pequeñas donde se tocó (el sonido lo pone el ejercicio).
+        if (e.clientX || e.clientY) chispas(e.clientX, e.clientY, { cantidad: 6, alcance: 45 });
+        onClick?.();
+      }}
       key={sacudir}
       initial={false}
       animate={sacudir ? { x: [0, -14, 14, -10, 10, 0] } : { x: 0 }}
       transition={{ duration: 0.4 }}
-      whileTap={{ scale: 0.95 }}
+      whileTap={{ scaleX: 1.05, scaleY: 0.92 }}
       className={`relative flex cursor-pointer ${acostada ? 'flex-row gap-3 px-4' : 'flex-col gap-1'} items-center justify-center rounded-[1.75rem] border-[6px] p-3 shadow-[0_0.45rem_0_rgba(18,61,43,0.25)] disabled:cursor-default ${BORDES[estado]}`}
       // Alto fijo (no mínimo): "la botella" y "el corazón de manzana" miden lo mismo.
       style={acostada ? { width: ancho, height: tamano } : { width: tamano, height: conTexto ? `calc(${tamano} * 1.3)` : tamano }}

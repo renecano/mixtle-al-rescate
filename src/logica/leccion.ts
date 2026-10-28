@@ -19,6 +19,11 @@ export interface SesionLeccion {
   /** Errores en el ejercicio actual (para dar pistas). */
   erroresActual: number;
   aLaPrimera: number;
+  /**
+   * Racha dentro de la lección: aciertos a la primera seguidos. Un error la regresa a cero sin
+   * decir nada (nunca hay mensajes de culpa) y no pasa de una lección a otra ni de un día a otro.
+   */
+  racha: number;
 }
 
 export function iniciarLeccion(leccion: Leccion): SesionLeccion {
@@ -30,6 +35,7 @@ export function iniciarLeccion(leccion: Leccion): SesionLeccion {
     enRepaso: new Set(),
     erroresActual: 0,
     aLaPrimera: 0,
+    racha: 0,
   };
 }
 
@@ -65,7 +71,7 @@ export function registrarError(s: SesionLeccion): SesionLeccion {
     enRepaso.add(actual.id);
     cola.push(actual);
   }
-  return { ...s, fallados, enRepaso, cola, erroresActual: s.erroresActual + 1 };
+  return { ...s, fallados, enRepaso, cola, erroresActual: s.erroresActual + 1, racha: 0 };
 }
 
 /** Acierto en el ejercicio actual: avanza. */
@@ -79,7 +85,21 @@ export function registrarAcierto(s: SesionLeccion): SesionLeccion {
     hechos: s.hechos + 1,
     erroresActual: 0,
     aLaPrimera: s.aLaPrimera + (primeraVez ? 1 : 0),
+    racha: primeraVez ? s.racha + 1 : 0,
   };
+}
+
+/** Las rachas que se celebran ("¡3 seguidas!"). */
+export const HITOS_RACHA = [3, 5, 7, 10] as const;
+
+/** Si con esta racha toca celebrar, el número; si no, null. */
+export function hitoDeRacha(racha: number): number | null {
+  return (HITOS_RACHA as readonly number[]).includes(racha) ? racha : null;
+}
+
+/** ¿Este acierto hizo cruzar la mitad de la lección? (para la pequeña celebración de la barra). */
+export function cruzaLaMitad(antes: SesionLeccion, despues: SesionLeccion): boolean {
+  return avance(antes) < 0.5 && avance(despues) >= 0.5;
 }
 
 /** Hojitas por terminar una lección: 10 por completarla + 1 por cada ejercicio a la primera. */

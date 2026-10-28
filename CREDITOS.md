@@ -46,9 +46,13 @@ Si Eco Urban graba la voz de una persona (ver README), sus grabaciones reemplaza
 
 `public/sonidos/*.mp3` se generan a partir de las recetas de `src/servicios/recetasSonido.ts` con un sintetizador propio (`npm run sonidos:generar`): osciladores, envolventes y ruido filtrado. No hay sonidos de terceros.
 
+Los de la v3 también son propios: el remate musical del logo (`remate`), la transición entre pantallas (`barrido`), la hojita que llega al contador (`hojita`), la racha dentro de la lección (`racha`) y la mitad de la lección (`mitad`).
+
 ## Tipografía
 
 [Nunito](https://fonts.google.com/specimen/Nunito) de Vernon Adams y colaboradores, **SIL Open Font License 1.1**, autoalojada con [@fontsource/nunito](https://fontsource.org/fonts/nunito) (solo el subconjunto latino). El juego no pide nada a Google Fonts.
+
+[Baloo 2](https://fonts.google.com/specimen/Baloo+2) de Ek Type, **SIL Open Font License 1.1**, autoalojada con [@fontsource/baloo-2](https://fontsource.org/fonts/baloo-2) (ExtraBold, subconjunto latino): títulos y botones. Las letras del logo están convertidas en trazos a partir de Baloo 2 y Nunito con [opentype.js](https://opentype.js.org) (MIT, solo al generar la marca).
 
 ## Bibliotecas de código (incluidas en el juego)
 

@@ -2,7 +2,10 @@ import { describe, expect, it } from 'vitest';
 import type { Ejercicio, Leccion } from '../src/contenido/tipos';
 import {
   avance,
+  cruzaLaMitad,
   ejercicioActual,
+  hitoDeRacha,
+  HITOS_RACHA,
   hojitasGanadas,
   HOJITAS_POR_LECCION,
   iniciarLeccion,
@@ -92,5 +95,43 @@ describe('motor de lecciones', () => {
     expect(registrarAcierto(s)).toBe(s);
     s = registrarAcierto(s);
     expect(avance(s)).toBe(1);
+  });
+});
+
+describe('racha dentro de la lección y mitad de la barra (v3)', () => {
+  const larga: Leccion = { ...leccion, ejercicios: ['a', 'b', 'c', 'd', 'e', 'f'].map(ej) };
+
+  it('la racha sube con cada acierto a la primera y celebra en 3, 5, 7 y 10', () => {
+    let s = iniciarLeccion(larga);
+    const rachas: number[] = [];
+    for (let i = 0; i < 5; i++) {
+      s = registrarAcierto(s);
+      rachas.push(s.racha);
+    }
+    expect(rachas).toEqual([1, 2, 3, 4, 5]);
+    expect([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map(hitoDeRacha).filter((x) => x !== null)).toEqual([...HITOS_RACHA]);
+  });
+
+  it('un error la regresa a cero, y un acierto después de un error no la cuenta', () => {
+    let s = registrarAcierto(registrarAcierto(iniciarLeccion(larga)));
+    expect(s.racha).toBe(2);
+    s = registrarError(s);
+    expect(s.racha).toBe(0);
+    s = registrarAcierto(s); // el mismo ejercicio, ya no a la primera
+    expect(s.racha).toBe(0);
+    s = registrarAcierto(s);
+    expect(s.racha).toBe(1);
+  });
+
+  it('cruzar la mitad se detecta una sola vez', () => {
+    let s = iniciarLeccion(larga);
+    const cruces: boolean[] = [];
+    for (let i = 0; i < 6; i++) {
+      const n = registrarAcierto(s);
+      cruces.push(cruzaLaMitad(s, n));
+      s = n;
+    }
+    expect(cruces.filter(Boolean)).toHaveLength(1);
+    expect(cruces.indexOf(true)).toBe(2); // del 2/6 al 3/6
   });
 });

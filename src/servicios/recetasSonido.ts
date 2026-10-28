@@ -95,6 +95,23 @@ export const RECETAS = {
     { t: 0, d: 0.42, f: 500, f2: 2400, onda: 'ruido', vol: 0.12 },
     { t: 0.08, d: 0.2, f: 660, f2: 990, onda: 'sine', vol: 0.08 },
   ],
+  // Una hojita que llega al contador: un "tin" corto y agudo.
+  hojita: [
+    { t: 0, d: 0.07, f: E6, f2: G5 * 2, onda: 'sine', vol: 0.16 },
+  ],
+  // Racha dentro de la lección: tres notas que suben.
+  racha: [
+    { t: 0, d: 0.1, f: E5, onda: 'triangle', vol: 0.26 },
+    { t: 0.08, d: 0.1, f: G5, onda: 'triangle', vol: 0.26 },
+    { t: 0.16, d: 0.25, f: C6, onda: 'triangle', vol: 0.28 },
+    { t: 0.16, d: 0.2, f: 7000, onda: 'ruido', vol: 0.04 },
+  ],
+  // A la mitad de la lección: un destello suave.
+  mitad: [
+    { t: 0, d: 0.12, f: C6, onda: 'sine', vol: 0.18 },
+    { t: 0.06, d: 0.12, f: E6, onda: 'sine', vol: 0.16 },
+    { t: 0.12, d: 0.3, f: G5 * 2, onda: 'sine', vol: 0.14 },
+  ],
   pagina: [
     { t: 0, d: 0.09, f: 1800, onda: 'ruido', vol: 0.08 },
     { t: 0.02, d: 0.09, f: D5, f2: A5, onda: 'sine', vol: 0.18 },

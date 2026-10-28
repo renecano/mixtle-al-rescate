@@ -111,21 +111,10 @@ export function completarAventura(p: ProgresoGrupo, unidad: Unidad, hoy: string)
   };
 }
 
-/**
- * Racha suave: cuántos días seguidos se ha jugado, contando hasta hoy o ayer
- * (así no se "pierde" en la mañana antes de jugar). Nunca se usa para regañar.
+/*
+ * Sin rachas de días (v3, diseño persuasivo responsable): una racha diaria se "pierde" si un día no
+ * se juega, y eso presiona a los niños y al grupo. Solo se cuentan los días jugados, que nunca bajan.
  */
-export function rachaDias(dias: readonly string[], hoy: string): number {
-  const set = new Set(dias);
-  const fecha = new Date(`${hoy}T12:00:00`);
-  if (!set.has(hoy)) fecha.setDate(fecha.getDate() - 1);
-  let racha = 0;
-  while (set.has(hoyLocal(fecha))) {
-    racha += 1;
-    fecha.setDate(fecha.getDate() - 1);
-  }
-  return racha;
-}
 
 /** Cuántas hojitas se pueden ganar como máximo (para medir cuánto ha crecido el parque). */
 export function hojitasPosibles(unidades: readonly Unidad[]): number {

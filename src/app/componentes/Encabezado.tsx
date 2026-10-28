@@ -1,6 +1,5 @@
 import { useRef } from 'react';
 import { TEXTOS_APP } from '../../contenido/textosApp';
-import { hoyLocal, rachaDias } from '../../logica/camino';
 import { mascota, nombreDelGrupo, type Grupo } from '../../logica/grupos';
 import { Arte } from './Arte';
 import { BotonesSistema } from './BotonesSistema';
@@ -26,7 +25,6 @@ export function Encabezado({ grupo, alAlbum, alCambiarGrupo, alFacilitador }: Pr
     temporizador.current = null;
   };
   const dias = grupo.progreso.dias.length;
-  const racha = rachaDias(grupo.progreso.dias, hoyLocal());
 
   return (
     <header className="flex flex-wrap items-center gap-[clamp(0.5rem,2vmin,1.5rem)] bg-verde px-[clamp(0.75rem,2.5vmin,2rem)] py-2 text-white shadow-[0_0.3rem_0_rgba(0,0,0,0.15)]">
@@ -59,7 +57,6 @@ export function Encabezado({ grupo, alAlbum, alCambiarGrupo, alFacilitador }: Pr
       <div className="flex items-center gap-2 rounded-full bg-white/15 px-3 py-1" aria-label={`${TEXTOS_APP.camino.dias}: ${dias}`}>
         <Arte clave="calendario" className="size-[clamp(2rem,5vmin,3rem)]" />
         <span className="text-[clamp(1.2rem,3vmin,2rem)] font-black">{dias}</span>
-        {racha > 1 && <span className="text-[clamp(0.9rem,2vmin,1.2rem)] font-bold opacity-90">{TEXTOS_APP.camino.racha(racha)}</span>}
       </div>
 
       <div className="ml-auto flex items-center gap-3">

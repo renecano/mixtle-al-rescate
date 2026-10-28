@@ -13,7 +13,6 @@ import {
   MAXIMOS_PARQUE,
   nodosDelCamino,
   PROGRESO_VACIO,
-  rachaDias,
   siguienteNodo,
   unidadCompleta,
   type ProgresoGrupo,
@@ -93,16 +92,16 @@ describe('camino de aprendizaje', () => {
   });
 });
 
-describe('días jugados (racha suave)', () => {
-  it('cuenta días seguidos hasta hoy o hasta ayer, sin "perderse" en la mañana', () => {
-    expect(rachaDias(['2026-10-25', '2026-10-26', '2026-10-27'], HOY)).toBe(3);
-    expect(rachaDias(['2026-10-25', '2026-10-26'], HOY)).toBe(2);
-    expect(rachaDias(['2026-10-20', '2026-10-27'], HOY)).toBe(1);
-    expect(rachaDias([], HOY)).toBe(0);
+describe('días jugados (sin rachas que se pierdan)', () => {
+  it('los días jugados solo suben: dejar de jugar un día no le quita nada al grupo', () => {
+    const lunes = completarLeccion(PROGRESO_VACIO, 'a', { hojitas: 10, aLaPrimera: 0 }, '2026-10-26');
+    // Martes no se jugó; el miércoles se suma un día más y no se pierde ninguno.
+    const miercoles = completarLeccion(lunes, 'b', { hojitas: 10, aLaPrimera: 0 }, '2026-10-28');
+    expect(miercoles.dias).toEqual(['2026-10-26', '2026-10-28']);
+    expect(miercoles.dias.length).toBeGreaterThan(lunes.dias.length);
   });
 
-  it('cruza fin de mes y no duplica días', () => {
-    expect(rachaDias(['2026-09-30', '2026-10-01'], '2026-10-01')).toBe(2);
+  it('no duplica días', () => {
     const p = completarLeccion(completarLeccion(PROGRESO_VACIO, 'a', { hojitas: 10, aLaPrimera: 0 }, HOY), 'b', { hojitas: 10, aLaPrimera: 0 }, HOY);
     expect(p.dias).toEqual([HOY]);
   });
