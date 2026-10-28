@@ -21,6 +21,8 @@ interface Gancho {
   camarasActivas(): number;
   fps(): number;
   quieto(): boolean;
+  voz(): { conAudio: number; conNavegador: number };
+  musica(): string | null;
 }
 
 declare global {

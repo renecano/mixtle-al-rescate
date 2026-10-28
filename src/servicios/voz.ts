@@ -1,36 +1,58 @@
-import { estadoSonido } from './estadoSonido';
+import { Howl } from 'howler';
+import { piezasDeTexto, type Locucion } from '../voz/locucion';
+import { PAUSA_ENTRE_PIEZAS_MS, planDeLocucion, type Manifiesto } from '../voz/plan';
+import { hayAudio, musica, rutaAudio } from './audio/motor';
 import { elegirVoz, estimarDuracion } from './eleccionVoz';
+import { estadoSonido } from './estadoSonido';
 
-const VELOCIDAD = 0.9;
-const TONO = 1.1;
+const VELOCIDAD_NAVEGADOR = 0.9;
+const TONO_NAVEGADOR = 1.1;
+/** Cuántos audios de frases se guardan decodificados en memoria (laptop de 8 GB, tablets). */
+const MAXIMO_EN_MEMORIA = 40;
 
 /**
- * Narración con la Web Speech API en español de México.
- * Si el navegador no tiene voz o el sonido está apagado, no pasa nada malo:
- * el texto sigue en pantalla y las funciones que esperan el final se resuelven a tiempo.
+ * La voz de Caco.
+ * 1. Audios pregenerados (public/voz/<hash>.mp3, ver npm run voz:generar) o grabaciones humanas
+ *    con los mismos nombres. Las frases con números se arman encadenando piezas.
+ * 2. Si a una frase le falta su audio, se usa la voz del navegador (Web Speech API) y en
+ *    desarrollo se avisa en la consola.
+ * Mientras Caco habla, la música baja. Nada de esto rompe el juego si no hay audio.
  */
 class Voz {
-  private voz: SpeechSynthesisVoice | null = null;
-  private ultimo = '';
+  private manifiesto: Manifiesto | null = null;
+  private vozNavegador: SpeechSynthesisVoice | null = null;
+  private ultimo: Locucion = '';
   private turno = 0;
+  private agachada = false;
+  private sonando: Howl | null = null;
+  private cache = new Map<string, Howl>();
+  /** Cuántas frases se dijeron con audio grabado y cuántas con la voz del navegador (para las pruebas). */
+  readonly cuenta = { conAudio: 0, conNavegador: 0 };
 
   constructor() {
     const s = this.sintesis();
     if (s) {
-      this.cargarVoces();
-      s.addEventListener?.('voiceschanged', () => this.cargarVoces());
+      this.cargarVocesNavegador();
+      s.addEventListener?.('voiceschanged', () => this.cargarVocesNavegador());
     }
     estadoSonido.escuchar((activo) => {
       if (!activo) this.callar();
     });
   }
 
-  get disponible(): boolean {
-    return this.sintesis() !== null;
+  /** Carga public/voz/manifiesto.json. Sin manifiesto, todo se dice con la voz del navegador. */
+  async cargarManifiesto(): Promise<void> {
+    try {
+      const r = await fetch(rutaAudio('voz/manifiesto.json'));
+      if (r.ok) this.manifiesto = (await r.json()) as Manifiesto;
+    } catch {
+      this.manifiesto = null;
+    }
   }
 
-  get nombreVoz(): string {
-    return this.voz ? `${this.voz.name} (${this.voz.lang})` : 'predeterminada';
+  /** Para pruebas: usar un manifiesto dado. */
+  usarManifiesto(m: Manifiesto | null): void {
+    this.manifiesto = m;
   }
 
   /** Algunos navegadores (Safari en iPad) solo permiten hablar si la primera vez ocurre dentro de un toque. */
@@ -47,44 +69,46 @@ class Voz {
   }
 
   /**
-   * Dice un texto. Devuelve la duración estimada en ms (sirve para animar a Caco).
-   * `alTerminar` se llama al acabar de hablar, o tras la duración estimada si no hay voz.
+   * Caco dice algo. Devuelve la duración (real si hay audio, estimada si no), útil para animar a Caco.
+   * `alTerminar` se llama al acabar; si otra frase interrumpe a esta, ya no se llama.
    */
-  decir(texto: string, alTerminar?: () => void): number {
-    this.ultimo = texto;
-    const duracion = estimarDuracion(texto, VELOCIDAD);
+  decir(locucion: Locucion, alTerminar?: () => void): number {
+    this.ultimo = locucion;
+    const plan = planDeLocucion(locucion, this.manifiesto);
+    const hablado = piezasDeTexto(locucion).join(' ');
+    const conAudio = !!plan.archivos && hayAudio();
+    const ms = conAudio ? plan.ms : estimarDuracion(hablado, VELOCIDAD_NAVEGADOR);
+
+    this.callar();
     const miTurno = ++this.turno;
     let terminado = false;
     const terminar = () => {
-      // Si otra frase interrumpió a esta, su `alTerminar` ya no aplica.
       if (terminado || miTurno !== this.turno) return;
       terminado = true;
+      this.soltarMusica();
       alTerminar?.();
     };
     // Respaldo: nunca dejamos el juego esperando a una voz que no llega.
-    window.setTimeout(terminar, duracion + 1500);
+    window.setTimeout(terminar, ms + 1500);
 
-    const s = this.sintesis();
-    if (!s || !estadoSonido.estaActivo) {
-      window.setTimeout(terminar, duracion);
-      return duracion;
+    if (!estadoSonido.estaActivo) {
+      window.setTimeout(terminar, ms);
+      return ms;
     }
-    try {
-      s.cancel();
-      const u = new SpeechSynthesisUtterance(texto);
-      u.lang = this.voz?.lang ?? 'es-MX';
-      if (this.voz) u.voice = this.voz;
-      u.rate = VELOCIDAD;
-      u.pitch = TONO;
-      u.onend = terminar;
-      u.onerror = terminar;
-      s.speak(u);
-      // Chrome a veces deja la síntesis en pausa.
-      if (s.paused) s.resume();
-    } catch {
-      window.setTimeout(terminar, duracion);
+    musica.agachar();
+    this.agachada = true;
+
+    if (conAudio) {
+      this.cuenta.conAudio += 1;
+      this.reproducirCadena(plan.archivos!, miTurno, terminar);
+    } else {
+      this.cuenta.conNavegador += 1;
+      if (import.meta.env.DEV && plan.faltantes.length) {
+        console.warn('[voz] Sin audio, se usa la voz del navegador para:', plan.faltantes, '→ npm run voz:generar');
+      }
+      this.hablarConNavegador(hablado, terminar);
     }
-    return duracion;
+    return ms;
   }
 
   repetir(alTerminar?: () => void): number {
@@ -92,18 +116,84 @@ class Voz {
   }
 
   callar(): void {
+    this.turno += 1;
     try {
+      this.sonando?.stop();
       this.sintesis()?.cancel();
     } catch {
       // Ignorar.
     }
+    this.sonando = null;
+    this.soltarMusica();
   }
 
-  private cargarVoces(): void {
+  private soltarMusica(): void {
+    if (!this.agachada) return;
+    this.agachada = false;
+    musica.levantar();
+  }
+
+  private howl(archivo: string): Howl {
+    let h = this.cache.get(archivo);
+    if (h) {
+      // Lo más reciente va al final (para descartar primero lo menos usado).
+      this.cache.delete(archivo);
+      this.cache.set(archivo, h);
+      return h;
+    }
+    h = new Howl({ src: [rutaAudio(`voz/${archivo}`)], preload: true });
+    this.cache.set(archivo, h);
+    if (this.cache.size > MAXIMO_EN_MEMORIA) {
+      const [masViejo, howl] = this.cache.entries().next().value as [string, Howl];
+      if (howl !== this.sonando) howl.unload();
+      this.cache.delete(masViejo);
+    }
+    return h;
+  }
+
+  private reproducirCadena(archivos: string[], turno: number, terminar: () => void): void {
+    const siguiente = (i: number) => {
+      if (turno !== this.turno) return;
+      if (i >= archivos.length) {
+        this.sonando = null;
+        terminar();
+        return;
+      }
+      const h = this.howl(archivos[i]!);
+      this.sonando = h;
+      h.once('end', () => window.setTimeout(() => siguiente(i + 1), PAUSA_ENTRE_PIEZAS_MS));
+      // Si un audio no carga, se sigue con lo demás en vez de quedarse callado para siempre.
+      h.once('loaderror', () => siguiente(i + 1));
+      h.once('playerror', () => siguiente(i + 1));
+      h.play();
+    };
+    siguiente(0);
+  }
+
+  private hablarConNavegador(texto: string, terminar: () => void): void {
+    const s = this.sintesis();
+    if (!s) return;
     try {
-      this.voz = elegirVoz(this.sintesis()?.getVoices() ?? []);
+      const u = new SpeechSynthesisUtterance(texto);
+      u.lang = this.vozNavegador?.lang ?? 'es-MX';
+      if (this.vozNavegador) u.voice = this.vozNavegador;
+      u.rate = VELOCIDAD_NAVEGADOR;
+      u.pitch = TONO_NAVEGADOR;
+      u.onend = terminar;
+      u.onerror = terminar;
+      s.speak(u);
+      // Chrome a veces deja la síntesis en pausa.
+      if (s.paused) s.resume();
     } catch {
-      this.voz = null;
+      // El temporizador de respaldo terminará la frase.
+    }
+  }
+
+  private cargarVocesNavegador(): void {
+    try {
+      this.vozNavegador = elegirVoz(this.sintesis()?.getVoices() ?? []);
+    } catch {
+      this.vozNavegador = null;
     }
   }
 

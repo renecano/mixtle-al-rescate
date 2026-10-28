@@ -3,7 +3,9 @@ import { ANIMALES } from '../data/animales';
 import { progreso, resumenDiploma } from '../logica/progreso';
 import { entradaTerminada } from '../ui/transicion';
 import { juegoActual } from '../aventuras/juegoActual';
+import { musica } from './audio/motor';
 import { camarasActivas } from './camara';
+import { voz } from './voz';
 
 export interface ObjetoTocable {
   nombre: string;
@@ -83,6 +85,10 @@ export function exponerParaPruebas(): void {
     tocables,
     resumen: () => resumenDiploma(progreso(), ANIMALES),
     camarasActivas,
+    /** Frases dichas con audio grabado y con la voz del navegador. */
+    voz: () => ({ ...voz.cuenta }),
+    /** Pista de música de fondo que está sonando (o null). */
+    musica: () => musica.pistaActual,
     fps: () => Math.round(juegoActual()?.loop.actualFps ?? 0),
     /** true cuando ninguna pantalla visible está a media animación de entrada (para capturas). */
     quieto: () => {

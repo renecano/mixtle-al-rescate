@@ -260,7 +260,7 @@ export class Nivel2Scene extends Phaser.Scene {
     this.estado = 'fin';
     this.caco.celebrar();
     confeti(this);
-    sonido.tocar('fanfarria');
+    sonido.celebrar();
     this.narrador.decir(TEXTOS.nivel2.fin);
     botonSiguiente(this, () => irA(this, escenaSiguiente('Nivel2')), TEXTOS.seguir);
   }

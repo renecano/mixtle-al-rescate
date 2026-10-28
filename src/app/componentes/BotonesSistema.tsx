@@ -1,12 +1,12 @@
 import { useSyncExternalStore } from 'react';
-import { estadoSonido } from '../../servicios/estadoSonido';
+import { estadoMusica, estadoSonido, type Interruptor } from '../../servicios/estadoSonido';
 import { Arte } from './Arte';
 import { BotonGrande } from './BotonGrande';
 
-function useSonidoActivo(): boolean {
+function useEncendido(interruptor: Interruptor): boolean {
   return useSyncExternalStore(
-    (avisar) => estadoSonido.escuchar(avisar),
-    () => estadoSonido.estaActivo,
+    (avisar) => interruptor.escuchar(avisar),
+    () => interruptor.estaActivo,
   );
 }
 
@@ -14,9 +14,10 @@ function useSonidoActivo(): boolean {
 const TAMANO = 'size-[clamp(4.5rem,11vmin,8rem)]';
 const ICONO = 'size-[clamp(2.75rem,6.5vmin,4.75rem)] shrink-0';
 
-/** Botones de sonido y pantalla completa, arriba a la derecha. */
+/** Botones de pantalla completa, música y voz (por separado), arriba a la derecha. */
 export function BotonesSistema() {
-  const activo = useSonidoActivo();
+  const vozActiva = useEncendido(estadoSonido);
+  const musicaActiva = useEncendido(estadoMusica);
   const puedePantallaCompleta = typeof document !== 'undefined' && !!document.fullscreenEnabled;
 
   return (
@@ -34,11 +35,19 @@ export function BotonesSistema() {
         />
       )}
       <BotonGrande
-        color={activo ? 'azul' : 'gris'}
-        etiqueta={activo ? 'Apagar el sonido' : 'Encender el sonido'}
-        presionado={activo}
+        color={musicaActiva ? 'morado' : 'gris'}
+        etiqueta={musicaActiva ? 'Apagar la música' : 'Encender la música'}
+        presionado={musicaActiva}
         className={TAMANO}
-        icono={<Arte clave={activo ? 'icono-sonido' : 'icono-mudo'} className={ICONO} />}
+        icono={<Arte clave={musicaActiva ? 'icono-musica' : 'icono-musica-no'} className={ICONO} />}
+        onClick={() => estadoMusica.alternar()}
+      />
+      <BotonGrande
+        color={vozActiva ? 'azul' : 'gris'}
+        etiqueta={vozActiva ? 'Apagar la voz' : 'Encender la voz'}
+        presionado={vozActiva}
+        className={TAMANO}
+        icono={<Arte clave={vozActiva ? 'icono-sonido' : 'icono-mudo'} className={ICONO} />}
         onClick={() => estadoSonido.alternar()}
       />
     </div>

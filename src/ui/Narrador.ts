@@ -1,6 +1,7 @@
 import type Phaser from 'phaser';
 import { PALETA } from '../config';
 import { voz } from '../servicios/voz';
+import { textoDeLocucion, type Locucion } from '../voz/locucion';
 import { Boton } from './Boton';
 import type { Caco } from './Caco';
 import { Globo, type OpcionesGlobo } from './Globo';
@@ -16,6 +17,7 @@ export class Narrador {
   readonly globo: Globo;
   private repetir: Boton;
   private activo = true;
+  private ultima: Locucion | null = null;
 
   constructor(
     private readonly scene: Phaser.Scene,
@@ -46,8 +48,10 @@ export class Narrador {
    * Caco dice la frase (voz + globo). `alTerminar` se llama una sola vez: al acabar la voz
    * o, si se interrumpe o no hay voz, poco después de la duración estimada.
    */
-  decir(texto: string, alTerminar?: () => void): number {
-    this.globo.mostrar(texto);
+  decir(locucion: Locucion, alTerminar?: () => void): number {
+    this.ultima = locucion;
+    // El globo es el subtítulo: muestra lo que dice Caco (con cifras en lugar de números en palabras).
+    this.globo.mostrar(textoDeLocucion(locucion));
     this.repetir.setPosition(this.globo.x + this.globo.ancho - 84, this.globo.y + 80).setVisible(true);
     let hecho = false;
     const fin = () => {
@@ -55,7 +59,7 @@ export class Narrador {
       hecho = true;
       alTerminar?.();
     };
-    const ms = voz.decir(texto, () => {
+    const ms = voz.decir(locucion, () => {
       if (!this.activo) return;
       this.caco.callar();
       fin();
@@ -71,8 +75,8 @@ export class Narrador {
   }
 
   private repetirFrase(): void {
-    if (!this.globo.visible || !this.globo.contenido) return;
-    const ms = voz.decir(this.globo.contenido, () => {
+    if (!this.globo.visible || !this.ultima) return;
+    const ms = voz.decir(this.ultima, () => {
       if (this.activo) this.caco.callar();
     });
     this.caco.hablar(ms);

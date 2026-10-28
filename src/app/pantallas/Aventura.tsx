@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import type Phaser from 'phaser';
+import { musica } from '../../servicios/audio/motor';
 import { useApp } from '../estado/app';
 
 /** Phaser dibuja texto en un lienzo: hay que esperar a que la fuente Nunito esté lista. */
@@ -24,6 +25,8 @@ export function Aventura() {
   const contenedor = useRef<HTMLDivElement>(null);
   const escenaInicial = useApp((s) => s.escenaInicial);
   const volverAlInicio = useApp((s) => s.volverAlInicio);
+
+  useEffect(() => musica.poner('lecciones'), []);
 
   useEffect(() => {
     let juego: Phaser.Game | null = null;

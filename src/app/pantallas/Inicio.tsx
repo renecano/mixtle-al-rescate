@@ -1,7 +1,8 @@
 import { motion } from 'motion/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { TEXTOS } from '../../data/textos';
 import { reiniciarProgreso } from '../../logica/progreso';
+import { musica } from '../../servicios/audio/motor';
 import { sonido } from '../../servicios/sonido';
 import { voz } from '../../servicios/voz';
 import { Arte } from '../componentes/Arte';
@@ -20,6 +21,7 @@ const MARIPOSAS = [
 export function Inicio() {
   const jugar = useApp((s) => s.jugar);
   const [entradaLista, setEntradaLista] = useState(false);
+  useEffect(() => musica.poner('tranquila'), []);
 
   return (
     <main data-pantalla="inicio" data-entrada-lista={entradaLista} className="relative h-full w-full overflow-hidden">

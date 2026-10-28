@@ -1,11 +1,15 @@
-import { guardarSonidoActivo, leerSonidoActivo } from './preferencias';
+import { CLAVES, guardarInterruptor, leerInterruptor } from './preferencias';
 
 type Oyente = (activo: boolean) => void;
 
-/** Estado único de "sonido activo": controla efectos y voz a la vez. */
-class EstadoSonido {
-  private activo = leerSonidoActivo();
+/** Un interruptor de audio recordado en el dispositivo, con aviso a quien lo escuche. */
+export class Interruptor {
+  private activo: boolean;
   private oyentes = new Set<Oyente>();
+
+  constructor(private readonly clave: string) {
+    this.activo = leerInterruptor(clave);
+  }
 
   get estaActivo(): boolean {
     return this.activo;
@@ -19,14 +23,19 @@ class EstadoSonido {
   fijar(activo: boolean): void {
     if (activo === this.activo) return;
     this.activo = activo;
-    guardarSonidoActivo(activo);
+    guardarInterruptor(this.clave, activo);
     this.oyentes.forEach((o) => o(activo));
   }
 
   escuchar(oyente: Oyente): () => void {
     this.oyentes.add(oyente);
-    return () => this.oyentes.delete(oyente);
+    return () => {
+      this.oyentes.delete(oyente);
+    };
   }
 }
 
-export const estadoSonido = new EstadoSonido();
+/** Voz de Caco y efectos de sonido. */
+export const estadoSonido = new Interruptor(CLAVES.sonido);
+/** Música de fondo (botón aparte, como pide el diseño). */
+export const estadoMusica = new Interruptor(CLAVES.musica);

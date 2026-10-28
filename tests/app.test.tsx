@@ -26,12 +26,12 @@ describe('pantalla de inicio', () => {
   it('el botón de sonido se puede apagar y encender', async () => {
     estadoSonido.fijar(true);
     render(<App />);
-    const boton = screen.getByRole('button', { name: 'Apagar el sonido' });
+    const boton = screen.getByRole('button', { name: 'Apagar la voz' });
     expect(boton).toHaveAttribute('aria-pressed', 'true');
     await userEvent.click(boton);
     expect(estadoSonido.estaActivo).toBe(false);
-    expect(screen.getByRole('button', { name: 'Encender el sonido' })).toHaveAttribute('aria-pressed', 'false');
-    await userEvent.click(screen.getByRole('button', { name: 'Encender el sonido' }));
+    expect(screen.getByRole('button', { name: 'Encender la voz' })).toHaveAttribute('aria-pressed', 'false');
+    await userEvent.click(screen.getByRole('button', { name: 'Encender la voz' }));
     expect(estadoSonido.estaActivo).toBe(true);
   });
 

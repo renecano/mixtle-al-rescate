@@ -1,5 +1,6 @@
 import { NOMBRE_DEL_ICONO, type Categoria } from '../data/categorias';
 import type { CategoriaBase, Material, Residuo } from '../data/residuos';
+import type { Locucion } from '../voz/locucion';
 
 const MIN_CATEGORIAS = 2;
 const MAX_CATEGORIAS = 4;
@@ -71,7 +72,7 @@ export function textoPista(correcta: Categoria): string {
   return `¡Casi! ${correcta.pista} Busca ${descripcionBote(correcta)}.`;
 }
 
-/** Frase al acertar: celebración + dato curioso. */
-export function textoAcierto(residuo: Residuo, celebracion: string): string {
-  return `${celebracion} ${residuo.dato}`;
+/** Frase al acertar: celebración + dato curioso (dos piezas de audio que se encadenan). */
+export function textoAcierto(residuo: Residuo, celebracion: string): Locucion {
+  return [celebracion, residuo.dato];
 }

@@ -79,6 +79,6 @@ describe('textos de Caco', () => {
 
   it('al acertar celebra y dice el dato curioso', () => {
     const r = residuo('lata');
-    expect(textoAcierto(r, '¡Muy bien!')).toBe(`¡Muy bien! ${r.dato}`);
+    expect(textoAcierto(r, '¡Muy bien!')).toEqual(['¡Muy bien!', r.dato]);
   });
 });

@@ -129,6 +129,15 @@ test('recorrido completo: inicio → intro → 3 niveles → bonus sin cámara �
   await esperarEscena(page, 'Intro');
   expect(await resumen(page)).toMatchObject({ residuosSeparados: 0, animalesAyudados: 0 });
 
+  // Caco habló siempre con su voz grabada (nunca con la del navegador) y sonó la música.
+  const cuentaVoz = await page.evaluate(() => window.__caco.voz());
+  info.annotations.push({ type: 'voz', description: JSON.stringify(cuentaVoz) });
+  expect(cuentaVoz.conAudio).toBeGreaterThan(20);
+  expect(cuentaVoz.conNavegador).toBe(0);
+  expect(await page.evaluate(() => window.__caco.musica())).not.toBeNull();
+  const audios = peticiones.map((r) => r.url()).filter((u) => /\/voz\/[0-9a-f]{14}\.mp3$/.test(u));
+  expect(audios.length).toBeGreaterThan(20);
+
   // Privacidad: el juego nunca envía datos (ni imágenes ni nada) a ningún servidor.
   expect(peticiones.filter((r) => r.method() !== 'GET').map((r) => `${r.method()} ${r.url()}`)).toEqual([]);
   expect(errores).toEqual([]);
@@ -137,11 +146,11 @@ test('recorrido completo: inicio → intro → 3 niveles → bonus sin cámara �
 test('el botón de sonido se recuerda y el juego no se rompe sin localStorage', async ({ page, context }) => {
   await abrir(page);
   await esperarPantalla(page, 'inicio');
-  await tocarBoton(page, 'Apagar el sonido');
+  await tocarBoton(page, 'Apagar la voz');
   await expect.poll(() => page.evaluate(() => localStorage.getItem('caco-al-rescate:sonido'))).toBe('no');
   await page.reload();
   await page.waitForFunction(() => !!window.__caco);
-  await expect(page.getByRole('button', { name: 'Encender el sonido' })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Encender la voz' })).toBeVisible();
   expect(await page.evaluate(() => localStorage.getItem('caco-al-rescate:sonido'))).toBe('no');
   // Lo único guardado es esa preferencia.
   expect(await page.evaluate(() => Object.keys(localStorage))).toEqual(['caco-al-rescate:sonido']);

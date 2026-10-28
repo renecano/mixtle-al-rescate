@@ -1,3 +1,5 @@
+import type { Locucion } from '../voz/locucion';
+
 /**
  * Todo lo que Caco dice y lo que se lee en pantalla. Se puede cambiar aquí sin tocar la lógica.
  * Frases cortas: el público es de 6 a 8 años y muchos todavía leen con dificultad.
@@ -62,8 +64,14 @@ export const TEXTOS = {
     para: 'Diploma para todo el grupo',
     residuos: (n: number) => (n === 1 ? 'residuo bien separado' : 'residuos bien separados'),
     animales: (n: number) => (n === 1 ? 'animal ayudado' : 'animales ayudados'),
-    narracion: (residuos: number, animales: number) =>
-      `¡Felicidades, guardianes del parque! Separaron bien ${residuos} ${residuos === 1 ? 'residuo' : 'residuos'} y ayudaron a ${animales} ${animales === 1 ? 'animal' : 'animales'}.`,
+    /** Se narra en piezas: los números se encadenan como audios aparte (0 a 100). */
+    narracion: (residuos: number, animales: number): Locucion => [
+      '¡Felicidades, guardianes del parque! Separaron bien',
+      { numero: residuos, antesDeSustantivo: true },
+      residuos === 1 ? 'residuo y ayudaron a' : 'residuos y ayudaron a',
+      { numero: animales, antesDeSustantivo: true },
+      animales === 1 ? 'animal.' : 'animales.',
+    ],
     firma: 'Caco, el cacomixtle',
     fecha: 'Fecha',
     pie: 'Caco al rescate · Eco Urban A.C.',

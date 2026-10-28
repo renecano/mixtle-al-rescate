@@ -19,6 +19,21 @@ export const ICONOS: ArteSvg[] = [
      <path d="M62 38l22 24M84 38L62 62" stroke="#fff" stroke-width="8" stroke-linecap="round"/>`,
   ),
   arte(
+    'icono-musica',
+    100,
+    100,
+    `<path d="M38 70V22l44-10v48" fill="none" stroke="#fff" stroke-width="8" stroke-linejoin="round"/>
+     <ellipse cx="28" cy="72" rx="13" ry="10" fill="#fff"/><ellipse cx="72" cy="62" rx="13" ry="10" fill="#fff"/>`,
+  ),
+  arte(
+    'icono-musica-no',
+    100,
+    100,
+    `<path d="M38 70V22l44-10v48" fill="none" stroke="#fff" stroke-width="8" stroke-linejoin="round" opacity=".55"/>
+     <ellipse cx="28" cy="72" rx="13" ry="10" fill="#fff" opacity=".55"/><ellipse cx="72" cy="62" rx="13" ry="10" fill="#fff" opacity=".55"/>
+     <path d="M14 14L86 86" stroke="#fff" stroke-width="9" stroke-linecap="round"/>`,
+  ),
+  arte(
     'icono-repetir',
     100,
     100,

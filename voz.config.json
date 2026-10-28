@@ -1,0 +1,14 @@
+{
+  "$comentario": "Voz de Caco. Elegida por René en docs/muestras-voz (kokoro-alex-normal). Cambiar algo aquí regenera todas las frases con npm run voz:generar.",
+  "proveedor": "kokoro",
+  "voz": "em_alex",
+  "ajustes": {
+    "speed": 1.0,
+    "lang": "es-419"
+  },
+  "pronunciacion": {
+    "$comentario": "Solo cambia cómo se pronuncia en el audio; el texto en pantalla no cambia. Clave: palabra escrita; valor: cómo debe leerla la voz.",
+    "cacomixtle": "cacomistle",
+    "cacomixtles": "cacomistles"
+  }
+}

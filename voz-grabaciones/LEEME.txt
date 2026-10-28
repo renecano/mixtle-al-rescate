@@ -1,0 +1,5 @@
+Grabaciones de voz humana para Caco.
+
+Pon aquí un audio (mp3, wav, m4a u ogg) con el MISMO nombre que su frase en docs/frases-caco.csv
+(por ejemplo 0a1b2c3d4e5f6a.wav) y corre: npm run voz:generar
+Ese audio reemplaza a la voz generada para esa frase.

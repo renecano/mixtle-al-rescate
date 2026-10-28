@@ -17,7 +17,11 @@
     "verificar": "npm run typecheck && npm run lint && npm test && npm run build",
     "voz:preparar": "node scripts/voz/preparar.mjs",
     "voz:muestras": "node scripts/voz/muestras.mjs",
-    "musica:muestras": "node scripts/musica/muestras.mjs"
+    "musica:muestras": "node scripts/musica/muestras.mjs",
+    "voz:generar": "node scripts/voz/generar.mjs",
+    "voz:lista": "node scripts/voz/lista.mjs",
+    "sonidos:generar": "node scripts/sonidos/generar.mjs",
+    "musica:instalar": "node scripts/musica/instalar.mjs"
   },
   "license": "UNLICENSED",
   "dependencies": {

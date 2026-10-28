@@ -11,3 +11,4 @@ dev-dist/
 .venv-voz/
 .voz-modelos/
 .musica-descargas/
+__pycache__/

@@ -85,7 +85,7 @@ export class FinalScene extends Phaser.Scene {
       this.contar(numResiduos, resumen.residuosSeparados, null, () => {
         const mostrarHasta = (n: number) => figuras.forEach((f, i) => f.setVisible(i < n));
         this.contar(numAnimales, resumen.animalesAyudados, mostrarHasta, () => {
-          sonido.tocar('fanfarria');
+          sonido.celebrar();
           confeti(this, 120);
           caco.celebrar();
           chispas(this, DIPLOMA.x, DIPLOMA.y - 250, 16, 300);

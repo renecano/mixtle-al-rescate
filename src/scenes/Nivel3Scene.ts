@@ -182,7 +182,7 @@ export class Nivel3Scene extends Phaser.Scene {
     this.pista?.remove();
     this.caco.celebrar();
     confeti(this);
-    sonido.tocar('fanfarria');
+    sonido.celebrar();
     this.narrador.decir(TEXTOS.nivel3.fin);
     // Arriba, en el cielo, para no tapar las flores recién sembradas.
     botonSiguiente(this, () => irA(this, escenaSiguiente('Nivel3')), TEXTOS.seguir, { x: ANCHO - 300, y: 300 });

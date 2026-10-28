@@ -10,7 +10,7 @@ const SIN_CONTRAER = /\b(de|a) el\b/i;
 /** Junta todas las frases (también las que son funciones) de un objeto de textos. */
 function frases(valor: unknown): string[] {
   if (typeof valor === 'string') return [valor];
-  if (typeof valor === 'function') return [String((valor as (...a: unknown[]) => unknown)('la lata', 'la lata'))];
+  if (typeof valor === 'function') return frases((valor as (...a: unknown[]) => unknown)('la lata', 'la lata'));
   if (Array.isArray(valor)) return valor.flatMap(frases);
   if (valor && typeof valor === 'object') return Object.values(valor).flatMap(frases);
   return [];

@@ -42,7 +42,8 @@ def _sintetizar_crudo(proveedor: str, voz: str, ajustes: dict, texto: str, desti
     elif proveedor == "kokoro":
         import soundfile
 
-        muestras, frecuencia = _kokoro().create(texto, voice=voz, speed=float(ajustes.get("speed", 1.0)), lang="es")
+        # lang "es-419": español latinoamericano (seseo), como se habla en México; "es" pronuncia z/ce/ci como en España.
+        muestras, frecuencia = _kokoro().create(texto, voice=voz, speed=float(ajustes.get("speed", 1.0)), lang=ajustes.get("lang", "es-419"))
         soundfile.write(str(destino), muestras, frecuencia)
     elif proveedor == "edge":
         import edge_tts

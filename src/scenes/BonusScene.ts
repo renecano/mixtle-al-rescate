@@ -78,7 +78,7 @@ export class BonusScene extends Phaser.Scene {
     this.crearBotes();
     agregarBotonSonido(this);
 
-    new Boton(this, ANCHO - 400, 88, {
+    new Boton(this, ANCHO - 560, 88, {
       texto: TEXTOS.bonus.botonDiploma,
       icono: 'icono-siguiente',
       ancho: 420,
@@ -296,7 +296,7 @@ export class BonusScene extends Phaser.Scene {
       this.tweens.add({ targets: imagen, x: bote.boca.x, y: bote.boca.y, scale: 0, duration: 500, ease: 'Quad.easeIn', onComplete: () => imagen.destroy() });
       this.esperado = undefined;
       this.activarBotes(false);
-      this.narrador.decir(`${TEXTOS.bonus.acierto(descripcionBote(esperado))} ${residuo.dato}`, () => this.siguienteDibujo());
+      this.narrador.decir([TEXTOS.bonus.acierto(descripcionBote(esperado)), residuo.dato], () => this.siguienteDibujo());
       return;
     }
     this.aciertosCamara += 1;

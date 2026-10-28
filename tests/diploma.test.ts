@@ -3,6 +3,7 @@ import { ANIMALES } from '../src/data/animales';
 import { CATEGORIAS } from '../src/data/categorias';
 import { RESIDUOS } from '../src/data/residuos';
 import { TEXTOS } from '../src/data/textos';
+import { textoDeLocucion } from '../src/voz/locucion';
 import { esCorrecto } from '../src/logica/clasificacion';
 import { Progreso, animalesDelDiploma, resumenDiploma } from '../src/logica/progreso';
 import { ZONAS } from '../src/ui/layoutParque';
@@ -80,9 +81,9 @@ describe('textos del diploma', () => {
     expect(TEXTOS.diploma.residuos(12)).toBe('residuos bien separados');
     expect(TEXTOS.diploma.animales(1)).toBe('animal ayudado');
     expect(TEXTOS.diploma.animales(0)).toBe('animales ayudados');
-    expect(TEXTOS.diploma.narracion(12, 10)).toBe(
+    expect(textoDeLocucion(TEXTOS.diploma.narracion(12, 10))).toBe(
       '¡Felicidades, guardianes del parque! Separaron bien 12 residuos y ayudaron a 10 animales.',
     );
-    expect(TEXTOS.diploma.narracion(1, 1)).toContain('1 residuo y ayudaron a 1 animal.');
+    expect(textoDeLocucion(TEXTOS.diploma.narracion(1, 1))).toContain('1 residuo y ayudaron a 1 animal.');
   });
 });

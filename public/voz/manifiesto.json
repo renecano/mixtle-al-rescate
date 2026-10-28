@@ -1,0 +1,1120 @@
+{
+ "version": 1,
+ "frases": {
+  "000179817e3bc2.mp3": {
+   "texto": "veintiocho",
+   "ms": 1080,
+   "config": "0377892f781d16"
+  },
+  "0015eb26f82982.mp3": {
+   "texto": "¡Separaste toda la basura! Ahora vamos a darles un hogar a los animales.",
+   "ms": 4270,
+   "config": "0377892f781d16"
+  },
+  "0033e6659449a8.mp3": {
+   "texto": "¡La ardilla está feliz! Ya puede jugar en su árbol.",
+   "ms": 3120,
+   "config": "0377892f781d16"
+  },
+  "003ebb94d27110.mp3": {
+   "texto": "¡Hola! Soy Caco, el cacomixtle del parque.",
+   "ms": 2350,
+   "config": "0377892f781d16"
+  },
+  "0040aef88d73fa.mp3": {
+   "texto": "noventa y cuatro",
+   "ms": 1370,
+   "config": "0377892f781d16"
+  },
+  "008b4b1d820b16.mp3": {
+   "texto": "¡Creo que es una chirimoya! ¿A qué bote va?",
+   "ms": 2420,
+   "config": "0377892f781d16"
+  },
+  "00ea8261800818.mp3": {
+   "texto": "¡El colibrí encontró un árbol nuevo!",
+   "ms": 2380,
+   "config": "0377892f781d16"
+  },
+  "010f5fa64a84a6.mp3": {
+   "texto": "cuarenta y seis",
+   "ms": 1220,
+   "config": "0377892f781d16"
+  },
+  "01239efb518411.mp3": {
+   "texto": "¡Creo que es pasto seco! ¿A qué bote va?",
+   "ms": 2300,
+   "config": "0377892f781d16"
+  },
+  "014968ddca0f3b.mp3": {
+   "texto": "La cámara no funcionó. ¡Juguemos con dibujos!",
+   "ms": 2690,
+   "config": "0377892f781d16"
+  },
+  "01a30eb1ba9857.mp3": {
+   "texto": "veintisiete",
+   "ms": 1080,
+   "config": "0377892f781d16"
+  },
+  "01ddac9a0a7c4a.mp3": {
+   "texto": "sesenta y siete",
+   "ms": 1320,
+   "config": "0377892f781d16"
+  },
+  "01e8cfd6005a8f.mp3": {
+   "texto": "treinta y uno",
+   "ms": 1180,
+   "config": "0377892f781d16"
+  },
+  "022748075f2ef2.mp3": {
+   "texto": "Pon la basura frente a la cámara y toca el botón.",
+   "ms": 2930,
+   "config": "0377892f781d16"
+  },
+  "02286df2170fbe.mp3": {
+   "texto": "¿A qué bote va la servilleta usada?",
+   "ms": 2280,
+   "config": "0377892f781d16"
+  },
+  "026a029e59714b.mp3": {
+   "texto": "cuarenta y un",
+   "ms": 1180,
+   "config": "0377892f781d16"
+  },
+  "02aebe8d4e4fa2.mp3": {
+   "texto": "¿Me ayudas a rescatarlos?",
+   "ms": 1780,
+   "config": "0377892f781d16"
+  },
+  "02b5c47f2c8b1c.mp3": {
+   "texto": "Las hojas secas se vuelven tierra nueva y son casita para muchos bichitos.",
+   "ms": 4340,
+   "config": "0377892f781d16"
+  },
+  "02da45eb965d31.mp3": {
+   "texto": "cuarenta",
+   "ms": 820,
+   "config": "0377892f781d16"
+  },
+  "02f3239466d898.mp3": {
+   "texto": "cuarenta y tres",
+   "ms": 1200,
+   "config": "0377892f781d16"
+  },
+  "03007aa90b5b38.mp3": {
+   "texto": "sesenta y ocho",
+   "ms": 1270,
+   "config": "0377892f781d16"
+  },
+  "0314f0f579c16b.mp3": {
+   "texto": "¿A qué bote va la cáscara de plátano?",
+   "ms": 2260,
+   "config": "0377892f781d16"
+  },
+  "032c5c33f47561.mp3": {
+   "texto": "ochenta y seis",
+   "ms": 1200,
+   "config": "0377892f781d16"
+  },
+  "0339f2773fd157.mp3": {
+   "texto": "setenta y ocho",
+   "ms": 1300,
+   "config": "0377892f781d16"
+  },
+  "0356b03e6827c9.mp3": {
+   "texto": "¡El colibrí está feliz! Ya puede volar sin peligro.",
+   "ms": 3020,
+   "config": "0377892f781d16"
+  },
+  "036e808762b893.mp3": {
+   "texto": "cincuenta y seis",
+   "ms": 1300,
+   "config": "0377892f781d16"
+  },
+  "038a070b652cbd.mp3": {
+   "texto": "¡Creo que es una calabacita! ¿A qué bote va?",
+   "ms": 2690,
+   "config": "0377892f781d16"
+  },
+  "03eaf6acfe2de3.mp3": {
+   "texto": "ochenta y cinco",
+   "ms": 1340,
+   "config": "0377892f781d16"
+  },
+  "03ee7a0f102b7c.mp3": {
+   "texto": "¿A qué bote va el envase de jugo?",
+   "ms": 2060,
+   "config": "0377892f781d16"
+  },
+  "045b72276b93a9.mp3": {
+   "texto": "¡Creo que es un limón! ¿A qué bote va?",
+   "ms": 2180,
+   "config": "0377892f781d16"
+  },
+  "048865e40107a5.mp3": {
+   "texto": "cuatro",
+   "ms": 740,
+   "config": "0377892f781d16"
+  },
+  "04a3e338f2f428.mp3": {
+   "texto": "¿A qué bote va la lata?",
+   "ms": 1580,
+   "config": "0377892f781d16"
+  },
+  "04dbab184d0832.mp3": {
+   "texto": "cuarenta y nueve",
+   "ms": 1270,
+   "config": "0377892f781d16"
+  },
+  "04ec4d7884a439.mp3": {
+   "texto": "Con botellas de plástico recicladas se pueden hacer playeras y botellas nuevas.",
+   "ms": 4800,
+   "config": "0377892f781d16"
+  },
+  "051729f462edaa.mp3": {
+   "texto": "¡Bonus! Muéstrale a Caco una basura de verdad y juntos la separamos.",
+   "ms": 3890,
+   "config": "0377892f781d16"
+  },
+  "051d3a08f63480.mp3": {
+   "texto": "ochenta y siete",
+   "ms": 1340,
+   "config": "0377892f781d16"
+  },
+  "054419edfcd5ac.mp3": {
+   "texto": "cincuenta y dos",
+   "ms": 1340,
+   "config": "0377892f781d16"
+  },
+  "054c3d8454235a.mp3": {
+   "texto": "Donde había basura, ahora podemos sembrar. Toca la tierra.",
+   "ms": 3340,
+   "config": "0377892f781d16"
+  },
+  "055f3d7a378874.mp3": {
+   "texto": "¡Creo que es un hongo! ¿A qué bote va?",
+   "ms": 2160,
+   "config": "0377892f781d16"
+  },
+  "05877b1ef4bbca.mp3": {
+   "texto": "veintiuno",
+   "ms": 960,
+   "config": "0377892f781d16"
+  },
+  "059318e62c2700.mp3": {
+   "texto": "diecinueve",
+   "ms": 1010,
+   "config": "0377892f781d16"
+  },
+  "05971b1878bde6.mp3": {
+   "texto": "cincuenta y nueve",
+   "ms": 1390,
+   "config": "0377892f781d16"
+  },
+  "05d99b22700bc5.mp3": {
+   "texto": "Toca la tierra para sembrar un árbol o unas flores.",
+   "ms": 3050,
+   "config": "0377892f781d16"
+  },
+  "05f43ae4d84243.mp3": {
+   "texto": "seis",
+   "ms": 600,
+   "config": "0377892f781d16"
+  },
+  "05fe1810ee329e.mp3": {
+   "texto": "noventa y un",
+   "ms": 1180,
+   "config": "0377892f781d16"
+  },
+  "062f313d2532fc.mp3": {
+   "texto": "Los popotes casi nunca se reciclan; puedes tomar tu agua sin popote.",
+   "ms": 4300,
+   "config": "0377892f781d16"
+  },
+  "064d3ee920dedc.mp3": {
+   "texto": "Caco se está poniendo sus lentes…",
+   "ms": 2160,
+   "config": "0377892f781d16"
+  },
+  "06591ce6f1f7be.mp3": {
+   "texto": "¡Muy bien! Va en el bote verde con el dibujo de la hojita.",
+   "ms": 3170,
+   "config": "0377892f781d16"
+  },
+  "0675569a101d39.mp3": {
+   "texto": "setenta",
+   "ms": 840,
+   "config": "0377892f781d16"
+  },
+  "067d3f78765025.mp3": {
+   "texto": "¡Creo que es una manzana! ¿A qué bote va?",
+   "ms": 2420,
+   "config": "0377892f781d16"
+  },
+  "06eed27cc306ea.mp3": {
+   "texto": "ochenta y un",
+   "ms": 1180,
+   "config": "0377892f781d16"
+  },
+  "072c3ac8837563.mp3": {
+   "texto": "treinta y siete",
+   "ms": 1270,
+   "config": "0377892f781d16"
+  },
+  "073b1785061b18.mp3": {
+   "texto": "cien",
+   "ms": 580,
+   "config": "0377892f781d16"
+  },
+  "0757051bf32922.mp3": {
+   "texto": "¡Creo que es una naranja! ¿A qué bote va?",
+   "ms": 2350,
+   "config": "0377892f781d16"
+  },
+  "07b4701cf336f4.mp3": {
+   "texto": "siete",
+   "ms": 700,
+   "config": "0377892f781d16"
+  },
+  "07b9e57981aac3.mp3": {
+   "texto": "¡Creo que es una toalla de papel! ¿A qué bote va?",
+   "ms": 2690,
+   "config": "0377892f781d16"
+  },
+  "07e01bddb0b75e.mp3": {
+   "texto": "Las cajitas de jugo tienen capas de cartón, plástico y aluminio, y se pueden reciclar.",
+   "ms": 5140,
+   "config": "0377892f781d16"
+  },
+  "07ebfcba784a67.mp3": {
+   "texto": "¡Muy bien! Va en el bote naranja con el dibujo del bote de basura.",
+   "ms": 3550,
+   "config": "0377892f781d16"
+  },
+  "08029eb0a33c27.mp3": {
+   "texto": "¡Creo que es una revista! ¿A qué bote va?",
+   "ms": 2350,
+   "config": "0377892f781d16"
+  },
+  "0834af73a3f617.mp3": {
+   "texto": "La cámara está ocupada en otro programa. ¡Juguemos con dibujos!",
+   "ms": 3700,
+   "config": "0377892f781d16"
+  },
+  "0838141b5c2caa.mp3": {
+   "texto": "noventa y seis",
+   "ms": 1220,
+   "config": "0377892f781d16"
+  },
+  "085367590e59de.mp3": {
+   "texto": "diecisiete",
+   "ms": 1030,
+   "config": "0377892f781d16"
+  },
+  "0861c4743e9f8f.mp3": {
+   "texto": "cuarenta y uno",
+   "ms": 1200,
+   "config": "0377892f781d16"
+  },
+  "088129a56ee1ff.mp3": {
+   "texto": "¡Casi! Viene de una planta o de un animal y se puede volver tierra. Busca el bote verde con el dibujo de la hojita.",
+   "ms": 6430,
+   "config": "0377892f781d16"
+  },
+  "0891e13de0b0f2.mp3": {
+   "texto": "¡Creo que es un pañuelo desechable! ¿A qué bote va?",
+   "ms": 2880,
+   "config": "0377892f781d16"
+  },
+  "089eb442d70de9.mp3": {
+   "texto": "un",
+   "ms": 480,
+   "config": "0377892f781d16"
+  },
+  "08c05473a4ab05.mp3": {
+   "texto": "veintiséis",
+   "ms": 1060,
+   "config": "0377892f781d16"
+  },
+  "08d18ec37103a2.mp3": {
+   "texto": "¡Gracias por enseñarme! Muéstrame otra cosa.",
+   "ms": 2740,
+   "config": "0377892f781d16"
+  },
+  "08f5c820348916.mp3": {
+   "texto": "noventa y dos",
+   "ms": 1220,
+   "config": "0377892f781d16"
+  },
+  "08fb7a3243fc04.mp3": {
+   "texto": "cero",
+   "ms": 600,
+   "config": "0377892f781d16"
+  },
+  "08fce1e1661cdc.mp3": {
+   "texto": "treinta y ocho",
+   "ms": 1220,
+   "config": "0377892f781d16"
+  },
+  "091cab2f322e5b.mp3": {
+   "texto": "veintitrés",
+   "ms": 1030,
+   "config": "0377892f781d16"
+  },
+  "0941c89c0ae43f.mp3": {
+   "texto": "¡Creo que es una botella de plástico! ¿A qué bote va?",
+   "ms": 2980,
+   "config": "0377892f781d16"
+  },
+  "09a423505a9718.mp3": {
+   "texto": "treinta y dos",
+   "ms": 1200,
+   "config": "0377892f781d16"
+  },
+  "09b0eb7d831caf.mp3": {
+   "texto": "¡A la ardilla le encanta su árbol nuevo!",
+   "ms": 2280,
+   "config": "0377892f781d16"
+  },
+  "09c1b15c0c68c9.mp3": {
+   "texto": "Una servilleta sucia ya no se puede reciclar; por eso usamos solo las que necesitamos.",
+   "ms": 5090,
+   "config": "0377892f781d16"
+  },
+  "09cb222964c8ff.mp3": {
+   "texto": "Las bolsitas de frituras tienen capas de plástico y metal pegadas, y casi nunca se reciclan.",
+   "ms": 5570,
+   "config": "0377892f781d16"
+  },
+  "0a672450070244.mp3": {
+   "texto": "noventa y cinco",
+   "ms": 1320,
+   "config": "0377892f781d16"
+  },
+  "0aa50ce262aaae.mp3": {
+   "texto": "Una lata de aluminio se puede reciclar muchas veces y volver a ser lata.",
+   "ms": 4320,
+   "config": "0377892f781d16"
+  },
+  "0aa76c0430f594.mp3": {
+   "texto": "¡Creo que es un periódico! ¿A qué bote va?",
+   "ms": 2420,
+   "config": "0377892f781d16"
+  },
+  "0ac8c35483f2d1.mp3": {
+   "texto": "cuarenta y cinco",
+   "ms": 1340,
+   "config": "0377892f781d16"
+  },
+  "0ad2e3763f0fc7.mp3": {
+   "texto": "cuarenta y dos",
+   "ms": 1200,
+   "config": "0377892f781d16"
+  },
+  "0af322bc3b950c.mp3": {
+   "texto": "¡Creo que es un pan! ¿A qué bote va?",
+   "ms": 2140,
+   "config": "0377892f781d16"
+  },
+  "0af9a7e894ee29.mp3": {
+   "texto": "cuarenta y siete",
+   "ms": 1320,
+   "config": "0377892f781d16"
+  },
+  "0b2a0813ad1690.mp3": {
+   "texto": "veinticuatro",
+   "ms": 1150,
+   "config": "0377892f781d16"
+  },
+  "0b371ea167017f.mp3": {
+   "texto": "trece",
+   "ms": 720,
+   "config": "0377892f781d16"
+  },
+  "0b9dd6e514a00a.mp3": {
+   "texto": "¡Creo que es una caja de cartón! ¿A qué bote va?",
+   "ms": 2660,
+   "config": "0377892f781d16"
+  },
+  "0ba156e3bc96c5.mp3": {
+   "texto": "¡Muy bien!",
+   "ms": 890,
+   "config": "0377892f781d16"
+  },
+  "0baca98528d04a.mp3": {
+   "texto": "¡Eso es!",
+   "ms": 840,
+   "config": "0377892f781d16"
+  },
+  "0bca5b5e055712.mp3": {
+   "texto": "¡El parque es otra vez un hogar para los animales!",
+   "ms": 2930,
+   "config": "0377892f781d16"
+  },
+  "0c16b0f311c39a.mp3": {
+   "texto": "setenta y cuatro",
+   "ms": 1340,
+   "config": "0377892f781d16"
+  },
+  "0c621a29d770b1.mp3": {
+   "texto": "tres",
+   "ms": 620,
+   "config": "0377892f781d16"
+  },
+  "0cc33a5b447958.mp3": {
+   "texto": "¡Casi! Este ya no se puede reciclar. Busca el bote naranja con el dibujo del bote de basura.",
+   "ms": 5300,
+   "config": "0377892f781d16"
+  },
+  "0ccaf33561f370.mp3": {
+   "texto": "animal.",
+   "ms": 820,
+   "config": "0377892f781d16"
+  },
+  "0cdb198bfa4631.mp3": {
+   "texto": "¡Creo que es una piña! ¿A qué bote va?",
+   "ms": 2180,
+   "config": "0377892f781d16"
+  },
+  "0cf2bd60d194e2.mp3": {
+   "texto": "sesenta y dos",
+   "ms": 1200,
+   "config": "0377892f781d16"
+  },
+  "0cfd9de4ab301c.mp3": {
+   "texto": "¡Creo que es una granada! ¿A qué bote va?",
+   "ms": 2330,
+   "config": "0377892f781d16"
+  },
+  "0d1789b4e6ac8f.mp3": {
+   "texto": "residuos y ayudaron a",
+   "ms": 1700,
+   "config": "0377892f781d16"
+  },
+  "0d2d572994b821.mp3": {
+   "texto": "¡Creo que es un pedazo de pizza! ¿A qué bote va?",
+   "ms": 2740,
+   "config": "0377892f781d16"
+  },
+  "0d6859de1b765d.mp3": {
+   "texto": "setenta y tres",
+   "ms": 1220,
+   "config": "0377892f781d16"
+  },
+  "0d796602c98ad2.mp3": {
+   "texto": "¡Lo lograste! El parque está limpio. Ahora vamos a separar la basura.",
+   "ms": 4080,
+   "config": "0377892f781d16"
+  },
+  "0d7ff5689a0793.mp3": {
+   "texto": "Si aplastas la caja de cartón, ocupa menos lugar y se recicla más fácil.",
+   "ms": 4300,
+   "config": "0377892f781d16"
+  },
+  "0d8d8953e76ff5.mp3": {
+   "texto": "¡Las mariposas están felices! Ya pueden descansar.",
+   "ms": 3240,
+   "config": "0377892f781d16"
+  },
+  "0d8dcd1f7ec54e.mp3": {
+   "texto": "setenta y siete",
+   "ms": 1340,
+   "config": "0377892f781d16"
+  },
+  "0d8e25abbe3868.mp3": {
+   "texto": "ocho",
+   "ms": 650,
+   "config": "0377892f781d16"
+  },
+  "0d92a7af17dc7a.mp3": {
+   "texto": "¡Creo que es restos de comida! ¿A qué bote va?",
+   "ms": 2640,
+   "config": "0377892f781d16"
+  },
+  "0d95a8323aa739.mp3": {
+   "texto": "catorce",
+   "ms": 890,
+   "config": "0377892f781d16"
+  },
+  "0da0bd2ec1eaa6.mp3": {
+   "texto": "treinta y nueve",
+   "ms": 1270,
+   "config": "0377892f781d16"
+  },
+  "0db49a76c56a24.mp3": {
+   "texto": "sesenta y nueve",
+   "ms": 1300,
+   "config": "0377892f781d16"
+  },
+  "0e0eac91bdcaf0.mp3": {
+   "texto": "setenta y seis",
+   "ms": 1220,
+   "config": "0377892f781d16"
+  },
+  "0e1c2d5921c62d.mp3": {
+   "texto": "veintiún",
+   "ms": 890,
+   "config": "0377892f781d16"
+  },
+  "0e31e22065aebe.mp3": {
+   "texto": "¡Mira! Llegó una mariposa monarca a las flores.",
+   "ms": 2640,
+   "config": "0377892f781d16"
+  },
+  "0e52265bb0d3dd.mp3": {
+   "texto": "treinta y tres",
+   "ms": 1200,
+   "config": "0377892f781d16"
+  },
+  "0e5924965e51da.mp3": {
+   "texto": "veintidós",
+   "ms": 1010,
+   "config": "0377892f781d16"
+  },
+  "0eb18e2e9ea20a.mp3": {
+   "texto": "¡Creo que es un brócoli! ¿A qué bote va?",
+   "ms": 2330,
+   "config": "0377892f781d16"
+  },
+  "0eb4c5f32dd499.mp3": {
+   "texto": "¡Felicidades, guardianes del parque! Separaron bien",
+   "ms": 2880,
+   "config": "0377892f781d16"
+  },
+  "0edb50bcc94463.mp3": {
+   "texto": "sesenta y cinco",
+   "ms": 1320,
+   "config": "0377892f781d16"
+  },
+  "0efe3cc5f11b04.mp3": {
+   "texto": "No pude ponerme mis lentes. ¡Juguemos con dibujos!",
+   "ms": 2930,
+   "config": "0377892f781d16"
+  },
+  "0f4a2142bc9e17.mp3": {
+   "texto": "sesenta y seis",
+   "ms": 1200,
+   "config": "0377892f781d16"
+  },
+  "0f546262103113.mp3": {
+   "texto": "once",
+   "ms": 700,
+   "config": "0377892f781d16"
+  },
+  "0fac1355de1caf.mp3": {
+   "texto": "treinta",
+   "ms": 840,
+   "config": "0377892f781d16"
+  },
+  "0fb834fb755bd3.mp3": {
+   "texto": "El parque está lleno de basura y los animales están tristes.",
+   "ms": 3550,
+   "config": "0377892f781d16"
+  },
+  "0fda31c24bfc1d.mp3": {
+   "texto": "setenta y cinco",
+   "ms": 1320,
+   "config": "0377892f781d16"
+  },
+  "0fdf3bc1f18f05.mp3": {
+   "texto": "residuo y ayudaron a",
+   "ms": 1680,
+   "config": "0377892f781d16"
+  },
+  "0fed46117ae88b.mp3": {
+   "texto": "cincuenta y cuatro",
+   "ms": 1440,
+   "config": "0377892f781d16"
+  },
+  "0ff39c1196d68e.mp3": {
+   "texto": "setenta y un",
+   "ms": 1150,
+   "config": "0377892f781d16"
+  },
+  "10008c5760c59a.mp3": {
+   "texto": "ochenta y ocho",
+   "ms": 1320,
+   "config": "0377892f781d16"
+  },
+  "102e347ec03ccd.mp3": {
+   "texto": "ochenta",
+   "ms": 860,
+   "config": "0377892f781d16"
+  },
+  "10328ebd868990.mp3": {
+   "texto": "cincuenta y uno",
+   "ms": 1250,
+   "config": "0377892f781d16"
+  },
+  "1032d6aa028559.mp3": {
+   "texto": "¡Creo que es una servilleta! ¿A qué bote va?",
+   "ms": 2590,
+   "config": "0377892f781d16"
+  },
+  "107da02952a9ce.mp3": {
+   "texto": "No tengo permiso para usar la cámara. ¡Juguemos con dibujos!",
+   "ms": 3620,
+   "config": "0377892f781d16"
+  },
+  "10a826789568fe.mp3": {
+   "texto": "¡Creo que es un garrafón de plástico! ¿A qué bote va?",
+   "ms": 2950,
+   "config": "0377892f781d16"
+  },
+  "10d77d7b55b7e9.mp3": {
+   "texto": "¡Casi! Se puede convertir en algo nuevo. Busca el bote azul con el dibujo de las flechas.",
+   "ms": 5040,
+   "config": "0377892f781d16"
+  },
+  "10dfad859837a8.mp3": {
+   "texto": "ochenta y nueve",
+   "ms": 1300,
+   "config": "0377892f781d16"
+  },
+  "11006120a9752f.mp3": {
+   "texto": "sesenta y tres",
+   "ms": 1200,
+   "config": "0377892f781d16"
+  },
+  "11210acafda5bf.mp3": {
+   "texto": "cuarenta y ocho",
+   "ms": 1320,
+   "config": "0377892f781d16"
+  },
+  "11690eace560e5.mp3": {
+   "texto": "dieciocho",
+   "ms": 1010,
+   "config": "0377892f781d16"
+  },
+  "118f14cf52f70d.mp3": {
+   "texto": "¡Creo que es una col! ¿A qué bote va?",
+   "ms": 2160,
+   "config": "0377892f781d16"
+  },
+  "11acaaa881c558.mp3": {
+   "texto": "¡Todavía hay basura! Tócala para guardarla en mi bolsa.",
+   "ms": 3140,
+   "config": "0377892f781d16"
+  },
+  "11ec0912c2a158.mp3": {
+   "texto": "veintinueve",
+   "ms": 1010,
+   "config": "0377892f781d16"
+  },
+  "12311cd445a810.mp3": {
+   "texto": "diez",
+   "ms": 620,
+   "config": "0377892f781d16"
+  },
+  "12328491be8e54.mp3": {
+   "texto": "¿A qué bote va el periódico?",
+   "ms": 1820,
+   "config": "0377892f781d16"
+  },
+  "1239a84d0537d7.mp3": {
+   "texto": "¡Así se hace!",
+   "ms": 1200,
+   "config": "0377892f781d16"
+  },
+  "126f2d8820d589.mp3": {
+   "texto": "noventa y siete",
+   "ms": 1340,
+   "config": "0377892f781d16"
+  },
+  "128f7663c9908d.mp3": {
+   "texto": "cincuenta y cinco",
+   "ms": 1340,
+   "config": "0377892f781d16"
+  },
+  "12a7af9bc108dd.mp3": {
+   "texto": "noventa y ocho",
+   "ms": 1300,
+   "config": "0377892f781d16"
+  },
+  "12bb27779f503c.mp3": {
+   "texto": "Con papel reciclado se hace papel nuevo, y así se cortan menos árboles.",
+   "ms": 4460,
+   "config": "0377892f781d16"
+  },
+  "135a47ca3ae023.mp3": {
+   "texto": "No encontré una cámara. ¡Juguemos con dibujos!",
+   "ms": 2690,
+   "config": "0377892f781d16"
+  },
+  "1377d5f483a502.mp3": {
+   "texto": "dieciséis",
+   "ms": 1010,
+   "config": "0377892f781d16"
+  },
+  "13c2e87eef7a06.mp3": {
+   "texto": "¡Creo que es una lata! ¿A qué bote va?",
+   "ms": 2300,
+   "config": "0377892f781d16"
+  },
+  "141cd11ec43409.mp3": {
+   "texto": "treinta y cinco",
+   "ms": 1320,
+   "config": "0377892f781d16"
+  },
+  "1425dc4e9b265f.mp3": {
+   "texto": "noventa",
+   "ms": 820,
+   "config": "0377892f781d16"
+  },
+  "147761ac27e069.mp3": {
+   "texto": "¡Muy bien! Juguemos con dibujos.",
+   "ms": 1920,
+   "config": "0377892f781d16"
+  },
+  "149b6c0a1a9809.mp3": {
+   "texto": "¡Creo que es un elote! ¿A qué bote va?",
+   "ms": 2230,
+   "config": "0377892f781d16"
+  },
+  "14a4eb11611164.mp3": {
+   "texto": "noventa y uno",
+   "ms": 1250,
+   "config": "0377892f781d16"
+  },
+  "14de6015a2c9b0.mp3": {
+   "texto": "¡Creo que es un plátano! ¿A qué bote va?",
+   "ms": 2350,
+   "config": "0377892f781d16"
+  },
+  "14f71d4c8fb9ea.mp3": {
+   "texto": "¿A qué bote va la cáscara de huevo?",
+   "ms": 2090,
+   "config": "0377892f781d16"
+  },
+  "14f891946310d7.mp3": {
+   "texto": "cincuenta y ocho",
+   "ms": 1370,
+   "config": "0377892f781d16"
+  },
+  "151035ca1277f3.mp3": {
+   "texto": "¡Creo que es una envoltura! ¿A qué bote va?",
+   "ms": 2500,
+   "config": "0377892f781d16"
+  },
+  "1525e238bb0b20.mp3": {
+   "texto": "setenta y dos",
+   "ms": 1300,
+   "config": "0377892f781d16"
+  },
+  "1531604cc78479.mp3": {
+   "texto": "noventa y tres",
+   "ms": 1220,
+   "config": "0377892f781d16"
+  },
+  "15409ce3e65ddb.mp3": {
+   "texto": "treinta y seis",
+   "ms": 1180,
+   "config": "0377892f781d16"
+  },
+  "1551dda8eb0460.mp3": {
+   "texto": "cincuenta y siete",
+   "ms": 1340,
+   "config": "0377892f781d16"
+  },
+  "1567d647ba118d.mp3": {
+   "texto": "Mmm… déjame ver…",
+   "ms": 1610,
+   "config": "0377892f781d16"
+  },
+  "15893772750d71.mp3": {
+   "texto": "setenta y uno",
+   "ms": 1250,
+   "config": "0377892f781d16"
+  },
+  "15c0782314367a.mp3": {
+   "texto": "setenta y nueve",
+   "ms": 1340,
+   "config": "0377892f781d16"
+  },
+  "161dfc9788d3ac.mp3": {
+   "texto": "¡Excelente!",
+   "ms": 960,
+   "config": "0377892f781d16"
+  },
+  "16289772a923e0.mp3": {
+   "texto": "sesenta y uno",
+   "ms": 1200,
+   "config": "0377892f781d16"
+  },
+  "169edda62f4dcb.mp3": {
+   "texto": "¡Muy bien! Va en el bote azul con el dibujo de las flechas.",
+   "ms": 3140,
+   "config": "0377892f781d16"
+  },
+  "16c2980822c0b6.mp3": {
+   "texto": "¡Creo que es un higo! ¿A qué bote va?",
+   "ms": 2140,
+   "config": "0377892f781d16"
+  },
+  "16c51e1c28d0ec.mp3": {
+   "texto": "cincuenta y tres",
+   "ms": 1320,
+   "config": "0377892f781d16"
+  },
+  "16d4ed7f02722d.mp3": {
+   "texto": "quince",
+   "ms": 770,
+   "config": "0377892f781d16"
+  },
+  "16ef6f842209c4.mp3": {
+   "texto": "cuarenta y cuatro",
+   "ms": 1370,
+   "config": "0377892f781d16"
+  },
+  "17117e5c4919fa.mp3": {
+   "texto": "¡Creo que es una curita! ¿A qué bote va?",
+   "ms": 2380,
+   "config": "0377892f781d16"
+  },
+  "177d9bee416785.mp3": {
+   "texto": "veinticinco",
+   "ms": 1180,
+   "config": "0377892f781d16"
+  },
+  "1781b179759424.mp3": {
+   "texto": "La cáscara de plátano se convierte en composta, un abono que alimenta a las plantas.",
+   "ms": 4750,
+   "config": "0377892f781d16"
+  },
+  "17ba240b759900.mp3": {
+   "texto": "cinco",
+   "ms": 740,
+   "config": "0377892f781d16"
+  },
+  "17ca2dd349c05c.mp3": {
+   "texto": "Si aparece un aviso, toca \"Permitir\" para que Caco pueda ver.",
+   "ms": 3530,
+   "config": "0377892f781d16"
+  },
+  "17ce9d450e6ace.mp3": {
+   "texto": "noventa y nueve",
+   "ms": 1320,
+   "config": "0377892f781d16"
+  },
+  "18025e4088c1e1.mp3": {
+   "texto": "¿A qué bote va la caja de cartón?",
+   "ms": 2060,
+   "config": "0377892f781d16"
+  },
+  "18143b20f507a8.mp3": {
+   "texto": "¡Creo que es un pepino! ¿A qué bote va?",
+   "ms": 2260,
+   "config": "0377892f781d16"
+  },
+  "18237619103317.mp3": {
+   "texto": "¡Creo que es una fresa! ¿A qué bote va?",
+   "ms": 2280,
+   "config": "0377892f781d16"
+  },
+  "18341d3a48deb1.mp3": {
+   "texto": "¡Bravo!",
+   "ms": 720,
+   "config": "0377892f781d16"
+  },
+  "186310162c2dcd.mp3": {
+   "texto": "¡Creo que es papel de baño! ¿A qué bote va?",
+   "ms": 2400,
+   "config": "0377892f781d16"
+  },
+  "187a748e418548.mp3": {
+   "texto": "Aquí no puedo usar la cámara. ¡Juguemos con dibujos!",
+   "ms": 3070,
+   "config": "0377892f781d16"
+  },
+  "188d24f2b4e57d.mp3": {
+   "texto": "La cáscara de huevo tiene calcio, y en la composta ayuda a que crezcan las plantas.",
+   "ms": 4680,
+   "config": "0377892f781d16"
+  },
+  "18d2104156e38c.mp3": {
+   "texto": "sesenta y un",
+   "ms": 1130,
+   "config": "0377892f781d16"
+  },
+  "19426abc25c73d.mp3": {
+   "texto": "ochenta y cuatro",
+   "ms": 1370,
+   "config": "0377892f781d16"
+  },
+  "19878b467ddff7.mp3": {
+   "texto": "¿A qué bote va el corazón de manzana?",
+   "ms": 2280,
+   "config": "0377892f781d16"
+  },
+  "199ffb3366709f.mp3": {
+   "texto": "¿Me ayudas? ¿A qué bote va?",
+   "ms": 1780,
+   "config": "0377892f781d16"
+  },
+  "19e5a159a77b87.mp3": {
+   "texto": "doce",
+   "ms": 650,
+   "config": "0377892f781d16"
+  },
+  "1a4bbc14954a60.mp3": {
+   "texto": "¿A qué bote va el popote?",
+   "ms": 1680,
+   "config": "0377892f781d16"
+  },
+  "1a57d739df84b2.mp3": {
+   "texto": "treinta y un",
+   "ms": 1130,
+   "config": "0377892f781d16"
+  },
+  "1a59140ab18b9e.mp3": {
+   "texto": "¡Creo que es un pimiento! ¿A qué bote va?",
+   "ms": 2350,
+   "config": "0377892f781d16"
+  },
+  "1a709f05a97241.mp3": {
+   "texto": "¡Creo que es una tapita! ¿A qué bote va?",
+   "ms": 2350,
+   "config": "0377892f781d16"
+  },
+  "1af0d8767507e1.mp3": {
+   "texto": "veinte",
+   "ms": 740,
+   "config": "0377892f781d16"
+  },
+  "1b092364a798ef.mp3": {
+   "texto": "¿A qué bote va la botella de plástico?",
+   "ms": 2280,
+   "config": "0377892f781d16"
+  },
+  "1b0bf7ed14186a.mp3": {
+   "texto": "Con restos de fruta como el corazón de manzana se hace composta para el jardín.",
+   "ms": 4510,
+   "config": "0377892f781d16"
+  },
+  "1b40ed80ff4a0b.mp3": {
+   "texto": "cincuenta y un",
+   "ms": 1250,
+   "config": "0377892f781d16"
+  },
+  "1b42f8c8c42691.mp3": {
+   "texto": "dos",
+   "ms": 580,
+   "config": "0377892f781d16"
+  },
+  "1b55b16f3615c8.mp3": {
+   "texto": "uno",
+   "ms": 580,
+   "config": "0377892f781d16"
+  },
+  "1bc6875e58ddf6.mp3": {
+   "texto": "cincuenta",
+   "ms": 980,
+   "config": "0377892f781d16"
+  },
+  "1bcbb62d3ba2bf.mp3": {
+   "texto": "¡Creo que es una flor! ¿A qué bote va?",
+   "ms": 2110,
+   "config": "0377892f781d16"
+  },
+  "1bdeeca9f379fe.mp3": {
+   "texto": "¿A qué bote va la envoltura de frituras?",
+   "ms": 2300,
+   "config": "0377892f781d16"
+  },
+  "1c09ec73dc9b58.mp3": {
+   "texto": "No pude abrir la cámara. ¡Juguemos con dibujos!",
+   "ms": 2760,
+   "config": "0377892f781d16"
+  },
+  "1c2ac9585513dc.mp3": {
+   "texto": "ochenta y uno",
+   "ms": 1270,
+   "config": "0377892f781d16"
+  },
+  "1ca416b1a2146a.mp3": {
+   "texto": "Ahora arrastra cada basura a su bote.",
+   "ms": 2260,
+   "config": "0377892f781d16"
+  },
+  "1cc08ffb0f607a.mp3": {
+   "texto": "¡Creo que es una botella de refresco! ¿A qué bote va?",
+   "ms": 2930,
+   "config": "0377892f781d16"
+  },
+  "1cdbd0b119cb17.mp3": {
+   "texto": "animales.",
+   "ms": 910,
+   "config": "0377892f781d16"
+  },
+  "1d09702384542b.mp3": {
+   "texto": "¡Creo que es un sobre de papel! ¿A qué bote va?",
+   "ms": 2640,
+   "config": "0377892f781d16"
+  },
+  "1d123ac9c884ac.mp3": {
+   "texto": "nueve",
+   "ms": 650,
+   "config": "0377892f781d16"
+  },
+  "1d1cd73f87bcd1.mp3": {
+   "texto": "¡Creo que es una botella de vidrio! ¿A qué bote va?",
+   "ms": 2810,
+   "config": "0377892f781d16"
+  },
+  "1d5e7a361bbb00.mp3": {
+   "texto": "treinta y cuatro",
+   "ms": 1320,
+   "config": "0377892f781d16"
+  },
+  "1d70df5751a601.mp3": {
+   "texto": "ochenta y tres",
+   "ms": 1200,
+   "config": "0377892f781d16"
+  },
+  "1d75e5c34e0ddc.mp3": {
+   "texto": "¿A qué bote va las hojas secas?",
+   "ms": 1970,
+   "config": "0377892f781d16"
+  },
+  "1de5ed9c0af75a.mp3": {
+   "texto": "¡Creo que es un frasco de plástico! ¿A qué bote va?",
+   "ms": 2930,
+   "config": "0377892f781d16"
+  },
+  "1df751899037b1.mp3": {
+   "texto": "¡Creo que es una bellota! ¿A qué bote va?",
+   "ms": 2380,
+   "config": "0377892f781d16"
+  },
+  "1e7b1b36fea697.mp3": {
+   "texto": "sesenta y cuatro",
+   "ms": 1300,
+   "config": "0377892f781d16"
+  },
+  "1e97d83d5d8716.mp3": {
+   "texto": "¡Creo que es una hoja de papel! ¿A qué bote va?",
+   "ms": 2540,
+   "config": "0377892f781d16"
+  },
+  "1ec56985407b96.mp3": {
+   "texto": "Toca la basura para guardarla en mi bolsa.",
+   "ms": 2690,
+   "config": "0377892f781d16"
+  },
+  "1f0b6cb1ee3a9a.mp3": {
+   "texto": "sesenta",
+   "ms": 890,
+   "config": "0377892f781d16"
+  },
+  "1f4d7611186220.mp3": {
+   "texto": "ochenta y dos",
+   "ms": 1250,
+   "config": "0377892f781d16"
+  },
+  "1fa71f58fcd19d.mp3": {
+   "texto": "¡Creo que es una coliflor! ¿A qué bote va?",
+   "ms": 2420,
+   "config": "0377892f781d16"
+  }
+ }
+}

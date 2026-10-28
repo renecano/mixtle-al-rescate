@@ -109,6 +109,49 @@ La carga del modelo está detrás de la interfaz `Clasificador` (`src/servicios/
 
 Con un modelo propio, la confianza mínima se ajusta en `umbralConfianza` del mismo archivo. Para usar MobileNet sin depender de los servidores de Google, se puede servir una copia propia con `VITE_MOBILENET_URL`.
 
+## Voz de Caco y música
+
+### Cómo se generan las voces
+
+Caco habla con audios **pregenerados** que están en el repositorio (`public/voz/`). El juego solo los reproduce: no sintetiza voz en el navegador ni usa servicios de pago. Hoy la voz es **Kokoro `em_alex`** en español latinoamericano, elegida entre las muestras de `docs/muestras-voz/`.
+
+Para regenerarlas (por ejemplo, después de cambiar un texto), en PowerShell:
+
+```powershell
+npm run voz:preparar   # solo la primera vez: crea .venv-voz (Python 3.10–3.12) y descarga los modelos (~250 MB)
+npm run voz:generar    # genera solo las frases nuevas o cambiadas
+```
+
+- **Qué necesita.** `voz:preparar` busca un Python 3.10–3.12; si no lo encuentra, dice cuál instalar. ffmpeg y espeak-ng vienen dentro de los paquetes de Python, así que no hay que instalarlos aparte.
+- **Qué hace `voz:generar`:**
+  - junta automáticamente todo lo que dice Caco desde los archivos de contenido (`src/voz/frases.ts`);
+  - aplica la configuración de `voz.config.json` (proveedor, voz, velocidad y diccionario de pronunciación);
+  - guarda `public/voz/<hash-del-texto>.mp3` (mono, 64 kbps, volumen normalizado) y `public/voz/manifiesto.json`;
+  - compara el texto y la configuración de cada frase, y solo regenera las que cambiaron;
+  - borra los audios que ya no se usan.
+- **Pronunciación.** El diccionario de `voz.config.json` cambia cómo se lee una palabra solo en el audio. Por ejemplo, "cacomixtle" se le pasa a la voz como "cacomistle" para que no diga "ks". El texto en pantalla no cambia.
+- **Números.** Las frases con números ("Separaron bien 13 residuos") no se generan una por cada número. Se pregeneran los números del 0 al 100 y el juego encadena las piezas.
+- **Respaldo.** Si una frase no tiene audio, el juego usa la voz del navegador y, en modo desarrollo, lo avisa en la consola. Una prueba unitaria revisa que toda frase narrada tenga su audio en el manifiesto.
+- **En una máquina lenta** se puede generar por partes: `npm run voz:generar -- --max=50`. Cada corrida sigue donde se quedó la anterior.
+
+### Grabar una voz humana
+
+1. Corre `npm run voz:lista`. Genera `docs/frases-caco.csv` con columnas `id`, `archivo`, `texto`, `unidad` y `lección`; se abre bien en Excel.
+2. Graba cada frase (por ejemplo, una persona de Eco Urban, o con Canva) y guarda el audio en `voz-grabaciones/` con el **mismo nombre de archivo** de la columna `archivo` (se acepta mp3, wav, m4a u ogg).
+3. Corre `npm run voz:generar`. Las grabaciones reemplazan a la voz generada: se normalizan al mismo volumen y quedan marcadas como humanas en el manifiesto. Las frases sin grabar conservan la voz generada.
+
+### Cambiar la música
+
+Las tres pistas (tranquila, lecciones y celebración) son CC0 y están en `public/musica/`. Para cambiar una:
+
+1. Agrega la candidata a `scripts/musica/candidatas.json` (solo CC0, con su página) y corre `npm run musica:muestras` para escucharla junto a las demás.
+2. Pon su `id` en `scripts/musica/elegidas.json` y corre `npm run musica:instalar`.
+3. Anótala en `CREDITOS.md`.
+
+En el juego la música va baja (≈25 %), baja a ≈8 % mientras habla Caco y sube suave al terminar. Entre pistas hay un fundido, y solo empieza después del primer toque. Música y voz tienen botones separados, y cada uno se recuerda en el dispositivo.
+
+Los efectos de sonido se generan a partir de `src/servicios/recetasSonido.ts` con `npm run sonidos:generar`.
+
 ## Privacidad y datos
 
 - **No se guarda nada de las niñas y los niños.** El progreso de la partida vive solo en memoria y se borra al recargar o al tocar "Jugar otra vez".
