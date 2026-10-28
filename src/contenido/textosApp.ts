@@ -47,15 +47,19 @@ export const TEXTOS_APP = {
     salirSi: 'Sí, salir',
     salirNo: 'No, seguir jugando',
     repaso: 'Vamos a repasar uno que costó trabajo.',
-    terminada: (hojitas: number, aLaPrimera: number, total: number): Locucion => [
-      '¡Lección terminada! Ganaron',
-      { numero: hojitas, antesDeSustantivo: true },
-      'hojitas, y',
-      { numero: aLaPrimera },
-      'de',
-      { numero: total, antesDeSustantivo: true },
-      'ejercicios salieron a la primera.',
-    ],
+    terminada: (hojitas: number, aLaPrimera: number, total: number): Locucion =>
+      // Sin "cero de seis": si nada salió a la primera, Caco anima en lugar de contar.
+      aLaPrimera === 0
+        ? ['¡Lección terminada! Ganaron', { numero: hojitas, antesDeSustantivo: true }, 'hojitas. ¡Practicando, cada vez les sale mejor!']
+        : [
+            '¡Lección terminada! Ganaron',
+            { numero: hojitas, antesDeSustantivo: true },
+            'hojitas, y',
+            { numero: aLaPrimera },
+            'de',
+            { numero: total, antesDeSustantivo: true },
+            aLaPrimera === 1 ? 'ejercicios salió a la primera.' : 'ejercicios salieron a la primera.',
+          ],
     parqueCrece: '¡Miren cómo crece su parque!',
     tituloFin: '¡Lección terminada!',
     aLaPrimera: (n: number, total: number) => `${n} de ${total} a la primera`,

@@ -96,7 +96,7 @@ Atajos para revisar (solo en desarrollo o con `?e2e` en la dirección): `?galeri
 
 El proyecto es un sitio estático y ya incluye `vercel.json` (Vite, `npm run build`, carpeta `dist`, cabeceras de seguridad y caché; el *service worker* nunca se guarda en caché para que las actualizaciones lleguen).
 
-**Hoy:** el repositorio es privado en GitHub (`renecano/caco-al-rescate`) y el proyecto de Vercel `caco-al-rescate` está ligado a él. Producción: <https://caco-al-rescate.vercel.app>. El primer despliegue se hizo desde la terminal (`npx vercel deploy --prod`) porque el *push* a `main` todavía no disparó un despliegue automático: para eso, la app de Vercel en GitHub necesita acceso al repositorio privado (*GitHub → Settings → Applications → Vercel → Repository access*).
+**Hoy:** el repositorio es privado en GitHub (`renecano/caco-al-rescate`) y el proyecto de Vercel `caco-al-rescate` está conectado a él: **cada *push* a `main` se publica solo en producción** (<https://caco-al-rescate.vercel.app>). El primer despliegue automático falló porque `vercel.json` tenía un patrón de cabeceras que Vercel no acepta; ya está corregido (una regla por archivo del *service worker*).
 
 **Con GitHub (recomendado):** en [vercel.com](https://vercel.com), *Add New → Project* e importa el repositorio. Cada rama o *pull request* genera una **versión de prueba** (*preview*) con su propia dirección; lo que llega a `main` se publica en **producción**. Así Eco Urban puede revisar cambios antes de que lleguen a los salones.
 
@@ -144,7 +144,7 @@ npm run voz:generar    # genera solo las frases nuevas o cambiadas
   - guarda `public/voz/<hash-del-texto>.mp3` (mono, 64 kbps, volumen normalizado) y `public/voz/manifiesto.json`;
   - solo regenera las frases cuyo texto o configuración cambiaron, y borra los audios que ya no se usan.
 - **Pronunciación.** El diccionario de `voz.config.json` cambia cómo se lee una palabra solo en el audio ("cacomixtle" → "cacomistle"). El texto en pantalla no cambia.
-- **Números.** Las frases con números no se generan una por número: se pregeneran del 0 al 100 (con "un" y "veintiún" antes de sustantivo) y se encadenan.
+- **Números.** Las frases con números que de verdad pueden salir (el resumen de cada lección para cada resultado, el cofre y los diplomas) se graban **completas**, para que Caco las diga de corrido: encadenar piezas sonaba entrecortado. Como respaldo, para cualquier otro número se pregeneran del 0 al 100 (con "un" y "veintiún" antes de sustantivo) y se encadenan, cargando todas las piezas antes de empezar a hablar. La lista está en `narracionesCompletas()` de `src/voz/frases.ts`.
 - **Respaldo.** Si una frase no tiene audio, el juego usa la voz del navegador y, en desarrollo, lo avisa en la consola. Una prueba unitaria revisa que **toda** frase narrada tenga su audio en el manifiesto.
 - **En una máquina lenta** se puede generar por partes: `npm run voz:generar -- --max=50`. Cada corrida sigue donde se quedó la anterior.
 
@@ -176,10 +176,10 @@ Los efectos de sonido se generan con `npm run sonidos:generar`.
 
 ## Pruebas y evidencia medida
 
-**Pruebas unitarias (Vitest)**, en `tests/`: **1260 pruebas en 23 archivos, todas pasan.** Entre ellas:
+**Pruebas unitarias (Vitest)**, en `tests/`: **1247 pruebas en 20 archivos, todas pasan.** Entre ellas:
 
 - **Contenido válido:** cada unidad tiene 4 o 5 lecciones; cada lección tiene de 6 a 8 ejercicios con al menos 3 tipos; las respuestas correctas existen, los dibujos existen, no hay ejercicios imposibles (parejas sin repetir, "encuentra el error" con 1 a 3 errores dentro de la escena). Cuando una pregunta habla de un bote, dice su color **y su nombre** ("el bote naranja de no reciclable") y el bote se ve en pantalla. Cada archivo de contenido está marcado con `TODO(Eco Urban)`.
-- **Voz:** **toda frase narrada (631) tiene su audio en el manifiesto** y su mp3 existe.
+- **Voz:** **toda frase narrada (740) tiene su audio en el manifiesto** y su mp3 existe, y **los 169 resúmenes con números** (fin de lección, cofre, diplomas) suenan como **un solo audio**, sin piezas encadenadas.
 - **Camino y grupos:** las lecciones se desbloquean en orden; el cofre y la aventura se abren a su tiempo; el avance de cada grupo se guarda y se recupera por separado, y **la app no falla si IndexedDB está bloqueado**.
 - **Música:** el *ducking* baja la música mientras habla Caco y la sube al terminar (también si dos cosas la agachan a la vez); fundido entre pistas, jingle y nada antes del primer toque.
 - **Aventuras y diploma:** el recorrido en bici nunca pone humo en los dos carriles a la vez; la lonchera tiene cosas de los dos tipos, sin patrón para adivinar; la concordancia de los números ("1 animal", "2 animales").
@@ -194,7 +194,13 @@ Los efectos de sonido se generan con `npm run sonidos:generar`.
 
 Para correrlos contra un sitio ya publicado, sin construir nada en local: `$env:BASE_URL="https://…"; npm run test:e2e`. En una laptop de 8 GB usan **un solo navegador a la vez**; con varios, la memoria se agotó y el sistema cerró las pruebas.
 
-<!-- RESULTADO-E2E -->
+**Última corrida contra producción** (27 de octubre de 2026, <https://caco-al-rescate.vercel.app>, un navegador a la vez, 34.6 min): **22 de 26 pasan.** Las 4 que fallan, sin corregir todavía:
+
+| Prueba | Tamaño | Qué pasó |
+|---|---|---|
+| Aventura 1 completa: la lluvia de basura | 1920×1080 | Cuando la basura llega al suelo, mientras Caco dice "¡Uy, llegó al suelo!…", **los botes no responden**; la prueba tocó el bote en ese momento y el toque se perdió. En la tablet sí pasó. Un niño que toque en ese par de segundos tampoco obtiene respuesta. |
+| El botón de sonido se recuerda y el juego no se rompe sin `localStorage` | 1920×1080 y 1024×768 | **La prueba está desactualizada:** después de "¡Jugar!" espera la intro de la v1, pero en la v2 aparece "¿Quién va a jugar?". Todo lo anterior pasó: la preferencia se recuerda y el juego arranca con el almacenamiento bloqueado. |
+| Cada botón mide al menos 64 px (camino) | 1024×768 | La prueba se quedó esperando a un botón que ya no estaba en pantalla (el globo de Caco se oculta al terminar de hablar) hasta agotar los 8 min. La captura muestra el camino bien. Es un problema de la prueba; en la corrida anterior pasó. |
 
 **Mediciones** (27 de octubre de 2026, build de producción):
 
@@ -203,9 +209,9 @@ Para correrlos contra un sitio ya publicado, sin construir nada en local: `$env:
 | Lo que se descarga al abrir el juego | **≈ 158 KB** comprimidos (React 44 KB + app 107 KB + estilos 7 KB) y 48 KB de la fuente Nunito |
 | Phaser (solo al entrar a una aventura) | ≈ 310 KB comprimidos, más 2 a 7 KB por aventura |
 
-| Voces de Caco | 631 frases, **11.0 MB** en total (mono, 64 kbps) |
+| Voces de Caco | 740 frases, **17.4 MB** en total (mono, 64 kbps), incluidas 169 frases con números grabadas completas |
 | Música y efectos | 1.3 MB (3 pistas) y 78 KB (12 efectos) |
-| Juego sin internet (PWA) | En la primera visita, el *service worker* descarga en segundo plano 678 archivos (**15.2 MB**: juego, voces, música y efectos); después se juega sin internet |
+| Juego sin internet (PWA) | En la primera visita, el *service worker* descarga en segundo plano 783 archivos (**20.6 MB**: juego, voces, música y efectos); después se juega sin internet |
 
 **En el sitio publicado** (27 de octubre de 2026, <https://caco-al-rescate.vercel.app>, Chrome en Windows 11, conexión doméstica):
 
@@ -213,7 +219,7 @@ Para correrlos contra un sitio ya publicado, sin construir nada en local: `$env:
 |---|---|
 | Pantalla de inicio lista (primera visita, sin caché) | **0.61 s**, 170 KB transferidos |
 | Voz y música | Caco habla con su voz grabada (0 frases con la voz del navegador) y suena la música de fondo |
-| El *service worker* termina de guardar el juego | 675 archivos en **79 s** (en segundo plano; se puede jugar mientras tanto) |
+| El *service worker* termina de guardar el juego | 675 archivos en **79 s** (medido antes de agregar las 169 frases completas; en segundo plano, se puede jugar mientras tanto) |
 | Sin internet, después de eso | El juego abre, Caco habla y suena la música |
 
 ## Limitaciones conocidas
@@ -222,7 +228,7 @@ Para correrlos contra un sitio ya publicado, sin construir nada en local: `$env:
 - **No se ha probado con niñas y niños** ni en un iPad real con Safari. Se probó con Chrome en Windows (también con emulación táctil a 1024×768). Esa prueba de uso es el siguiente paso recomendado.
 - **El avance vive en un solo aparato.** Si se borran los datos del navegador o se cambia de laptop, el grupo empieza de nuevo. Es a propósito (no hay servidor ni cuentas), pero hay que saberlo.
 - **La voz es sintética.** Kokoro suena natural, pero algunas palabras pueden sonar raras. El diccionario de pronunciación y la grabación humana (ver arriba) son la forma de corregirlas sin tocar código.
-- **La primera visita necesita internet:** el *service worker* descarga unos 15 MB (sobre todo las voces) para que después funcione sin conexión. Conviene abrir el juego una vez con buena señal antes del taller.
+- **La primera visita necesita internet:** el *service worker* descarga unos 21 MB (sobre todo las voces) para que después funcione sin conexión. Conviene abrir el juego una vez con buena señal antes del taller.
 
 - **Las aventuras son minijuegos cortos** (2 a 4 minutos). Las del bosquecito y la lonchera siempre tienen el mismo número de cosas: los diplomas muestran el esfuerzo, no un puntaje para comparar grupos.
 - El diploma de la unidad 1 cuenta los residuos separados en el nivel 2 y en la lluvia de basura (12 + 5) y los animales ayudados.

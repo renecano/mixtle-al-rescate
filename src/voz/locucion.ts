@@ -35,6 +35,15 @@ export function piezasDeTexto(l: Locucion): string[] {
   return piezas.map((p) => (typeof p === 'string' ? p : numeroEnPalabras(p.numero, p.antesDeSustantivo)));
 }
 
+/**
+ * La locución entera como UNA frase hablada (números en palabras): "¡Lección terminada! Ganaron quince
+ * hojitas, y cinco de seis ejercicios salieron a la primera." Si esta frase tiene su propio audio, se
+ * reproduce de corrido, con entonación natural, en lugar de encadenar piezas.
+ */
+export function textoHablado(l: Locucion): string {
+  return normalizarFrase(piezasDeTexto(l).join(' ').replace(/\s+([.,!?;:])/g, '$1'));
+}
+
 /** Lo que se lee en pantalla (subtítulo): con cifras, que se entienden mejor que las palabras. */
 export function textoDeLocucion(l: Locucion): string {
   const piezas = typeof l === 'string' ? [l] : l;

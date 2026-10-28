@@ -5,9 +5,10 @@ import { CATEGORIAS } from '../src/data/categorias';
 import { RESIDUOS } from '../src/data/residuos';
 import { TEXTOS } from '../src/data/textos';
 import { textoAcierto, textoPista } from '../src/logica/clasificacion';
-import { todasLasFrases } from '../src/voz/frases';
+import { TEXTOS_APP } from '../src/contenido/textosApp';
+import { narracionesCompletas, todasLasFrases } from '../src/voz/frases';
 import { archivoDeFrase, cyrb53 } from '../src/voz/hash';
-import { numeroEnPalabras, piezasDeTexto, textoDeLocucion, type Locucion } from '../src/voz/locucion';
+import { numeroEnPalabras, piezasDeTexto, textoDeLocucion, textoHablado, type Locucion } from '../src/voz/locucion';
 import { planDeLocucion, type Manifiesto } from '../src/voz/plan';
 
 const CARPETA = join(process.cwd(), 'public', 'voz');
@@ -92,6 +93,20 @@ describe('toda frase narrada tiene su audio', () => {
       TEXTOS.bonus.fin,
     ];
     expect(locuciones.flatMap(sinAudio)).toEqual([]);
+  });
+
+  it('los resúmenes con números (fin de lección, cofre, diplomas) suenan de corrido: un solo audio', () => {
+    const lista = narracionesCompletas();
+    expect(lista.length).toBeGreaterThan(100);
+    for (const n of lista) {
+      const plan = planDeLocucion(n.locucion, manifiesto);
+      expect(plan.archivos, `${n.id}: "${textoHablado(n.locucion)}"`).toHaveLength(1);
+    }
+  });
+
+  it('el resumen de la lección dice "salió" con uno y "salieron" con varios', () => {
+    expect(textoHablado(TEXTOS_APP.leccion.terminada(11, 1, 6))).toBe('¡Lección terminada! Ganaron once hojitas, y uno de seis ejercicios salió a la primera.');
+    expect(textoHablado(TEXTOS_APP.leccion.terminada(15, 5, 6))).toBe('¡Lección terminada! Ganaron quince hojitas, y cinco de seis ejercicios salieron a la primera.');
   });
 
   it('la narración del diploma tiene audio para cualquier resultado de 0 a 100', () => {

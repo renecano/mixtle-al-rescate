@@ -36,6 +36,11 @@
    "ms": 1370,
    "config": "0377892f781d16"
   },
+  "005c4d44c18733.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: cuatro. Nubes de humo que esquivaron: siete. ¡Bravo!",
+   "ms": 6050,
+   "config": "0377892f781d16"
+  },
   "007177ed496c08.mp3": {
    "texto": "¿Cuál ensucia el aire?",
    "ms": 1510,
@@ -49,6 +54,11 @@
   "0088eab4232ca0.mp3": {
    "texto": "¡Vamos a conocer a los animales del parque!",
    "ms": 2590,
+   "config": "0377892f781d16"
+  },
+  "00b3179816bcf4.mp3": {
+   "texto": "¡Felicidades, guardianes del parque! Separaron bien dieciséis residuos y ayudaron a siete animales.",
+   "ms": 5810,
    "config": "0377892f781d16"
   },
   "00e46da0a5d5ab.mp3": {
@@ -76,9 +86,24 @@
    "ms": 2470,
    "config": "0377892f781d16"
   },
+  "0127e57b514e57.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: cinco. Nubes de humo que esquivaron: seis. ¡Bravo!",
+   "ms": 5950,
+   "config": "0377892f781d16"
+  },
   "012ab6bffbbed9.mp3": {
    "texto": "Toca a la oruga.",
    "ms": 1250,
+   "config": "0377892f781d16"
+  },
+  "0135ecfe5532b9.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: diez. Nubes de humo que esquivaron: cero. ¡Bravo!",
+   "ms": 5860,
+   "config": "0377892f781d16"
+  },
+  "014e0818f4648d.mp3": {
+   "texto": "¡Felicidades, guardianes del parque! Separaron bien dieciséis residuos y ayudaron a diez animales.",
+   "ms": 5740,
    "config": "0377892f781d16"
   },
   "0178db704ec861.mp3": {
@@ -89,6 +114,11 @@
   "017a9fc9ba2ed6.mp3": {
    "texto": "¿Y la servilleta de tela?",
    "ms": 1660,
+   "config": "0377892f781d16"
+  },
+  "017d9b0a10861f.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: ocho. Nubes de humo que esquivaron: uno. ¡Bravo!",
+   "ms": 5950,
    "config": "0377892f781d16"
   },
   "018ac601a861f8.mp3": {
@@ -126,6 +156,11 @@
    "ms": 1080,
    "config": "0377892f781d16"
   },
+  "01a82113d50c44.mp3": {
+   "texto": "¡Felicidades, guardianes del parque! Separaron bien diecisiete residuos y ayudaron a siete animales.",
+   "ms": 5980,
+   "config": "0377892f781d16"
+  },
   "01b3474fe9028f.mp3": {
    "texto": "¿Y la bolsa de plástico?",
    "ms": 1610,
@@ -161,9 +196,19 @@
    "ms": 1320,
    "config": "0377892f781d16"
   },
+  "01e3104b171495.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: uno. Nubes de humo que esquivaron: ocho. ¡Bravo!",
+   "ms": 5900,
+   "config": "0377892f781d16"
+  },
   "01e8cfd6005a8f.mp3": {
    "texto": "treinta y uno",
    "ms": 1180,
+   "config": "0377892f781d16"
+  },
+  "01fdfd7ebcaac2.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: seis. Nubes de humo que esquivaron: uno. ¡Bravo!",
+   "ms": 5780,
    "config": "0377892f781d16"
   },
   "01ffc01f1d47cd.mp3": {
@@ -179,6 +224,11 @@
   "020233252d34da.mp3": {
    "texto": "¿Un árbol recién plantado necesita que lo rieguen seguido?",
    "ms": 3410,
+   "config": "0377892f781d16"
+  },
+  "0216b2ee2b5304.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: nueve. Nubes de humo que esquivaron: siete. ¡Bravo!",
+   "ms": 5830,
    "config": "0377892f781d16"
   },
   "02207adfe4deb3.mp3": {
@@ -296,9 +346,24 @@
    "ms": 2520,
    "config": "0377892f781d16"
   },
+  "030bb9d1adce94.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: tres. Nubes de humo que esquivaron: cero. ¡Bravo!",
+   "ms": 5950,
+   "config": "0377892f781d16"
+  },
   "0314f0f579c16b.mp3": {
    "texto": "¿A qué bote va la cáscara de plátano?",
    "ms": 2260,
+   "config": "0377892f781d16"
+  },
+  "031abdf8b1c8d9.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: nueve. Nubes de humo que esquivaron: uno. ¡Bravo!",
+   "ms": 5780,
+   "config": "0377892f781d16"
+  },
+  "03254c2d0e397d.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: diez. Nubes de humo que esquivaron: cinco. ¡Bravo!",
+   "ms": 5930,
    "config": "0377892f781d16"
   },
   "032c5c33f47561.mp3": {
@@ -316,6 +381,11 @@
    "ms": 1300,
    "config": "0377892f781d16"
   },
+  "03504e58eea97f.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: nueve. Nubes de humo que esquivaron: seis. ¡Bravo!",
+   "ms": 5950,
+   "config": "0377892f781d16"
+  },
   "0356b03e6827c9.mp3": {
    "texto": "¡El colibrí está feliz! Ya puede volar sin peligro.",
    "ms": 3020,
@@ -326,9 +396,19 @@
    "ms": 1900,
    "config": "0377892f781d16"
   },
+  "0369562fd6d15b.mp3": {
+   "texto": "¡Felicidades, guardianes del parque! Separaron bien quince residuos y ayudaron a diez animales.",
+   "ms": 5620,
+   "config": "0377892f781d16"
+  },
   "036e808762b893.mp3": {
    "texto": "cincuenta y seis",
    "ms": 1300,
+   "config": "0377892f781d16"
+  },
+  "036eaf268778e4.mp3": {
+   "texto": "¡Felicidades, guardianes del parque! Separaron bien diecisiete residuos y ayudaron a cinco animales.",
+   "ms": 5930,
    "config": "0377892f781d16"
   },
   "03706236d399f6.mp3": {
@@ -361,6 +441,11 @@
    "ms": 2210,
    "config": "0377892f781d16"
   },
+  "03d74a782b2073.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: diez. Nubes de humo que esquivaron: uno. ¡Bravo!",
+   "ms": 5810,
+   "config": "0377892f781d16"
+  },
   "03e5ac1d4df9ee.mp3": {
    "texto": "¡Una hojita!",
    "ms": 1030,
@@ -376,9 +461,19 @@
    "ms": 3020,
    "config": "0377892f781d16"
   },
+  "03ecc3aba0b4d1.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: siete. Nubes de humo que esquivaron: uno. ¡Bravo!",
+   "ms": 5930,
+   "config": "0377892f781d16"
+  },
   "03ee7a0f102b7c.mp3": {
    "texto": "¿A qué bote va el envase de jugo?",
    "ms": 2060,
+   "config": "0377892f781d16"
+  },
+  "0406811631c689.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: ocho. Nubes de humo que esquivaron: cuatro. ¡Bravo!",
+   "ms": 6000,
    "config": "0377892f781d16"
   },
   "041aeb2fe4069a.mp3": {
@@ -411,6 +506,11 @@
    "ms": 4730,
    "config": "0377892f781d16"
   },
+  "045aeb3d34de4f.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: tres. Nubes de humo que esquivaron: ocho. ¡Bravo!",
+   "ms": 6000,
+   "config": "0377892f781d16"
+  },
   "046e13e620f6dc.mp3": {
    "texto": "Es la casita de los pájaros, con huevitos.",
    "ms": 2400,
@@ -419,6 +519,11 @@
   "04766cda250572.mp3": {
    "texto": "¿Está bien tirar basura al pie de un árbol?",
    "ms": 2500,
+   "config": "0377892f781d16"
+  },
+  "047788534af079.mp3": {
+   "texto": "¡Felicidades, guardianes del parque! Separaron bien catorce residuos y ayudaron a cinco animales.",
+   "ms": 5810,
    "config": "0377892f781d16"
   },
   "047fe7bb24fc29.mp3": {
@@ -436,9 +541,19 @@
    "ms": 740,
    "config": "0377892f781d16"
   },
+  "048a4d094ed505.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: siete. Nubes de humo que esquivaron: cuatro. ¡Bravo!",
+   "ms": 6000,
+   "config": "0377892f781d16"
+  },
   "048e8be574ce7e.mp3": {
    "texto": "Tienen muchos hoyos redondos.",
    "ms": 1870,
+   "config": "0377892f781d16"
+  },
+  "048ec0a8ffa299.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: cuatro. Nubes de humo que esquivaron: uno. ¡Bravo!",
+   "ms": 5810,
    "config": "0377892f781d16"
   },
   "04a3e338f2f428.mp3": {
@@ -449,6 +564,11 @@
   "04a946050030d7.mp3": {
    "texto": "Busca una rama rota y basura.",
    "ms": 2020,
+   "config": "0377892f781d16"
+  },
+  "04bf88190a1b6e.mp3": {
+   "texto": "¡Felicidades, guardianes del parque! Separaron bien diecisiete residuos y ayudaron a nueve animales.",
+   "ms": 5860,
    "config": "0377892f781d16"
   },
   "04dbab184d0832.mp3": {
@@ -476,9 +596,19 @@
    "ms": 4800,
    "config": "0377892f781d16"
   },
+  "04ee5e3cdf39fe.mp3": {
+   "texto": "¡Felicidades, guardianes del parque! Separaron bien quince residuos y ayudaron a cuatro animales.",
+   "ms": 5590,
+   "config": "0377892f781d16"
+  },
   "04fa73c39da65b.mp3": {
    "texto": "Las latas se pueden reciclar muchas veces.",
    "ms": 2740,
+   "config": "0377892f781d16"
+  },
+  "04fd37bc9c0d13.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: once. Nubes de humo que esquivaron: ocho. ¡Bravo!",
+   "ms": 5980,
    "config": "0377892f781d16"
   },
   "050096b2c5f6ad.mp3": {
@@ -491,14 +621,29 @@
    "ms": 1580,
    "config": "0377892f781d16"
   },
+  "0511347443cc39.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: siete. Nubes de humo que esquivaron: cero. ¡Bravo!",
+   "ms": 5950,
+   "config": "0377892f781d16"
+  },
   "051d3a08f63480.mp3": {
    "texto": "ochenta y siete",
    "ms": 1340,
    "config": "0377892f781d16"
   },
+  "0521b354e93c2f.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: cero. Nubes de humo que esquivaron: cuatro. ¡Bravo!",
+   "ms": 5930,
+   "config": "0377892f781d16"
+  },
   "052375e1baa458.mp3": {
    "texto": "Ordena cómo ayudamos a la ardilla.",
    "ms": 2230,
+   "config": "0377892f781d16"
+  },
+  "053261cd3d6d87.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: nueve. Nubes de humo que esquivaron: dos. ¡Bravo!",
+   "ms": 5900,
    "config": "0377892f781d16"
   },
   "05359e8ec2e18a.mp3": {
@@ -544,6 +689,16 @@
   "05971b1878bde6.mp3": {
    "texto": "cincuenta y nueve",
    "ms": 1390,
+   "config": "0377892f781d16"
+  },
+  "05a1cb53978893.mp3": {
+   "texto": "¡Felicidades, guardianes del parque! Separaron bien diecisiete residuos y ayudaron a ocho animales.",
+   "ms": 5810,
+   "config": "0377892f781d16"
+  },
+  "05a4c396fd7e5f.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: seis. Nubes de humo que esquivaron: cinco. ¡Bravo!",
+   "ms": 5900,
    "config": "0377892f781d16"
   },
   "05caddfc547949.mp3": {
@@ -646,6 +801,11 @@
    "ms": 1180,
    "config": "0377892f781d16"
   },
+  "06f4488395503c.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: cuatro. Nubes de humo que esquivaron: cero. ¡Bravo!",
+   "ms": 5950,
+   "config": "0377892f781d16"
+  },
   "06fe2c656b896a.mp3": {
    "texto": "Hay que cuidar los pulmones.",
    "ms": 1730,
@@ -654,6 +814,11 @@
   "07011e4feb58de.mp3": {
    "texto": "¿Cómo podemos llegar a la escuela sin ensuciar el aire?",
    "ms": 3000,
+   "config": "0377892f781d16"
+  },
+  "0712c175f23e3c.mp3": {
+   "texto": "¡Felicidades, guardianes del parque! Separaron bien doce residuos y ayudaron a diez animales.",
+   "ms": 5570,
    "config": "0377892f781d16"
   },
   "07182454311cc4.mp3": {
@@ -691,6 +856,26 @@
    "ms": 1970,
    "config": "0377892f781d16"
   },
+  "078b656fada138.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: ocho. Nubes de humo que esquivaron: ocho. ¡Bravo!",
+   "ms": 6000,
+   "config": "0377892f781d16"
+  },
+  "0790f22ec04b8a.mp3": {
+   "texto": "¡Felicidades, guardianes del parque! Separaron bien doce residuos y ayudaron a cinco animales.",
+   "ms": 5590,
+   "config": "0377892f781d16"
+  },
+  "07967cfdc329f9.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: cinco. Nubes de humo que esquivaron: uno. ¡Bravo!",
+   "ms": 5950,
+   "config": "0377892f781d16"
+  },
+  "07b2450989b30e.mp3": {
+   "texto": "¡Felicidades, guardianes del parque! Separaron bien trece residuos y ayudaron a ocho animales.",
+   "ms": 5620,
+   "config": "0377892f781d16"
+  },
   "07b4701cf336f4.mp3": {
    "texto": "siete",
    "ms": 700,
@@ -706,6 +891,11 @@
    "ms": 2180,
    "config": "0377892f781d16"
   },
+  "07cf901fd0e34b.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: once. Nubes de humo que esquivaron: cero. ¡Bravo!",
+   "ms": 5930,
+   "config": "0377892f781d16"
+  },
   "07d7d490aeef84.mp3": {
    "texto": "Une a cada animal con su comida.",
    "ms": 2140,
@@ -714,6 +904,11 @@
   "0804dabe46464c.mp3": {
    "texto": "Toca la bellota.",
    "ms": 1250,
+   "config": "0377892f781d16"
+  },
+  "082bca0063c6e2.mp3": {
+   "texto": "¡Felicidades, guardianes del parque! Separaron bien quince residuos y ayudaron a siete animales.",
+   "ms": 5640,
    "config": "0377892f781d16"
   },
   "0838141b5c2caa.mp3": {
@@ -729,6 +924,11 @@
   "08409529ecd059.mp3": {
    "texto": "Lleva agua adentro.",
    "ms": 1370,
+   "config": "0377892f781d16"
+  },
+  "0844f52b0a2e75.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: tres. Nubes de humo que esquivaron: cinco. ¡Bravo!",
+   "ms": 5950,
    "config": "0377892f781d16"
   },
   "085367590e59de.mp3": {
@@ -751,6 +951,16 @@
    "ms": 2780,
    "config": "0377892f781d16"
   },
+  "0892e1bc928abe.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: once. Nubes de humo que esquivaron: cinco. ¡Bravo!",
+   "ms": 6000,
+   "config": "0377892f781d16"
+  },
+  "0893aec75d6e45.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: seis. Nubes de humo que esquivaron: dos. ¡Bravo!",
+   "ms": 5830,
+   "config": "0377892f781d16"
+  },
   "08965af2777ef3.mp3": {
    "texto": "Piensa en tus pulmones.",
    "ms": 1560,
@@ -764,6 +974,11 @@
   "089b24d04326eb.mp3": {
    "texto": "Tiene alas naranjas con líneas negras.",
    "ms": 2420,
+   "config": "0377892f781d16"
+  },
+  "089c2c6e92c19c.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: cero. Nubes de humo que esquivaron: seis. ¡Bravo!",
+   "ms": 5900,
    "config": "0377892f781d16"
   },
   "089eb442d70de9.mp3": {
@@ -811,6 +1026,16 @@
    "ms": 2900,
    "config": "0377892f781d16"
   },
+  "0910e1ce92f10f.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: nueve. Nubes de humo que esquivaron: cinco. ¡Bravo!",
+   "ms": 5930,
+   "config": "0377892f781d16"
+  },
+  "0917758fa7dc91.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: ocho. Nubes de humo que esquivaron: seis. ¡Bravo!",
+   "ms": 5930,
+   "config": "0377892f781d16"
+  },
   "091ca2633fa17b.mp3": {
    "texto": "Es un pájaro pequeñito que mueve sus alas muy rápido.",
    "ms": 3410,
@@ -841,6 +1066,11 @@
    "ms": 2380,
    "config": "0377892f781d16"
   },
+  "096d914264b57d.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: seis. Nubes de humo que esquivaron: cero. ¡Bravo!",
+   "ms": 5830,
+   "config": "0377892f781d16"
+  },
   "0982ae85ba5839.mp3": {
    "texto": "Vamos a conocer al humo y por qué nos hace toser.",
    "ms": 2950,
@@ -849,6 +1079,11 @@
   "0987285899f4c1.mp3": {
    "texto": "Piensa qué come cada uno.",
    "ms": 1780,
+   "config": "0377892f781d16"
+  },
+  "0995aeb847ae32.mp3": {
+   "texto": "¡Felicidades, guardianes del parque! Rescataron a cuatro animales y separaron seis residuos.",
+   "ms": 5450,
    "config": "0377892f781d16"
   },
   "099958b7de84b2.mp3": {
@@ -901,6 +1136,11 @@
    "ms": 2570,
    "config": "0377892f781d16"
   },
+  "09f6f7c1d64e71.mp3": {
+   "texto": "¡Lección terminada! Ganaron doce hojitas, y dos de siete ejercicios salieron a la primera.",
+   "ms": 5260,
+   "config": "0377892f781d16"
+  },
   "09f967facc6786.mp3": {
    "texto": "¡Sí! Se lava y no se vuelve basura.",
    "ms": 2110,
@@ -946,9 +1186,19 @@
    "ms": 2400,
    "config": "0377892f781d16"
   },
+  "0a4c7907f65e6e.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: uno. Nubes de humo que esquivaron: seis. ¡Bravo!",
+   "ms": 5830,
+   "config": "0377892f781d16"
+  },
   "0a4d5cb18a3982.mp3": {
    "texto": "Toca el hoyo.",
    "ms": 1080,
+   "config": "0377892f781d16"
+  },
+  "0a63c024f0d0b6.mp3": {
+   "texto": "¡Felicidades, guardianes del parque! Separaron bien catorce residuos y ayudaron a cuatro animales.",
+   "ms": 5760,
    "config": "0377892f781d16"
   },
   "0a672450070244.mp3": {
@@ -964,6 +1214,16 @@
   "0a7dd9a3fe40a0.mp3": {
    "texto": "hojitas, y",
    "ms": 1010,
+   "config": "0377892f781d16"
+  },
+  "0a87b5eaa571f5.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: cero. Nubes de humo que esquivaron: ocho. ¡Bravo!",
+   "ms": 5930,
+   "config": "0377892f781d16"
+  },
+  "0a977959841344.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: cinco. Nubes de humo que esquivaron: siete. ¡Bravo!",
+   "ms": 6000,
    "config": "0377892f781d16"
   },
   "0aa50ce262aaae.mp3": {
@@ -1006,6 +1266,11 @@
    "ms": 1320,
    "config": "0377892f781d16"
   },
+  "0aff01ba2b201d.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: uno. Nubes de humo que esquivaron: cero. ¡Bravo!",
+   "ms": 5830,
+   "config": "0377892f781d16"
+  },
   "0b174e618f4dce.mp3": {
    "texto": "No escriban nombres de niñas ni niños.",
    "ms": 2350,
@@ -1021,6 +1286,11 @@
    "ms": 1270,
    "config": "0377892f781d16"
   },
+  "0b24777bbcff2d.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: tres. Nubes de humo que esquivaron: dos. ¡Bravo!",
+   "ms": 5930,
+   "config": "0377892f781d16"
+  },
   "0b2a0813ad1690.mp3": {
    "texto": "veinticuatro",
    "ms": 1150,
@@ -1029,6 +1299,16 @@
   "0b371ea167017f.mp3": {
    "texto": "trece",
    "ms": 720,
+   "config": "0377892f781d16"
+  },
+  "0b610ad828edc9.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: seis. Nubes de humo que esquivaron: ocho. ¡Bravo!",
+   "ms": 5860,
+   "config": "0377892f781d16"
+  },
+  "0b63edf40e07d8.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: cinco. Nubes de humo que esquivaron: tres. ¡Bravo!",
+   "ms": 5980,
    "config": "0377892f781d16"
   },
   "0b79d378323466.mp3": {
@@ -1096,9 +1376,19 @@
    "ms": 790,
    "config": "0377892f781d16"
   },
+  "0c2dcbf5f15b01.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: diez. Nubes de humo que esquivaron: dos. ¡Bravo!",
+   "ms": 5810,
+   "config": "0377892f781d16"
+  },
   "0c4f117d310e1e.mp3": {
    "texto": "Primero va la cáscara y al final, la planta.",
    "ms": 2740,
+   "config": "0377892f781d16"
+  },
+  "0c5265c5b64e45.mp3": {
+   "texto": "¡Lección terminada! Ganaron trece hojitas, y tres de siete ejercicios salieron a la primera.",
+   "ms": 5450,
    "config": "0377892f781d16"
   },
   "0c621a29d770b1.mp3": {
@@ -1181,6 +1471,11 @@
    "ms": 2540,
    "config": "0377892f781d16"
   },
+  "0d09d34ccebeab.mp3": {
+   "texto": "¡Felicidades, guardianes del parque! Separaron bien catorce residuos y ayudaron a diez animales.",
+   "ms": 5740,
+   "config": "0377892f781d16"
+  },
   "0d0e086c89397e.mp3": {
    "texto": "¡Vamos a descubrir todo lo que hacen los árboles!",
    "ms": 2930,
@@ -1206,6 +1501,11 @@
    "ms": 2740,
    "config": "0377892f781d16"
   },
+  "0d4e3a81de2811.mp3": {
+   "texto": "¡Felicidades, guardianes del parque! Separaron bien diecisiete residuos y ayudaron a seis animales.",
+   "ms": 5930,
+   "config": "0377892f781d16"
+  },
   "0d54efda52657d.mp3": {
    "texto": "¡Sí! La rellenas muchas veces y tiras menos botellas.",
    "ms": 3170,
@@ -1229,6 +1529,11 @@
   "0d796602c98ad2.mp3": {
    "texto": "¡Lo lograste! El parque está limpio. Ahora vamos a separar la basura.",
    "ms": 4080,
+   "config": "0377892f781d16"
+  },
+  "0d7db497f5ba0a.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: tres. Nubes de humo que esquivaron: cuatro. ¡Bravo!",
+   "ms": 6000,
    "config": "0377892f781d16"
   },
   "0d8114c7809dca.mp3": {
@@ -1281,6 +1586,11 @@
    "ms": 4870,
    "config": "0377892f781d16"
   },
+  "0de958692a647a.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: uno. Nubes de humo que esquivaron: tres. ¡Bravo!",
+   "ms": 5930,
+   "config": "0377892f781d16"
+  },
   "0dea6d31df1f4e.mp3": {
    "texto": "¡Felicidades, guardianes del parque! Rescataron a",
    "ms": 2930,
@@ -1289,6 +1599,11 @@
   "0e058bfa77232c.mp3": {
    "texto": "Toca la cuchara de metal.",
    "ms": 1750,
+   "config": "0377892f781d16"
+  },
+  "0e06b2f088ba17.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: ocho. Nubes de humo que esquivaron: tres. ¡Bravo!",
+   "ms": 5980,
    "config": "0377892f781d16"
   },
   "0e0eac91bdcaf0.mp3": {
@@ -1306,6 +1621,16 @@
    "ms": 890,
    "config": "0377892f781d16"
   },
+  "0e2069c122afc7.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: siete. Nubes de humo que esquivaron: siete. ¡Bravo!",
+   "ms": 6000,
+   "config": "0377892f781d16"
+  },
+  "0e2f7d0d70c965.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: dos. Nubes de humo que esquivaron: tres. ¡Bravo!",
+   "ms": 5900,
+   "config": "0377892f781d16"
+  },
   "0e31e22065aebe.mp3": {
    "texto": "¡Mira! Llegó una mariposa monarca a las flores.",
    "ms": 2640,
@@ -1319,6 +1644,16 @@
   "0e45c9c680983c.mp3": {
    "texto": "¿Y la cuchara de metal?",
    "ms": 1490,
+   "config": "0377892f781d16"
+  },
+  "0e46ee71bb54a2.mp3": {
+   "texto": "¡Felicidades, guardianes del parque! Separaron bien quince residuos y ayudaron a ocho animales.",
+   "ms": 5620,
+   "config": "0377892f781d16"
+  },
+  "0e4aff594d09c8.mp3": {
+   "texto": "¡Felicidades, guardianes del parque! Separaron bien dieciséis residuos y ayudaron a cinco animales.",
+   "ms": 5810,
    "config": "0377892f781d16"
   },
   "0e52265bb0d3dd.mp3": {
@@ -1351,9 +1686,19 @@
    "ms": 1780,
    "config": "0377892f781d16"
   },
+  "0e723c88286a59.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: cinco. Nubes de humo que esquivaron: dos. ¡Bravo!",
+   "ms": 5860,
+   "config": "0377892f781d16"
+  },
   "0e731f8af4e7b3.mp3": {
    "texto": "La tela se lava.",
    "ms": 1200,
+   "config": "0377892f781d16"
+  },
+  "0e80566f7944d7.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: seis. Nubes de humo que esquivaron: siete. ¡Bravo!",
+   "ms": 5900,
    "config": "0377892f781d16"
   },
   "0e82b92fa1b07b.mp3": {
@@ -1389,6 +1734,21 @@
   "0ee335895a9681.mp3": {
    "texto": "Así ayudamos a los animales.",
    "ms": 2020,
+   "config": "0377892f781d16"
+  },
+  "0ee8d61f35b7c6.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: ocho. Nubes de humo que esquivaron: cero. ¡Bravo!",
+   "ms": 5950,
+   "config": "0377892f781d16"
+  },
+  "0f34403d4d1c31.mp3": {
+   "texto": "¡Felicidades, guardianes del parque! Sembraron seis árboles y les dieron doce riegos.",
+   "ms": 4920,
+   "config": "0377892f781d16"
+  },
+  "0f349fced6295b.mp3": {
+   "texto": "¡Lección terminada! Ganaron quince hojitas, y cinco de siete ejercicios salieron a la primera.",
+   "ms": 5420,
    "config": "0377892f781d16"
   },
   "0f418b773b8773.mp3": {
@@ -1461,6 +1821,11 @@
    "ms": 2400,
    "config": "0377892f781d16"
   },
+  "0feadf3e11ab52.mp3": {
+   "texto": "¡Lección terminada! Ganaron trece hojitas, y tres de seis ejercicios salieron a la primera.",
+   "ms": 5350,
+   "config": "0377892f781d16"
+  },
   "0fed46117ae88b.mp3": {
    "texto": "cincuenta y cuatro",
    "ms": 1440,
@@ -1476,9 +1841,19 @@
    "ms": 1630,
    "config": "0377892f781d16"
   },
+  "0ff685ca01ea7e.mp3": {
+   "texto": "¡Felicidades, guardianes del parque! Separaron bien catorce residuos y ayudaron a nueve animales.",
+   "ms": 5780,
+   "config": "0377892f781d16"
+  },
   "0ff6fed56c8a16.mp3": {
    "texto": "Terminen una unidad para ganar esta estampa.",
    "ms": 2620,
+   "config": "0377892f781d16"
+  },
+  "0ff90a8c38a028.mp3": {
+   "texto": "¡Felicidades, guardianes del parque! Separaron bien diecisiete residuos y ayudaron a diez animales.",
+   "ms": 5900,
    "config": "0377892f781d16"
   },
   "10008c5760c59a.mp3": {
@@ -1506,6 +1881,16 @@
    "ms": 5230,
    "config": "0377892f781d16"
   },
+  "106e951537a0c4.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: once. Nubes de humo que esquivaron: seis. ¡Bravo!",
+   "ms": 5900,
+   "config": "0377892f781d16"
+  },
+  "1079cf82096b34.mp3": {
+   "texto": "¡Felicidades, guardianes del parque! Separaron bien catorce residuos y ayudaron a siete animales.",
+   "ms": 5710,
+   "config": "0377892f781d16"
+  },
   "109324617359d2.mp3": {
    "texto": "residuos.",
    "ms": 960,
@@ -1519,6 +1904,11 @@
   "10dfad859837a8.mp3": {
    "texto": "ochenta y nueve",
    "ms": 1300,
+   "config": "0377892f781d16"
+  },
+  "10ebb55d28ac70.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: uno. Nubes de humo que esquivaron: cuatro. ¡Bravo!",
+   "ms": 5950,
    "config": "0377892f781d16"
   },
   "10f9dec4cec8ef.mp3": {
@@ -1541,6 +1931,11 @@
    "ms": 3240,
    "config": "0377892f781d16"
   },
+  "110ac6740d422c.mp3": {
+   "texto": "¡Felicidades, guardianes del parque! Separaron bien doce residuos y ayudaron a ocho animales.",
+   "ms": 5470,
+   "config": "0377892f781d16"
+  },
   "110bd2840831dd.mp3": {
    "texto": "Así le das una segunda vida y hay menos basura.",
    "ms": 2980,
@@ -1549,6 +1944,11 @@
   "110f4e54e47e84.mp3": {
    "texto": "Primero se tira en su bote.",
    "ms": 1820,
+   "config": "0377892f781d16"
+  },
+  "111348cdca7297.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: nueve. Nubes de humo que esquivaron: ocho. ¡Bravo!",
+   "ms": 5900,
    "config": "0377892f781d16"
   },
   "11210acafda5bf.mp3": {
@@ -1586,6 +1986,11 @@
    "ms": 1870,
    "config": "0377892f781d16"
   },
+  "117e108847dc03.mp3": {
+   "texto": "¡Felicidades, guardianes del parque! Separaron bien doce residuos y ayudaron a cuatro animales.",
+   "ms": 5570,
+   "config": "0377892f781d16"
+  },
   "118abcb363c725.mp3": {
    "texto": "La mamá tlacuache lleva a sus bebés en una bolsa de su panza y, cuando crecen, en la espalda.",
    "ms": 5140,
@@ -1596,6 +2001,11 @@
    "ms": 2710,
    "config": "0377892f781d16"
   },
+  "11961bea55302c.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: nueve. Nubes de humo que esquivaron: cero. ¡Bravo!",
+   "ms": 5810,
+   "config": "0377892f781d16"
+  },
   "11acaaa881c558.mp3": {
    "texto": "¡Todavía hay basura! Tócala para guardarla en mi bolsa.",
    "ms": 3140,
@@ -1604,6 +2014,11 @@
   "11b5507c54b799.mp3": {
    "texto": "¡Rescataron a todos los animales y separaron la basura!",
    "ms": 3430,
+   "config": "0377892f781d16"
+  },
+  "11da625a733b99.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: dos. Nubes de humo que esquivaron: cuatro. ¡Bravo!",
+   "ms": 5980,
    "config": "0377892f781d16"
   },
   "11e2e25c40024a.mp3": {
@@ -1619,6 +2034,11 @@
   "11ec0912c2a158.mp3": {
    "texto": "veintinueve",
    "ms": 1010,
+   "config": "0377892f781d16"
+  },
+  "11f739fb8c6854.mp3": {
+   "texto": "¡Lección terminada! Ganaron catorce hojitas, y cuatro de seis ejercicios salieron a la primera.",
+   "ms": 5620,
    "config": "0377892f781d16"
   },
   "1203efb562850a.mp3": {
@@ -1644,6 +2064,16 @@
   "121f08f5d3d4aa.mp3": {
    "texto": "Sirve para hacer el hoyo.",
    "ms": 1460,
+   "config": "0377892f781d16"
+  },
+  "1222e894a76dcf.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: diez. Nubes de humo que esquivaron: seis. ¡Bravo!",
+   "ms": 5950,
+   "config": "0377892f781d16"
+  },
+  "122e567ce58c9d.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: diez. Nubes de humo que esquivaron: tres. ¡Bravo!",
+   "ms": 5860,
    "config": "0377892f781d16"
   },
   "12311cd445a810.mp3": {
@@ -1681,6 +2111,11 @@
    "ms": 1340,
    "config": "0377892f781d16"
   },
+  "1294f6b468f590.mp3": {
+   "texto": "¡Felicidades, guardianes del parque! Separaron bien doce residuos y ayudaron a siete animales.",
+   "ms": 5590,
+   "config": "0377892f781d16"
+  },
   "1298ef57fe4a2c.mp3": {
    "texto": "Quemar basura llena el aire de humo dañino.",
    "ms": 2640,
@@ -1714,6 +2149,11 @@
   "12d9611dc2982f.mp3": {
    "texto": "¿Hay que tapar con tierra todo el tronco?",
    "ms": 2350,
+   "config": "0377892f781d16"
+  },
+  "12dcbf954e4b69.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: siete. Nubes de humo que esquivaron: ocho. ¡Bravo!",
+   "ms": 6050,
    "config": "0377892f781d16"
   },
   "12de24c6f93b45.mp3": {
@@ -1766,6 +2206,11 @@
    "ms": 2060,
    "config": "0377892f781d16"
   },
+  "135a73cb12e56b.mp3": {
+   "texto": "¡Felicidades, guardianes del parque! Separaron bien trece residuos y ayudaron a diez animales.",
+   "ms": 5620,
+   "config": "0377892f781d16"
+  },
   "136094ca506ec0.mp3": {
    "texto": "Si aplastas la caja de cartón, ocupa menos lugar en el bote.",
    "ms": 3550,
@@ -1779,6 +2224,11 @@
   "1377d5f483a502.mp3": {
    "texto": "dieciséis",
    "ms": 1010,
+   "config": "0377892f781d16"
+  },
+  "1379055548d4f8.mp3": {
+   "texto": "¡Felicidades, guardianes del parque! Separaron bien quince residuos y ayudaron a cinco animales.",
+   "ms": 5640,
    "config": "0377892f781d16"
   },
   "137fe152ea57d3.mp3": {
@@ -1801,6 +2251,11 @@
    "ms": 1750,
    "config": "0377892f781d16"
   },
+  "141f0075a23ad4.mp3": {
+   "texto": "¡Felicidades, guardianes del parque! Separaron bien trece residuos y ayudaron a siete animales.",
+   "ms": 5660,
+   "config": "0377892f781d16"
+  },
   "1425dc4e9b265f.mp3": {
    "texto": "noventa",
    "ms": 820,
@@ -1809,6 +2264,11 @@
   "14281595916b06.mp3": {
    "texto": "¿Cuál va en el bote azul de reciclable?",
    "ms": 2420,
+   "config": "0377892f781d16"
+  },
+  "1440665cf3a1c0.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: cuatro. Nubes de humo que esquivaron: ocho. ¡Bravo!",
+   "ms": 6000,
    "config": "0377892f781d16"
   },
   "14485df1dec396.mp3": {
@@ -1836,6 +2296,16 @@
    "ms": 2470,
    "config": "0377892f781d16"
   },
+  "148beb1adb3d2a.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: seis. Nubes de humo que esquivaron: seis. ¡Bravo!",
+   "ms": 5810,
+   "config": "0377892f781d16"
+  },
+  "149f6492737214.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: nueve. Nubes de humo que esquivaron: cuatro. ¡Bravo!",
+   "ms": 5950,
+   "config": "0377892f781d16"
+  },
   "14a4eb11611164.mp3": {
    "texto": "noventa y uno",
    "ms": 1250,
@@ -1856,6 +2326,11 @@
    "ms": 2350,
    "config": "0377892f781d16"
   },
+  "14bb7a0d0249f3.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: cuatro. Nubes de humo que esquivaron: tres. ¡Bravo!",
+   "ms": 5930,
+   "config": "0377892f781d16"
+  },
   "14cfd3523d4ab3.mp3": {
    "texto": "Ordena cómo crece un árbol.",
    "ms": 1970,
@@ -1866,6 +2341,11 @@
    "ms": 2690,
    "config": "0377892f781d16"
   },
+  "14ee93b6b7301e.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: dos. Nubes de humo que esquivaron: siete. ¡Bravo!",
+   "ms": 5950,
+   "config": "0377892f781d16"
+  },
   "14f71d4c8fb9ea.mp3": {
    "texto": "¿A qué bote va la cáscara de huevo?",
    "ms": 2090,
@@ -1874,6 +2354,16 @@
   "14f891946310d7.mp3": {
    "texto": "cincuenta y ocho",
    "ms": 1370,
+   "config": "0377892f781d16"
+  },
+  "14fd1b161996b5.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: ocho. Nubes de humo que esquivaron: cinco. ¡Bravo!",
+   "ms": 5980,
+   "config": "0377892f781d16"
+  },
+  "1522ff5fd3f5c2.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: dos. Nubes de humo que esquivaron: cinco. ¡Bravo!",
+   "ms": 5980,
    "config": "0377892f781d16"
   },
   "1525e238bb0b20.mp3": {
@@ -1891,6 +2381,11 @@
    "ms": 3240,
    "config": "0377892f781d16"
   },
+  "153f90204d668f.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: cero. Nubes de humo que esquivaron: uno. ¡Bravo!",
+   "ms": 5810,
+   "config": "0377892f781d16"
+  },
   "15409ce3e65ddb.mp3": {
    "texto": "treinta y seis",
    "ms": 1180,
@@ -1901,6 +2396,16 @@
    "ms": 1340,
    "config": "0377892f781d16"
   },
+  "155ccb72f2603e.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: cero. Nubes de humo que esquivaron: cero. ¡Bravo!",
+   "ms": 5810,
+   "config": "0377892f781d16"
+  },
+  "156919c7702f67.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: uno. Nubes de humo que esquivaron: cinco. ¡Bravo!",
+   "ms": 6000,
+   "config": "0377892f781d16"
+  },
   "156e4923c4f1e8.mp3": {
    "texto": "Vamos a armar una lonchera sin basura. Lleva cada cosa a la lonchera, o a \"Mejor no\".",
    "ms": 5160,
@@ -1909,6 +2414,11 @@
   "15722b5aaf6f86.mp3": {
    "texto": "Así la hoja dura el doble.",
    "ms": 1820,
+   "config": "0377892f781d16"
+  },
+  "1573c8d90469f0.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: cero. Nubes de humo que esquivaron: cinco. ¡Bravo!",
+   "ms": 5900,
    "config": "0377892f781d16"
   },
   "1573eb4f4e0218.mp3": {
@@ -1941,6 +2451,11 @@
    "ms": 1340,
    "config": "0377892f781d16"
   },
+  "15c8aa25805f05.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: ocho. Nubes de humo que esquivaron: siete. ¡Bravo!",
+   "ms": 6000,
+   "config": "0377892f781d16"
+  },
   "15de960e83d81f.mp3": {
    "texto": "Las hojas secas también sirven para hacer composta, que alimenta a las plantas.",
    "ms": 4440,
@@ -1954,6 +2469,11 @@
   "15ea7598f78ccb.mp3": {
    "texto": "Cada una tiene su camino.",
    "ms": 1700,
+   "config": "0377892f781d16"
+  },
+  "15eecbab0480c7.mp3": {
+   "texto": "¡Lección terminada! Ganaron diecisiete hojitas, y siete de siete ejercicios salieron a la primera.",
+   "ms": 5690,
    "config": "0377892f781d16"
   },
   "15f8e00fe8567f.mp3": {
@@ -1981,6 +2501,11 @@
    "ms": 960,
    "config": "0377892f781d16"
   },
+  "16214687aea74d.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: ocho. Nubes de humo que esquivaron: dos. ¡Bravo!",
+   "ms": 5950,
+   "config": "0377892f781d16"
+  },
   "162422ee4f3588.mp3": {
    "texto": "Primero se hace el hoyo y al final se riega.",
    "ms": 2640,
@@ -1994,6 +2519,11 @@
   "16289772a923e0.mp3": {
    "texto": "sesenta y uno",
    "ms": 1200,
+   "config": "0377892f781d16"
+  },
+  "16291d5fd9e953.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: dos. Nubes de humo que esquivaron: dos. ¡Bravo!",
+   "ms": 5860,
    "config": "0377892f781d16"
   },
   "1632509f90d1a4.mp3": {
@@ -2014,6 +2544,11 @@
   "16460d303dcd37.mp3": {
    "texto": "Cada basura tiene su bote.",
    "ms": 1920,
+   "config": "0377892f781d16"
+  },
+  "16586ea8e677ff.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: uno. Nubes de humo que esquivaron: siete. ¡Bravo!",
+   "ms": 5950,
    "config": "0377892f781d16"
   },
   "1665454f269e49.mp3": {
@@ -2056,9 +2591,24 @@
    "ms": 1030,
    "config": "0377892f781d16"
   },
+  "16a89cf566a2ce.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: tres. Nubes de humo que esquivaron: siete. ¡Bravo!",
+   "ms": 5980,
+   "config": "0377892f781d16"
+  },
+  "16ad0edfe494b7.mp3": {
+   "texto": "¡Felicidades, guardianes del parque! Separaron bien trece residuos y ayudaron a cinco animales.",
+   "ms": 5640,
+   "config": "0377892f781d16"
+  },
   "16ad807864b9cc.mp3": {
    "texto": "Es el bote con las flechas.",
    "ms": 1780,
+   "config": "0377892f781d16"
+  },
+  "16af33307fd9b1.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: diez. Nubes de humo que esquivaron: siete. ¡Bravo!",
+   "ms": 5930,
    "config": "0377892f781d16"
   },
   "16b6ce732274e6.mp3": {
@@ -2151,6 +2701,11 @@
    "ms": 1630,
    "config": "0377892f781d16"
   },
+  "17a127243a6603.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: cinco. Nubes de humo que esquivaron: ocho. ¡Bravo!",
+   "ms": 5930,
+   "config": "0377892f781d16"
+  },
   "17ad8efe586989.mp3": {
    "texto": "¡Miren cómo crece su parque!",
    "ms": 1920,
@@ -2159,6 +2714,11 @@
   "17b22338dce041.mp3": {
    "texto": "Toca la comida que no es para los animales.",
    "ms": 2470,
+   "config": "0377892f781d16"
+  },
+  "17b8e31878b06d.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: once. Nubes de humo que esquivaron: cuatro. ¡Bravo!",
+   "ms": 6070,
    "config": "0377892f781d16"
   },
   "17ba240b759900.mp3": {
@@ -2191,9 +2751,19 @@
    "ms": 2060,
    "config": "0377892f781d16"
   },
+  "181972b278b3ef.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: once. Nubes de humo que esquivaron: uno. ¡Bravo!",
+   "ms": 5830,
+   "config": "0377892f781d16"
+  },
   "18341d3a48deb1.mp3": {
    "texto": "¡Bravo!",
    "ms": 720,
+   "config": "0377892f781d16"
+  },
+  "1836f812be2810.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: cero. Nubes de humo que esquivaron: tres. ¡Bravo!",
+   "ms": 5860,
    "config": "0377892f781d16"
   },
   "18378a67239ebc.mp3": {
@@ -2211,6 +2781,11 @@
    "ms": 1660,
    "config": "0377892f781d16"
   },
+  "184a1e1b075c26.mp3": {
+   "texto": "¡Felicidades, guardianes del parque! Separaron bien quince residuos y ayudaron a nueve animales.",
+   "ms": 5590,
+   "config": "0377892f781d16"
+  },
   "1870b0a87490f9.mp3": {
    "texto": "Es el bote gris que tiene de todo.",
    "ms": 2110,
@@ -2219,6 +2794,11 @@
   "18729e73af7368.mp3": {
    "texto": "Así no se desperdicia el agua.",
    "ms": 2060,
+   "config": "0377892f781d16"
+  },
+  "18788e50212bcc.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: dos. Nubes de humo que esquivaron: ocho. ¡Bravo!",
+   "ms": 5930,
    "config": "0377892f781d16"
   },
   "18889d934d69c0.mp3": {
@@ -2241,9 +2821,19 @@
    "ms": 3120,
    "config": "0377892f781d16"
   },
+  "18bc47ed2cee9b.mp3": {
+   "texto": "¡Lección terminada! Ganaron dieciséis hojitas, y seis de seis ejercicios salieron a la primera.",
+   "ms": 5620,
+   "config": "0377892f781d16"
+  },
   "18bc73e31ed94e.mp3": {
    "texto": "Los animales del parque son silvestres.",
    "ms": 2420,
+   "config": "0377892f781d16"
+  },
+  "18bc82b0943701.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: uno. Nubes de humo que esquivaron: dos. ¡Bravo!",
+   "ms": 5880,
    "config": "0377892f781d16"
   },
   "18d2104156e38c.mp3": {
@@ -2256,9 +2846,19 @@
    "ms": 5380,
    "config": "0377892f781d16"
   },
+  "18d859bfb4a62e.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: nueve. Nubes de humo que esquivaron: tres. ¡Bravo!",
+   "ms": 5950,
+   "config": "0377892f781d16"
+  },
   "18ddef7feb7406.mp3": {
    "texto": "Ordena el viaje de la botella.",
    "ms": 1900,
+   "config": "0377892f781d16"
+  },
+  "18e3221182eb79.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: seis. Nubes de humo que esquivaron: tres. ¡Bravo!",
+   "ms": 5900,
    "config": "0377892f781d16"
   },
   "18e83cc4389176.mp3": {
@@ -2301,6 +2901,11 @@
    "ms": 2880,
    "config": "0377892f781d16"
   },
+  "19843e9ea7bf7e.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: cero. Nubes de humo que esquivaron: siete. ¡Bravo!",
+   "ms": 5980,
+   "config": "0377892f781d16"
+  },
   "19878b467ddff7.mp3": {
    "texto": "¿A qué bote va el corazón de manzana?",
    "ms": 2280,
@@ -2311,9 +2916,24 @@
    "ms": 1750,
    "config": "0377892f781d16"
   },
+  "199e5c71cb3d2a.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: once. Nubes de humo que esquivaron: siete. ¡Bravo!",
+   "ms": 6000,
+   "config": "0377892f781d16"
+  },
+  "19bd778c9d680c.mp3": {
+   "texto": "¡Felicidades, guardianes del parque! Separaron bien diecisiete residuos y ayudaron a cuatro animales.",
+   "ms": 5950,
+   "config": "0377892f781d16"
+  },
   "19c29946e88647.mp3": {
    "texto": "La basura va en su bote, no junto al árbol.",
    "ms": 2540,
+   "config": "0377892f781d16"
+  },
+  "19c2ea83e18c7c.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: siete. Nubes de humo que esquivaron: seis. ¡Bravo!",
+   "ms": 5980,
    "config": "0377892f781d16"
   },
   "19cd5fc7349647.mp3": {
@@ -2321,9 +2941,19 @@
    "ms": 2540,
    "config": "0377892f781d16"
   },
+  "19e05992064664.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: tres. Nubes de humo que esquivaron: tres. ¡Bravo!",
+   "ms": 6020,
+   "config": "0377892f781d16"
+  },
   "19e5a159a77b87.mp3": {
    "texto": "doce",
    "ms": 650,
+   "config": "0377892f781d16"
+  },
+  "19e9065a76da0a.mp3": {
+   "texto": "¡Lección terminada! Ganaron once hojitas, y uno de siete ejercicios salió a la primera.",
+   "ms": 5060,
    "config": "0377892f781d16"
   },
   "19fe80bca1f3a8.mp3": {
@@ -2371,9 +3001,24 @@
    "ms": 4270,
    "config": "0377892f781d16"
   },
+  "1a6541258c1333.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: tres. Nubes de humo que esquivaron: seis. ¡Bravo!",
+   "ms": 5900,
+   "config": "0377892f781d16"
+  },
+  "1a745a03f725d2.mp3": {
+   "texto": "¡Lección terminada! Ganaron catorce hojitas, y cuatro de siete ejercicios salieron a la primera.",
+   "ms": 5620,
+   "config": "0377892f781d16"
+  },
   "1a78f186b441c6.mp3": {
    "texto": "La tierra cubre las raíces, no el tronco.",
    "ms": 2470,
+   "config": "0377892f781d16"
+  },
+  "1a79479e07fb80.mp3": {
+   "texto": "¡Felicidades, guardianes del parque! Separaron bien trece residuos y ayudaron a nueve animales.",
+   "ms": 5620,
    "config": "0377892f781d16"
   },
   "1a9b31f55b4567.mp3": {
@@ -2386,9 +3031,24 @@
    "ms": 3170,
    "config": "0377892f781d16"
   },
+  "1ab5edcc84f107.mp3": {
+   "texto": "¡Felicidades, guardianes del parque! Separaron bien dieciséis residuos y ayudaron a cuatro animales.",
+   "ms": 5780,
+   "config": "0377892f781d16"
+  },
+  "1ab5f21d8a9002.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: diez. Nubes de humo que esquivaron: cuatro. ¡Bravo!",
+   "ms": 5980,
+   "config": "0377892f781d16"
+  },
   "1ac208406f56de.mp3": {
    "texto": "Toca la bici.",
    "ms": 1150,
+   "config": "0377892f781d16"
+  },
+  "1ad3a45848a04c.mp3": {
+   "texto": "¡Felicidades, guardianes del parque! Su lonchera lleva cinco objetos reutilizables, y evitaron cinco desechables.",
+   "ms": 6860,
    "config": "0377892f781d16"
   },
   "1ad3a8cba5406a.mp3": {
@@ -2429,6 +3089,16 @@
   "1b0bf7ed14186a.mp3": {
    "texto": "Con restos de fruta como el corazón de manzana se hace composta para el jardín.",
    "ms": 4510,
+   "config": "0377892f781d16"
+  },
+  "1b1184f70ae9c4.mp3": {
+   "texto": "¡Felicidades, guardianes del parque! Separaron bien trece residuos y ayudaron a cuatro animales.",
+   "ms": 5620,
+   "config": "0377892f781d16"
+  },
+  "1b1ef6ae5a1040.mp3": {
+   "texto": "¡Lección terminada! Ganaron quince hojitas, y cinco de seis ejercicios salieron a la primera.",
+   "ms": 5420,
    "config": "0377892f781d16"
   },
   "1b218526df920f.mp3": {
@@ -2481,6 +3151,11 @@
    "ms": 2860,
    "config": "0377892f781d16"
   },
+  "1b50427a72017d.mp3": {
+   "texto": "¡Felicidades, guardianes del parque! Separaron bien trece residuos y ayudaron a seis animales.",
+   "ms": 5620,
+   "config": "0377892f781d16"
+  },
   "1b55b16f3615c8.mp3": {
    "texto": "uno",
    "ms": 580,
@@ -2491,9 +3166,24 @@
    "ms": 1460,
    "config": "0377892f781d16"
   },
+  "1b5b0d8ece3e6a.mp3": {
+   "texto": "¡Lección terminada! Ganaron doce hojitas, y dos de seis ejercicios salieron a la primera.",
+   "ms": 5160,
+   "config": "0377892f781d16"
+  },
   "1b5c3e44d4fdcb.mp3": {
    "texto": "¿Una lata se puede reciclar para hacer otra lata?",
    "ms": 2860,
+   "config": "0377892f781d16"
+  },
+  "1b60e24679ac28.mp3": {
+   "texto": "¡Sorpresa! Ganaron quince hojitas.",
+   "ms": 2180,
+   "config": "0377892f781d16"
+  },
+  "1b654d71eb4592.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: uno. Nubes de humo que esquivaron: uno. ¡Bravo!",
+   "ms": 5760,
    "config": "0377892f781d16"
   },
   "1b6c80ceb8ff4c.mp3": {
@@ -2501,9 +3191,29 @@
    "ms": 2060,
    "config": "0377892f781d16"
   },
+  "1b70985a19dae2.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: once. Nubes de humo que esquivaron: tres. ¡Bravo!",
+   "ms": 5950,
+   "config": "0377892f781d16"
+  },
+  "1b791a470b0340.mp3": {
+   "texto": "¡Felicidades, guardianes del parque! Separaron bien doce residuos y ayudaron a nueve animales.",
+   "ms": 5500,
+   "config": "0377892f781d16"
+  },
+  "1b7bd151030cab.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: siete. Nubes de humo que esquivaron: cinco. ¡Bravo!",
+   "ms": 6000,
+   "config": "0377892f781d16"
+  },
   "1b86f8727b4ae6.mp3": {
    "texto": "Toca la basura que tiene atrapado a un animal.",
    "ms": 2830,
+   "config": "0377892f781d16"
+  },
+  "1ba16f9fa06d48.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: cuatro. Nubes de humo que esquivaron: dos. ¡Bravo!",
+   "ms": 5930,
    "config": "0377892f781d16"
   },
   "1bc6875e58ddf6.mp3": {
@@ -2531,6 +3241,11 @@
    "ms": 1270,
    "config": "0377892f781d16"
   },
+  "1c2b34b91eee1b.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: cero. Nubes de humo que esquivaron: dos. ¡Bravo!",
+   "ms": 5810,
+   "config": "0377892f781d16"
+  },
   "1c3c787a21dc43.mp3": {
    "texto": "Las cajitas de jugo tienen cartón, plástico y aluminio; se pueden reciclar en un centro de acopio.",
    "ms": 5900,
@@ -2546,14 +3261,34 @@
    "ms": 1250,
    "config": "0377892f781d16"
   },
+  "1c50ec0a530dc1.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: dos. Nubes de humo que esquivaron: seis. ¡Bravo!",
+   "ms": 5810,
+   "config": "0377892f781d16"
+  },
   "1c5345481193af.mp3": {
    "texto": "Mira cuánto humo sale.",
    "ms": 1560,
    "config": "0377892f781d16"
   },
+  "1c638f1b20f260.mp3": {
+   "texto": "¡Lección terminada! Ganaron once hojitas, y uno de seis ejercicios salió a la primera.",
+   "ms": 4970,
+   "config": "0377892f781d16"
+  },
   "1c6b9382eea3fa.mp3": {
    "texto": "Tiene la cola esponjada.",
    "ms": 1580,
+   "config": "0377892f781d16"
+  },
+  "1c6fad53273b4d.mp3": {
+   "texto": "¡Lección terminada! Ganaron diez hojitas. ¡Practicando, cada vez les sale mejor!",
+   "ms": 4580,
+   "config": "0377892f781d16"
+  },
+  "1c888acd930277.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: cuatro. Nubes de humo que esquivaron: cinco. ¡Bravo!",
+   "ms": 6000,
    "config": "0377892f781d16"
   },
   "1c88a908dc7338.mp3": {
@@ -2566,9 +3301,19 @@
    "ms": 3790,
    "config": "0377892f781d16"
   },
+  "1c945d8fff21a7.mp3": {
+   "texto": "¡Felicidades, guardianes del parque! Separaron bien dieciséis residuos y ayudaron a nueve animales.",
+   "ms": 5710,
+   "config": "0377892f781d16"
+  },
   "1ca0ef17eaadd4.mp3": {
    "texto": "Toca la composta.",
    "ms": 1370,
+   "config": "0377892f781d16"
+  },
+  "1ca285c6d0bd00.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: cinco. Nubes de humo que esquivaron: cero. ¡Bravo!",
+   "ms": 5930,
    "config": "0377892f781d16"
   },
   "1ca416b1a2146a.mp3": {
@@ -2581,9 +3326,19 @@
    "ms": 2210,
    "config": "0377892f781d16"
   },
+  "1cbd51ff5488a3.mp3": {
+   "texto": "¡Felicidades, guardianes del parque! Separaron bien dieciséis residuos y ayudaron a ocho animales.",
+   "ms": 5740,
+   "config": "0377892f781d16"
+  },
   "1cced770f8f5fc.mp3": {
    "texto": "El colibrí busca flores.",
    "ms": 1780,
+   "config": "0377892f781d16"
+  },
+  "1cd5d166043368.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: diez. Nubes de humo que esquivaron: ocho. ¡Bravo!",
+   "ms": 5830,
    "config": "0377892f781d16"
   },
   "1cd954f3993a11.mp3": {
@@ -2604,6 +3359,16 @@
   "1cf5aba79231e6.mp3": {
    "texto": "Piensa qué come cada uno en el parque.",
    "ms": 2380,
+   "config": "0377892f781d16"
+  },
+  "1d07abb8cf98d8.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: tres. Nubes de humo que esquivaron: uno. ¡Bravo!",
+   "ms": 5810,
+   "config": "0377892f781d16"
+  },
+  "1d0cc2e65f08c5.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: cuatro. Nubes de humo que esquivaron: seis. ¡Bravo!",
+   "ms": 5950,
    "config": "0377892f781d16"
   },
   "1d111122968aa5.mp3": {
@@ -2646,6 +3411,11 @@
    "ms": 1340,
    "config": "0377892f781d16"
   },
+  "1d40b482bf1631.mp3": {
+   "texto": "¡Lección terminada! Ganaron dieciséis hojitas, y seis de siete ejercicios salieron a la primera.",
+   "ms": 5640,
+   "config": "0377892f781d16"
+  },
   "1d5e7a361bbb00.mp3": {
    "texto": "treinta y cuatro",
    "ms": 1320,
@@ -2676,6 +3446,11 @@
    "ms": 1800,
    "config": "0377892f781d16"
   },
+  "1d89bc3d032ccd.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: once. Nubes de humo que esquivaron: dos. ¡Bravo!",
+   "ms": 5880,
+   "config": "0377892f781d16"
+  },
   "1d8c667995ef01.mp3": {
    "texto": "¿Cuál va en el bote verde de orgánico?",
    "ms": 2350,
@@ -2686,6 +3461,11 @@
    "ms": 2400,
    "config": "0377892f781d16"
   },
+  "1da92a8bcf8be7.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: dos. Nubes de humo que esquivaron: cero. ¡Bravo!",
+   "ms": 5860,
+   "config": "0377892f781d16"
+  },
   "1db35103d61329.mp3": {
    "texto": "Es de plástico y tiene hoyos.",
    "ms": 1970,
@@ -2694,6 +3474,11 @@
   "1dc28fcb8f9e25.mp3": {
    "texto": "¡Vamos a repasar todo lo que ayuda al aire!",
    "ms": 2660,
+   "config": "0377892f781d16"
+  },
+  "1dd2ca441aaa74.mp3": {
+   "texto": "¡Felicidades, guardianes del parque! Separaron bien doce residuos y ayudaron a seis animales.",
+   "ms": 5520,
    "config": "0377892f781d16"
   },
   "1df38086f5a2f6.mp3": {
@@ -2741,6 +3526,11 @@
    "ms": 1300,
    "config": "0377892f781d16"
   },
+  "1e7e53d2b69cbd.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: cinco. Nubes de humo que esquivaron: cuatro. ¡Bravo!",
+   "ms": 6100,
+   "config": "0377892f781d16"
+  },
   "1e9099926b7ee2.mp3": {
    "texto": "¿Cuál puede atorar a un animal?",
    "ms": 1870,
@@ -2754,6 +3544,16 @@
   "1e9f469f624a59.mp3": {
    "texto": "Busca el bote con el mismo dibujo que le toca.",
    "ms": 2740,
+   "config": "0377892f781d16"
+  },
+  "1ea0247fd1f4cd.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: dos. Nubes de humo que esquivaron: uno. ¡Bravo!",
+   "ms": 5900,
+   "config": "0377892f781d16"
+  },
+  "1ead3bff2034e6.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: seis. Nubes de humo que esquivaron: cuatro. ¡Bravo!",
+   "ms": 5860,
    "config": "0377892f781d16"
   },
   "1eb014f6816b4f.mp3": {
@@ -2776,9 +3576,24 @@
    "ms": 1940,
    "config": "0377892f781d16"
   },
+  "1ef1f10f8a16a6.mp3": {
+   "texto": "¡Felicidades, guardianes del parque! Separaron bien catorce residuos y ayudaron a ocho animales.",
+   "ms": 5810,
+   "config": "0377892f781d16"
+  },
+  "1ef61ddc252a70.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: cinco. Nubes de humo que esquivaron: cinco. ¡Bravo!",
+   "ms": 6050,
+   "config": "0377892f781d16"
+  },
   "1ef75ac84c28e9.mp3": {
    "texto": "Toca los anillos de plástico.",
    "ms": 1850,
+   "config": "0377892f781d16"
+  },
+  "1efbd68ac4c66b.mp3": {
+   "texto": "¡Felicidades, guardianes del parque! Separaron bien dieciséis residuos y ayudaron a seis animales.",
+   "ms": 5810,
    "config": "0377892f781d16"
   },
   "1f0b6cb1ee3a9a.mp3": {
@@ -2806,6 +3621,11 @@
    "ms": 1250,
    "config": "0377892f781d16"
   },
+  "1f72b8ba85ceeb.mp3": {
+   "texto": "¡Felicidades, guardianes del parque! Separaron bien quince residuos y ayudaron a seis animales.",
+   "ms": 5620,
+   "config": "0377892f781d16"
+  },
   "1f7d1f3cfadcb0.mp3": {
    "texto": "Primero se le quita la bolsa con cuidado.",
    "ms": 2540,
@@ -2814,6 +3634,11 @@
   "1f83113ec39bfc.mp3": {
    "texto": "Toca el árbol grande.",
    "ms": 1510,
+   "config": "0377892f781d16"
+  },
+  "1f852a6baddff8.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: siete. Nubes de humo que esquivaron: tres. ¡Bravo!",
+   "ms": 6000,
    "config": "0377892f781d16"
   },
   "1f8533056d85f4.mp3": {
@@ -2826,6 +3651,11 @@
    "ms": 2470,
    "config": "0377892f781d16"
   },
+  "1f9ac93d848de8.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: cuatro. Nubes de humo que esquivaron: cuatro. ¡Bravo!",
+   "ms": 6000,
+   "config": "0377892f781d16"
+  },
   "1fa086a0bfbff6.mp3": {
    "texto": "Conocemos a los animales del parque y cómo cuidarlos de la basura.",
    "ms": 3740,
@@ -2834,6 +3664,16 @@
   "1fc2ec29defc90.mp3": {
    "texto": "Ayuda a Caco a separar esta basura.",
    "ms": 2330,
+   "config": "0377892f781d16"
+  },
+  "1fc61c0a8b9045.mp3": {
+   "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: siete. Nubes de humo que esquivaron: dos. ¡Bravo!",
+   "ms": 5950,
+   "config": "0377892f781d16"
+  },
+  "1fc9dee407bb46.mp3": {
+   "texto": "¡Felicidades, guardianes del parque! Separaron bien catorce residuos y ayudaron a seis animales.",
+   "ms": 5760,
    "config": "0377892f781d16"
   },
   "1fccd37fabe3ba.mp3": {

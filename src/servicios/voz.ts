@@ -152,6 +152,26 @@ class Voz {
   }
 
   private reproducirCadena(archivos: string[], turno: number, terminar: () => void): void {
+    // Todas las piezas se cargan ANTES de empezar a hablar: así no hay tropiezos entre una y otra
+    // esperando a que baje el siguiente audio (con un tope de 2 s para no quedarse callado).
+    const howls = archivos.map((a) => this.howl(a));
+    let listo = false;
+    const empezar = () => {
+      if (listo) return;
+      listo = true;
+      siguiente(0);
+    };
+    const revisar = () => {
+      if (howls.every((h) => h.state() !== 'loading')) empezar();
+    };
+    for (const h of howls) {
+      if (h.state() === 'loading') {
+        h.once('load', revisar);
+        h.once('loaderror', revisar);
+      }
+    }
+    window.setTimeout(empezar, 2000);
+
     const siguiente = (i: number) => {
       if (turno !== this.turno) return;
       if (i >= archivos.length) {
@@ -167,7 +187,7 @@ class Voz {
       h.once('playerror', () => siguiente(i + 1));
       h.play();
     };
-    siguiente(0);
+    revisar();
   }
 
   private hablarConNavegador(texto: string, terminar: () => void): void {
