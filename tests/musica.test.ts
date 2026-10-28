@@ -68,7 +68,7 @@ describe('música de fondo', () => {
     expect(VOLUMEN_MUSICA.base).toBeCloseTo(0.25);
   });
 
-  it('ducking: baja a ≈8 % mientras habla Caco y sube suave al terminar', () => {
+  it('ducking: baja a ≈8 % mientras habla Mixtle y sube suave al terminar', () => {
     musica.desbloquear();
     musica.poner('lecciones');
     const r = creados.get('lecciones')!;
@@ -94,7 +94,7 @@ describe('música de fondo', () => {
     expect(r.vol).toBe(VOLUMEN_MUSICA.base);
   });
 
-  it('una pista que entra mientras Caco habla empieza ya agachada', () => {
+  it('una pista que entra mientras Mixtle habla empieza ya agachada', () => {
     musica.desbloquear();
     musica.agachar();
     musica.poner('tranquila');

@@ -1,6 +1,6 @@
 # Fuentes del contenido
 
-Todo dato que Caco dice a las niñas y los niños tiene que ser **verdadero y verificable**. Esta tabla
+Todo dato que Mixtle dice a las niñas y los niños tiene que ser **verdadero y verificable**. Esta tabla
 junta cada dato del juego con su fuente. Si un dato no tiene fuente confiable, no se usa.
 
 - Revisión de fuentes: octubre de 2026. Fuentes preferidas: gobierno y academia de México (CONABIO,

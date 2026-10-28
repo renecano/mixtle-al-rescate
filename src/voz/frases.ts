@@ -14,7 +14,7 @@ import { COSAS_LONCHERA, RECORRIDO_BICI } from '../aventuras/datos';
 import { HOJITAS_POR_LECCION } from '../logica/leccion';
 import { NUMERO_MAXIMO, normalizarFrase, piezasDeTexto, textoHablado, type Locucion } from './locucion';
 
-/** Una frase que Caco dice en voz alta, con dónde aparece (para el CSV de grabación). */
+/** Una frase que Mixtle dice en voz alta, con dónde aparece (para el CSV de grabación). */
 export interface FraseNarrada {
   id: string;
   texto: string;
@@ -24,7 +24,7 @@ export interface FraseNarrada {
 }
 
 /**
- * Junta todas las frases que dice Caco a partir de los archivos de contenido.
+ * Junta todas las frases que dice Mixtle a partir de los archivos de contenido.
  * Al agregar un residuo, una categoría o un texto narrado, su frase aparece aquí sola.
  * Las frases repetidas se graban una sola vez (se queda el primer id).
  */
@@ -116,7 +116,7 @@ export function todasLasFrases(): FraseNarrada[] {
   // Diploma: las piezas fijas; los números se encadenan desde la lista común.
   for (const residuos of [1, 2]) for (const animales of [1, 2]) u1('aventura-diploma', 'diploma', TEXTOS.diploma.narracion(residuos, animales));
 
-  // Frases con números que de verdad pueden salir, grabadas COMPLETAS para que Caco las diga de
+  // Frases con números que de verdad pueden salir, grabadas COMPLETAS para que Mixtle las diga de
   // corrido (encadenar piezas suena entrecortado). Las piezas sueltas quedan como respaldo.
   for (const n of narracionesCompletas()) agregar(n.unidad, n.leccion, n.id, textoHablado(n.locucion));
 

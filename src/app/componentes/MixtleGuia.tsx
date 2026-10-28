@@ -4,10 +4,10 @@ import { TEXTOS_APP } from '../../contenido/textosApp';
 import { repetir, useNarrador } from '../estado/narrador';
 import { Arte } from './Arte';
 import { BotonGrande } from './BotonGrande';
-import { CacoFigura, type ExpresionCaco } from './CacoFigura';
+import { MixtleFigura, type ExpresionMixtle } from './MixtleFigura';
 
 /** Mientras habla, la boca se abre y se cierra. */
-function useBoca(hablando: boolean, expresion: ExpresionCaco): ExpresionCaco {
+function useBoca(hablando: boolean, expresion: ExpresionMixtle): ExpresionMixtle {
   const [abierta, setAbierta] = useState(false);
   useEffect(() => {
     if (!hablando) return;
@@ -21,7 +21,7 @@ function useBoca(hablando: boolean, expresion: ExpresionCaco): ExpresionCaco {
   return abierta ? 'habla' : expresion;
 }
 
-/** Con `soloMientrasHabla`, el globo se queda 2 s más después de que Caco termina y luego se va. */
+/** Con `soloMientrasHabla`, el globo se queda 2 s más después de que Mixtle termina y luego se va. */
 function useVisibleTrasHablar(hablando: boolean, soloMientrasHabla: boolean): boolean {
   const [oculto, setOculto] = useState(false);
   useEffect(() => {
@@ -36,35 +36,35 @@ function useVisibleTrasHablar(hablando: boolean, soloMientrasHabla: boolean): bo
 }
 
 interface Props {
-  /** Alto de Caco. */
+  /** Alto de Mixtle. */
   alto: string;
-  /** Dónde va el globo respecto a Caco. */
+  /** Dónde va el globo respecto a Mixtle. */
   globo?: 'derecha' | 'izquierda' | 'arriba';
   /**
-   * El subtítulo solo se ve mientras Caco habla (y un momento después), para no tapar la pantalla.
+   * El subtítulo solo se ve mientras Mixtle habla (y un momento después), para no tapar la pantalla.
    * En las lecciones se deja fijo: la consigna sigue a la vista.
    */
   soloMientrasHabla?: boolean;
   /** Ocultar el globo (por ejemplo, cuando el banner ya muestra la misma frase). */
   sinGlobo?: boolean;
-  /** Con el globo arriba: de qué lado se alinea con Caco ('inicio' = izquierda, 'fin' = derecha). */
+  /** Con el globo arriba: de qué lado se alinea con Mixtle ('inicio' = izquierda, 'fin' = derecha). */
   alinear?: 'inicio' | 'fin';
   /** Ancho máximo del globo (CSS). */
   anchoGlobo?: string;
-  /** Con el globo a un lado: que empiece a la altura de la cabeza de Caco y crezca hacia abajo. */
+  /** Con el globo a un lado: que empiece a la altura de la cabeza de Mixtle y crezca hacia abajo. */
   globoDesdeArriba?: boolean;
-  /** Caco mirando al otro lado. */
+  /** Mixtle mirando al otro lado. */
   espejo?: boolean;
   /** Expresión fija (por ejemplo, señalando en el camino); la boca se sigue moviendo al hablar. */
-  expresionFija?: ExpresionCaco;
+  expresionFija?: ExpresionMixtle;
   className?: string;
 }
 
 /**
- * Caco con su globo de subtítulo y el botón para repetir lo que dijo.
+ * Mixtle con su globo de subtítulo y el botón para repetir lo que dijo.
  * El texto acompaña a la voz; nunca es la única forma de entender.
  */
-export function CacoGuia({
+export function MixtleGuia({
   alto,
   globo = 'derecha',
   soloMientrasHabla = false,
@@ -80,14 +80,14 @@ export function CacoGuia({
   const cara = useBoca(hablando, expresionFija ?? expresion);
   const visible = useVisibleTrasHablar(hablando, soloMientrasHabla);
   return (
-    // Solo Caco y el botón de repetir reciben toques; el resto deja pasar los toques a lo de abajo.
+    // Solo Mixtle y el botón de repetir reciben toques; el resto deja pasar los toques a lo de abajo.
     <div
       className={`pointer-events-none flex ${
         globo === 'arriba' ? `flex-col-reverse ${alinear === 'fin' ? 'items-end' : 'items-start'}` : `${globo === 'izquierda' ? 'flex-row-reverse' : ''} ${globoDesdeArriba ? 'items-start' : 'items-end'}`
       } gap-3 ${className}`}
     >
-      <button type="button" aria-label="Caco: escuchar otra vez" className="pointer-events-auto shrink-0 cursor-pointer" onClick={repetir}>
-        <CacoFigura alto={alto} expresion={cara} espejo={espejo} />
+      <button type="button" aria-label="Mixtle: escuchar otra vez" className="pointer-events-auto shrink-0 cursor-pointer" onClick={repetir}>
+        <MixtleFigura alto={alto} expresion={cara} espejo={espejo} />
       </button>
       <AnimatePresence mode="wait">
         {subtitulo && visible && !sinGlobo && (

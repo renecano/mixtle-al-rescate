@@ -1,10 +1,10 @@
-// Genera la voz de Caco para todas las frases del juego.
+// Genera la voz de Mixtle para todas las frases del juego.
 //   - Junta las frases de los archivos de contenido (src/voz/frases.ts).
 //   - Las genera con el proveedor, la voz y los ajustes de voz.config.json (aplicando su diccionario de pronunciación).
 //   - Guarda public/voz/<hash>.mp3 (mono 64 kbps, volumen normalizado) y public/voz/manifiesto.json.
 //   - Solo regenera lo nuevo o lo que cambió (texto o configuración).
 //   - Si existe una grabación humana en voz-grabaciones/<hash>.(mp3|wav|m4a|ogg), se usa esa en lugar de la voz generada.
-//   - Actualiza docs/frases-caco.csv (la lista para regrabar).
+//   - Actualiza docs/frases-mixtle.csv (la lista para regrabar).
 // Uso: npm run voz:generar   (antes, una vez: npm run voz:preparar)
 //      npm run voz:generar -- --max=50   genera solo 50 y para (la siguiente corrida sigue)
 import { spawnSync } from 'node:child_process';
@@ -23,14 +23,20 @@ const config = JSON.parse(readFileSync(join(RAIZ, 'voz.config.json'), 'utf8'));
 const { cyrb53 } = (await runnerImport('./src/voz/hash.ts')).module;
 const { todasLasFrases } = (await runnerImport('./src/voz/frases.ts')).module;
 
-/** Firma de la configuración: si cambia la voz, los ajustes o la pronunciación, se regenera todo. */
-const firmaConfig = cyrb53(JSON.stringify({ ...limpiar(config), pronunciacion: limpiar(config.pronunciacion) }));
+/**
+ * Firma de cada audio: proveedor, voz, estilo y ajustes, y el texto tal como lo lee la voz (con la
+ * pronunciación ya aplicada). Si cambia la voz o un ajuste, se regenera todo; si cambia una palabra
+ * del diccionario, solo las frases que la tienen.
+ */
+const configVoz = limpiar(config);
+delete configVoz.pronunciacion;
+const firmaDe = (textoVoz) => cyrb53(JSON.stringify({ ...configVoz, texto: textoVoz }));
 
 function limpiar(objeto = {}) {
   return Object.fromEntries(Object.entries(objeto).filter(([k]) => !k.startsWith('$')));
 }
 
-/** Cambia cómo se escriben algunas palabras solo para la voz ("cacomixtle" → "cacomistle"). */
+/** Cambia cómo se escriben algunas palabras solo para la voz ("Mixtle" → "Míkstle", "cacomixtle" → "cacomíkstle"). */
 function aplicarPronunciacion(texto) {
   let resultado = texto;
   for (const [palabra, dicha] of Object.entries(limpiar(config.pronunciacion))) {
@@ -58,10 +64,11 @@ const trabajos = [];
 for (const f of frases) {
   const actual = manifiesto.frases[f.archivo];
   const grabacion = grabacionHumana(f.archivo);
-  const firma = grabacion ? huella(grabacion) : firmaConfig;
+  const textoVoz = aplicarPronunciacion(f.texto);
+  const firma = grabacion ? huella(grabacion) : firmaDe(textoVoz);
   const vigente = actual && actual.config === firma && actual.texto === f.texto && existsSync(join(CARPETA_VOZ, f.archivo));
   if (vigente) continue;
-  trabajos.push(grabacion ? { archivo: f.archivo, texto: f.texto, grabacion, firma } : { archivo: f.archivo, texto: aplicarPronunciacion(f.texto), original: f.texto, firma });
+  trabajos.push(grabacion ? { archivo: f.archivo, texto: f.texto, grabacion, firma } : { archivo: f.archivo, texto: textoVoz, original: f.texto, firma });
 }
 
 console.log(`${frases.length} frases; por generar: ${trabajos.length}${trabajos.length ? '' : ' (todo al día)'}`);

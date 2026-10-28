@@ -3,7 +3,7 @@ import { arte, type ArteSvg } from './svg';
 
 /*
  * El parque: inspirado en los parques de Toluca, con el Nevado de Toluca
- * (Xinantécatl) al fondo, un sendero y un árbol grande donde vive Caco.
+ * (Xinantécatl) al fondo, un sendero y un árbol grande donde vive Mixtle.
  */
 
 const PASTO = '#A9D98B';
@@ -63,7 +63,7 @@ const PARQUE = `
   <path d="M1264 470 L 1314 470 L 1304 420 L 1274 420 Z" fill="#FFE9A8" stroke="#2E4A3D" stroke-width="7" stroke-linejoin="round"/>
   <path d="M1262 420 L 1316 420 L 1289 396 Z" fill="#2E4A3D"/>
 
-  <!-- Árbol grande de Caco -->
+  <!-- Árbol grande de Mixtle -->
   <path d="M420 780 C 432 660 424 520 446 420 L 512 420 C 528 520 522 660 536 780 Z" fill="${TRONCO}"/>
   <path d="M436 780 C 450 700 446 600 460 520" stroke="${TRONCO_OSCURO}" stroke-width="8" fill="none" stroke-linecap="round" opacity=".5"/>
   <path d="M470 480 C 420 440 380 430 340 420" stroke="${TRONCO}" stroke-width="22" fill="none" stroke-linecap="round"/>

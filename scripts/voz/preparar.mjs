@@ -1,4 +1,4 @@
-// Prepara todo lo necesario para generar la voz de Caco:
+// Prepara todo lo necesario para generar la voz de Mixtle:
 //   1. Un entorno de Python en .venv-voz/ (ignorado por git) con Piper, Kokoro, edge-tts y ffmpeg.
 //   2. Los modelos de voz en .voz-modelos/ (ignorado por git).
 // Uso: npm run voz:preparar   (se puede repetir: lo que ya está no se vuelve a descargar)

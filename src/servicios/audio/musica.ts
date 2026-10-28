@@ -1,6 +1,6 @@
 /**
  * Música de fondo: tres pistas CC0 (tranquila, lecciones y un jingle de celebración).
- * - Volumen bajo por defecto y "ducking": baja mientras habla Caco y sube suave al terminar.
+ * - Volumen bajo por defecto y "ducking": baja mientras habla Mixtle y sube suave al terminar.
  * - Fundido al cambiar de pista.
  * - No suena hasta el primer toque (reglas de reproducción automática de los navegadores).
  * La lógica no depende de Howler: recibe una fábrica de reproductores (así se prueba sin bocinas).
@@ -70,13 +70,13 @@ export class Musica {
     else this.aplicar();
   }
 
-  /** Caco empieza a hablar: la música baja. Se puede anidar. */
+  /** Mixtle empieza a hablar: la música baja. Se puede anidar. */
   agachar(): void {
     this.agachadores += 1;
     if (this.agachadores === 1) this.irA(VOLUMEN_MUSICA.agachada, VOLUMEN_MUSICA.agacharMs);
   }
 
-  /** Caco terminó de hablar: la música sube suave. */
+  /** Mixtle terminó de hablar: la música sube suave. */
   levantar(): void {
     if (this.agachadores === 0) return;
     this.agachadores -= 1;

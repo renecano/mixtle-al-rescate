@@ -1,4 +1,4 @@
-// Genera los íconos PNG de la app instalable (PWA) a partir de la cara de Caco en SVG.
+// Genera los íconos PNG de la app instalable (PWA) a partir de la cara de Mixtle en SVG.
 // Uso: node scripts/iconos.mjs   (usa el Chrome instalado; no descarga nada)
 import { chromium } from '@playwright/test';
 import { mkdir, readFile } from 'node:fs/promises';

@@ -2,7 +2,7 @@ import { segun } from '../logica/diploma';
 import type { Locucion } from '../voz/locucion';
 
 /*
- * Lo que dice Caco en las aventuras de las unidades 2 a 5 (la de la unidad 1 está en src/data/textos.ts).
+ * Lo que dice Mixtle en las aventuras de las unidades 2 a 5 (la de la unidad 1 está en src/data/textos.ts).
  * Las claves que empiezan con "boton" o "etiqueta" solo se muestran; todo lo demás se narra.
  * Todo se narra: npm run voz:generar junta estas frases solas.
  * TODO(Eco Urban): validar con las educadoras y educadores. Fuentes: docs/fuentes-contenido.md.
@@ -11,7 +11,7 @@ import type { Locucion } from '../voz/locucion';
  * sustantivos masculinos ("un animal", "veintiún árboles"); los femeninos van después: "hojitas: doce".
  */
 
-/** Diploma de una unidad: tema, qué cuenta cada columna y lo que narra Caco. */
+/** Diploma de una unidad: tema, qué cuenta cada columna y lo que narra Mixtle. */
 export interface TextosDiploma {
   subtitulo: string;
   izquierda: (n: number) => string;
@@ -96,7 +96,7 @@ export const TEXTOS_AVENTURAS = {
   u5: {
     intro: 'Vamos a armar una lonchera sin basura. Lleva cada cosa a la lonchera, o a "Mejor no".',
     pista: 'Arrastra la cosa, o toca la lonchera o "Mejor no".',
-    // Lo que pregunta Caco al aparecer cada cosa.
+    // Lo que pregunta Mixtle al aparecer cada cosa.
     preguntas: {
       'botella-reutilizable': '¿Y esta botella que se rellena?',
       recipiente: '¿Y este recipiente con fruta?',

@@ -15,7 +15,7 @@ export const U1: Unidad = {
   cofreTrasLeccion: 1,
   estampa: {
     id: 'cacomixtle',
-    arte: 'caco',
+    arte: 'mixtle',
     nombre: 'El cacomixtle',
     // A1, A3
     dato: 'El cacomixtle sale sobre todo de noche y tiene una cola larga con anillos negros y blancos.',
@@ -155,7 +155,7 @@ export const U1: Unidad = {
         {
           tipo: 'al-bote',
           id: 'u1-l2-e5',
-          consigna: 'Ayuda a Caco a separar esta basura.',
+          consigna: 'Ayuda a Mixtle a separar esta basura.',
           pista: 'Mira el dibujo de cada bote.',
           residuos: ['botella', 'platano', 'frituras'],
         },

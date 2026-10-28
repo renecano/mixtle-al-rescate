@@ -26,9 +26,9 @@ interface Opciones {
   tamano: number;
   /** ¿Esta pieza va en este destino? */
   esCorrecto: (pieza: Pieza, destino: Destino) => boolean;
-  /** Al aparecer cada pieza (por ejemplo, Caco pregunta a dónde va). */
+  /** Al aparecer cada pieza (por ejemplo, Mixtle pregunta a dónde va). */
   alAparecer: (pieza: Pieza) => void;
-  /** Bien: la pieza ya entró. `seguir` muestra la siguiente cuando Caco termina de hablar. */
+  /** Bien: la pieza ya entró. `seguir` muestra la siguiente cuando Mixtle termina de hablar. */
   alAcertar: (pieza: Pieza, destino: Destino, seguir: () => void) => void;
   /** Casi: la pieza regresa al pedestal; nunca se castiga. */
   alFallar: (pieza: Pieza, destino: Destino) => void;

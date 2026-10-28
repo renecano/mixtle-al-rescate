@@ -9,12 +9,12 @@ import { ZONAS } from '../ui/layoutParque';
 import { AnimalesParque } from '../ui/animalesParque';
 import { Boton } from '../ui/Boton';
 import { agregarBotonSonido } from '../ui/BotonSonido';
-import { Caco } from '../ui/Caco';
+import { Mixtle } from '../ui/Mixtle';
 import { agregarParque } from '../ui/fondo';
 import { Narrador } from '../ui/Narrador';
 import { entrar, irA } from '../ui/transicion';
 
-/** Caco se presenta: tres frases cortas, narradas, que se avanzan con un toque. */
+/** Mixtle se presenta: tres frases cortas, narradas, que se avanzan con un toque. */
 export class IntroScene extends Phaser.Scene {
   private paso = 0;
   private ultimoToque = 0;
@@ -29,7 +29,7 @@ export class IntroScene extends Phaser.Scene {
     this.paso = 0;
     agregarParque(this);
     new AnimalesParque(this);
-    // La basura regada (solo de adorno: en el nivel 1 se recoge). Aquí Caco es más grande,
+    // La basura regada (solo de adorno: en el nivel 1 se recoge). Aquí Mixtle es más grande,
     // así que se omite la que quedaría detrás de su cola o del botón de seguir.
     const visibles = repartir(RESIDUOS, ZONAS.map((z) => z.reparto), crearAleatorio(7)).filter(
       (c) => c.x > 660 && !(c.x > ANCHO - 330 && c.y > ALTO - 230),
@@ -39,8 +39,8 @@ export class IntroScene extends Phaser.Scene {
       img.setScale(124 / Math.max(img.width, img.height));
     }
 
-    const caco = new Caco(this, 280, ALTO - 30, 1.1).setDepth(20);
-    this.narrador = new Narrador(this, caco, {
+    const mixtle = new Mixtle(this, 280, ALTO - 30, 1.1).setDepth(20);
+    this.narrador = new Narrador(this, mixtle, {
       x: 520,
       y: 300,
       ancho: 1100,
@@ -48,7 +48,7 @@ export class IntroScene extends Phaser.Scene {
       tamanoTexto: 58,
     });
 
-    // Tocar en cualquier parte avanza (Caco y los botones tienen su propia acción).
+    // Tocar en cualquier parte avanza (Mixtle y los botones tienen su propia acción).
     const zona = this.add.zone(0, 0, ANCHO, ALTO).setOrigin(0).setInteractive().setName('fondo-intro');
     zona.on('pointerup', () => this.avanzar());
 

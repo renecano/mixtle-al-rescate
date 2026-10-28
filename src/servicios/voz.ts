@@ -11,12 +11,12 @@ const TONO_NAVEGADOR = 1.1;
 const MAXIMO_EN_MEMORIA = 40;
 
 /**
- * La voz de Caco.
+ * La voz de Mixtle.
  * 1. Audios pregenerados (public/voz/<hash>.mp3, ver npm run voz:generar) o grabaciones humanas
  *    con los mismos nombres. Las frases con números se arman encadenando piezas.
  * 2. Si a una frase le falta su audio, se usa la voz del navegador (Web Speech API) y en
  *    desarrollo se avisa en la consola.
- * Mientras Caco habla, la música baja. Nada de esto rompe el juego si no hay audio.
+ * Mientras Mixtle habla, la música baja. Nada de esto rompe el juego si no hay audio.
  */
 class Voz {
   private manifiesto: Manifiesto | null = null;
@@ -70,7 +70,7 @@ class Voz {
   }
 
   /**
-   * Caco dice algo. Devuelve la duración (real si hay audio, estimada si no), útil para animar a Caco.
+   * Mixtle dice algo. Devuelve la duración (real si hay audio, estimada si no), útil para animar a Mixtle.
    * `alTerminar` se llama al acabar; si otra frase interrumpe a esta, ya no se llama.
    */
   decir(locucion: Locucion, alTerminar?: () => void): number {

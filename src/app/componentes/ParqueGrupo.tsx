@@ -17,7 +17,7 @@ const FLORES = [
 
 /** Dónde aparece cada animal del álbum cuando el grupo gana su estampa. */
 const ANIMALES: Record<string, { arte: string; x: number; y: number; alto: number }> = {
-  cacomixtle: { arte: 'caco', x: 22, y: 92, alto: 34 },
+  cacomixtle: { arte: 'mixtle', x: 22, y: 92, alto: 34 },
   tlacuache: { arte: 'tlacuache', x: 40, y: 96, alto: 20 },
   colibri: { arte: 'colibri-feliz', x: 62, y: 46, alto: 13 },
   monarca: { arte: 'mariposa-feliz', x: 78, y: 52, alto: 13 },

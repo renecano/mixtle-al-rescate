@@ -18,9 +18,9 @@ beforeEach(() => {
 describe('pantalla de inicio', () => {
   it('muestra el título y un botón grande para jugar', () => {
     render(<App />);
-    expect(screen.getByRole('heading', { name: /Caco\s+al rescate/ })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /Mixtle\s+al rescate/ })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: /¡Jugar!/ })).toBeInTheDocument();
-    expect(screen.getByRole('img', { name: 'Caco, el cacomixtle' })).toBeInTheDocument();
+    expect(screen.getByRole('img', { name: 'Mixtle, el cacomixtle' })).toBeInTheDocument();
   });
 
   it('el botón de sonido se puede apagar y encender', async () => {

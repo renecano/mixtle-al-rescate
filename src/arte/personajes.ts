@@ -2,14 +2,14 @@ import { arte, type ArteSvg } from './svg';
 
 /*
  * Personajes originales del juego, dibujados a mano en SVG con estilo plano.
- * Caco es un cacomixtle (Bassariscus astutus): cuerpo esbelto gris-pardo,
+ * Mixtle es un cacomixtle (Bassariscus astutus): cuerpo esbelto gris-pardo,
  * orejas grandes, anillos claros alrededor de los ojos y cola larga con
  * anillos blancos y negros.
  */
 
 const TINTA = '#2A211C';
 
-// ─── Caco ────────────────────────────────────────────────────────────────
+// ─── Mixtle ────────────────────────────────────────────────────────────────
 const C = {
   piel: '#B09C8A',
   pielOscura: '#8A7563',
@@ -19,11 +19,11 @@ const C = {
   lengua: '#E87B7B',
 };
 
-type ExpresionCaco = 'normal' | 'habla' | 'feliz' | 'parpadeo' | 'pensando' | 'sorprendido' | 'celebrando' | 'senalando';
+type ExpresionMixtle = 'normal' | 'habla' | 'feliz' | 'parpadeo' | 'pensando' | 'sorprendido' | 'celebrando' | 'senalando';
 
-const CONTENTO: readonly ExpresionCaco[] = ['feliz', 'habla', 'celebrando'];
+const CONTENTO: readonly ExpresionMixtle[] = ['feliz', 'habla', 'celebrando'];
 
-function ojosCaco(expresion: ExpresionCaco): string {
+function ojosMixtle(expresion: ExpresionMixtle): string {
   if (expresion === 'feliz' || expresion === 'celebrando') {
     return `<path d="M118 158 Q 137 134 156 158 M204 158 Q 223 134 242 158" fill="none" stroke="${TINTA}" stroke-width="7" stroke-linecap="round"/>`;
   }
@@ -48,7 +48,7 @@ function ojosCaco(expresion: ExpresionCaco): string {
   return ojo(137) + ojo(223);
 }
 
-function bocaCaco(expresion: ExpresionCaco): string {
+function bocaMixtle(expresion: ExpresionMixtle): string {
   const linea = `<path d="M180 196 V 206" stroke="${TINTA}" stroke-width="4" stroke-linecap="round"/>`;
   if (expresion === 'sorprendido') {
     return `${linea}<ellipse cx="180" cy="218" rx="10" ry="13" fill="${C.boca}" stroke="${TINTA}" stroke-width="3"/>`;
@@ -65,7 +65,7 @@ function bocaCaco(expresion: ExpresionCaco): string {
   return `${linea}<path d="M164 206 Q 172 215 180 206 Q 188 215 196 206" fill="none" stroke="${TINTA}" stroke-width="4" stroke-linecap="round"/>`;
 }
 
-function cuerpoCaco(expresion: ExpresionCaco): string {
+function cuerpoMixtle(expresion: ExpresionMixtle): string {
   const oreja = (x: number, giro: number) =>
     `<g transform="rotate(${giro} ${x} 78)">
        <ellipse cx="${x}" cy="78" rx="38" ry="60" fill="${C.pielOscura}"/>
@@ -89,12 +89,12 @@ function cuerpoCaco(expresion: ExpresionCaco): string {
     <path d="M180 74 C 166 100 166 128 180 146 C 194 128 194 100 180 74 Z" fill="${C.pielOscura}" opacity=".55"/>
     <ellipse cx="137" cy="152" rx="35" ry="31" fill="${C.crema}"/>
     <ellipse cx="223" cy="152" rx="35" ry="31" fill="${C.crema}"/>
-    ${ojosCaco(expresion)}
+    ${ojosMixtle(expresion)}
     <ellipse cx="180" cy="194" rx="37" ry="26" fill="${C.crema}"/>
     ${mejillas}
     <path d="M165 180 Q 180 171 195 180 Q 193 192 180 197 Q 167 192 165 180 Z" fill="${TINTA}"/>
     <ellipse cx="175" cy="179" rx="5" ry="2.5" fill="#fff" opacity=".6"/>
-    ${bocaCaco(expresion)}
+    ${bocaMixtle(expresion)}
     <g stroke="${TINTA}" stroke-width="2.5" stroke-linecap="round" opacity=".5">
       <path d="M148 196 L 100 186 M148 204 L 102 212 M212 196 L 260 186 M212 204 L 258 212"/>
     </g>
@@ -102,7 +102,7 @@ function cuerpoCaco(expresion: ExpresionCaco): string {
 }
 
 /** Patas delanteras: abajo (sentado), arriba (celebrando), una apuntando o una en la barbilla (pensando). */
-function patasDelanteras(expresion: ExpresionCaco): string {
+function patasDelanteras(expresion: ExpresionMixtle): string {
   const brazo = (x1: number, y1: number, x2: number, y2: number) =>
     `<path d="M${x1} ${y1} L ${x2} ${y2}" stroke="${C.piel}" stroke-width="26" stroke-linecap="round"/>`;
   const mano = (x: number, y: number) => `<ellipse cx="${x}" cy="${y}" rx="21" ry="15" fill="${C.pielOscura}"/>`;
@@ -117,9 +117,9 @@ function patasDelanteras(expresion: ExpresionCaco): string {
   return `${abajo(152, 150)}${abajo(208, 210)}`;
 }
 
-const ESCALA_CACO = 1.3;
+const ESCALA_MIXTLE = 1.3;
 
-const COLA_CACO = `
+const COLA_MIXTLE = `
   <path d="M28 400 C 160 412 232 332 206 232 C 186 152 120 122 150 40" fill="none" stroke="${TINTA}" stroke-width="68" stroke-linecap="round"/>
   <path d="M28 400 C 160 412 232 332 206 232 C 186 152 120 122 150 40" fill="none" stroke="#F7F2E9" stroke-width="58" stroke-linecap="round"/>
   <path d="M28 400 C 160 412 232 332 206 232 C 186 152 120 122 150 40" fill="none" stroke="#2F2723" stroke-width="58" stroke-dasharray="34 30" stroke-dashoffset="10"/>
@@ -217,15 +217,15 @@ function mariposa(feliz: boolean): string {
 }
 
 export const PERSONAJES: ArteSvg[] = [
-  arte('caco', 360, 440, cuerpoCaco('normal'), ESCALA_CACO),
-  arte('caco-habla', 360, 440, cuerpoCaco('habla'), ESCALA_CACO),
-  arte('caco-feliz', 360, 440, cuerpoCaco('feliz'), ESCALA_CACO),
-  arte('caco-parpadeo', 360, 440, cuerpoCaco('parpadeo'), ESCALA_CACO),
-  arte('caco-pensando', 360, 440, cuerpoCaco('pensando'), ESCALA_CACO),
-  arte('caco-sorprendido', 360, 440, cuerpoCaco('sorprendido'), ESCALA_CACO),
-  arte('caco-celebrando', 360, 440, cuerpoCaco('celebrando'), ESCALA_CACO),
-  arte('caco-senalando', 360, 440, cuerpoCaco('senalando'), ESCALA_CACO),
-  arte('caco-cola', 260, 440, COLA_CACO, ESCALA_CACO),
+  arte('mixtle', 360, 440, cuerpoMixtle('normal'), ESCALA_MIXTLE),
+  arte('mixtle-habla', 360, 440, cuerpoMixtle('habla'), ESCALA_MIXTLE),
+  arte('mixtle-feliz', 360, 440, cuerpoMixtle('feliz'), ESCALA_MIXTLE),
+  arte('mixtle-parpadeo', 360, 440, cuerpoMixtle('parpadeo'), ESCALA_MIXTLE),
+  arte('mixtle-pensando', 360, 440, cuerpoMixtle('pensando'), ESCALA_MIXTLE),
+  arte('mixtle-sorprendido', 360, 440, cuerpoMixtle('sorprendido'), ESCALA_MIXTLE),
+  arte('mixtle-celebrando', 360, 440, cuerpoMixtle('celebrando'), ESCALA_MIXTLE),
+  arte('mixtle-senalando', 360, 440, cuerpoMixtle('senalando'), ESCALA_MIXTLE),
+  arte('mixtle-cola', 260, 440, COLA_MIXTLE, ESCALA_MIXTLE),
   arte('ardilla-triste', 270, 280, ardilla(false), 1.2),
   arte('ardilla-feliz', 270, 280, ardilla(true), 1.2),
   arte('colibri-triste', 240, 150, colibri(false), 1.2),

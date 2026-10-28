@@ -8,7 +8,7 @@ import { voz } from '../../servicios/voz';
 import { Arte } from '../componentes/Arte';
 import { BotonesSistema } from '../componentes/BotonesSistema';
 import { BotonGrande } from '../componentes/BotonGrande';
-import { CacoFigura } from '../componentes/CacoFigura';
+import { MixtleFigura } from '../componentes/MixtleFigura';
 import { useApp } from '../estado/app';
 
 const MARIPOSAS = [
@@ -17,7 +17,7 @@ const MARIPOSAS = [
   { left: '95%', top: '70%', retraso: 1.2 },
 ];
 
-/** Pantalla tipo póster: título, Caco, los animales del parque y el botón "¡Jugar!". */
+/** Pantalla tipo póster: título, Mixtle, los animales del parque y el botón "¡Jugar!". */
 export function Inicio() {
   const jugar = useApp((s) => s.jugar);
   const [entradaLista, setEntradaLista] = useState(false);
@@ -36,9 +36,12 @@ export function Inicio() {
         style={{ WebkitTextStroke: '0.12em var(--color-verde)', paintOrder: 'stroke fill', textShadow: '0 0.08em 0 rgba(18,61,43,0.35)' }}
       >
         {TEXTOS.inicio.titulo}
+        <span className="mt-[0.35em] block text-[0.32em] leading-none tracking-wide text-[#FFD23F]" style={{ WebkitTextStroke: '0.1em var(--color-verde)' }}>
+          {TEXTOS.inicio.lema}
+        </span>
       </motion.h1>
 
-      <CacoFigura alto="min(64%, 48vw)" className="absolute bottom-[4%] left-[5%]" />
+      <MixtleFigura alto="min(64%, 48vw)" className="absolute bottom-[4%] left-[5%]" />
 
       <motion.div
         className="absolute right-[10%] bottom-[6%] h-[24%]"

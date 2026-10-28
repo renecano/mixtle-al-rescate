@@ -8,10 +8,10 @@ import { sonido } from '../servicios/sonido';
 import { Mariposa } from '../ui/animales';
 import { AnimalesParque } from '../ui/animalesParque';
 import { agregarBotonSonido } from '../ui/BotonSonido';
-import { Caco } from '../ui/Caco';
+import { Mixtle } from '../ui/Mixtle';
 import { botonSiguiente, chispas, confeti } from '../ui/efectos';
 import { agregarParque } from '../ui/fondo';
-import { CACO_NIVEL, GLOBO_NIVEL, ZONAS } from '../ui/layoutParque';
+import { MIXTLE_NIVEL, GLOBO_NIVEL, ZONAS } from '../ui/layoutParque';
 import { Narrador } from '../ui/Narrador';
 import { entrar, irA } from '../ui/transicion';
 
@@ -30,7 +30,7 @@ interface Lugar {
 export class Nivel3Scene extends Phaser.Scene {
   private lugares: Lugar[] = [];
   private animales!: AnimalesParque;
-  private caco!: Caco;
+  private mixtle!: Mixtle;
   private narrador!: Narrador;
   private pista: Phaser.Time.TimerEvent | null = null;
   private dichos = new Set<string>();
@@ -53,8 +53,8 @@ export class Nivel3Scene extends Phaser.Scene {
     if (!p.animalesFelices.size) ANIMALES.forEach((a) => p.ayudarAnimal(a.id));
     this.animales = new AnimalesParque(this, [...p.animalesFelices]);
 
-    this.caco = new Caco(this, CACO_NIVEL.x, CACO_NIVEL.y, CACO_NIVEL.escala).setDepth(30);
-    this.narrador = new Narrador(this, this.caco, GLOBO_NIVEL);
+    this.mixtle = new Mixtle(this, MIXTLE_NIVEL.x, MIXTLE_NIVEL.y, MIXTLE_NIVEL.escala).setDepth(30);
+    this.narrador = new Narrador(this, this.mixtle, GLOBO_NIVEL);
     this.crearLugares();
     agregarBotonSonido(this);
 
@@ -168,7 +168,7 @@ export class Nivel3Scene extends Phaser.Scene {
     }
   }
 
-  /** Caco comenta cada tipo de llegada solo la primera vez, para no saturar de voz. */
+  /** Mixtle comenta cada tipo de llegada solo la primera vez, para no saturar de voz. */
   private decirUnaVez(clave: string, texto: string, despues?: () => void): void {
     if (this.dichos.has(clave)) {
       if (despues) this.time.delayedCall(900, despues);
@@ -180,7 +180,7 @@ export class Nivel3Scene extends Phaser.Scene {
 
   private terminar(): void {
     this.pista?.remove();
-    this.caco.celebrar();
+    this.mixtle.celebrar();
     confeti(this);
     sonido.celebrar();
     this.narrador.decir(TEXTOS.nivel3.fin);

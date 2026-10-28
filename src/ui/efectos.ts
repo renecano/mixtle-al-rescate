@@ -41,7 +41,7 @@ export function confeti(scene: Phaser.Scene, cantidad = 80): void {
     const x = Math.random() * ANCHO;
     const pieza = scene.add
       .rectangle(x, -40 - Math.random() * 300, 18, 28, color)
-      .setDepth(400) // debajo del globo de Caco (500) para no tapar el texto
+      .setDepth(400) // debajo del globo de Mixtle (500) para no tapar el texto
       .setAngle(Math.random() * 180);
     scene.tweens.add({
       targets: pieza,

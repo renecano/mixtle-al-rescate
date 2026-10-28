@@ -17,7 +17,7 @@ export type Material = 'organico' | 'papel' | 'plastico' | 'metal' | 'vidrio' | 
 
 export interface Residuo {
   id: string;
-  /** Nombre con artículo, como lo diría Caco: "la cáscara de plátano". */
+  /** Nombre con artículo, como lo diría Mixtle: "la cáscara de plátano". */
   nombre: string;
   categoria: CategoriaBase;
   material: Material;

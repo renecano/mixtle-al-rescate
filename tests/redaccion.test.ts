@@ -49,7 +49,7 @@ describe('redacción de las pistas', () => {
   });
 });
 
-describe('redacción de todo lo que dice Caco', () => {
+describe('redacción de todo lo que dice Mixtle', () => {
   const todas = [...frases(TEXTOS), ...RESIDUOS.map((r) => r.dato), ...CATEGORIAS.map((c) => c.pista)];
 
   it.each(todas.map((f) => [f]))('"%s" no tiene "de el" ni "a el"', (frase) => {

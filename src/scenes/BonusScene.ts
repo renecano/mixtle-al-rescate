@@ -13,10 +13,10 @@ import { crearAleatorio } from '../logica/reparto';
 import { sonido } from '../servicios/sonido';
 import { Bote } from '../ui/Bote';
 import { agregarBotonSonido } from '../ui/BotonSonido';
-import { Caco } from '../ui/Caco';
+import { Mixtle } from '../ui/Mixtle';
 import { botonSiguiente, chispas, confeti } from '../ui/efectos';
 import { agregarParque } from '../ui/fondo';
-import { CACO_NIVEL } from '../ui/layoutParque';
+import { MIXTLE_NIVEL } from '../ui/layoutParque';
 import { Narrador } from '../ui/Narrador';
 import { entrar, irA } from '../ui/transicion';
 
@@ -31,7 +31,7 @@ const TAMANO = 200;
  * de que llegue al suelo. Si llega, no pasa nada: vuelve a subir y cae otra vez. Nunca hay castigo.
  */
 export class BonusScene extends Phaser.Scene {
-  private caco!: Caco;
+  private mixtle!: Mixtle;
   private narrador!: Narrador;
   private cola: Residuo[] = [];
   private actual: { residuo: Residuo; imagen: Phaser.GameObjects.Image; caida: Phaser.Tweens.Tween | null; enElSuelo: boolean } | null = null;
@@ -53,8 +53,8 @@ export class BonusScene extends Phaser.Scene {
 
     agregarParque(this);
     this.add.rectangle(ANCHO / 2, 540, ANCHO, 1080, 0xffffff, 0.22).setDepth(-50);
-    this.caco = new Caco(this, CACO_NIVEL.x, CACO_NIVEL.y, CACO_NIVEL.escala).setDepth(30);
-    this.narrador = new Narrador(this, this.caco, { x: 40, y: 280, ancho: 780, apuntaA: { x: 230, y: 900 }, tamanoTexto: 44 });
+    this.mixtle = new Mixtle(this, MIXTLE_NIVEL.x, MIXTLE_NIVEL.y, MIXTLE_NIVEL.escala).setDepth(30);
+    this.narrador = new Narrador(this, this.mixtle, { x: 40, y: 280, ancho: 780, apuntaA: { x: 230, y: 900 }, tamanoTexto: 44 });
     this.crearBotes();
     agregarBotonSonido(this);
     this.time.delayedCall(450, () => this.narrador.decir(TEXTOS.bonus.bienvenida, () => this.siguiente()));
@@ -103,7 +103,7 @@ export class BonusScene extends Phaser.Scene {
   }
 
   /**
-   * Llegó al suelo sin que se eligiera bote: no pasa nada. Mientras Caco lo dice, los botes siguen
+   * Llegó al suelo sin que se eligiera bote: no pasa nada. Mientras Mixtle lo dice, los botes siguen
    * respondiendo (un toque en ese momento cuenta); si nadie elige, la basura vuelve a caer.
    */
   private llegoAlSuelo(): void {
@@ -149,7 +149,7 @@ export class BonusScene extends Phaser.Scene {
         bote.celebrar();
         sonido.tocar('acierto');
         chispas(this, boca.x, boca.y - 80, 12, 160);
-        this.caco.celebrar();
+        this.mixtle.celebrar();
         const lista = TEXTOS.nivel2.celebraciones;
         this.narrador.decir(textoAcierto(residuo, lista[this.aciertos++ % lista.length]!), () => this.siguiente());
       },
@@ -157,7 +157,7 @@ export class BonusScene extends Phaser.Scene {
   }
 
   private terminar(): void {
-    this.caco.celebrar();
+    this.mixtle.celebrar();
     confeti(this);
     sonido.celebrar();
     this.narrador.decir(TEXTOS.bonus.fin);

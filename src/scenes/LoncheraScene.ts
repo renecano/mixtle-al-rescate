@@ -5,10 +5,10 @@ import { TEXTOS_AVENTURAS } from '../contenido/aventuras';
 import { figurasRepetidas, type DatosDiploma } from '../logica/diploma';
 import { sonido } from '../servicios/sonido';
 import { agregarBotonSonido } from '../ui/BotonSonido';
-import { Caco } from '../ui/Caco';
+import { Mixtle } from '../ui/Mixtle';
 import { Clasificador, pedestal, type Destino } from '../ui/clasificador';
 import { botonSiguiente, chispas, confeti } from '../ui/efectos';
-import { CACO_NIVEL, GLOBO_NIVEL } from '../ui/layoutParque';
+import { MIXTLE_NIVEL, GLOBO_NIVEL } from '../ui/layoutParque';
 import { Narrador } from '../ui/Narrador';
 import { estiloTexto } from '../ui/texto';
 import { entrar, irA } from '../ui/transicion';
@@ -24,7 +24,7 @@ const CAJA = { ancho: 460, alto: 330, y: 800 };
  * muchas veces) o a "Mejor no" (si se vuelve basura al usarla). Se arrastra o se toca el destino.
  */
 export class LoncheraScene extends Phaser.Scene {
-  private caco!: Caco;
+  private mixtle!: Mixtle;
   private narrador!: Narrador;
   private reutilizables = 0;
   private evitados = 0;
@@ -41,8 +41,8 @@ export class LoncheraScene extends Phaser.Scene {
     this.dentro = [];
     this.marcar();
     this.dibujarFondo();
-    this.caco = new Caco(this, CACO_NIVEL.x, CACO_NIVEL.y, CACO_NIVEL.escala).setDepth(30);
-    this.narrador = new Narrador(this, this.caco, GLOBO_NIVEL);
+    this.mixtle = new Mixtle(this, MIXTLE_NIVEL.x, MIXTLE_NIVEL.y, MIXTLE_NIVEL.escala).setDepth(30);
+    this.narrador = new Narrador(this, this.mixtle, GLOBO_NIVEL);
     const lonchera = this.caja(820, 'lonchera', T.etiquetaLonchera, PALETA.morado, 'destino-lonchera');
     const mejorNo = this.caja(1640, 'carita-triste', T.etiquetaMejorNo, PALETA.naranja, 'destino-mejor-no');
     pedestal(this, PEDESTAL.x, PEDESTAL.y);
@@ -63,7 +63,7 @@ export class LoncheraScene extends Phaser.Scene {
         } else this.evitados += 1;
         this.marcar();
         chispas(this, d.zona.centerX, d.zona.centerY - 60, 10, 140);
-        this.caco.celebrar();
+        this.mixtle.celebrar();
         this.narrador.decir(T.porque[cosa.id], seguir);
       },
       alFallar: (p) => this.narrador.decir(this.cosa(p.id).reutilizable ? T.casiReutilizable : T.casiDesechable),
@@ -130,7 +130,7 @@ export class LoncheraScene extends Phaser.Scene {
   }
 
   private terminar(): void {
-    this.caco.celebrar();
+    this.mixtle.celebrar();
     confeti(this);
     sonido.celebrar();
     this.narrador.decir(T.fin);

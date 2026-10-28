@@ -35,7 +35,7 @@ describe('preferencia de sonido', () => {
   it('guarda una sola clave y nada más', () => {
     const almacen = almacenEnMemoria();
     guardarSonidoActivo(false, almacen);
-    expect([...almacen.datos.keys()]).toEqual(['caco-al-rescate:sonido']);
+    expect([...almacen.datos.keys()]).toEqual(['mixtle-al-rescate:sonido']);
   });
 
   it('no rompe el juego si localStorage lanza errores o no existe', () => {

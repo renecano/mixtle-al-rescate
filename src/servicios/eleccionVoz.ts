@@ -32,7 +32,7 @@ export function elegirVoz<V extends VozDisponible>(voces: readonly V[]): V | nul
   return mejor;
 }
 
-/** Duración aproximada de una frase hablada (ms), para animar la boca de Caco y esperar sin voz. */
+/** Duración aproximada de una frase hablada (ms), para animar la boca de Mixtle y esperar sin voz. */
 export function estimarDuracion(texto: string, velocidad = 0.9): number {
   const palabras = texto.trim().split(/\s+/).filter(Boolean).length;
   const pausas = (texto.match(/[.,;:!?¡¿]/g) ?? []).length;

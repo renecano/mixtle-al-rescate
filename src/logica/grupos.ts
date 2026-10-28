@@ -21,7 +21,7 @@ export const MASCOTAS = [
   { id: 'monarca', nombre: 'Monarca', arte: 'mariposa-feliz' },
   { id: 'ajolote', nombre: 'Ajolote', arte: 'ajolote' },
   { id: 'tlacuache', nombre: 'Tlacuache', arte: 'tlacuache' },
-  { id: 'cacomixtle', nombre: 'Cacomixtle', arte: 'caco' },
+  { id: 'cacomixtle', nombre: 'Cacomixtle', arte: 'mixtle' },
 ] as const;
 
 export type IdMascota = (typeof MASCOTAS)[number]['id'];
@@ -80,4 +80,23 @@ export function gruposValidos(datos: unknown): Grupo[] {
       Array.isArray(x.progreso.dias)
     );
   });
+}
+
+/** Cuánto ha avanzado un grupo (para decidir cuál conservar si llega dos veces). */
+function avanceDe(g: Grupo): number {
+  return Object.keys(g.progreso.lecciones).length * 1000 + g.progreso.hojitas;
+}
+
+/**
+ * Junta los grupos que llegan (por ejemplo, de la mudanza de dirección) con los que ya hay.
+ * Un grupo nuevo se agrega; si ya existe (mismo id), se queda el que lleva más avance. Nunca se pierde uno.
+ */
+export function fusionarGrupos(actuales: readonly Grupo[], llegan: readonly Grupo[]): Grupo[] {
+  const resultado = [...actuales];
+  for (const g of llegan) {
+    const i = resultado.findIndex((x) => x.id === g.id);
+    if (i < 0) resultado.push(g);
+    else if (avanceDe(g) > avanceDe(resultado[i]!)) resultado[i] = g;
+  }
+  return resultado;
 }

@@ -17,7 +17,7 @@ export interface ColumnaDiploma {
 
 /**
  * Lo que muestra el diploma de una unidad. Es el diploma de la v1 ("Guardianes del parque"),
- * el mismo para todas las unidades: cambian el subtítulo, las dos columnas y lo que narra Caco.
+ * el mismo para todas las unidades: cambian el subtítulo, las dos columnas y lo que narra Mixtle.
  */
 export interface DatosDiploma {
   /** Tema de la unidad, debajo de "Diploma para todo el grupo". Sin él, solo esa línea (unidad 1 de la v1). */

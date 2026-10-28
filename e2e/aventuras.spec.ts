@@ -81,7 +81,7 @@ test('unidad 4 — En bici a la escuela: cambiar de carril y llegar', async ({ p
   await esperarEscena(page, 'Bici');
   await page.waitForTimeout(900);
   await captura(page, info, 'aventura-u4-bici');
-  // Cambiarse de carril de vez en cuando; el humo nunca castiga, solo hace toser a Caco.
+  // Cambiarse de carril de vez en cuando; el humo nunca castiga, solo hace toser a Mixtle.
   for (const carril of ['arriba', 'abajo', 'arriba', 'abajo']) {
     await page.waitForTimeout(4000);
     await tocar(page, `carril-${carril}`);

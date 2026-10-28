@@ -4,14 +4,14 @@
 
 | Recurso | Dónde está | Fuente | Licencia |
 |---|---|---|---|
-| Caco el cacomixtle (cuerpo, expresiones y cola) | `src/arte/personajes.ts` | Dibujado en código SVG para este proyecto | Original, sin recursos de terceros. La licencia final la decide Eco Urban A.C. |
+| Mixtle el cacomixtle (cuerpo, expresiones y cola) | `src/arte/personajes.ts` | Dibujado en código SVG para este proyecto | Original, sin recursos de terceros. La licencia final la decide Eco Urban A.C. |
 | Ardilla gris mexicana, colibrí y mariposa monarca | `src/arte/personajes.ts` | Dibujado en código SVG para este proyecto | Igual que arriba |
 | Parque con el Nevado de Toluca, nubes, arbusto, árboles, flores, brote, tierra, bolsa | `src/arte/escenario.ts` | Dibujado en código SVG para este proyecto | Igual que arriba |
 | 12 residuos | `src/arte/residuos.ts` | Dibujado en código SVG para este proyecto | Igual que arriba |
 | Botes, tapas e íconos de categoría | `src/arte/botes.ts` | Dibujado en código SVG para este proyecto | Igual que arriba |
 | Íconos de interfaz (voz, música, repetir, etc.) y de la app | `src/arte/iconos.ts`, `public/favicon.svg`, `public/iconos/` | Dibujado en código SVG para este proyecto | Igual que arriba |
 
-Caco es un personaje original: se dibujó a partir de rasgos reales del cacomixtle (*Bassariscus astutus*): cuerpo esbelto gris-pardo, orejas grandes, anillos claros alrededor de los ojos y cola larga con anillos blancos y negros.
+Mixtle es un personaje original: se dibujó a partir de rasgos reales del cacomixtle (*Bassariscus astutus*): cuerpo esbelto gris-pardo, orejas grandes, anillos claros alrededor de los ojos y cola larga con anillos blancos y negros.
 
 ## Música (solo CC0)
 
@@ -25,7 +25,7 @@ Elegida por René en `docs/muestras-musica/` entre candidatas CC0 verificadas en
 
 Las demás candidatas de `docs/muestras-musica/` también son CC0; sus fuentes están en `scripts/musica/candidatas.json`.
 
-## Voz de Caco
+## Voz de Mixtle
 
 | Qué | Detalle | Licencia |
 |---|---|---|

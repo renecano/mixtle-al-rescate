@@ -19,7 +19,7 @@ import { Arte } from '../componentes/Arte';
 import { BannerRespuesta, type DatosBanner } from '../componentes/BannerRespuesta';
 import { BotonGrande } from '../componentes/BotonGrande';
 import { BotonesSistema } from '../componentes/BotonesSistema';
-import { CacoGuia } from '../componentes/CacoGuia';
+import { MixtleGuia } from '../componentes/MixtleGuia';
 import { Modal } from '../componentes/Modal';
 import { ParqueGrupo } from '../componentes/ParqueGrupo';
 import { Ejercicio } from '../ejercicios/Ejercicio';
@@ -51,7 +51,7 @@ export function Leccion() {
     if (!datos) alCamino();
   }, [datos, alCamino]);
 
-  // Caco dice la consigna de cada ejercicio (y la bienvenida en el primero).
+  // Mixtle dice la consigna de cada ejercicio (y la bienvenida en el primero).
   useEffect(() => {
     if (!sesion || !actual) return;
     ponerExpresion('normal');
@@ -111,9 +111,9 @@ export function Leccion() {
       </header>
 
       <div className="flex min-h-0 flex-1 flex-col px-4 pb-[clamp(3rem,8vmin,6rem)]">
-        {/* Caco y su globo siempre en el mismo lugar, sin importar el tamaño del ejercicio. */}
+        {/* Mixtle y su globo siempre en el mismo lugar, sin importar el tamaño del ejercicio. */}
         <div className="flex h-[clamp(7rem,19vmin,12rem)] shrink-0 items-center pl-[2vw]">
-          <CacoGuia alto="clamp(6rem,17vmin,11rem)" sinGlobo={!!banner} />
+          <MixtleGuia alto="clamp(6rem,17vmin,11rem)" sinGlobo={!!banner} />
         </div>
         {/* El ejercicio ocupa y se centra en todo el espacio que queda. */}
         <div className="flex min-h-0 flex-1 items-center justify-center">
@@ -146,7 +146,7 @@ function PreguntaSalir({ alQuedarse, alSalir }: { alQuedarse: () => void; alSali
   }, []);
   return (
     <Modal etiqueta={TEXTOS_APP.leccion.salir}>
-      <CacoGuia alto="clamp(6rem,16vmin,10rem)" />
+      <MixtleGuia alto="clamp(6rem,16vmin,10rem)" />
       <div className="flex flex-wrap justify-center gap-4">
         <BotonGrande color="verde" latir className="h-20 text-[clamp(1.3rem,3vmin,2rem)]" onClick={alQuedarse}>
           {TEXTOS_APP.leccion.salirNo}
@@ -213,7 +213,7 @@ function FinLeccion({ sesion, unidadColor }: { sesion: SesionLeccion; unidadColo
       </div>
       {parque && <ParqueGrupo progreso={parque} className="aspect-[16/6] w-[min(90vw,calc(40vh*16/6))]" />}
       <div className="flex items-center gap-4">
-        <CacoGuia alto="clamp(5rem,13vmin,8rem)" />
+        <MixtleGuia alto="clamp(5rem,13vmin,8rem)" />
         <BotonGrande latir className="h-[clamp(4.5rem,11vmin,6.5rem)] text-[clamp(1.3rem,3vmin,2.2rem)]" icono={<Arte clave="icono-casa" className="size-[1.3em]" />} onClick={() => alCamino()}>
           {TEXTOS_APP.leccion.alCamino}
         </BotonGrande>

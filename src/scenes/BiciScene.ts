@@ -5,7 +5,7 @@ import { TEXTOS_AVENTURAS } from '../contenido/aventuras';
 import { figurasRepetidas, type DatosDiploma } from '../logica/diploma';
 import { sonido } from '../servicios/sonido';
 import { agregarBotonSonido } from '../ui/BotonSonido';
-import { Caco } from '../ui/Caco';
+import { Mixtle } from '../ui/Mixtle';
 import { botonSiguiente, chispas, confeti } from '../ui/efectos';
 import { Narrador } from '../ui/Narrador';
 import { estiloTexto } from '../ui/texto';
@@ -30,14 +30,14 @@ interface Cosa {
 }
 
 /**
- * Aventura de la unidad 4: "En bici a la escuela". Caco pedalea solo; el grupo toca el carril
+ * Aventura de la unidad 4: "En bici a la escuela". Mixtle pedalea solo; el grupo toca el carril
  * de arriba o el de abajo para esquivar las nubes de humo y juntar hojitas. El humo no castiga:
- * Caco tose y propone cambiar de carril.
+ * Mixtle tose y propone cambiar de carril.
  */
 export class BiciScene extends Phaser.Scene {
   private fondos: Phaser.GameObjects.Image[] = [];
   private bici!: Phaser.GameObjects.Container;
-  private caco!: Caco;
+  private mixtle!: Mixtle;
   private narrador!: Narrador;
   private carril: Carril = 'abajo';
   private cosas: Cosa[] = [];
@@ -78,7 +78,7 @@ export class BiciScene extends Phaser.Scene {
     this.crearCarriles();
     this.crearBici();
     this.crearMarcador();
-    this.narrador = new Narrador(this, this.caco, { x: 60, y: 110, ancho: 1120, apuntaA: { x: BICI_X, y: 560 }, tamanoTexto: 44 });
+    this.narrador = new Narrador(this, this.mixtle, { x: 60, y: 110, ancho: 1120, apuntaA: { x: BICI_X, y: 560 }, tamanoTexto: 44 });
     agregarBotonSonido(this);
     this.time.delayedCall(450, () => this.narrador.decir(T.intro, () => (this.andando = true)));
   }
@@ -110,15 +110,15 @@ export class BiciScene extends Phaser.Scene {
   private crearBici(): void {
     const bici = this.add.image(0, 0, 'bici').setOrigin(0.5, 0.92);
     bici.setScale(250 / bici.height);
-    this.caco = new Caco(this, 0, -140, 0.4); // sentado en el asiento
-    this.bici = this.add.container(BICI_X, CARRIL.abajo, [bici, this.caco]).setDepth(50);
+    this.mixtle = new Mixtle(this, 0, -140, 0.4); // sentado en el asiento
+    this.bici = this.add.container(BICI_X, CARRIL.abajo, [bici, this.mixtle]).setDepth(50);
     // Pedaleo: un pequeño vaivén.
-    this.tweens.add({ targets: this.caco, y: -146, duration: 260, yoyo: true, repeat: -1, ease: 'Sine.easeInOut' });
+    this.tweens.add({ targets: this.mixtle, y: -146, duration: 260, yoyo: true, repeat: -1, ease: 'Sine.easeInOut' });
   }
 
   private crearMarcador(): void {
     const g = this.add.graphics().setDepth(600);
-    // Entre el globo de Caco (termina en x≈1180) y los botones de sonido (empiezan en x≈1610).
+    // Entre el globo de Mixtle (termina en x≈1180) y los botones de sonido (empiezan en x≈1610).
     const x = MARCADOR.x;
     g.fillStyle(0xffffff, 0.92).fillRoundedRect(x, 30, 390, 116, 40);
     g.lineStyle(6, hex(PALETA.verde), 1).strokeRoundedRect(x, 30, 390, 116, 40);
@@ -218,7 +218,7 @@ export class BiciScene extends Phaser.Scene {
     sonido.tocar('otraVez');
     this.tweens.add({ targets: cosa.imagen, alpha: 0.35, duration: 300 });
     this.tweens.add({ targets: this.bici, angle: { from: -3, to: 3 }, duration: 90, yoyo: true, repeat: 3, onComplete: () => this.bici.setAngle(0) });
-    // Caco tose y lo dice, pero sin repetirlo a cada rato.
+    // Mixtle tose y lo dice, pero sin repetirlo a cada rato.
     if (this.reloj - this.ultimaTos > 6) {
       this.ultimaTos = this.reloj;
       this.narrador.decir(T.tos);
@@ -237,7 +237,7 @@ export class BiciScene extends Phaser.Scene {
       duration: 1600,
       ease: 'Sine.easeOut',
       onComplete: () => {
-        this.caco.celebrar();
+        this.mixtle.celebrar();
         confeti(this);
         sonido.celebrar();
         this.narrador.decir(T.fin);

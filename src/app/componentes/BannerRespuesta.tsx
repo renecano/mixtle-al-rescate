@@ -3,7 +3,7 @@ import { TEXTOS_APP } from '../../contenido/textosApp';
 import { textoDeLocucion, type Locucion } from '../../voz/locucion';
 import { Arte } from './Arte';
 import { BotonGrande } from './BotonGrande';
-import { CacoFigura } from './CacoFigura';
+import { MixtleFigura } from './MixtleFigura';
 
 export interface DatosBanner {
   tipo: 'bien' | 'casi';
@@ -12,7 +12,7 @@ export interface DatosBanner {
 
 /**
  * Retroalimentación al instante, abajo de la pantalla.
- * Verde: Caco feliz, frase de ánimo y "¡Sigamos!". Naranja: Caco amable, la pista e "Intentar otra vez".
+ * Verde: Mixtle feliz, frase de ánimo y "¡Sigamos!". Naranja: Mixtle amable, la pista e "Intentar otra vez".
  * Nunca hay mensajes que hagan sentir mal.
  */
 export function BannerRespuesta({ banner, alContinuar }: { banner: DatosBanner; alContinuar: () => void }) {
@@ -26,7 +26,7 @@ export function BannerRespuesta({ banner, alContinuar }: { banner: DatosBanner; 
       role="alert"
       data-banner={banner.tipo}
     >
-      <CacoFigura alto="clamp(5.5rem,15vmin,9rem)" expresion={bien ? 'celebrando' : 'pensando'} className="shrink-0" />
+      <MixtleFigura alto="clamp(5.5rem,15vmin,9rem)" expresion={bien ? 'celebrando' : 'pensando'} className="shrink-0" />
       <div className="flex min-w-0 flex-1 items-center gap-3">
         {bien && <Arte clave="icono-estrella" className="size-[clamp(2.5rem,6vmin,4rem)] shrink-0" />}
         <p className="text-[clamp(1.3rem,3vmin,2.3rem)] leading-tight font-black text-white">{textoDeLocucion(banner.texto)}</p>

@@ -45,8 +45,8 @@ describe('números en palabras (para encadenar audios)', () => {
 
 describe('nombre de archivo de cada frase', () => {
   it('es estable (las grabaciones humanas dependen de él)', () => {
-    expect(cyrb53('¡Hola! Soy Caco, el cacomixtle del parque.')).toBe(cyrb53('¡Hola! Soy Caco, el cacomixtle del parque.'));
-    expect(archivoDeFrase('¡Hola! Soy Caco, el cacomixtle del parque.')).toMatch(/^[0-9a-f]{14}\.mp3$/);
+    expect(cyrb53('¡Hola! Soy Mixtle, el cacomixtle del parque.')).toBe(cyrb53('¡Hola! Soy Mixtle, el cacomixtle del parque.'));
+    expect(archivoDeFrase('¡Hola! Soy Mixtle, el cacomixtle del parque.')).toMatch(/^[0-9a-f]{14}\.mp3$/);
     expect(cyrb53('a')).not.toBe(cyrb53('b'));
   });
 
@@ -79,7 +79,7 @@ describe('toda frase narrada tiene su audio', () => {
 
   const sinAudio = (l: Locucion) => planDeLocucion(l, manifiesto).faltantes;
 
-  it('todo lo que dice Caco en la aventura de la unidad 1 se puede decir con audio', () => {
+  it('todo lo que dice Mixtle en la aventura de la unidad 1 se puede decir con audio', () => {
     const locuciones: Locucion[] = [
       ...TEXTOS.intro,
       TEXTOS.nivel1.instruccion,

@@ -1,14 +1,15 @@
 {
-  "$comentario": "Voz de Caco. Elegida por René en docs/muestras-voz (kokoro-alex-normal). Cambiar algo aquí regenera todas las frases con npm run voz:generar.",
+  "$comentario": "Voz de Mixtle. Elegida por René en docs/muestras-voz (kokoro-alex-normal). Cambiar algo aquí regenera todas las frases con npm run voz:generar.",
   "proveedor": "kokoro",
   "voz": "em_alex",
   "ajustes": {
-    "speed": 1.0,
+    "speed": 1,
     "lang": "es-419"
   },
   "pronunciacion": {
-    "$comentario": "Solo cambia cómo se pronuncia en el audio; el texto en pantalla no cambia. Clave: palabra escrita; valor: cómo debe leerla la voz.",
-    "cacomixtle": "cacomistle",
-    "cacomixtles": "cacomistles"
+    "$comentario": "Solo cambia cómo se pronuncia en el audio; el texto en pantalla no cambia. Clave: palabra escrita; valor: cómo debe leerla la voz. \"Mixtle\" suena \"miks-tle\" (con \"ks\", como \"mix\"), igual que la segunda parte de \"cacomixtle\" (confirmado por René). Kokoro es-419: /mˈikstle/ y /kˌakomˈikstle/.",
+    "Mixtle": "Míkstle",
+    "cacomixtle": "cacomíkstle",
+    "cacomixtles": "cacomíkstles"
   }
 }

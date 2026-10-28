@@ -1,6 +1,6 @@
 {
   "frases": [
-    { "id": "saludo", "texto": "¡Hola! Soy Caco, el cacomixtle del parque. ¿Me ayudas a cuidarlo?" },
+    { "id": "saludo", "texto": "¡Hola! Soy Mixtle, el cacomixtle del parque. ¿Me ayudas a cuidarlo?" },
     { "id": "felicitacion", "texto": "¡Muy bien! Lo lograste. ¡Eres un gran guardián del parque!" },
     { "id": "pista", "texto": "¡Casi! Este ya no se puede reciclar. Busca el bote naranja con el dibujo del bote de basura." }
   ],

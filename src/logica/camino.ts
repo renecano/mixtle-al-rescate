@@ -57,7 +57,7 @@ export function estadosDelCamino(nodos: readonly Nodo[], p: ProgresoGrupo, desbl
   });
 }
 
-/** La siguiente parada por hacer (donde se para Caco a señalar), o null si ya terminó todo. */
+/** La siguiente parada por hacer (donde se para Mixtle a señalar), o null si ya terminó todo. */
 export function siguienteNodo(nodos: readonly Nodo[], p: ProgresoGrupo): number | null {
   const i = nodos.findIndex((n) => !nodoHecho(n, p));
   return i === -1 ? null : i;

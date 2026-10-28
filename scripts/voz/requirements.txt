@@ -1,4 +1,4 @@
-# Herramientas para generar la voz de Caco (solo en la computadora de quien prepara el juego).
+# Herramientas para generar la voz de Mixtle (solo en la computadora de quien prepara el juego).
 piper-tts==1.8.0
 kokoro-onnx==0.6.1
 edge-tts==7.3.1

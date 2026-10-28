@@ -112,7 +112,7 @@ test('aventura de la unidad 1 completa: grupo → facilitador → intro → 3 ni
       expect((await resumen(page)).residuosSeparados).toBe(RESIDUOS.length);
     }
     if (i === 1) {
-      // Llega al suelo sin elegir bote: Caco avisa y vuelve a caer; nada se pierde.
+      // Llega al suelo sin elegir bote: Mixtle avisa y vuelve a caer; nada se pierde.
       await page.waitForTimeout(11_000);
       await esperarTocable(page, `cae-${id}`);
     }
@@ -137,7 +137,7 @@ test('aventura de la unidad 1 completa: grupo → facilitador → intro → 3 ni
   await tocarBoton(page, /¡Sigamos!/);
   await expect(page.locator('[data-nodo="aventura:u1"]')).toHaveAttribute('data-estado', 'hecho');
 
-  // Caco habló siempre con su voz grabada (nunca con la del navegador) y sonó la música.
+  // Mixtle habló siempre con su voz grabada (nunca con la del navegador) y sonó la música.
   const cuentaVoz = await page.evaluate(() => window.__caco.voz());
   info.annotations.push({ type: 'voz', description: JSON.stringify(cuentaVoz) });
   expect(cuentaVoz.conAudio).toBeGreaterThan(20);
@@ -155,13 +155,13 @@ test('el botón de sonido se recuerda y el juego no se rompe sin localStorage', 
   await abrir(page);
   await esperarPantalla(page, 'inicio');
   await tocarBoton(page, 'Apagar la voz');
-  await expect.poll(() => page.evaluate(() => localStorage.getItem('caco-al-rescate:sonido'))).toBe('no');
+  await expect.poll(() => page.evaluate(() => localStorage.getItem('mixtle-al-rescate:sonido'))).toBe('no');
   await page.reload();
   await page.waitForFunction(() => !!window.__caco);
   await expect(page.getByRole('button', { name: 'Encender la voz' })).toBeVisible();
-  expect(await page.evaluate(() => localStorage.getItem('caco-al-rescate:sonido'))).toBe('no');
+  expect(await page.evaluate(() => localStorage.getItem('mixtle-al-rescate:sonido'))).toBe('no');
   // Lo único guardado es esa preferencia.
-  expect(await page.evaluate(() => Object.keys(localStorage))).toEqual(['caco-al-rescate:sonido']);
+  expect(await page.evaluate(() => Object.keys(localStorage))).toEqual(['mixtle-al-rescate:sonido']);
 
   // Navegador con almacenamiento bloqueado: el juego arranca igual.
   const bloqueada = await context.newPage();

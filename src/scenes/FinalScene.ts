@@ -9,14 +9,14 @@ import { sonido } from '../servicios/sonido';
 import { Colibri, Mariposa } from '../ui/animales';
 import { Boton } from '../ui/Boton';
 import { agregarBotonSonido } from '../ui/BotonSonido';
-import { Caco } from '../ui/Caco';
+import { Mixtle } from '../ui/Mixtle';
 import { chispas, confeti } from '../ui/efectos';
 import { agregarParque } from '../ui/fondo';
 import { Narrador } from '../ui/Narrador';
 import { estiloTexto } from '../ui/texto';
 import { entrar, salirDeAventura } from '../ui/transicion';
 
-/** El diploma se dibuja en las capas 450-452: encima del confeti (400) y debajo del globo de Caco (500). */
+/** El diploma se dibuja en las capas 450-452: encima del confeti (400) y debajo del globo de Mixtle (500). */
 const DIPLOMA = { x: 1100, y: 440, ancho: 1160, alto: 740 };
 
 interface Columna {
@@ -46,9 +46,9 @@ export class FinalScene extends Phaser.Scene {
     const izquierda = this.columna(DIPLOMA.x - 270, yDato, datos.izquierda, PALETA.azul);
     const derecha = this.columna(DIPLOMA.x + 270, yDato, datos.derecha, PALETA.naranja);
 
-    const caco = new Caco(this, 230, ALTO - 20, 0.85).setDepth(30);
-    caco.ponerFeliz(true);
-    const narrador = new Narrador(this, caco, { x: 440, y: 845, ancho: 890, apuntaA: { x: 260, y: 860 }, tamanoTexto: 38 });
+    const mixtle = new Mixtle(this, 230, ALTO - 20, 0.85).setDepth(30);
+    mixtle.ponerFeliz(true);
+    const narrador = new Narrador(this, mixtle, { x: 440, y: 845, ancho: 890, apuntaA: { x: 260, y: 860 }, tamanoTexto: 38 });
 
     new Colibri(this, 1810, 560, 0.6, true).setDepth(30);
     [
@@ -83,7 +83,7 @@ export class FinalScene extends Phaser.Scene {
         this.contar(derecha, () => {
           sonido.celebrar();
           confeti(this, 120);
-          caco.celebrar();
+          mixtle.celebrar();
           chispas(this, DIPLOMA.x, DIPLOMA.y - 250, 16, 300);
           narrador.decir(datos.narracion);
           terminar.setVisible(true).latir();

@@ -44,7 +44,7 @@ export function Encabezado({ grupo, alAlbum, alCambiarGrupo, alFacilitador }: Pr
         onPointerCancel={cancelar}
         onContextMenu={(e) => e.preventDefault()}
       >
-        <Arte clave="caco" className="mt-[30%] w-[130%] max-w-none" />
+        <Arte clave="mixtle" className="mt-[30%] w-[130%] max-w-none" />
       </button>
 
       <div className="flex min-w-0 items-center gap-2 rounded-full border-4 border-white px-3 py-1" style={{ backgroundColor: grupo.color }} data-grupo={grupo.id}>

@@ -11,10 +11,10 @@ import { progreso } from '../logica/progreso';
 import { sonido } from '../servicios/sonido';
 import { Bote } from '../ui/Bote';
 import { agregarBotonSonido } from '../ui/BotonSonido';
-import { Caco } from '../ui/Caco';
+import { Mixtle } from '../ui/Mixtle';
 import { botonSiguiente, chispas, confeti } from '../ui/efectos';
 import { agregarParque } from '../ui/fondo';
-import { BOLSA, CACO_NIVEL } from '../ui/layoutParque';
+import { BOLSA, MIXTLE_NIVEL } from '../ui/layoutParque';
 import { Narrador } from '../ui/Narrador';
 import { estiloTexto } from '../ui/texto';
 import { entrar, irA } from '../ui/transicion';
@@ -30,7 +30,7 @@ export class Nivel2Scene extends Phaser.Scene {
   private cola: Residuo[] = [];
   private actual: { residuo: Residuo; imagen: Phaser.GameObjects.Image } | null = null;
   private botes: Bote[] = [];
-  private caco!: Caco;
+  private mixtle!: Mixtle;
   private narrador!: Narrador;
   private contador!: Phaser.GameObjects.Text;
   private estado: Estado = 'animando';
@@ -51,8 +51,8 @@ export class Nivel2Scene extends Phaser.Scene {
     this.aciertos = 0;
     this.actual = null;
 
-    this.caco = new Caco(this, CACO_NIVEL.x, CACO_NIVEL.y, CACO_NIVEL.escala).setDepth(30);
-    this.narrador = new Narrador(this, this.caco, { x: 40, y: 300, ancho: 820, apuntaA: { x: 230, y: 900 }, tamanoTexto: 46 });
+    this.mixtle = new Mixtle(this, MIXTLE_NIVEL.x, MIXTLE_NIVEL.y, MIXTLE_NIVEL.escala).setDepth(30);
+    this.narrador = new Narrador(this, this.mixtle, { x: 40, y: 300, ancho: 820, apuntaA: { x: 230, y: 900 }, tamanoTexto: 46 });
     this.crearBolsa();
     this.crearBotes();
     this.crearPedestal();
@@ -121,7 +121,7 @@ export class Nivel2Scene extends Phaser.Scene {
       if (bote) this.soltarEn(bote);
       else {
         this.regresar(obj);
-        // Un toque sin arrastrar: Caco repite la pregunta.
+        // Un toque sin arrastrar: Mixtle repite la pregunta.
         if (!movio) this.narrador.decir(TEXTOS.nivel2.pregunta(this.actual.residuo.nombre));
       }
     });
@@ -138,7 +138,7 @@ export class Nivel2Scene extends Phaser.Scene {
       this.terminar();
       return;
     }
-    // Sale de la bolsa de Caco y llega al centro.
+    // Sale de la bolsa de Mixtle y llega al centro.
     const imagen = this.add.image(BOLSA.x, BOLSA.y - 90, claveImagenResiduo(residuo.imagen)).setDepth(700);
     imagen.setScale(this.escalaResiduo(imagen) * 0.3).setName(`residuo-${residuo.id}`);
     this.actual = { residuo, imagen };
@@ -221,7 +221,7 @@ export class Nivel2Scene extends Phaser.Scene {
             bote.celebrar();
             sonido.tocar('acierto');
             chispas(this, boca.x, boca.y - 80, 12, 160);
-            this.caco.celebrar();
+            this.mixtle.celebrar();
             const lista = TEXTOS.nivel2.celebraciones;
             const celebracion = lista[this.aciertos % lista.length]!;
             this.aciertos += 1;
@@ -258,7 +258,7 @@ export class Nivel2Scene extends Phaser.Scene {
   private terminar(): void {
     if (this.estado === 'fin') return;
     this.estado = 'fin';
-    this.caco.celebrar();
+    this.mixtle.celebrar();
     confeti(this);
     sonido.celebrar();
     this.narrador.decir(TEXTOS.nivel2.fin);

@@ -4,7 +4,7 @@ import { guardarInterruptor, leerInterruptorApagado } from '../../servicios/pref
 
 export type Pantalla = 'inicio' | 'grupos' | 'camino' | 'leccion' | 'aventura' | 'album';
 
-const CLAVE_PROYECTOR = 'caco-al-rescate:proyector';
+const CLAVE_PROYECTOR = 'mixtle-al-rescate:proyector';
 
 interface EstadoApp {
   pantalla: Pantalla;

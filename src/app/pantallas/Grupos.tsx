@@ -5,7 +5,7 @@ import { COLORES_GRUPO, LARGO_ETIQUETA, limpiarEtiqueta, MASCOTAS, nombreDelGrup
 import { Arte } from '../componentes/Arte';
 import { BotonesSistema } from '../componentes/BotonesSistema';
 import { BotonGrande } from '../componentes/BotonGrande';
-import { CacoGuia } from '../componentes/CacoGuia';
+import { MixtleGuia } from '../componentes/MixtleGuia';
 import { Modal } from '../componentes/Modal';
 import { useApp } from '../estado/app';
 import { useGrupos } from '../estado/grupos';
@@ -70,7 +70,7 @@ export function Grupos() {
       </div>
       <p className="max-w-[44rem] rounded-2xl bg-white/80 px-4 py-2 text-center font-bold">{guardadoOk ? TEXTOS_APP.grupos.soloAqui : TEXTOS_APP.grupos.sinGuardar}</p>
       <div className="fixed bottom-3 left-3">
-        <CacoGuia alto="clamp(5rem,12vmin,8rem)" soloMientrasHabla />
+        <MixtleGuia alto="clamp(5rem,12vmin,8rem)" soloMientrasHabla />
       </div>
       {creando && <CrearGrupo alCerrar={() => setCreando(false)} />}
     </main>

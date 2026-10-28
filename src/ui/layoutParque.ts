@@ -2,9 +2,9 @@ import type { Animal } from '../data/animales';
 import type { ZonaReparto } from '../logica/reparto';
 
 /** Posiciones en el parque (px del juego, 1920×1080). Se comparten entre la intro y los niveles. */
-export const CACO_NIVEL = { x: 200, y: 1065, escala: 0.72 };
+export const MIXTLE_NIVEL = { x: 200, y: 1065, escala: 0.72 };
 export const BOLSA = { x: 400, y: 1000 };
-/** Globo de Caco en los niveles del parque: arriba de él, sin tapar a los animales. */
+/** Globo de Mixtle en los niveles del parque: arriba de él, sin tapar a los animales. */
 export const GLOBO_NIVEL = { x: 40, y: 250, ancho: 860, apuntaA: { x: 230, y: 900 }, tamanoTexto: 48 };
 
 export const POS_ANIMALES = {

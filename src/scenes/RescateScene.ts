@@ -12,11 +12,11 @@ import { sonido } from '../servicios/sonido';
 import { Ardilla, Colibri, Mariposa } from '../ui/animales';
 import { Bote } from '../ui/Bote';
 import { agregarBotonSonido } from '../ui/BotonSonido';
-import { Caco } from '../ui/Caco';
+import { Mixtle } from '../ui/Mixtle';
 import { Clasificador, pedestal } from '../ui/clasificador';
 import { botonSiguiente, chispas, confeti } from '../ui/efectos';
 import { agregarParque } from '../ui/fondo';
-import { BOLSA, CACO_NIVEL, GLOBO_NIVEL } from '../ui/layoutParque';
+import { BOLSA, MIXTLE_NIVEL, GLOBO_NIVEL } from '../ui/layoutParque';
 import { Narrador } from '../ui/Narrador';
 import { estiloTexto } from '../ui/texto';
 import { entrar, irA } from '../ui/transicion';
@@ -48,7 +48,7 @@ interface Animal {
  */
 export class RescateScene extends Phaser.Scene {
   private animales: Animal[] = [];
-  private caco!: Caco;
+  private mixtle!: Mixtle;
   private narrador!: Narrador;
   private contador!: Phaser.GameObjects.Text;
   private recogidos: Residuo[] = [];
@@ -70,8 +70,8 @@ export class RescateScene extends Phaser.Scene {
     this.ocupado = false;
     this.marcar();
     agregarParque(this);
-    this.caco = new Caco(this, CACO_NIVEL.x, CACO_NIVEL.y, CACO_NIVEL.escala).setDepth(30);
-    this.narrador = new Narrador(this, this.caco, GLOBO_NIVEL);
+    this.mixtle = new Mixtle(this, MIXTLE_NIVEL.x, MIXTLE_NIVEL.y, MIXTLE_NIVEL.escala).setDepth(30);
+    this.narrador = new Narrador(this, this.mixtle, GLOBO_NIVEL);
     this.crearBolsa();
     this.crearAnimales();
     agregarBotonSonido(this);
@@ -186,7 +186,7 @@ export class RescateScene extends Phaser.Scene {
         const bote = botes.find((b) => b.categoria.id === d.id)!;
         bote.abrir();
         bote.celebrar();
-        this.caco.celebrar();
+        this.mixtle.celebrar();
         this.separados += 1;
         this.marcar();
         const lista = TEXTOS.nivel2.celebraciones;
@@ -203,7 +203,7 @@ export class RescateScene extends Phaser.Scene {
   }
 
   private terminar(): void {
-    this.caco.celebrar();
+    this.mixtle.celebrar();
     confeti(this);
     sonido.celebrar();
     this.narrador.decir(T.fin);
@@ -216,7 +216,7 @@ export class RescateScene extends Phaser.Scene {
     botonSiguiente(this, () => irA(this, 'Final', datos), T.botonDiploma, { x: ANCHO - 300, y: 300 });
   }
 
-  /** Si nadie toca nada por un rato, Caco ayuda (sin prisa y sin castigo). */
+  /** Si nadie toca nada por un rato, Mixtle ayuda (sin prisa y sin castigo). */
   private reiniciarPista(): void {
     this.pista?.remove();
     this.pista = this.time.addEvent({

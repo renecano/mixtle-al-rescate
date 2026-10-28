@@ -1,16 +1,18 @@
 import type { Locucion } from '../voz/locucion';
 
 /**
- * Todo lo que Caco dice y lo que se lee en pantalla. Se puede cambiar aquí sin tocar la lógica.
+ * Todo lo que Mixtle dice y lo que se lee en pantalla. Se puede cambiar aquí sin tocar la lógica.
  * Frases cortas: el público es de 6 a 8 años y muchos todavía leen con dificultad.
  */
 export const TEXTOS = {
   inicio: {
-    titulo: 'Caco\nal rescate',
+    titulo: 'Mixtle\nal rescate',
+    /** Lema del juego, debajo del nombre. */
+    lema: 'Guardianes del parque',
     jugar: '¡Jugar!',
   },
   intro: [
-    '¡Hola! Soy Caco, el cacomixtle del parque.',
+    '¡Hola! Soy Mixtle, el cacomixtle del parque.',
     'El parque está lleno de basura y los animales están tristes.',
     '¿Me ayudas a rescatarlos?',
   ],
@@ -52,9 +54,9 @@ export const TEXTOS = {
       { numero: animales, antesDeSustantivo: true },
       animales === 1 ? 'animal.' : 'animales.',
     ],
-    firma: 'Caco, el cacomixtle',
+    firma: 'Mixtle, el cacomixtle',
     fecha: 'Fecha',
-    pie: 'Caco al rescate · Eco Urban A.C.',
+    pie: 'Mixtle al rescate · Eco Urban A.C.',
     jugarOtraVez: 'Volver al camino',
   },
   seguir: '¡Sigamos!',

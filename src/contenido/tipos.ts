@@ -2,11 +2,11 @@
  * Forma del contenido de las lecciones. Cada lección es SOLO DATOS: el motor de ejercicios
  * (src/logica/leccion.ts y src/app/ejercicios/) sabe mostrar y calificar cada tipo.
  *
- * Todo texto que aparece aquí se narra con la voz de Caco (npm run voz:generar lo junta solo).
+ * Todo texto que aparece aquí se narra con la voz de Mixtle (npm run voz:generar lo junta solo).
  * `arte` es la clave de un dibujo de src/arte (ver la galería: ?galeria).
  */
 
-/** Una tarjeta ilustrada. `nombre` es cómo la dice Caco (y su texto de apoyo, si se muestra). */
+/** Una tarjeta ilustrada. `nombre` es cómo la dice Mixtle (y su texto de apoyo, si se muestra). */
 export interface Tarjeta {
   id: string;
   arte: string;
@@ -15,7 +15,7 @@ export interface Tarjeta {
 
 interface Base {
   id: string;
-  /** Lo que Caco pide (se narra y se muestra como subtítulo). */
+  /** Lo que Mixtle pide (se narra y se muestra como subtítulo). */
   consigna: string;
   /** Pista amable si se equivoca (se narra). */
   pista: string;
@@ -50,7 +50,7 @@ export interface Parejas extends Base {
   pares: { izquierda: Tarjeta; derecha: Tarjeta }[];
 }
 
-/** 4. ¿Sí o no?: Caco describe una acción ilustrada y se toca la carita feliz o la triste. */
+/** 4. ¿Sí o no?: Mixtle describe una acción ilustrada y se toca la carita feliz o la triste. */
 export interface SiNo extends Base {
   tipo: 'si-no';
   arte: string;
@@ -78,7 +78,7 @@ export interface EncuentraError extends Base {
   objetos: { id: string; arte: string; nombre: string; x: number; y: number; ancho: number; mal: boolean }[];
 }
 
-/** 7. Escucha y toca: Caco nombra algo y se toca su dibujo, sin texto en pantalla. */
+/** 7. Escucha y toca: Mixtle nombra algo y se toca su dibujo, sin texto en pantalla. */
 export interface EscuchaToca extends Base {
   tipo: 'escucha-toca';
   opciones: Tarjeta[];
@@ -93,7 +93,7 @@ export interface Leccion {
   titulo: string;
   /** Dibujo de la burbuja en el camino. */
   arte: string;
-  /** Lo que dice Caco al empezar (corto). */
+  /** Lo que dice Mixtle al empezar (corto). */
   bienvenida: string;
   ejercicios: Ejercicio[];
 }

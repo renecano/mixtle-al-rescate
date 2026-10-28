@@ -5,10 +5,10 @@ import { figurasRepetidas, type DatosDiploma } from '../logica/diploma';
 import { sonido } from '../servicios/sonido';
 import { Ardilla, Colibri, Mariposa } from '../ui/animales';
 import { agregarBotonSonido } from '../ui/BotonSonido';
-import { Caco } from '../ui/Caco';
+import { Mixtle } from '../ui/Mixtle';
 import { botonSiguiente, chispas, confeti } from '../ui/efectos';
 import { agregarParque } from '../ui/fondo';
-import { CACO_NIVEL, GLOBO_NIVEL } from '../ui/layoutParque';
+import { MIXTLE_NIVEL, GLOBO_NIVEL } from '../ui/layoutParque';
 import { Narrador } from '../ui/Narrador';
 import { entrar, irA } from '../ui/transicion';
 
@@ -22,7 +22,7 @@ const ETAPAS = [
   { clave: 'arbol', alto: 320 },
 ] as const;
 
-/** Lugares del bosquecito: en el pasto, a la derecha de Caco. */
+/** Lugares del bosquecito: en el pasto, a la derecha de Mixtle. */
 const LUGARES = [
   { x: 720, y: 800 },
   { x: 980, y: 860 },
@@ -52,7 +52,7 @@ interface Lugar {
  */
 export class BosqueScene extends Phaser.Scene {
   private lugares: Lugar[] = [];
-  private caco!: Caco;
+  private mixtle!: Mixtle;
   private narrador!: Narrador;
   private pista: Phaser.Time.TimerEvent | null = null;
   private sembrados = 0;
@@ -75,8 +75,8 @@ export class BosqueScene extends Phaser.Scene {
     this.terminado = false;
     this.marcar();
     agregarParque(this);
-    this.caco = new Caco(this, CACO_NIVEL.x, CACO_NIVEL.y, CACO_NIVEL.escala).setDepth(30);
-    this.narrador = new Narrador(this, this.caco, GLOBO_NIVEL);
+    this.mixtle = new Mixtle(this, MIXTLE_NIVEL.x, MIXTLE_NIVEL.y, MIXTLE_NIVEL.escala).setDepth(30);
+    this.narrador = new Narrador(this, this.mixtle, GLOBO_NIVEL);
     this.crearLugares();
     agregarBotonSonido(this);
     this.time.delayedCall(450, () => this.narrador.decir(T.intro));
@@ -180,7 +180,7 @@ export class BosqueScene extends Phaser.Scene {
   }
 
   private terminar(): void {
-    this.caco.celebrar();
+    this.mixtle.celebrar();
     confeti(this);
     sonido.celebrar();
     this.narrador.decir(T.fin);
@@ -193,7 +193,7 @@ export class BosqueScene extends Phaser.Scene {
     botonSiguiente(this, () => irA(this, 'Final', datos), T.botonDiploma, { x: ANCHO - 300, y: 300 });
   }
 
-  /** Si nadie toca nada por un rato, Caco señala qué sigue (sin prisa y sin castigo). */
+  /** Si nadie toca nada por un rato, Mixtle señala qué sigue (sin prisa y sin castigo). */
   private reiniciarPista(): void {
     this.pista?.remove();
     this.pista = this.time.addEvent({

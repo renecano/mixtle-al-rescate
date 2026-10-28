@@ -7,7 +7,7 @@ import { mascota } from '../../logica/grupos';
 import { sonido } from '../../servicios/sonido';
 import { Arte } from '../componentes/Arte';
 import { BotonGrande } from '../componentes/BotonGrande';
-import { CacoGuia } from '../componentes/CacoGuia';
+import { MixtleGuia } from '../componentes/MixtleGuia';
 import { Encabezado } from '../componentes/Encabezado';
 import { Modal } from '../componentes/Modal';
 import { PanelFacilitador } from '../componentes/PanelFacilitador';
@@ -84,13 +84,13 @@ export function Camino() {
             return (
               <Fragment key={n.id}>
                 {nuevaUnidad && <EncabezadoUnidad unidadId={n.unidad.id} />}
-                {/* scroll-mt: al desplazarse a la siguiente parada queda espacio para el globo de Caco bajo el encabezado. */}
+                {/* scroll-mt: al desplazarse a la siguiente parada queda espacio para el globo de Mixtle bajo el encabezado. */}
                 <div ref={esSiguiente ? siguiente : undefined} className={`relative h-[clamp(7.5rem,17vmin,11rem)] w-full scroll-mt-[clamp(10rem,24vmin,15rem)] scroll-mb-8 ${esSiguiente ? 'z-10' : ''}`}>
                   <div className="absolute top-1/2 -translate-x-1/2 -translate-y-1/2" style={{ left: `${x}%` }}>
                     <BurbujaNodo nodo={n} estado={estados[i]!} siguiente={esSiguiente} alTocar={() => tocar(n, estados[i]!)} hecho={estados[i] === 'hecho'} />
                   </div>
                   {esSiguiente && (
-                    // Un solo Caco: el que señala la siguiente parada es el que habla, con su globo a un lado,
+                    // Un solo Mixtle: el que señala la siguiente parada es el que habla, con su globo a un lado,
                     // del lado contrario de la parada (el camino zigzaguea: ahí siempre hay espacio libre).
                     <motion.div
                       // w-max: el globo conserva su ancho (si no, se encoge al espacio que queda en la columna).
@@ -99,7 +99,7 @@ export function Camino() {
                       initial={{ opacity: 0, x: x > 50 ? -30 : 30 }}
                       animate={{ opacity: 1, x: 0 }}
                     >
-                      <CacoGuia
+                      <MixtleGuia
                         alto="clamp(7rem,17vmin,11rem)"
                         globo={x > 50 ? 'izquierda' : 'derecha'}
                         anchoGlobo="min(22rem,26vw)"
@@ -114,10 +114,10 @@ export function Camino() {
               </Fragment>
             );
           })}
-          {/* Camino terminado: no hay parada que señalar; Caco habla al final del camino. */}
+          {/* Camino terminado: no hay parada que señalar; Mixtle habla al final del camino. */}
           {indiceSiguiente === null && (
             <div ref={siguiente} className="flex w-full justify-center pt-4">
-              <CacoGuia alto="clamp(7rem,17vmin,11rem)" globo="arriba" anchoGlobo="min(28rem,60vw)" expresionFija="celebrando" soloMientrasHabla />
+              <MixtleGuia alto="clamp(7rem,17vmin,11rem)" globo="arriba" anchoGlobo="min(28rem,60vw)" expresionFija="celebrando" soloMientrasHabla />
             </div>
           )}
         </div>
@@ -175,7 +175,7 @@ function BurbujaNodo({ nodo, estado, siguiente, hecho, alTocar }: { nodo: Nodo; 
         animate={siguiente ? { scale: [1, 1.08, 1] } : {}}
         transition={siguiente ? { duration: 1.4, repeat: Infinity } : {}}
         whileTap={{ scale: 0.92 }}
-        // scroll-mb: al desplazarse hacia la parada, queda por encima de Caco (fijo abajo a la izquierda).
+        // scroll-mb: al desplazarse hacia la parada, queda por encima de Mixtle (fijo abajo a la izquierda).
         className={`relative grid scroll-mt-[9rem] scroll-mb-[clamp(10rem,26vmin,16rem)] cursor-pointer place-items-center border-[6px] shadow-[0_0.5rem_0_rgba(18,61,43,0.3)] ${nodo.tipo === 'cofre' ? 'rounded-[1.5rem] bg-transparent shadow-none' : 'rounded-full'} ${hecho ? 'border-[#FFD23F]' : 'border-white'}`}
         style={{ width: tamano, height: tamano, backgroundColor: nodo.tipo === 'cofre' ? undefined : color }}
       >
@@ -216,7 +216,7 @@ function ModalCofre({ alAbrir, alCerrar }: { alAbrir: () => void; alCerrar: () =
           <Arte clave="hojita" className="size-[1.2em]" />+{HOJITAS_COFRE}
         </div>
       )}
-      <CacoGuia alto="clamp(5rem,13vmin,8rem)" />
+      <MixtleGuia alto="clamp(5rem,13vmin,8rem)" />
       <BotonGrande
         latir
         className="h-20 text-[clamp(1.4rem,3.2vmin,2.2rem)]"
@@ -247,7 +247,7 @@ function ModalEstampa({ id, alCerrar }: { id: string; alCerrar: () => void }) {
         <Arte clave={u.estampa.arte} className="max-h-full max-w-full object-contain" />
       </motion.div>
       <p className="text-[clamp(1.6rem,4vmin,2.6rem)] font-black text-verde">{u.estampa.nombre}</p>
-      <CacoGuia alto="clamp(5rem,13vmin,8rem)" />
+      <MixtleGuia alto="clamp(5rem,13vmin,8rem)" />
       <BotonGrande latir className="h-20 text-[clamp(1.4rem,3.2vmin,2.2rem)]" onClick={alCerrar}>
         {TEXTOS_APP.cofre.seguir}
       </BotonGrande>

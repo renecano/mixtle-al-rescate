@@ -5,7 +5,7 @@ import { UNIDADES } from '../../contenido/unidades';
 import { Arte } from '../componentes/Arte';
 import { BotonesSistema } from '../componentes/BotonesSistema';
 import { BotonGrande } from '../componentes/BotonGrande';
-import { CacoGuia } from '../componentes/CacoGuia';
+import { MixtleGuia } from '../componentes/MixtleGuia';
 import { useApp } from '../estado/app';
 import { useGrupoActual } from '../estado/grupos';
 import { callar, decir } from '../estado/narrador';
@@ -55,7 +55,7 @@ export function Album() {
         })}
       </div>
       <div className="fixed bottom-3 left-3">
-        <CacoGuia alto="clamp(5rem,12vmin,8rem)" soloMientrasHabla />
+        <MixtleGuia alto="clamp(5rem,12vmin,8rem)" soloMientrasHabla />
       </div>
     </main>
   );

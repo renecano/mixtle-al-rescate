@@ -166,7 +166,7 @@ test('camino, lección y álbum: cada botón mide al menos 64 px reales', async 
   await crearGrupo(page, 'colibri');
   const revisar = async (donde: string) => {
     for (const b of await page.locator('main button:visible, header button:visible').all()) {
-      // Algunos botones se van solos mientras se miden (el de repetir del globo de Caco se oculta
+      // Algunos botones se van solos mientras se miden (el de repetir del globo de Mixtle se oculta
       // al terminar de hablar): si ya no está, se salta en lugar de esperarlo hasta el límite.
       const caja = await b.boundingBox({ timeout: 2000 }).catch(() => null);
       if (!caja) continue;

@@ -5,7 +5,7 @@ import { TEXTOS_APP } from '../../contenido/textosApp';
 import { unidadPorId } from '../../contenido/unidades';
 import { musica } from '../../servicios/audio/motor';
 import { BotonGrande } from '../componentes/BotonGrande';
-import { CacoGuia } from '../componentes/CacoGuia';
+import { MixtleGuia } from '../componentes/MixtleGuia';
 import { Modal } from '../componentes/Modal';
 import { useApp } from '../estado/app';
 import { useGrupos } from '../estado/grupos';
@@ -81,7 +81,7 @@ export function Aventura() {
       )}
       {preguntaSalir && (
         <Modal etiqueta={TEXTOS_APP.leccion.salir}>
-          <CacoGuia alto="clamp(6rem,16vmin,10rem)" />
+          <MixtleGuia alto="clamp(6rem,16vmin,10rem)" />
           <div className="flex flex-wrap justify-center gap-4">
             <BotonGrande color="verde" latir className="h-20 text-[clamp(1.3rem,3vmin,2rem)]" onClick={() => setPreguntaSalir(false)}>
               {TEXTOS_APP.leccion.salirNo}

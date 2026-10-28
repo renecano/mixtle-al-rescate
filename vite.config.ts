@@ -14,9 +14,9 @@ export default defineConfig({
       injectRegister: 'auto',
       includeAssets: ['favicon.svg', 'iconos/*.png'],
       manifest: {
-        name: 'Caco al rescate',
-        short_name: 'Caco',
-        description: 'Aprende a cuidar el parque, a sus animales y a separar la basura con Caco el cacomixtle.',
+        name: 'Mixtle al rescate',
+        short_name: 'Mixtle',
+        description: 'Guardianes del parque: aprende a cuidar el parque, a sus animales y a separar la basura con Mixtle el cacomixtle.',
         lang: 'es-MX',
         start_url: './',
         scope: './',
@@ -34,13 +34,13 @@ export default defineConfig({
         // Todo el juego (código, fuente, arte, voz y música) queda disponible sin conexión.
         globPatterns: ['**/*.{js,css,html,svg,png,woff2,mp3,json}'],
         // La lista de audios va aparte: primero la de internet (siempre la más nueva) y, sin conexión,
-        // la última guardada. Así una versión vieja en caché nunca deja a Caco con la lista vieja.
+        // la última guardada. Así una versión vieja en caché nunca deja a Mixtle con la lista vieja.
         globIgnores: ['**/voz/manifiesto.json'],
         runtimeCaching: [
           {
             urlPattern: /\/voz\/manifiesto\.json$/,
             handler: 'NetworkFirst',
-            options: { cacheName: 'caco-voz-manifiesto', networkTimeoutSeconds: 4 },
+            options: { cacheName: 'mixtle-voz-manifiesto', networkTimeoutSeconds: 4 },
           },
         ],
         maximumFileSizeToCacheInBytes: 3 * 1024 * 1024,

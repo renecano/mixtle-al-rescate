@@ -20,7 +20,7 @@ export class BootScene extends Phaser.Scene {
     const marco = this.add.graphics();
     marco.fillStyle(0xffffff, 0.25).fillRoundedRect(ANCHO / 2 - ancho / 2, ALTO / 2 - 24, ancho, 48, 24);
     const barra = this.add.graphics();
-    this.add.text(ANCHO / 2, ALTO / 2 - 90, 'Caco al rescate', estiloTexto(72, PALETA.blanco)).setOrigin(0.5);
+    this.add.text(ANCHO / 2, ALTO / 2 - 90, 'Mixtle al rescate', estiloTexto(72, PALETA.blanco)).setOrigin(0.5);
 
     this.load.on('progress', (p: number) => {
       barra.clear();

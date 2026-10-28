@@ -34,7 +34,7 @@ function botonInterruptor(scene: Phaser.Scene, op: Opciones): void {
 
 /**
  * Botones de audio arriba a la derecha en todas las pantallas de las aventuras:
- * la voz de Caco (con los efectos) y la música, por separado.
+ * la voz de Mixtle (con los efectos) y la música, por separado.
  */
 export function agregarBotonSonido(scene: Phaser.Scene, x = ANCHO - 92, y = 88): void {
   botonInterruptor(scene, { interruptor: estadoSonido, x, y, iconos: ['icono-sonido', 'icono-mudo'], color: PALETA.azul, nombre: 'sonido' });

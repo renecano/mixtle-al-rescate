@@ -35,7 +35,7 @@ export class Interruptor {
   }
 }
 
-/** Voz de Caco y efectos de sonido. */
+/** Voz de Mixtle y efectos de sonido. */
 export const estadoSonido = new Interruptor(CLAVES.sonido);
 /** Música de fondo (botón aparte, como pide el diseño). */
 export const estadoMusica = new Interruptor(CLAVES.musica);

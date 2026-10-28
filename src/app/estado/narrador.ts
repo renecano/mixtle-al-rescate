@@ -1,14 +1,14 @@
 import { create } from 'zustand';
 import { voz } from '../../servicios/voz';
 import { textoDeLocucion, type Locucion } from '../../voz/locucion';
-import type { ExpresionCaco } from '../componentes/CacoFigura';
+import type { ExpresionMixtle } from '../componentes/MixtleFigura';
 
 interface EstadoNarrador {
-  /** Lo que dijo Caco por última vez (subtítulo en pantalla). */
+  /** Lo que dijo Mixtle por última vez (subtítulo en pantalla). */
   subtitulo: string;
   hablando: boolean;
-  /** Cara de Caco cuando no está hablando. */
-  expresion: ExpresionCaco;
+  /** Cara de Mixtle cuando no está hablando. */
+  expresion: ExpresionMixtle;
   ultima: Locucion | null;
 }
 
@@ -17,10 +17,10 @@ export const useNarrador = create<EstadoNarrador>(() => ({ subtitulo: '', hablan
 let turno = 0;
 
 /**
- * Caco dice algo en las pantallas de React (voz + subtítulo). `alTerminar` se llama una vez:
+ * Mixtle dice algo en las pantallas de React (voz + subtítulo). `alTerminar` se llama una vez:
  * al acabar la voz o, si se interrumpe o no hay voz, poco después de la duración estimada.
  */
-export function decir(locucion: Locucion, op: { expresion?: ExpresionCaco; alTerminar?: () => void } = {}): number {
+export function decir(locucion: Locucion, op: { expresion?: ExpresionMixtle; alTerminar?: () => void } = {}): number {
   const miTurno = ++turno;
   let hecho = false;
   const fin = () => {
@@ -51,6 +51,6 @@ export function callar(): void {
   useNarrador.setState({ hablando: false });
 }
 
-export function ponerExpresion(expresion: ExpresionCaco): void {
+export function ponerExpresion(expresion: ExpresionMixtle): void {
   useNarrador.setState({ expresion });
 }

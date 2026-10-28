@@ -1,5 +1,5 @@
 /**
- * Lo que dice Caco. Puede ser una frase completa o una secuencia de piezas que se encadenan
+ * Lo que dice Mixtle. Puede ser una frase completa o una secuencia de piezas que se encadenan
  * (por ejemplo, "Separaron bien" + 13 + "residuos"), para no grabar una frase por cada número.
  */
 export type Pieza = string | { numero: number; antesDeSustantivo?: boolean };

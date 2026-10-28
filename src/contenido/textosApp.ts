@@ -1,7 +1,7 @@
 import type { Locucion } from '../voz/locucion';
 
 /*
- * Lo que dice Caco (y lo que se lee) en las pantallas de la app: grupos, camino, lecciones,
+ * Lo que dice Mixtle (y lo que se lee) en las pantallas de la app: grupos, camino, lecciones,
  * cofres y álbum. Todo se narra; npm run voz:generar lo junta solo.
  * TODO(Eco Urban): revisar redacción con las educadoras y educadores.
  */
@@ -48,7 +48,7 @@ export const TEXTOS_APP = {
     salirNo: 'No, seguir jugando',
     repaso: 'Vamos a repasar uno que costó trabajo.',
     terminada: (hojitas: number, aLaPrimera: number, total: number): Locucion =>
-      // Sin "cero de seis": si nada salió a la primera, Caco anima en lugar de contar.
+      // Sin "cero de seis": si nada salió a la primera, Mixtle anima en lugar de contar.
       aLaPrimera === 0
         ? ['¡Lección terminada! Ganaron', { numero: hojitas, antesDeSustantivo: true }, 'hojitas. ¡Practicando, cada vez les sale mejor!']
         : [

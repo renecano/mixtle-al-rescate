@@ -76,11 +76,11 @@ const secciones = pistas
 writeFileSync(
   join(SALIDA, 'index.html'),
   `<!doctype html><html lang="es-MX"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Muestras de música de Caco</title>
+<title>Muestras de música de Mixtle</title>
 <style>body{font:16px/1.5 system-ui,sans-serif;margin:24px;color:#1d2b24;background:#fff8e7}h1,h2{color:#1f6b4a}table{border-collapse:collapse;width:100%;margin-bottom:24px}th,td{border:1px solid #c9c2ad;padding:8px;text-align:left;vertical-align:middle}thead th{background:#1f6b4a;color:#fff}code{color:#6345a8;font-size:13px}audio{min-width:16rem;width:100%}</style>
-</head><body><h1>Muestras de música de Caco</h1>
+</head><body><h1>Muestras de música de Mixtle</h1>
 <p>Todas son <strong>CC0</strong> (dominio público), verificadas en su página de OpenGameArt. Están al mismo volumen para compararlas;
-en el juego la música irá baja (≈25 %) y bajará más mientras habla Caco. Elige una por pista (su <code>id</code>).</p>
+en el juego la música irá baja (≈25 %) y bajará más mientras habla Mixtle. Elige una por pista (su <code>id</code>).</p>
 ${secciones}
 </body></html>
 `,

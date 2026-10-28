@@ -18,7 +18,7 @@ import type { CategoriaBase, Material } from './residuos';
 export type IconoCategoria = 'hoja' | 'reciclaje' | 'basura' | 'papel' | 'botella' | 'lata';
 
 /**
- * Cómo nombra Caco el dibujo de cada ícono en voz alta, con su artículo:
+ * Cómo nombra Mixtle el dibujo de cada ícono en voz alta, con su artículo:
  * "Busca el bote naranja de no reciclable, con el dibujo del bote de basura". El "de" + artículo
  * se contrae solo ("de el" → "del").
  */
@@ -40,7 +40,7 @@ export interface Categoria {
   /** Cómo se dice el color en voz alta, para las pistas ("el bote verde"). */
   nombreColor: string;
   icono: IconoCategoria;
-  /** Pista amable (una frase) que da Caco si un residuo de este bote se fue a otro. */
+  /** Pista amable (una frase) que da Mixtle si un residuo de este bote se fue a otro. */
   pista: string;
   acepta: readonly (CategoriaBase | Material)[];
 }

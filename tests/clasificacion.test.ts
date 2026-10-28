@@ -68,7 +68,7 @@ describe('el juego funciona con 2 a 4 categorías cambiando solo categorias.ts',
   });
 });
 
-describe('textos de Caco', () => {
+describe('textos de Mixtle', () => {
   it('la pista es amable, corta y describe el bote con color e ícono', () => {
     const texto = textoPista(CATEGORIAS[0]!);
     expect(texto).toMatch(/^¡Casi!/);

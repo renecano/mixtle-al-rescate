@@ -46,7 +46,7 @@ export function Parejas({ ejercicio, responder, bloqueado }: PropsEjercicio<Dato
   };
 
   // La columna (2 a 4 tarjetas, más altas si llevan texto) tiene que caber con margen en el espacio
-  // del ejercicio (≈60 % del alto de la pantalla, debajo de Caco): el tamaño sale de ahí.
+  // del ejercicio (≈60 % del alto de la pantalla, debajo de Mixtle): el tamaño sale de ahí.
   const filas = ejercicio.pares.length;
   const separacion = 'clamp(0.75rem,2vmin,1.5rem)';
   const tamano = `max(5rem, min(22vw, 14rem, calc((58vh - ${filas - 1} * ${separacion}) / ${filas})))`;

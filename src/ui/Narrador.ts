@@ -3,15 +3,15 @@ import { PALETA } from '../config';
 import { voz } from '../servicios/voz';
 import { textoDeLocucion, type Locucion } from '../voz/locucion';
 import { Boton } from './Boton';
-import type { Caco } from './Caco';
+import type { Mixtle } from './Mixtle';
 import { Globo, type OpcionesGlobo } from './Globo';
 
 /** Margen extra tras la duración estimada antes de seguir aunque la voz no haya avisado. */
 const MARGEN_MS = 1200;
 
 /**
- * Une a Caco, su globo de texto y la voz. Todo lo que Caco dice se narra en voz alta
- * y se muestra en el globo; el botón de repetir (o tocar a Caco) lo vuelve a decir.
+ * Une a Mixtle, su globo de texto y la voz. Todo lo que Mixtle dice se narra en voz alta
+ * y se muestra en el globo; el botón de repetir (o tocar a Mixtle) lo vuelve a decir.
  */
 export class Narrador {
   readonly globo: Globo;
@@ -21,7 +21,7 @@ export class Narrador {
 
   constructor(
     private readonly scene: Phaser.Scene,
-    private readonly caco: Caco,
+    private readonly mixtle: Mixtle,
     opGlobo: OpcionesGlobo,
   ) {
     this.globo = new Globo(scene, opGlobo);
@@ -37,7 +37,7 @@ export class Narrador {
     }).setDepth(501);
     this.repetir.setVisible(false);
 
-    caco.hacerTocable().on('pointerup', () => this.repetirFrase());
+    mixtle.hacerTocable().on('pointerup', () => this.repetirFrase());
     scene.events.once('shutdown', () => {
       this.activo = false;
       voz.callar();
@@ -45,12 +45,12 @@ export class Narrador {
   }
 
   /**
-   * Caco dice la frase (voz + globo). `alTerminar` se llama una sola vez: al acabar la voz
+   * Mixtle dice la frase (voz + globo). `alTerminar` se llama una sola vez: al acabar la voz
    * o, si se interrumpe o no hay voz, poco después de la duración estimada.
    */
   decir(locucion: Locucion, alTerminar?: () => void): number {
     this.ultima = locucion;
-    // El globo es el subtítulo: muestra lo que dice Caco (con cifras en lugar de números en palabras).
+    // El globo es el subtítulo: muestra lo que dice Mixtle (con cifras en lugar de números en palabras).
     this.globo.mostrar(textoDeLocucion(locucion));
     this.repetir.setPosition(this.globo.x + this.globo.ancho - 84, this.globo.y + 80).setVisible(true);
     let hecho = false;
@@ -61,10 +61,10 @@ export class Narrador {
     };
     const ms = voz.decir(locucion, () => {
       if (!this.activo) return;
-      this.caco.callar();
+      this.mixtle.callar();
       fin();
     });
-    this.caco.hablar(ms);
+    this.mixtle.hablar(ms);
     if (alTerminar) this.scene.time.delayedCall(ms + MARGEN_MS, fin);
     return ms;
   }
@@ -77,9 +77,9 @@ export class Narrador {
   private repetirFrase(): void {
     if (!this.globo.visible || !this.ultima) return;
     const ms = voz.decir(this.ultima, () => {
-      if (this.activo) this.caco.callar();
+      if (this.activo) this.mixtle.callar();
     });
-    this.caco.hablar(ms);
+    this.mixtle.hablar(ms);
     this.scene.tweens.add({ targets: this.globo, scale: 1.03, duration: 120, yoyo: true });
   }
 }

@@ -6,7 +6,7 @@ import { Tarjeta, type PropsEjercicio } from './comun';
 
 /**
  * 1. Elige la imagen y 7. Escucha y toca (la misma mecánica; en "escucha y toca" no hay texto:
- * solo la voz de Caco y los dibujos, para quienes todavía no leen).
+ * solo la voz de Mixtle y los dibujos, para quienes todavía no leen).
  */
 export function EligeImagen({ ejercicio, responder, bloqueado }: PropsEjercicio<Datos | EscuchaToca>) {
   const [acertada, setAcertada] = useState<string | null>(null);

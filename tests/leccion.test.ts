@@ -18,11 +18,11 @@ const ej = (id: string): Ejercicio => ({
   id,
   consigna: `¿${id}?`,
   pista: 'Pista.',
-  arte: 'caco',
+  arte: 'mixtle',
   respuesta: true,
   porque: 'Porque sí.',
 });
-const leccion: Leccion = { id: 'l', titulo: 'L', arte: 'caco', bienvenida: '¡Hola!', ejercicios: ['a', 'b', 'c'].map(ej) };
+const leccion: Leccion = { id: 'l', titulo: 'L', arte: 'mixtle', bienvenida: '¡Hola!', ejercicios: ['a', 'b', 'c'].map(ej) };
 
 describe('motor de lecciones', () => {
   it('sin errores: avanza en orden, todo a la primera', () => {
