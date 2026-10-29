@@ -1,5 +1,6 @@
 import { motion } from 'motion/react';
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { AMBIENTES } from '../../arte/ambientes';
 import { TEXTOS_APP } from '../../contenido/textosApp';
 import { leccionPorId } from '../../contenido/unidades';
 import { hojitasDisponibles } from '../../logica/accesorios';
@@ -39,6 +40,12 @@ import { callar, decir, ponerExpresion } from '../estado/narrador';
 function conCasi(pista: Locucion): Locucion {
   const piezas = typeof pista === 'string' ? [pista] : [...pista];
   return typeof piezas[0] === 'string' && piezas[0].startsWith('¡Casi!') ? piezas : ['¡Casi!', ...piezas];
+}
+
+/** El fondo de las lecciones toma la paleta del ambiente de su unidad (de su cielo a su suelo). */
+function fondoDeUnidad(unidadId: string) {
+  const a = AMBIENTES[unidadId];
+  return a ? { background: `linear-gradient(${a.cielo}, ${a.suelo})` } : undefined;
 }
 
 /** Mixtle no celebra siempre igual: va cambiando de pose con cada acierto. */
@@ -151,6 +158,7 @@ export function Leccion() {
       data-pantalla="leccion"
       data-entrada-lista="true"
       className="relative flex h-full w-full flex-col bg-gradient-to-b from-cielo to-verde-claro"
+      style={fondoDeUnidad(datos.unidad.id)}
       onPointerDownCapture={(e) => (ultimoToque.current = { x: e.clientX, y: e.clientY })}
     >
       <header className="flex items-center gap-[clamp(0.75rem,2.5vmin,2rem)] px-[clamp(1rem,3vmin,2rem)] py-3">

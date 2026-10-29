@@ -1,11 +1,22 @@
 import type { ImgHTMLAttributes } from 'react';
 import { catalogoArte } from '../../arte/catalogo';
-import { ARTE_ACCESORIOS } from '../../arte/accesorios';
 import { ARTE_ESCENAS } from '../../arte/escenas';
-import { aDataUri } from '../../arte/svg';
+import { aDataUri, type ArteSvg } from '../../arte/svg';
 
-/** Las mismas ilustraciones SVG de las aventuras, más las que solo usa React (escenas), listas para usarse. */
-const URLS = new Map([...catalogoArte(), ...ARTE_ESCENAS, ...ARTE_ACCESORIOS].map((a) => [a.clave, aDataUri(a.svg)]));
+/** Las ilustraciones listas para usarse en React (como data URI). */
+const URLS = new Map<string, string>();
+
+/**
+ * Agrega dibujos al registro. Los que se ven desde el inicio vienen aquí mismo; los de otras
+ * pantallas (accesorios, ambientes de las unidades) los registra su módulo al cargarse, así no
+ * pesan en lo que se descarga antes de la primera pantalla.
+ */
+export function registrarArte(lista: readonly ArteSvg[]): void {
+  for (const a of lista) if (!URLS.has(a.clave)) URLS.set(a.clave, aDataUri(a.svg));
+}
+
+// Las mismas ilustraciones SVG de las aventuras, más las del inicio (solo React).
+registrarArte([...catalogoArte(), ...ARTE_ESCENAS]);
 
 export function urlArte(clave: string): string {
   const url = URLS.get(clave);

@@ -1,13 +1,14 @@
 import { motion } from 'motion/react';
-import { Fragment, useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState, type CSSProperties } from 'react';
 import { TEXTOS_APP } from '../../contenido/textosApp';
 import { UNIDADES } from '../../contenido/unidades';
+import { AMBIENTES, ARTE_AMBIENTES } from '../../arte/ambientes';
 import { accesoriosPuestos } from '../../logica/accesorios';
 import { estadosDelCamino, HOJITAS_COFRE, nodosDelCamino, siguienteNodo, unidadCompleta, type EstadoNodo, type Nodo } from '../../logica/camino';
 import { datosDiplomaUnidad, type DatosDiplomaUnidad } from '../../logica/diplomaUnidad';
 import { mascota } from '../../logica/grupos';
 import { sonido } from '../../servicios/sonido';
-import { Arte } from '../componentes/Arte';
+import { Arte, registrarArte } from '../componentes/Arte';
 import { BotonGrande } from '../componentes/BotonGrande';
 import { CofreAnimado, type FaseCofre } from '../componentes/CofreAnimado';
 import { DiplomaUnidad } from '../componentes/DiplomaUnidad';
@@ -22,6 +23,9 @@ import { ParqueGrupo } from '../componentes/ParqueGrupo';
 import { useApp } from '../estado/app';
 import { useGrupoActual, useGrupos } from '../estado/grupos';
 import { callar, decir } from '../estado/narrador';
+
+// Los ambientes de las unidades solo se ven en el camino: se registran al cargar esta pantalla.
+registrarArte(ARTE_AMBIENTES);
 
 /** Las burbujas zigzaguean: posición horizontal (en %) según su lugar en la unidad. */
 const ZIGZAG = [50, 66, 76, 66, 50, 34, 24, 34];
@@ -83,60 +87,65 @@ export function Camino() {
     <main data-pantalla="camino" data-entrada-lista="true" className="flex h-full w-full flex-col bg-gradient-to-b from-cielo to-verde-claro">
       <Encabezado grupo={grupo} alAlbum={abrirAlbum} alCambiarGrupo={irAGrupos} alVestidor={() => setVestidor(true)} alFacilitador={() => setFacilitador(true)} />
       <div className="relative min-h-0 flex-1 overflow-y-auto">
-        <div className="mx-auto flex max-w-[70rem] flex-col items-center gap-4 px-4 pt-4 pb-16">
+        <div className="mx-auto flex max-w-[70rem] flex-col items-center gap-4 px-4 pt-4">
           <ParqueGrupo progreso={progreso} className="aspect-[16/6] w-full max-w-[calc(30vh*16/6)]" />
-          {nodos.map((n, i) => {
-            const nuevaUnidad = i === 0 || nodos[i - 1]!.unidad.id !== n.unidad.id;
-            const x = posiciones[i]!;
-            const esSiguiente = i === indiceSiguiente;
-            return (
-              <Fragment key={n.id}>
-                {nuevaUnidad && <EncabezadoUnidad unidadId={n.unidad.id} />}
-                {/* scroll-mt: al desplazarse a la siguiente parada queda espacio para el globo de Mixtle bajo el encabezado. */}
-                <div ref={esSiguiente ? siguiente : undefined} className={`relative h-[clamp(7.5rem,17vmin,11rem)] w-full scroll-mt-[clamp(10rem,24vmin,15rem)] scroll-mb-8 ${esSiguiente ? 'z-10' : ''}`}>
-                  <div className="absolute top-1/2 -translate-x-1/2 -translate-y-1/2" style={{ left: `${x}%` }}>
-                    <BurbujaNodo nodo={n} estado={estados[i]!} siguiente={esSiguiente} alTocar={() => tocar(n, estados[i]!)} hecho={estados[i] === 'hecho'} />
-                    {/* La mascota del grupo (vestida) va en el camino junto a la siguiente parada: "aquí vamos".
-                        Del lado contrario a Mixtle (que se pone del lado libre del zigzag). */}
-                    {esSiguiente && (
-                      <div className={`ficha-grupo pointer-events-none absolute bottom-[-6%] h-[clamp(3.5rem,8vmin,5.5rem)] ${x > 50 ? 'right-[-38%]' : 'left-[-38%]'}`} aria-hidden="true">
-                        <MascotaVestida mascota={grupo.mascota} puestos={accesoriosPuestos(progreso)} className="h-full" />
-                      </div>
+        </div>
+        {/* Un tramo por unidad, con su ambiente: la postal arriba y su paleta de fondo (cambia al avanzar). */}
+        {UNIDADES.map((u) => (
+          <section key={u.id} className="tramo-unidad" data-ambiente={u.id} style={estiloAmbiente(u.id)}>
+            <div className="mx-auto flex max-w-[70rem] flex-col items-center gap-4 px-4 pb-16">
+              <PostalUnidad unidadId={u.id} />
+              {nodos.map((n, i) => {
+                if (n.unidad.id !== u.id) return null;
+                const x = posiciones[i]!;
+                const esSiguiente = i === indiceSiguiente;
+                // scroll-mt: al desplazarse a la siguiente parada queda espacio para el globo de Mixtle bajo el encabezado.
+                return (
+                  <div key={n.id} ref={esSiguiente ? siguiente : undefined} className={`relative h-[clamp(7.5rem,17vmin,11rem)] w-full scroll-mt-[clamp(10rem,24vmin,15rem)] scroll-mb-8 ${esSiguiente ? 'z-10' : ''}`}>
+                    <div className="absolute top-1/2 -translate-x-1/2 -translate-y-1/2" style={{ left: `${x}%` }}>
+                      <BurbujaNodo nodo={n} estado={estados[i]!} siguiente={esSiguiente} alTocar={() => tocar(n, estados[i]!)} hecho={estados[i] === 'hecho'} />
+                      {/* La mascota del grupo (vestida) va en el camino junto a la siguiente parada: "aquí vamos".
+                          Del lado contrario a Mixtle (que se pone del lado libre del zigzag). */}
+                      {esSiguiente && (
+                        <div className={`ficha-grupo pointer-events-none absolute bottom-[-6%] h-[clamp(3.5rem,8vmin,5.5rem)] ${x > 50 ? 'right-[-38%]' : 'left-[-38%]'}`} aria-hidden="true">
+                          <MascotaVestida mascota={grupo.mascota} puestos={accesoriosPuestos(progreso)} className="h-full" />
+                        </div>
+                      )}
+                    </div>
+                    {/* Con una ventana abierta (cofre, estampa, facilitador) habla el Mixtle de la ventana: uno solo. */}
+                    {esSiguiente && !cofre && !estampaNueva && !facilitador && !vestidor && (
+                      // Un solo Mixtle: el que señala la siguiente parada es el que habla, con su globo a un lado,
+                      // del lado contrario de la parada (el camino zigzaguea: ahí siempre hay espacio libre).
+                      <motion.div
+                        // w-max: el globo conserva su ancho (si no, se encoge al espacio que queda en la columna).
+                        className="absolute top-0 w-max"
+                        style={x > 50 ? { right: `calc(${100 - x}% + clamp(4rem,9vmin,6rem))` } : { left: `calc(${x}% + clamp(4rem,9vmin,6rem))` }}
+                        initial={{ opacity: 0, x: x > 50 ? -30 : 30 }}
+                        animate={{ opacity: 1, x: 0 }}
+                      >
+                        <MixtleGuia
+                          alto="clamp(7rem,17vmin,11rem)"
+                          globo={x > 50 ? 'izquierda' : 'derecha'}
+                          anchoGlobo="min(22rem,26vw)"
+                          globoDesdeArriba
+                          expresionFija="senalando"
+                          espejo={x <= 50}
+                          soloMientrasHabla
+                        />
+                      </motion.div>
                     )}
                   </div>
-                  {/* Con una ventana abierta (cofre, estampa, facilitador) habla el Mixtle de la ventana: uno solo. */}
-                  {esSiguiente && !cofre && !estampaNueva && !facilitador && !vestidor && (
-                    // Un solo Mixtle: el que señala la siguiente parada es el que habla, con su globo a un lado,
-                    // del lado contrario de la parada (el camino zigzaguea: ahí siempre hay espacio libre).
-                    <motion.div
-                      // w-max: el globo conserva su ancho (si no, se encoge al espacio que queda en la columna).
-                      className="absolute top-0 w-max"
-                      style={x > 50 ? { right: `calc(${100 - x}% + clamp(4rem,9vmin,6rem))` } : { left: `calc(${x}% + clamp(4rem,9vmin,6rem))` }}
-                      initial={{ opacity: 0, x: x > 50 ? -30 : 30 }}
-                      animate={{ opacity: 1, x: 0 }}
-                    >
-                      <MixtleGuia
-                        alto="clamp(7rem,17vmin,11rem)"
-                        globo={x > 50 ? 'izquierda' : 'derecha'}
-                        anchoGlobo="min(22rem,26vw)"
-                        globoDesdeArriba
-                        expresionFija="senalando"
-                        espejo={x <= 50}
-                        soloMientrasHabla
-                      />
-                    </motion.div>
-                  )}
-                </div>
-              </Fragment>
-            );
-          })}
-          {/* Camino terminado: no hay parada que señalar; Mixtle habla al final del camino. */}
-          {indiceSiguiente === null && (
-            <div ref={siguiente} className="flex w-full justify-center pt-4">
-              <MixtleGuia alto="clamp(7rem,17vmin,11rem)" globo="arriba" anchoGlobo="min(28rem,60vw)" expresionFija="celebrando" soloMientrasHabla />
+                );
+              })}
             </div>
-          )}
-        </div>
+          </section>
+        ))}
+        {/* Camino terminado: no hay parada que señalar; Mixtle habla al final del camino. */}
+        {indiceSiguiente === null && (
+          <div ref={siguiente} className="flex w-full justify-center pt-4 pb-16">
+            <MixtleGuia alto="clamp(7rem,17vmin,11rem)" globo="arriba" anchoGlobo="min(28rem,60vw)" expresionFija="celebrando" soloMientrasHabla />
+          </div>
+        )}
       </div>
 
       {cofre && (
@@ -158,13 +167,34 @@ export function Camino() {
   );
 }
 
+/** Colores del tramo de una unidad (de su cielo a su suelo). */
+function estiloAmbiente(unidadId: string): CSSProperties {
+  const a = AMBIENTES[unidadId];
+  return a ? ({ '--cielo-unidad': a.cielo, '--suelo-unidad': a.suelo } as CSSProperties) : {};
+}
+
+/** La postal de la unidad: su lugar ilustrado (parque, humedal, bosque del Nevado, calles de Toluca, escuela). */
+function PostalUnidad({ unidadId }: { unidadId: string }) {
+  const a = AMBIENTES[unidadId];
+  return (
+    <div className="flex w-full max-w-[52rem] flex-col items-center">
+      {a && (
+        <div className="postal-unidad" role="img" aria-label={a.nombre}>
+          <Arte clave={a.arte} className="h-full w-full object-cover object-bottom" />
+        </div>
+      )}
+      <EncabezadoUnidad unidadId={unidadId} />
+    </div>
+  );
+}
+
 function EncabezadoUnidad({ unidadId }: { unidadId: string }) {
   const u = UNIDADES.find((x) => x.id === unidadId)!;
   return (
     <button
       type="button"
       onClick={() => decir([TEXTOS_APP.camino.encabezadoUnidad(u.numero, u.titulo), u.tema])}
-      className="mt-4 flex w-full max-w-[52rem] cursor-pointer items-center gap-4 rounded-[1.75rem] border-[5px] border-white px-6 py-4 text-left text-white shadow-[0_0.45rem_0_rgba(18,61,43,0.25)]"
+      className="relative -mt-8 flex w-full max-w-[52rem] cursor-pointer items-center gap-4 rounded-[1.75rem] border-[5px] border-white px-6 py-4 text-left text-white shadow-[0_0.45rem_0_rgba(18,61,43,0.25)]"
       style={{ backgroundColor: u.color }}
       data-unidad={u.id}
     >

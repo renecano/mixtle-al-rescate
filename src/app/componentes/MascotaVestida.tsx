@@ -1,7 +1,10 @@
+import { ARTE_ACCESORIOS } from '../../arte/accesorios';
 import { catalogoArte } from '../../arte/catalogo';
 import { ANCLAS_MASCOTA, ACCESORIOS, type Ancla, type IdAccesorio } from '../../logica/accesorios';
 import { mascota as datosMascota, type IdMascota } from '../../logica/grupos';
-import { Arte } from './Arte';
+import { Arte, registrarArte } from './Arte';
+
+registrarArte(ARTE_ACCESORIOS);
 
 /** Proporción de cada dibujo de mascota (ancho / alto), para que los accesorios caigan en su lugar. */
 const PROPORCION = new Map(catalogoArte().map((a) => [a.clave, a.ancho / a.alto]));

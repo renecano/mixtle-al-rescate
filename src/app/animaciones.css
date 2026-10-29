@@ -893,3 +893,33 @@ html[data-suave] .titulo-unidad-terminada {
 html[data-suave] .ficha-grupo {
   animation: none;
 }
+
+/* ─── Identidad por unidad: cada tramo del camino con su ambiente ─── */
+.tramo-unidad {
+  background: linear-gradient(var(--cielo-unidad, var(--color-cielo)) 0, var(--suelo-unidad, var(--color-verde-claro)) 100%);
+  padding-top: 1.5rem;
+}
+.postal-unidad {
+  width: 100%;
+  height: clamp(9rem, 24vh, 15rem);
+  overflow: hidden;
+  border-radius: 1.75rem 1.75rem 0 0;
+  border: 6px solid #fff;
+  border-bottom: 0;
+  box-shadow: 0 0.45rem 0 rgb(18 61 43 / 0.15);
+}
+/* Entre unidades, una ola del color de la nueva unidad: se nota que el camino llega a otro lugar. */
+.tramo-unidad {
+  position: relative;
+}
+.tramo-unidad:not(:first-of-type)::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -2.4rem;
+  height: 2.5rem;
+  background: var(--cielo-unidad, var(--color-cielo));
+  -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 20' preserveAspectRatio='none'><path d='M0 20 V12 C 20 0 40 0 60 10 C 80 20 100 20 120 8 V20 Z'/></svg>") bottom / 100% 100% no-repeat;
+  mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 20' preserveAspectRatio='none'><path d='M0 20 V12 C 20 0 40 0 60 10 C 80 20 100 20 120 8 V20 Z'/></svg>") bottom / 100% 100% no-repeat;
+}
