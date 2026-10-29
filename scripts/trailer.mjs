@@ -21,6 +21,8 @@ const URL = `http://localhost:${PUERTO}`;
 const SALIDA = join(RAIZ, 'docs', 'trailer', 'mixtle-al-rescate.mp4');
 const MUSICA = join(RAIZ, 'public', 'musica', 'lecciones.mp3');
 const FUNDIDO = 0.35;
+/** Si el juego se dibuja por debajo de esto durante un momento, se vería a saltos y no se usa. */
+const FPS_MINIMOS = 40;
 
 const ffmpeg = spawnSync(pythonDelEntorno(), ['-c', 'import imageio_ffmpeg;print(imageio_ffmpeg.get_ffmpeg_exe())'], { encoding: 'utf8' }).stdout.trim();
 if (!ffmpeg) throw new Error('No encontré ffmpeg (npm run voz:preparar instala el entorno que lo trae).');
@@ -39,10 +41,24 @@ cdp.on('Page.screencastFrame', ({ data, metadata, sessionId }) => {
   void cdp.send('Page.screencastFrameAck', { sessionId }).catch(() => undefined);
 });
 const momentos = [];
-/** Graba un momento: lo que pasa dentro de `hacer`, más `extra` segundos al final; lo guarda como clip. */
-async function momento(nombre, hacer, extra = 0) {
+/**
+ * Graba un momento: lo que pasa dentro de `hacer`, más `extra` segundos al final; lo guarda como clip.
+ * `max`: si dura más, el clip se queda con sus primeros `max` segundos (el tráiler no pasa de 45 s).
+ */
+async function momento(nombre, hacer, extra = 0, max = Infinity) {
   cuadros = [];
-  const desde = Date.now() / 1000;
+  await pagina
+    .evaluate(() => {
+      const inicio = performance.now();
+      let cuadros = 0;
+      const paso = () => {
+        cuadros += 1;
+        requestAnimationFrame(paso);
+      };
+      requestAnimationFrame(paso);
+      window.__fpsTrailer = () => Math.round((cuadros * 1000) / (performance.now() - inicio));
+    })
+    .catch(() => undefined);
   await cdp.send('Page.startScreencast', { format: 'jpeg', quality: 92, maxWidth: 1920, maxHeight: 1080 });
   await hacer();
   if (extra) await pagina.waitForTimeout(extra * 1000);
@@ -64,11 +80,16 @@ async function momento(nombre, hacer, extra = 0) {
   const indice = join(carpeta, 'cuadros.txt');
   writeFileSync(indice, lineas.join('\n'));
   const clip = join(carpetaVideo, `${momentos.length}.mp4`);
-  const r = spawnSync(ffmpeg, ['-y', '-f', 'concat', '-safe', '0', '-i', indice, '-vf', 'fps=30,scale=1920:1080:force_original_aspect_ratio=decrease,pad=1920:1080:(ow-iw)/2:(oh-ih)/2', '-c:v', 'libx264', '-preset', 'fast', '-crf', '16', '-pix_fmt', 'yuv420p', clip], { encoding: 'utf8' });
+  const recorte = Number.isFinite(max) ? ['-t', String(max)] : [];
+  const r = spawnSync(ffmpeg, ['-y', '-f', 'concat', '-safe', '0', '-i', indice, ...recorte, '-vf', 'fps=30,scale=1920:1080:force_original_aspect_ratio=decrease,pad=1920:1080:(ow-iw)/2:(oh-ih)/2', '-c:v', 'libx264', '-preset', 'fast', '-crf', '16', '-pix_fmt', 'yuv420p', clip], { encoding: 'utf8' });
   if (r.status !== 0) throw new Error(r.stderr.slice(-1500));
-  const dur = lista.length ? hasta - lista[0].t : 0;
+  const dur = Math.min(max, lista.length ? hasta - lista[0].t : 0);
+  // Si la computadora estaba ocupada, el juego mismo se dibujó a saltos: mejor no armar el tráiler así.
+  // (El screencast solo manda cuadros cuando algo cambia; por eso se mide en la página, no en la captura.)
+  const fpsPagina = await pagina.evaluate(() => (window.__fpsTrailer ? window.__fpsTrailer() : null)).catch(() => null);
+  if (fpsPagina !== null && fpsPagina < FPS_MINIMOS) throw new Error(`Durante "${nombre}" el juego se dibujó a ${fpsPagina} fps (mínimo ${FPS_MINIMOS}): la computadora estaba ocupada. Cierra otras ventanas y vuelve a correrlo.`);
   momentos.push({ nombre, clip, dur });
-  console.log(`${nombre}: ${dur.toFixed(1)} s, ${lista.length} cuadros (${(lista.length / Math.max(0.1, hasta - desde)).toFixed(0)} por segundo)`);
+  console.log(`${nombre}: ${dur.toFixed(1)} s, ${lista.length} cuadros capturados, juego a ${fpsPagina ?? '?'} fps`);
 }
 
 try {
@@ -80,7 +101,7 @@ try {
   // 2. "¡Jugar!", la transición de marca y un grupo nuevo hasta el camino.
   await momento('al camino', async () => {
     await entrarConGrupoNuevo(pagina, 'ajolote');
-  }, 1.6);
+  }, 1.6, 6);
   // 3. Una lección: tres aciertos seguidos (lluvia de hojitas, contador, "¡3 seguidas!").
   await tocarSelector(pagina, '[data-nodo^="leccion:"]');
   await esperarPantalla(pagina, 'leccion');
@@ -112,7 +133,7 @@ try {
   await momento('parque', async () => undefined, 6);
   // 6. Una aventura: en bici a la escuela (unidad 4).
   await pagina.goto(`${URL}/?e2e&escena=Bici&unidad=u4`);
-  await pagina.waitForFunction(() => window.__mixtle?.escenas?.().includes('Bici'), null, { timeout: 30000 });
+  await pagina.waitForFunction(() => window.__mixtle?.escenas?.().includes('Bici'), null, { timeout: 90000 });
   await pagina.waitForTimeout(1500);
   await momento('aventura', async () => undefined, 5.5);
   // 7. Cierre: el logo con el lema y la invitación.

@@ -9,7 +9,9 @@ Mixtle, un cacomixtle que vive en los árboles del parque, guía a cada grupo de
 - **Dónde jugarlo:** <https://mixtle-al-rescate.vercel.app> (producción en Vercel). La dirección anterior, <https://caco-al-rescate.vercel.app>, sigue funcionando: lleva a la nueva **con el avance de los grupos** (ver *Nombre y dirección anteriores*).
 - **Qué es:** un prototipo jugable para revisar con el equipo educativo. No tiene servidor, cuentas ni analítica. El avance de cada grupo se guarda solo en el aparato.
 
-![El camino de aprendizaje](docs/capturas/proyector-1920x1080-v2-2-camino.png)
+![Inicio de Mixtle al rescate](docs/capturas/proyector-1920x1080-v3-1-inicio.png)
+
+**Tráiler (39 s, con la música del juego):** [`docs/trailer/mixtle-al-rescate.mp4`](docs/trailer/mixtle-al-rescate.mp4).
 
 ## Qué cambió en la v3
 
@@ -21,13 +23,44 @@ La v3 le da al juego su propia marca y lo hace más llamativo en el proyector, c
 | Inicio estático | **Inicio animado**: el parque en capas con paralaje y el Nevado de Toluca al fondo, Mixtle que llega columpiándose de una rama y el logo que aterriza con su remate musical. **Transición de marca** entre secciones y **modo vitrina** (demo en bucle si nadie toca el inicio 60 s en el proyector). |
 | Banner de respuesta | **Cada toque responde** (los botones se aplastan, suenan y sueltan chispas). Al acertar: lluvia de hojitas, la hojita ganada vuela al contador y el número sube contando, y Mixtle celebra distinto cada vez. **Racha dentro de la lección** ("¡3 seguidas!") y una pequeña celebración a la mitad. |
 | Cofre y estampa sencillos | El **cofre** dice desde antes lo que trae, se sacude, brilla y estalla. La **estampa** se voltea con brillo. El **parque** cambia "Antes → ¡Ahora!" con su sonido. **Fin de unidad** con minicelebración y **diploma imprimible** (cabe en una hoja carta o A4). |
-| Un fondo para todo | **Cada unidad con su ambiente y su paleta**: Parque, Hogar de los animales (un humedal), Bosque del Nevado de Toluca, Calles de Toluca (portales con arcos y un edificio de grandes vitrales inspirado en el Cosmovitral, dibujados de forma original) y Escuela. |
+| Un fondo para todo | **Cada unidad con su ambiente y su paleta**: Parque (su estación de reciclaje), Hogar de los animales (un humedal), Bosque del Nevado de Toluca, Calles de Toluca (portales con arcos y un edificio de grandes vitrales inspirado en el Cosmovitral, dibujados de forma original) y Escuela. El ambiente **decora los lados del camino** (árboles y bancas, tules y estanques, pinos y rocas, casas de colores y bicis, la escuela y una canasta), y arriba del camino **el parque del grupo es el protagonista**, con su marco y su título. |
 | — | **Vestidor**: accesorios para la mascota del grupo (flor, gorra, lentes, paliacate, mochila y capa) a precio fijo en hojitas; se ve en el camino y en el diploma. |
 | Arte plano | **Arte más rico**: luz, sombras suaves, degradados y una textura de papel, con trazo y paleta iguales en todo el juego. |
 | Kokoro | Voz con **Azure AI Speech** lista para usarse cuando llegue la llave (Kokoro sigue como alterno). |
 | "N días seguidos" en el camino | **Se quitó la racha de días** (se perdía al faltar un día) y las hojitas de cada grupo ya no se ven lado a lado al elegir grupo: no se comparan grupos. |
 
-Medido en esta versión: lo que baja antes de la primera pantalla pesa **231.3 KB** comprimidos (límite 250 KB), y en la laptop de 8 GB el juego va a **59–60 cuadros por segundo** en sus momentos más pesados (ver *Pruebas y evidencia medida*).
+Medido en esta versión: lo que baja antes de la primera pantalla pesa **231.9 KB** comprimidos (límite 250 KB), y en la laptop de 8 GB el juego va a **59–60 cuadros por segundo** en sus momentos más pesados (ver *Pruebas y evidencia medida*).
+
+### Capturas de la v3
+
+Regeneradas con `node scripts/capturas-v3.mjs` (proyector 1920×1080 y tablet 1024×768, en `docs/capturas/*-v3-*.png`).
+
+| Inicio | Camino |
+|---|---|
+| ![Inicio](docs/capturas/proyector-1920x1080-v3-1-inicio.png) | ![Camino](docs/capturas/proyector-1920x1080-v3-3-camino.png) |
+| **Acierto en una lección** | **Cofre** |
+| ![Acierto](docs/capturas/proyector-1920x1080-v3-4-acierto.png) | ![Cofre](docs/capturas/proyector-1920x1080-v3-5-cofre.png) |
+| **Fin de unidad** | **Diploma** |
+| ![Unidad terminada](docs/capturas/proyector-1920x1080-v3-6-unidad-terminada.png) | ![Diploma](docs/capturas/proyector-1920x1080-v3-7-diploma.png) |
+| **Vestidor** | **Tablet: el camino** |
+| ![Vestidor](docs/capturas/proyector-1920x1080-v3-8-vestidor.png) | ![Camino en tablet](docs/capturas/tablet-1024x768-v3-3-camino.png) |
+
+### Tráiler
+
+[`docs/trailer/mixtle-al-rescate.mp4`](docs/trailer/mixtle-al-rescate.mp4): 39 s, 1920×1080, con la música del juego (pista "lecciones"). Muestra el inicio, la entrada al camino, una lección con "¡3 seguidas!", el cofre, el parque que se transforma, la aventura en bici y el cierre con el logo.
+
+Se regenera con `npm run build && node scripts/trailer.mjs`. El script juega de verdad en Chrome con tarjeta de video y graba cada momento aparte con el screencast de Chrome, con la hora exacta de cada cuadro (el video continuo de Playwright se desfasaba). Luego ffmpeg los une con fundidos y la música. Si durante algún momento el juego se dibuja a menos de 40 fps (la computadora estaba ocupada), se detiene en lugar de armar un tráiler a saltos.
+
+### Revisión de René (28 de octubre de 2026)
+
+Después de jugar la v3 se corrigió:
+
+1. **Mixtle tiene su cola anillada en todas sus poses**: también colgado del árbol del inicio (la cola le cuelga y se enrosca), en la estampa, como mascota, en el parque del grupo, en el diploma, en la transición y en la hoja de personaje. Una prueba revisa que no falte.
+2. **La mascota del grupo no tapa nada en el camino**: va junto a la burbuja de la siguiente parada, más baja que ella y del lado contrario a Mixtle. Se revisó con cajas reales en las 9 posiciones del zigzag, a 1920×1080 y 1024×768 (18 de 18, `scripts/demo/revisar-ficha.mjs`), y queda una prueba e2e (`e2e/ficha.spec.ts`).
+3. **El ambiente de cada unidad decora los lados del camino**, detrás del contenido y sin tocar nada. Medido en las mismas condiciones, sin tarjeta de video: con decoraciones, 55/60 fps (proyector/tablet); sin ellas, 56/60.
+4. **No se ven dos parques seguidos**: el parque del grupo es el protagonista (marco dorado, "El parque de …" y su mascota), y la postal de la unidad 1 ahora es la estación de reciclaje del parque.
+
+Además, el encabezado del camino ya cabe en una línea en la tablet: 80 px de alto en lugar de 177, con botones de 64 px.
 
 ## Qué cambió en la v2
 
@@ -255,15 +288,16 @@ La v3 usa técnicas de marketing y de diseño de juegos para que el juego atraig
 
 | Qué | Resultado |
 |---|---|
-| Lo que se descarga antes de la primera pantalla | **231.3 KB** comprimidos, contando todas las fuentes (límite de la v3: 250 KB). `npm run presupuesto` lo mide en cada `verificar` y falla si se pasa. Las demás pantallas, el arte de los ambientes y los accesorios, Phaser, la voz y la música bajan después. |
+| Lo que se descarga antes de la primera pantalla | **231.9 KB** comprimidos, contando todas las fuentes (límite de la v3: 250 KB). `npm run presupuesto` lo mide en cada `verificar` y falla si se pasa. Las demás pantallas, el arte de los ambientes y los accesorios, Phaser, la voz y la música bajan después. |
 | Cuadros por segundo, Chrome con tarjeta de video (`node scripts/medir-fps.mjs --con-ventana`) | **59–60 fps** en el inicio (entrada y paralaje), la lección con hojitas y chispas, el cofre que estalla y el camino. Hasta 0.7 % de cuadros lentos, a 1920×1080 y a 1024×768 (`docs/rendimiento-v3.json`). |
 | Sin tarjeta de video (peor caso: Chromium sin ventana) | Con todas las animaciones, **11–14 fps** a 1920×1080 y 26–33 fps a 1024×768 (`docs/rendimiento-v3-sin-ventana.json`). Con las **animaciones suaves**, **57–60 fps** (`docs/rendimiento-v3-sin-ventana-suave.json`). Por eso el juego **las enciende solo** si mide menos de 35 fps (comprobado: de 11 a 60 fps). |
+| Decoraciones de los lados del camino | Comparación en las mismas condiciones y en el peor caso (sin tarjeta de video): **con decoraciones 55/60 fps, sin ellas 56/60** (proyector/tablet), mediana 60 (`docs/rendimiento-v3-sin-ventana-camino.json`). Ninguna se cruza con botones, etiquetas, la mascota ni Mixtle en 18 casos medidos. |
 | Contador de hojitas | En una lección real jugada en el navegador, el contador terminó en exactamente lo ganado (6 a la primera + 10 por terminarla). |
 | Diploma | Se imprime en **una sola hoja** horizontal, carta y A4 (medido con el PDF de Chrome). |
 
 
 
-**Pruebas unitarias (Vitest)**, en `tests/`: **1350 pruebas en 29 archivos, todas pasan** (28 de octubre de 2026). Además de las de la v2, la v3 agrega pruebas de marca (logo al día con las fuentes, 8 poses, presupuesto de la primera pantalla), migración y mudanza de datos, nombre (ningún "Caco" en código ni voz), Azure contra un servidor falso, protección de la llave, vitrina y transición, racha y mitad de lección, recompensas, diplomas, accesorios y vestidor, y el ajuste automático por rendimiento. Entre ellas:
+**Pruebas unitarias (Vitest)**, en `tests/`: **1359 pruebas en 30 archivos, todas pasan** (28 de octubre de 2026). Además de las de la v2, la v3 agrega pruebas de marca (logo al día con las fuentes, 8 poses, presupuesto de la primera pantalla), migración y mudanza de datos, nombre (ningún "Caco" en código ni voz), Azure contra un servidor falso, protección de la llave, vitrina y transición, racha y mitad de lección, recompensas, diplomas, accesorios y vestidor, y el ajuste automático por rendimiento. Entre ellas:
 
 - **Contenido válido:** cada unidad tiene 4 o 5 lecciones; cada lección tiene de 6 a 8 ejercicios con al menos 3 tipos; las respuestas correctas existen, los dibujos existen, no hay ejercicios imposibles (parejas sin repetir, "encuentra el error" con 1 a 3 errores dentro de la escena). Cuando una pregunta habla de un bote, dice su color **y su nombre** ("el bote naranja de no reciclable") y el bote se ve en pantalla. Cada archivo de contenido está marcado con `TODO(Eco Urban)`.
 - **Voz:** **toda frase narrada (761) tiene su audio en el manifiesto** y su mp3 existe, y **los 169 resúmenes con números** (fin de lección, cofre, diplomas) suenan como **un solo audio**, sin piezas encadenadas.
@@ -321,6 +355,7 @@ Para correrlos contra un sitio ya publicado, sin construir nada en local: `$env:
 - **Las aventuras son minijuegos cortos** (2 a 4 minutos). Las del bosquecito y la lonchera siempre tienen el mismo número de cosas: los diplomas muestran el esfuerzo, no un puntaje para comparar grupos.
 - El diploma de la unidad 1 cuenta los residuos separados en el nivel 2 y en la lluvia de basura (12 + 5) y los animales ayudados.
 - **v3: la voz de Azure aún no se ha generado.** Falta la llave (`AZURE_SPEECH_KEY`). Todo está listo y probado contra un servidor falso. Mientras tanto, Mixtle sigue con Kokoro.
+- **v3: las mediciones de cuadros por segundo dependen de que la computadora esté libre.** Con la ventana de Chrome tapada o la laptop ocupada en otra cosa, Chrome deja de dibujar y las cifras no sirven. `scripts/medir-fps.mjs` lo detecta y lo avisa, y el tráiler se niega a grabarse así. Las cifras de este README se tomaron con la laptop libre, o comparando en las mismas condiciones.
 - **v3: equipos sin aceleración por tarjeta de video.** Ahí las animaciones completas van a 11–33 fps. El juego lo detecta y se calma solo; con las animaciones suaves va a 57–60 fps.
 - **v3: lo que falta confirmar con Eco Urban.** Los precios de los accesorios, que los ambientes de cada unidad se sientan "de Toluca" y la frase de Mixtle ("¡Al rescate!").
 
