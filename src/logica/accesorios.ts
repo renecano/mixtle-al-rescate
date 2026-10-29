@@ -8,15 +8,21 @@ import type { IdMascota } from './grupos';
  */
 
 export const ACCESORIOS = [
-  { id: 'flor', nombre: 'Flor de cempasúchil', precio: 25, origen: { x: 0.5, y: 0.5 }, detras: false },
-  { id: 'gorra', nombre: 'Gorra', precio: 30, origen: { x: 0.5, y: 0.85 }, detras: false },
-  { id: 'lentes', nombre: 'Lentes', precio: 40, origen: { x: 0.5, y: 0.5 }, detras: false },
-  { id: 'paliacate', nombre: 'Paliacate', precio: 50, origen: { x: 0.5, y: 0.25 }, detras: false },
-  { id: 'mochila', nombre: 'Mochila', precio: 60, origen: { x: 0.5, y: 0.5 }, detras: false },
-  { id: 'capa', nombre: 'Capa de guardián', precio: 80, origen: { x: 0.5, y: 0.12 }, detras: true },
+  { id: 'flor', nombre: 'Flor de cempasúchil', articulo: 'la', precio: 25, origen: { x: 0.5, y: 0.5 }, detras: false },
+  { id: 'gorra', nombre: 'Gorra', articulo: 'la', precio: 30, origen: { x: 0.5, y: 0.85 }, detras: false },
+  { id: 'lentes', nombre: 'Lentes', articulo: 'los', precio: 40, origen: { x: 0.5, y: 0.5 }, detras: false },
+  { id: 'paliacate', nombre: 'Paliacate', articulo: 'el', precio: 50, origen: { x: 0.5, y: 0.25 }, detras: false },
+  { id: 'mochila', nombre: 'Mochila', articulo: 'la', precio: 60, origen: { x: 0.5, y: 0.5 }, detras: false },
+  { id: 'capa', nombre: 'Capa de guardián', articulo: 'la', precio: 80, origen: { x: 0.5, y: 0.12 }, detras: true },
 ] as const;
 
 export type IdAccesorio = (typeof ACCESORIOS)[number]['id'];
+
+/** El accesorio con su artículo, para decirlo en una frase: "la gorra", "los lentes". */
+export function conArticulo(id: IdAccesorio): string {
+  const a = ACCESORIOS.find((x) => x.id === id)!;
+  return `${a.articulo} ${a.nombre.toLowerCase()}`;
+}
 
 /** `encima`: dibujarlo delante de la mascota aunque normalmente vaya detrás (la capa en la mariposa). */
 export type Ancla = { x: number; y: number; w: number; r?: number; encima?: boolean };

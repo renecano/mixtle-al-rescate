@@ -11,6 +11,11 @@
    "ms": 4270,
    "config": "02c95083b05b81"
   },
+  "001b660e9d0c07.mp3": {
+   "texto": "¿Compran la gorra por",
+   "ms": 1390,
+   "config": "1375cb6708f285"
+  },
   "002391bc4adb96.mp3": {
    "texto": "ejercicios salieron a la primera.",
    "ms": 2140,
@@ -275,6 +280,11 @@
    "texto": "¡Terminaron todo el camino! El parque está lleno de vida.",
    "ms": 3240,
    "config": "1ff94bd02f6475"
+  },
+  "027cc96aa96e96.mp3": {
+   "texto": "¿Compran los lentes por cuarenta hojitas?",
+   "ms": 2470,
+   "config": "1ffd6b7a88b0a1"
   },
   "027ed11dcecd1b.mp3": {
    "texto": "¡Felicidades, guardianes del parque! Sembraron",
@@ -651,6 +661,11 @@
    "ms": 2230,
    "config": "0a95396c5f81a3"
   },
+  "0528cbbdb5b685.mp3": {
+   "texto": "hojitas?",
+   "ms": 840,
+   "config": "02bbfbfe3347b7"
+  },
   "053261cd3d6d87.mp3": {
    "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: nueve. Nubes de humo que esquivaron: dos. ¡Bravo!",
    "ms": 5900,
@@ -736,6 +751,11 @@
    "ms": 3050,
    "config": "0c7d8cc5029853"
   },
+  "05dcdae3500c5b.mp3": {
+   "texto": "¿Compran el paliacate por",
+   "ms": 1630,
+   "config": "022fbd86356171"
+  },
   "05f08ed2f7e90f.mp3": {
    "texto": "¡Terminaron la unidad cuatro! Aquí está su diploma.",
    "ms": 3020,
@@ -770,6 +790,11 @@
    "texto": "Toca el bote azul de reciclable.",
    "ms": 2160,
    "config": "1e99417a414e22"
+  },
+  "061f59e81d7316.mp3": {
+   "texto": "¿Compran la mochila por",
+   "ms": 1510,
+   "config": "14de6b46b7e882"
   },
   "062f313d2532fc.mp3": {
    "texto": "Los popotes casi nunca se reciclan; puedes tomar tu agua sin popote.",
@@ -1086,6 +1111,11 @@
    "ms": 3500,
    "config": "1e459e4b531d1f"
   },
+  "0949314087d9f8.mp3": {
+   "texto": "¿Compran la flor de cempasúchil por veinticinco hojitas?",
+   "ms": 3260,
+   "config": "0fab1c44ca4e0f"
+  },
   "09533805027494.mp3": {
    "texto": "El papel sucio de comida ya no se recicla.",
    "ms": 2860,
@@ -1261,6 +1291,11 @@
    "ms": 6000,
    "config": "1697a5d8a0418f"
   },
+  "0aa185a82b1407.mp3": {
+   "texto": "¿Compran la mochila por sesenta hojitas?",
+   "ms": 2400,
+   "config": "0a44befe5c384a"
+  },
   "0aa50ce262aaae.mp3": {
    "texto": "Una lata de aluminio se puede reciclar muchas veces y volver a ser lata.",
    "ms": 4320,
@@ -1435,6 +1470,11 @@
    "texto": "tres",
    "ms": 620,
    "config": "0a856b85e17822"
+  },
+  "0c66878650b7cb.mp3": {
+   "texto": "¿Compran la flor de cempasúchil por",
+   "ms": 2180,
+   "config": "056441b0facf4c"
   },
   "0c837c9e99aef8.mp3": {
    "texto": "El papel se hace con árboles.",
@@ -1636,6 +1676,11 @@
    "ms": 2930,
    "config": "188d12f8582796"
   },
+  "0dfe1fe2b556ef.mp3": {
+   "texto": "¿Compran el paliacate por cincuenta hojitas?",
+   "ms": 2590,
+   "config": "09e3f9d915206f"
+  },
   "0e058bfa77232c.mp3": {
    "texto": "Toca la cuchara de metal.",
    "ms": 1750,
@@ -1710,6 +1755,11 @@
    "texto": "¡Hola, grupo Colibrí! Toquen la lección que señalo.",
    "ms": 2950,
    "config": "0306727e5a7935"
+  },
+  "0e62fe842bcfae.mp3": {
+   "texto": "¿Compran la gorra por treinta hojitas?",
+   "ms": 2350,
+   "config": "1292fe45e33033"
   },
   "0e67e90de1d967.mp3": {
    "texto": "Lo que se recicla va vacío y limpio.",
@@ -2826,6 +2876,11 @@
    "ms": 2380,
    "config": "1f83fb70add6a9"
   },
+  "17e49d0b0747ad.mp3": {
+   "texto": "¿Compran los lentes por",
+   "ms": 1510,
+   "config": "030b54c958c2ca"
+  },
   "17ef2b2ac5043e.mp3": {
    "texto": "¡Al rescate!",
    "ms": 1030,
@@ -3566,6 +3621,11 @@
    "ms": 2660,
    "config": "1dcfb68a8696f0"
   },
+  "1dce7ff979e552.mp3": {
+   "texto": "¿Compran la capa de guardián por ochenta hojitas?",
+   "ms": 2760,
+   "config": "052c26ffb5f7dd"
+  },
   "1dd2ca441aaa74.mp3": {
    "texto": "¡Felicidades, guardianes del parque! Separaron bien doce residuos y ayudaron a seis animales.",
    "ms": 5520,
@@ -3725,6 +3785,11 @@
    "texto": "ochenta y dos",
    "ms": 1250,
    "config": "17f08bf32411f5"
+  },
+  "1f501fd51638e4.mp3": {
+   "texto": "¿Compran la capa de guardián por",
+   "ms": 2040,
+   "config": "05102f9877bb65"
   },
   "1f72b8ba85ceeb.mp3": {
    "texto": "¡Felicidades, guardianes del parque! Separaron bien quince residuos y ayudaron a seis animales.",

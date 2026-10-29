@@ -6,6 +6,7 @@ import { TEXTOS_AVENTURAS } from '../contenido/aventuras';
 import { TEXTOS_APP } from '../contenido/textosApp';
 import type { Ejercicio } from '../contenido/tipos';
 import { UNIDADES } from '../contenido/unidades';
+import { ACCESORIOS, conArticulo } from '../logica/accesorios';
 import { HOJITAS_COFRE } from '../logica/camino';
 import { textoPista } from '../logica/clasificacion';
 import { MASCOTAS } from '../logica/grupos';
@@ -108,6 +109,7 @@ export function todasLasFrases(): FraseNarrada[] {
   MASCOTAS.forEach((m) => app('vestidor', `vestidor.hola.${m.id}`, t.vestidor.hola(m.nombre)));
   app('vestidor', 'vestidor.comprada', t.vestidor.comprada);
   app('vestidor', 'vestidor.faltan', t.vestidor.faltan);
+  ACCESORIOS.forEach((a) => app('vestidor', `vestidor.confirmar.${a.id}`, t.vestidor.confirmar(conArticulo(a.id), a.precio)));
   app('cofre', 'cofre.abierto', t.cofre.abierto(HOJITAS_COFRE));
   t.leccion.animos.forEach((a, i) => app('leccion', `leccion.animo.${i + 1}`, a));
   app('leccion', 'leccion.casi', '¡Casi!');
@@ -151,6 +153,9 @@ export function narracionesCompletas(): { id: string; unidad: string; leccion: s
       lista.push({ id: `leccion.terminada.${total}.${a}`, unidad: 'app', leccion: 'leccion', locucion: TEXTOS_APP.leccion.terminada(HOJITAS_POR_LECCION + a, a, total) });
   lista.push({ id: 'cofre.abierto.completa', unidad: 'app', leccion: 'cofre', locucion: TEXTOS_APP.cofre.abierto(HOJITAS_COFRE) });
   lista.push({ id: 'cofre.llegaron.completa', unidad: 'app', leccion: 'cofre', locucion: TEXTOS_APP.cofre.llegaron(HOJITAS_COFRE) });
+  // Vestidor: la pregunta antes de comprar cada accesorio, con su precio fijo.
+  for (const a of ACCESORIOS)
+    lista.push({ id: `vestidor.confirmar.${a.id}.completa`, unidad: 'app', leccion: 'vestidor', locucion: TEXTOS_APP.vestidor.confirmar(conArticulo(a.id), a.precio) });
 
   // Unidad 1: 12 residuos del nivel 2 + hasta 5 de la lluvia de basura; animales de 4 a 10.
   for (const r of hasta(RESIDUOS.length + 5).filter((x) => x >= RESIDUOS.length))

@@ -88,6 +88,10 @@ export const TEXTOS_APP = {
     comprada: '¡Le queda muy bien!',
     faltan: 'Junten más hojitas en las lecciones para comprarla.',
     comprar: 'Comprar',
+    /** Antes de gastar (narrado): qué se compra y cuánto cuesta, para decidirlo juntos. */
+    confirmar: (cosa: string, precio: number): Locucion => [`¿Compran ${cosa} por`, { numero: precio }, 'hojitas?'],
+    confirmarSi: 'Sí, comprar',
+    confirmarNo: 'No, todavía no',
     ponerse: 'Ponérsela',
     quitarse: 'Quitársela',
     faltanCuantas: (n: number) => `¡Junten ${n} más!`,
