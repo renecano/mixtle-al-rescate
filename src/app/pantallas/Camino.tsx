@@ -3,6 +3,7 @@ import { useEffect, useMemo, useRef, useState, type CSSProperties } from 'react'
 import { TEXTOS_APP } from '../../contenido/textosApp';
 import { UNIDADES } from '../../contenido/unidades';
 import { AMBIENTES, ARTE_AMBIENTES } from '../../arte/ambientes';
+import { ARTE_DECORACIONES, DECORACIONES } from '../../arte/decoraciones';
 import { accesoriosPuestos } from '../../logica/accesorios';
 import { estadosDelCamino, HOJITAS_COFRE, nodosDelCamino, siguienteNodo, unidadCompleta, type EstadoNodo, type Nodo } from '../../logica/camino';
 import { datosDiplomaUnidad, type DatosDiplomaUnidad } from '../../logica/diplomaUnidad';
@@ -25,7 +26,7 @@ import { useGrupoActual, useGrupos } from '../estado/grupos';
 import { callar, decir } from '../estado/narrador';
 
 // Los ambientes de las unidades solo se ven en el camino: se registran al cargar esta pantalla.
-registrarArte(ARTE_AMBIENTES);
+registrarArte([...ARTE_AMBIENTES, ...ARTE_DECORACIONES]);
 
 /** Las burbujas zigzaguean: posición horizontal (en %) según su lugar en la unidad. */
 const ZIGZAG = [50, 66, 76, 66, 50, 34, 24, 34];
@@ -93,7 +94,8 @@ export function Camino() {
         {/* Un tramo por unidad, con su ambiente: la postal arriba y su paleta de fondo (cambia al avanzar). */}
         {UNIDADES.map((u) => (
           <section key={u.id} className="tramo-unidad" data-ambiente={u.id} style={estiloAmbiente(u.id)}>
-            <div className="mx-auto flex max-w-[70rem] flex-col items-center gap-4 px-4 pb-16">
+            <DecoracionesTramo unidadId={u.id} />
+            <div className="relative z-[1] mx-auto flex max-w-[70rem] flex-col items-center gap-4 px-4 pb-16">
               <PostalUnidad unidadId={u.id} />
               {nodos.map((n, i) => {
                 if (n.unidad.id !== u.id) return null;
@@ -177,6 +179,24 @@ export function Camino() {
 function estiloAmbiente(unidadId: string): CSSProperties {
   const a = AMBIENTES[unidadId];
   return a ? ({ '--cielo-unidad': a.cielo, '--suelo-unidad': a.suelo } as CSSProperties) : {};
+}
+
+/**
+ * A los lados del tramo, el ambiente de la unidad (árboles y bancas, tules, pinos, casas y bicis,
+ * la escuela). Detrás del camino (nunca tapa nada), sin toques ni animación: no cuesta cuadros.
+ */
+function DecoracionesTramo({ unidadId }: { unidadId: string }) {
+  const d = DECORACIONES[unidadId];
+  if (!d) return null;
+  const pieza = (lado: 'izq' | 'der') => (x: { arte: string; arriba: number; ancho?: number }, i: number) => (
+    <Arte key={`${lado}${i}`} clave={x.arte} className={`deco deco-${lado}`} style={{ top: `${x.arriba}%`, ['--ancho' as string]: x.ancho ?? 1 }} />
+  );
+  return (
+    <div className="decoraciones" aria-hidden="true" data-decoraciones={unidadId}>
+      {d.izq.map(pieza('izq'))}
+      {d.der.map(pieza('der'))}
+    </div>
+  );
 }
 
 /** La postal de la unidad: su lugar ilustrado (parque, humedal, bosque del Nevado, calles de Toluca, escuela). */

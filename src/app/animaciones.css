@@ -940,3 +940,33 @@ html[data-suave] .ficha-grupo {
   pointer-events: none;
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.12  0 0 0 0 0.17  0 0 0 0 0.12  0 0 0 .09 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
 }
+
+/* ─── Decoraciones a los lados del camino (ambiente de cada unidad) ───
+ * Detrás del contenido y sin toques: nunca tapan nada. En pantallas anchas van en los márgenes;
+ * en la tablet, angostas y pegadas a la orilla, donde el zigzag deja lugar libre.
+ */
+.decoraciones {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.deco {
+  --w: calc(var(--ancho, 1) * clamp(3.5rem, 7vw, 9rem));
+  position: absolute;
+  width: var(--w);
+  max-width: none;
+  translate: 0 -100%;
+}
+.deco-izq {
+  left: max(0.5rem, calc((100% - 70rem) / 2 - var(--w) - 2rem));
+}
+.deco-der {
+  right: max(0.5rem, calc((100% - 70rem) / 2 - var(--w) - 2rem));
+}
+@media (max-width: 1199px) {
+  .deco {
+    --w: calc(min(var(--ancho, 1), 1) * 6vw);
+  }
+}
