@@ -7,7 +7,7 @@ import { ARTE_DECORACIONES, DECORACIONES } from '../../arte/decoraciones';
 import { accesoriosPuestos } from '../../logica/accesorios';
 import { estadosDelCamino, HOJITAS_COFRE, nodosDelCamino, siguienteNodo, unidadCompleta, type EstadoNodo, type Nodo } from '../../logica/camino';
 import { datosDiplomaUnidad, type DatosDiplomaUnidad } from '../../logica/diplomaUnidad';
-import { mascota } from '../../logica/grupos';
+import { mascota, nombreDelGrupo } from '../../logica/grupos';
 import { sonido } from '../../servicios/sonido';
 import { Arte, registrarArte } from '../componentes/Arte';
 import { BotonGrande } from '../componentes/BotonGrande';
@@ -88,8 +88,15 @@ export function Camino() {
     <main data-pantalla="camino" data-entrada-lista="true" className="flex h-full w-full flex-col bg-gradient-to-b from-cielo to-verde-claro">
       <Encabezado grupo={grupo} alAlbum={abrirAlbum} alCambiarGrupo={irAGrupos} alVestidor={() => setVestidor(true)} alFacilitador={() => setFacilitador(true)} />
       <div className="relative min-h-0 flex-1 overflow-y-auto">
-        <div className="mx-auto flex max-w-[70rem] flex-col items-center gap-4 px-4 pt-4">
-          <ParqueGrupo progreso={progreso} className="aspect-[16/6] w-full max-w-[calc(30vh*16/6)]" />
+        {/* El parque del grupo es el protagonista: su meta visible, con marco, título y su mascota. */}
+        <div className="mx-auto flex max-w-[70rem] flex-col items-center px-4 pt-10 pb-10">
+          <section className="parque-protagonista" aria-label={TEXTOS_APP.camino.suParque(nombreDelGrupo(grupo))}>
+            <h2 className="parque-protagonista-titulo">
+              <MascotaVestida mascota={grupo.mascota} puestos={accesoriosPuestos(progreso)} className="h-[1.9em]" />
+              <span>{TEXTOS_APP.camino.suParque(nombreDelGrupo(grupo))}</span>
+            </h2>
+            <ParqueGrupo progreso={progreso} className="aspect-[16/6] w-full" />
+          </section>
         </div>
         {/* Un tramo por unidad, con su ambiente: la postal arriba y su paleta de fondo (cambia al avanzar). */}
         {UNIDADES.map((u) => (

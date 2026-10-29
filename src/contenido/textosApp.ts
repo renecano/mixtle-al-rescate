@@ -28,6 +28,8 @@ export const TEXTOS_APP = {
     unidad: 'Unidad',
     encabezadoUnidad: (numero: number, titulo: string) => `Unidad ${numero}: ${titulo}.`,
     hojitas: 'Hojitas',
+    /** Título del parque del grupo, arriba del camino. */
+    suParque: (grupo: string) => `El parque de ${grupo}`,
     dias: 'Días jugados',
     album: 'Álbum',
     cambiarGrupo: 'Cambiar de grupo',

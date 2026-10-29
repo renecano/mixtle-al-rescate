@@ -38,14 +38,41 @@ const nevado = (x: number, base: number, e: number, color = '#9DB4CB') =>
     <path d="M-150 -196 L -70 -236 L -40 -256 L -14 -236 L 24 -246 L 60 -228 L 100 -250 L 132 -232 L 170 -206 L 140 -200 L 118 -214 L 98 -194 L 74 -210 L 50 -190 L 26 -212 L 2 -192 L -22 -212 L -46 -188 L -70 -208 L -96 -190 L -120 -204 Z" fill="#F7FBFF"/>
   </g>`;
 
-/** 1 · Parque: lomas, árboles, una banca y el Nevado a lo lejos. */
-const PARQUE = `${cielo('am-c1', '#B9E3F6', '#EEF8EC')}${sol(1640, 130)}${nube(420, 120, 1)}${nube(1180, 90, 0.7)}
-  ${nevado(1240, 470, 0.9, '#B3C6D6')}
-  <path d="M0 470 C 360 410 760 440 1100 470 C 1440 500 1700 440 1920 450 L 1920 640 L 0 640 Z" fill="#A9D98C"/>
-  <path d="M0 540 C 420 500 900 520 1300 550 C 1600 570 1800 540 1920 530 L 1920 640 L 0 640 Z" fill="#93CB76"/>
-  ${arbol(180, 560, 1.1)}${arbol(420, 520, 0.8, '#4BA85E')}${arbol(1720, 560, 1, '#3E9A55')}${arbol(1500, 520, 0.7, '#4BA85E')}
-  <g transform="translate(860 560)"><rect x="-90" y="-46" width="180" height="16" rx="6" fill="#B07A4A"/><rect x="-90" y="-22" width="180" height="16" rx="6" fill="#9A6A3E"/><rect x="-80" y="-6" width="12" height="40" fill="#5B4636"/><rect x="68" y="-6" width="12" height="40" fill="#5B4636"/></g>
-  <g transform="translate(1180 570)"><rect x="-6" y="-170" width="12" height="174" fill="#2E4A3E"/><path d="M-26 -170 L 26 -170 L 18 -206 L -18 -206 Z" fill="#FFF2C2" stroke="#2E4A3E" stroke-width="6"/></g>`;
+/**
+ * 1 · Parque, en su estación de reciclaje: la plaza con los tres botes (orgánico, reciclable y no
+ * reciclable), banderitas y un letrero. Es otra escena que el parque del grupo (que sale justo arriba
+ * en el camino): sin el Nevado ni el árbol grande, para que no se vean dos parques iguales seguidos.
+ */
+/** Un bote grande de la estación, con su color y su señal (hoja, flechas en círculo o bote). */
+const boteEstacion = (x: number, color: string, oscuro: string, senal: string) => `<g transform="translate(${x} 560)">
+    <ellipse cx="0" cy="6" rx="96" ry="12" fill="#000" opacity=".15"/>
+    <path d="M-78 -210 L 78 -210 L 64 0 L -64 0 Z" fill="${color}" stroke="${oscuro}" stroke-width="8" stroke-linejoin="round"/>
+    <rect x="-90" y="-236" width="180" height="30" rx="10" fill="${oscuro}"/>
+    <path d="M-56 -190 L -48 -20" stroke="#fff" stroke-width="8" stroke-linecap="round" opacity=".2"/>
+    <circle cx="0" cy="-112" r="46" fill="#fff"/>${senal}
+  </g>`;
+const SENAL_HOJA = `<path d="M-20 -96 q 4 -44 40 -38 q -2 42 -40 38z" fill="#1F6B4A"/><path d="M-16 -100 l 28 -28" stroke="#fff" stroke-width="4"/>`;
+const SENAL_FLECHAS = `<path d="M-26 -112 a 26 26 0 1 1 8 19" fill="none" stroke="#2459A6" stroke-width="9" stroke-linecap="round"/><path d="M-30 -96 l 4 -16 l 14 8 z" fill="#2459A6"/>`;
+const SENAL_BOTE = `<rect x="-18" y="-128" width="36" height="40" rx="4" fill="#B84A14"/><rect x="-24" y="-136" width="48" height="10" rx="4" fill="#B84A14"/>`;
+
+const PARQUE = `${cielo('am-c1', '#BDE6F7', '#F2F9EC')}${sol(260, 120)}${nube(760, 100, 0.8)}${nube(1500, 120, 0.7)}
+  <path d="M0 420 C 300 380 700 400 1000 420 C 1300 440 1600 390 1920 400 L 1920 640 L 0 640 Z" fill="#A9D98C"/>
+  <path d="M520 640 L 640 460 L 1280 460 L 1400 640 Z" fill="#E9DCC0"/>
+  ${Array.from({ length: 6 }, (_, i) => `<path d="M${640 - i * 22} ${460 + i * 32} H ${1280 + i * 22}" stroke="#D2C29F" stroke-width="3"/>`).join('')}
+  <path d="M120 80 Q 960 220 1800 80" fill="none" stroke="#7A5236" stroke-width="5"/>
+  ${Array.from({ length: 15 }, (_, i) => {
+    const x = 180 + i * 108;
+    const t = (x - 120) / 1680;
+    const y = 80 + 4 * 140 * t * (1 - t) * 0.5 + 6;
+    const color = ['#1F6B4A', '#2459A6', '#B84A14', '#FFD23F'][i % 4];
+    return `<path d="M${x - 26} ${y} L ${x + 26} ${y} L ${x} ${y + 46} Z" fill="${color}"/>`;
+  }).join('')}
+  ${arbol(150, 520, 0.9)}${arbol(1770, 520, 0.95, '#3E9A55')}
+  ${boteEstacion(760, '#1F6B4A', '#123D2B', SENAL_HOJA)}${boteEstacion(960, '#2459A6', '#173B70', SENAL_FLECHAS)}${boteEstacion(1160, '#B84A14', '#7A2F0B', SENAL_BOTE)}
+  <g transform="translate(1440 560)"><rect x="-8" y="-200" width="16" height="200" fill="#7A5236"/><rect x="-86" y="-232" width="172" height="74" rx="14" fill="#FFF8E7" stroke="#7A5236" stroke-width="7"/>
+    <path d="M-50 -196 a 22 22 0 1 1 7 16 M-50 -196 l -4 14 l 14 -4" fill="none" stroke="#1F6B4A" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M6 -206 h 52 M6 -186 h 40" stroke="#1F6B4A" stroke-width="8" stroke-linecap="round"/></g>
+  <g transform="translate(470 590)"><rect x="-80" y="-40" width="160" height="14" rx="6" fill="#B07A4A"/><rect x="-80" y="-20" width="160" height="14" rx="6" fill="#9A6A3E"/><rect x="-70" y="-6" width="11" height="34" fill="#5B4636"/><rect x="59" y="-6" width="11" height="34" fill="#5B4636"/></g>`;
 
 /** 2 · Hogar de los animales: humedal (como las ciénegas cerca de Toluca), tules, lirios y un nido. */
 const HUMEDAL = `${cielo('am-c2', '#C7E8F2', '#F4F7E2')}${sol(300, 140)}${nube(900, 110, 0.9)}${nube(1600, 150, 0.6)}
@@ -126,7 +153,7 @@ export const ARTE_AMBIENTES: ArteSvg[] = [
 
 /** Paleta del ambiente de cada unidad: el fondo de su tramo del camino y de sus lecciones. */
 export const AMBIENTES: Record<string, { nombre: string; arte: string; cielo: string; suelo: string }> = {
-  u1: { nombre: 'Parque', arte: 'ambiente-u1', cielo: '#D3EEF9', suelo: '#E1F3D3' },
+  u1: { nombre: 'Parque: la estación de reciclaje', arte: 'ambiente-u1', cielo: '#D3EEF9', suelo: '#E1F3D3' },
   u2: { nombre: 'Hogar de los animales', arte: 'ambiente-u2', cielo: '#D8EEF4', suelo: '#DDF0EE' },
   u3: { nombre: 'Bosque del Nevado de Toluca', arte: 'ambiente-u3', cielo: '#D4E8F4', suelo: '#D9EBD9' },
   u4: { nombre: 'Calles de Toluca', arte: 'ambiente-u4', cielo: '#DCEEF8', suelo: '#F6EBDA' },
