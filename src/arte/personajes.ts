@@ -229,14 +229,15 @@ function ardilla(feliz: boolean): string {
   const cola = feliz
     ? 'M150 252 C 252 252 262 150 222 92 C 192 48 232 14 254 30 C 204 -6 148 40 170 100 C 186 150 162 202 132 232 Z'
     : 'M150 252 C 240 262 268 200 248 150 C 232 112 256 92 262 100 C 236 70 196 100 204 150 C 210 190 170 214 132 232 Z';
-  return `
+  return `<defs><radialGradient id="pe-ardilla" cx="38%" cy="30%" r="80%"><stop offset="0" stop-color="#A9A4A0"/><stop offset=".55" stop-color="${A.gris}"/><stop offset="1" stop-color="#76716E"/></radialGradient><radialGradient id="pe-ardilla-panza" cx="38%" cy="30%" r="80%"><stop offset="0" stop-color="#EE965C"/><stop offset=".55" stop-color="${A.rojizo}"/><stop offset="1" stop-color="#BC5E26"/></radialGradient></defs>
     <ellipse cx="120" cy="268" rx="100" ry="10" fill="#000" opacity=".12"/>
     <path d="${cola}" fill="${A.gris}" stroke="${A.borde}" stroke-width="10" stroke-linejoin="round"/>
-    <ellipse cx="110" cy="196" rx="62" ry="72" fill="${A.gris}"/>
-    <ellipse cx="106" cy="208" rx="38" ry="52" fill="${A.rojizo}"/>
+    <ellipse cx="110" cy="196" rx="62" ry="72" fill="url(#pe-ardilla)"/>
+    <ellipse cx="106" cy="208" rx="38" ry="52" fill="url(#pe-ardilla-panza)"/>
     <g transform="rotate(-14 76 60)"><ellipse cx="76" cy="60" rx="15" ry="25" fill="${A.gris}"/><ellipse cx="76" cy="64" rx="8" ry="15" fill="${A.rojizo}"/></g>
     <g transform="rotate(14 134 60)"><ellipse cx="134" cy="60" rx="15" ry="25" fill="${A.gris}"/><ellipse cx="134" cy="64" rx="8" ry="15" fill="${A.rojizo}"/></g>
-    <circle cx="105" cy="106" r="54" fill="${A.gris}"/>
+    <circle cx="105" cy="106" r="54" fill="url(#pe-ardilla)"/>
+    <ellipse cx="88" cy="74" rx="22" ry="10" fill="#fff" opacity=".18"/>
     <ellipse cx="105" cy="126" rx="30" ry="21" fill="${A.crema}"/>
     ${ojos}
     <ellipse cx="105" cy="118" rx="8" ry="5.5" fill="${TINTA}"/>
@@ -260,11 +261,12 @@ function colibri(feliz: boolean): string {
   const alaPlegada = feliz
     ? ''
     : `<path d="M110 82 C 140 70 180 80 205 110 C 170 110 135 105 110 98 Z" fill="${H.verdeOscuro}" opacity=".9"/>`;
-  return `
+  return `<defs><radialGradient id="pe-colibri" cx="38%" cy="30%" r="80%"><stop offset="0" stop-color="#52CC8C"/><stop offset=".55" stop-color="${H.verde}"/><stop offset="1" stop-color="${H.verdeOscuro}"/></radialGradient></defs>
     <path d="M180 100 L 238 118 L 226 142 Z" fill="${H.verdeOscuro}"/>
-    <path d="M70 86 C 90 52 150 46 186 72 C 206 86 214 104 222 122 C 196 122 170 122 150 120 C 110 122 76 112 70 86 Z" fill="${H.verde}"/>
+    <path d="M70 86 C 90 52 150 46 186 72 C 206 86 214 104 222 122 C 196 122 170 122 150 120 C 110 122 76 112 70 86 Z" fill="url(#pe-colibri)"/>
     <path d="M96 104 C 120 124 160 124 196 116 C 172 132 128 136 100 120 Z" fill="${H.panza}"/>
-    <circle cx="86" cy="78" r="30" fill="${H.verde}"/>
+    <circle cx="86" cy="78" r="30" fill="url(#pe-colibri)"/>
+    <path d="M110 66 Q 150 56 186 74" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".25"/>
     <ellipse cx="96" cy="100" rx="22" ry="13" fill="${H.garganta}"/>
     <path d="${pico}" fill="${TINTA}"/>
     ${ojo}${alaPlegada}`;
@@ -275,7 +277,7 @@ const ALA_COLIBRI = `<path d="M10 70 C 30 22 90 2 136 8 C 112 32 70 60 10 70 Z" 
 
 // ─── Mariposa monarca ────────────────────────────────────────────────────
 function mariposa(feliz: boolean): string {
-  const naranja = feliz ? '#F28C28' : '#C9A27A';
+  const naranja = feliz ? 'url(#pe-monarca)' : '#C9A27A';
   const borde = '#1D1D1D';
   const alas = `
     <path d="M108 88 C 80 28 30 8 12 30 C 0 60 30 96 104 98 Z" fill="${naranja}" stroke="${borde}" stroke-width="8" stroke-linejoin="round"/>
@@ -289,7 +291,8 @@ function mariposa(feliz: boolean): string {
   const cara = feliz
     ? `<path d="M104 66 Q 110 72 116 66" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round"/>`
     : `<path d="M104 70 Q 110 64 116 70" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round"/>`;
-  return `
+  const degradado = feliz ? `<defs><radialGradient id="pe-monarca" cx="38%" cy="30%" r="80%"><stop offset="0" stop-color="#FFB75E"/><stop offset=".55" stop-color="#F28C28"/><stop offset="1" stop-color="#D2661A"/></radialGradient></defs>` : '';
+  return `${degradado}
     ${alas}
     <g transform="translate(220 0) scale(-1 1)">${alas}</g>
     <ellipse cx="110" cy="108" rx="9" ry="40" fill="${borde}"/>

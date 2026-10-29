@@ -157,7 +157,7 @@ export function Leccion() {
     <main
       data-pantalla="leccion"
       data-entrada-lista="true"
-      className="relative flex h-full w-full flex-col bg-gradient-to-b from-cielo to-verde-claro"
+      className="textura relative flex h-full w-full flex-col bg-gradient-to-b from-cielo to-verde-claro"
       style={fondoDeUnidad(datos.unidad.id)}
       onPointerDownCapture={(e) => (ultimoToque.current = { x: e.clientX, y: e.clientY })}
     >
@@ -292,7 +292,7 @@ function FinLeccion({ sesion, unidadColor }: { sesion: SesionLeccion; unidadColo
   const parque = mostrarDespues ? despues : antes;
 
   return (
-    <main data-pantalla="fin-leccion" data-entrada-lista="true" className="relative flex h-full w-full flex-col items-center justify-center gap-[clamp(0.75rem,2.5vmin,1.75rem)] overflow-y-auto bg-gradient-to-b from-cielo to-verde-claro p-4">
+    <main data-pantalla="fin-leccion" data-entrada-lista="true" className="textura relative flex h-full w-full flex-col items-center justify-center gap-[clamp(0.75rem,2.5vmin,1.75rem)] overflow-y-auto bg-gradient-to-b from-cielo to-verde-claro p-4">
       <ContadorHojitas
         ref={contadorFin}
         valor={inicioContador + llegadas}

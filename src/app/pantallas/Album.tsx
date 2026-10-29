@@ -25,7 +25,7 @@ export function Album() {
   }, []);
 
   return (
-    <main data-pantalla="album" data-entrada-lista="true" className="relative flex h-full w-full flex-col items-center gap-6 overflow-y-auto bg-gradient-to-b from-[#FFF1C7] to-crema px-4 pt-6 pb-36">
+    <main data-pantalla="album" data-entrada-lista="true" className="textura relative flex h-full w-full flex-col items-center gap-6 overflow-y-auto bg-gradient-to-b from-[#FFF1C7] to-crema px-4 pt-6 pb-36">
       <BotonesSistema />
       <div className="flex w-full max-w-[80rem] items-center gap-4">
         <BotonGrande color="verde" etiqueta={TEXTOS_APP.leccion.alCamino} className="size-[clamp(4rem,9vmin,5.5rem)]" icono={<Arte clave="icono-casa" className="size-[60%]" />} onClick={() => alCamino()} />

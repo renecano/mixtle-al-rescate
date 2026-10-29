@@ -24,7 +24,7 @@ export function Grupos() {
   }, [cargado, cargar]);
 
   return (
-    <main data-pantalla="grupos" data-entrada-lista="true" className="relative flex h-full w-full flex-col items-center gap-[clamp(1rem,3vmin,2rem)] overflow-y-auto bg-gradient-to-b from-cielo to-verde-claro px-4 pt-6 pb-8">
+    <main data-pantalla="grupos" data-entrada-lista="true" className="textura relative flex h-full w-full flex-col items-center gap-[clamp(1rem,3vmin,2rem)] overflow-y-auto bg-gradient-to-b from-cielo to-verde-claro px-4 pt-6 pb-8">
       <BotonesSistema />
       <h1 className="text-[clamp(2.2rem,6vmin,4.5rem)] font-black text-white" style={{ WebkitTextStroke: '0.1em var(--color-verde)', paintOrder: 'stroke fill' }}>
         {TEXTOS_APP.grupos.titulo}

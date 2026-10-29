@@ -923,3 +923,20 @@ html[data-suave] .ficha-grupo {
   -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 20' preserveAspectRatio='none'><path d='M0 20 V12 C 20 0 40 0 60 10 C 80 20 100 20 120 8 V20 Z'/></svg>") bottom / 100% 100% no-repeat;
   mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 20' preserveAspectRatio='none'><path d='M0 20 V12 C 20 0 40 0 60 10 C 80 20 100 20 120 8 V20 Z'/></svg>") bottom / 100% 100% no-repeat;
 }
+
+/* ─── Textura (arte más rico): grano de papel muy suave detrás del contenido ───
+ * Es una imagen de ruido (SVG) como fondo estático: se pinta una vez y no cuesta cuadros por segundo.
+ */
+.textura,
+.tramo-unidad {
+  isolation: isolate;
+}
+.textura::after,
+.tramo-unidad::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.12  0 0 0 0 0.17  0 0 0 0 0.12  0 0 0 .09 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}

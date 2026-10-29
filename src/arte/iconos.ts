@@ -93,11 +93,13 @@ export const ICONOS: ArteSvg[] = [
     'cofre',
     200,
     170,
-    `<ellipse cx="100" cy="160" rx="86" ry="8" fill="#000" opacity=".15"/>
-     <rect x="20" y="72" width="160" height="84" rx="12" fill="#B07D4B" stroke="#7A4E2E" stroke-width="7"/>
-     <path d="M20 76 C 20 30 180 30 180 76 Z" fill="#C8955F" stroke="#7A4E2E" stroke-width="7" stroke-linejoin="round"/>
-     <rect x="16" y="68" width="168" height="14" rx="6" fill="#FFD23F" stroke="#B88A00" stroke-width="4"/>
-     <rect x="84" y="62" width="32" height="40" rx="6" fill="#FFD23F" stroke="#B88A00" stroke-width="4"/>
+    `<defs><linearGradient id="ic-madera" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#C08A55"/><stop offset="1" stop-color="#94643A"/></linearGradient><linearGradient id="ic-tapa" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#DBA972"/><stop offset="1" stop-color="#B9844F"/></linearGradient><linearGradient id="ic-oro" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE580"/><stop offset="1" stop-color="#F2B90F"/></linearGradient></defs><ellipse cx="100" cy="160" rx="86" ry="8" fill="#000" opacity=".15"/>
+     <rect x="20" y="72" width="160" height="84" rx="12" fill="url(#ic-madera)" stroke="#7A4E2E" stroke-width="7"/>
+     <path d="M20 76 C 20 30 180 30 180 76 Z" fill="url(#ic-tapa)" stroke="#7A4E2E" stroke-width="7" stroke-linejoin="round"/>
+     <path d="M40 58 C 70 40 130 40 160 58" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" opacity=".25"/>
+     <rect x="16" y="68" width="168" height="14" rx="6" fill="url(#ic-oro)" stroke="#B88A00" stroke-width="4"/>
+     <rect x="84" y="62" width="32" height="40" rx="6" fill="url(#ic-oro)" stroke="#B88A00" stroke-width="4"/>
+     <path d="M90 68 v12" stroke="#fff" stroke-width="4" stroke-linecap="round" opacity=".6"/>
      <circle cx="100" cy="82" r="6" fill="#7A4E2E"/>
      <path d="M48 96 v52 M152 96 v52" stroke="#7A4E2E" stroke-width="6" opacity=".5"/>`,
   ),
@@ -105,13 +107,13 @@ export const ICONOS: ArteSvg[] = [
     'cofre-abierto',
     200,
     170,
-    `<ellipse cx="100" cy="160" rx="86" ry="8" fill="#000" opacity=".15"/>
+    `<defs><linearGradient id="ic-madera" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#C08A55"/><stop offset="1" stop-color="#94643A"/></linearGradient><linearGradient id="ic-tapa" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#DBA972"/><stop offset="1" stop-color="#B9844F"/></linearGradient><linearGradient id="ic-oro" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE580"/><stop offset="1" stop-color="#F2B90F"/></linearGradient></defs><ellipse cx="100" cy="160" rx="86" ry="8" fill="#000" opacity=".15"/>
      <path d="M28 70 C 40 20 160 20 172 70 Z" fill="#FFE07A" opacity=".7"/>
      <path d="M30 40 L 20 12 M100 26 V 0 M170 40 L 180 12" stroke="#FFD23F" stroke-width="7" stroke-linecap="round"/>
-     <rect x="20" y="72" width="160" height="84" rx="12" fill="#B07D4B" stroke="#7A4E2E" stroke-width="7"/>
+     <rect x="20" y="72" width="160" height="84" rx="12" fill="url(#ic-madera)" stroke="#7A4E2E" stroke-width="7"/>
      <path d="M54 70 C 64 46 92 50 100 62 C 112 46 138 48 146 70 Z" fill="#3FA56B"/>
      <path d="M20 72 C 30 50 170 50 180 72 L 172 82 C 160 66 40 66 28 82 Z" fill="#7A4E2E"/>
-     <rect x="16" y="76" width="168" height="12" rx="6" fill="#FFD23F" stroke="#B88A00" stroke-width="4"/>
+     <rect x="16" y="76" width="168" height="12" rx="6" fill="url(#ic-oro)" stroke="#B88A00" stroke-width="4"/>
      <path d="M48 96 v52 M152 96 v52" stroke="#7A4E2E" stroke-width="6" opacity=".5"/>`,
   ),
   arte(

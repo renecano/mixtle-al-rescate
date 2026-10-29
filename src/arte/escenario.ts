@@ -9,18 +9,23 @@ import { arte, type ArteSvg } from './svg';
 const PASTO = '#A9D98B';
 const PASTO_OSCURO = '#8CC872';
 const COPA = '#3E8E5E';
-const COPA_CLARA = '#57A673';
 const TRONCO = '#7A5236';
 const TRONCO_OSCURO = '#5E3E28';
 
+/** Degradados compartidos por el arte del parque (luz desde arriba a la izquierda). Van dentro de cada SVG. */
+const LUZ = `<defs>
+    <radialGradient id="esc-copa" cx="38%" cy="30%" r="75%"><stop offset="0" stop-color="#6CC77E"/><stop offset=".6" stop-color="${COPA}"/><stop offset="1" stop-color="#2C7048"/></radialGradient>
+    <linearGradient id="esc-tronco" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="${TRONCO_OSCURO}"/><stop offset=".45" stop-color="#8E6444"/><stop offset="1" stop-color="${TRONCO_OSCURO}"/></linearGradient>
+  </defs>`;
+
 function copa(cx: number, cy: number, r: number): string {
-  return `<circle cx="${cx}" cy="${cy}" r="${r}" fill="${COPA}"/>
-    <circle cx="${cx - r * 0.25}" cy="${cy - r * 0.3}" r="${r * 0.55}" fill="${COPA_CLARA}" opacity=".55"/>`;
+  return `<circle cx="${cx}" cy="${cy}" r="${r}" fill="url(#esc-copa)"/>
+    <circle cx="${cx - r * 0.3}" cy="${cy - r * 0.35}" r="${r * 0.32}" fill="#fff" opacity=".14"/>`;
 }
 
 function arbolLejano(x: number, y: number, r: number): string {
   return `<rect x="${x - r * 0.12}" y="${y}" width="${r * 0.24}" height="${r * 0.9}" fill="${TRONCO}" opacity=".7"/>
-    <circle cx="${x}" cy="${y}" r="${r}" fill="#5FA36F"/>`;
+    <circle cx="${x}" cy="${y}" r="${r}" fill="#5FA36F"/><circle cx="${x - r * 0.3}" cy="${y - r * 0.3}" r="${r * 0.4}" fill="#7DBB86" opacity=".7"/>`;
 }
 
 function mata(x: number, y: number): string {
@@ -35,18 +40,24 @@ const PARQUE = `
     <linearGradient id="pasto" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0" stop-color="#B9E39C"/><stop offset="1" stop-color="${PASTO}"/>
     </linearGradient>
+    <linearGradient id="lomas" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#A9D48C"/><stop offset="1" stop-color="#8CC072"/></linearGradient>
+    <linearGradient id="nevado" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9DB6CC"/><stop offset="1" stop-color="#BFD1DF"/></linearGradient>
+    <radialGradient id="halo"><stop offset="0" stop-color="#FFF6CF"/><stop offset=".5" stop-color="#FFF6CF" stop-opacity=".5"/><stop offset="1" stop-color="#FFF6CF" stop-opacity="0"/></radialGradient>
   </defs>
+  ${LUZ}
   <rect width="${ANCHO}" height="${ALTO}" fill="url(#cielo)"/>
-  <circle cx="1680" cy="170" r="120" fill="#FFF1B8" opacity=".5"/>
+  <circle cx="1680" cy="170" r="230" fill="url(#halo)"/>
   <circle cx="1680" cy="170" r="74" fill="#FFE07A"/>
+  <circle cx="1660" cy="150" r="24" fill="#fff" opacity=".35"/>
 
   <!-- Nevado de Toluca -->
-  <path d="M700 640 L 1000 410 Q 1022 394 1046 400 L 1104 420 Q 1136 392 1170 404 L 1250 430 L 1580 640 Z" fill="#A9C0D3"/>
+  <path d="M700 640 L 1000 410 Q 1022 394 1046 400 L 1104 420 Q 1136 392 1170 404 L 1250 430 L 1580 640 Z" fill="url(#nevado)"/>
   <path d="M1000 410 Q 1022 394 1046 400 L 1104 420 Q 1136 392 1170 404 L 1250 430 L 1214 456 L 1182 438 L 1150 462 L 1112 442 L 1076 466 L 1044 440 L 988 462 L 966 438 Z" fill="#fff"/>
+  <path d="M1170 404 L 1250 430 L 1214 456 L 1182 438 Z" fill="#DCE7F1"/>
   <path d="M1250 430 L 1580 640 L 1440 640 L 1240 460 Z" fill="#94AEC4" opacity=".6"/>
 
   <!-- Lomas -->
-  <path d="M0 650 C 220 560 460 570 700 630 C 900 676 1120 610 1360 600 C 1600 590 1790 630 1920 610 L 1920 760 L 0 760 Z" fill="#9CCB80"/>
+  <path d="M0 650 C 220 560 460 570 700 630 C 900 676 1120 610 1360 600 C 1600 590 1790 630 1920 610 L 1920 760 L 0 760 Z" fill="url(#lomas)"/>
   ${arbolLejano(120, 600, 40)}${arbolLejano(210, 590, 32)}${arbolLejano(760, 630, 30)}
   ${arbolLejano(1420, 600, 34)}${arbolLejano(1500, 596, 42)}${arbolLejano(1860, 600, 36)}
 
@@ -64,7 +75,8 @@ const PARQUE = `
   <path d="M1262 420 L 1316 420 L 1289 396 Z" fill="#2E4A3D"/>
 
   <!-- Árbol grande de Mixtle -->
-  <path d="M420 780 C 432 660 424 520 446 420 L 512 420 C 528 520 522 660 536 780 Z" fill="${TRONCO}"/>
+  <ellipse cx="478" cy="784" rx="150" ry="18" fill="#2C5E2E" opacity=".18"/>
+  <path d="M420 780 C 432 660 424 520 446 420 L 512 420 C 528 520 522 660 536 780 Z" fill="url(#esc-tronco)"/>
   <path d="M436 780 C 450 700 446 600 460 520" stroke="${TRONCO_OSCURO}" stroke-width="8" fill="none" stroke-linecap="round" opacity=".5"/>
   <path d="M470 480 C 420 440 380 430 340 420" stroke="${TRONCO}" stroke-width="22" fill="none" stroke-linecap="round"/>
   <ellipse cx="478" cy="560" rx="16" ry="22" fill="${TRONCO_OSCURO}"/>
@@ -79,15 +91,17 @@ const NUBE = `<g fill="#fff">
   <circle cx="100" cy="62" r="42"/><circle cx="170" cy="46" r="52"/><circle cx="224" cy="70" r="34"/>
 </g>`;
 
-const ARBUSTO = `
+const ARBUSTO = `${LUZ}
   <ellipse cx="150" cy="186" rx="140" ry="12" fill="#000" opacity=".12"/>
-  <circle cx="70" cy="130" r="60" fill="#3E8E5E"/><circle cx="230" cy="130" r="60" fill="#3E8E5E"/>
-  <circle cx="150" cy="100" r="78" fill="#4A9A69"/><circle cx="120" cy="150" r="46" fill="#3E8E5E"/><circle cx="185" cy="150" r="46" fill="#3E8E5E"/>
-  <circle cx="125" cy="70" r="30" fill="#62B07D" opacity=".6"/>`;
+  <circle cx="70" cy="130" r="60" fill="url(#esc-copa)"/><circle cx="230" cy="130" r="60" fill="url(#esc-copa)"/>
+  <circle cx="150" cy="100" r="78" fill="url(#esc-copa)"/><circle cx="120" cy="150" r="46" fill="url(#esc-copa)"/><circle cx="185" cy="150" r="46" fill="url(#esc-copa)"/>
+  <circle cx="125" cy="70" r="26" fill="#fff" opacity=".16"/>`;
 
 const BOLSA = `
   <ellipse cx="100" cy="212" rx="80" ry="8" fill="#000" opacity=".12"/>
-  <path d="M40 80 C 10 120 12 200 50 210 L 150 210 C 188 200 190 120 160 80 Z" fill="#2E8B57" stroke="#1F6B4A" stroke-width="8" stroke-linejoin="round"/>
+  <defs><linearGradient id="esc-bolsa" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3FA56B"/><stop offset="1" stop-color="#257A4B"/></linearGradient></defs>
+  <path d="M40 80 C 10 120 12 200 50 210 L 150 210 C 188 200 190 120 160 80 Z" fill="url(#esc-bolsa)" stroke="#1F6B4A" stroke-width="8" stroke-linejoin="round"/>
+  <path d="M44 110 C 34 140 36 176 52 196" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round" opacity=".2"/>
   <path d="M40 80 Q 100 100 160 80 L 150 54 Q 100 70 50 54 Z" fill="#3FA56B" stroke="#1F6B4A" stroke-width="8" stroke-linejoin="round"/>
   <path d="M60 64 C 60 20 140 20 140 64" fill="none" stroke="#1F6B4A" stroke-width="10" stroke-linecap="round"/>
   <path d="M100 118 C 76 128 72 160 96 176 C 126 164 128 132 100 118 Z" fill="#DDF0CC"/>
@@ -103,9 +117,9 @@ const BROTE = `
   <path d="M62 60 C 40 60 24 46 22 26 C 44 26 60 38 62 60 Z" fill="#57A673"/>
   <path d="M62 52 C 82 50 98 36 100 16 C 78 16 64 30 62 52 Z" fill="#3E8E5E"/>`;
 
-const ARBOLITO = `
+const ARBOLITO = `${LUZ}
   <ellipse cx="130" cy="336" rx="96" ry="12" fill="#000" opacity=".14"/>
-  <path d="M118 336 C 122 290 120 240 126 200 L 140 200 C 144 240 142 290 146 336 Z" fill="${TRONCO}"/>
+  <path d="M118 336 C 122 290 120 240 126 200 L 140 200 C 144 240 142 290 146 336 Z" fill="url(#esc-tronco)"/>
   <path d="M132 260 C 110 244 96 236 80 232" stroke="${TRONCO}" stroke-width="10" fill="none" stroke-linecap="round"/>
   ${copa(80, 170, 64)}${copa(186, 170, 64)}${copa(132, 104, 84)}${copa(132, 196, 60)}
   <circle cx="90" cy="120" r="8" fill="#F28C28"/><circle cx="180" cy="140" r="8" fill="#F28C28"/><circle cx="140" cy="70" r="8" fill="#F28C28"/>`;

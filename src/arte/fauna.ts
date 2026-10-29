@@ -10,10 +10,10 @@ import { arte, type ArteSvg } from './svg';
  */
 const TINTA = '#2A211C';
 
-const AJOLOTE = `
+const AJOLOTE = `<defs><radialGradient id="fa-ajolote" cx="38%" cy="30%" r="80%"><stop offset="0" stop-color="#E6C7A2"/><stop offset=".55" stop-color="#D2AE86"/><stop offset="1" stop-color="#B48E66"/></radialGradient><radialGradient id="fa-ajolote-cuerpo" cx="38%" cy="30%" r="80%"><stop offset="0" stop-color="#DDB991"/><stop offset=".55" stop-color="#C9A47C"/><stop offset="1" stop-color="#A9845C"/></radialGradient></defs>
   <ellipse cx="140" cy="192" rx="110" ry="9" fill="#000" opacity=".12"/>
   <path d="M190 150 C 240 150 262 120 256 96 C 248 120 220 132 186 130 Z" fill="#B08A64" stroke="#7A5A3C" stroke-width="4" stroke-linejoin="round"/>
-  <ellipse cx="150" cy="142" rx="62" ry="36" fill="#C9A47C" stroke="#7A5A3C" stroke-width="4"/>
+  <ellipse cx="150" cy="142" rx="62" ry="36" fill="url(#fa-ajolote-cuerpo)" stroke="#7A5A3C" stroke-width="4"/>
   <ellipse cx="150" cy="154" rx="40" ry="18" fill="#EBD3B4"/>
   <ellipse cx="104" cy="168" rx="14" ry="22" fill="#B08A64" stroke="#7A5A3C" stroke-width="4" transform="rotate(25 104 168)"/>
   <ellipse cx="190" cy="170" rx="14" ry="22" fill="#B08A64" stroke="#7A5A3C" stroke-width="4" transform="rotate(-25 190 170)"/>
@@ -25,22 +25,23 @@ const AJOLOTE = `
     <path d="M30 48 l-8 4 M22 36 l-8 2 M28 84 l-8 -6 M16 80 l-6 -8 M30 120 l-6 8 M18 126 l-4 8"/>
     <path d="M230 48 l8 4 M238 36 l8 2 M232 84 l8 -6 M244 80 l6 -8 M230 120 l6 8 M242 126 l4 8"/>
   </g>
-  <ellipse cx="130" cy="92" rx="80" ry="54" fill="#D2AE86" stroke="#7A5A3C" stroke-width="4"/>
+  <ellipse cx="130" cy="92" rx="80" ry="54" fill="url(#fa-ajolote)" stroke="#7A5A3C" stroke-width="4"/>
+  <ellipse cx="104" cy="62" rx="30" ry="12" fill="#fff" opacity=".22"/>
   <circle cx="92" cy="66" r="5" fill="#A88160"/><circle cx="168" cy="62" r="6" fill="#A88160"/><circle cx="118" cy="56" r="4" fill="#A88160"/>
   <circle cx="84" cy="96" r="12" fill="${TINTA}"/><circle cx="176" cy="96" r="12" fill="${TINTA}"/>
   <circle cx="80" cy="92" r="4" fill="#fff"/><circle cx="172" cy="92" r="4" fill="#fff"/>
   <path d="M104 116 Q 130 134 156 116" fill="none" stroke="${TINTA}" stroke-width="5" stroke-linecap="round"/>
   <ellipse cx="96" cy="114" rx="9" ry="5" fill="#E58A9A" opacity=".6"/><ellipse cx="164" cy="114" rx="9" ry="5" fill="#E58A9A" opacity=".6"/>`;
 
-const TLACUACHE = `
+const TLACUACHE = `<defs><radialGradient id="fa-tlacuache" cx="38%" cy="30%" r="80%"><stop offset="0" stop-color="#BDBAB6"/><stop offset=".55" stop-color="#A3A09C"/><stop offset="1" stop-color="#85827E"/></radialGradient><radialGradient id="fa-tlacuache-cara" cx="38%" cy="30%" r="80%"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".55" stop-color="#F4F1EC"/><stop offset="1" stop-color="#DCD6CC"/></radialGradient></defs>
   <ellipse cx="150" cy="212" rx="120" ry="9" fill="#000" opacity=".12"/>
   <path d="M220 160 C 270 170 286 120 262 92 C 252 80 240 84 244 96 C 260 124 240 150 214 144" fill="none" stroke="#E7A7A0" stroke-width="12" stroke-linecap="round"/>
-  <ellipse cx="166" cy="146" rx="78" ry="54" fill="#A3A09C"/>
+  <ellipse cx="166" cy="146" rx="78" ry="54" fill="url(#fa-tlacuache)"/>
   <path d="M110 120 C 130 100 200 96 236 124" fill="none" stroke="#C9C6C2" stroke-width="10" stroke-linecap="round" opacity=".6"/>
   <rect x="112" y="178" width="22" height="30" rx="10" fill="#3B3633"/><rect x="198" y="178" width="22" height="30" rx="10" fill="#3B3633"/>
   <circle cx="68" cy="58" r="20" fill="#2B2724"/><circle cx="120" cy="52" r="20" fill="#2B2724"/>
   <circle cx="68" cy="58" r="10" fill="#E7A7A0"/><circle cx="120" cy="52" r="10" fill="#E7A7A0"/>
-  <path d="M60 80 C 60 54 128 46 134 80 C 140 110 110 130 70 140 C 40 146 14 140 10 128 C 30 120 52 104 60 80 Z" fill="#F4F1EC"/>
+  <path d="M60 80 C 60 54 128 46 134 80 C 140 110 110 130 70 140 C 40 146 14 140 10 128 C 30 120 52 104 60 80 Z" fill="url(#fa-tlacuache-cara)"/>
   <circle cx="10" cy="128" r="9" fill="#E7A7A0"/>
   <circle cx="74" cy="92" r="9" fill="${TINTA}"/><circle cx="71" cy="89" r="3" fill="#fff"/>
   <path d="M34 128 Q 46 134 58 128" fill="none" stroke="${TINTA}" stroke-width="3.5" stroke-linecap="round"/>

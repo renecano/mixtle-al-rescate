@@ -37,6 +37,17 @@ export function oscurecer(color: string, cuanto: number): string {
   return `#${[16, 8, 0].map((d) => canal(d).toString(16).padStart(2, '0')).join('')}`;
 }
 
+/** Aclara un color '#RRGGBB' hacia el blanco en `cuanto` por ciento (para la luz del volumen). */
+export function aclarar(color: string, cuanto: number): string {
+  const n = parseInt(color.slice(1), 16);
+  const f = cuanto / 100;
+  const canal = (desplazamiento: number) => {
+    const c = (n >> desplazamiento) & 0xff;
+    return Math.round(c + (255 - c) * f);
+  };
+  return `#${[16, 8, 0].map((d) => canal(d).toString(16).padStart(2, '0')).join('')}`;
+}
+
 /** Bote de basura en el color de la categoría, con su ícono en un círculo blanco. */
 export function arteBote(cat: Categoria): ArteSvg {
   const oscuro = oscurecer(cat.color, 18);
@@ -44,8 +55,9 @@ export function arteBote(cat: Categoria): ArteSvg {
     `bote-${cat.id}`,
     260,
     300,
-    `<ellipse cx="130" cy="292" rx="110" ry="8" fill="#000" opacity=".15"/>
-     <path d="M40 92 L 220 92 L 200 280 Q 198 290 188 290 L 72 290 Q 62 290 60 280 Z" fill="${cat.color}" stroke="${oscuro}" stroke-width="8" stroke-linejoin="round"/>
+    `<defs><linearGradient id="bt-${cat.id}" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="${aclarar(cat.color, 14)}"/><stop offset=".55" stop-color="${cat.color}"/><stop offset="1" stop-color="${oscurecer(cat.color, 10)}"/></linearGradient></defs>
+     <ellipse cx="130" cy="292" rx="110" ry="8" fill="#000" opacity=".15"/>
+     <path d="M40 92 L 220 92 L 200 280 Q 198 290 188 290 L 72 290 Q 62 290 60 280 Z" fill="url(#bt-${cat.id})" stroke="${oscuro}" stroke-width="8" stroke-linejoin="round"/>
      <path d="M70 110 L 80 270 M190 110 L 180 270" stroke="#fff" stroke-width="6" stroke-linecap="round" opacity=".18"/>
      <circle cx="130" cy="186" r="64" fill="#fff"/>
      <g transform="translate(86 142) scale(0.88)">${iconoCategoria(cat.icono, cat.color)}</g>`,
