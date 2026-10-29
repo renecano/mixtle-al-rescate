@@ -11,7 +11,7 @@ Mixtle, un cacomixtle que vive en los árboles del parque, guía a cada grupo de
 
 ![Inicio de Mixtle al rescate](docs/capturas/proyector-1920x1080-v3-1-inicio.png)
 
-**Tráiler (39 s, con la música del juego):** [`docs/trailer/mixtle-al-rescate.mp4`](docs/trailer/mixtle-al-rescate.mp4).
+**Tráiler (39 s, con la música del juego; grabado con la voz anterior de Mixtle):** [`docs/trailer/mixtle-al-rescate.mp4`](docs/trailer/mixtle-al-rescate.mp4).
 
 ## Qué cambió en la v3
 
@@ -29,7 +29,7 @@ La v3 le da al juego su propia marca y lo hace más llamativo en el proyector, c
 | Kokoro | Voz con **Azure AI Speech**: Mixtle habla con **Alejo** (`es-MX-Alejo:MAI-Voice-2-Flash`, español de México, estilo «excited»), elegido entre las [muestras de 12 voces](docs/muestras-voz/azure.html). Kokoro queda como alterno. |
 | "N días seguidos" en el camino | **Se quitó la racha de días** (se perdía al faltar un día) y las hojitas de cada grupo ya no se ven lado a lado al elegir grupo: no se comparan grupos. |
 
-Medido en esta versión: lo que baja antes de la primera pantalla pesa **231.9 KB** comprimidos (límite 250 KB), y en la laptop de 8 GB el juego va a **59–60 cuadros por segundo** en sus momentos más pesados (ver *Pruebas y evidencia medida*).
+Medido en esta versión: lo que baja antes de la primera pantalla pesa **234.4 KB** comprimidos (límite 250 KB), y en la laptop de 8 GB el juego va a **59–60 cuadros por segundo** en sus momentos más pesados (ver *Pruebas y evidencia medida*).
 
 ### Capturas de la v3
 
@@ -47,7 +47,7 @@ Regeneradas con `node scripts/capturas-v3.mjs` (proyector 1920×1080 y tablet 10
 
 ### Tráiler
 
-[`docs/trailer/mixtle-al-rescate.mp4`](docs/trailer/mixtle-al-rescate.mp4): 39 s, 1920×1080, con la música del juego (pista "lecciones"). Muestra el inicio, la entrada al camino, una lección con "¡3 seguidas!", el cofre, el parque que se transforma, la aventura en bici y el cierre con el logo.
+[`docs/trailer/mixtle-al-rescate.mp4`](docs/trailer/mixtle-al-rescate.mp4): 39 s, 1920×1080, con la música del juego (pista "lecciones"). Muestra el inicio, la entrada al camino, una lección con "¡3 seguidas!", el cofre, el parque que se transforma, la aventura en bici y el cierre con el logo. **Se grabó con la voz anterior de Mixtle** (Kokoro `em_alex`), antes de cambiar a Alejo de Azure; no se volvió a grabar.
 
 Se regenera con `npm run build && node scripts/trailer.mjs`. El script juega de verdad en Chrome con tarjeta de video y graba cada momento aparte con el screencast de Chrome, con la hora exacta de cada cuadro (el video continuo de Playwright se desfasaba). Luego ffmpeg los une con fundidos y la música. Si durante algún momento el juego se dibuja a menos de 40 fps (la computadora estaba ocupada), se detiene en lugar de armar un tráiler a saltos.
 
@@ -291,7 +291,7 @@ La v3 usa técnicas de marketing y de diseño de juegos para que el juego atraig
 
 | Qué | Resultado |
 |---|---|
-| Lo que se descarga antes de la primera pantalla | **231.9 KB** comprimidos, contando todas las fuentes (límite de la v3: 250 KB). `npm run presupuesto` lo mide en cada `verificar` y falla si se pasa. Las demás pantallas, el arte de los ambientes y los accesorios, Phaser, la voz y la música bajan después. |
+| Lo que se descarga antes de la primera pantalla | **234.4 KB** comprimidos, contando todas las fuentes (límite de la v3: 250 KB). `npm run presupuesto` lo mide en cada `verificar` y falla si se pasa. Las demás pantallas, el arte de los ambientes y los accesorios, Phaser, la voz y la música bajan después. |
 | Cuadros por segundo, Chrome con tarjeta de video (`node scripts/medir-fps.mjs --con-ventana`) | **59–60 fps** en el inicio (entrada y paralaje), la lección con hojitas y chispas, el cofre que estalla y el camino. Hasta 0.7 % de cuadros lentos, a 1920×1080 y a 1024×768 (`docs/rendimiento-v3.json`). |
 | Sin tarjeta de video (peor caso: Chromium sin ventana) | Con todas las animaciones, **11–14 fps** a 1920×1080 y 26–33 fps a 1024×768 (`docs/rendimiento-v3-sin-ventana.json`). Con las **animaciones suaves**, **57–60 fps** (`docs/rendimiento-v3-sin-ventana-suave.json`). Por eso el juego **las enciende solo** si mide menos de 35 fps (comprobado: de 11 a 60 fps). |
 | Decoraciones de los lados del camino | Comparación en las mismas condiciones y en el peor caso (sin tarjeta de video): **con decoraciones 55/60 fps, sin ellas 56/60** (proyector/tablet), mediana 60 (`docs/rendimiento-v3-sin-ventana-camino.json`). Ninguna se cruza con botones, etiquetas, la mascota ni Mixtle en 18 casos medidos. |
@@ -300,7 +300,7 @@ La v3 usa técnicas de marketing y de diseño de juegos para que el juego atraig
 
 
 
-**Pruebas unitarias (Vitest)**, en `tests/`: **1397 pruebas en 31 archivos, todas pasan** (29 de octubre de 2026). Además de las de la v2, la v3 agrega pruebas de marca (logo al día con las fuentes, 8 poses, presupuesto de la primera pantalla), migración y mudanza de datos, nombre (ningún "Caco" en código ni voz), Azure contra un servidor falso, protección de la llave, vitrina y transición, racha y mitad de lección, recompensas, diplomas, accesorios y vestidor, y el ajuste automático por rendimiento. Entre ellas:
+**Pruebas unitarias (Vitest)**, en `tests/`: **1421 pruebas en 35 archivos, todas pasan** (29 de octubre de 2026). Además de las de la v2, la v3 agrega pruebas de marca (logo al día con las fuentes, 8 poses, presupuesto de la primera pantalla), migración y mudanza de datos, nombre (ningún "Caco" en código ni voz), Azure contra un servidor falso, protección de la llave, vitrina y transición, racha y mitad de lección, recompensas, diplomas, accesorios y vestidor, y el ajuste automático por rendimiento. Entre ellas:
 
 - **Contenido válido:** cada unidad tiene 4 o 5 lecciones; cada lección tiene de 6 a 8 ejercicios con al menos 3 tipos; las respuestas correctas existen, los dibujos existen, no hay ejercicios imposibles (parejas sin repetir, "encuentra el error" con 1 a 3 errores dentro de la escena). Cuando una pregunta habla de un bote, dice su color **y su nombre** ("el bote naranja de no reciclable") y el bote se ve en pantalla. Cada archivo de contenido está marcado con `TODO(Eco Urban)`.
 - **Voz:** **toda frase narrada (785) tiene su audio en el manifiesto** y su mp3 existe, y **las 175 frases con números** (fin de lección, cofre, diplomas y la pregunta de cada accesorio) suenan como **un solo audio**, sin piezas encadenadas.
@@ -335,7 +335,7 @@ Para correrlos contra un sitio ya publicado, sin construir nada en local: `$env:
 
 | Voces de Mixtle | 785 frases con Alejo (Azure), **29.5 MB** en total (mono, 64 kbps), incluidas 175 frases con números grabadas completas. Las 785 se decodificaron con ffmpeg sin errores. |
 | Música y efectos | 1.3 MB (3 pistas) y 78 KB (12 efectos) |
-| Juego sin internet (PWA) | En la primera visita, el *service worker* descarga en segundo plano 783 archivos (**20.6 MB**: juego, voces, música y efectos); después se juega sin internet |
+| Juego sin internet (PWA) | Al instalarse, el *service worker* guarda lo esencial (25 archivos, 744 KB). Después, en segundo plano, se bajan 831 archivos más (**33.9 MB**: el resto del código, imágenes, efectos, voces y música); el modo facilitador muestra el porcentaje y "Listo para usar sin internet" (ver *Carga en una red lenta*) |
 
 **En el sitio publicado** (27 de octubre de 2026, en la dirección de entonces, caco-al-rescate.vercel.app, Chrome en Windows 11, conexión doméstica):
 
@@ -343,8 +343,54 @@ Para correrlos contra un sitio ya publicado, sin construir nada en local: `$env:
 |---|---|
 | Pantalla de inicio lista (primera visita, sin caché) | **0.61 s**, 170 KB transferidos |
 | Voz y música | Mixtle habla con su voz grabada (0 frases con la voz del navegador) y suena la música de fondo |
-| El *service worker* termina de guardar el juego | 675 archivos en **79 s** (medido antes de agregar las 169 frases completas; en segundo plano, se puede jugar mientras tanto) |
+| El *service worker* termina de guardar el juego | 675 archivos en **79 s**, con conexión doméstica (con el *service worker* de entonces, que lo guardaba todo al instalarse) |
 | Sin internet, después de eso | El juego abre, Mixtle habla y suena la música |
+
+### Carga en una red lenta (Slow 4G)
+
+Alguien abrió el link por primera vez y tardó en pasar de "¡Jugar!" a "¿Quién va a jugar?". Se midió antes y después de corregirlo con `scripts/medir-carga.mjs`, con la red del perfil "Slow 4G" de Chrome (562.5 ms de ida y vuelta, 1.44 Mbps de bajada y 675 kbps de subida), en primera visita (sin caché, con *service worker*) y con Chrome headless, uno a la vez.
+
+**Cómo se midió.** El throttling de DevTools (CDP) no se usó porque solo frena a la página: lo que descarga el *service worker*, que era justo lo que llenaba la red, pasa sin límite. En su lugar, todo el tráfico de Chrome, página y *service worker*, pasa por un proxy que retrasa cada byte y reparte el ancho de banda entre todas las conexiones.
+
+- **Calibración:** un archivo de 475 KB tardó 3,511 a 3,549 ms desde la página, contra un mínimo de 3,201 ms según la red.
+- **Prueba de que el *service worker* también pasa por el límite:** el anterior tardó ~18 min en bajar sus 22.7 MB.
+- **Al calibrar se encontraron y corrigieron tres errores de medición:**
+  - el tráfico a `localhost` se saltaba el proxy;
+  - las respuestas llegaban cortadas porque el proxy cerraba antes del último trozo;
+  - `waitForFunction` con una función `async` no esperaba.
+
+El "antes" es el código anterior (`c62556e`, ya con la voz de Alejo) construido aparte. Los resultados están en `docs/carga-antes.json` y `docs/carga-despues.json`.
+
+| Qué (Slow 4G) | Antes | Después |
+|---|---|---|
+| "¡Jugar!" → "¿Quién va a jugar?" en pantalla, primera visita | **5.09 / 5.16 / 5.20 s** (mediana 5.16 s) | **0.34 / 0.35 / 0.35 / 0.37 s** (mediana 0.35 s; meta < 1.5 s) |
+| Lo mismo, con la transición ya terminada | 5.16 s | 0.71 a 0.73 s |
+| Visita de regreso | No se midió: el *service worker* anterior no se activó en 19 min (ver abajo) | **0.35 y 0.37 s** (meta < 0.5 s); 0.72 s con la transición terminada |
+| Inicio listo (primera visita) | 5.6 s | 5.9 s |
+| *Service worker* activo, desde que se abre la página | **No se activó en 19 min.** Bajaba 862 archivos uno por uno (~18 min para 22.7 MB) | **26.8 s** en local (25 archivos) |
+| "Listo para usar sin internet" | — (era parte de la instalación del *service worker*) | **4.8 min** (831 archivos, 33.9 MB, en segundo plano) |
+
+**Qué cambió:**
+- **Mientras se ve el inicio se adelanta:**
+  - el código de Grupos y Camino;
+  - el audio de "¡Al rescate!" y de la bienvenida de Grupos;
+  - los efectos del toque y del remate.
+- **"¡Jugar!" no espera a la voz:** la transición empieza de inmediato y Mixtle habla encima. Si su audio no llega en 800 ms, no se dice tarde. La bienvenida de Grupos espera a que termine "¡Al rescate!", como mucho 800 ms.
+- **Los efectos se piden uno por uno, cuando suenan,** en vez de los 22 de golpe al primer toque.
+- **La música va en streaming:** un `<audio>` conectado a una ganancia de Web Audio, así empieza sin bajarse completa y el *ducking* sigue funcionando en iPad.
+- **El *service worker* se registra cuando la primera pantalla ya está lista.** Al instalarse guarda solo lo esencial (25 archivos, 744 KB): `index.html`, el código del inicio, Grupos y Camino, el CSS y las fuentes.
+- **El resto se baja en segundo plano a la caché `mixtle-sin-internet`.** Primero el resto del código, luego imágenes, efectos, voces y música (`src/servicios/sinInternet.ts`). Va de 4 en 4, con prioridad baja y una pausa de 3 s en cada cambio de pantalla. Solo baja lo nuevo o lo que cambió, según la revisión de cada archivo en `sin-internet.json`.
+- **El modo facilitador muestra el estado:** "Listo para usar sin internet" o el porcentaje.
+
+**Probado sin conexión** (en local, sin limitar la red):
+- el *service worker* se activó a los 3.3 s;
+- los 831 archivos quedaron guardados a los 6.5 s;
+- ya sin red, el juego recargó, la voz y un efecto salieron de lo guardado (200), la música por partes (206, como la pide el `<audio>`), y se llegó a "¿Quién va a jugar?" sin errores.
+
+**Lo que no se pudo medir, o hay que leer con cuidado:**
+- **La visita de regreso de la versión anterior.** Su *service worker* no se activó en 19 minutos con Slow 4G, así que una segunda visita no habría sido más rápida. No se averiguó por qué no se activó.
+- **La música en la primera visita a través del proxy.** No avanza nunca: se queda en el segundo 0 con todos sus datos, incluso con el proxy sin limitar la red. Sin el proxy suena 0.6 s después del toque, así que es un efecto de esta forma de medir. En la visita de regreso, a través del proxy, empezó a los 40 ms del toque.
+- **Los 26.8 s del *service worker* en local.** Medidos con la misma cabecera de `/assets/` que en Vercel (`immutable`), pero en local el *service worker* volvió a bajar de la red, uno por uno, los archivos que la página ya tenía en la caché del navegador. No se averiguó por qué; en Vercel debería tomarlos de esa caché.
 
 ## Limitaciones conocidas
 
@@ -353,7 +399,7 @@ Para correrlos contra un sitio ya publicado, sin construir nada en local: `$env:
 - **El avance vive en un solo aparato.** Si se borran los datos del navegador o se cambia de laptop, el grupo empieza de nuevo. Es a propósito (no hay servidor ni cuentas), pero hay que saberlo.
 - **La voz es sintética.** Alejo suena natural, pero algunas palabras pueden sonar raras. El diccionario de pronunciación y la grabación humana (ver arriba) son la forma de corregirlas sin tocar código.
 - **Versiones nuevas:** al publicar una versión, el *service worker* la descarga en segundo plano. En cuanto toma el control, Mixtle usa la lista de audios nueva y la página se recarga sola al volver a la pantalla de inicio (nunca a media lección). La lista de audios siempre se pide primero a internet, para que una versión vieja guardada no deje a Mixtle con audios viejos.
-- **La primera visita necesita internet:** el *service worker* descarga unos 21 MB (sobre todo las voces) para que después funcione sin conexión. Conviene abrir el juego una vez con buena señal antes del taller.
+- **La primera visita necesita internet:** para que después funcione sin conexión se bajan unos 34 MB (sobre todo las voces), en segundo plano y sin estorbar el juego. Con Slow 4G tarda ~4.8 min. Conviene abrir el juego una vez con buena señal antes del taller y revisar en el modo facilitador que diga "Listo para usar sin internet".
 
 - **Las aventuras son minijuegos cortos** (2 a 4 minutos). Las del bosquecito y la lonchera siempre tienen el mismo número de cosas: los diplomas muestran el esfuerzo, no un puntaje para comparar grupos.
 - El diploma de la unidad 1 cuenta los residuos separados en el nivel 2 y en la lluvia de basura (12 + 5) y los animales ayudados.
@@ -379,7 +425,7 @@ src/
   ui/          piezas de Phaser: Mixtle, botones, globo, botes, animales, clasificador
 tests/         pruebas unitarias (Vitest)
 e2e/           recorridos en el navegador (Playwright)
-scripts/       voces (Kokoro y Azure), música, efectos, marca, capturas, presupuesto, cuadros por segundo
+scripts/       voces (Kokoro y Azure), música, efectos, marca, capturas, presupuesto, cuadros por segundo, carga con Slow 4G
                y demo/ (juega como un grupo y siembra grupos de ejemplo)
 docs/          fuentes del contenido, lista de frases, capturas, muestras, marca, direcciones visuales y rendimiento
 ```

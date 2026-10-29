@@ -1,0 +1,93 @@
+{
+  "url": "http://mixtle.prueba:4310/",
+  "red": {
+    "latenciaMs": 562.5,
+    "bajadaBps": 180000,
+    "subidaBps": 84375
+  },
+  "metodo": "proxy que limita todo el tráfico de Chrome (página y service worker)",
+  "calibracion": {
+    "archivoDesdeLaPagina": {
+      "bytes": 474950,
+      "ms": 3549,
+      "esperadoMs": 3201
+    }
+  },
+  "visitas": [
+    {
+      "fecha": "2026-10-29T22:56:18.243Z",
+      "primera": {
+        "inicioListoS": 6,
+        "jugarAGruposMs": 349,
+        "jugarAGruposSinCubiertaMs": 726,
+        "jugarAMusicaMs": null
+      },
+      "serviceWorkerActivoS": 26.8,
+      "listoSinInternetS": 287.7,
+      "bytesSinInternet": 33889508,
+      "regreso": {
+        "inicioListoS": 2.8,
+        "jugarAGruposMs": 345,
+        "jugarAGruposSinCubiertaMs": 724,
+        "jugarAMusicaMs": 42
+      }
+    },
+    {
+      "fecha": "2026-10-29T23:02:27.130Z",
+      "primera": {
+        "musicaEstado": " paused=false t=0.00 ready=4 net=1 err=-",
+        "inicioListoS": 5.9,
+        "jugarAGruposMs": 344,
+        "jugarAGruposSinCubiertaMs": 708,
+        "jugarAMusicaMs": null
+      }
+    },
+    {
+      "fecha": "2026-10-29T23:02:54.485Z",
+      "primera": {
+        "musicaEstado": " paused=false t=0.00 ready=4 net=1 err=-",
+        "inicioListoS": 5.6,
+        "jugarAGruposMs": 353,
+        "jugarAGruposSinCubiertaMs": 720,
+        "jugarAMusicaMs": null
+      }
+    },
+    {
+      "fecha": "2026-10-29T23:13:43.917Z",
+      "cabecerasComoVercel": true,
+      "primera": {
+        "musicaEstado": "ctx=running · /mixtle.prueba:4310/musica/tranquila.mp3 paused=false t=0.00 ready=4 net=1 err=-",
+        "inicioListoS": 6,
+        "jugarAGruposMs": 365,
+        "jugarAGruposSinCubiertaMs": 723,
+        "jugarAMusicaMs": null
+      },
+      "serviceWorkerActivoS": 26.8,
+      "listoSinInternetS": 286.5,
+      "bytesSinInternet": 33889508,
+      "regreso": {
+        "inicioListoS": 2.8,
+        "jugarAGruposMs": 367,
+        "jugarAGruposSinCubiertaMs": 736,
+        "jugarAMusicaMs": 40
+      }
+    }
+  ],
+  "mediana": {
+    "primera": {
+      "inicioListoS": 5.9,
+      "jugarAGruposMs": 349,
+      "jugarAGruposSinCubiertaMs": 720,
+      "jugarAMusicaMs": null
+    },
+    "regreso": {
+      "inicioListoS": 2.8,
+      "jugarAGruposMs": 345,
+      "jugarAGruposSinCubiertaMs": 724,
+      "jugarAMusicaMs": 40
+    },
+    "serviceWorkerActivoS": 26.8,
+    "listoSinInternetS": 286.5
+  },
+  "actualizado": "2026-10-29T23:18:35.855Z"
+}

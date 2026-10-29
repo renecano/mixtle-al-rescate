@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { TEXTOS_APP } from '../../contenido/textosApp';
 import { nombreDelGrupo, type Grupo } from '../../logica/grupos';
 import { useApp } from '../estado/app';
+import { porcentaje, useDescargaSinInternet } from '../../servicios/sinInternet';
 import { useGrupos } from '../estado/grupos';
 import { BotonGrande } from './BotonGrande';
 import { Modal } from './Modal';
@@ -32,6 +33,7 @@ export function PanelFacilitador({ grupo, alCerrar, alRecorrido }: { grupo: Grup
         {TEXTOS_APP.facilitador.suave}
         <input type="checkbox" className="size-10 accent-verde" checked={suave} onChange={alternarSuave} />
       </label>
+      <EstadoSinInternet />
       <BotonGrande color="azul" className="h-16 text-[clamp(1.1rem,2.4vmin,1.5rem)]" onClick={alRecorrido}>
         {TEXTOS_APP.facilitador.recorrido}
       </BotonGrande>
@@ -63,5 +65,24 @@ export function PanelFacilitador({ grupo, alCerrar, alRecorrido }: { grupo: Grup
         {TEXTOS_APP.facilitador.cerrar}
       </BotonGrande>
     </Modal>
+  );
+}
+
+/** ¿Ya se puede usar sin internet? Y si no, cuánto va de la descarga (voces, música y efectos). */
+function EstadoSinInternet() {
+  const descarga = useDescargaSinInternet();
+  const t = TEXTOS_APP.facilitador.sinInternet;
+  const n = porcentaje(descarga);
+  const texto =
+    descarga.fase === 'listo' ? t.listo : descarga.fase === 'descargando' ? t.descargando(n) : descarga.fase === 'sin-conexion' ? t.sinConexion(n) : descarga.fase === 'no-disponible' ? t.noDisponible : t.esperando;
+  return (
+    <div className="flex w-full flex-col gap-2 rounded-2xl bg-white px-5 py-3 text-left" role="status" data-sin-internet={descarga.fase}>
+      <p className="text-[clamp(1.05rem,2.3vmin,1.4rem)] font-extrabold">{texto}</p>
+      {descarga.fase !== 'listo' && descarga.bytesTotales > 0 && (
+        <div className="h-3 overflow-hidden rounded-full bg-verde/15" aria-hidden="true">
+          <div className="h-full rounded-full bg-verde" style={{ width: `${n}%` }} />
+        </div>
+      )}
+    </div>
   );
 }

@@ -41,7 +41,7 @@
       ]
     },
     {
-      "source": "/registerSW.js",
+      "source": "/sin-internet.json",
       "headers": [
         {
           "key": "Cache-Control",

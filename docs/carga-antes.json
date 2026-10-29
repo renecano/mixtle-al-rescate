@@ -1,0 +1,62 @@
+{
+  "url": "http://mixtle.prueba:4310/",
+  "red": {
+    "latenciaMs": 562.5,
+    "bajadaBps": 180000,
+    "subidaBps": 84375
+  },
+  "metodo": "proxy que limita todo el tráfico de Chrome (página y service worker)",
+  "calibracion": {
+    "archivoDesdeLaPagina": {
+      "bytes": 474950,
+      "ms": 3511,
+      "esperadoMs": 3201
+    }
+  },
+  "visitas": [
+    {
+      "fecha": "2026-10-29T22:45:41.012Z",
+      "primera": {
+        "inicioListoS": 6,
+        "jugarAGruposMs": 5200,
+        "jugarAGruposSinCubiertaMs": 5200,
+        "jugarAMusicaMs": 1265
+      }
+    },
+    {
+      "fecha": "2026-10-29T22:45:53.079Z",
+      "primera": {
+        "inicioListoS": 5.5,
+        "jugarAGruposMs": 5162,
+        "jugarAGruposSinCubiertaMs": 5162,
+        "jugarAMusicaMs": 1273
+      }
+    },
+    {
+      "fecha": "2026-10-29T22:46:04.593Z",
+      "primera": {
+        "inicioListoS": 5.6,
+        "jugarAGruposMs": 5092,
+        "jugarAGruposSinCubiertaMs": 5092,
+        "jugarAMusicaMs": 1182
+      }
+    }
+  ],
+  "mediana": {
+    "primera": {
+      "inicioListoS": 5.6,
+      "jugarAGruposMs": 5162,
+      "jugarAGruposSinCubiertaMs": 5162,
+      "jugarAMusicaMs": 1265
+    },
+    "regreso": {
+      "inicioListoS": null,
+      "jugarAGruposMs": null,
+      "jugarAGruposSinCubiertaMs": null,
+      "jugarAMusicaMs": null
+    },
+    "serviceWorkerActivoS": null,
+    "listoSinInternetS": null
+  },
+  "actualizado": "2026-10-29T22:46:15.591Z"
+}

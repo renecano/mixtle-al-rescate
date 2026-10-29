@@ -1,4 +1,4 @@
-import { Howl, Howler } from 'howler';
+import { Howler } from 'howler';
 import { estadoMusica } from '../estadoSonido';
 import { Musica, type Reproductor } from './musica';
 import { reanudarContexto, vigilarContexto } from './reanudar';
@@ -14,24 +14,71 @@ export function hayAudio(): boolean {
 }
 
 /**
- * Un Howl adaptado a lo que necesita la música. Se usa Web Audio (no <audio>) porque en iPad
- * el volumen de <audio> no se puede cambiar, y el ducking lo necesita.
+ * La música en streaming: un <audio> (empieza a sonar sin descargarse completa, importante en una
+ * red lenta) conectado a una ganancia de Web Audio. El volumen se cambia en la ganancia y no en el
+ * <audio>, porque en iPad el volumen de <audio> no se puede cambiar, y el ducking lo necesita.
+ * Si el navegador no deja conectar el <audio> a Web Audio, se usa su volumen directo.
  */
-function reproductorHowl(src: string, enBucle: boolean): Reproductor {
-  const howl = new Howl({ src: [src], loop: enBucle, volume: 0, html5: false, preload: true });
+function reproductorEnStreaming(src: string, enBucle: boolean): Reproductor {
+  const audio = new Audio();
+  audio.preload = 'none';
+  audio.loop = enBucle;
+  audio.src = src;
+  let ganancia: GainNode | null = null;
+  try {
+    if (!Howler.ctx) Howler.volume();
+    const ctx = Howler.ctx as AudioContext | undefined;
+    if (ctx) {
+      ganancia = ctx.createGain();
+      ganancia.gain.value = 0;
+      ctx.createMediaElementSource(audio).connect(ganancia);
+      ganancia.connect(ctx.destination);
+    }
+  } catch {
+    ganancia = null;
+  }
+  const fijar = (v: number) => {
+    if (ganancia) {
+      const t = ganancia.context.currentTime;
+      ganancia.gain.cancelScheduledValues(t);
+      ganancia.gain.setValueAtTime(v, t);
+    } else audio.volume = v;
+  };
+  if (!ganancia) audio.volume = 0;
+  let fundido = 0;
   return {
-    play: () => void howl.play(),
-    stop: () => void howl.stop(),
-    fade: (desde, hasta, ms) => void howl.fade(desde, hasta, ms),
-    volume: () => howl.volume(),
-    fijarVolumen: (v) => void howl.volume(v),
-    playing: () => howl.playing(),
-    alTerminar: (cb) => void howl.once('end', cb),
+    play: () => void audio.play().catch(() => undefined),
+    stop: () => {
+      audio.pause();
+      audio.currentTime = 0;
+    },
+    fade: (desde, hasta, ms) => {
+      if (ganancia) {
+        const t = ganancia.context.currentTime;
+        ganancia.gain.cancelScheduledValues(t);
+        ganancia.gain.setValueAtTime(desde, t);
+        ganancia.gain.linearRampToValueAtTime(hasta, t + ms / 1000);
+        return;
+      }
+      // Sin Web Audio: el fundido a mano.
+      cancelAnimationFrame(fundido);
+      const inicio = performance.now();
+      const paso = () => {
+        const f = Math.min(1, (performance.now() - inicio) / ms);
+        audio.volume = desde + (hasta - desde) * f;
+        if (f < 1) fundido = requestAnimationFrame(paso);
+      };
+      paso();
+    },
+    volume: () => (ganancia ? ganancia.gain.value : audio.volume),
+    fijarVolumen: fijar,
+    playing: () => !audio.paused,
+    alTerminar: (cb) => audio.addEventListener('ended', cb, { once: true }),
   };
 }
 
 export const musica = new Musica(
-  (pista, enBucle) => reproductorHowl(rutaAudio(`musica/${pista}.mp3`), enBucle),
+  (pista, enBucle) => reproductorEnStreaming(rutaAudio(`musica/${pista}.mp3`), enBucle),
   () => estadoMusica.estaActivo,
 );
 estadoMusica.escuchar(() => musica.cambioDeInterruptor());

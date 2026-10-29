@@ -2,6 +2,8 @@ import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 import { VitePWA } from 'vite-plugin-pwa';
 import { readFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+import { archivosEsenciales, listaSinInternet } from './scripts/lista-sin-internet.mjs';
 import { defineConfig, type Plugin } from 'vitest/config';
 
 /**
@@ -18,17 +20,46 @@ function logoDeCarga(): Plugin {
   };
 }
 
+/** Lo esencial que guarda el service worker al instalarse (lo llena el plugin de abajo al construir). */
+const esenciales = new Set<string>();
+
+/**
+ * Al construir: decide qué es esencial (va en el precache del service worker, que así se activa en
+ * segundos) y arma dist/sin-internet.json con todo lo demás, que se baja después en segundo plano
+ * (ver scripts/lista-sin-internet.mjs y src/servicios/sinInternet.ts).
+ */
+function listaParaSinInternet(): Plugin {
+  return {
+    name: 'mixtle-lista-sin-internet',
+    apply: 'build',
+    generateBundle(_, paquete) {
+      esenciales.clear();
+      for (const e of archivosEsenciales(paquete)) esenciales.add(e);
+      const codigo = Object.values(paquete)
+        .filter((p) => !esenciales.has(p.fileName) && /\.(js|css|svg|png|woff2)$/.test(p.fileName))
+        .map((p) => ({ ruta: p.fileName, contenido: p.type === 'chunk' ? p.code : p.source }));
+      const lista = listaSinInternet(fileURLToPath(new URL('./public', import.meta.url)), codigo);
+      this.emitFile({ type: 'asset', fileName: 'sin-internet.json', source: JSON.stringify(lista) });
+    },
+  };
+}
+
 export default defineConfig({
   base: './',
   plugins: [
     react(),
     tailwindcss(),
     logoDeCarga(),
+    listaParaSinInternet(),
     VitePWA({
-      // El juego se guarda en el dispositivo tras la primera visita y funciona sin internet.
+      // El juego se guarda en el dispositivo tras la primera visita y funciona sin internet. El service
+      // worker se registra cuando la primera pantalla ya está lista (src/servicios/arranque.ts), no al cargar.
       registerType: 'autoUpdate',
-      injectRegister: 'auto',
-      includeAssets: ['favicon.svg', 'iconos/*.png', 'marca/*.svg'],
+      injectRegister: false,
+      // Los íconos y la marca no van en el precache (cada archivo ahí es una ida y vuelta más antes de
+      // activarse): los baja la descarga para jugar sin internet.
+      includeAssets: [],
+      includeManifestIcons: false,
       manifest: {
         name: 'Mixtle al rescate',
         short_name: 'Mixtle',
@@ -47,16 +78,30 @@ export default defineConfig({
         ],
       },
       workbox: {
-        // Todo el juego (código, fuente, arte, voz y música) queda disponible sin conexión.
-        globPatterns: ['**/*.{js,css,html,svg,png,woff2,mp3,json}'],
-        // La lista de audios va aparte: primero la de internet (siempre la más nueva) y, sin conexión,
-        // la última guardada. Así una versión vieja en caché nunca deja a Mixtle con la lista vieja.
-        globIgnores: ['**/voz/manifiesto.json'],
+        // Al instalarse, el service worker guarda solo lo esencial para arrancar: index.html, el código
+        // del inicio, Grupos y Camino, el CSS y las fuentes (ver archivosEsenciales). Workbox guarda un
+        // archivo a la vez y cada uno cuesta una ida y vuelta; antes eran 862 (con todo el audio) y con
+        // Slow 4G tardaba ~18 min en bajarlos. Lo demás (el resto del código, las imágenes y el audio)
+        // lo baja src/servicios/sinInternet.ts en segundo plano a la caché "mixtle-sin-internet".
+        globPatterns: ['**/*.{js,css,html,svg,png,woff2,webmanifest}'],
+        manifestTransforms: [
+          (entradas) => ({ manifest: esenciales.size ? entradas.filter((e) => esenciales.has(e.url)) : entradas, warnings: [] }),
+        ],
         runtimeCaching: [
+          // La lista de audios va aparte: primero la de internet (siempre la más nueva) y, sin conexión,
+          // la última guardada. Así una versión vieja en caché nunca deja a Mixtle con la lista vieja.
           {
             urlPattern: /\/voz\/manifiesto\.json$/,
             handler: 'NetworkFirst',
             options: { cacheName: 'mixtle-voz-manifiesto', networkTimeoutSeconds: 4 },
+          },
+          {
+            // Lo bajado para jugar sin internet se sirve de ahí; si aún no está, de la red.
+            // rangeRequests: la música suena en streaming y el navegador la pide por partes.
+            // [^/?]+$: la descarga pide con ?rev=… y así pasa directo a la red (nunca toma una copia vieja).
+            urlPattern: /\/(assets|iconos|marca|voz|musica|sonidos)\/[^/?]+$/,
+            handler: 'CacheFirst',
+            options: { cacheName: 'mixtle-sin-internet', rangeRequests: true, cacheableResponse: { statuses: [200] } },
           },
         ],
         maximumFileSizeToCacheInBytes: 3 * 1024 * 1024,

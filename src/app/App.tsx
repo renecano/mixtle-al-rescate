@@ -3,17 +3,18 @@ import { lazy, Suspense } from 'react';
 import { PantallaCarga } from './componentes/PantallaCarga';
 import { PanelTransicion, useTransicionMarca } from './componentes/TransicionMarca';
 import { useApp, type Pantalla as NombrePantalla } from './estado/app';
+import { cargarAlbum, cargarAventura, cargarCamino, cargarGrupos, cargarLeccion } from './pantallas/cargadores';
 import { Inicio } from './pantallas/Inicio';
 
 /*
  * La pantalla de inicio viene con la app; las demás se descargan al necesitarlas (así lo que baja
  * antes de la primera pantalla se queda en ~250 KB). Mientras baja una, se ve la pantalla de carga.
  */
-const Grupos = lazy(() => import('./pantallas/Grupos').then((m) => ({ default: m.Grupos })));
-const Camino = lazy(() => import('./pantallas/Camino').then((m) => ({ default: m.Camino })));
-const Leccion = lazy(() => import('./pantallas/Leccion').then((m) => ({ default: m.Leccion })));
-const Aventura = lazy(() => import('./pantallas/Aventura').then((m) => ({ default: m.Aventura })));
-const Album = lazy(() => import('./pantallas/Album').then((m) => ({ default: m.Album })));
+const Grupos = lazy(() => cargarGrupos().then((m) => ({ default: m.Grupos })));
+const Camino = lazy(() => cargarCamino().then((m) => ({ default: m.Camino })));
+const Leccion = lazy(() => cargarLeccion().then((m) => ({ default: m.Leccion })));
+const Aventura = lazy(() => cargarAventura().then((m) => ({ default: m.Aventura })));
+const Album = lazy(() => cargarAlbum().then((m) => ({ default: m.Album })));
 
 function Pantalla({ pantalla }: { pantalla: NombrePantalla }) {
   switch (pantalla) {

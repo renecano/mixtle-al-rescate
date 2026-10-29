@@ -10,6 +10,7 @@ import { vigilarActualizaciones } from '../servicios/actualizacion';
 import { enDireccionAnterior } from '../servicios/mudanza';
 import { mudarse } from '../servicios/mudarse';
 import { vigilarAudio } from '../servicios/audio/motor';
+import { pausarDescarga } from '../servicios/sinInternet';
 import { vigilarRendimiento } from '../servicios/rendimiento';
 import { exponerParaPruebas } from '../servicios/pruebas';
 import { sonido } from '../servicios/sonido';
@@ -33,6 +34,11 @@ if (!mudando) void voz.cargarManifiesto();
 // navegador lo pausó (al salir de la app o bloquear la tablet).
 if (!mudando) vigilarAudio();
 document.addEventListener('pointerdown', () => sonido.desbloquear(), { capture: true });
+// Al cambiar de pantalla, la descarga para jugar sin internet espera un momento: lo que pide la
+// pantalla nueva (su código, su voz) va primero.
+useApp.subscribe((s, antes) => {
+  if (s.pantalla !== antes.pantalla) pausarDescarga();
+});
 document.addEventListener('keydown', () => sonido.desbloquear(), { capture: true });
 
 // Versión nueva publicada: la lista de audios se recarga ya (para que Mixtle use las voces nuevas) y la

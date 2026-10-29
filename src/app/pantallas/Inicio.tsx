@@ -2,6 +2,9 @@ import { lazy, Suspense, useEffect, useRef, useState, type CSSProperties } from 
 import { CAJA_COLGADO, MANOS_COLGADO } from '../../arte/escenas';
 import { FRASE_MIXTLE } from '../../arte/marca';
 import { TEXTOS } from '../../data/textos';
+import { TEXTOS_APP } from '../../contenido/textosApp';
+import { primeraPantallaLista } from '../../servicios/arranque';
+import { precargarPrimerasPantallas } from './cargadores';
 import { reiniciarProgreso } from '../../logica/progreso';
 import { audioListo, musica } from '../../servicios/audio/motor';
 import { sonido } from '../../servicios/sonido';
@@ -35,6 +38,8 @@ const MARIPOSAS = [
 const LOGO_ATERRIZA_MS = 1450;
 /** Cuando termina la entrada: el botón ya está listo para tocarse. */
 const ENTRADA_MS = 2300;
+/** Lo más que se espera a que esté listo el audio de "¡Al rescate!" (la pantalla no lo espera). */
+const ESPERA_VOZ_MS = 800;
 /** Sin tocar la pantalla este tiempo, en modo proyector empieza el modo vitrina. */
 export const VITRINA_TRAS_MS = 60_000;
 
@@ -63,6 +68,20 @@ export function Inicio() {
   const remateSonado = useRef(false);
 
   useEffect(() => musica.poner('tranquila'), []);
+
+  // Mientras se ve el inicio, se adelanta lo que hace falta para que "¡Jugar!" no espere a la red: el
+  // código de Grupos y Camino, la voz de "¡Al rescate!" y de la bienvenida, y los primeros efectos.
+  useEffect(() => {
+    precargarPrimerasPantallas();
+    void voz.precargar([FRASE_MIXTLE, TEXTOS_APP.grupos.bienvenida]);
+    sonido.precargar(['toque', 'remate']);
+    // Si se sale del inicio antes de que termine de entrar, también cuenta como lista.
+    return () => primeraPantallaLista();
+  }, []);
+  // Ya se ve el inicio: ahora sí, lo pesado (service worker y descarga para jugar sin internet).
+  useEffect(() => {
+    if (entradaLista) primeraPantallaLista();
+  }, [entradaLista]);
 
   // Entrada: el remate suena cuando aterriza el logo (si el audio ya está desbloqueado; si no, al primer toque).
   useEffect(() => {
@@ -132,8 +151,10 @@ export function Inicio() {
     voz.desbloquear();
     reiniciarProgreso();
     setSaliendo(true);
-    // "¡Al rescate!" y al terminar la frase (o si no hay voz, poco después), a elegir grupo.
-    decir(FRASE_MIXTLE, { expresion: 'celebrando', alTerminar: jugar });
+    // La transición empieza ya, sin esperar a la voz: Mixtle dice "¡Al rescate!" encima. Si su audio
+    // no está listo en 800 ms (red muy lenta), no se dice tarde.
+    decir(FRASE_MIXTLE, { expresion: 'celebrando', esperaMaximaMs: ESPERA_VOZ_MS });
+    jugar();
   };
 
   const colgado: CSSProperties = {

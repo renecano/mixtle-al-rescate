@@ -40,15 +40,30 @@ class Voz {
     });
   }
 
+  private manifiestoListo: Promise<void> | null = null;
+
   /** Carga public/voz/manifiesto.json. Sin manifiesto, todo se dice con la voz del navegador. */
-  async cargarManifiesto(): Promise<void> {
-    try {
-      // Siempre la lista más nueva (sin la caché HTTP); sin internet, el service worker da la guardada.
-      const r = await fetch(rutaAudio('voz/manifiesto.json'), { cache: 'no-cache' });
-      if (r.ok) this.manifiesto = (await r.json()) as Manifiesto;
-    } catch {
-      this.manifiesto = null;
-    }
+  cargarManifiesto(): Promise<void> {
+    this.manifiestoListo = (async () => {
+      try {
+        // Siempre la lista más nueva (sin la caché HTTP); sin internet, el service worker da la guardada.
+        const r = await fetch(rutaAudio('voz/manifiesto.json'), { cache: 'no-cache' });
+        if (r.ok) this.manifiesto = (await r.json()) as Manifiesto;
+      } catch {
+        this.manifiesto = null;
+      }
+    })();
+    return this.manifiestoListo;
+  }
+
+  /**
+   * Adelanta la descarga de lo que Mixtle va a decir pronto (por ejemplo, "¡Al rescate!" mientras se
+   * ve el inicio), para que suene a tiempo aunque la red sea lenta.
+   */
+  async precargar(locuciones: readonly Locucion[]): Promise<void> {
+    await this.manifiestoListo;
+    if (!hayAudio()) return;
+    for (const l of locuciones) for (const a of planDeLocucion(l, this.manifiesto).archivos ?? []) this.howl(a);
   }
 
   /** Para pruebas: usar un manifiesto dado. */
@@ -72,8 +87,10 @@ class Voz {
   /**
    * Mixtle dice algo. Devuelve la duración (real si hay audio, estimada si no), útil para animar a Mixtle.
    * `alTerminar` se llama al acabar; si otra frase interrumpe a esta, ya no se llama.
+   * Con `esperaMaximaMs`, si el audio no está listo para entonces, la frase no se dice tarde: se
+   * termina (queda el subtítulo). Sin ella, a los 2 s empieza con lo que haya bajado.
    */
-  decir(locucion: Locucion, alTerminar?: () => void): number {
+  decir(locucion: Locucion, alTerminar?: () => void, op: { esperaMaximaMs?: number } = {}): number {
     this.ultimo = locucion;
     const plan = planDeLocucion(locucion, this.manifiesto);
     const hablado = piezasDeTexto(locucion).join(' ');
@@ -101,7 +118,7 @@ class Voz {
 
     if (conAudio) {
       this.cuenta.conAudio += 1;
-      this.reproducirCadena(plan.archivos!, miTurno, terminar);
+      this.reproducirCadena(plan.archivos!, miTurno, terminar, op.esperaMaximaMs);
     } else {
       this.cuenta.conNavegador += 1;
       if (import.meta.env.DEV && plan.faltantes.length) {
@@ -152,7 +169,7 @@ class Voz {
     return h;
   }
 
-  private reproducirCadena(archivos: string[], turno: number, terminar: () => void): void {
+  private reproducirCadena(archivos: string[], turno: number, terminar: () => void, esperaMaximaMs?: number): void {
     // Todas las piezas se cargan ANTES de empezar a hablar: así no hay tropiezos entre una y otra
     // esperando a que baje el siguiente audio (con un tope de 2 s para no quedarse callado).
     const howls = archivos.map((a) => this.howl(a));
@@ -171,7 +188,15 @@ class Voz {
         h.once('loaderror', revisar);
       }
     }
-    window.setTimeout(empezar, 2000);
+    if (esperaMaximaMs === undefined) window.setTimeout(empezar, 2000);
+    else
+      window.setTimeout(() => {
+        // No llegó a tiempo: mejor no decirla tarde (la pantalla ya siguió); queda el subtítulo.
+        if (listo || turno !== this.turno) return;
+        listo = true;
+        this.sonando = null;
+        terminar();
+      }, esperaMaximaMs);
 
     const siguiente = (i: number) => {
       if (turno !== this.turno) return;

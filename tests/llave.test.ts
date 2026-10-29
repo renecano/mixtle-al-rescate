@@ -54,7 +54,8 @@ describe('la llave de Azure está protegida', () => {
     const publicados = existsSync(join(RAIZ, 'dist')) ? archivos(join(RAIZ, 'dist')) : [];
     const conLlave = [...delRepo, ...publicados].filter((f) => readFileSync(f).includes(llave));
     expect(conLlave.map((f) => f.slice(RAIZ.length + 1))).toEqual([]);
-  });
+    // Lee todo el repositorio y dist/ (más de 100 MB con el audio): con el disco frío tarda 15-40 s.
+  }, 60000);
 
   it('lo publicado (dist/) no menciona la llave ni el servicio de voz', () => {
     if (!existsSync(join(RAIZ, 'dist'))) return;

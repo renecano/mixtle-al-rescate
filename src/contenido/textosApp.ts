@@ -132,6 +132,14 @@ export const TEXTOS_APP = {
     cerrar: 'Cerrar',
     ayuda: 'Mantén presionado el logo 3 segundos para abrir este panel.',
     recorrido: 'Ver otra vez el recorrido por el juego',
+    /** Estado de la descarga para usar sin internet (voces, música y efectos). */
+    sinInternet: {
+      listo: 'Listo para usar sin internet',
+      descargando: (n: number) => `Descargando para usar sin internet: ${n} %`,
+      esperando: 'La descarga para usar sin internet empieza en un momento',
+      sinConexion: (n: number) => `Sin conexión: va en ${n} % la descarga para usar sin internet (sigue al volver la conexión)`,
+      noDisponible: 'Este navegador no permite guardar el juego para usar sin internet',
+    },
   },
   recorrido: {
     etiqueta: 'Recorrido por el juego',

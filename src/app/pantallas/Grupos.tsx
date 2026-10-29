@@ -21,9 +21,13 @@ export function Grupos() {
 
   useEffect(() => {
     if (!cargado) void cargar();
-    decir(TEXTOS_APP.grupos.bienvenida);
-    return () => callar();
   }, [cargado, cargar]);
+  // La bienvenida, una vez: si Mixtle aún dice "¡Al rescate!" (la transición no lo espera), primero
+  // lo termina (800 ms como mucho).
+  useEffect(() => {
+    decir(TEXTOS_APP.grupos.bienvenida, { trasLaActualMs: 800 });
+    return () => callar();
+  }, []);
 
   return (
     <main data-pantalla="grupos" data-entrada-lista="true" className="textura relative flex h-full w-full flex-col items-center gap-[clamp(1rem,3vmin,2rem)] overflow-y-auto bg-gradient-to-b from-cielo to-verde-claro px-4 pt-6 pb-8">
