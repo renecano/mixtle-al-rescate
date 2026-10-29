@@ -1,8 +1,9 @@
 import { useRef } from 'react';
 import { TEXTOS_APP } from '../../contenido/textosApp';
-import { hojitasDisponibles } from '../../logica/accesorios';
-import { mascota, nombreDelGrupo, type Grupo } from '../../logica/grupos';
+import { accesoriosPuestos, hojitasDisponibles } from '../../logica/accesorios';
+import { nombreDelGrupo, type Grupo } from '../../logica/grupos';
 import { ContadorHojitas } from '../efectos/ContadorHojitas';
+import { MascotaVestida } from './MascotaVestida';
 import { Arte } from './Arte';
 import { BotonesSistema } from './BotonesSistema';
 import { BotonGrande } from './BotonGrande';
@@ -13,6 +14,7 @@ interface Props {
   grupo: Grupo;
   alAlbum: () => void;
   alCambiarGrupo: () => void;
+  alVestidor: () => void;
   alFacilitador: () => void;
 }
 
@@ -20,7 +22,7 @@ interface Props {
  * Barra superior del camino: logo (mantenerlo presionado 3 s abre el modo facilitador, un gesto que
  * un niño no hace por accidente), el grupo, sus hojitas, los días jugados y los botones de audio.
  */
-export function Encabezado({ grupo, alAlbum, alCambiarGrupo, alFacilitador }: Props) {
+export function Encabezado({ grupo, alAlbum, alCambiarGrupo, alVestidor, alFacilitador }: Props) {
   const temporizador = useRef<number | null>(null);
   const cancelar = () => {
     if (temporizador.current) window.clearTimeout(temporizador.current);
@@ -48,7 +50,7 @@ export function Encabezado({ grupo, alAlbum, alCambiarGrupo, alFacilitador }: Pr
       </button>
 
       <div className="flex min-w-0 items-center gap-2 rounded-full border-4 border-white px-3 py-1" style={{ backgroundColor: grupo.color }} data-grupo={grupo.id}>
-        <Arte clave={mascota(grupo.mascota).arte} className="size-[clamp(2.5rem,6vmin,3.5rem)] object-contain" />
+        <MascotaVestida mascota={grupo.mascota} puestos={accesoriosPuestos(grupo.progreso)} className="h-[clamp(2.5rem,6vmin,3.5rem)]" />
         <span className="truncate text-[clamp(1.1rem,2.6vmin,1.8rem)] font-black">{nombreDelGrupo(grupo)}</span>
       </div>
 
@@ -65,6 +67,9 @@ export function Encabezado({ grupo, alAlbum, alCambiarGrupo, alFacilitador }: Pr
         <BotonGrande color="morado" etiqueta={TEXTOS_APP.camino.album} className="h-[clamp(4rem,9vmin,5.5rem)] min-w-[clamp(4rem,9vmin,5.5rem)] text-[clamp(1.1rem,2.5vmin,1.6rem)] max-xl:px-0" icono={<Arte clave="icono-estrella" className="size-[1.6em]" />} onClick={alAlbum}>
           {/* En pantallas angostas (tablet) solo el ícono; el nombre sigue para lectores de pantalla. */}
           <span className="max-xl:sr-only">{TEXTOS_APP.camino.album}</span>
+        </BotonGrande>
+        <BotonGrande color="naranja" etiqueta={TEXTOS_APP.vestidor.titulo} className="h-[clamp(4rem,9vmin,5.5rem)] min-w-[clamp(4rem,9vmin,5.5rem)] text-[clamp(1.1rem,2.5vmin,1.6rem)] max-xl:px-0" icono={<Arte clave="accesorio-gorra" className="h-[1.5em]" />} onClick={alVestidor}>
+          <span className="max-xl:sr-only">{TEXTOS_APP.vestidor.titulo}</span>
         </BotonGrande>
         <BotonGrande color="azul" etiqueta={TEXTOS_APP.camino.cambiarGrupo} className="size-[clamp(4rem,9vmin,5.5rem)]" icono={<Arte clave="icono-casa" className="size-[60%]" />} onClick={alCambiarGrupo} />
         <BotonesSistema enLinea />

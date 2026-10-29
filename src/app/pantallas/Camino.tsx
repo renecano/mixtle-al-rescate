@@ -2,6 +2,7 @@ import { motion } from 'motion/react';
 import { Fragment, useEffect, useMemo, useRef, useState } from 'react';
 import { TEXTOS_APP } from '../../contenido/textosApp';
 import { UNIDADES } from '../../contenido/unidades';
+import { accesoriosPuestos } from '../../logica/accesorios';
 import { estadosDelCamino, HOJITAS_COFRE, nodosDelCamino, siguienteNodo, unidadCompleta, type EstadoNodo, type Nodo } from '../../logica/camino';
 import { datosDiplomaUnidad, type DatosDiplomaUnidad } from '../../logica/diplomaUnidad';
 import { mascota } from '../../logica/grupos';
@@ -10,6 +11,8 @@ import { Arte } from '../componentes/Arte';
 import { BotonGrande } from '../componentes/BotonGrande';
 import { CofreAnimado, type FaseCofre } from '../componentes/CofreAnimado';
 import { DiplomaUnidad } from '../componentes/DiplomaUnidad';
+import { MascotaVestida } from '../componentes/MascotaVestida';
+import { Vestidor } from '../componentes/Vestidor';
 import { centroDe, estallido, hojitasAlContador, lluviaDeHojitas } from '../efectos/efectos';
 import { MixtleGuia } from '../componentes/MixtleGuia';
 import { Encabezado } from '../componentes/Encabezado';
@@ -37,6 +40,7 @@ export function Camino() {
   const { abrirLeccion, abrirAventura, abrirAlbum, irAGrupos, estampaNueva, olvidarEstampaNueva } = useApp();
   const [cofre, setCofre] = useState<string | null>(null);
   const [facilitador, setFacilitador] = useState(false);
+  const [vestidor, setVestidor] = useState(false);
   const nodos = useMemo(() => nodosDelCamino(UNIDADES), []);
   const siguiente = useRef<HTMLDivElement>(null);
 
@@ -77,7 +81,7 @@ export function Camino() {
   const posiciones = posicionesZigzag(nodos);
   return (
     <main data-pantalla="camino" data-entrada-lista="true" className="flex h-full w-full flex-col bg-gradient-to-b from-cielo to-verde-claro">
-      <Encabezado grupo={grupo} alAlbum={abrirAlbum} alCambiarGrupo={irAGrupos} alFacilitador={() => setFacilitador(true)} />
+      <Encabezado grupo={grupo} alAlbum={abrirAlbum} alCambiarGrupo={irAGrupos} alVestidor={() => setVestidor(true)} alFacilitador={() => setFacilitador(true)} />
       <div className="relative min-h-0 flex-1 overflow-y-auto">
         <div className="mx-auto flex max-w-[70rem] flex-col items-center gap-4 px-4 pt-4 pb-16">
           <ParqueGrupo progreso={progreso} className="aspect-[16/6] w-full max-w-[calc(30vh*16/6)]" />
@@ -92,9 +96,16 @@ export function Camino() {
                 <div ref={esSiguiente ? siguiente : undefined} className={`relative h-[clamp(7.5rem,17vmin,11rem)] w-full scroll-mt-[clamp(10rem,24vmin,15rem)] scroll-mb-8 ${esSiguiente ? 'z-10' : ''}`}>
                   <div className="absolute top-1/2 -translate-x-1/2 -translate-y-1/2" style={{ left: `${x}%` }}>
                     <BurbujaNodo nodo={n} estado={estados[i]!} siguiente={esSiguiente} alTocar={() => tocar(n, estados[i]!)} hecho={estados[i] === 'hecho'} />
+                    {/* La mascota del grupo (vestida) va en el camino junto a la siguiente parada: "aquí vamos".
+                        Del lado contrario a Mixtle (que se pone del lado libre del zigzag). */}
+                    {esSiguiente && (
+                      <div className={`ficha-grupo pointer-events-none absolute bottom-[-6%] h-[clamp(3.5rem,8vmin,5.5rem)] ${x > 50 ? 'right-[-38%]' : 'left-[-38%]'}`} aria-hidden="true">
+                        <MascotaVestida mascota={grupo.mascota} puestos={accesoriosPuestos(progreso)} className="h-full" />
+                      </div>
+                    )}
                   </div>
                   {/* Con una ventana abierta (cofre, estampa, facilitador) habla el Mixtle de la ventana: uno solo. */}
-                  {esSiguiente && !cofre && !estampaNueva && !facilitador && (
+                  {esSiguiente && !cofre && !estampaNueva && !facilitador && !vestidor && (
                     // Un solo Mixtle: el que señala la siguiente parada es el que habla, con su globo a un lado,
                     // del lado contrario de la parada (el camino zigzaguea: ahí siempre hay espacio libre).
                     <motion.div
@@ -142,6 +153,7 @@ export function Camino() {
       )}
       {estampaNueva && <ModalEstampa id={estampaNueva} alCerrar={olvidarEstampaNueva} />}
       {facilitador && <PanelFacilitador grupo={grupo} alCerrar={() => setFacilitador(false)} />}
+      {vestidor && <Vestidor grupo={grupo} alCerrar={() => setVestidor(false)} />}
     </main>
   );
 }

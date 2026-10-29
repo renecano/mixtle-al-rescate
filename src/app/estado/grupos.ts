@@ -8,6 +8,7 @@ import {
   PROGRESO_VACIO,
   type ProgresoGrupo,
 } from '../../logica/camino';
+import { alternarPuesto, comprarAccesorio, type IdAccesorio } from '../../logica/accesorios';
 import { gruposValidos, nuevoGrupo, type Grupo } from '../../logica/grupos';
 import { almacenIndexedDb, type Almacen } from '../../servicios/almacen';
 
@@ -27,6 +28,9 @@ interface EstadoGrupos {
   terminarLeccion: (leccionId: string, r: { hojitas: number; aLaPrimera: number }) => void;
   abrirCofre: (unidadId: string) => void;
   terminarAventura: (unidad: Unidad) => void;
+  /** Accesorios de la mascota (v3): comprar con hojitas y poner o quitar. */
+  comprarAccesorio: (id: IdAccesorio) => void;
+  alternarPuesto: (id: IdAccesorio) => void;
 }
 
 let almacen: Almacen = almacenIndexedDb;
@@ -92,6 +96,12 @@ export const useGrupos = create<EstadoGrupos>((set, get) => {
     },
     terminarAventura(unidad) {
       cambiarProgreso((p) => completarAventura(p, unidad, hoyLocal()));
+    },
+    comprarAccesorio(id) {
+      cambiarProgreso((p) => comprarAccesorio(p, id));
+    },
+    alternarPuesto(id) {
+      cambiarProgreso((p) => alternarPuesto(p, id));
     },
   };
 });

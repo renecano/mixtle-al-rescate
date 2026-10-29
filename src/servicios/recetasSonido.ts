@@ -143,6 +143,13 @@ export const RECETAS = {
     { t: 0.62, d: 0.12, f: G5 * 2, onda: 'sine', vol: 0.12 },
     { t: 0.74, d: 0.3, f: C6 * 2, onda: 'sine', vol: 0.1 },
   ],
+  // Comprar un accesorio: un "pop" con brillo.
+  comprar: [
+    { t: 0, d: 0.08, f: 400, f2: 900, onda: 'triangle', vol: 0.3 },
+    { t: 0.07, d: 0.12, f: E6, onda: 'sine', vol: 0.18 },
+    { t: 0.14, d: 0.25, f: G5 * 2, onda: 'sine', vol: 0.14 },
+    { t: 0.1, d: 0.2, f: 6500, onda: 'ruido', vol: 0.04 },
+  ],
   pagina: [
     { t: 0, d: 0.09, f: 1800, onda: 'ruido', vol: 0.08 },
     { t: 0.02, d: 0.09, f: D5, f2: A5, onda: 'sine', vol: 0.18 },

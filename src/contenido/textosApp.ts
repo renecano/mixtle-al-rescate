@@ -80,6 +80,18 @@ export const TEXTOS_APP = {
     siEstaBien: 'Sí, está bien',
     noEstaBien: 'No está bien',
   },
+  vestidor: {
+    titulo: 'Vestidor',
+    hola: (mascota: string) => `¿Qué le ponemos a su ${mascota.toLowerCase()}? Cada cosa cuesta hojitas.`,
+    comprada: '¡Le queda muy bien!',
+    faltan: 'Junten más hojitas en las lecciones para comprarla.',
+    comprar: 'Comprar',
+    ponerse: 'Ponérsela',
+    quitarse: 'Quitársela',
+    faltanCuantas: (n: number) => `¡Junten ${n} más!`,
+    disponibles: 'Hojitas para gastar',
+    cerrar: '¡Listo!',
+  },
   unidad: {
     /** Fin de unidad (narrado): el número va en palabras para que Mixtle lo diga de corrido. */
     terminada: (numero: number) => `¡Terminaron la unidad ${['', 'uno', 'dos', 'tres', 'cuatro', 'cinco'][numero] ?? numero}! Aquí está su diploma.`,

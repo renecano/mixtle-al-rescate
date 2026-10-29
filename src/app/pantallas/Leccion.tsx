@@ -2,6 +2,7 @@ import { motion } from 'motion/react';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { TEXTOS_APP } from '../../contenido/textosApp';
 import { leccionPorId } from '../../contenido/unidades';
+import { hojitasDisponibles } from '../../logica/accesorios';
 import { completarLeccion, hoyLocal, type ProgresoGrupo } from '../../logica/camino';
 import {
   avance,
@@ -53,7 +54,8 @@ export function Leccion() {
   const animos = useRef(0);
   // Juice (v3): contador de hojitas del grupo, racha dentro de la lección y la mitad de la barra.
   const grupo = useGrupoActual();
-  const [base] = useState(() => grupo?.progreso.hojitas ?? 0);
+  // Las mismas hojitas que el encabezado del camino: las que se pueden gastar.
+  const [base] = useState(() => (grupo ? hojitasDisponibles(grupo.progreso) : 0));
   const [hojitasLeccion, setHojitasLeccion] = useState(0);
   const [racha, setRacha] = useState<{ n: number; clave: number } | null>(null);
   const contador = useRef<HTMLDivElement>(null);
@@ -241,7 +243,7 @@ function FinLeccion({ sesion, unidadColor }: { sesion: SesionLeccion; unidadColo
   const [mostrarDespues, setMostrarDespues] = useState(false);
   const guardado = useRef(false);
   // Contador del grupo: ya trae las hojitas a la primera (volaron durante la lección); aquí llegan las de terminarla.
-  const [inicioContador] = useState(() => (grupo?.progreso.hojitas ?? 0) + sesion.aLaPrimera);
+  const [inicioContador] = useState(() => (grupo ? hojitasDisponibles(grupo.progreso) : 0) + sesion.aLaPrimera);
   const [llegadas, setLlegadas] = useState(0);
   const insignia = useRef<HTMLDivElement>(null);
   const contadorFin = useRef<HTMLDivElement>(null);

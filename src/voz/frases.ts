@@ -105,6 +105,9 @@ export function todasLasFrases(): FraseNarrada[] {
   app('camino', 'camino.terminaron', t.camino.terminaron);
   app('camino', 'camino.bloqueada', t.camino.bloqueada);
   app('cofre', 'cofre.llegaron', t.cofre.llegaron(HOJITAS_COFRE));
+  MASCOTAS.forEach((m) => app('vestidor', `vestidor.hola.${m.id}`, t.vestidor.hola(m.nombre)));
+  app('vestidor', 'vestidor.comprada', t.vestidor.comprada);
+  app('vestidor', 'vestidor.faltan', t.vestidor.faltan);
   app('cofre', 'cofre.abierto', t.cofre.abierto(HOJITAS_COFRE));
   t.leccion.animos.forEach((a, i) => app('leccion', `leccion.animo.${i + 1}`, a));
   app('leccion', 'leccion.casi', '¡Casi!');

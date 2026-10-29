@@ -46,7 +46,7 @@ function Accesorio({ id, ancla }: { id: IdAccesorio; ancla: Ancla }) {
         transform: `translate(${-datos.origen.x * 100}%, ${-datos.origen.y * 100}%) rotate(${ancla.r ?? 0}deg)`,
         transformOrigin: `${datos.origen.x * 100}% ${datos.origen.y * 100}%`,
       }}
-      data-accesorio={id}
+      data-accesorio-puesto={id}
     />
   );
 }
