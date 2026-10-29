@@ -30,6 +30,8 @@ export async function tocarBoton(page, nombre) {
 
 export async function esperarPantalla(page, nombre, timeout = 30000) {
   await page.waitForSelector(`[data-pantalla="${nombre}"][data-entrada-lista="true"]`, { timeout });
+  // Mientras el panel de la transición de marca cubre la pantalla, no recibe toques (a propósito).
+  await page.waitForSelector('.transicion-marca', { state: 'detached', timeout });
 }
 
 /** Del inicio a un grupo nuevo en el camino. */

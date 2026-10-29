@@ -49,6 +49,15 @@ export function pantallaInicial(busqueda: string, desarrollo: boolean): Pick<Est
   return { pantalla: 'inicio' };
 }
 
+/** Lo que hay guardado en una preferencia (null si nunca se eligió). Nunca lanza. */
+function leerPreferenciaGuardada(clave: string): string | null {
+  try {
+    return typeof localStorage === 'undefined' ? null : localStorage.getItem(clave);
+  } catch {
+    return null;
+  }
+}
+
 function aplicarAtributo(nombre: string, si: boolean): void {
   if (typeof document !== 'undefined') document.documentElement.toggleAttribute(nombre, si);
 }
@@ -76,7 +85,8 @@ export const useApp = create<EstadoApp>((set, get) => {
       set({ proyector: si });
     },
     suavizarPorRendimiento: () => {
-      if (get().suave) return;
+      // Si el facilitador las apagó a propósito en este aparato, se respeta su decisión.
+      if (get().suave || leerPreferenciaGuardada(CLAVE_SUAVE) === 'no') return;
       aplicarAtributo('data-suave', true);
       set({ suave: true });
     },

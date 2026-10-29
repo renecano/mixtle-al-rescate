@@ -155,3 +155,14 @@ describe('rendimiento: si el equipo no puede, las animaciones se calman solas', 
     expect(localStorage.getItem('mixtle-al-rescate:suave')).toBeNull();
   });
 });
+
+describe('rendimiento: la decisión del facilitador manda', () => {
+  it('si apagó las animaciones suaves a propósito, no se encienden solas', () => {
+    localStorage.setItem('mixtle-al-rescate:suave', 'no');
+    useApp.setState({ suave: false });
+    document.documentElement.removeAttribute('data-suave');
+    useApp.getState().suavizarPorRendimiento();
+    expect(useApp.getState().suave).toBe(false);
+    localStorage.removeItem('mixtle-al-rescate:suave');
+  });
+});
