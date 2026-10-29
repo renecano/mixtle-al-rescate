@@ -76,6 +76,12 @@ describe('voz con Azure: SSML', () => {
     expect(pronunciar('¡Hola! Soy Mixtle, el cacomixtle del parque.')).toBe('¡Hola! Soy Míkstle, el cacomíkstle del parque.');
     expect(pronunciar('MIXTLE y mixtle')).toBe('Míkstle y míkstle');
   });
+
+  it('las voces MAI-Voice (con ":" en el nombre) dan un nombre de archivo válido en Windows', () => {
+    const archivo = muestras.archivoDe({ voz: 'es-MX-Alejo:MAI-Voice-2-Flash', variante: { id: 'normal' }, frase: 'saludo' });
+    expect(archivo).toBe('es-MX-Alejo_MAI-Voice-2-Flash--normal--saludo.mp3');
+    expect(archivo).not.toMatch(/[:\\/*?"<>|]/);
+  });
 });
 
 describe('voz con Azure contra un servidor falso', () => {

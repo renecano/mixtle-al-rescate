@@ -26,7 +26,7 @@ La v3 le da al juego su propia marca y lo hace más llamativo en el proyector, c
 | Un fondo para todo | **Cada unidad con su ambiente y su paleta**: Parque (su estación de reciclaje), Hogar de los animales (un humedal), Bosque del Nevado de Toluca, Calles de Toluca (portales con arcos y un edificio de grandes vitrales inspirado en el Cosmovitral, dibujados de forma original) y Escuela. El ambiente **decora los lados del camino** (árboles y bancas, tules y estanques, pinos y rocas, casas de colores y bicis, la escuela y una canasta), y arriba del camino **el parque del grupo es el protagonista**, con su marco y su título. |
 | — | **Vestidor**: accesorios para la mascota del grupo (flor, gorra, lentes, paliacate, mochila y capa) a precio fijo en hojitas; se ve en el camino y en el diploma. |
 | Arte plano | **Arte más rico**: luz, sombras suaves, degradados y una textura de papel, con trazo y paleta iguales en todo el juego. |
-| Kokoro | Voz con **Azure AI Speech** lista para usarse cuando llegue la llave (Kokoro sigue como alterno). |
+| Kokoro | Voz con **Azure AI Speech** lista: ya hay [muestras de 12 voces](docs/muestras-voz/azure.html) para elegir la de Mixtle (Kokoro sigue mientras tanto y como alterno). |
 | "N días seguidos" en el camino | **Se quitó la racha de días** (se perdía al faltar un día) y las hojitas de cada grupo ya no se ven lado a lado al elegir grupo: no se comparan grupos. |
 
 Medido en esta versión: lo que baja antes de la primera pantalla pesa **231.9 KB** comprimidos (límite 250 KB), y en la laptop de 8 GB el juego va a **59–60 cuadros por segundo** en sus momentos más pesados (ver *Pruebas y evidencia medida*).
@@ -222,11 +222,13 @@ La v3 deja listo **Azure AI Speech** como proveedor (`scripts/voz/azure.mjs`: AP
 
   ```
   AZURE_SPEECH_KEY=…
-  AZURE_SPEECH_REGION=southcentralus
+  AZURE_SPEECH_REGION=francecentral
   ```
 
   La llave solo se usa al **generar** los audios en la computadora de quien prepara el juego. El juego publicado sigue reproduciendo mp3 pregenerados y nunca llama a Azure. `tests/llave.test.ts` revisa que `.env.local` esté ignorado, que el código del juego no lea la llave y que ni el repositorio ni `dist/` contengan su valor (se comprobó plantando una llave falsa en `dist/`: la prueba falla).
 - **Elegir la voz.** `npm run voz:muestras -- --proveedor=azure` consulta las voces es-MX y es-US de la región y genera las mismas frases (saludo, acierto, pista amable, dato curioso) con cada una: normal, con estilo alegre si la voz lo tiene, tono +5 % y +10 % y un poco más lenta, más cómo dice "Mixtle" y "cacomixtle". La página `docs/muestras-voz/azure.html` incluye la voz actual (Kokoro) para comparar y se puede mandar a Eco Urban. Gasta como máximo ~20,000 caracteres.
+
+  **Muestras generadas (29 de octubre de 2026, región francecentral).** La región tiene 33 voces es-MX/es-US, 11 de ellas con estilos. Entraron 12 voces con 241 audios y se gastaron 19,107 caracteres. Las 12 son Alejo y Valeria (MAI-Voice 2 y 2.1), Harper (MAI-Voice 2.1), Jorge, Beatriz, Candela, Carlota, Cecilio, Dalia y Dalia Multilingual. Las voces nuevas **MAI-Voice** traen `:` en el nombre (`es-MX-Alejo:MAI-Voice-2-Flash`). En Windows, eso escondía el audio en un flujo alterno en lugar de crear el archivo, así que ahora el nombre del archivo cambia `:` por `_` (con una prueba en `tests/azure.test.ts`). Los 241 audios se revisaron decodificándolos con ffmpeg: ninguno tiene errores.
 - **Cambiar la voz.** `npm run voz:usar -- azure` (o `kokoro`) cambia el proveedor activo; la voz y los ajustes de cada uno (`voz`, `idioma`, `estilo`, `tono`, `velocidad`) están en `voz.config.json`. Después, `npm run voz:generar`. La firma de cada audio incluye proveedor, voz, estilo, ajustes y texto, así que un cambio regenera lo necesario y nada más.
 - **Costo.** El plan gratuito (F0) da 500,000 caracteres al mes. Todas las frases del juego suman 36,984 (medido con las 740 frases de la v3): regenerar todo cabe más de 10 veces al mes. Antes de cada corrida se cuentan los caracteres y el uso del mes se lleva en `.voz-uso.json` (local, ignorado por git); si el mes pasaría de **400,000**, se detiene, salvo con `--forzar`. Entre peticiones espera ~3 s y reintenta los 429 con espera creciente.
 - **Pruebas.** `tests/azure.test.ts` corre todo contra un servidor falso (SSML, lista de voces, reintento de 429, presupuesto, página de muestras). También se probó `voz:generar` completo contra un servidor falso: SSML con estilo y tono, reintento, normalización y registro de uso.
@@ -354,7 +356,7 @@ Para correrlos contra un sitio ya publicado, sin construir nada en local: `$env:
 
 - **Las aventuras son minijuegos cortos** (2 a 4 minutos). Las del bosquecito y la lonchera siempre tienen el mismo número de cosas: los diplomas muestran el esfuerzo, no un puntaje para comparar grupos.
 - El diploma de la unidad 1 cuenta los residuos separados en el nivel 2 y en la lluvia de basura (12 + 5) y los animales ayudados.
-- **v3: la voz de Azure aún no se ha generado.** Falta la llave (`AZURE_SPEECH_KEY`). Todo está listo y probado contra un servidor falso. Mientras tanto, Mixtle sigue con Kokoro.
+- **v3: falta elegir la voz de Azure.** Ya están las muestras de 12 voces (`docs/muestras-voz/azure.html`). Cuando Eco Urban elija voz y variante, se ponen en `voz.config.json`, se corre `npm run voz:usar -- azure` y luego `npm run voz:generar`. Mientras tanto, Mixtle sigue con Kokoro. Las otras 21 voces en español de la región no cupieron en el límite de ~20,000 caracteres de las muestras.
 - **v3: las mediciones de cuadros por segundo dependen de que la computadora esté libre.** Con la ventana de Chrome tapada o la laptop ocupada en otra cosa, Chrome deja de dibujar y las cifras no sirven. `scripts/medir-fps.mjs` lo detecta y lo avisa, y el tráiler se niega a grabarse así. Las cifras de este README se tomaron con la laptop libre, o comparando en las mismas condiciones.
 - **v3: equipos sin aceleración por tarjeta de video.** Ahí las animaciones completas van a 11–33 fps. El juego lo detecta y se calma solo; con las animaciones suaves va a 57–60 fps.
 - **v3: lo que falta confirmar con Eco Urban.** Los precios de los accesorios, que los ambientes de cada unidad se sientan "de Toluca" y la frase de Mixtle ("¡Al rescate!").

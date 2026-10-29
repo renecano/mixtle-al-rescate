@@ -79,7 +79,11 @@ export function planDeMuestras(voces, aplicarPronunciacion, presupuesto = PRESUP
 }
 
 const escapar = (t) => String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
-export const archivoDe = (p) => `${p.voz}--${p.variante.id}--${p.frase}.mp3`;
+/**
+ * Nombre del mp3. Las voces nuevas (MAI-Voice) traen ":" en el nombre ("es-MX-Alejo:MAI-Voice-2-Flash"),
+ * y en Windows un ":" en un archivo no crea el archivo: lo esconde en un flujo alterno de otro.
+ */
+export const archivoDe = (p) => `${p.voz.replace(/[:\\/*?"<>|]/g, '_')}--${p.variante.id}--${p.frase}.mp3`;
 
 /** Página para escuchar y elegir (se puede mandar a Eco Urban junto con la carpeta azure/). */
 export function paginaDeMuestras({ voces, region, fecha, referencia }) {
