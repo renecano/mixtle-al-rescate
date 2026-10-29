@@ -1,6 +1,7 @@
 import { Howl, Howler } from 'howler';
 import { estadoMusica } from '../estadoSonido';
 import { Musica, type Reproductor } from './musica';
+import { reanudarContexto, vigilarContexto } from './reanudar';
 
 /** Ruta de un archivo de audio de /public, respetando la base del sitio. */
 export function rutaAudio(relativa: string): string {
@@ -45,14 +46,28 @@ export function audioListo(): boolean {
   }
 }
 
-/** Llamar en el primer toque: desbloquea el audio (tablets) y deja empezar la música. */
+/** Llamar en cada toque: desbloquea el audio (o lo reanuda si el navegador lo pausó) y deja empezar la música. */
 export function desbloquearAudio(): void {
   if (!hayAudio()) return;
   try {
-    const ctx = Howler.ctx as AudioContext | undefined;
-    if (ctx && ctx.state === 'suspended') void ctx.resume().catch(() => undefined);
+    reanudarContexto(Howler.ctx as AudioContext | undefined);
   } catch {
     // Sin audio el juego sigue igual.
   }
   musica.desbloquear();
+}
+
+/**
+ * Al cargar: crea el contexto de audio para saber si el navegador ya deja sonar (visita de regreso:
+ * la música empieza sola) y para reanudarlo cuando se vuelve a la página. Ver reanudar.ts.
+ */
+export function vigilarAudio(): void {
+  if (!hayAudio()) return;
+  try {
+    if (!Howler.ctx) Howler.volume();
+    const ctx = Howler.ctx as AudioContext | undefined;
+    if (ctx) vigilarContexto(ctx, () => musica.desbloquear());
+  } catch {
+    // Sin audio el juego sigue igual.
+  }
 }

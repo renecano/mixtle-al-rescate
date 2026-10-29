@@ -9,6 +9,7 @@ import { createRoot } from 'react-dom/client';
 import { vigilarActualizaciones } from '../servicios/actualizacion';
 import { enDireccionAnterior } from '../servicios/mudanza';
 import { mudarse } from '../servicios/mudarse';
+import { vigilarAudio } from '../servicios/audio/motor';
 import { vigilarRendimiento } from '../servicios/rendimiento';
 import { exponerParaPruebas } from '../servicios/pruebas';
 import { sonido } from '../servicios/sonido';
@@ -27,8 +28,12 @@ exponerParaPruebas();
 // Si este equipo no sostiene las animaciones, se calman solas (ver servicios/rendimiento.ts).
 if (!mudando) vigilarRendimiento(() => useApp.getState().suavizarPorRendimiento());
 if (!mudando) void voz.cargarManifiesto();
-// El audio (y la música) solo pueden empezar tras un toque: lo desbloqueamos con el primero, sea donde sea.
-document.addEventListener('pointerdown', () => sonido.desbloquear(), { once: true, capture: true });
+// El audio (y la música) empiezan en cuanto el navegador deja: al entrar si ya lo permite (visita de
+// regreso) o con el primer toque o tecla, sea donde sea. Cada toque o tecla también lo reanuda si el
+// navegador lo pausó (al salir de la app o bloquear la tablet).
+if (!mudando) vigilarAudio();
+document.addEventListener('pointerdown', () => sonido.desbloquear(), { capture: true });
+document.addEventListener('keydown', () => sonido.desbloquear(), { capture: true });
 
 // Versión nueva publicada: la lista de audios se recarga ya (para que Mixtle use las voces nuevas) y la
 // página se recarga en la pantalla de inicio, nunca a media lección. El avance está en IndexedDB.
