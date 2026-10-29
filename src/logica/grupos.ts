@@ -21,7 +21,7 @@ export const MASCOTAS = [
   { id: 'monarca', nombre: 'Monarca', arte: 'mariposa-feliz' },
   { id: 'ajolote', nombre: 'Ajolote', arte: 'ajolote' },
   { id: 'tlacuache', nombre: 'Tlacuache', arte: 'tlacuache' },
-  { id: 'cacomixtle', nombre: 'Cacomixtle', arte: 'mixtle' },
+  { id: 'cacomixtle', nombre: 'Cacomixtle', arte: 'mixtle-entero' },
 ] as const;
 
 export type IdMascota = (typeof MASCOTAS)[number]['id'];

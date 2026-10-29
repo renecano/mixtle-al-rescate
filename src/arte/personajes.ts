@@ -311,7 +311,26 @@ export function cuerpoDeMixtle(expresion: ExpresionMixtle): string {
 
 /** Mixtle completo, con la cola, para una caja de 472×440 (el logo y la hoja de personaje). */
 export function mixtleCompleto(expresion: ExpresionMixtle): string {
+  if (expresion === 'colgado') return mixtleColgadoCompleto();
   return `<g transform="translate(212 0)">${COLA_MIXTLE}</g>${cuerpoMixtle(expresion)}`;
+}
+
+/** Caja de Mixtle colgado de una rama: más alta, porque la cola le cuelga por debajo. */
+export const CAJA_COLGADO = { ancho: 360, alto: 600 } as const;
+
+/** La cola anillada colgando (Mixtle agarrado de la rama): baja desde la cadera y se enrosca. */
+const COLA_COLGANDO = (() => {
+  const d = 'M232 392 C 270 434 304 476 292 528 C 282 568 234 580 220 548';
+  return `<path d="${d}" fill="none" stroke="${TINTA}" stroke-width="62" stroke-linecap="round"/>
+  <path d="${d}" fill="none" stroke="#F7F2E9" stroke-width="52" stroke-linecap="round"/>
+  <path d="${d}" fill="none" stroke="#2F2723" stroke-width="52" stroke-dasharray="31 27" stroke-dashoffset="8"/>
+  <circle cx="220" cy="548" r="26" fill="#2F2723"/>
+  <path d="M246 420 C 278 452 296 488 288 520" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" opacity=".25"/>`;
+})();
+
+/** Mixtle colgado con su cola, para una caja de 360×600. */
+export function mixtleColgadoCompleto(): string {
+  return `${COLA_COLGANDO}${cuerpoMixtle('colgado')}`;
 }
 
 export const PERSONAJES: ArteSvg[] = [
@@ -327,6 +346,11 @@ export const PERSONAJES: ArteSvg[] = [
   arte('mixtle-animo', 360, 440, cuerpoMixtle('animo'), ESCALA_MIXTLE),
   arte('mixtle-duerme', 360, 440, cuerpoMixtle('duerme'), ESCALA_MIXTLE),
   arte('mixtle-cola', 260, 440, COLA_MIXTLE, ESCALA_MIXTLE),
+  // Mixtle entero (con su cola anillada) para todo lo que no se anima por partes: estampa, mascota,
+  // parque del grupo, tarjetas, diploma y transición. Sin la cola parecería conejo.
+  arte('mixtle-entero', 472, 440, mixtleCompleto('normal'), ESCALA_MIXTLE),
+  arte('mixtle-entero-feliz', 472, 440, mixtleCompleto('feliz'), ESCALA_MIXTLE),
+  arte('mixtle-entero-celebrando', 472, 440, mixtleCompleto('celebrando'), ESCALA_MIXTLE),
   arte('ardilla-triste', 270, 280, ardilla(false), 1.2),
   arte('ardilla-feliz', 270, 280, ardilla(true), 1.2),
   arte('colibri-triste', 240, 150, colibri(false), 1.2),

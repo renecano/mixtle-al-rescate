@@ -15,7 +15,7 @@ export const U1: Unidad = {
   cofreTrasLeccion: 1,
   estampa: {
     id: 'cacomixtle',
-    arte: 'mixtle',
+    arte: 'mixtle-entero',
     nombre: 'El cacomixtle',
     // A1, A3
     dato: 'El cacomixtle sale sobre todo de noche y tiene una cola larga con anillos negros y blancos.',

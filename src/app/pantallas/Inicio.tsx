@@ -1,5 +1,5 @@
 import { lazy, Suspense, useEffect, useRef, useState, type CSSProperties } from 'react';
-import { MANOS_COLGADO } from '../../arte/escenas';
+import { CAJA_COLGADO, MANOS_COLGADO } from '../../arte/escenas';
 import { FRASE_MIXTLE } from '../../arte/marca';
 import { TEXTOS } from '../../data/textos';
 import { reiniciarProgreso } from '../../logica/progreso';
@@ -40,7 +40,8 @@ export const VITRINA_TRAS_MS = 60_000;
 
 /** Dónde está la mano de Mixtle sobre la rama del árbol (en % del escenario de 1920×1080). */
 const RAMA = { x: 700 / 1920, y: 320 / 1080 };
-const ALTO_COLGADO = 0.3;
+/** Alto de la caja de Mixtle colgado (con su cola), en fracción del escenario. */
+const ALTO_COLGADO = 0.41;
 
 function sinMovimiento(): boolean {
   if (typeof window === 'undefined') return true;
@@ -136,7 +137,7 @@ export function Inicio() {
   };
 
   const colgado: CSSProperties = {
-    left: `${(RAMA.x - (ALTO_COLGADO * (1080 / 1920) * (360 / 440)) / 2) * 100}%`,
+    left: `${(RAMA.x - (ALTO_COLGADO * (1080 / 1920) * (CAJA_COLGADO.ancho / CAJA_COLGADO.alto)) / 2) * 100}%`,
     top: `${(RAMA.y - ALTO_COLGADO * MANOS_COLGADO.y) * 100}%`,
     height: `${ALTO_COLGADO * 100}%`,
     transformOrigin: `${MANOS_COLGADO.x * 100}% ${MANOS_COLGADO.y * 100}%`,

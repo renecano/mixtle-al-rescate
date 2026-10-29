@@ -57,7 +57,7 @@ export function PanelTransicion({ fase }: { fase: Fase }) {
     <div className="transicion-marca" data-fase={fase} aria-hidden="true">
       <div className="transicion-panel">
         <Logo sinMixtle className="transicion-logo" />
-        <Arte clave="mixtle-celebrando" className="transicion-mixtle" />
+        <Arte clave="mixtle-entero-celebrando" className="transicion-mixtle" />
       </div>
     </div>
   );

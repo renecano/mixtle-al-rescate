@@ -66,13 +66,14 @@ export const ANCLAS_MASCOTA: Record<IdMascota, Record<IdAccesorio, Ancla>> = {
     mochila: { x: 0.62, y: 0.42, w: 0.19 },
     capa: { x: 0.52, y: 0.4, w: 0.52, r: 22 },
   },
+  // Medido sobre "mixtle-entero" (472×440: el cuerpo a la izquierda y la cola a la derecha).
   cacomixtle: {
-    flor: { x: 0.66, y: 0.14, w: 0.12 },
-    gorra: { x: 0.5, y: 0.22, w: 0.48 },
-    lentes: { x: 0.5, y: 0.34, w: 0.5 },
-    paliacate: { x: 0.5, y: 0.53, w: 0.42 },
-    mochila: { x: 0.8, y: 0.62, w: 0.3 },
-    capa: { x: 0.5, y: 0.48, w: 0.9 },
+    flor: { x: 0.5, y: 0.14, w: 0.09 },
+    gorra: { x: 0.38, y: 0.22, w: 0.37 },
+    lentes: { x: 0.38, y: 0.34, w: 0.38 },
+    paliacate: { x: 0.38, y: 0.53, w: 0.32 },
+    mochila: { x: 0.56, y: 0.64, w: 0.23 },
+    capa: { x: 0.38, y: 0.48, w: 0.69 },
   },
 };
 

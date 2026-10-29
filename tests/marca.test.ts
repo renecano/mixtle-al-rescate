@@ -88,3 +88,28 @@ describe('presupuesto de la primera pantalla', () => {
     expect(total / 1024).toBeLessThanOrEqual(LIMITE_KB);
   });
 });
+
+describe('Mixtle siempre con su cola anillada (sin ella parece conejo)', () => {
+  const COLA = /stroke-dasharray="(34 30|31 27)"/g;
+  it('los dibujos fijos de Mixtle y la pose colgada traen la cola', async () => {
+    const { ARTE_ESCENAS } = await import('../src/arte/escenas');
+    const arte = new Map([...catalogoArte(), ...ARTE_ESCENAS].map((a) => [a.clave, a.svg]));
+    for (const clave of ['mixtle-entero', 'mixtle-entero-feliz', 'mixtle-entero-celebrando', 'mixtle-colgado']) {
+      expect(arte.get(clave)?.match(COLA)?.length, clave).toBe(1);
+    }
+  });
+
+  it('la hoja de personaje tiene la cola en sus 8 poses', () => {
+    const hoja = readFileSync(join(RAIZ, 'docs', 'marca', 'hoja-de-personaje.svg'), 'utf8');
+    expect(hoja.match(COLA)).toHaveLength(8);
+  });
+
+  it('la estampa, la mascota y el parque del grupo usan a Mixtle entero', async () => {
+    const { UNIDADES } = await import('../src/contenido/unidades');
+    const { mascota } = await import('../src/logica/grupos');
+    expect(UNIDADES[0]!.estampa.arte).toBe('mixtle-entero');
+    expect(mascota('cacomixtle').arte).toBe('mixtle-entero');
+    const parque = readFileSync(join(RAIZ, 'src', 'app', 'componentes', 'ParqueGrupo.tsx'), 'utf8');
+    expect(parque).toContain("arte: 'mixtle-entero'");
+  });
+});

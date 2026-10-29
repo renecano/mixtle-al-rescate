@@ -31,7 +31,7 @@ export const TEXTO_LOGO = ${JSON.stringify(texto, null, 2)} as const;
 
 // 2. Logo e ícono como archivos.
 const { logoSvg, iconoSvg } = (await runnerImport('./src/arte/marca.ts')).module;
-const { cuerpoDeMixtle } = (await runnerImport('./src/arte/personajes.ts')).module;
+const { mixtleCompleto } = (await runnerImport('./src/arte/personajes.ts')).module;
 mkdirSync(join(RAIZ, 'public', 'marca'), { recursive: true });
 writeFileSync(join(RAIZ, 'public', 'marca', 'logo.svg'), `${logoSvg()}\n`);
 writeFileSync(join(RAIZ, 'public', 'favicon.svg'), `${iconoSvg()}\n`);
@@ -70,7 +70,7 @@ const celdas = POSES.map(([pose, nombre], i) => {
   const y = 70 + Math.floor(i / 4) * CELDA.alto;
   return `<g transform="translate(${x} ${y})">
     <rect x="12" y="8" width="${CELDA.ancho - 24}" height="${CELDA.alto - 20}" rx="28" fill="#fff" stroke="#E6E1D3" stroke-width="3"/>
-    <svg x="40" y="24" width="220" height="268" viewBox="0 0 360 440">${cuerpoDeMixtle(pose)}</svg>
+    <svg x="22" y="34" width="256" height="238" viewBox="0 0 472 440">${mixtleCompleto(pose)}</svg>
     <path d="${trazoTexto(nunito, nombre, { x: CELDA.ancho / 2, y: 326, tamano: 26 })}" fill="#1F6B4A"/>
   </g>`;
 }).join('\n');

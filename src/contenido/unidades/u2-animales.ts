@@ -46,7 +46,7 @@ export const U2: Unidad = {
           consigna: '¿Quién tiene una cola larga con anillos negros y blancos?',
           pista: 'Es nuestro amigo Mixtle.',
           opciones: [
-            { id: 'cacomixtle', arte: 'mixtle', nombre: 'el cacomixtle' },
+            { id: 'cacomixtle', arte: 'mixtle-entero', nombre: 'el cacomixtle' },
             { id: 'tlacuache', arte: 'tlacuache', nombre: 'el tlacuache' },
             { id: 'ardilla', arte: 'ardilla-feliz', nombre: 'la ardilla' },
           ],
@@ -59,7 +59,7 @@ export const U2: Unidad = {
           id: 'u2-l1-e3',
           consigna: '¿El cacomixtle sale sobre todo de noche?',
           pista: 'Mixtle duerme de día.',
-          arte: 'mixtle',
+          arte: 'mixtle-entero',
           respuesta: true,
           porque: 'De día duerme y de noche busca su comida.',
         },
@@ -231,7 +231,7 @@ export const U2: Unidad = {
           pares: [
             { izquierda: { id: 'ardilla', arte: 'ardilla-feliz', nombre: 'la ardilla' }, derecha: { id: 'pina', arte: 'pina', nombre: 'las semillas de pino' } },
             { izquierda: { id: 'colibri', arte: 'colibri-feliz', nombre: 'el colibrí' }, derecha: { id: 'flores', arte: 'flores-morada', nombre: 'las flores' } },
-            { izquierda: { id: 'cacomixtle', arte: 'mixtle', nombre: 'el cacomixtle' }, derecha: { id: 'fruta', arte: 'fruta', nombre: 'la fruta' } },
+            { izquierda: { id: 'cacomixtle', arte: 'mixtle-entero', nombre: 'el cacomixtle' }, derecha: { id: 'fruta', arte: 'fruta', nombre: 'la fruta' } },
             { izquierda: { id: 'oruga', arte: 'oruga', nombre: 'la oruga' }, derecha: { id: 'algodoncillo', arte: 'algodoncillo', nombre: 'el algodoncillo' } },
           ],
         },

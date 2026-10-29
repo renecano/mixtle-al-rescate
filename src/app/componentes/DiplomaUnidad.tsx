@@ -66,7 +66,7 @@ export function DiplomaUnidad({ datos, alCerrar }: Props) {
             <div className="diploma-pie">
               <span>{datos.fecha}</span>
               <span className="diploma-firma">
-                <Arte clave="mixtle-feliz" className="diploma-firma-mixtle" />
+                <Arte clave="mixtle-entero-feliz" className="diploma-firma-mixtle" />
                 {t.firma}
               </span>
             </div>

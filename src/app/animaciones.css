@@ -58,7 +58,7 @@
 /* Mixtle llega columpiándose de la rama y sigue meciéndose. */
 .inicio-columpio {
   position: absolute;
-  aspect-ratio: 360 / 440;
+  aspect-ratio: 360 / 600;
   animation: columpio-entra 2.4s cubic-bezier(0.3, 0.7, 0.4, 1) both;
 }
 .inicio-columpio-vaiven {

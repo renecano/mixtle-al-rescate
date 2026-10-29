@@ -1,4 +1,4 @@
-import { cuerpoDeMixtle } from './personajes';
+import { CAJA_COLGADO, mixtleColgadoCompleto } from './personajes';
 import { arte, type ArteSvg } from './svg';
 
 /*
@@ -91,8 +91,9 @@ const FRENTE = `<defs>
     .join('')}
   ${[120, 300, 980, 1260, 1520].map((x) => `<path d="M${x} 1060 l 8 -26 l 6 22 l 8 -30 l 6 34" fill="none" stroke="#5DA64E" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>`).join('')}`;
 
-/** Mixtle colgado de la rama: las manos (centro entre las dos) en y≈34 de su caja de 360×440. */
-export const MANOS_COLGADO = { x: 180 / 360, y: 34 / 440 } as const;
+/** Mixtle colgado de la rama (con la cola colgando): las manos en y≈34 de su caja de 360×600. */
+export const MANOS_COLGADO = { x: 180 / CAJA_COLGADO.ancho, y: 34 / CAJA_COLGADO.alto } as const;
+export { CAJA_COLGADO };
 
 export const ARTE_ESCENAS: ArteSvg[] = [
   arte('inicio-cielo', ANCHO, ALTO, CIELO),
@@ -101,5 +102,5 @@ export const ARTE_ESCENAS: ArteSvg[] = [
   arte('inicio-lomas', ANCHO, ALTO, LOMAS),
   arte('inicio-arbol', ANCHO, ALTO, ARBOL),
   arte('inicio-frente', ANCHO, ALTO, FRENTE),
-  arte('mixtle-colgado', 360, 440, cuerpoDeMixtle('colgado'), 1.3),
+  arte('mixtle-colgado', CAJA_COLGADO.ancho, CAJA_COLGADO.alto, mixtleColgadoCompleto(), 1.3),
 ];
