@@ -1,0 +1,55 @@
+{
+  "url": "https://mixtle-al-rescate.vercel.app/",
+  "red": {
+    "latenciaMs": 562.5,
+    "bajadaBps": 180000,
+    "subidaBps": 84375
+  },
+  "metodo": "proxy que limita todo el tráfico de Chrome (página y service worker)",
+  "calibracion": {
+    "archivoDesdeLaPagina": {
+      "bytes": 474950,
+      "ms": 4304,
+      "esperadoMs": 3201
+    }
+  },
+  "visitas": [
+    {
+      "fecha": "2026-10-29T23:35:17.609Z",
+      "cabecerasComoVercel": true,
+      "primera": {
+        "musicaEstado": "ctx=running · -rescate.vercel.app/musica/tranquila.mp3 paused=false t=0.00 ready=4 net=1 err=-",
+        "inicioListoS": 6.4,
+        "jugarAGruposMs": 349,
+        "jugarAGruposSinCubiertaMs": 724,
+        "jugarAMusicaMs": null
+      },
+      "serviceWorkerActivoS": 27.2,
+      "listoSinInternetS": 246.3,
+      "bytesSinInternet": 33889508,
+      "regreso": {
+        "inicioListoS": 2.8,
+        "jugarAGruposMs": 358,
+        "jugarAGruposSinCubiertaMs": 738,
+        "jugarAMusicaMs": 404
+      }
+    }
+  ],
+  "mediana": {
+    "primera": {
+      "inicioListoS": 6.4,
+      "jugarAGruposMs": 349,
+      "jugarAGruposSinCubiertaMs": 724,
+      "jugarAMusicaMs": null
+    },
+    "regreso": {
+      "inicioListoS": 2.8,
+      "jugarAGruposMs": 358,
+      "jugarAGruposSinCubiertaMs": 738,
+      "jugarAMusicaMs": 404
+    },
+    "serviceWorkerActivoS": 27.2,
+    "listoSinInternetS": 246.3
+  },
+  "actualizado": "2026-10-29T23:39:29.439Z"
+}

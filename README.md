@@ -367,8 +367,14 @@ El "antes" es el código anterior (`c62556e`, ya con la voz de Alejo) construido
 | Lo mismo, con la transición ya terminada | 5.16 s | 0.71 a 0.73 s |
 | Visita de regreso | No se midió: el *service worker* anterior no se activó en 19 min (ver abajo) | **0.35 y 0.37 s** (meta < 0.5 s); 0.72 s con la transición terminada |
 | Inicio listo (primera visita) | 5.6 s | 5.9 s |
-| *Service worker* activo, desde que se abre la página | **No se activó en 19 min.** Bajaba 862 archivos uno por uno (~18 min para 22.7 MB) | **26.8 s** en local (25 archivos) |
-| "Listo para usar sin internet" | — (era parte de la instalación del *service worker*) | **4.8 min** (831 archivos, 33.9 MB, en segundo plano) |
+| *Service worker* activo, desde que se abre la página | **No se activó en 19 min.** Bajaba 862 archivos uno por uno (~18 min para 22.7 MB) | **26.8 s** en local y **27.2 s** en producción (25 archivos) |
+| "Listo para usar sin internet" | — (era parte de la instalación del *service worker*) | **4.8 min** en local y **4.1 min** en producción (831 archivos, 33.9 MB, en segundo plano) |
+
+**En producción** (<https://mixtle-al-rescate.vercel.app>, 29 de octubre de 2026, por el mismo proxy con Slow 4G; `docs/carga-produccion.json`):
+- "¡Jugar!" → "¿Quién va a jugar?": **0.35 s** en primera visita y **0.36 s** en la de regreso.
+- *Service worker* activo a los **27.2 s**.
+- "Listo para usar sin internet" a los **4.1 min**.
+- La calibración por el túnel HTTPS dio 4,304 ms para 475 KB: cifrar suma tiempo, pero el límite es el mismo.
 
 **Qué cambió:**
 - **Mientras se ve el inicio se adelanta:**
@@ -390,7 +396,11 @@ El "antes" es el código anterior (`c62556e`, ya con la voz de Alejo) construido
 **Lo que no se pudo medir, o hay que leer con cuidado:**
 - **La visita de regreso de la versión anterior.** Su *service worker* no se activó en 19 minutos con Slow 4G, así que una segunda visita no habría sido más rápida. No se averiguó por qué no se activó.
 - **La música en la primera visita a través del proxy.** No avanza nunca: se queda en el segundo 0 con todos sus datos, incluso con el proxy sin limitar la red. Sin el proxy suena 0.6 s después del toque, así que es un efecto de esta forma de medir. En la visita de regreso, a través del proxy, empezó a los 40 ms del toque.
-- **Los 26.8 s del *service worker* en local.** Medidos con la misma cabecera de `/assets/` que en Vercel (`immutable`), pero en local el *service worker* volvió a bajar de la red, uno por uno, los archivos que la página ya tenía en la caché del navegador. No se averiguó por qué; en Vercel debería tomarlos de esa caché.
+- **El *service worker* tarda ~27 s en activarse, no "unos segundos".** Así salió en local y en producción.
+  - **Cómo se reparte:** empieza a registrarse cuando el inicio está listo (~7 s). Luego Workbox guarda sus 25 archivos uno por uno, y cada uno cuesta una ida y vuelta (~0.6 s con Slow 4G).
+  - **Lo que no se averiguó:** según el registro del proxy, vuelve a bajar de la red archivos que la página ya había bajado, aunque `/assets/` va con `Cache-Control: immutable`.
+  - **Mientras no se activa, no estorba:** el juego ya funciona y "¡Jugar!" no lo espera. Solo retrasa el momento en que se puede jugar sin internet.
+  - **Para que se active antes:** dejar en el precache solo `index.html` y pasar el resto a la descarga en segundo plano. No se hizo: lo pedido era precachear el código, las fuentes y el arte.
 
 ## Limitaciones conocidas
 
