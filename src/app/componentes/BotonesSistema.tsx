@@ -24,7 +24,7 @@ export function BotonesSistema({ enLinea = false }: { enLinea?: boolean }) {
   const puedePantallaCompleta = typeof document !== 'undefined' && !!document.fullscreenEnabled;
 
   return (
-    <div className={enLinea ? 'flex shrink-0 gap-3 max-xl:gap-2' : 'absolute top-4 right-4 z-20 flex gap-4'}>
+    <div className={enLinea ? 'flex shrink-0 gap-3 max-xl:gap-2' : 'absolute top-4 right-4 z-20 flex gap-4'} data-recorrido="sistema">
       {puedePantallaCompleta && (
         <BotonGrande
           color="verde"

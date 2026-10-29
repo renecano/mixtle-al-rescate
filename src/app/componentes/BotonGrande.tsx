@@ -20,6 +20,8 @@ interface Props {
   presionado?: boolean;
   className?: string;
   latir?: boolean;
+  /** Lo que señala el recorrido guiado (`data-recorrido`). */
+  recorrido?: string;
   onClick: () => void;
 }
 
@@ -27,10 +29,11 @@ interface Props {
  * Botón grande y redondeado, con sombra (mínimo 64 px de alto). Cada toque responde: se aplasta y
  * rebota, suena y suelta chispas donde se tocó. Mismo estilo que los botones de las aventuras.
  */
-export function BotonGrande({ children, icono, color = 'naranja', etiqueta, presionado, className = '', latir, onClick }: Props) {
+export function BotonGrande({ children, icono, color = 'naranja', etiqueta, presionado, className = '', latir, recorrido, onClick }: Props) {
   return (
     <motion.button
       type="button"
+      data-recorrido={recorrido}
       aria-label={etiqueta}
       aria-pressed={presionado}
       onPointerDown={() => sonido.desbloquear()}

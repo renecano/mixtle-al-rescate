@@ -119,6 +119,8 @@ export function todasLasFrases(): FraseNarrada[] {
   app('leccion', 'leccion.parqueCrece', t.leccion.parqueCrece);
   for (const [n, frase] of Object.entries(t.leccion.rachaDicha)) app('leccion', `leccion.racha.${n}`, frase);
   app('leccion', 'leccion.mitad', t.leccion.mitad);
+  for (const [id, frase] of Object.entries(t.recorrido.dice)) app('recorrido', `recorrido.${id}`, frase);
+  app('recorrido', 'recorrido.sistemaSinPantalla', t.recorrido.sistemaSinPantalla);
   app('album', 'album.bienvenida', t.album.bienvenida);
   app('album', 'album.bloqueada', t.album.bloqueada);
 

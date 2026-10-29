@@ -6,6 +6,11 @@
    "ms": 1080,
    "config": "0a8b5e2fa49c49"
   },
+  "0007cf76133e2a.mp3": {
+   "texto": "Con estos botones ponen la pantalla completa y apagan o encienden la música y mi voz.",
+   "ms": 5140,
+   "config": "0aad5aa938572a"
+  },
   "0015eb26f82982.mp3": {
    "texto": "¡Separaste toda la basura! Ahora vamos a darles un hogar a los animales.",
    "ms": 4270,
@@ -886,6 +891,11 @@
    "ms": 580,
    "config": "09e1f4865c1c40"
   },
+  "0776455b48693a.mp3": {
+   "texto": "Aquí se juntan sus hojitas. Las ganan al jugar.",
+   "ms": 2950,
+   "config": "1b6bfec2817528"
+  },
   "077ea960b51d2c.mp3": {
    "texto": "¡Vamos a plantar un arbolito, paso a paso!",
    "ms": 2540,
@@ -996,6 +1006,11 @@
    "ms": 1200,
    "config": "128ebd629f3882"
   },
+  "0871133e6d6580.mp3": {
+   "texto": "Con la casita regresan a elegir su grupo.",
+   "ms": 2710,
+   "config": "1278c590d1b893"
+  },
   "088367e9054a3a.mp3": {
    "texto": "Hoy hay contingencia ambiental. ¿Dónde jugamos?",
    "ms": 2780,
@@ -1060,6 +1075,11 @@
    "texto": "La lata se recicla en el bote azul de reciclable.",
    "ms": 3020,
    "config": "0473bf31c4321b"
+  },
+  "08f51359ddeac5.mp3": {
+   "texto": "Este es su camino. Lo que brilla es su siguiente parada: tóquenla para jugar.",
+   "ms": 4270,
+   "config": "152a442928e957"
   },
   "08f5c820348916.mp3": {
    "texto": "noventa y dos",
@@ -1831,6 +1851,11 @@
    "ms": 5950,
    "config": "0bd35aa8885906"
   },
+  "0f121f0e2c8e92.mp3": {
+   "texto": "Con estos botones apagan o encienden la música y mi voz.",
+   "ms": 3500,
+   "config": "0a92e317091767"
+  },
   "0f22b9593e3d62.mp3": {
    "texto": "¡Un cofre! Trae quince hojitas. Tóquenlo para abrirlo.",
    "ms": 3140,
@@ -2466,10 +2491,20 @@
    "ms": 5980,
    "config": "0e38f5d35e5bc0"
   },
+  "1500580831f82f.mp3": {
+   "texto": "¡Hola! Les enseño para qué sirve cada cosa del juego. Si ya lo saben, toquen «Saltar».",
+   "ms": 4920,
+   "config": "17458a9981ea43"
+  },
   "1502082d47d36d.mp3": {
    "texto": "¿Qué le ponemos a su ardilla? Cada cosa cuesta hojitas.",
    "ms": 3190,
    "config": "0319f873ef14d0"
+  },
+  "151771fa0b7499.mp3": {
+   "texto": "¡Listo! Ya saben cómo funciona. ¡A jugar!",
+   "ms": 2540,
+   "config": "161750126f7ac1"
   },
   "1522ff5fd3f5c2.mp3": {
    "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: dos. Nubes de humo que esquivaron: cinco. ¡Bravo!",
@@ -2926,6 +2961,11 @@
    "ms": 5590,
    "config": "06e00e50da14b2"
   },
+  "185a8f2c68124d.mp3": {
+   "texto": "En el álbum están las estampas de animales que ganan al terminar cada unidad.",
+   "ms": 4660,
+   "config": "13d9c7a353f2a3"
+  },
   "1870b0a87490f9.mp3": {
    "texto": "Es el bote gris que tiene de todo.",
    "ms": 2110,
@@ -3231,6 +3271,11 @@
    "ms": 2210,
    "config": "1336ec26b62684"
   },
+  "1af6df1a3d1d33.mp3": {
+   "texto": "En el vestidor le compran cosas a su mascota con sus hojitas.",
+   "ms": 3740,
+   "config": "116c94b339aed1"
+  },
   "1afd94652f396f.mp3": {
    "texto": "Toca la basura que cayó en el bote equivocado.",
    "ms": 2900,
@@ -3496,6 +3541,11 @@
    "ms": 910,
    "config": "046904041b9b58"
   },
+  "1ce6dc3a75d860.mp3": {
+   "texto": "Aquí se cuentan los días que han jugado.",
+   "ms": 2280,
+   "config": "03ba2b4ea89039"
+  },
   "1ce964be5a61f1.mp3": {
    "texto": "El plástico tarda mucho en desaparecer.",
    "ms": 2690,
@@ -3505,6 +3555,11 @@
    "texto": "Piensa qué come cada uno en el parque.",
    "ms": 2380,
    "config": "0e222c4cc682aa"
+  },
+  "1d0368e288eacd.mp3": {
+   "texto": "Este es su parque. Cada lección que terminan lo llena de vida.",
+   "ms": 3380,
+   "config": "13fd033da86b30"
   },
   "1d07abb8cf98d8.mp3": {
    "texto": "¡Felicidades, guardianes del aire! Hojitas que juntaron: tres. Nubes de humo que esquivaron: uno. ¡Bravo!",

@@ -56,23 +56,23 @@ export function Encabezado({ grupo, alAlbum, alCambiarGrupo, alVestidor, alFacil
       </div>
 
       {/* Hojitas para gastar (las ganadas menos las de accesorios). Aquí llegan volando las del cofre. */}
-      <div data-contador-grupo data-hojitas-grupo={hojitasDisponibles(grupo.progreso)}>
+      <div data-contador-grupo data-hojitas-grupo={hojitasDisponibles(grupo.progreso)} data-recorrido="hojitas">
         <ContadorHojitas valor={hojitasDisponibles(grupo.progreso)} etiqueta={TEXTOS_APP.camino.hojitas} className="rounded-full bg-white/15 px-3 py-1 text-[clamp(1.2rem,3vmin,2rem)] max-xl:px-2" />
       </div>
-      <div className="flex shrink-0 items-center gap-2 rounded-full bg-white/15 px-3 py-1 max-xl:px-2" aria-label={`${TEXTOS_APP.camino.dias}: ${dias}`}>
+      <div className="flex shrink-0 items-center gap-2 rounded-full bg-white/15 px-3 py-1 max-xl:px-2" aria-label={`${TEXTOS_APP.camino.dias}: ${dias}`} data-recorrido="dias">
         <Arte clave="calendario" className="size-[clamp(2rem,5vmin,3rem)]" />
         <span className="text-[clamp(1.2rem,3vmin,2rem)] font-black">{dias}</span>
       </div>
 
       <div className="ml-auto flex shrink-0 items-center gap-3 max-xl:gap-2">
-        <BotonGrande color="morado" etiqueta={TEXTOS_APP.camino.album} className="h-[clamp(4rem,9vmin,5.5rem)] min-w-[clamp(4rem,9vmin,5.5rem)] text-[clamp(1.1rem,2.5vmin,1.6rem)] max-xl:size-16 max-xl:min-w-16 max-xl:px-0" icono={<Arte clave="icono-estrella" className="size-[1.6em]" />} onClick={alAlbum}>
+        <BotonGrande color="morado" etiqueta={TEXTOS_APP.camino.album} className="h-[clamp(4rem,9vmin,5.5rem)] min-w-[clamp(4rem,9vmin,5.5rem)] text-[clamp(1.1rem,2.5vmin,1.6rem)] max-xl:size-16 max-xl:min-w-16 max-xl:px-0" icono={<Arte clave="icono-estrella" className="size-[1.6em]" />} recorrido="album" onClick={alAlbum}>
           {/* En pantallas angostas (tablet) solo el ícono; el nombre sigue para lectores de pantalla. */}
           <span className="max-xl:sr-only">{TEXTOS_APP.camino.album}</span>
         </BotonGrande>
-        <BotonGrande color="naranja" etiqueta={TEXTOS_APP.vestidor.titulo} className="h-[clamp(4rem,9vmin,5.5rem)] min-w-[clamp(4rem,9vmin,5.5rem)] text-[clamp(1.1rem,2.5vmin,1.6rem)] max-xl:size-16 max-xl:min-w-16 max-xl:px-0" icono={<Arte clave="accesorio-gorra" className="h-[1.5em]" />} onClick={alVestidor}>
+        <BotonGrande color="naranja" etiqueta={TEXTOS_APP.vestidor.titulo} className="h-[clamp(4rem,9vmin,5.5rem)] min-w-[clamp(4rem,9vmin,5.5rem)] text-[clamp(1.1rem,2.5vmin,1.6rem)] max-xl:size-16 max-xl:min-w-16 max-xl:px-0" icono={<Arte clave="accesorio-gorra" className="h-[1.5em]" />} recorrido="vestidor" onClick={alVestidor}>
           <span className="max-xl:sr-only">{TEXTOS_APP.vestidor.titulo}</span>
         </BotonGrande>
-        <BotonGrande color="azul" etiqueta={TEXTOS_APP.camino.cambiarGrupo} className="size-[clamp(4rem,9vmin,5.5rem)] max-xl:size-16" icono={<Arte clave="icono-casa" className="size-[60%]" />} onClick={alCambiarGrupo} />
+        <BotonGrande color="azul" etiqueta={TEXTOS_APP.camino.cambiarGrupo} className="size-[clamp(4rem,9vmin,5.5rem)] max-xl:size-16" icono={<Arte clave="icono-casa" className="size-[60%]" />} recorrido="cambiar-grupo" onClick={alCambiarGrupo} />
         <BotonesSistema enLinea />
       </div>
     </header>

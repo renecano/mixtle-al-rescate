@@ -10,7 +10,7 @@ import { Modal } from './Modal';
  * Modo facilitador (para la persona de Eco Urban o el maestro): reiniciar el grupo, abrir todas las
  * lecciones para saltar a una, y el modo proyector. Se abre manteniendo presionado el logo 3 segundos.
  */
-export function PanelFacilitador({ grupo, alCerrar }: { grupo: Grupo; alCerrar: () => void }) {
+export function PanelFacilitador({ grupo, alCerrar, alRecorrido }: { grupo: Grupo; alCerrar: () => void; alRecorrido: () => void }) {
   const { reiniciar, desbloquearTodo } = useGrupos();
   const { proyector, alternarProyector, suave, alternarSuave } = useApp();
   const [confirmar, setConfirmar] = useState(false);
@@ -32,6 +32,9 @@ export function PanelFacilitador({ grupo, alCerrar }: { grupo: Grupo; alCerrar: 
         {TEXTOS_APP.facilitador.suave}
         <input type="checkbox" className="size-10 accent-verde" checked={suave} onChange={alternarSuave} />
       </label>
+      <BotonGrande color="azul" className="h-16 text-[clamp(1.1rem,2.4vmin,1.5rem)]" onClick={alRecorrido}>
+        {TEXTOS_APP.facilitador.recorrido}
+      </BotonGrande>
       {confirmar ? (
         <div className="flex w-full flex-col items-center gap-3 rounded-2xl border-4 border-naranja bg-white p-4">
           <p className="font-bold">{TEXTOS_APP.facilitador.reiniciarConfirmar}</p>

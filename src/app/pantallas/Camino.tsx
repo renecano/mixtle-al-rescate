@@ -8,6 +8,8 @@ import { accesoriosPuestos } from '../../logica/accesorios';
 import { estadosDelCamino, HOJITAS_COFRE, nodosDelCamino, siguienteNodo, unidadCompleta, type EstadoNodo, type Nodo } from '../../logica/camino';
 import { datosDiplomaUnidad, type DatosDiplomaUnidad } from '../../logica/diplomaUnidad';
 import { mascota, nombreDelGrupo } from '../../logica/grupos';
+import { CLAVE_RECORRIDO_GUIADO, debeMostrarRecorrido } from '../../logica/recorridoGuiado';
+import { guardarInterruptor, leerInterruptorApagado } from '../../servicios/preferencias';
 import { sonido } from '../../servicios/sonido';
 import { Arte, registrarArte } from '../componentes/Arte';
 import { BotonGrande } from '../componentes/BotonGrande';
@@ -21,6 +23,7 @@ import { Encabezado } from '../componentes/Encabezado';
 import { Modal } from '../componentes/Modal';
 import { PanelFacilitador } from '../componentes/PanelFacilitador';
 import { ParqueGrupo } from '../componentes/ParqueGrupo';
+import { RecorridoGuiado } from '../componentes/RecorridoGuiado';
 import { useApp } from '../estado/app';
 import { useGrupoActual, useGrupos } from '../estado/grupos';
 import { callar, decir } from '../estado/narrador';
@@ -46,12 +49,18 @@ export function Camino() {
   const [cofre, setCofre] = useState<string | null>(null);
   const [facilitador, setFacilitador] = useState(false);
   const [vestidor, setVestidor] = useState(false);
+  // La primera vez en este aparato, Mixtle enseña para qué sirve cada cosa (se puede saltar).
+  const [recorrido, setRecorrido] = useState(() => debeMostrarRecorrido(location.search, leerInterruptorApagado(CLAVE_RECORRIDO_GUIADO) ? 'si' : null));
   const nodos = useMemo(() => nodosDelCamino(UNIDADES), []);
   const siguiente = useRef<HTMLDivElement>(null);
 
   const progreso = grupo?.progreso;
   const estados = progreso ? estadosDelCamino(nodos, progreso, grupo.desbloquearTodo) : [];
   const indiceSiguiente = progreso ? siguienteNodo(nodos, progreso) : null;
+
+  const saludar = () => {
+    if (grupo) decir(indiceSiguiente === null ? TEXTOS_APP.camino.terminaron : TEXTOS_APP.camino.hola(mascota(grupo.mascota).nombre), { expresion: 'senalando' });
+  };
 
   useEffect(() => {
     if (!grupo) {
@@ -60,13 +69,20 @@ export function Camino() {
     }
     // Solo se desplaza si la siguiente lección no se ve (así el parque queda a la vista al empezar).
     siguiente.current?.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
-    if (!estampaNueva) decir(indiceSiguiente === null ? TEXTOS_APP.camino.terminaron : TEXTOS_APP.camino.hola(mascota(grupo.mascota).nombre), { expresion: 'senalando' });
+    // Con el recorrido, Mixtle saluda al terminarlo.
+    if (!estampaNueva && !recorrido) saludar();
     return () => callar();
     // Solo al entrar al camino.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (!grupo || !progreso) return null;
+
+  const terminarRecorrido = () => {
+    guardarInterruptor(CLAVE_RECORRIDO_GUIADO, true);
+    setRecorrido(false);
+    saludar();
+  };
 
   const tocar = (n: Nodo, estado: EstadoNodo) => {
     sonido.desbloquear();
@@ -90,7 +106,7 @@ export function Camino() {
       <div className="relative min-h-0 flex-1 overflow-y-auto">
         {/* El parque del grupo es el protagonista: su meta visible, con marco, título y su mascota. */}
         <div className="mx-auto flex max-w-[70rem] flex-col items-center px-4 pt-10 pb-10">
-          <section className="parque-protagonista" aria-label={TEXTOS_APP.camino.suParque(nombreDelGrupo(grupo))}>
+          <section className="parque-protagonista" aria-label={TEXTOS_APP.camino.suParque(nombreDelGrupo(grupo))} data-recorrido="parque">
             <h2 className="parque-protagonista-titulo">
               <MascotaVestida mascota={grupo.mascota} puestos={accesoriosPuestos(progreso)} className="h-[1.9em]" />
               <span>{TEXTOS_APP.camino.suParque(nombreDelGrupo(grupo))}</span>
@@ -111,7 +127,7 @@ export function Camino() {
                 // scroll-mt: al desplazarse a la siguiente parada queda espacio para el globo de Mixtle bajo el encabezado.
                 return (
                   <div key={n.id} ref={esSiguiente ? siguiente : undefined} className={`relative h-[clamp(7.5rem,17vmin,11rem)] w-full scroll-mt-[clamp(10rem,24vmin,15rem)] scroll-mb-8 ${esSiguiente ? 'z-10' : ''}`}>
-                    <div className="absolute top-1/2 -translate-x-1/2 -translate-y-1/2" style={{ left: `${x}%` }}>
+                    <div className="absolute top-1/2 -translate-x-1/2 -translate-y-1/2" style={{ left: `${x}%` }} data-recorrido={esSiguiente ? 'siguiente' : undefined}>
                       <BurbujaNodo nodo={n} estado={estados[i]!} siguiente={esSiguiente} alTocar={() => tocar(n, estados[i]!)} hecho={estados[i] === 'hecho'} />
                       {/* La mascota del grupo (vestida) va en el camino junto a la siguiente parada: "aquí vamos".
                           Del lado contrario a Mixtle (que se pone del lado libre del zigzag). */}
@@ -128,7 +144,7 @@ export function Camino() {
                       )}
                     </div>
                     {/* Con una ventana abierta (cofre, estampa, facilitador) habla el Mixtle de la ventana: uno solo. */}
-                    {esSiguiente && !cofre && !estampaNueva && !facilitador && !vestidor && (
+                    {esSiguiente && !cofre && !estampaNueva && !facilitador && !vestidor && !recorrido && (
                       // Un solo Mixtle: el que señala la siguiente parada es el que habla, con su globo a un lado,
                       // del lado contrario de la parada (el camino zigzaguea: ahí siempre hay espacio libre).
                       <motion.div
@@ -176,8 +192,19 @@ export function Camino() {
         />
       )}
       {estampaNueva && <ModalEstampa id={estampaNueva} alCerrar={olvidarEstampaNueva} />}
-      {facilitador && <PanelFacilitador grupo={grupo} alCerrar={() => setFacilitador(false)} />}
+      {facilitador && (
+        <PanelFacilitador
+          grupo={grupo}
+          alCerrar={() => setFacilitador(false)}
+          alRecorrido={() => {
+            setFacilitador(false);
+            setRecorrido(true);
+          }}
+        />
+      )}
       {vestidor && <Vestidor grupo={grupo} alCerrar={() => setVestidor(false)} />}
+      {/* Si se acaba de ganar una estampa, primero se celebra y luego empieza el recorrido. */}
+      {recorrido && !estampaNueva && <RecorridoGuiado alTerminar={terminarRecorrido} />}
     </main>
   );
 }

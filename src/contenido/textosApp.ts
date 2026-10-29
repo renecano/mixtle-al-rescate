@@ -131,5 +131,29 @@ export const TEXTOS_APP = {
     suave: 'Animaciones suaves (menos movimiento)',
     cerrar: 'Cerrar',
     ayuda: 'Mantén presionado el logo 3 segundos para abrir este panel.',
+    recorrido: 'Ver otra vez el recorrido por el juego',
+  },
+  recorrido: {
+    etiqueta: 'Recorrido por el juego',
+    saltar: 'Saltar',
+    siguiente: 'Siguiente',
+    atras: 'Atrás',
+    listo: '¡A jugar!',
+    paso: (n: number, total: number) => `${n} de ${total}`,
+    /** Lo que dice Mixtle en cada paso (narrado). */
+    dice: {
+      hola: '¡Hola! Les enseño para qué sirve cada cosa del juego. Si ya lo saben, toquen «Saltar».',
+      siguienteLeccion: 'Este es su camino. Lo que brilla es su siguiente parada: tóquenla para jugar.',
+      parque: 'Este es su parque. Cada lección que terminan lo llena de vida.',
+      hojitas: 'Aquí se juntan sus hojitas. Las ganan al jugar.',
+      dias: 'Aquí se cuentan los días que han jugado.',
+      album: 'En el álbum están las estampas de animales que ganan al terminar cada unidad.',
+      vestidor: 'En el vestidor le compran cosas a su mascota con sus hojitas.',
+      cambiarGrupo: 'Con la casita regresan a elegir su grupo.',
+      sistema: 'Con estos botones ponen la pantalla completa y apagan o encienden la música y mi voz.',
+      fin: '¡Listo! Ya saben cómo funciona. ¡A jugar!',
+    },
+    /** Sin pantalla completa (algunas tablets no la permiten), el paso de los botones no la menciona. */
+    sistemaSinPantalla: 'Con estos botones apagan o encienden la música y mi voz.',
   },
 } as const;
