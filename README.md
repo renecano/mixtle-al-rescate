@@ -26,7 +26,7 @@ La v3 le da al juego su propia marca y lo hace más llamativo en el proyector, c
 | Un fondo para todo | **Cada unidad con su ambiente y su paleta**: Parque (su estación de reciclaje), Hogar de los animales (un humedal), Bosque del Nevado de Toluca, Calles de Toluca (portales con arcos y un edificio de grandes vitrales inspirado en el Cosmovitral, dibujados de forma original) y Escuela. El ambiente **decora los lados del camino** (árboles y bancas, tules y estanques, pinos y rocas, casas de colores y bicis, la escuela y una canasta), y arriba del camino **el parque del grupo es el protagonista**, con su marco y su título. |
 | — | **Vestidor**: accesorios para la mascota del grupo (flor, gorra, lentes, paliacate, mochila y capa) a precio fijo en hojitas, y **antes de gastar pregunta** ("¿Compran los lentes por 40 hojitas?", con la mascota ya puesta); se ve en el camino y en el diploma. |
 | Arte plano | **Arte más rico**: luz, sombras suaves, degradados y una textura de papel, con trazo y paleta iguales en todo el juego. |
-| Kokoro | Voz con **Azure AI Speech** lista: ya hay [muestras de 12 voces](docs/muestras-voz/azure.html) para elegir la de Mixtle (Kokoro sigue mientras tanto y como alterno). |
+| Kokoro | Voz con **Azure AI Speech**: Mixtle habla con **Alejo** (`es-MX-Alejo:MAI-Voice-2-Flash`, español de México, estilo «excited»), elegido entre las [muestras de 12 voces](docs/muestras-voz/azure.html). Kokoro queda como alterno. |
 | "N días seguidos" en el camino | **Se quitó la racha de días** (se perdía al faltar un día) y las hojitas de cada grupo ya no se ven lado a lado al elegir grupo: no se comparan grupos. |
 
 Medido en esta versión: lo que baja antes de la primera pantalla pesa **231.9 KB** comprimidos (límite 250 KB), y en la laptop de 8 GB el juego va a **59–60 cuadros por segundo** en sus momentos más pesados (ver *Pruebas y evidencia medida*).
@@ -67,7 +67,7 @@ Además, el encabezado del camino ya cabe en una línea en la tablet: 80 px de a
 | v1 | v2 |
 |---|---|
 | Una sola partida de 5 pantallas (Phaser) | **Camino de aprendizaje** con 5 unidades, 20 lecciones y 5 aventuras |
-| Voz del navegador (distinta en cada equipo) | **Voz pregenerada** de Mixtle (Kokoro `em_alex`), igual en todos lados, más música CC0 con *ducking* |
+| Voz del navegador (distinta en cada equipo) | **Voz pregenerada** de Mixtle (Azure, Alejo «excited»), igual en todos lados, más música CC0 con *ducking* |
 | Nada se guardaba | **Grupos de salón** (animal mascota, color y etiqueta como "1°A"); el avance se guarda en el aparato |
 | Solo arrastrar a los botes | **7 tipos de ejercicio** dirigidos por datos |
 | Diploma al final | Hojitas, parque del grupo que crece, cofre, álbum de animales de Toluca, días jugados y **diploma por unidad** |
@@ -195,7 +195,7 @@ Después de cambiar cualquier texto, corre `npm run voz:generar` para que Mixtle
 
 ### Cómo se generan las voces
 
-Mixtle habla con audios **pregenerados** que están en el repositorio (`public/voz/`). El juego solo los reproduce: no sintetiza voz en el navegador ni usa servicios de pago. La voz es **Kokoro `em_alex`** en español latinoamericano, elegida entre las muestras de `docs/muestras-voz/`.
+Mixtle habla con audios **pregenerados** que están en el repositorio (`public/voz/`). El juego solo los reproduce: no sintetiza voz en el navegador ni llama a ningún servicio. La voz es **Alejo** de Azure AI Speech (`es-MX-Alejo:MAI-Voice-2-Flash`, español de México, estilo «excited»), elegida por René entre las muestras de `docs/muestras-voz/azure.html`. Azure se usa solo al **generar** los audios, en el plan gratuito. Kokoro `em_alex` queda como alterno (`npm run voz:usar -- kokoro`).
 
 Para regenerarlas, en PowerShell:
 
@@ -231,7 +231,7 @@ La v3 deja listo **Azure AI Speech** como proveedor (`scripts/voz/azure.mjs`: AP
 
   **Muestras generadas (29 de octubre de 2026, región francecentral).** La región tiene 33 voces es-MX/es-US, 11 de ellas con estilos. Entraron 12 voces con 241 audios y se gastaron 19,107 caracteres. Las 12 son Alejo y Valeria (MAI-Voice 2 y 2.1), Harper (MAI-Voice 2.1), Jorge, Beatriz, Candela, Carlota, Cecilio, Dalia y Dalia Multilingual. Las voces nuevas **MAI-Voice** traen `:` en el nombre (`es-MX-Alejo:MAI-Voice-2-Flash`). En Windows, eso escondía el audio en un flujo alterno en lugar de crear el archivo, así que ahora el nombre del archivo cambia `:` por `_` (con una prueba en `tests/azure.test.ts`). Los 241 audios se revisaron decodificándolos con ffmpeg: ninguno tiene errores.
 - **Cambiar la voz.** `npm run voz:usar -- azure` (o `kokoro`) cambia el proveedor activo; la voz y los ajustes de cada uno (`voz`, `idioma`, `estilo`, `tono`, `velocidad`) están en `voz.config.json`. Después, `npm run voz:generar`. La firma de cada audio incluye proveedor, voz, estilo, ajustes y texto, así que un cambio regenera lo necesario y nada más.
-- **Costo.** El plan gratuito (F0) da 500,000 caracteres al mes. Todas las frases del juego suman 36,984 (medido con las 740 frases de la v3): regenerar todo cabe más de 10 veces al mes. Antes de cada corrida se cuentan los caracteres y el uso del mes se lleva en `.voz-uso.json` (local, ignorado por git); si el mes pasaría de **400,000**, se detiene, salvo con `--forzar`. Entre peticiones espera ~3 s y reintenta los 429 con espera creciente.
+- **Costo.** El plan gratuito (F0) da 500,000 caracteres al mes. Todas las frases del juego suman 38,902 (las 785 de hoy): regenerar todo cabe más de 10 veces al mes. Generar la voz de Alejo costó 38,902 caracteres; con las muestras, el mes va en 58,009. Si una corrida se corta, la siguiente reusa los audios ya pedidos con la misma firma (voz, estilo, ajustes y texto), sin volver a pagarlos. Antes de cada corrida se cuentan los caracteres y el uso del mes se lleva en `.voz-uso.json` (local, ignorado por git); si el mes pasaría de **400,000**, se detiene, salvo con `--forzar`. Entre peticiones espera ~3 s y reintenta los 429 con espera creciente.
 - **Pruebas.** `tests/azure.test.ts` corre todo contra un servidor falso (SSML, lista de voces, reintento de 429, presupuesto, página de muestras). También se probó `voz:generar` completo contra un servidor falso: SSML con estilo y tono, reintento, normalización y registro de uso.
 
 ### Grabar una voz humana
@@ -333,7 +333,7 @@ Para correrlos contra un sitio ya publicado, sin construir nada en local: `$env:
 | Lo que se descarga al abrir el juego | **≈ 158 KB** comprimidos (React 44 KB + app 107 KB + estilos 7 KB) y 48 KB de la fuente Nunito |
 | Phaser (solo al entrar a una aventura) | ≈ 310 KB comprimidos, más 2 a 7 KB por aventura |
 
-| Voces de Mixtle | 740 frases, **17.4 MB** en total (mono, 64 kbps), incluidas 169 frases con números grabadas completas |
+| Voces de Mixtle | 785 frases con Alejo (Azure), **29.5 MB** en total (mono, 64 kbps), incluidas 175 frases con números grabadas completas. Las 785 se decodificaron con ffmpeg sin errores. |
 | Música y efectos | 1.3 MB (3 pistas) y 78 KB (12 efectos) |
 | Juego sin internet (PWA) | En la primera visita, el *service worker* descarga en segundo plano 783 archivos (**20.6 MB**: juego, voces, música y efectos); después se juega sin internet |
 
@@ -351,13 +351,13 @@ Para correrlos contra un sitio ya publicado, sin construir nada en local: `$env:
 - **El contenido lo debe revisar el equipo educativo de Eco Urban.** Todo está marcado con `TODO(Eco Urban)`. Los datos tienen fuente verificada (`docs/fuentes-contenido.md`), pero la redacción para cada grado, las categorías de separación de Toluca y la ley citada sobre quemar basura (artículo por confirmar en el PDF oficial) necesitan su visto bueno.
 - **No se ha probado con niñas y niños** ni en un iPad real con Safari. Se probó con Chrome en Windows (también con emulación táctil a 1024×768). Esa prueba de uso es el siguiente paso recomendado.
 - **El avance vive en un solo aparato.** Si se borran los datos del navegador o se cambia de laptop, el grupo empieza de nuevo. Es a propósito (no hay servidor ni cuentas), pero hay que saberlo.
-- **La voz es sintética.** Kokoro suena natural, pero algunas palabras pueden sonar raras. El diccionario de pronunciación y la grabación humana (ver arriba) son la forma de corregirlas sin tocar código.
+- **La voz es sintética.** Alejo suena natural, pero algunas palabras pueden sonar raras. El diccionario de pronunciación y la grabación humana (ver arriba) son la forma de corregirlas sin tocar código.
 - **Versiones nuevas:** al publicar una versión, el *service worker* la descarga en segundo plano. En cuanto toma el control, Mixtle usa la lista de audios nueva y la página se recarga sola al volver a la pantalla de inicio (nunca a media lección). La lista de audios siempre se pide primero a internet, para que una versión vieja guardada no deje a Mixtle con audios viejos.
 - **La primera visita necesita internet:** el *service worker* descarga unos 21 MB (sobre todo las voces) para que después funcione sin conexión. Conviene abrir el juego una vez con buena señal antes del taller.
 
 - **Las aventuras son minijuegos cortos** (2 a 4 minutos). Las del bosquecito y la lonchera siempre tienen el mismo número de cosas: los diplomas muestran el esfuerzo, no un puntaje para comparar grupos.
 - El diploma de la unidad 1 cuenta los residuos separados en el nivel 2 y en la lluvia de basura (12 + 5) y los animales ayudados.
-- **v3: falta elegir la voz de Azure.** Ya están las muestras de 12 voces (`docs/muestras-voz/azure.html`). Cuando Eco Urban elija voz y variante, se ponen en `voz.config.json`, se corre `npm run voz:usar -- azure` y luego `npm run voz:generar`. Mientras tanto, Mixtle sigue con Kokoro. Las otras 21 voces en español de la región no cupieron en el límite de ~20,000 caracteres de las muestras.
+- **v3: la voz de Azure ya se eligió (Alejo, «excited»), pero falta que Eco Urban la escuche.** Si prefieren otra, se cambia en `voz.config.json` y se corre `npm run voz:generar`. Las otras 21 voces en español de la región no cupieron en el límite de ~20,000 caracteres de las muestras; se pueden pedir.
 - **v3: las mediciones de cuadros por segundo dependen de que la computadora esté libre.** Con la ventana de Chrome tapada o la laptop ocupada en otra cosa, Chrome deja de dibujar y las cifras no sirven. `scripts/medir-fps.mjs` lo detecta y lo avisa, y el tráiler se niega a grabarse así. Las cifras de este README se tomaron con la laptop libre, o comparando en las mismas condiciones.
 - **v3: equipos sin aceleración por tarjeta de video.** Ahí las animaciones completas van a 11–33 fps. El juego lo detecta y se calma solo; con las animaciones suaves va a 57–60 fps.
 - **v3: lo que falta confirmar con Eco Urban.** Los precios de los accesorios, que los ambientes de cada unidad se sientan "de Toluca" y la frase de Mixtle ("¡Al rescate!").
@@ -386,4 +386,4 @@ docs/          fuentes del contenido, lista de frases, capturas, muestras, marca
 
 ## Créditos y licencias
 
-El arte es original de este proyecto: ilustraciones SVG hechas en código. Los efectos de sonido se sintetizan con scripts propios, la voz se genera con Kokoro (Apache-2.0) y la música es CC0. La tipografía es Nunito y Baloo 2 (OFL-1.1). Las bibliotecas son React, Phaser, Motion, Zustand y Howler (MIT), idb-keyval (Apache-2.0). El detalle completo está en [`CREDITOS.md`](CREDITOS.md).
+El arte es original de este proyecto: ilustraciones SVG hechas en código. Los efectos de sonido se sintetizan con scripts propios, la voz se genera con Azure AI Speech (con Kokoro, Apache-2.0, como alterno) y la música es CC0. La tipografía es Nunito y Baloo 2 (OFL-1.1). Las bibliotecas son React, Phaser, Motion, Zustand y Howler (MIT), idb-keyval (Apache-2.0). El detalle completo está en [`CREDITOS.md`](CREDITOS.md).

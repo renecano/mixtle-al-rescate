@@ -29,7 +29,8 @@ Las demás candidatas de `docs/muestras-musica/` también son CC0; sus fuentes e
 
 | Qué | Detalle | Licencia |
 |---|---|---|
-| Audios de las frases (`public/voz/*.mp3`) | Generados en la laptop del equipo con **Kokoro** (voz `em_alex`, español latinoamericano), ver `voz.config.json` | Los audios son producto de este proyecto; el modelo Kokoro-82M y sus voces son Apache-2.0 |
+| Audios de las frases (`public/voz/*.mp3`) | Generados con **Azure AI Speech** de Microsoft, plan gratuito (voz `es-MX-Alejo:MAI-Voice-2-Flash`, estilo «excited»), ver `voz.config.json` | Su uso se rige por los términos del servicio Azure AI Speech |
+| Voz alterna | **Kokoro** (voz `em_alex`, español latinoamericano), generada en la laptop del equipo | El modelo Kokoro-82M y sus voces son Apache-2.0 |
 | Modelo [Kokoro-82M](https://huggingface.co/hexgrad/Kokoro-82M) (versión ONNX de [kokoro-onnx](https://github.com/thewh1teagle/kokoro-onnx)) | Solo se usa para generar; no se incluye en el juego | Apache-2.0 (modelo y voces), MIT (kokoro-onnx) |
 | espeak-ng (vía `espeakng-loader`) | Convierte texto a fonemas al generar; no se incluye en el juego | GPL-3.0 (herramienta de desarrollo) |
 | Respaldo | Si a una frase le falta su audio, se usa la voz del navegador (Web Speech API) | Según el navegador |

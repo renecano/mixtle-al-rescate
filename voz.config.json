@@ -1,22 +1,22 @@
 {
   "$comentario": "Voz de Mixtle. Activo: proveedor/voz/ajustes. En \"alternos\" se guardan los otros proveedores listos para usar: npm run voz:usar -- <nombre>. Cambiar la voz o un ajuste regenera todas las frases con npm run voz:generar; cambiar una palabra de la pronunciación solo las que la tienen.",
-  "proveedor": "kokoro",
-  "voz": "em_alex",
+  "proveedor": "azure",
+  "voz": "es-MX-Alejo:MAI-Voice-2-Flash",
   "ajustes": {
-    "speed": 1,
-    "lang": "es-419"
+    "idioma": "es-MX",
+    "estilo": "excited",
+    "tono": "+0%",
+    "velocidad": 1,
+    "esperaMs": 3100
   },
   "alternos": {
-    "azure": {
-      "$comentario": "Azure AI Speech (plan gratuito F0). La voz se elige con las muestras: npm run voz:muestras -- --proveedor=azure. Llave en .env.local: AZURE_SPEECH_KEY y AZURE_SPEECH_REGION.",
-      "voz": "es-MX-JorgeNeural",
+    "kokoro": {
+      "voz": "em_alex",
       "ajustes": {
-        "idioma": "es-MX",
-        "estilo": "",
-        "tono": "+0%",
-        "velocidad": 1,
-        "esperaMs": 3100
-      }
+        "speed": 1,
+        "lang": "es-419"
+      },
+      "$comentario": "Antes era el activo."
     }
   },
   "pronunciacion": {

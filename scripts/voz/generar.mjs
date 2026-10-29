@@ -121,9 +121,23 @@ console.log(`Listo. ${quitadas ? `${quitadas} audios que ya no se usan se borrar
 
 /**
  * Proveedor azure: cuenta los caracteres, revisa el presupuesto del mes y pide cada frase con
- * espera entre peticiones. Cada audio queda en .voz-modelos/azure/ y se normaliza en Python.
+ * espera entre peticiones. Cada audio queda en .voz-modelos/azure/ (con su firma al lado) y se
+ * normaliza en Python. Si una corrida se corta, la siguiente reusa los audios ya pedidos con la
+ * misma firma: no se vuelven a pagar caracteres.
  */
-async function pedirAAzure(pendientes) {
+async function pedirAAzure(todos) {
+  const carpeta = join(MODELOS, 'azure');
+  mkdirSync(carpeta, { recursive: true });
+  const rutaFirma = (t) => join(carpeta, `${t.archivo}.firma`);
+  const pendientes = [];
+  for (const t of todos) {
+    const ruta = join(carpeta, t.archivo);
+    if (existsSync(ruta) && existsSync(rutaFirma(t)) && readFileSync(rutaFirma(t), 'utf8') === t.firma) {
+      t.grabacion = ruta;
+      t.origen = `azure ${config.voz}`;
+    } else pendientes.push(t);
+  }
+  if (todos.length > pendientes.length) console.log(`Azure: ${todos.length - pendientes.length} audios ya estaban pedidos (de una corrida anterior); se reusan.`);
   if (!pendientes.length) return;
   const azure = await import('./azure.mjs');
   const { llave, region, completas } = azure.credenciales(RAIZ);
@@ -139,14 +153,13 @@ async function pedirAAzure(pendientes) {
     console.error(e.message);
     process.exit(1);
   }
-  const carpeta = join(MODELOS, 'azure');
-  mkdirSync(carpeta, { recursive: true });
   const a = config.ajustes ?? {};
   for (const [i, t] of pendientes.entries()) {
     const mp3 = await azure.sintetizar({ texto: t.texto, voz: config.voz, idioma: a.idioma, estilo: a.estilo, tono: a.tono, velocidad: a.velocidad, region, llave });
     registro.sumar(azure.caracteres(t.texto));
     const ruta = join(carpeta, t.archivo);
     writeFileSync(ruta, mp3);
+    writeFileSync(rutaFirma(t), t.firma);
     // Desde aquí se trata como una grabación: Python lo normaliza (mono, 64 kbps, mismo volumen).
     t.grabacion = ruta;
     t.origen = `azure ${config.voz}`;
