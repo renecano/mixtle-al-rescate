@@ -24,12 +24,12 @@ export function BotonesSistema({ enLinea = false }: { enLinea?: boolean }) {
   const puedePantallaCompleta = typeof document !== 'undefined' && !!document.fullscreenEnabled;
 
   return (
-    <div className={enLinea ? 'flex shrink-0 gap-3' : 'absolute top-4 right-4 z-20 flex gap-4'}>
+    <div className={enLinea ? 'flex shrink-0 gap-3 max-xl:gap-2' : 'absolute top-4 right-4 z-20 flex gap-4'}>
       {puedePantallaCompleta && (
         <BotonGrande
           color="verde"
           etiqueta="Pantalla completa"
-          className={TAMANO}
+          className={enLinea ? `${TAMANO} max-xl:size-16` : TAMANO}
           icono={<Arte clave="icono-pantalla" className={ICONO} />}
           onClick={() => {
             if (document.fullscreenElement) void document.exitFullscreen();
@@ -41,7 +41,7 @@ export function BotonesSistema({ enLinea = false }: { enLinea?: boolean }) {
         color={musicaActiva ? 'morado' : 'gris'}
         etiqueta={musicaActiva ? 'Apagar la música' : 'Encender la música'}
         presionado={musicaActiva}
-        className={TAMANO}
+        className={enLinea ? `${TAMANO} max-xl:size-16` : TAMANO}
         icono={<Arte clave={musicaActiva ? 'icono-musica' : 'icono-musica-no'} className={ICONO} />}
         onClick={() => estadoMusica.alternar()}
       />
@@ -49,7 +49,7 @@ export function BotonesSistema({ enLinea = false }: { enLinea?: boolean }) {
         color={vozActiva ? 'azul' : 'gris'}
         etiqueta={vozActiva ? 'Apagar la voz' : 'Encender la voz'}
         presionado={vozActiva}
-        className={TAMANO}
+        className={enLinea ? `${TAMANO} max-xl:size-16` : TAMANO}
         icono={<Arte clave={vozActiva ? 'icono-sonido' : 'icono-mudo'} className={ICONO} />}
         onClick={() => estadoSonido.alternar()}
       />
