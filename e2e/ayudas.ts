@@ -58,6 +58,8 @@ export async function esperarEscena(page: Page, clave: string, timeout = 30_000)
 /** Pantalla de React visible: "inicio" o "aventura". */
 export async function esperarPantalla(page: Page, nombre: string, timeout = 30_000): Promise<void> {
   await expect.poll(() => page.evaluate(() => window.__mixtle.pantalla()), { timeout }).toBe(nombre);
+  // v3: mientras el panel de la transición de marca cubre la pantalla no recibe toques (a propósito).
+  await expect(page.locator('.transicion-marca')).toHaveCount(0, { timeout });
 }
 
 /** Toca un botón de React (DOM) por su nombre accesible, con el dedo si el dispositivo es táctil. */

@@ -107,7 +107,13 @@ export function Camino() {
                       {/* La mascota del grupo (vestida) va en el camino junto a la siguiente parada: "aquí vamos".
                           Del lado contrario a Mixtle (que se pone del lado libre del zigzag). */}
                       {esSiguiente && (
-                        <div className={`ficha-grupo pointer-events-none absolute bottom-[-6%] h-[clamp(3.5rem,8vmin,5.5rem)] ${x > 50 ? 'right-[-38%]' : 'left-[-38%]'}`} aria-hidden="true">
+                        <div
+                          // Junto a la burbuja, alineada arriba y más baja que ella: nunca llega a la etiqueta ni a los botones.
+                          // Afuera del ancho de la etiqueta y lejos de las insignias (palomita, candado).
+                          className={`ficha-grupo pointer-events-none absolute top-0 h-[clamp(3.5rem,8vmin,5.5rem)] ${x > 50 ? 'left-full ml-[clamp(1rem,2.5vmin,1.75rem)]' : 'right-full mr-[clamp(1rem,2.5vmin,1.75rem)]'}`}
+                          aria-hidden="true"
+                          data-ficha-grupo
+                        >
                           <MascotaVestida mascota={grupo.mascota} puestos={accesoriosPuestos(progreso)} className="h-full" />
                         </div>
                       )}

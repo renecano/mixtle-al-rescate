@@ -28,3 +28,16 @@ export function grupoUnidadCompleta(accesorios = ['gorra', 'paliacate']) {
 
 export const fragmento = (grupos) => fragmentoDeMudanza({ v: 1, grupos, preferencias: {} });
 export { UNIDADES };
+
+const { nodosDelCamino, abrirCofre } = (await runnerImport('./src/logica/camino.ts')).module;
+
+/** Un grupo con las primeras `k` paradas del camino hechas (la siguiente es la k): para revisar cada lugar del zigzag. */
+export function grupoEnParada(k, mascota = 'tlacuache') {
+  let p = PROGRESO_VACIO;
+  for (const n of nodosDelCamino(UNIDADES).slice(0, k)) {
+    if (n.tipo === 'leccion') p = completarLeccion(p, n.leccion.id, { hojitas: 12, aLaPrimera: 2 }, HOY);
+    else if (n.tipo === 'cofre') p = abrirCofre(p, n.unidad.id, HOY);
+    else p = completarAventura(p, n.unidad, HOY);
+  }
+  return { ...nuevoGrupo({ mascota, color: '#6345A8', etiqueta: `P${k}` }, `demo-parada-${k}`, 0), progreso: p };
+}
