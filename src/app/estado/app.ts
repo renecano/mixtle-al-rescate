@@ -28,6 +28,8 @@ interface EstadoApp {
   irAGrupos: () => void;
   alternarProyector: () => void;
   alternarSuave: () => void;
+  /** El equipo no puede con las animaciones: se calman en esta sesión (sin guardarlo). */
+  suavizarPorRendimiento: () => void;
   olvidarEstampaNueva: () => void;
 }
 
@@ -72,6 +74,11 @@ export const useApp = create<EstadoApp>((set, get) => {
       guardarInterruptor(CLAVE_PROYECTOR, si);
       aplicarAtributo('data-proyector', si);
       set({ proyector: si });
+    },
+    suavizarPorRendimiento: () => {
+      if (get().suave) return;
+      aplicarAtributo('data-suave', true);
+      set({ suave: true });
     },
     alternarSuave: () => {
       const si = !get().suave;

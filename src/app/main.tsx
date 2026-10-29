@@ -9,6 +9,7 @@ import { createRoot } from 'react-dom/client';
 import { vigilarActualizaciones } from '../servicios/actualizacion';
 import { enDireccionAnterior } from '../servicios/mudanza';
 import { mudarse } from '../servicios/mudarse';
+import { vigilarRendimiento } from '../servicios/rendimiento';
 import { exponerParaPruebas } from '../servicios/pruebas';
 import { sonido } from '../servicios/sonido';
 import { voz } from '../servicios/voz';
@@ -23,6 +24,8 @@ if (mudando) {
 }
 
 exponerParaPruebas();
+// Si este equipo no sostiene las animaciones, se calman solas (ver servicios/rendimiento.ts).
+if (!mudando) vigilarRendimiento(() => useApp.getState().suavizarPorRendimiento());
 if (!mudando) void voz.cargarManifiesto();
 // El audio (y la música) solo pueden empezar tras un toque: lo desbloqueamos con el primero, sea donde sea.
 document.addEventListener('pointerdown', () => sonido.desbloquear(), { once: true, capture: true });

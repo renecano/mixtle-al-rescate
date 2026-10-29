@@ -11,6 +11,24 @@ Mixtle, un cacomixtle que vive en los árboles del parque, guía a cada grupo de
 
 ![El camino de aprendizaje](docs/capturas/proyector-1920x1080-v2-2-camino.png)
 
+## Qué cambió en la v3
+
+La v3 le da al juego su propia marca y lo hace más llamativo en el proyector, con técnicas de marketing y de diseño de juegos usadas de forma ética para niñas y niños de 6 a 8 años (ver *Diseño persuasivo responsable*).
+
+| v2 | v3 |
+|---|---|
+| "Caco al rescate" | **"Mixtle al rescate"**, con el lema **"Guardianes del parque"**. Marca propia (dirección visual A, *Parque de día*): logo en SVG, ícono de la app, pantalla de carga y hoja de personaje de Mixtle con 8 poses. Guía en [`docs/marca.md`](docs/marca.md). |
+| Inicio estático | **Inicio animado**: el parque en capas con paralaje y el Nevado de Toluca al fondo, Mixtle que llega columpiándose de una rama y el logo que aterriza con su remate musical. **Transición de marca** entre secciones y **modo vitrina** (demo en bucle si nadie toca el inicio 60 s en el proyector). |
+| Banner de respuesta | **Cada toque responde** (los botones se aplastan, suenan y sueltan chispas). Al acertar: lluvia de hojitas, la hojita ganada vuela al contador y el número sube contando, y Mixtle celebra distinto cada vez. **Racha dentro de la lección** ("¡3 seguidas!") y una pequeña celebración a la mitad. |
+| Cofre y estampa sencillos | El **cofre** dice desde antes lo que trae, se sacude, brilla y estalla. La **estampa** se voltea con brillo. El **parque** cambia "Antes → ¡Ahora!" con su sonido. **Fin de unidad** con minicelebración y **diploma imprimible** (cabe en una hoja carta o A4). |
+| Un fondo para todo | **Cada unidad con su ambiente y su paleta**: Parque, Hogar de los animales (un humedal), Bosque del Nevado de Toluca, Calles de Toluca (portales con arcos y un edificio de grandes vitrales inspirado en el Cosmovitral, dibujados de forma original) y Escuela. |
+| — | **Vestidor**: accesorios para la mascota del grupo (flor, gorra, lentes, paliacate, mochila y capa) a precio fijo en hojitas; se ve en el camino y en el diploma. |
+| Arte plano | **Arte más rico**: luz, sombras suaves, degradados y una textura de papel, con trazo y paleta iguales en todo el juego. |
+| Kokoro | Voz con **Azure AI Speech** lista para usarse cuando llegue la llave (Kokoro sigue como alterno). |
+| "N días seguidos" en el camino | **Se quitó la racha de días** (se perdía al faltar un día) y las hojitas de cada grupo ya no se ven lado a lado al elegir grupo: no se comparan grupos. |
+
+Medido en esta versión: lo que baja antes de la primera pantalla pesa **231.3 KB** comprimidos (límite 250 KB), y en la laptop de 8 GB el juego va a **59–60 cuadros por segundo** en sus momentos más pesados (ver *Pruebas y evidencia medida*).
+
 ## Qué cambió en la v2
 
 | v1 | v2 |
@@ -27,12 +45,14 @@ La aventura de la unidad 1 son los tres niveles de la v1, adaptados al camino, y
 ## Cómo se juega
 
 1. **Inicio → ¿Quién va a jugar?** Se elige el grupo o se crea uno: un animal (colibrí, ardilla, monarca, ajolote, tlacuache o cacomixtle), un color y, si se quiere, una etiqueta corta como "1°A". **Nunca se piden nombres de niñas ni niños**, y la pantalla lo recuerda.
-2. **El camino.** Arriba está el **parque del grupo**: empieza gris y con basura, y se limpia y llena de árboles, flores y animales conforme el grupo avanza. Abajo, el camino en zigzag con las lecciones de cada unidad, un **cofre** a la mitad y la **aventura** al final. Mixtle se para junto a la siguiente lección y la señala. Las lecciones se abren en orden y las terminadas se pueden repetir.
+2. **El camino.** Arriba está el **parque del grupo**: empieza gris y con basura, y se limpia y llena de árboles, flores y animales conforme el grupo avanza. Abajo, el camino en zigzag, por tramos: cada unidad con su postal y su paleta. En cada tramo están sus lecciones, un **cofre** a la mitad y la **aventura** al final. Mixtle se para junto a la siguiente lección y la señala, y la mascota del grupo (vestida) brinca a su lado. Las lecciones se abren en orden y las terminadas se pueden repetir.
 3. **Una lección** (6 a 8 ejercicios, unos 3 minutos). Barra de avance arriba, botón para salir con confirmación amable, y Mixtle narra cada consigna.
-   - **Bien:** banner verde, Mixtle feliz, un sonido y una frase de ánimo distinta cada vez.
+   - **Bien:** banner verde, lluvia de hojitas, Mixtle celebra (distinto cada vez) y dice una frase de ánimo. Si salió a la primera, la hojita ganada vuela al contador. Con 3, 5, 7 o 10 seguidas a la primera, "¡3 seguidas!".
    - **Casi:** banner naranja con una pista y "Intentar otra vez". No hay vidas ni castigos; lo que salió mal vuelve al final para repasar.
-   - **Al terminar:** hojitas ganadas, cuántos ejercicios salieron a la primera, el parque creciendo y el jingle.
-4. **Recompensas.** Hojitas por lección y por cofre; una **estampa del álbum** por cada unidad terminada (cacomixtle, mariposa monarca, colibrí, ajolote de montaña y tlacuache, cada una con un dato narrado), y los **días jugados**, sin culpa ni presión si un día no se juega.
+   - **A la mitad:** destello en la barra y "¡Ya van a la mitad! ¡Vamos!".
+   - **Al terminar:** las hojitas de terminarla vuelan al contador, cuántos ejercicios salieron a la primera, el parque "Antes → ¡Ahora!" y el jingle.
+4. **Recompensas.** Hojitas por lección y por cofre (el cofre dice desde antes cuántas trae); una **estampa del álbum** por cada unidad terminada (cacomixtle, mariposa monarca, colibrí, ajolote de montaña y tlacuache, cada una con un dato narrado) y su **diploma imprimible**; los **días jugados**, que solo suben, sin culpa ni presión si un día no se juega.
+5. **Vestidor.** Con las hojitas se compran accesorios para la mascota del grupo, a precio fijo y a la vista. Si no alcanza, se ve cuántas faltan. Lo comprado nunca se pierde.
 
 | Lección: un error con pista | Lección terminada |
 |---|---|
@@ -64,7 +84,7 @@ Todos funcionan con toque y con mouse, con zonas de toque de 64 px o más.
 
 ### Modo facilitador
 
-Para la persona que facilita: **mantén presionado el logo de Mixtle (arriba a la izquierda) 3 segundos.** Ahí se puede reiniciar el avance del grupo, abrir todas las lecciones para saltar directo a una y activar el **modo proyector** (todo más grande).
+Para la persona que facilita: **mantén presionado el logo de Mixtle (arriba a la izquierda) 3 segundos.** Ahí se puede reiniciar el avance del grupo, abrir todas las lecciones para saltar directo a una, activar el **modo proyector** (todo más grande) y las **animaciones suaves** (menos movimiento, para quien se marea o se distrae; el juego también las enciende solo si el equipo no sostiene las animaciones).
 
 ## Nombre y dirección anteriores
 
@@ -204,12 +224,49 @@ Los efectos de sonido se generan con `npm run sonidos:generar`.
 - **No se usa la cámara ni el micrófono.** `vercel.json` los bloquea con `Permissions-Policy: camera=(), microphone=()`.
 - El juego **solo hace descargas** (peticiones GET). Las pruebas de recorrido verifican que no haya ninguna petición que envíe datos.
 
+## Diseño persuasivo responsable
+
+La v3 usa técnicas de marketing y de diseño de juegos para que el juego atraiga y motive. Todas apuntan a que el grupo **practique y se sienta capaz**, no a que pase más tiempo en la pantalla.
+
+| Técnica | Dónde | Por qué es apropiada para 6 a 8 años |
+|---|---|---|
+| **Personaje guía** con personalidad y frase propia ("¡Al rescate!") | Mixtle en todo el juego | A esta edad aprenden mejor con un modelo cercano. Mixtle acompaña, explica y anima; nunca vende nada ni pide que vuelvan. |
+| **Respuesta inmediata** a cada toque ("juice") | Botones, tarjetas, aciertos | Necesitan ver que su acción tuvo efecto. Se refuerza la acción, no la repetición compulsiva; no hay sonidos de "fallo". |
+| **Meta visible y avance** | El parque del grupo, la barra con su celebración a la mitad | Hace concreto el resultado de su esfuerzo ("estamos salvando nuestro parque") y es un logro de todo el grupo. |
+| **Recompensa por esfuerzo** | Hojitas por terminar y por acertar a la primera, diploma | Se gana por practicar. Un error no quita nada; lo que costó trabajo vuelve para repasar. |
+| **Racha dentro de la lección** | "¡3 seguidas!" | Celebra la concentración del momento. Si hay un error, deja de verse sin decir nada; no cruza lecciones ni días. |
+| **Anticipación sin azar** | El cofre se sacude, brilla y estalla | La emoción está en la animación. Lo que trae se dice y se ve desde antes. |
+| **Coleccionar** | Álbum de animales de Toluca | Completar el álbum da orgullo y enseña fauna local. Las estampas no se compran: se ganan terminando unidades. |
+| **Personalización** | Vestidor de la mascota del grupo | Da sentido de pertenencia y uso a las hojitas. El precio es fijo y está a la vista, nada se pierde y no hay dinero real. |
+| **Identidad local** | Ambientes con el Nevado de Toluca, portales y vitrales | Reconocer su ciudad genera orgullo y hace relevante lo que aprenden. |
+| **Vitrina** | Demo en bucle en el proyector, tras 60 s sin tocar | Sirve para ferias y reuniones. No narra y se quita con cualquier toque. |
+
+**Lo que no se usa**, y cómo se cuida:
+
+- **Sin anuncios ni compras.** No hay código de pagos ni de anuncios, y el juego solo hace descargas (las pruebas de recorrido revisan que ninguna petición envíe datos).
+- **Sin premios aleatorios.** El cofre siempre trae 15 hojitas y Mixtle lo dice antes de abrirlo. Los accesorios tienen precio fijo. Hay pruebas para las dos cosas (`tests/recompensas.test.tsx`).
+- **Sin rachas diarias que se pierdan ni mensajes de culpa.** Se quitó "N días seguidos"; solo se cuentan los días jugados, que nunca bajan (prueba en `tests/camino.test.ts`). Ante un error, Mixtle dice "¡Casi!" y da una pista.
+- **Sin temporizadores que presionen y sin notificaciones.** No hay cuentas regresivas ni vidas. El juego no pide permisos de notificaciones.
+- **Se premia el esfuerzo, no la comparación.** No hay tablas de posiciones. Al elegir grupo se ve cada mascota, no cuántas hojitas tiene cada uno. El diploma solo cuenta lo que hizo ese grupo.
+
 ## Pruebas y evidencia medida
 
-**Pruebas unitarias (Vitest)**, en `tests/`: **1247 pruebas en 20 archivos, todas pasan.** Entre ellas:
+**Mediciones de la v3** (28 de octubre de 2026, en la laptop de desarrollo: Intel Core i5-10210U, 8 GB):
+
+| Qué | Resultado |
+|---|---|
+| Lo que se descarga antes de la primera pantalla | **231.3 KB** comprimidos, contando todas las fuentes (límite de la v3: 250 KB). `npm run presupuesto` lo mide en cada `verificar` y falla si se pasa. Las demás pantallas, el arte de los ambientes y los accesorios, Phaser, la voz y la música bajan después. |
+| Cuadros por segundo, Chrome con tarjeta de video (`node scripts/medir-fps.mjs --con-ventana`) | **59–60 fps** en el inicio (entrada y paralaje), la lección con hojitas y chispas, el cofre que estalla y el camino. Hasta 0.7 % de cuadros lentos, a 1920×1080 y a 1024×768 (`docs/rendimiento-v3.json`). |
+| Sin tarjeta de video (peor caso: Chromium sin ventana) | Con todas las animaciones, **11–14 fps** a 1920×1080 y 26–33 fps a 1024×768 (`docs/rendimiento-v3-sin-ventana.json`). Con las **animaciones suaves**, **57–60 fps** (`docs/rendimiento-v3-sin-ventana-suave.json`). Por eso el juego **las enciende solo** si mide menos de 35 fps (comprobado: de 11 a 60 fps). |
+| Contador de hojitas | En una lección real jugada en el navegador, el contador terminó en exactamente lo ganado (6 a la primera + 10 por terminarla). |
+| Diploma | Se imprime en **una sola hoja** horizontal, carta y A4 (medido con el PDF de Chrome). |
+
+
+
+**Pruebas unitarias (Vitest)**, en `tests/`: **1350 pruebas en 29 archivos, todas pasan** (28 de octubre de 2026). Además de las de la v2, la v3 agrega pruebas de marca (logo al día con las fuentes, 8 poses, presupuesto de la primera pantalla), migración y mudanza de datos, nombre (ningún "Caco" en código ni voz), Azure contra un servidor falso, protección de la llave, vitrina y transición, racha y mitad de lección, recompensas, diplomas, accesorios y vestidor, y el ajuste automático por rendimiento. Entre ellas:
 
 - **Contenido válido:** cada unidad tiene 4 o 5 lecciones; cada lección tiene de 6 a 8 ejercicios con al menos 3 tipos; las respuestas correctas existen, los dibujos existen, no hay ejercicios imposibles (parejas sin repetir, "encuentra el error" con 1 a 3 errores dentro de la escena). Cuando una pregunta habla de un bote, dice su color **y su nombre** ("el bote naranja de no reciclable") y el bote se ve en pantalla. Cada archivo de contenido está marcado con `TODO(Eco Urban)`.
-- **Voz:** **toda frase narrada (740) tiene su audio en el manifiesto** y su mp3 existe, y **los 169 resúmenes con números** (fin de lección, cofre, diplomas) suenan como **un solo audio**, sin piezas encadenadas.
+- **Voz:** **toda frase narrada (761) tiene su audio en el manifiesto** y su mp3 existe, y **los 169 resúmenes con números** (fin de lección, cofre, diplomas) suenan como **un solo audio**, sin piezas encadenadas.
 - **Camino y grupos:** las lecciones se desbloquean en orden; el cofre y la aventura se abren a su tiempo; el avance de cada grupo se guarda y se recupera por separado, y **la app no falla si IndexedDB está bloqueado**.
 - **Música:** el *ducking* baja la música mientras habla Mixtle y la sube al terminar (también si dos cosas la agachan a la vez); fundido entre pistas, jingle y nada antes del primer toque.
 - **Aventuras y diploma:** el recorrido en bici nunca pone humo en los dos carriles a la vez; la lonchera tiene cosas de los dos tipos, sin patrón para adivinar; la concordancia de los números ("1 animal", "2 animales").
@@ -263,6 +320,9 @@ Para correrlos contra un sitio ya publicado, sin construir nada en local: `$env:
 
 - **Las aventuras son minijuegos cortos** (2 a 4 minutos). Las del bosquecito y la lonchera siempre tienen el mismo número de cosas: los diplomas muestran el esfuerzo, no un puntaje para comparar grupos.
 - El diploma de la unidad 1 cuenta los residuos separados en el nivel 2 y en la lluvia de basura (12 + 5) y los animales ayudados.
+- **v3: la voz de Azure aún no se ha generado.** Falta la llave (`AZURE_SPEECH_KEY`). Todo está listo y probado contra un servidor falso. Mientras tanto, Mixtle sigue con Kokoro.
+- **v3: equipos sin aceleración por tarjeta de video.** Ahí las animaciones completas van a 11–33 fps. El juego lo detecta y se calma solo; con las animaciones suaves va a 57–60 fps.
+- **v3: lo que falta confirmar con Eco Urban.** Los precios de los accesorios, que los ambientes de cada unidad se sientan "de Toluca" y la frase de Mixtle ("¡Al rescate!").
 
 ## Estructura
 
@@ -273,17 +333,19 @@ src/
   contenido/   lo que se enseña: unidades y lecciones, textos de la app y de las aventuras
   aventuras/   una entrada por unidad; monta Phaser solo al entrar a la aventura
   scenes/      escenas de Phaser: niveles de la v1, Rescate, Bosque, Bici, Lonchera y el diploma
-  logica/      reglas puras y probadas: lección, camino, grupos, clasificación, diploma
-  servicios/   voz, música y efectos, almacenamiento (IndexedDB)
+  logica/      reglas puras y probadas: lección, camino, grupos, clasificación, diplomas, accesorios
+  servicios/   voz, música y efectos, almacenamiento (IndexedDB), migración y mudanza, rendimiento
   voz/         frases narradas, hash de audios y encadenado de piezas
-  arte/        ilustraciones originales en SVG (como código)
+  arte/        ilustraciones originales en SVG (como código): personajes, escenario, inicio en capas,
+               ambientes de las unidades, accesorios y la marca (logo e ícono)
   ui/          piezas de Phaser: Mixtle, botones, globo, botes, animales, clasificador
 tests/         pruebas unitarias (Vitest)
 e2e/           recorridos en el navegador (Playwright)
-scripts/       voces, música, efectos, íconos y capturas
-docs/          fuentes del contenido, lista de frases, capturas y muestras
+scripts/       voces (Kokoro y Azure), música, efectos, marca, capturas, presupuesto, cuadros por segundo
+               y demo/ (juega como un grupo y siembra grupos de ejemplo)
+docs/          fuentes del contenido, lista de frases, capturas, muestras, marca, direcciones visuales y rendimiento
 ```
 
 ## Créditos y licencias
 
-El arte es original de este proyecto: ilustraciones SVG hechas en código. Los efectos de sonido se sintetizan con scripts propios, la voz se genera con Kokoro (Apache-2.0) y la música es CC0. La tipografía es Nunito (OFL-1.1). Las bibliotecas son React, Phaser, Motion, Zustand y Howler (MIT), idb-keyval (Apache-2.0). El detalle completo está en [`CREDITOS.md`](CREDITOS.md).
+El arte es original de este proyecto: ilustraciones SVG hechas en código. Los efectos de sonido se sintetizan con scripts propios, la voz se genera con Kokoro (Apache-2.0) y la música es CC0. La tipografía es Nunito y Baloo 2 (OFL-1.1). Las bibliotecas son React, Phaser, Motion, Zustand y Howler (MIT), idb-keyval (Apache-2.0). El detalle completo está en [`CREDITOS.md`](CREDITOS.md).

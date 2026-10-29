@@ -1,8 +1,10 @@
 import { motion } from 'motion/react';
 import { useEffect, useState } from 'react';
 import { TEXTOS_APP } from '../../contenido/textosApp';
+import { accesoriosPuestos } from '../../logica/accesorios';
 import { COLORES_GRUPO, LARGO_ETIQUETA, limpiarEtiqueta, MASCOTAS, nombreDelGrupo, type IdMascota } from '../../logica/grupos';
 import { Arte } from '../componentes/Arte';
+import { MascotaVestida } from '../componentes/MascotaVestida';
 import { BotonesSistema } from '../componentes/BotonesSistema';
 import { BotonGrande } from '../componentes/BotonGrande';
 import { MixtleGuia } from '../componentes/MixtleGuia';
@@ -31,7 +33,6 @@ export function Grupos() {
       </h1>
       <div className="flex max-w-[70rem] flex-wrap justify-center gap-[clamp(1rem,3vmin,2rem)]">
         {grupos.map((g) => {
-          const m = MASCOTAS.find((x) => x.id === g.mascota)!;
           return (
             <motion.button
               key={g.id}
@@ -46,11 +47,9 @@ export function Grupos() {
               className="flex w-[clamp(10rem,24vmin,15rem)] cursor-pointer flex-col items-center gap-2 rounded-[2rem] border-[6px] border-white p-4 text-white shadow-[0_0.5rem_0_rgba(18,61,43,0.3)]"
               style={{ backgroundColor: g.color }}
             >
-              <Arte clave={m.arte} className="h-[clamp(5rem,13vmin,8rem)] object-contain" />
+              {/* Cada grupo con su mascota vestida. Sin sus hojitas a la vista: los grupos no se comparan. */}
+              <MascotaVestida mascota={g.mascota} puestos={accesoriosPuestos(g.progreso)} className="h-[clamp(5rem,13vmin,8rem)]" />
               <span className="text-[clamp(1.2rem,2.8vmin,1.8rem)] font-black">{nombreDelGrupo(g)}</span>
-              <span className="flex items-center gap-1 font-bold">
-                <Arte clave="hojita" className="size-7" /> {g.progreso.hojitas}
-              </span>
             </motion.button>
           );
         })}

@@ -136,3 +136,22 @@ describe('juice: hojitas y contador', () => {
     expect(llegan).toHaveBeenCalledTimes(4);
   });
 });
+
+describe('rendimiento: si el equipo no puede, las animaciones se calman solas', () => {
+  it('decide con los cuadros reales: 60 fps sigue igual, 14 fps se calma', async () => {
+    const { debeSuavizar, FPS_MINIMO } = await import('../src/servicios/rendimiento');
+    expect(debeSuavizar(Array(120).fill(16.7))).toBe(false);
+    expect(debeSuavizar(Array(28).fill(71))).toBe(true); // ~14 fps, como sin tarjeta de video
+    expect(debeSuavizar(Array(5).fill(200))).toBe(false); // muy pocos cuadros: no hay evidencia
+    expect(FPS_MINIMO).toBeLessThan(60);
+  });
+
+  it('al calmarse se enciende "suave" en la sesión, sin guardarlo en el aparato', () => {
+    localStorage.removeItem('mixtle-al-rescate:suave');
+    useApp.setState({ suave: false });
+    useApp.getState().suavizarPorRendimiento();
+    expect(useApp.getState().suave).toBe(true);
+    expect(document.documentElement.hasAttribute('data-suave')).toBe(true);
+    expect(localStorage.getItem('mixtle-al-rescate:suave')).toBeNull();
+  });
+});

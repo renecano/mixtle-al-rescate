@@ -1,0 +1,75 @@
+{
+  "fecha": "2026-10-29",
+  "equipo": {
+    "cpu": "Intel(R) Core(TM) i5-10210U CPU @ 1.60GHz",
+    "nucleos": 8,
+    "memoriaGB": 8,
+    "navegador": "Chrome 156.0.8078.48 con ventana y tarjeta de video"
+  },
+  "resultados": [
+    {
+      "tamano": "proyector",
+      "escenario": "Inicio: entrada (capas, Mixtle columpiándose, logo) y paralaje",
+      "fps": 59,
+      "fpsP5": 60,
+      "lentos": 0.5,
+      "cuadros": 204
+    },
+    {
+      "tamano": "proyector",
+      "escenario": "Lección (demo): hojitas que vuelan al contador, chispas, racha",
+      "fps": 59,
+      "fpsP5": 60,
+      "lentos": 0.7,
+      "cuadros": 292
+    },
+    {
+      "tamano": "proyector",
+      "escenario": "Cofre (demo): se sacude, estalla, rayos girando",
+      "fps": 59,
+      "fpsP5": 60,
+      "lentos": 0.4,
+      "cuadros": 265
+    },
+    {
+      "tamano": "proyector",
+      "escenario": "Camino: desplazarse por los ambientes de las 5 unidades",
+      "fps": 60,
+      "fpsP5": 58,
+      "lentos": 0,
+      "cuadros": 240
+    },
+    {
+      "tamano": "tablet",
+      "escenario": "Inicio: entrada (capas, Mixtle columpiándose, logo) y paralaje",
+      "fps": 60,
+      "fpsP5": 60,
+      "lentos": 0,
+      "cuadros": 240
+    },
+    {
+      "tamano": "tablet",
+      "escenario": "Lección (demo): hojitas que vuelan al contador, chispas, racha",
+      "fps": 60,
+      "fpsP5": 60,
+      "lentos": 0,
+      "cuadros": 300
+    },
+    {
+      "tamano": "tablet",
+      "escenario": "Cofre (demo): se sacude, estalla, rayos girando",
+      "fps": 60,
+      "fpsP5": 60,
+      "lentos": 0,
+      "cuadros": 270
+    },
+    {
+      "tamano": "tablet",
+      "escenario": "Camino: desplazarse por los ambientes de las 5 unidades",
+      "fps": 60,
+      "fpsP5": 58,
+      "lentos": 0,
+      "cuadros": 240
+    }
+  ]
+}
