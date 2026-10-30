@@ -1,7 +1,7 @@
 import { act, render, renderHook, screen } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { App } from '../src/app/App';
-import { CUBRE_MS, DESCUBRE_MS } from '../src/app/componentes/TransicionMarca';
+import { CUBRE_MS, DESCUBRE_MS, ESPERA_PINTADO_MS } from '../src/app/componentes/TransicionMarca';
 import { hojitasAlContador } from '../src/app/efectos/efectos';
 import { useCuentaAnimada } from '../src/app/efectos/ContadorHojitas';
 import { useApp } from '../src/app/estado/app';
@@ -92,6 +92,12 @@ describe('transición de marca', () => {
     // Mientras cubre, sigue el inicio debajo.
     expect(document.querySelector('[data-pantalla="inicio"]')).not.toBeNull();
     act(() => void vi.advanceTimersByTime(CUBRE_MS));
+    await asentar();
+    // La sección ya cambió bajo el panel, pero el destape espera a que se pinte (dos cuadros, 150 ms de tope):
+    // su primer cuadro no carga con el layout de la pantalla nueva.
+    expect(document.querySelector('[data-pantalla="inicio"]')).toBeNull();
+    expect(document.querySelector('.transicion-marca')).toHaveAttribute('data-fase', 'cubre');
+    act(() => void vi.advanceTimersByTime(ESPERA_PINTADO_MS));
     await asentar();
     expect(document.querySelector('.transicion-marca')).toHaveAttribute('data-fase', 'descubre');
     act(() => void vi.advanceTimersByTime(DESCUBRE_MS));

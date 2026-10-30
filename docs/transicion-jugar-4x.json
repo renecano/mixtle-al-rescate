@@ -1,0 +1,55 @@
+{
+  "que": "Transición al tocar «¡Jugar!»: 1.6 s desde el toque, Chrome headless 1280×800 con la CPU 4× más lenta (Emulation.setCPUThrottlingRate 4), build de producción servido con vite preview. Mediana de 3 corridas (scripts/medir-transicion.mjs).",
+  "fecha": "2026-10-29",
+  "laptop": "Intel Core i5-10210U, 8 GB, Windows 11",
+  "antes": {
+    "commit": "cb13f92",
+    "fps": 42.9,
+    "peorCuadroMs": 200,
+    "cuadrosLentos": 6,
+    "tareasLargas": 4,
+    "tareasLargasMs": 394,
+    "corridas": [
+      {
+        "fps": 39.1,
+        "peorMs": 233,
+        "tareasLargasMs": 479
+      },
+      {
+        "fps": 44.1,
+        "peorMs": 167,
+        "tareasLargasMs": 365
+      },
+      {
+        "fps": 42.9,
+        "peorMs": 200,
+        "tareasLargasMs": 394
+      }
+    ]
+  },
+  "despues": {
+    "fps": 50.8,
+    "peorCuadroMs": 167,
+    "cuadrosLentos": 6,
+    "tareasLargas": 1,
+    "tareasLargasMs": 166,
+    "corridas": [
+      {
+        "fps": 44.7,
+        "peorMs": 183,
+        "tareasLargasMs": 222
+      },
+      {
+        "fps": 51.4,
+        "peorMs": 167,
+        "tareasLargasMs": 166
+      },
+      {
+        "fps": 50.8,
+        "peorMs": 150,
+        "tareasLargasMs": 147
+      }
+    ]
+  },
+  "enElHiloPrincipal": "Traza (categorías devtools.timeline) de los 1.6 s, antes: FunctionCall 263 ms (React 197, app 61), Layout 79, UpdateLayoutTree 77, RunMicrotasks 53, Paint 13; 0 decodificaciones de imagen; de la descarga para jugar sin internet solo fetch 8 ms + cache.put 7 ms (está pausada 3 s al cambiar de pantalla; terminan las ≤4 peticiones en vuelo); nada del código de Grupos (precargado). Dos tareas largas: +197 ms, 128 ms (el commit de React del toque: la salida del inicio con Motion y el panel de la transición) y +325 ms, 91 ms (el layout de Grupos, que caía en el mismo cuadro en que empezaba el destape). Durante la ventana se pedía también la Nunito 900 (la estrena el título de Grupos). Perfil de CPU (build sin minificar, 350 ms tras el toque): React render 119 ms inclusivos, Motion animateChanges 48 ms; nada de audio ni de la descarga."
+}

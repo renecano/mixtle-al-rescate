@@ -60,7 +60,19 @@ function sinMovimiento(): boolean {
  * llega columpiándose de una rama, el logo que aterriza con su remate musical y un solo botón.
  * En modo proyector, si nadie toca la pantalla en 60 s, empieza el modo vitrina (una demo en bucle).
  */
-/** ¿El navegador aún no deja sonar? (el contexto de audio parado, o la música activada sin sonar) */
+/** Los efectos que suenan primero: el toque de los botones, el remate del logo y el barrido de la transición. */
+export const EFECTOS_DEL_ARRANQUE = ['toque', 'remate', 'barrido'] as const;
+
+/** La Nunito 900 (font-black) se estrena en el título de Grupos: se pide antes, no a media transición. */
+export function calentarLetraGruesa(): Promise<unknown> {
+  try {
+    return document.fonts?.load('900 1em Nunito').catch(() => undefined) ?? Promise.resolve();
+  } catch {
+    return Promise.resolve();
+  }
+}
+
+/** ¿El navegador aún no deja sonar? (el contexto parado, o la música activada sin oírse de verdad) */
 function audioSigueBloqueado(): boolean {
   return !audioListo() || (estadoMusica.estaActivo && !musica.seOye);
 }
@@ -88,12 +100,15 @@ export function Inicio() {
     return () => window.clearInterval(t);
   }, [audioBloqueado]);
 
-  // Mientras se ve el inicio, se adelanta lo que hace falta para que "¡Jugar!" no espere a la red: el
-  // código de Grupos y Camino, la voz de "¡Al rescate!" y de la bienvenida, y los primeros efectos.
+  // Mientras se ve el inicio, se adelanta lo que hace falta para que "¡Jugar!" no espere a la red ni
+  // trabaje durante la transición: el código de Grupos y Camino, la voz de "¡Al rescate!" y de la
+  // bienvenida, los primeros efectos (incluido el barrido de la transición, que si no se bajaba y
+  // decodificaba justo al tocar "¡Jugar!") y la letra más gruesa, que estrena el título de Grupos.
   useEffect(() => {
     precargarPrimerasPantallas();
     void voz.precargar([FRASE_MIXTLE, TEXTOS_APP.grupos.bienvenida]);
-    sonido.precargar(['toque', 'remate']);
+    sonido.precargar(EFECTOS_DEL_ARRANQUE);
+    void calentarLetraGruesa();
     // Si se sale del inicio antes de que termine de entrar, también cuenta como lista.
     return () => primeraPantallaLista();
   }, []);

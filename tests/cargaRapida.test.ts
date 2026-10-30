@@ -118,3 +118,41 @@ describe('Mixtle no se corta a sí mismo al cambiar de pantalla', () => {
     expect(useNarrador.getState().subtitulo).not.toBe('Esta ya no');
   });
 });
+
+describe('nada pesado durante la transición de "¡Jugar!"', () => {
+  it('el inicio adelanta el barrido de la transición (si no, se bajaba y decodificaba justo al tocar)', async () => {
+    const { sonido } = await import('../src/servicios/sonido');
+    const { EFECTOS_DEL_ARRANQUE } = await import('../src/app/pantallas/Inicio');
+    expect(EFECTOS_DEL_ARRANQUE).toContain('barrido');
+    sonido.precargar(EFECTOS_DEL_ARRANQUE);
+    expect(howls.map((h) => h.src)).toEqual(expect.arrayContaining([expect.stringContaining('sonidos/barrido.mp3')]));
+  });
+
+  it('y pide la letra gruesa (Nunito 900) antes, no cuando la estrena el título de Grupos', async () => {
+    const { calentarLetraGruesa } = await import('../src/app/pantallas/Inicio');
+    const load = vi.fn(() => Promise.resolve([]));
+    const doc = globalThis.document as unknown as { fonts?: unknown } | undefined;
+    const habia = doc?.fonts;
+    if (doc) Object.defineProperty(doc, 'fonts', { value: { load }, configurable: true });
+    else (globalThis as unknown as { document: unknown }).document = { fonts: { load } };
+    try {
+      await calentarLetraGruesa();
+      expect(load).toHaveBeenCalledWith('900 1em Nunito');
+    } finally {
+      if (doc) Object.defineProperty(doc, 'fonts', { value: habia, configurable: true });
+      else delete (globalThis as unknown as { document?: unknown }).document;
+    }
+  });
+
+  it('sin document.fonts no falla', async () => {
+    const { calentarLetraGruesa } = await import('../src/app/pantallas/Inicio');
+    const doc = globalThis.document as unknown as { fonts?: unknown } | undefined;
+    const habia = doc?.fonts;
+    if (doc) Object.defineProperty(doc, 'fonts', { value: undefined, configurable: true });
+    try {
+      await expect(calentarLetraGruesa()).resolves.toBeUndefined();
+    } finally {
+      if (doc) Object.defineProperty(doc, 'fonts', { value: habia, configurable: true });
+    }
+  });
+});
