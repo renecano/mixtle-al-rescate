@@ -8,6 +8,7 @@ import { TEXTOS } from '../data/textos';
 import { categoriaDe, esCorrecto, textoAcierto, textoPista } from '../logica/clasificacion';
 import { enFila } from '../logica/disposicion';
 import { escenaSiguiente } from '../logica/flujo';
+import { caeBasura, eligeBote, llegaAlSuelo, LLUVIA_INICIAL, vuelveACaer, type EstadoLluvia } from '../logica/lluvia';
 import { progreso } from '../logica/progreso';
 import { crearAleatorio } from '../logica/reparto';
 import { sonido } from '../servicios/sonido';
@@ -34,8 +35,9 @@ export class BonusScene extends Phaser.Scene {
   private mixtle!: Mixtle;
   private narrador!: Narrador;
   private cola: Residuo[] = [];
-  private actual: { residuo: Residuo; imagen: Phaser.GameObjects.Image; caida: Phaser.Tweens.Tween | null; enElSuelo: boolean } | null = null;
-  private ocupado = false;
+  private actual: { residuo: Residuo; imagen: Phaser.GameObjects.Image; caida: Phaser.Tweens.Tween | null } | null = null;
+  /** Qué responde y qué no (logica/lluvia.ts, con sus pruebas). */
+  private estado: EstadoLluvia = LLUVIA_INICIAL;
   private aciertos = 0;
 
   constructor() {
@@ -45,7 +47,7 @@ export class BonusScene extends Phaser.Scene {
   create(): void {
     entrar(this);
     this.actual = null;
-    this.ocupado = false;
+    this.estado = LLUVIA_INICIAL;
     this.aciertos = 0;
     // Cinco basuras distintas, en otro orden cada vez.
     const azar = crearAleatorio(Date.now());
@@ -79,8 +81,7 @@ export class BonusScene extends Phaser.Scene {
     // Tocar la basura repite la pregunta.
     imagen.setInteractive({ useHandCursor: true }).setName(`cae-${residuo.id}`);
     imagen.on('pointerdown', () => this.narrador.decir(TEXTOS.nivel2.pregunta(residuo.nombre)));
-    this.actual = { residuo, imagen, caida: null, enElSuelo: false };
-    this.ocupado = false;
+    this.actual = { residuo, imagen, caida: null };
     this.narrador.decir(TEXTOS.nivel2.pregunta(residuo.nombre));
     this.caer();
   }
@@ -90,7 +91,7 @@ export class BonusScene extends Phaser.Scene {
     const actual = this.actual;
     if (!actual) return;
     const { imagen } = actual;
-    actual.enElSuelo = false;
+    this.estado = caeBasura(actual.residuo.id);
     imagen.setPosition(CAIDA.x, CAIDA.desde);
     this.tweens.add({ targets: imagen, angle: { from: -10, to: 10 }, duration: 900, yoyo: true, repeat: -1, ease: 'Sine.easeInOut' });
     actual.caida = this.tweens.add({
@@ -108,27 +109,30 @@ export class BonusScene extends Phaser.Scene {
    */
   private llegoAlSuelo(): void {
     const actual = this.actual;
-    if (!actual || this.ocupado) return;
-    actual.enElSuelo = true;
+    const antes = this.estado;
+    this.estado = llegaAlSuelo(antes);
+    if (!actual || this.estado === antes) return;
     sonido.tocar('toque');
     this.tweens.killTweensOf(actual.imagen);
     this.narrador.decir(TEXTOS.bonus.seCayo, () => {
-      if (this.actual === actual && actual.enElSuelo) this.caer();
+      if (this.actual === actual && vuelveACaer(this.estado, actual.residuo.id)) this.caer();
     });
   }
 
   private elegir(bote: Bote): void {
     const actual = this.actual;
-    if (!actual || this.ocupado) return;
+    if (!actual) return;
     const { residuo, imagen } = actual;
-    if (!esCorrecto(residuo, bote.categoria.id, CATEGORIAS)) {
+    const r = eligeBote(this.estado, esCorrecto(residuo, bote.categoria.id, CATEGORIAS));
+    this.estado = r.estado;
+    if (r.efecto === 'nada') return;
+    if (r.efecto === 'pista') {
       bote.sacudir();
       sonido.tocar('otraVez');
-      // La pista no detiene la caída; si llega al suelo, vuelve a empezar.
+      // La pista no detiene la caída (ni la frase del suelo); si llega al suelo, vuelve a empezar.
       this.narrador.decir(textoPista(categoriaDe(residuo, CATEGORIAS)!));
       return;
     }
-    this.ocupado = true;
     this.actual = null;
     this.tweens.killTweensOf(imagen);
     imagen.disableInteractive();
