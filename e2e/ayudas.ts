@@ -72,6 +72,19 @@ export async function tocarBoton(page: Page, nombre: string | RegExp): Promise<v
   const boton = page.getByRole('button', { name: nombre, exact: typeof nombre === 'string' });
   await expect(boton).toBeVisible();
   await expect(boton).toBeEnabled();
+  // Si quedó fuera de la vista (una ventana que se desplaza, como el modo facilitador en la tablet), se trae a la
+  // vista con el DOM (scrollIntoViewIfNeeded de Playwright espera a que el botón esté quieto, y los que laten
+  // nunca lo están). Se reintenta: un botón que React vuelve a pintar puede desaparecer un instante.
+  await expect
+    .poll(async () => {
+      try {
+        await boton.first().evaluate((el) => el.scrollIntoView({ block: 'center', inline: 'nearest' }), undefined, { timeout: 2000 });
+        return true;
+      } catch {
+        return false;
+      }
+    })
+    .toBe(true);
   // Algunos botones entran deslizándose (el banner de respuesta): se espera a que estén en pantalla.
   const alto = page.viewportSize()?.height ?? 0;
   await expect
