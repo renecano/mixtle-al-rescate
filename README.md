@@ -66,6 +66,8 @@ Además, el encabezado del camino ya cabe en una línea en la tablet: 80 px de a
 
 **Mixtle deslavado en la tarjeta del recorrido guiado.** Se veía con la cara casi blanca, el cuerpo gris pálido, un brazo café y el trazo delgado. No era otra paleta ni otro dibujo: todas las poses salen del mismo código (`src/arte/personajes.ts`). Era un problema de SVG en línea: los degradados de Mixtle se buscan por id en todo el documento y el navegador toma el primero; el primero era el del logo de la pantalla de carga de `index.html`, que queda oculto con `display:none`, y un degradado en un SVG oculto no pinta. En el camino y la lección no se notaba porque hay otro Mixtle dentro de `#app` (antes del logo oculto en el documento); la tarjeta del recorrido va fuera del árbol de la app (portal) y le tocaba el oculto. Ahora cada Mixtle en línea lleva sus degradados con un sufijo propio (`MixtleFigura`, `Logo`), la pantalla de carga se quita del documento al arrancar la app, y `?mixtle` muestra todas las apariciones lado a lado para compararlas. Capturas de antes y después en `docs/capturas-revision-29oct/`.
 
+**El paliacate parecía ropa interior** (un triángulo rosa con puntitos). Se rediseñó como un paliacate mexicano anudado al cuello: rojo con el estampado blanco típico (florecitas de cuatro pétalos y puntos en retícula, orilla punteada), la banda alrededor del cuello, el nudo al frente y arriba con sus dos puntas, y el pico colgando (`src/arte/accesorios.ts`). En el ícono de la tienda se ve con el nudo arriba. Revisado en las seis mascotas y a tamaño de diploma en `?mixtle` (capturas en `docs/capturas-revision-29oct/`).
+
 ## Qué cambió en la v2
 
 | v1 | v2 |

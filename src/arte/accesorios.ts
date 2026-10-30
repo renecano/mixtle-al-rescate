@@ -21,15 +21,31 @@ const LENTES = `<g fill="#CFEAF7" fill-opacity=".45" stroke="#2459A6" stroke-wid
   <path d="M26 40 L 6 32 M214 40 L 234 32" stroke="#2459A6" stroke-width="7" stroke-linecap="round"/>
   <path d="M42 30 Q 52 22 66 22 M158 30 Q 168 22 182 22" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" opacity=".8"/>`;
 
-const PALIACATE = `<defs><linearGradient id="ac-paliacate" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E63946"/><stop offset="1" stop-color="#B71C2C"/></linearGradient></defs>
-  <path d="M48 32 L 100 106 L 152 32 Z" fill="url(#ac-paliacate)" stroke="#7A1420" stroke-width="5" stroke-linejoin="round"/>
-  <path d="M8 22 Q 100 44 192 22 L 192 38 Q 100 60 8 38 Z" fill="url(#ac-paliacate)" stroke="#7A1420" stroke-width="5" stroke-linejoin="round"/>
-  <g fill="#fff">${[
-    [78, 52], [100, 50], [122, 52], [90, 70], [110, 70], [100, 86], [30, 32], [60, 38], [140, 38], [170, 32],
-  ]
-    .map(([x, y]) => `<circle cx="${x}" cy="${y}" r="4.5"/>`)
-    .join('')}</g>
-  <path d="M84 60 q 16 -10 32 0" fill="none" stroke="#fff" stroke-width="3" opacity=".7"/>`;
+/*
+ * Paliacate mexicano anudado al cuello: rojo con el estampado blanco típico (florecitas de cuatro
+ * pétalos y puntos en retícula, y una orilla punteada), la banda alrededor del cuello, el nudo al
+ * frente y arriba con sus dos puntas, y el pico colgando. Antes era un triángulo rojo con puntitos
+ * sueltos y se confundía con ropa interior (revisión del 29 de octubre de 2026).
+ */
+const FLOR_PALIACATE = (x: number, y: number) =>
+  `<g transform="translate(${x} ${y})"><ellipse cx="0" cy="-4.5" rx="2.4" ry="4"/><ellipse cx="0" cy="4.5" rx="2.4" ry="4"/><ellipse cx="-4.5" cy="0" rx="4" ry="2.4"/><ellipse cx="4.5" cy="0" rx="4" ry="2.4"/><circle r="1.6" fill="#B71C2C"/></g>`;
+const PALIACATE = `<defs>
+    <linearGradient id="ac-paliacate" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E03A3E"/><stop offset="1" stop-color="#A8161C"/></linearGradient>
+    <clipPath id="ac-paliacate-pico"><path d="M44 36 L 100 108 L 156 36 Z"/></clipPath>
+  </defs>
+  <path d="M44 36 L 100 108 L 156 36 Z" fill="url(#ac-paliacate)" stroke="#7A1420" stroke-width="5" stroke-linejoin="round"/>
+  <g clip-path="url(#ac-paliacate-pico)" fill="#fff">
+    ${[[72, 54], [100, 54], [128, 54], [86, 72], [114, 72], [100, 90]].map(([x, y]) => FLOR_PALIACATE(x!, y!)).join('')}
+    ${[[86, 54], [114, 54], [72, 72], [100, 72], [128, 72], [86, 90], [114, 90]].map(([x, y]) => `<circle cx="${x}" cy="${y}" r="1.8"/>`).join('')}
+  </g>
+  <path d="M56 46 L 100 100 L 144 46" fill="none" stroke="#fff" stroke-width="2.4" stroke-dasharray="3.5 3.5" stroke-linecap="round" opacity=".9"/>
+  <path d="M6 18 Q 100 46 194 18 L 194 34 Q 100 62 6 34 Z" fill="url(#ac-paliacate)" stroke="#7A1420" stroke-width="5" stroke-linejoin="round"/>
+  <g fill="#fff">${[[20, 27], [38, 32], [56, 36], [144, 36], [162, 32], [180, 27]].map(([x, y]) => `<circle cx="${x}" cy="${y}" r="2.6"/>`).join('')}</g>
+  <path d="M96 32 L 66 14 Q 54 8 58 20 L 82 42 Z" fill="url(#ac-paliacate)" stroke="#7A1420" stroke-width="4.5" stroke-linejoin="round"/>
+  <path d="M104 32 L 134 14 Q 146 8 142 20 L 118 42 Z" fill="url(#ac-paliacate)" stroke="#7A1420" stroke-width="4.5" stroke-linejoin="round"/>
+  <circle cx="72" cy="22" r="2" fill="#fff"/><circle cx="128" cy="22" r="2" fill="#fff"/>
+  <ellipse cx="100" cy="34" rx="15" ry="12" fill="#C1272D" stroke="#7A1420" stroke-width="4.5"/>
+  <path d="M92 30 Q 100 24 108 30" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" opacity=".7"/>`;
 
 const MOCHILA = `<defs><linearGradient id="ac-mochila" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFB347"/><stop offset="1" stop-color="#E07B12"/></linearGradient></defs>
   <path d="M30 20 Q 60 -4 90 20" fill="none" stroke="#7A4E2E" stroke-width="9" stroke-linecap="round"/>
