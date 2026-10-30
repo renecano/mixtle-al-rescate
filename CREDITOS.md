@@ -1,10 +1,12 @@
 # Créditos y licencias
 
+El proyecto completo (código, textos y arte originales) está bajo la **licencia MIT** (ver `LICENSE`): Eco Urban A.C. puede usarlo, modificarlo y distribuirlo libremente. Esta página lista los recursos de terceros, que conservan su propia licencia.
+
 ## Arte (original de este proyecto)
 
 | Recurso | Dónde está | Fuente | Licencia |
 |---|---|---|---|
-| Mixtle el cacomixtle (cuerpo, expresiones y cola) | `src/arte/personajes.ts` | Dibujado en código SVG para este proyecto | Original, sin recursos de terceros. La licencia final la decide Eco Urban A.C. |
+| Mixtle el cacomixtle (cuerpo, expresiones y cola) | `src/arte/personajes.ts` | Dibujado en código SVG para este proyecto | Original, sin recursos de terceros. MIT (ver `LICENSE`) |
 | Ardilla gris mexicana, colibrí y mariposa monarca | `src/arte/personajes.ts` | Dibujado en código SVG para este proyecto | Igual que arriba |
 | Parque con el Nevado de Toluca, nubes, arbusto, árboles, flores, brote, tierra, bolsa | `src/arte/escenario.ts` | Dibujado en código SVG para este proyecto | Igual que arriba |
 | 12 residuos | `src/arte/residuos.ts` | Dibujado en código SVG para este proyecto | Igual que arriba |

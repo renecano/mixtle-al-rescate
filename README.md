@@ -142,7 +142,9 @@ Medido entre el 27 y el 30 de octubre de 2026 en una laptop de 8 GB (Intel Core 
 
 ## Licencia y créditos
 
-Ver [`LICENSE`](LICENSE) y [`CREDITOS.md`](CREDITOS.md). El arte es original de este proyecto (ilustraciones SVG hechas en código), los efectos de sonido se sintetizan con scripts propios, la voz se genera con Azure AI Speech y la música es CC0. La tipografía es Nunito y Baloo 2 (OFL-1.1). Las bibliotecas son React, Phaser, Motion, Zustand, Tailwind CSS y Howler (MIT) e idb-keyval (Apache-2.0).
+**Eco Urban puede usar, copiar, modificar, mejorar y compartir este juego como quiera**, con o sin cambios, con o sin cobrar, sin pedir permiso: el trabajo se hizo para Eco Urban. Lo único que pide la licencia es conservar el aviso de autoría. Formalmente es la **licencia MIT**, para todo el proyecto (código, textos y arte originales), a nombre de Valentina Jaymes Juárez, Mary Jose Galán Gordillo, Ana Sofía Luna Gómez, René Emiliano Cano Fuentes y Sophie Alejandra Mendoza Guadarrama, estudiantes del Tecnológico de Monterrey, Campus Toluca, para Eco Urban A.C. El texto completo está en [`LICENSE`](LICENSE).
+
+Los recursos de terceros conservan su propia licencia y están listados con autor, fuente y enlace en [`CREDITOS.md`](CREDITOS.md): la música es CC0, las tipografías Nunito y Baloo 2 son OFL-1.1, las bibliotecas son MIT o Apache-2.0 y la voz generada con Azure AI Speech se rige por los términos de ese servicio. El arte es original de este proyecto (ilustraciones SVG hechas en código), los efectos de sonido se sintetizan con scripts propios, la voz se genera con Azure AI Speech y la música es CC0. La tipografía es Nunito y Baloo 2 (OFL-1.1). Las bibliotecas son React, Phaser, Motion, Zustand, Tailwind CSS y Howler (MIT) e idb-keyval (Apache-2.0).
 
 ---
 

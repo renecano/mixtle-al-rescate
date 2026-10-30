@@ -28,7 +28,7 @@
     "marca:generar": "node scripts/marca.mjs",
     "presupuesto": "node scripts/presupuesto.mjs"
   },
-  "license": "UNLICENSED",
+  "license": "MIT",
   "dependencies": {
     "@fontsource/baloo-2": "^5.3.0",
     "@fontsource/nunito": "^5.3.0",
