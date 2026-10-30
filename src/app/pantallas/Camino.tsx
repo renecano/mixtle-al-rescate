@@ -23,6 +23,8 @@ import { Encabezado } from '../componentes/Encabezado';
 import { Modal } from '../componentes/Modal';
 import { PanelFacilitador } from '../componentes/PanelFacilitador';
 import { ParqueGrupo } from '../componentes/ParqueGrupo';
+import { precargarLeccion } from './cargadores';
+import { prepararLeccion } from './precargaLeccion';
 import { RecorridoGuiado } from '../componentes/RecorridoGuiado';
 import { useApp } from '../estado/app';
 import { useGrupoActual, useGrupos } from '../estado/grupos';
@@ -71,6 +73,8 @@ export function Camino() {
     siguiente.current?.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
     // Con el recorrido, Mixtle saluda al terminarlo.
     if (!estampaNueva && !recorrido) saludar();
+    // Mientras se ve el camino se adelanta el código de la lección: tocar una no espera una descarga.
+    precargarLeccion();
     return () => callar();
     // Solo al entrar al camino.
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -90,8 +94,11 @@ export function Camino() {
       decir(TEXTOS_APP.camino.bloqueada, { expresion: 'pensando' });
       return;
     }
-    if (n.tipo === 'leccion') abrirLeccion(n.leccion.id);
-    else if (n.tipo === 'aventura') abrirAventura(n.unidad.id);
+    if (n.tipo === 'leccion') {
+      // Lo primero que dice Mixtle en la lección se adelanta, y la descarga en segundo plano espera.
+      prepararLeccion(n.leccion);
+      abrirLeccion(n.leccion.id);
+    } else if (n.tipo === 'aventura') abrirAventura(n.unidad.id);
     else if (estado === 'disponible') {
       setCofre(n.unidad.id);
       decir(TEXTOS_APP.cofre.llegaron(HOJITAS_COFRE), { expresion: 'sorprendido' });

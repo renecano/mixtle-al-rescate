@@ -13,3 +13,8 @@ export function precargarPrimerasPantallas(): void {
   void cargarGrupos().catch(() => undefined);
   void cargarCamino().catch(() => undefined);
 }
+
+/** Mientras se ve el camino: la lección (con sus ejercicios), para que tocar una no espere una descarga. */
+export function precargarLeccion(): void {
+  void cargarLeccion().catch(() => undefined);
+}

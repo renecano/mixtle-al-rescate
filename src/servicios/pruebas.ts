@@ -90,6 +90,8 @@ export function exponerParaPruebas(): void {
     voz: () => ({ ...voz.cuenta }),
     /** Pista de música de fondo que está sonando (o null). */
     musica: () => musica.pistaActual,
+    /** true mientras se oye un audio de Mixtle (no la espera a que baje): para medir cuándo empieza a narrar. */
+    narrando: () => voz.sonandoAhora,
     fps: () => Math.round(juegoActual()?.loop.actualFps ?? 0),
     /** Vuelve al camino como si se acabara de ganar esa estampa (revisar la recompensa y grabar el tráiler). */
     estampaNueva: (id: string) => useApp.getState().alCamino(id),

@@ -31,6 +31,7 @@ import type { ExpresionMixtle } from '../componentes/MixtleFigura';
 import { ContadorHojitas } from '../efectos/ContadorHojitas';
 import { centroDe, chispas, hojitasAlContador, lluviaDeHojitas } from '../efectos/efectos';
 import { Ejercicio } from '../ejercicios/Ejercicio';
+import { soltarAlNarrar } from './precargaLeccion';
 import type { Respuesta } from '../ejercicios/comun';
 import { useApp } from '../estado/app';
 import { useGrupoActual, useGrupos } from '../estado/grupos';
@@ -91,6 +92,8 @@ export function Leccion() {
     if (esRepaso) piezas.push(TEXTOS_APP.leccion.repaso);
     piezas.push(actual.consigna);
     decir(piezas);
+    // Primer ejercicio en pantalla: en cuanto Mixtle se oye, la descarga en segundo plano sigue.
+    if (sesion.hechos === 0 && sesion.erroresActual === 0) soltarAlNarrar();
     // Solo al cambiar de ejercicio.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [claveEjercicio]);

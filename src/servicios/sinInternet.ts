@@ -122,14 +122,35 @@ export async function descargar({ lista, cache, traer, url, simultaneas = SIMULT
 
 let enCurso: Promise<void> | null = null;
 let pausaHasta = 0;
+let retenidaHasta = 0;
+/** Lo más que se retiene la descarga esperando a que algo empiece (si nunca avisa, sigue sola). */
+export const RETENCION_MAXIMA_MS = 15000;
 
 /** La pantalla cambió: la descarga no empieza archivos nuevos por un momento (los que van, siguen). */
 export function pausarDescarga(ms = PAUSA_AL_CAMBIAR_MS): void {
   pausaHasta = Math.max(pausaHasta, Date.now() + ms);
 }
 
+/**
+ * Retiene la descarga hasta que `soltarDescarga()` avise (por ejemplo, al tocar una lección: hasta que
+ * su primer ejercicio esté en pantalla y Mixtle narrando), o hasta `maxMs`, lo que pase primero.
+ */
+export function retenerDescarga(maxMs = RETENCION_MAXIMA_MS): void {
+  retenidaHasta = Math.max(retenidaHasta, Date.now() + maxMs);
+}
+
+export function soltarDescarga(): void {
+  retenidaHasta = 0;
+}
+
+/** Hasta cuándo no se empiezan archivos nuevos (para pruebas). */
+export function descargaDetenidaHasta(): number {
+  return Math.max(pausaHasta, retenidaHasta);
+}
+
 const esperarPausa = async () => {
-  while (Date.now() < pausaHasta) await new Promise((r) => setTimeout(r, pausaHasta - Date.now()));
+  // Se revisa seguido: soltarDescarga() puede llegar antes de que venza la retención.
+  while (Date.now() < descargaDetenidaHasta()) await new Promise((r) => setTimeout(r, Math.min(250, descargaDetenidaHasta() - Date.now())));
 };
 
 /**

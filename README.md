@@ -412,6 +412,17 @@ El "antes" es el código anterior (`c62556e`, ya con la voz de Alejo) construido
 - **La música va en streaming:** un `<audio>` conectado a una ganancia de Web Audio, así empieza sin bajarse completa y el *ducking* sigue funcionando en iPad.
 - **El *service worker* se registra cuando la primera pantalla ya está lista.** Al instalarse guarda solo lo esencial (25 archivos, 744 KB): `index.html`, el código del inicio, Grupos y Camino, el CSS y las fuentes.
 - **El resto se baja en segundo plano a la caché `mixtle-sin-internet`.** Primero el resto del código, luego imágenes, efectos, voces y música (`src/servicios/sinInternet.ts`). Va de 4 en 4, con prioridad baja y una pausa de 3 s en cada cambio de pantalla. Solo baja lo nuevo o lo que cambió, según la revisión de cada archivo en `sin-internet.json`.
+**Abrir la primera lección** (29 de octubre de 2026). En un aparato recién actualizado, tocar la primera lección tardó mucho; al reiniciar ya fue rápido. Se midió con `node scripts/medir-carga.mjs --leccion` (un grupo recién creado sembrado por la URL; del camino se toca la primera lección y se mide hasta que el primer ejercicio está en pantalla y hasta que Mixtle se oye, con el gancho `__mixtle.narrando()` que solo existe con `?e2e`), en primera visita con Slow 4G, en dos situaciones: en cuanto se llega al camino, y **con la descarga para jugar sin internet en curso** (`--con-descarga`: el caso del aparato recién actualizado). Una corrida de cada una (`docs/carga-leccion-*.json`):
+
+| Tocar la lección → | Antes | Después |
+|---|---|---|
+| Primer ejercicio en pantalla, en cuanto se llega al camino | 1,242 ms | 1,000 ms |
+| Mixtle narrando, en cuanto se llega al camino | 1,242 ms | 1,216 ms |
+| Primer ejercicio en pantalla, con la descarga en curso | 71 ms (la descarga ya había bajado el código de la lección) | 358 ms |
+| Mixtle narrando, con la descarga en curso | 1,253 ms | **1,091 ms** |
+
+Qué cambió: mientras se ve el camino se adelanta el código de la lección (con sus ejercicios); al tocar una lección se adelanta lo primero que dice Mixtle (la bienvenida y la consigna del primer ejercicio, que van en orden) y la descarga en segundo plano se retiene hasta que el primer ejercicio está en pantalla y Mixtle se oye (`src/app/pantallas/precargaLeccion.ts`, como mucho 15 s). **Lo honesto:** en estas mediciones la mejora es pequeña (Mixtle se oye ~10 % antes; la pantalla llega en 0.4 a 1 s) y la lentitud que se vio en el aparato no se reprodujo: en las cuatro situaciones abrir la lección tomó ~1.2 s. Lo más probable es que aquel aparato aún tuviera el *service worker* anterior instalándose (862 archivos uno por uno, ver arriba), o una red peor que Slow 4G. Son corridas únicas: diferencias de unos cientos de ms entre ellas son ruido de la red simulada.
+
 - **El modo facilitador muestra el estado:** "Listo para usar sin internet" o el porcentaje.
 
 **Probado sin conexión** (en local, sin limitar la red):

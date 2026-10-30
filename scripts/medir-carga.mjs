@@ -24,12 +24,23 @@ import os from 'node:os';
 import http from 'node:http';
 import net from 'node:net';
 import { preview } from 'vite';
+import { fragmento, grupoEnParada } from './demo/sembrar.mjs';
 
 const arg = (n, def) => process.argv.find((a) => a.startsWith(`--${n}=`))?.split('=').slice(1).join('=') ?? def;
 const VECES = Number(arg('veces', 3));
 const SALIDA = arg('salida', null);
 /** Solo la primera visita (la siguiente espera a que el service worker termine de instalarse). */
 const SOLO_PRIMERA = process.argv.includes('--solo-primera');
+/**
+ * Además, abrir la primera lección: con un grupo recién creado (sembrado por la URL), del camino se toca
+ * la primera lección y se mide hasta que el primer ejercicio está en pantalla y hasta que Mixtle se oye.
+ */
+const LECCION = process.argv.includes('--leccion');
+/**
+ * Con --leccion: tocar la lección cuando la descarga para jugar sin internet ya va a la mitad (como
+ * en un aparato recién actualizado, el caso que se vio lento), en lugar de en cuanto se llega al camino.
+ */
+const CON_DESCARGA = process.argv.includes('--con-descarga');
 
 /**
  * La versión local se sirve como http://mixtle.prueba:4310 (el proxy la resuelve a 127.0.0.1) y no
@@ -141,7 +152,7 @@ function crearProxy() {
 
 /** Sondas dentro de la página: cuándo se toca "¡Jugar!", cuándo aparece Grupos, cuándo suena la música. */
 const SONDAS = () => {
-  const c = (window.__carga = { inicioListo: null, jugar: null, gruposMontado: null, gruposVisible: null, musica: null });
+  const c = (window.__carga = { inicioListo: null, jugar: null, gruposMontado: null, gruposVisible: null, musica: null, tocarLeccion: null, ejercicioVisible: null, narrando: null });
   const audios = (window.__audiosCarga = []);
   const play = HTMLMediaElement.prototype.play;
   HTMLMediaElement.prototype.play = function (...a) {
@@ -155,6 +166,7 @@ const SONDAS = () => {
     'pointerdown',
     (e) => {
       if (!c.jugar && e.target.closest?.('button')?.textContent?.includes('¡Jugar!')) c.jugar = performance.now();
+      if (!c.tocarLeccion && e.target.closest?.('[data-nodo^="leccion:"]')) c.tocarLeccion = performance.now();
     },
     true,
   );
@@ -164,6 +176,8 @@ const SONDAS = () => {
     if (c.jugar && !c.gruposMontado && [...document.querySelectorAll('h1,h2')].some((h) => h.textContent.includes('¿Quién va a jugar?'))) c.gruposMontado = t;
     if (c.gruposMontado && !c.gruposVisible && !document.querySelector('.transicion-marca')) c.gruposVisible = t;
     if (c.jugar && !c.musica && musicaSonando()) c.musica = t;
+    if (c.tocarLeccion && !c.ejercicioVisible && document.querySelector('[data-pantalla="leccion"] [data-ejercicio-id]')) c.ejercicioVisible = t;
+    if (c.ejercicioVisible && !c.narrando && window.__mixtle?.narrando?.()) c.narrando = t;
     requestAnimationFrame(vigilar);
   };
   requestAnimationFrame(vigilar);
@@ -181,6 +195,28 @@ async function visita(pagina, url) {
   await pagina.getByRole('button', { name: /¡Jugar!/ }).click({ timeout: 30000, force: true });
   await pagina.waitForFunction(() => window.__carga?.gruposVisible != null, null, { timeout: 120000, polling: 50 });
   await pagina.waitForFunction(() => window.__carga?.musica != null, null, { timeout: 20000, polling: 100 }).catch(() => undefined);
+  if (LECCION) {
+    // Elegir el grupo sembrado, y en el camino tocar la primera lección (la burbuja late: se toca como una persona).
+    // Antes de cada toque se espera a que la transición de marca termine: su panel tapa los toques.
+    const sinTransicion = () => pagina.waitForFunction(() => !document.querySelector('.transicion-marca'), null, { timeout: 60000, polling: 50 });
+    await sinTransicion();
+    await pagina.locator(`button:has-text("${GRUPO_LECCION.etiqueta}")`).click({ timeout: 30000, force: true });
+    await pagina.locator('[data-pantalla="camino"]').waitFor({ timeout: 60000 });
+    await sinTransicion();
+    if (CON_DESCARGA) {
+      // Espera a que la descarga en segundo plano vaya en curso (ya guardó algo y le falta mucho).
+      const t = Date.now();
+      for (;;) {
+        const n = await pagina.evaluate(async () => (await caches.has('mixtle-sin-internet')) ? (await (await caches.open('mixtle-sin-internet')).keys()).length : 0).catch(() => 0);
+        if (n >= 20) break;
+        if (Date.now() - t > 180000) throw new Error('La descarga en segundo plano no empezó en 3 min');
+        await pagina.waitForTimeout(1000);
+      }
+      console.log(`  (descarga en curso: ${((Date.now() - t) / 1000).toFixed(0)} s después de llegar al camino)`);
+    }
+    await pagina.locator('[data-nodo^="leccion:"][data-estado="disponible"]').first().click({ timeout: 30000, force: true });
+    await pagina.waitForFunction(() => window.__carga?.narrando != null, null, { timeout: 120000, polling: 50 }).catch(() => undefined);
+  }
   const c = await pagina.evaluate(() => window.__carga);
   // Si la música no sonó, cómo quedó su <audio>. Ojo: en la primera visita, a través del proxy la
   // música no avanza nunca (se queda en el segundo 0 con todos sus datos), incluso con el proxy sin
@@ -200,8 +236,12 @@ async function visita(pagina, url) {
     jugarAGruposMs: ms(c.jugar, c.gruposMontado),
     jugarAGruposSinCubiertaMs: ms(c.jugar, c.gruposVisible),
     jugarAMusicaMs: ms(c.jugar, c.musica),
+    ...(LECCION ? { tocarLeccionAEjercicioMs: ms(c.tocarLeccion, c.ejercicioVisible), tocarLeccionANarrandoMs: ms(c.tocarLeccion, c.narrando) } : {}),
   };
 }
+
+/** El grupo recién creado con el que se abre la primera lección (lo siembra la URL en la primera visita). */
+const GRUPO_LECCION = grupoEnParada(0);
 
 /** ¿Queda poca memoria libre? (laptop de 8 GB: por debajo de ~1.5 GB se para y se guarda lo medido.) */
 const MEMORIA_MINIMA = 1.5e9;
@@ -286,7 +326,7 @@ const resultado =
     ? JSON.parse(readFileSync(SALIDA, 'utf8'))
     : { url: URL_JUEGO, red: SLOW_4G, metodo: 'proxy que limita todo el tráfico de Chrome (página y service worker)', calibracion: {}, visitas: [] };
 function guardar() {
-  const campos = ['inicioListoS', 'jugarAGruposMs', 'jugarAGruposSinCubiertaMs', 'jugarAMusicaMs'];
+  const campos = ['inicioListoS', 'jugarAGruposMs', 'jugarAGruposSinCubiertaMs', 'jugarAMusicaMs', 'tocarLeccionAEjercicioMs', 'tocarLeccionANarrandoMs'];
   resultado.mediana = {
     primera: Object.fromEntries(campos.map((m) => [m, mediana(resultado.visitas.map((v) => v.primera?.[m]))])),
     regreso: Object.fromEntries(campos.map((m) => [m, mediana(resultado.visitas.map((v) => v.regreso?.[m]))])),
@@ -326,7 +366,10 @@ try {
     await contexto.addInitScript(SONDAS);
     const p = await contexto.newPage();
     const t = Date.now();
-    const corrida = { fecha: new Date().toISOString(), cabecerasComoVercel: true, primera: await visita(p, URL_JUEGO) };
+    // Con --leccion, la URL siembra el grupo y lleva ?e2e (sin recorrido guiado, y con los ganchos de prueba).
+    const urlPrimera = LECCION ? `${URL_JUEGO}?e2e&m=${i}${fragmento([GRUPO_LECCION])}` : URL_JUEGO;
+    const urlRegreso = LECCION ? `${URL_JUEGO}?e2e&r=${i}` : URL_JUEGO;
+    const corrida = { fecha: new Date().toISOString(), cabecerasComoVercel: true, leccion: LECCION, conDescarga: CON_DESCARGA, primera: await visita(p, urlPrimera) };
     console.log(`#${resultado.visitas.length + 1} primera visita:`, JSON.stringify(corrida.primera));
     if (!SOLO_PRIMERA) {
       corrida.serviceWorkerActivoS = await esperar(servicioActivo(p), t, 'esperando a que se active el service worker');
@@ -338,7 +381,7 @@ try {
         console.log(`  listo para usar sin internet a los ${corrida.listoSinInternetS} s (${(corrida.bytesSinInternet / 1e6).toFixed(1)} MB)`);
       }
       await p.waitForTimeout(1500);
-      corrida.regreso = await visita(p, URL_JUEGO);
+      corrida.regreso = await visita(p, urlRegreso);
       console.log('  visita de regreso:', JSON.stringify(corrida.regreso));
     }
     resultado.visitas.push(corrida);

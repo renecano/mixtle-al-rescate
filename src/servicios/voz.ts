@@ -71,6 +71,15 @@ class Voz {
     this.manifiesto = m;
   }
 
+  /** ¿Se está oyendo un audio de Mixtle ahora mismo? (no cuenta la espera a que baje) */
+  get sonandoAhora(): boolean {
+    try {
+      return !!this.sonando?.playing();
+    } catch {
+      return false;
+    }
+  }
+
   /** Algunos navegadores (Safari en iPad) solo permiten hablar si la primera vez ocurre dentro de un toque. */
   desbloquear(): void {
     const s = this.sintesis();

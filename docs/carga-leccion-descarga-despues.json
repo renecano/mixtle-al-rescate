@@ -1,0 +1,48 @@
+{
+  "url": "http://mixtle.prueba:4310/",
+  "red": {
+    "latenciaMs": 562.5,
+    "bajadaBps": 180000,
+    "subidaBps": 84375
+  },
+  "metodo": "proxy que limita todo el tráfico de Chrome (página y service worker)",
+  "calibracion": {},
+  "visitas": [
+    {
+      "fecha": "2026-10-30T01:32:36.354Z",
+      "cabecerasComoVercel": true,
+      "leccion": true,
+      "conDescarga": true,
+      "primera": {
+        "musicaEstado": "ctx=running · /mixtle.prueba:4310/musica/tranquila.mp3 paused=false t=0.00 ready=4 net=1 err=-",
+        "inicioListoS": 5.9,
+        "jugarAGruposMs": 372,
+        "jugarAGruposSinCubiertaMs": 1051,
+        "jugarAMusicaMs": null,
+        "tocarLeccionAEjercicioMs": 358,
+        "tocarLeccionANarrandoMs": 1091
+      }
+    }
+  ],
+  "mediana": {
+    "primera": {
+      "inicioListoS": 5.9,
+      "jugarAGruposMs": 372,
+      "jugarAGruposSinCubiertaMs": 1051,
+      "jugarAMusicaMs": null,
+      "tocarLeccionAEjercicioMs": 358,
+      "tocarLeccionANarrandoMs": 1091
+    },
+    "regreso": {
+      "inicioListoS": null,
+      "jugarAGruposMs": null,
+      "jugarAGruposSinCubiertaMs": null,
+      "jugarAMusicaMs": null,
+      "tocarLeccionAEjercicioMs": null,
+      "tocarLeccionANarrandoMs": null
+    },
+    "serviceWorkerActivoS": null,
+    "listoSinInternetS": null
+  },
+  "actualizado": "2026-10-30T01:33:13.245Z"
+}
