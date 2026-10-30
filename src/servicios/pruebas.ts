@@ -1,5 +1,19 @@
 import { useApp } from '../app/estado/app';
+import type { IdAccesorio } from '../logica/accesorios';
+import type { IdMascota } from '../logica/grupos';
 import type Phaser from 'phaser';
+
+/** Lo de grupos y accesorios se carga solo si una prueba lo pide: no va en lo que baja antes de la primera pantalla. */
+async function modulosDeGrupos() {
+  const [{ useGrupos }, { ACCESORIOS, alternarPuesto, comprarAccesorio }, { PROGRESO_VACIO }, { COLORES_GRUPO, nuevoGrupo }, { marcarRecorridoVisto }] = await Promise.all([
+    import('../app/estado/grupos'),
+    import('../logica/accesorios'),
+    import('../logica/camino'),
+    import('../logica/grupos'),
+    import('../logica/recorridoGuiado'),
+  ]);
+  return { useGrupos, ACCESORIOS, alternarPuesto, comprarAccesorio, PROGRESO_VACIO, COLORES_GRUPO, nuevoGrupo, marcarRecorridoVisto };
+}
 import { ANIMALES } from '../data/animales';
 import { progreso, resumenDiploma } from '../logica/progreso';
 import { entradaTerminada } from '../ui/transicion';
@@ -95,6 +109,26 @@ export function exponerParaPruebas(): void {
     fps: () => Math.round(juegoActual()?.loop.actualFps ?? 0),
     /** Vuelve al camino como si se acabara de ganar esa estampa (revisar la recompensa y grabar el tráiler). */
     estampaNueva: (id: string) => useApp.getState().alCamino(id),
+    /**
+     * Un grupo con esa mascota, con todos los accesorios comprados y los indicados puestos (y el recorrido
+     * guiado ya visto), elegido y en el camino: para revisar el vestidor con cada mascota y accesorio.
+     */
+    grupoVestido: async (mascota: IdMascota, puestos: IdAccesorio[] = []) => {
+      const { useGrupos, ACCESORIOS, alternarPuesto, comprarAccesorio, PROGRESO_VACIO, COLORES_GRUPO, nuevoGrupo, marcarRecorridoVisto } = await modulosDeGrupos();
+      let progreso = marcarRecorridoVisto({ ...PROGRESO_VACIO, hojitas: 999 });
+      for (const a of ACCESORIOS) progreso = comprarAccesorio(progreso, a.id);
+      for (const id of puestos) progreso = alternarPuesto(progreso, id);
+      const grupo = { ...nuevoGrupo({ mascota, color: COLORES_GRUPO[0], etiqueta: 'Prueba' }, `prueba-${mascota}-${Date.now()}`, Date.now()), progreso };
+      useGrupos.setState((s) => ({ grupos: [...s.grupos, grupo], actualId: grupo.id }));
+      useApp.getState().alCamino();
+      return grupo.id;
+    },
+    /** Deja puestos exactamente esos accesorios en el grupo actual (los demás, guardados). */
+    ponerse: async (puestos: IdAccesorio[]) => {
+      const { useGrupos } = await modulosDeGrupos();
+      const { grupos, actualId } = useGrupos.getState();
+      useGrupos.setState({ grupos: grupos.map((g) => (g.id === actualId ? { ...g, progreso: { ...g.progreso, puestos: [...puestos] } } : g)) });
+    },
     /** true cuando ninguna pantalla visible está a media animación de entrada (para capturas). */
     quieto: () => {
       const activas = escenasActivas().filter((s) => s.scene.key !== 'Boot');

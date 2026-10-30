@@ -9,6 +9,18 @@ registrarArte(ARTE_ACCESORIOS);
 /** Proporción de cada dibujo de mascota (ancho / alto), para que los accesorios caigan en su lugar. */
 const PROPORCION = new Map(catalogoArte().map((a) => [a.clave, a.ancho / a.alto]));
 
+/** Ancho / alto del dibujo de una mascota (para darle un alto que también quepa a lo ancho). */
+export function proporcionMascota(mascota: IdMascota): number {
+  return PROPORCION.get(datosMascota(mascota).arte) ?? 1;
+}
+
+/**
+ * Cuánto sobresale un accesorio del dibujo de la mascota, como fracción del alto del dibujo (la capa
+ * de la ardilla baja por debajo de los pies, la mochila asoma por un lado). El recuadro de la vista
+ * previa deja este margen alrededor para que nada se salga de él.
+ */
+export const MARGEN_ACCESORIOS = 0.16;
+
 interface Props {
   mascota: IdMascota;
   /** Accesorios puestos (se dibujan encima; la capa, detrás). */

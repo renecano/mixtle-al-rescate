@@ -68,6 +68,8 @@ Además, el encabezado del camino ya cabe en una línea en la tablet: 80 px de a
 
 **El paliacate parecía ropa interior** (un triángulo rosa con puntitos). Se rediseñó como un paliacate mexicano anudado al cuello: rojo con el estampado blanco típico (florecitas de cuatro pétalos y puntos en retícula, orilla punteada), la banda alrededor del cuello, el nudo al frente y arriba con sus dos puntas, y el pico colgando (`src/arte/accesorios.ts`). En el ícono de la tienda se ve con el nudo arriba. Revisado en las seis mascotas y a tamaño de diploma en `?mixtle` (capturas en `docs/capturas-revision-29oct/`).
 
+**La mascota se salía de su recuadro en el vestidor** y tapaba las tarjetas de los accesorios (el cacomixtle por la cola, la ardilla), en una ventana normal de la laptop. La causa: la mascota iba con `height: 100%` dentro de una celda de *grid*, y la fila crecía al tamaño natural del dibujo (472×440 px), así que la vista previa salía siempre a tamaño natural. Ahora la vista previa es un recuadro de tamaño fijo según la pantalla y la mascota se escala para caber a lo alto y a lo ancho, con un margen del 16 % para los accesorios que sobresalen (la capa, la mochila); en pantallas anchas la vista previa va a la izquierda y los accesorios a la derecha. `e2e/vestidor.spec.ts` lo comprueba con las seis mascotas, sin accesorio, con cada uno y con todos, en 1920×1080, 1366×768, 1280×720, 1024×768, una ventana de 1280×650 y esa ventana con el zoom al 125 % (288 medidas por mascota: nada se sale del recuadro ni toca una tarjeta). Las demás pantallas con la mascota o con Mixtle grande (camino, diploma, álbum, fin de unidad) dan su alto de forma explícita y se revisaron a 1280×650 sin encimarse (capturas en la misma carpeta).
+
 ## Qué cambió en la v2
 
 | v1 | v2 |
@@ -381,6 +383,7 @@ La v3 usa técnicas de marketing y de diseño de juegos para que el juego atraig
 - Jugar las **cinco aventuras** de principio a fin (la de la unidad 1, con el facilitador y la estampa ganada).
 - Cada botón mide **al menos 64 px reales** en el camino, la lección y el inicio.
 - **Ninguna petición envía datos** (solo GET) y no hay errores en la consola.
+- **Vestidor:** la mascota cabe en su recuadro y no tapa las tarjetas, con las seis mascotas, cada accesorio y seis tamaños de pantalla (`e2e/vestidor.spec.ts`, con los ganchos `grupoVestido` y `ponerse` de `?e2e`).
 
 Para correrlos contra un sitio ya publicado, sin construir nada en local: `$env:BASE_URL="https://…"; npm run test:e2e`. En una laptop de 8 GB usan **un solo navegador a la vez**; con varios, la memoria se agotó y el sistema cerró las pruebas.
 

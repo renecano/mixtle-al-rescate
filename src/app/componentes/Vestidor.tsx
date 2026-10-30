@@ -12,8 +12,20 @@ import { useGrupos } from '../estado/grupos';
 import { decir } from '../estado/narrador';
 import { Arte } from './Arte';
 import { BotonGrande } from './BotonGrande';
-import { MascotaVestida } from './MascotaVestida';
+import { MARGEN_ACCESORIOS, MascotaVestida, proporcionMascota } from './MascotaVestida';
 import { Modal } from './Modal';
+
+/**
+ * La vista previa es un recuadro de tamaño fijo (según la pantalla) y la mascota se escala para caber
+ * en él a lo alto Y a lo ancho, con margen para los accesorios que sobresalen (capa, mochila). Antes
+ * la mascota iba con `height: 100%` en una celda de grid: la fila crecía al tamaño natural del dibujo
+ * (472×440 px) y la mascota se salía del recuadro y tapaba las tarjetas (29 de octubre de 2026).
+ */
+const FRACCION_MASCOTA = 1 - 2 * MARGEN_ACCESORIOS;
+function altoDeLaMascota(mascota: IdMascota): string {
+  const r = proporcionMascota(mascota);
+  return `min(${(FRACCION_MASCOTA * 100).toFixed(0)}cqh, calc(${(FRACCION_MASCOTA * 100).toFixed(0)}cqw / ${r.toFixed(3)}))`;
+}
 
 /**
  * Vestidor: la mascota del grupo y los accesorios que se compran con hojitas. Los precios son fijos
@@ -55,19 +67,28 @@ export function Vestidor({ grupo, alCerrar }: { grupo: Grupo; alCerrar: () => vo
   };
 
   return (
-    <Modal etiqueta={TEXTOS_APP.vestidor.titulo}>
+    <Modal etiqueta={TEXTOS_APP.vestidor.titulo} ancho="min(74rem,94vw)">
       <h2 className="font-titulo text-[clamp(1.8rem,4.5vmin,3rem)] leading-none font-extrabold text-verde">{TEXTOS_APP.vestidor.titulo}</h2>
-      <div className="flex w-full flex-wrap items-center justify-center gap-6">
-        <div ref={figura} className="grid h-[clamp(9rem,26vmin,15rem)] place-items-center">
-          <MascotaVestida mascota={grupo.mascota} puestos={puestos} className="h-full" />
+      {/* En pantallas anchas: la vista previa a la izquierda y los accesorios a la derecha (cabe sin desplazarse). */}
+      <div className="grid w-full items-start justify-items-center gap-5 lg:grid-cols-[auto_1fr]">
+        <div className="flex flex-col items-center gap-3">
+          <div
+            ref={figura}
+            className="relative grid h-[clamp(9rem,26vmin,15rem)] w-[clamp(11rem,30vmin,17rem)] place-items-center rounded-[1.5rem] bg-white/50"
+            style={{ containerType: 'size' }}
+            data-vestidor-figura
+          >
+            <div style={{ height: altoDeLaMascota(grupo.mascota) }}>
+              <MascotaVestida mascota={grupo.mascota} puestos={puestos} className="h-full" />
+            </div>
+          </div>
+          <ContadorHojitas
+            valor={hojitasDisponibles(p)}
+            etiqueta={TEXTOS_APP.vestidor.disponibles}
+            className="rounded-full border-4 border-white bg-verde px-4 py-1 text-[clamp(1.4rem,3.4vmin,2.2rem)] text-white"
+          />
         </div>
-        <ContadorHojitas
-          valor={hojitasDisponibles(p)}
-          etiqueta={TEXTOS_APP.vestidor.disponibles}
-          className="rounded-full border-4 border-white bg-verde px-4 py-1 text-[clamp(1.4rem,3.4vmin,2.2rem)] text-white"
-        />
-      </div>
-      <ul className="grid w-full grid-cols-2 gap-3 sm:grid-cols-3">
+        <ul className="grid w-full grid-cols-2 gap-3 sm:grid-cols-3">
         {ACCESORIOS.map((a) => {
           const suyo = tieneAccesorio(p, a.id);
           const puesto = puestos.includes(a.id);
@@ -106,7 +127,8 @@ export function Vestidor({ grupo, alCerrar }: { grupo: Grupo; alCerrar: () => vo
             </li>
           );
         })}
-      </ul>
+        </ul>
+      </div>
       <BotonGrande color="verde" latir className="h-16 text-[clamp(1.2rem,2.8vmin,1.8rem)]" onClick={alCerrar}>
         {TEXTOS_APP.vestidor.cerrar}
       </BotonGrande>
