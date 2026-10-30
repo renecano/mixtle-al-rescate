@@ -91,7 +91,7 @@ Eco Urban vio la versión `v3-demo` y la aprobó. Después se cerraron estos pen
 
 **Lo que quedó pendiente del cierre (30 de octubre de 2026), y cómo se corre.** Las dos tareas con navegador no se pudieron hacer ese día por la regla de memoria de la laptop de 8 GB (si hay menos de ~1.5 GB libres, no se corre): al arrancar había 1.49 a 1.52 GB libres con Edge, WhatsApp, Phone Link y la app de escritorio de Claude abiertos, y Claude Code no tiene permiso para cerrar programas. Con la laptop libre, en PowerShell:
 
-1. **"Listo para usar sin internet" con Slow 4G, en producción y con la voz recortada (~27 MB):** `node scripts/medir-carga.mjs --url=https://mixtle-al-rescate.vercel.app --veces=1 --salida=docs/carga-voz-recortada.json` (unos 8 minutos; se para solo si la memoria baja) y pasar `listoSinInternetS` a la tabla de *Carga en una red lenta*.
+1. **"Listo para usar sin internet" con Slow 4G, en producción y con la voz recortada: hecho.** René cerró las apps; al tercer intento (los dos primeros se pararon solos a 1.42 y 1.47 GB libres, con una tarea de restauración de Windows corriendo) salió **3.8 min** (ver *Carga en una red lenta*). Se corre con `node scripts/medir-carga.mjs --url=https://mixtle-al-rescate.vercel.app --veces=1 --salida=docs/carga-voz-recortada.json`.
 2. **Corrida e2e completa contra producción** (58 pruebas, ~22 min, un navegador): `$env:BASE_URL="https://mixtle-al-rescate.vercel.app"; npx playwright test --reporter=list` y anotar aquí el resultado (meta: 58 de 58) y las fallas que queden, con pantalla y tamaño.
 
 ## Qué cambió en la v2
@@ -458,13 +458,19 @@ El "antes" es el código anterior (`c62556e`, ya con la voz de Alejo) construido
 | Visita de regreso | No se midió: el *service worker* anterior no se activó en 19 min (ver abajo) | **0.35 y 0.37 s** (meta < 0.5 s); 0.72 s con la transición terminada |
 | Inicio listo (primera visita) | 5.6 s | 5.9 s |
 | *Service worker* activo, desde que se abre la página | **No se activó en 19 min.** Bajaba 862 archivos uno por uno (~18 min para 22.7 MB) | **26.8 s** en local y **27.2 s** en producción (25 archivos) |
-| "Listo para usar sin internet" | — (era parte de la instalación del *service worker*) | **4.8 min** en local y **4.1 min** en producción (831 archivos, 33.9 MB, en segundo plano). Con la voz recortada son **844 archivos, 26.9 MB** (ver *El silencio de la voz*): la nueva medición **sigue pendiente**: el 29 de octubre se detuvo sola por memoria baja tras la primera visita y el 30 de octubre volvió a detenerse al arrancar (1.49 GB libres, con la laptop ocupada por otras apps; `docs/carga-voz-recortada.json`). Por regla de tres debería quedar en ~3.3 min (26.9 de 33.9 MB en 4.1 min). Se corre con `node scripts/medir-carga.mjs --url=https://mixtle-al-rescate.vercel.app --veces=1 --salida=docs/carga-voz-recortada.json` con nada más abierto |
+| "Listo para usar sin internet" | — (era parte de la instalación del *service worker*) | **4.8 min** en local y **4.1 min** en producción (831 archivos, 33.9 MB, en segundo plano). Con la voz recortada (**844 archivos, 26.9 MB**; ver *El silencio de la voz*): **3.8 min** en producción (225.9 s, 28.2 MB pasaron por el proxy contando cabeceras y el precache; 30 de octubre de 2026, `docs/carga-voz-recortada.json`). Los dos intentos anteriores se detuvieron solos por memoria baja |
 
 **En producción** (<https://mixtle-al-rescate.vercel.app>, 29 de octubre de 2026, por el mismo proxy con Slow 4G; `docs/carga-produccion.json`):
 - "¡Jugar!" → "¿Quién va a jugar?": **0.35 s** en primera visita y **0.36 s** en la de regreso.
 - *Service worker* activo a los **27.2 s**.
 - "Listo para usar sin internet" a los **4.1 min**.
 - La calibración por el túnel HTTPS dio 4,304 ms para 475 KB: cifrar suma tiempo, pero el límite es el mismo.
+
+**En producción, con la voz recortada** (30 de octubre de 2026, versión `v3-demo` más los cierres, mismo proxy con Slow 4G, una corrida; `docs/carga-voz-recortada.json`):
+- Inicio listo a los **6.3 s** en primera visita y **2.5 s** en la de regreso.
+- "¡Jugar!" → "¿Quién va a jugar?": **0.38 s** en primera visita y **0.36 s** en la de regreso (0.76 / 0.77 s con la transición terminada); la música empezó a los 13 y 9 ms del toque.
+- *Service worker* activo a los **11.2 s** (antes 27.2 s: ahora la primera pantalla está lista antes y el precache es el mismo; una corrida, así que la diferencia puede ser en parte ruido).
+- "Listo para usar sin internet" a los **3.8 min** (antes 4.1 min con 33.9 MB): 28.2 MB por el proxy a ~1.44 Mbps, es decir, la red va casi al tope todo el tiempo.
 
 **Abrir la primera lección** (29 de octubre de 2026). En un aparato recién actualizado, tocar la primera lección tardó mucho; al reiniciar ya fue rápido. Se midió con `node scripts/medir-carga.mjs --leccion` (un grupo recién creado sembrado por la URL; del camino se toca la primera lección y se mide hasta que el primer ejercicio está en pantalla y hasta que Mixtle se oye, con el gancho `__mixtle.narrando()` que solo existe con `?e2e`), en primera visita con Slow 4G, en dos situaciones: en cuanto se llega al camino, y **con la descarga para jugar sin internet en curso** (`--con-descarga`: el caso del aparato recién actualizado). Una corrida de cada una (`docs/carga-leccion-*.json`):
 
@@ -566,7 +572,7 @@ Las laptops que hoy tienen un build anterior a este arreglo abierto necesitan un
 2. Si no, **cerrar todas las pestañas del juego** y volver a abrir el link. Con eso el *service worker* nuevo toma el control.
 3. Si sigue igual, en la pestaña del juego: **Ctrl+Shift+R** (recarga sin caché).
 4. **Nunca "Borrar datos del sitio"** desde la configuración del navegador: eso borra los grupos y su avance, que solo viven en esa laptop. Cerrar pestañas y recargar no los tocan.
-- **La primera visita necesita internet:** para que después funcione sin conexión se bajan unos 27 MB (sobre todo las voces), en segundo plano y sin estorbar el juego. Con Slow 4G, los 34 MB de antes del recorte de la voz tardaban ~4.1 min en producción; con 27 MB debería ser ~3.3 min, pendiente de medir (ver *Carga en una red lenta*). Conviene abrir el juego una vez con buena señal antes del taller y revisar en el modo facilitador que diga "Listo para usar sin internet".
+- **La primera visita necesita internet:** para que después funcione sin conexión se bajan unos 27 MB (sobre todo las voces), en segundo plano y sin estorbar el juego. Con Slow 4G, los 34 MB de antes del recorte de la voz tardaban ~4.1 min en producción; con 27 MB son **3.8 min**, medidos en producción el 30 de octubre (ver *Carga en una red lenta*). Conviene abrir el juego una vez con buena señal antes del taller y revisar en el modo facilitador que diga "Listo para usar sin internet".
 
 - **Las aventuras son minijuegos cortos** (2 a 4 minutos). Las del bosquecito y la lonchera siempre tienen el mismo número de cosas: los diplomas muestran el esfuerzo, no un puntaje para comparar grupos.
 - El diploma de la unidad 1 cuenta los residuos separados en el nivel 2 y en la lluvia de basura (12 + 5) y los animales ayudados.

@@ -1,28 +1,60 @@
 {
-  "url": "http://mixtle.prueba:4310/",
+  "url": "https://mixtle-al-rescate.vercel.app/",
   "red": {
     "latenciaMs": 562.5,
     "bajadaBps": 180000,
     "subidaBps": 84375
   },
   "metodo": "proxy que limita todo el tráfico de Chrome (página y service worker)",
-  "calibracion": {},
-  "visitas": [],
+  "calibracion": {
+    "archivoDesdeLaPagina": {
+      "bytes": 474950,
+      "ms": 3862,
+      "esperadoMs": 3201
+    }
+  },
+  "visitas": [
+    {
+      "fecha": "2026-10-30T22:48:37.186Z",
+      "cabecerasComoVercel": true,
+      "leccion": false,
+      "conDescarga": false,
+      "primera": {
+        "inicioListoS": 6.3,
+        "jugarAGruposMs": 375,
+        "jugarAGruposSinCubiertaMs": 759,
+        "jugarAMusicaMs": 13
+      },
+      "serviceWorkerActivoS": 11.2,
+      "listoSinInternetS": 225.9,
+      "bytesSinInternet": 28178029,
+      "regreso": {
+        "inicioListoS": 2.5,
+        "jugarAGruposMs": 360,
+        "jugarAGruposSinCubiertaMs": 771,
+        "jugarAMusicaMs": 9
+      }
+    }
+  ],
   "mediana": {
     "primera": {
-      "inicioListoS": null,
-      "jugarAGruposMs": null,
-      "jugarAGruposSinCubiertaMs": null,
-      "jugarAMusicaMs": null
+      "inicioListoS": 6.3,
+      "jugarAGruposMs": 375,
+      "jugarAGruposSinCubiertaMs": 759,
+      "jugarAMusicaMs": 13,
+      "tocarLeccionAEjercicioMs": null,
+      "tocarLeccionANarrandoMs": null
     },
     "regreso": {
-      "inicioListoS": null,
-      "jugarAGruposMs": null,
-      "jugarAGruposSinCubiertaMs": null,
-      "jugarAMusicaMs": null
+      "inicioListoS": 2.5,
+      "jugarAGruposMs": 360,
+      "jugarAGruposSinCubiertaMs": 771,
+      "jugarAMusicaMs": 9,
+      "tocarLeccionAEjercicioMs": null,
+      "tocarLeccionANarrandoMs": null
     },
-    "serviceWorkerActivoS": null,
-    "listoSinInternetS": null
+    "serviceWorkerActivoS": 11.2,
+    "listoSinInternetS": 225.9
   },
-  "actualizado": "2026-10-30T00:26:44.992Z"
+  "actualizado": "2026-10-30T22:52:28.251Z"
 }
