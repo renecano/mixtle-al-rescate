@@ -77,6 +77,8 @@ Eco Urban vio la versión `v3-demo` y la aprobó. Después se cerraron estos pen
 
 **El modo facilitador cabe en la tablet y "Cerrar" siempre se ve.** A 1024×768 el panel había crecido (recorrido guiado, grupo de demostración, borrar) y "Cerrar" quedaba fuera de la vista. Ahora el panel es más compacto (filas más bajas, los dos botones para enseñar el juego lado a lado) y la ventana modal tiene un **pie fijo**: lo que va ahí ("Cerrar") no se desplaza con el contenido (`Modal.tsx`, prop `pie`). Medido en la build de producción con `node scripts/capturas-revision.mjs` (capturas en `docs/capturas-revision-30oct/`): a **1920×1080, 1366×768 y 1024×768 todo cabe sin desplazarse** (0 px de sobra) y "Cerrar" queda dentro de la pantalla; en una **ventana de 1280×650** el contenido se desplaza 93 px (la fila de reiniciar y borrar) y "Cerrar" sigue a la vista; con la confirmación de borrar abierta, también. Queda una prueba unitaria (`tests/panelFacilitador.test.tsx`: "Cerrar" va en el pie, fuera de la zona que se desplaza) y una e2e en los cuatro tamaños (`e2e/facilitador.spec.ts`).
 
+**El paliacate se nota en la mariposa monarca.** Puesto, casi no se veía: el cuerpo de la mariposa es delgado (18 px de los 220 del dibujo) y el paliacate iba al 15 % del ancho. Ahora va al 34 %, como una bufanda sobre el arranque de las alas, con el nudo bajo la barbilla y el pico sobre el cuerpo (`ANCLAS_MASCOTA.monarca.paliacate` en `src/logica/accesorios.ts`); un grupo Monarca que lo compra lo ve puesto en el camino, el vestidor y el diploma. Capturas en `docs/capturas-revision-30oct/paliacate*.png` (las seis mascotas y el tamaño del diploma); una prueba fija el tamaño mínimo y la posición al cuello (`tests/recompensas.test.tsx`).
+
 ## Qué cambió en la v2
 
 | v1 | v2 |

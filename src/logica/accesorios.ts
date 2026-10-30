@@ -52,7 +52,9 @@ export const ANCLAS_MASCOTA: Record<IdMascota, Record<IdAccesorio, Ancla>> = {
     flor: { x: 0.57, y: 0.26, w: 0.09 },
     gorra: { x: 0.5, y: 0.29, w: 0.2 },
     lentes: { x: 0.5, y: 0.33, w: 0.18 },
-    paliacate: { x: 0.5, y: 0.42, w: 0.15 },
+    // El cuerpo de la mariposa es delgado (18 px de 220): el paliacate va grande, como una bufanda sobre el
+    // arranque de las alas, con el nudo bajo la barbilla; chico (w 0.15) casi no se veía (30 de octubre de 2026).
+    paliacate: { x: 0.5, y: 0.435, w: 0.34 },
     mochila: { x: 0.5, y: 0.6, w: 0.13 },
     capa: { x: 0.5, y: 0.41, w: 0.17, encima: true },
   },

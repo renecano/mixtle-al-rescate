@@ -83,6 +83,14 @@ describe('accesorios de la mascota', () => {
     for (const m of MASCOTAS) for (const a of ACCESORIOS) expect(ANCLAS_MASCOTA[m.id][a.id]).toBeDefined();
   });
 
+  it('el paliacate de la monarca se nota: mide al menos un tercio del ancho del dibujo (el cuerpo de la mariposa es delgado)', () => {
+    // Con w 0.15 casi no se veía puesto (revisión del 30 de octubre de 2026): un grupo Monarca que lo compra debe verlo.
+    expect(ANCLAS_MASCOTA.monarca.paliacate.w).toBeGreaterThanOrEqual(0.33);
+    // Y va al cuello: bajo la cabeza (centro en y=60 de 180, radio 15) y arriba de la mitad del cuerpo.
+    expect(ANCLAS_MASCOTA.monarca.paliacate.y).toBeGreaterThan(75 / 180 - 0.02);
+    expect(ANCLAS_MASCOTA.monarca.paliacate.y).toBeLessThan(0.5);
+  });
+
   it('se compra con hojitas suficientes y se pone sola', () => {
     let p = conHojitas(40);
     expect(faltanPara(p, 'mochila')).toBe(20);
