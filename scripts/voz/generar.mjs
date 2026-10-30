@@ -13,7 +13,7 @@ import { existsSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync
 import { join } from 'node:path';
 import { runnerImport } from 'vite';
 import { MODELOS, RAIZ, pythonDelEntorno, aplicadorDePronunciacion } from './comun.mjs';
-import { esTextoCorto, firmas } from './firmas.mjs';
+import { configCorto, esTextoCorto, firmas, nombreDeSalida } from './firmas.mjs';
 import { escribirCsv } from './lista.mjs';
 
 const CARPETA_VOZ = join(RAIZ, 'public', 'voz');
@@ -51,15 +51,20 @@ const huella = (ruta) => `humana:${createHash('sha1').update(readFileSync(ruta))
 
 const frases = todasLasFrases();
 const manifiesto = existsSync(RUTA_MANIFIESTO) ? JSON.parse(readFileSync(RUTA_MANIFIESTO, 'utf8')) : { version: 1, frases: {} };
+// Cada trabajo lleva dos nombres: `clave` (hash del texto: manifiesto, grabaciones humanas y originales
+// de Azure) y `archivo` (el mp3 publicado, con la configuración de voz en el nombre; ver firmas.mjs).
+const sufijoConfig = configCorto(config, cyrb53);
 const trabajos = [];
 for (const f of frases) {
-  const actual = manifiesto.frases[f.archivo];
-  const grabacion = grabacionHumana(f.archivo);
+  const clave = f.archivo;
+  const actual = manifiesto.frases[clave];
+  const grabacion = grabacionHumana(clave);
   const textoVoz = aplicarPronunciacion(f.texto);
   const { firma, firmaAzure } = grabacion ? { firma: huella(grabacion) } : firmaDe(textoVoz);
-  const vigente = actual && actual.config === firma && actual.texto === f.texto && existsSync(join(CARPETA_VOZ, f.archivo));
+  const archivo = nombreDeSalida(clave, grabacion ? firma.replace('humana:', 'h') : sufijoConfig);
+  const vigente = actual && actual.config === firma && actual.texto === f.texto && actual.archivo === archivo && existsSync(join(CARPETA_VOZ, archivo));
   if (vigente) continue;
-  trabajos.push(grabacion ? { archivo: f.archivo, texto: f.texto, grabacion, firma } : { archivo: f.archivo, texto: textoVoz, original: f.texto, firma, firmaAzure });
+  trabajos.push(grabacion ? { clave, archivo, texto: f.texto, grabacion, firma } : { clave, archivo, texto: textoVoz, original: f.texto, firma, firmaAzure });
 }
 
 console.log(`${frases.length} frases; por generar: ${trabajos.length}${trabajos.length ? '' : ' (todo al día)'}`);
@@ -94,7 +99,7 @@ if (trabajos.length) {
     if (!linea.startsWith('LISTO ')) continue;
     const { archivo, ms } = JSON.parse(linea.slice(6));
     const t = porArchivo.get(archivo);
-    manifiesto.frases[archivo] = { texto: t.original ?? t.texto, ms, config: t.firma };
+    manifiesto.frases[t.clave] = { texto: t.original ?? t.texto, ms, config: t.firma, archivo: t.archivo };
   }
   guardarManifiesto();
   if (r.status !== 0) {
@@ -103,17 +108,18 @@ if (trabajos.length) {
   }
 }
 
-// Quita del manifiesto (y del disco) las frases que el juego ya no usa.
+// Quita del manifiesto las frases que el juego ya no usa, y del disco los mp3 que ningún manifiesto
+// nombra (los de frases quitadas y los de una voz o normalización anterior, que tienen otro nombre).
 const enUso = new Set(frases.map((f) => f.archivo));
 let quitadas = 0;
-for (const archivo of Object.keys(manifiesto.frases)) {
-  if (enUso.has(archivo)) continue;
-  delete manifiesto.frases[archivo];
-  rmSync(join(CARPETA_VOZ, archivo), { force: true });
+for (const clave of Object.keys(manifiesto.frases)) {
+  if (enUso.has(clave)) continue;
+  delete manifiesto.frases[clave];
   quitadas += 1;
 }
+const publicados = new Set(Object.entries(manifiesto.frases).map(([clave, e]) => e.archivo ?? clave));
 for (const archivo of existsSync(CARPETA_VOZ) ? readdirSync(CARPETA_VOZ) : []) {
-  if (archivo.endsWith('.mp3') && !enUso.has(archivo)) {
+  if (archivo.endsWith('.mp3') && !publicados.has(archivo)) {
     rmSync(join(CARPETA_VOZ, archivo));
     quitadas += 1;
   }
@@ -132,12 +138,13 @@ console.log(`Listo. ${quitadas ? `${quitadas} audios que ya no se usan se borrar
 async function pedirAAzure(todos) {
   const carpeta = join(MODELOS, 'azure');
   mkdirSync(carpeta, { recursive: true });
-  const rutaFirma = (t) => join(carpeta, `${t.archivo}.firma`);
+  // Los originales de Azure se guardan por clave (hash del texto): no cambian con la normalización.
+  const rutaFirma = (t) => join(carpeta, `${t.clave}.firma`);
   const { sonidosSueltos } = await import('./sonidoSuelto.mjs');
   const pendientes = [];
   let reusados = 0;
   for (const t of todos) {
-    const ruta = join(carpeta, t.archivo);
+    const ruta = join(carpeta, t.clave);
     const guardado = existsSync(ruta) && existsSync(rutaFirma(t)) && readFileSync(rutaFirma(t), 'utf8') === t.firmaAzure;
     if (guardado && !(esTextoCorto(t.texto) && (await sonidosSueltos(ruta)) > 0)) {
       t.grabacion = ruta;
@@ -170,7 +177,7 @@ async function pedirAAzure(todos) {
   let gastados = 0;
   let retomas = 0;
   for (const [i, t] of pendientes.entries()) {
-    const ruta = join(carpeta, t.archivo);
+    const ruta = join(carpeta, t.clave);
     // Cada toma se mide; la primera limpia se queda. Si ninguna lo está, la que tenga menos sonidos sueltos.
     let mejor = t.tomaGuardada ? { mp3: readFileSync(t.tomaGuardada.ruta), sueltos: t.tomaGuardada.sueltos } : null;
     const tomas = esTextoCorto(t.texto) ? TOMAS_MAXIMAS : 1;

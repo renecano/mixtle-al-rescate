@@ -69,7 +69,7 @@ describe('toda frase narrada tiene su audio', () => {
     expect(entrada, `Falta audio de "${f.texto}" → npm run voz:generar`).toBeDefined();
     expect(entrada!.texto).toBe(f.texto);
     expect(entrada!.ms).toBeGreaterThan(200);
-    expect(existsSync(join(CARPETA, f.archivo))).toBe(true);
+    expect(existsSync(join(CARPETA, entrada!.archivo ?? f.archivo))).toBe(true);
   });
 
   it('el manifiesto no guarda audios que ya no se usan', () => {

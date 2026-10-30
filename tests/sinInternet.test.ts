@@ -182,9 +182,10 @@ describe('la lista para jugar sin internet (sin-internet.json)', () => {
   it('la lista del juego tiene todas las voces del manifiesto, los 22 efectos y las 3 pistas', async () => {
     const lista = listaSinInternet(join(process.cwd(), 'public'));
     const { readFileSync } = await import('node:fs');
-    const manifiesto = JSON.parse(readFileSync(join(process.cwd(), 'public', 'voz', 'manifiesto.json'), 'utf8')) as { frases: Record<string, unknown> };
+    const manifiesto = JSON.parse(readFileSync(join(process.cwd(), 'public', 'voz', 'manifiesto.json'), 'utf8')) as { frases: Record<string, { archivo?: string }> };
     const rutas = new Set(lista.map((a) => a.ruta));
-    for (const archivo of Object.keys(manifiesto.frases)) expect(rutas).toContain(`voz/${archivo}`);
+    // Cada frase se baja con el nombre que lleva la configuración de voz (ver tests/vozArchivos.test.ts).
+    for (const [clave, e] of Object.entries(manifiesto.frases)) expect(rutas).toContain(`voz/${e.archivo ?? clave}`);
     expect(lista.filter((a) => a.ruta.startsWith('sonidos/'))).toHaveLength(22);
     expect(lista.filter((a) => a.ruta.startsWith('musica/'))).toHaveLength(3);
     // Calcula la huella de ~36 MB de audio: tarda más que el límite normal de una prueba.
