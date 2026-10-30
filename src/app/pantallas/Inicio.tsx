@@ -62,7 +62,7 @@ function sinMovimiento(): boolean {
  */
 /** ¿El navegador aún no deja sonar? (el contexto de audio parado, o la música activada sin sonar) */
 function audioSigueBloqueado(): boolean {
-  return !audioListo() || (estadoMusica.estaActivo && !musica.sonandoAhora);
+  return !audioListo() || (estadoMusica.estaActivo && !musica.seOye);
 }
 
 export function Inicio() {
@@ -78,17 +78,14 @@ export function Inicio() {
   const hayVersionNueva = useActualizacion((s) => s.hayNueva || s.esperando);
 
   useEffect(() => musica.poner('tranquila'), []);
-  // Si el navegador ya deja sonar (visita de regreso), la música arranca sola en un momento: el indicio se va.
+  // Si el navegador ya deja sonar (visita de regreso), la música arranca sola en un momento: el indicio
+  // se va solo cuando de verdad se oye (el tiempo de reproducción avanza), no cuando play() resolvió.
   useEffect(() => {
     if (!audioBloqueado) return;
     const t = window.setInterval(() => {
       if (!audioSigueBloqueado()) setAudioBloqueado(false);
     }, 300);
-    const fin = window.setTimeout(() => window.clearInterval(t), 4000);
-    return () => {
-      window.clearInterval(t);
-      window.clearTimeout(fin);
-    };
+    return () => window.clearInterval(t);
   }, [audioBloqueado]);
 
   // Mientras se ve el inicio, se adelanta lo que hace falta para que "¡Jugar!" no espere a la red: el

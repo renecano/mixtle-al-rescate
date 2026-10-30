@@ -10,6 +10,7 @@ import { esMomentoSeguro, vigilarActualizaciones } from '../servicios/actualizac
 import { enDireccionAnterior } from '../servicios/mudanza';
 import { mudarse } from '../servicios/mudarse';
 import { vigilarAudio } from '../servicios/audio/motor';
+import { activarDepuracionDeAudio, registrarAudio } from '../servicios/audio/registro';
 import { pausarDescarga } from '../servicios/sinInternet';
 import { vigilarRendimiento } from '../servicios/rendimiento';
 import { exponerParaPruebas } from '../servicios/pruebas';
@@ -26,6 +27,8 @@ if (mudando) {
 }
 
 exponerParaPruebas();
+// ?depurar-audio: registro de lo que pasa con la música y la voz (consola y recuadro en pantalla).
+if (new URLSearchParams(location.search).has('depurar-audio')) activarDepuracionDeAudio();
 // Si este equipo no sostiene las animaciones, se calman solas (ver servicios/rendimiento.ts).
 if (!mudando) vigilarRendimiento(() => useApp.getState().suavizarPorRendimiento());
 if (!mudando) void voz.cargarManifiesto();
@@ -46,7 +49,11 @@ document.addEventListener('keydown', () => sonido.desbloquear(), { capture: true
 // media lección ni aventura. El avance está en IndexedDB. Ver servicios/actualizacion.ts.
 vigilarActualizaciones(() => {
   void voz.cargarManifiesto();
-  const recargar = () => window.location.reload();
+  registrarAudio('versión nueva: tomó el control (se recargará en una pantalla segura)');
+  const recargar = () => {
+    registrarAudio('recarga por versión nueva');
+    window.location.reload();
+  };
   if (esMomentoSeguro(useApp.getState().pantalla)) return recargar();
   const dejar = useApp.subscribe((s) => {
     if (!esMomentoSeguro(s.pantalla)) return;

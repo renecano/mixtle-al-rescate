@@ -1,3 +1,5 @@
+import { registrarAudio } from './registro';
+
 /**
  * Música de fondo: tres pistas CC0 (tranquila, lecciones y un jingle de celebración).
  * - Volumen bajo por defecto y "ducking": baja mientras habla Mixtle y sube suave al terminar.
@@ -26,7 +28,16 @@ export interface Reproductor {
   fijarVolumen(volumen: number): void;
   playing(): boolean;
   alTerminar(cb: () => void): void;
+  /** ¿De verdad se oye? (el tiempo de reproducción avanza; que play() resolviera no basta) */
+  avanza?(): boolean;
+  /** Pausada o atorada sin que el juego lo pidiera (el navegador, un tropiezo del streaming…). */
+  detenidaSinQuerer?(): boolean;
+  /** Vuelve a pedir que suene (recarga la fuente si quedó en error). */
+  reanudar?(): void;
 }
+
+/** Cada cuánto la música se revisa a sí misma por si algo la detuvo sin que nadie lo pidiera. */
+export const VIGILANCIA_MS = 5000;
 
 export type FabricaReproductor = (pista: NombrePista, enBucle: boolean) => Reproductor;
 
@@ -62,29 +73,63 @@ export class Musica {
     return this.arrancoEn === null || !this.sonandoAhora ? null : ahora - this.arrancoEn;
   }
 
-  /** ¿La pista de fondo se está oyendo ahora mismo? */
+  /** ¿La pista de fondo se está oyendo ahora mismo? (play() pedido y no en pausa) */
   get sonandoAhora(): boolean {
     return this.desbloqueada && !!this.suena && !!this.reproductores.get(this.suena)?.playing();
   }
 
+  /** ¿De verdad se oye? El tiempo de reproducción avanza (si el reproductor sabe decirlo). */
+  get seOye(): boolean {
+    if (!this.sonandoAhora) return false;
+    const r = this.reproductores.get(this.suena!)!;
+    return r.avanza ? r.avanza() : true;
+  }
+
   /**
    * Llamar en cada toque. Si la pista debería sonar y no suena (el navegador rechazó el primer
-   * intento por falta de un toque), se vuelve a pedir dentro de este toque.
+   * intento por falta de un toque, o algo la detuvo después), se vuelve a pedir dentro de este toque.
    */
   asegurar(): void {
     if (!this.desbloqueada || !this.activa() || !this.suena) return;
     const r = this.reproductores.get(this.suena);
-    if (!r || r.playing()) return;
-    r.play();
+    if (!r) return;
+    // Si está en pausa (el navegador rechazó play()), o "sonando" sin que el tiempo avance desde hace
+    // un rato (play() resolvió pero no se oye), se vuelve a pedir dentro de este toque. Recién pedida
+    // (el tiempo aún no empieza a correr) no cuenta: volver a pedirla abortaría la petición en curso.
+    if (r.playing() && !r.detenidaSinQuerer?.()) return;
+    registrarAudio('música: asegurar (toque)', { pista: this.suena, playing: r.playing() });
+    if (r.playing() && r.reanudar) r.reanudar();
+    else r.play();
     r.fade(0, this.volumenObjetivo, VOLUMEN_MUSICA.fundidoMs);
     this.arrancoEn = Date.now();
   }
+
+  /**
+   * Vigilancia: si la música está activada y algo la detuvo sin que nadie lo pidiera (el navegador
+   * la pausó, el streaming se atoró), se vuelve a pedir. Si el navegador lo rechaza por falta de un
+   * toque, el siguiente toque lo resuelve (`asegurar`).
+   */
+  vigilar(): void {
+    if (this.vigilancia) return;
+    this.vigilancia = setInterval(() => {
+      if (!this.activa() || !this.suena) return;
+      const r = this.reproductores.get(this.suena);
+      if (!r?.detenidaSinQuerer?.()) return;
+      registrarAudio('música: detenida sin querer, se reanuda', { pista: this.suena, playing: r.playing() });
+      if (r.reanudar) r.reanudar();
+      else r.play();
+      r.fade(r.volume(), this.volumenObjetivo, VOLUMEN_MUSICA.subirMs);
+    }, VIGILANCIA_MS);
+  }
+  private vigilancia: ReturnType<typeof setInterval> | null = null;
 
   /** Llamar tras el primer toque del usuario. */
   desbloquear(): void {
     if (this.desbloqueada) return;
     this.desbloqueada = true;
+    registrarAudio('música: desbloqueada', { pedida: this.deseada });
     this.aplicar();
+    this.vigilar();
   }
 
   /** Pide una pista de fondo; suena en cuanto se pueda (desbloqueo y música encendida). */
@@ -102,14 +147,20 @@ export class Musica {
   /** Mixtle empieza a hablar: la música baja. Se puede anidar. */
   agachar(): void {
     this.agachadores += 1;
-    if (this.agachadores === 1) this.irA(VOLUMEN_MUSICA.agachada, VOLUMEN_MUSICA.agacharMs);
+    if (this.agachadores === 1) {
+      registrarAudio('música: agachar (habla Mixtle)');
+      this.irA(VOLUMEN_MUSICA.agachada, VOLUMEN_MUSICA.agacharMs);
+    }
   }
 
   /** Mixtle terminó de hablar: la música sube suave. */
   levantar(): void {
     if (this.agachadores === 0) return;
     this.agachadores -= 1;
-    if (this.agachadores === 0) this.irA(VOLUMEN_MUSICA.base, VOLUMEN_MUSICA.subirMs);
+    if (this.agachadores === 0) {
+      registrarAudio('música: levantar (terminó de hablar)');
+      this.irA(VOLUMEN_MUSICA.base, VOLUMEN_MUSICA.subirMs);
+    }
   }
 
   /** Jingle de celebración, una vez, con la música de fondo agachada mientras suena. */
@@ -148,6 +199,7 @@ export class Musica {
       }, VOLUMEN_MUSICA.fundidoMs + 50);
     }
     this.suena = this.deseada;
+    registrarAudio('música: cambio de pista', { de: anterior ? 'otra' : null, a: this.suena });
     if (!this.suena) return;
     const nueva = this.reproductor(this.suena, true);
     if (!nueva.playing()) nueva.play();
@@ -162,6 +214,7 @@ export class Musica {
   }
 
   private silenciarTodo(): void {
+    registrarAudio('música: apagada con su botón');
     for (const r of this.reproductores.values()) r.stop();
     this.suena = null;
     this.arrancoEn = null;

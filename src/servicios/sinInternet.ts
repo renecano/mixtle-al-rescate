@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { registrarAudio } from './audio/registro';
 
 /*
  * Descarga para jugar sin internet: el código que no va en el precache (lecciones, aventuras, Phaser),
@@ -175,7 +176,10 @@ export function iniciarDescargaSinInternet(): Promise<void> {
         // Prioridad baja: si a la vez se pide algo para jugar, eso va primero.
         traer: (u) => fetch(u, { cache: 'no-cache', priority: 'low' } as RequestInit),
         url: (ruta) => new URL(ruta, base).href,
-        alAvanzar: (e) => useDescargaSinInternet.setState(e),
+        alAvanzar: (e) => {
+          if (e.fase !== useDescargaSinInternet.getState().fase) registrarAudio('descarga sin internet', { fase: e.fase, porcentaje: porcentaje(e) });
+          useDescargaSinInternet.setState(e);
+        },
         esperarTurno: esperarPausa,
       });
     } catch {

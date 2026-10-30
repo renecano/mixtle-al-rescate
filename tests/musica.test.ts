@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { Musica, VOLUMEN_MUSICA, type NombrePista, type Reproductor } from '../src/servicios/audio/musica';
+import { Musica, VIGILANCIA_MS, VOLUMEN_MUSICA, type NombrePista, type Reproductor } from '../src/servicios/audio/musica';
 
 /** Reproductor de mentira: registra lo que la música le pide (volumen, fundidos, play/stop). */
 class ReproductorFalso implements Reproductor {
@@ -33,6 +33,22 @@ class ReproductorFalso implements Reproductor {
   }
   alTerminar(cb: () => void) {
     this.finales.push(cb);
+  }
+  /** Como el <audio> real: "sonando" no es lo mismo que oírse (el tiempo debe avanzar). */
+  tiempoAvanza = true;
+  detenida = false;
+  reanudaciones = 0;
+  avanza() {
+    return this.sonando && this.tiempoAvanza;
+  }
+  detenidaSinQuerer() {
+    return this.detenida;
+  }
+  reanudar() {
+    this.reanudaciones++;
+    this.detenida = false;
+    this.sonando = true;
+    this.tiempoAvanza = true;
   }
   terminar() {
     this.sonando = false;
@@ -105,6 +121,59 @@ describe('el botón de música cuando el navegador aún la bloquea', () => {
     encendida = true;
     musica.cambioDeInterruptor();
     expect(musica.empezoHace(Date.now())).toBe(0);
+  });
+});
+
+describe('la música debe sonar y seguir sonando', () => {
+  it('"se oye" solo cuando el tiempo de reproducción avanza, no cuando play() resolvió', () => {
+    musica.poner('tranquila');
+    musica.desbloquear();
+    const r = creados.get('tranquila')!;
+    expect(musica.sonandoAhora).toBe(true);
+    expect(musica.seOye).toBe(true);
+    r.tiempoAvanza = false;
+    expect(musica.sonandoAhora).toBe(true);
+    expect(musica.seOye).toBe(false);
+  });
+
+  it('si algo la detuvo sin que nadie lo pidiera, el siguiente toque la reanuda', () => {
+    musica.poner('tranquila');
+    musica.desbloquear();
+    const r = creados.get('tranquila')!;
+    r.detenida = true;
+    r.tiempoAvanza = false;
+    musica.asegurar();
+    expect(r.reanudaciones).toBe(1);
+    expect(musica.seOye).toBe(true);
+    // Sonando bien, un toque no la reinicia.
+    musica.asegurar();
+    expect(r.reanudaciones).toBe(1);
+  });
+
+  it('recién pedida (el tiempo aún no corre) un toque no la vuelve a pedir: abortaría la petición en curso', () => {
+    musica.poner('tranquila');
+    musica.desbloquear();
+    const r = creados.get('tranquila')!;
+    r.tiempoAvanza = false;
+    // Dos toques seguidos (el del juego y el de la pantalla) en el mismo instante.
+    musica.asegurar();
+    musica.asegurar();
+    expect(r.reanudaciones).toBe(0);
+    expect(musica.seOye).toBe(false);
+  });
+
+  it('y sin toque, la vigilancia la reanuda sola cada 5 s (nunca si la apagó su botón)', () => {
+    musica.poner('tranquila');
+    musica.desbloquear();
+    const r = creados.get('tranquila')!;
+    r.detenida = true;
+    vi.advanceTimersByTime(VIGILANCIA_MS);
+    expect(r.reanudaciones).toBe(1);
+    encendida = false;
+    musica.cambioDeInterruptor();
+    r.detenida = true;
+    vi.advanceTimersByTime(VIGILANCIA_MS * 2);
+    expect(r.reanudaciones).toBe(1);
   });
 });
 
