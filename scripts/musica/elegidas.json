@@ -1,5 +1,5 @@
 {
-  "$comentario": "Pistas elegidas por René en docs/muestras-musica. Para cambiar una, pon otro id de candidatas.json y corre npm run musica:instalar.",
+  "$comentario": "Pistas elegidas por el equipo entre las muestras de npm run musica:muestras. Para cambiar una, pon otro id de candidatas.json y corre npm run musica:instalar.",
   "tranquila": "happy-lullaby",
   "lecciones": "childrens-march",
   "celebracion": "cozy-clear"

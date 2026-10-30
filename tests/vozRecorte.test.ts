@@ -6,7 +6,7 @@ import { todasLasFrases } from '../src/voz/frases';
 import { numeroEnPalabras, textoDeLocucion, textoHablado } from '../src/voz/locucion';
 
 /*
- * Lo que corrige el silencio de la voz (revisión de René: 32 % de silencio en 16 audios al azar):
+ * Lo que corrige el silencio de la voz (revisión a oído: 32 % de silencio en 16 audios al azar):
  * las frases con dos puntos se reescriben de corrido, y la normalización recorta el silencio sin
  * volver a pedir nada a Azure.
  */

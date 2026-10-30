@@ -27,7 +27,7 @@
     }
   },
   "pronunciacion": {
-    "$comentario": "Solo cambia cómo se pronuncia en el audio; el texto en pantalla no cambia. Clave: palabra escrita; valor: cómo debe leerla la voz. \"Mixtle\" suena \"miks-tle\" (con \"ks\", como \"mix\"), igual que la segunda parte de \"cacomixtle\" (confirmado por René). Kokoro es-419: /mˈikstle/ y /kˌakomˈikstle/.",
+    "$comentario": "Solo cambia cómo se pronuncia en el audio; el texto en pantalla no cambia. Clave: palabra escrita; valor: cómo debe leerla la voz. \"Mixtle\" suena \"miks-tle\" (con \"ks\", como \"mix\"), igual que la segunda parte de \"cacomixtle\" (confirmado con el equipo). Kokoro es-419: /mˈikstle/ y /kˌakomˈikstle/.",
     "Mixtle": "Míkstle",
     "cacomixtle": "cacomíkstle",
     "cacomixtles": "cacomíkstles"

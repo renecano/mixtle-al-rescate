@@ -1,4 +1,4 @@
-// Reproduce en Chrome REAL con ventana (no headless) lo que reportó René el 29 de octubre de 2026: la
+// Reproduce en Chrome REAL con ventana (no headless) lo que se observó el 29 de octubre de 2026: la
 // música que se detenía sola. Modos (argv[2]): "permitido" (Chrome deja el autoplay, como con historial
 // de uso: --autoplay-policy=no-user-gesture-required) o "bloqueado" (la política real de Chrome).
 // Abre el inicio con ?depurar-audio, observa (con "permitido", 15 s sin tocar), toca el fondo, sigue

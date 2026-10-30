@@ -2,7 +2,7 @@
 export const ANCHO = 1920;
 export const ALTO = 1080;
 
-/** Paleta base de Eco Urban (prompt) y tonos de apoyo. */
+/** Paleta base pedida por Eco Urban y tonos de apoyo. */
 export const PALETA = {
   verde: '#1F6B4A',
   azul: '#2459A6',

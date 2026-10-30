@@ -6,8 +6,8 @@ import { activarLaQueEspera, opcionesDeRegistro } from '../src/servicios/arranqu
 
 /*
  * Una versión nueva publicada debe tomar el control sola. Antes no pasaba: el service worker nuevo se
- * quedaba "esperando" y la laptop seguía con la versión vieja hasta cerrar todas las pestañas (René lo
- * vio con la voz anterior). El escenario completo, con dos builds reales, lo reproduce
+ * quedaba "esperando" y la laptop seguía con la versión vieja hasta cerrar todas las pestañas (se vio
+ * con la voz anterior). El escenario completo, con dos builds reales, lo reproduce
  * scripts/probar-actualizacion.mjs; aquí, las dos piezas que lo hacen posible.
  */
 

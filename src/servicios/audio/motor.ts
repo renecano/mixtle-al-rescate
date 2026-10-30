@@ -125,8 +125,8 @@ let ctxMusica: AudioContext | null = null;
  * tarjeta de sonido no va a 44.1 kHz (las laptops con Windows suelen ir a 48 kHz), Howler cierra su
  * AudioContext y crea otro (`_unlockAudio` → `unload`). La música iba enganchada al contexto de Howler
  * como <audio> + MediaElementSource: si ya se había creado (Chrome con autoplay permitido), quedaba
- * muda para siempre en un contexto cerrado, con play() "aceptado" y el tiempo en 0. Lo reportó René;
- * se vio en Chrome real con ?depurar-audio. Además Howler suspende su contexto a los 30 s sin Howls,
+ * muda para siempre en un contexto cerrado, con play() "aceptado" y el tiempo en 0. Se observó en una laptop
+ * con Windows y se reprodujo en Chrome real con ?depurar-audio. Además Howler suspende su contexto a los 30 s sin Howls,
  * y la música se callaba con él. Con contexto propio, nada de eso la toca.
  */
 function contextoMusica(): AudioContext | null {

@@ -8,7 +8,7 @@ import { abrir, esperarPantalla, tocarBoton } from './ayudas';
  * cualquier accesorio puesto) y nunca se encima con las tarjetas de los accesorios. Se revisa con las
  * seis mascotas, sin accesorio, con cada uno y con todos, en los tamaños de pantalla de las laptops y
  * tablets del taller, una ventana no maximizada y el zoom del navegador al 125 % (1280×650 al 125 %
- * son 1024×520 px de CSS). René lo vio fallar con el cacomixtle y la ardilla (29 de octubre de 2026).
+ * son 1024×520 px de CSS). Se vio fallar con el cacomixtle y la ardilla (29 de octubre de 2026).
  */
 
 const TAMANOS: [number, number, string][] = [
