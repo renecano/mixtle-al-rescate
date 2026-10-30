@@ -19,6 +19,8 @@ const siguiente = {
   proveedor: elegido,
   voz: nuevo.voz,
   ajustes: nuevo.ajustes,
+  // La normalización (recorte de silencio) y la pronunciación son de todos los proveedores: se quedan.
+  normalizacion: config.normalizacion,
   alternos: { ...resto, [config.proveedor]: { voz: config.voz, ajustes: config.ajustes } },
   pronunciacion: config.pronunciacion,
 };

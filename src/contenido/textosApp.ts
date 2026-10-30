@@ -151,7 +151,7 @@ export const TEXTOS_APP = {
     /** Lo que dice Mixtle en cada paso (narrado). */
     dice: {
       hola: '¡Hola! Les enseño para qué sirve cada cosa del juego. Si ya lo saben, toquen «Saltar».',
-      siguienteLeccion: 'Este es su camino. Lo que brilla es su siguiente parada: tóquenla para jugar.',
+      siguienteLeccion: 'Este es su camino. Lo que brilla es su siguiente parada. ¡Tóquenla para jugar!',
       parque: 'Este es su parque. Cada lección que terminan lo llena de vida.',
       hojitas: 'Aquí se juntan sus hojitas. Las ganan al jugar.',
       dias: 'Aquí se cuentan los días que han jugado.',

@@ -1,0 +1,65 @@
+{
+ "comunes": 673,
+ "antes": {
+  "duracionS": 2464.1,
+  "silencioS": 622.1,
+  "fuerteS": 1606.2,
+  "porcentajeSilencio": 25.2,
+  "mb": 19.87
+ },
+ "despues": {
+  "duracionS": 2165.3,
+  "silencioS": 288.4,
+  "fuerteS": 1611.7,
+  "porcentajeSilencio": 13.3,
+  "mb": 17.48
+ },
+ "fuerte": {
+  "maximaPerdidaMs": 634,
+  "conMasDe50ms": 4,
+  "conMasDe20ms": 16,
+  "ganaronMas": 92
+ },
+ "peoresPerdidasMs": [
+  {
+   "ms": 634,
+   "texto": "once"
+  },
+  {
+   "ms": 281,
+   "texto": "tres"
+  },
+  {
+   "ms": 154,
+   "texto": "sesenta y un"
+  },
+  {
+   "ms": 87,
+   "texto": "Es de metal y tiene forma de vaso."
+  },
+  {
+   "ms": 47,
+   "texto": "Vamos a repasar uno que costó trabajo."
+  },
+  {
+   "ms": 47,
+   "texto": "cincuenta y ocho"
+  },
+  {
+   "ms": 41,
+   "texto": "sesenta"
+  },
+  {
+   "ms": 36,
+   "texto": "¡Un cofre! Trae"
+  },
+  {
+   "ms": 35,
+   "texto": "¿Compran la flor de cempasúchil por veinticinco hojitas?"
+  },
+  {
+   "ms": 34,
+   "texto": "¿Está bien perseguir a los animales para tocarlos?"
+  }
+ ]
+}

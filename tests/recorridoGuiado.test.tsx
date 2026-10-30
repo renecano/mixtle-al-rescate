@@ -66,7 +66,8 @@ describe('recorrido guiado', () => {
     expect(screen.getByRole('dialog', { name: TEXTOS_APP.recorrido.etiqueta })).toBeInTheDocument();
     expect(pasoActual()).toBe('hola');
     expect(contador()).toBe(`1 de ${PASOS_RECORRIDO.length}`);
-    expect(subtitulo()).toBe(dice.hola);
+    // Mixtle habla en un efecto, después de que la ventana aparece: se espera a que lo diga.
+    await waitFor(() => expect(subtitulo()).toBe(dice.hola));
 
     fireEvent.click(screen.getByRole('button', { name: 'Siguiente' }));
     expect(pasoActual()).toBe('siguienteLeccion');

@@ -7,8 +7,9 @@ import type { Locucion } from '../voz/locucion';
  * Todo se narra: npm run voz:generar junta estas frases solas.
  * TODO(Eco Urban): validar con las educadoras y educadores. Fuentes: docs/fuentes-contenido.md.
  *
- * Narraciones con números: los números se encadenan como audios aparte. Solo se ponen antes de
- * sustantivos masculinos ("un animal", "veintiún árboles"); los femeninos van después: "hojitas: doce".
+ * Narraciones con números: los números se encadenan como audios aparte (y las que de verdad pueden
+ * salir se graban completas). Antes de un sustantivo femenino van con `femenino` ("una hojita").
+ * Nada de "Hojitas: doce": los dos puntos hacían que la voz dejara pausas largas.
  */
 
 /** Diploma de una unidad: tema, qué cuenta cada columna y lo que narra Mixtle. */
@@ -83,14 +84,17 @@ export const TEXTOS_AVENTURAS = {
       subtitulo: 'Aire limpio',
       izquierda: (n) => segun(n, 'hojita juntada', 'hojitas juntadas'),
       derecha: (n) => segun(n, 'nube de humo esquivada', 'nubes de humo esquivadas'),
-      // "hojitas" y "nubes" son femeninas: el número va después.
-      narracion: (hojitas, nubes) => [
-        '¡Felicidades, guardianes del aire! Hojitas que juntaron:',
-        { numero: hojitas },
-        '. Nubes de humo que esquivaron:',
-        { numero: nubes },
-        '. ¡Bravo!',
-      ],
+      // De corrido y sin "cero": si no juntaron hojitas o no esquivaron humo, Mixtle anima para la
+      // próxima vez (como el resumen de una lección).
+      narracion: (hojitas, nubes) => {
+        const juntaron = [{ numero: hojitas, femenino: true }, hojitas === 1 ? 'hojita' : 'hojitas'] as const;
+        const esquivaron = [{ numero: nubes, femenino: true }, nubes === 1 ? 'nube de humo' : 'nubes de humo'] as const;
+        const felicidades = '¡Felicidades, guardianes del aire!';
+        if (hojitas && nubes) return [`${felicidades} Juntaron`, ...juntaron, 'y esquivaron', ...esquivaron, '. ¡Bravo!'];
+        if (nubes) return [`${felicidades} Esquivaron`, ...esquivaron, '. ¡La próxima vez, a juntar muchas hojitas!'];
+        if (hojitas) return [`${felicidades} Juntaron`, ...juntaron, '. ¡La próxima vez, a esquivar el humo!'];
+        return [`${felicidades} Llegaron a la escuela en bici. ¡La próxima vez, a juntar hojitas y esquivar el humo!`];
+      },
     } satisfies TextosDiploma,
   },
   u5: {

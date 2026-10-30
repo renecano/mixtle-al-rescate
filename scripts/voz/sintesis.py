@@ -54,22 +54,38 @@ def _sintetizar_crudo(proveedor: str, voz: str, ajustes: dict, texto: str, desti
         raise ValueError(f"Proveedor desconocido: {proveedor}")
 
 
-def a_mp3(origen: Path, destino: Path) -> None:
-    """MP3 mono a 64 kbps con volumen normalizado (EBU R128), igual para todas las frases."""
+def filtro_recorte(normalizacion: dict | None) -> str:
+    """Recorte de silencio (voz.config.json, "normalizacion"): quita el del inicio y del final dejando
+    `bordeS`, y acorta las pausas internas de más de `pausaMaximaS` a `pausaS`. Silencio = por debajo
+    de `umbralDb`. Va antes de loudnorm, para que el silencio no estorbe su medición. Vacío si no hay."""
+    if not normalizacion:
+        return ""
+    n = {k: v for k, v in normalizacion.items() if not k.startswith("$")}
+    umbral = f"{n['umbralDb']}dB"
+    inicio = f"silenceremove=start_periods=1:start_threshold={umbral}:start_silence={n['bordeS']}"
+    return (
+        f"{inicio}:stop_periods=-1:stop_duration={n['pausaMaximaS']}:stop_threshold={umbral}:stop_silence={n['pausaS']},"
+        f"areverse,{inicio},areverse,"
+    )
+
+
+def a_mp3(origen: Path, destino: Path, normalizacion: dict | None = None) -> None:
+    """MP3 mono a 64 kbps, con el silencio recortado (si se pide) y el volumen normalizado (EBU R128),
+    igual para todas las frases, vengan del proveedor que vengan o de una grabación humana."""
     destino.parent.mkdir(parents=True, exist_ok=True)
     subprocess.run(
         [
             imageio_ffmpeg.get_ffmpeg_exe(), "-y", "-loglevel", "error", "-i", str(origen),
-            "-af", "loudnorm=I=-16:TP=-1.5:LRA=11", "-ac", "1", "-ar", "24000", "-b:a", "64k", str(destino),
+            "-af", filtro_recorte(normalizacion) + "loudnorm=I=-16:TP=-1.5:LRA=11", "-ac", "1", "-ar", "24000", "-b:a", "64k", str(destino),
         ],
         check=True,
     )
 
 
-def generar(proveedor: str, voz: str, ajustes: dict, texto: str, destino: Path) -> None:
+def generar(proveedor: str, voz: str, ajustes: dict, texto: str, destino: Path, normalizacion: dict | None = None) -> None:
     """Sintetiza `texto` y lo guarda como MP3 normalizado en `destino`."""
     extension = ".mp3" if proveedor == "edge" else ".wav"
     with tempfile.TemporaryDirectory() as carpeta:
         crudo = Path(carpeta) / f"crudo{extension}"
         _sintetizar_crudo(proveedor, voz, ajustes, texto, crudo)
-        a_mp3(crudo, destino)
+        a_mp3(crudo, destino, normalizacion)

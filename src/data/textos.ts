@@ -37,7 +37,7 @@ export const TEXTOS = {
   },
   bonus: {
     bienvenida: '¡Bonus! ¡Lluvia de basura! Toca el bote correcto antes de que la basura llegue al suelo.',
-    seCayo: '¡Uy, llegó al suelo! No pasa nada: ahí viene otra vez.',
+    seCayo: '¡Uy, llegó al suelo! No pasa nada, ahí viene otra vez.',
     fin: '¡Separaron toda la lluvia de basura! Vamos por su diploma.',
     botonDiploma: 'Ir al diploma',
   },

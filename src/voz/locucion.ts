@@ -2,7 +2,8 @@
  * Lo que dice Mixtle. Puede ser una frase completa o una secuencia de piezas que se encadenan
  * (por ejemplo, "Separaron bien" + 13 + "residuos"), para no grabar una frase por cada número.
  */
-export type Pieza = string | { numero: number; antesDeSustantivo?: boolean };
+/** `femenino`: antes de un sustantivo femenino ("una hojita", "veintiuna nubes"). */
+export type Pieza = string | { numero: number; antesDeSustantivo?: boolean; femenino?: boolean };
 export type Locucion = string | readonly Pieza[];
 
 const UNIDADES = ['cero', 'uno', 'dos', 'tres', 'cuatro', 'cinco', 'seis', 'siete', 'ocho', 'nueve'];
@@ -18,13 +19,14 @@ export const NUMERO_MAXIMO = 100;
  * El número en palabras (0 a 100). Antes de un sustantivo masculino, "uno" se apocopa:
  * "un residuo", "veintiún animales", "treinta y un residuos".
  */
-export function numeroEnPalabras(n: number, antesDeSustantivo = false): string {
+export function numeroEnPalabras(n: number, antesDeSustantivo = false, femenino = false): string {
   if (!Number.isInteger(n) || n < 0 || n > NUMERO_MAXIMO) throw new RangeError(`Número fuera de 0–${NUMERO_MAXIMO}: ${n}`);
   let palabra: string;
   if (n < 10) palabra = UNIDADES[n]!;
   else if (n < 30) palabra = DIEZ_A_VEINTINUEVE[n - 10]!;
   else if (n === 100) palabra = 'cien';
   else palabra = n % 10 === 0 ? DECENAS[n / 10]! : `${DECENAS[Math.floor(n / 10)]} y ${UNIDADES[n % 10]}`;
+  if (femenino) return palabra.replace(/uno$/, 'una');
   if (antesDeSustantivo) palabra = palabra.replace(/uno$/, 'un').replace(/^veintiun$/, 'veintiún');
   return palabra;
 }
@@ -32,7 +34,7 @@ export function numeroEnPalabras(n: number, antesDeSustantivo = false): string {
 /** Las piezas de una locución como textos (los números ya en palabras). */
 export function piezasDeTexto(l: Locucion): string[] {
   const piezas = typeof l === 'string' ? [l] : l;
-  return piezas.map((p) => (typeof p === 'string' ? p : numeroEnPalabras(p.numero, p.antesDeSustantivo)));
+  return piezas.map((p) => (typeof p === 'string' ? p : numeroEnPalabras(p.numero, p.antesDeSustantivo, p.femenino)));
 }
 
 /**

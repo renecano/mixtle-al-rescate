@@ -9,6 +9,13 @@
     "velocidad": 1,
     "esperaMs": 3100
   },
+  "normalizacion": {
+    "$comentario": "Al convertir cada audio a mp3 (de cualquier proveedor o grabación humana): se recorta el silencio del inicio y del final dejando bordeS segundos, y las pausas internas de más de pausaMaximaS se acortan a pausaS (silencio = por debajo de umbralDb). Cambiar esto vuelve a convertir todos los audios desde los originales guardados en .voz-modelos, sin pedir nada nuevo a Azure.",
+    "umbralDb": -50,
+    "bordeS": 0.08,
+    "pausaMaximaS": 0.5,
+    "pausaS": 0.35
+  },
   "alternos": {
     "kokoro": {
       "voz": "em_alex",

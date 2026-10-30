@@ -1,0 +1,6295 @@
+{
+ "resumen": {
+  "carpeta": "C:\\Users\\REN~1\\AppData\\Local\\Temp\\claude\\D--Documentos-proyectos-caco-al-rescate\\0ca6eda3-9046-464c-bd8c-1e79ef96f288\\scratchpad\\voz-antes\\public\\voz",
+  "archivos": 785,
+  "duracionS": 3840.6,
+  "silencioS": 1154.2,
+  "habladoS": 2686.5,
+  "fuerteS": 2378.1,
+  "porcentajeSilencio": 30.1,
+  "mb": 30.91,
+  "criterio": "silencio = pausas de 0.1 s o más por debajo de -50 dB; fuerte = tiempo por encima de -35 dB (silencedetect)"
+ },
+ "archivos": [
+  {
+   "archivo": "000179817e3bc2.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.94,
+   "hablado": 0.98,
+   "fuerte": 0.739
+  },
+  {
+   "archivo": "0007cf76133e2a.mp3",
+   "bytes": 51308,
+   "duracion": 6.38,
+   "silencio": 0.83,
+   "hablado": 5.55,
+   "fuerte": 4.676
+  },
+  {
+   "archivo": "0015eb26f82982.mp3",
+   "bytes": 45548,
+   "duracion": 5.66,
+   "silencio": 1.518,
+   "hablado": 4.142,
+   "fuerte": 3.681
+  },
+  {
+   "archivo": "001b660e9d0c07.mp3",
+   "bytes": 15788,
+   "duracion": 1.94,
+   "silencio": 0.286,
+   "hablado": 1.654,
+   "fuerte": 1.347
+  },
+  {
+   "archivo": "002391bc4adb96.mp3",
+   "bytes": 18284,
+   "duracion": 2.26,
+   "silencio": 0.292,
+   "hablado": 1.968,
+   "fuerte": 1.763
+  },
+  {
+   "archivo": "0033e6659449a8.mp3",
+   "bytes": 34220,
+   "duracion": 4.25,
+   "silencio": 1.117,
+   "hablado": 3.133,
+   "fuerte": 2.764
+  },
+  {
+   "archivo": "00361317c8d7ba.mp3",
+   "bytes": 45356,
+   "duracion": 5.64,
+   "silencio": 0.547,
+   "hablado": 5.093,
+   "fuerte": 4.495
+  },
+  {
+   "archivo": "0040aef88d73fa.mp3",
+   "bytes": 30572,
+   "duracion": 3.79,
+   "silencio": 1.428,
+   "hablado": 2.362,
+   "fuerte": 1.794
+  },
+  {
+   "archivo": "005c4d44c18733.mp3",
+   "bytes": 79340,
+   "duracion": 9.89,
+   "silencio": 3.143,
+   "hablado": 6.747,
+   "fuerte": 6.046
+  },
+  {
+   "archivo": "007177ed496c08.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.761,
+   "hablado": 1.159,
+   "fuerte": 1.058
+  },
+  {
+   "archivo": "00794d7c6f6c06.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.893,
+   "hablado": 1.027,
+   "fuerte": 0.726
+  },
+  {
+   "archivo": "0088eab4232ca0.mp3",
+   "bytes": 28460,
+   "duracion": 3.53,
+   "silencio": 0.475,
+   "hablado": 3.055,
+   "fuerte": 2.782
+  },
+  {
+   "archivo": "00b3179816bcf4.mp3",
+   "bytes": 62060,
+   "duracion": 7.73,
+   "silencio": 1.08,
+   "hablado": 6.65,
+   "fuerte": 6.151
+  },
+  {
+   "archivo": "00e46da0a5d5ab.mp3",
+   "bytes": 32300,
+   "duracion": 4.01,
+   "silencio": 1.13,
+   "hablado": 2.88,
+   "fuerte": 2.471
+  },
+  {
+   "archivo": "00ea8261800818.mp3",
+   "bytes": 21932,
+   "duracion": 2.71,
+   "silencio": 0.334,
+   "hablado": 2.376,
+   "fuerte": 2.074
+  },
+  {
+   "archivo": "00fb57061e4e9c.mp3",
+   "bytes": 52076,
+   "duracion": 6.48,
+   "silencio": 2.685,
+   "hablado": 3.795,
+   "fuerte": 3.408
+  },
+  {
+   "archivo": "010f5fa64a84a6.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.472,
+   "hablado": 1.448,
+   "fuerte": 1.241
+  },
+  {
+   "archivo": "0118c32efda7e4.mp3",
+   "bytes": 38252,
+   "duracion": 4.75,
+   "silencio": 1.636,
+   "hablado": 3.114,
+   "fuerte": 2.864
+  },
+  {
+   "archivo": "0127e57b514e57.mp3",
+   "bytes": 75116,
+   "duracion": 9.36,
+   "silencio": 2.656,
+   "hablado": 6.704,
+   "fuerte": 5.974
+  },
+  {
+   "archivo": "012ab6bffbbed9.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.947,
+   "hablado": 0.973,
+   "fuerte": 0.805
+  },
+  {
+   "archivo": "0135ecfe5532b9.mp3",
+   "bytes": 113324,
+   "duracion": 14.14,
+   "silencio": 7.387,
+   "hablado": 6.753,
+   "fuerte": 6.111
+  },
+  {
+   "archivo": "014e0818f4648d.mp3",
+   "bytes": 68588,
+   "duracion": 8.54,
+   "silencio": 1.651,
+   "hablado": 6.889,
+   "fuerte": 6.498
+  },
+  {
+   "archivo": "015c4ccb34be09.mp3",
+   "bytes": 26540,
+   "duracion": 3.29,
+   "silencio": 0.306,
+   "hablado": 2.984,
+   "fuerte": 2.603
+  },
+  {
+   "archivo": "017a9fc9ba2ed6.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.383,
+   "hablado": 1.537,
+   "fuerte": 1.339
+  },
+  {
+   "archivo": "017d9b0a10861f.mp3",
+   "bytes": 115052,
+   "duracion": 14.35,
+   "silencio": 5.614,
+   "hablado": 8.736,
+   "fuerte": 7.801
+  },
+  {
+   "archivo": "018ac601a861f8.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.591,
+   "hablado": 1.329,
+   "fuerte": 1.054
+  },
+  {
+   "archivo": "018e5c5b624034.mp3",
+   "bytes": 46508,
+   "duracion": 5.78,
+   "silencio": 1.125,
+   "hablado": 4.655,
+   "fuerte": 4.222
+  },
+  {
+   "archivo": "018f1d052fb8b4.mp3",
+   "bytes": 25580,
+   "duracion": 3.17,
+   "silencio": 0.317,
+   "hablado": 2.853,
+   "fuerte": 2.339
+  },
+  {
+   "archivo": "019733689736f8.mp3",
+   "bytes": 54956,
+   "duracion": 6.84,
+   "silencio": 2.343,
+   "hablado": 4.497,
+   "fuerte": 4.181
+  },
+  {
+   "archivo": "01a0a69686ac36.mp3",
+   "bytes": 21164,
+   "duracion": 2.62,
+   "silencio": 0.339,
+   "hablado": 2.281,
+   "fuerte": 2
+  },
+  {
+   "archivo": "01a11cf8ee6655.mp3",
+   "bytes": 21932,
+   "duracion": 2.71,
+   "silencio": 1.258,
+   "hablado": 1.452,
+   "fuerte": 1.228
+  },
+  {
+   "archivo": "01a30eb1ba9857.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.884,
+   "hablado": 1.036,
+   "fuerte": 0.823
+  },
+  {
+   "archivo": "01a82113d50c44.mp3",
+   "bytes": 83564,
+   "duracion": 10.42,
+   "silencio": 3.218,
+   "hablado": 7.202,
+   "fuerte": 6.557
+  },
+  {
+   "archivo": "01b3474fe9028f.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.471,
+   "hablado": 1.449,
+   "fuerte": 1.179
+  },
+  {
+   "archivo": "01b34b038a1339.mp3",
+   "bytes": 27692,
+   "duracion": 3.43,
+   "silencio": 0.775,
+   "hablado": 2.655,
+   "fuerte": 2.338
+  },
+  {
+   "archivo": "01c3e2fe0129e2.mp3",
+   "bytes": 32492,
+   "duracion": 4.03,
+   "silencio": 1.049,
+   "hablado": 2.981,
+   "fuerte": 2.642
+  },
+  {
+   "archivo": "01c8c932168e08.mp3",
+   "bytes": 19244,
+   "duracion": 2.38,
+   "silencio": 0.376,
+   "hablado": 2.004,
+   "fuerte": 1.687
+  },
+  {
+   "archivo": "01cc3af0424267.mp3",
+   "bytes": 34796,
+   "duracion": 4.32,
+   "silencio": 1.007,
+   "hablado": 3.313,
+   "fuerte": 2.893
+  },
+  {
+   "archivo": "01d31e6dc22cec.mp3",
+   "bytes": 35948,
+   "duracion": 4.46,
+   "silencio": 1.391,
+   "hablado": 3.069,
+   "fuerte": 2.782
+  },
+  {
+   "archivo": "01d5b79eb7530a.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.872,
+   "hablado": 1.048,
+   "fuerte": 0.816
+  },
+  {
+   "archivo": "01ddac9a0a7c4a.mp3",
+   "bytes": 16172,
+   "duracion": 1.99,
+   "silencio": 0.292,
+   "hablado": 1.698,
+   "fuerte": 1.389
+  },
+  {
+   "archivo": "01e3104b171495.mp3",
+   "bytes": 98156,
+   "duracion": 12.24,
+   "silencio": 4.297,
+   "hablado": 7.943,
+   "fuerte": 7.294
+  },
+  {
+   "archivo": "01e8cfd6005a8f.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.915,
+   "hablado": 1.005,
+   "fuerte": 0.85
+  },
+  {
+   "archivo": "01fdfd7ebcaac2.mp3",
+   "bytes": 101804,
+   "duracion": 12.7,
+   "silencio": 5.075,
+   "hablado": 7.625,
+   "fuerte": 7.004
+  },
+  {
+   "archivo": "01ffc01f1d47cd.mp3",
+   "bytes": 22892,
+   "duracion": 2.83,
+   "silencio": 0.473,
+   "hablado": 2.357,
+   "fuerte": 2.141
+  },
+  {
+   "archivo": "0201905852a4e7.mp3",
+   "bytes": 32108,
+   "duracion": 3.98,
+   "silencio": 0.803,
+   "hablado": 3.177,
+   "fuerte": 2.655
+  },
+  {
+   "archivo": "020233252d34da.mp3",
+   "bytes": 29804,
+   "duracion": 3.7,
+   "silencio": 0.323,
+   "hablado": 3.377,
+   "fuerte": 3.024
+  },
+  {
+   "archivo": "0216b2ee2b5304.mp3",
+   "bytes": 106604,
+   "duracion": 13.3,
+   "silencio": 5.393,
+   "hablado": 7.907,
+   "fuerte": 7.099
+  },
+  {
+   "archivo": "02207adfe4deb3.mp3",
+   "bytes": 26348,
+   "duracion": 3.26,
+   "silencio": 1.445,
+   "hablado": 1.815,
+   "fuerte": 1.574
+  },
+  {
+   "archivo": "02286df2170fbe.mp3",
+   "bytes": 20012,
+   "duracion": 2.47,
+   "silencio": 0.285,
+   "hablado": 2.185,
+   "fuerte": 1.85
+  },
+  {
+   "archivo": "022a3eddbcb214.mp3",
+   "bytes": 31340,
+   "duracion": 3.89,
+   "silencio": 1.459,
+   "hablado": 2.431,
+   "fuerte": 2.125
+  },
+  {
+   "archivo": "022f6fb422261f.mp3",
+   "bytes": 16748,
+   "duracion": 2.06,
+   "silencio": 0.291,
+   "hablado": 1.769,
+   "fuerte": 1.476
+  },
+  {
+   "archivo": "0230a7b1dc0412.mp3",
+   "bytes": 33068,
+   "duracion": 4.1,
+   "silencio": 1.239,
+   "hablado": 2.861,
+   "fuerte": 2.576
+  },
+  {
+   "archivo": "02639dc2b17001.mp3",
+   "bytes": 47468,
+   "duracion": 5.9,
+   "silencio": 1.176,
+   "hablado": 4.724,
+   "fuerte": 4.051
+  },
+  {
+   "archivo": "026a029e59714b.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.786,
+   "hablado": 1.134,
+   "fuerte": 0.988
+  },
+  {
+   "archivo": "0276c875e12962.mp3",
+   "bytes": 27884,
+   "duracion": 3.46,
+   "silencio": 0.597,
+   "hablado": 2.863,
+   "fuerte": 2.454
+  },
+  {
+   "archivo": "0278d3b5e34692.mp3",
+   "bytes": 35180,
+   "duracion": 4.37,
+   "silencio": 0.756,
+   "hablado": 3.614,
+   "fuerte": 2.986
+  },
+  {
+   "archivo": "027cc96aa96e96.mp3",
+   "bytes": 23852,
+   "duracion": 2.95,
+   "silencio": 0.297,
+   "hablado": 2.653,
+   "fuerte": 2.091
+  },
+  {
+   "archivo": "027ed11dcecd1b.mp3",
+   "bytes": 38060,
+   "duracion": 4.73,
+   "silencio": 1.278,
+   "hablado": 3.452,
+   "fuerte": 3.052
+  },
+  {
+   "archivo": "028c649a80a7ee.mp3",
+   "bytes": 31340,
+   "duracion": 3.89,
+   "silencio": 0.896,
+   "hablado": 2.994,
+   "fuerte": 2.6
+  },
+  {
+   "archivo": "028dd8f96c8bd6.mp3",
+   "bytes": 43820,
+   "duracion": 5.45,
+   "silencio": 1.503,
+   "hablado": 3.947,
+   "fuerte": 3.577
+  },
+  {
+   "archivo": "02933c4b32d053.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.743,
+   "hablado": 1.177,
+   "fuerte": 1.089
+  },
+  {
+   "archivo": "0297a2e5283364.mp3",
+   "bytes": 38252,
+   "duracion": 4.75,
+   "silencio": 1.707,
+   "hablado": 3.043,
+   "fuerte": 2.697
+  },
+  {
+   "archivo": "02a6939289dc93.mp3",
+   "bytes": 27116,
+   "duracion": 3.36,
+   "silencio": 0.336,
+   "hablado": 3.024,
+   "fuerte": 2.443
+  },
+  {
+   "archivo": "02a8a8fb43ec0c.mp3",
+   "bytes": 21548,
+   "duracion": 2.66,
+   "silencio": 0.335,
+   "hablado": 2.325,
+   "fuerte": 2.017
+  },
+  {
+   "archivo": "02aebe8d4e4fa2.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.372,
+   "hablado": 1.548,
+   "fuerte": 1.325
+  },
+  {
+   "archivo": "02da45eb965d31.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 1.17,
+   "hablado": 0.75,
+   "fuerte": 0.581
+  },
+  {
+   "archivo": "02dc203cd09053.mp3",
+   "bytes": 28268,
+   "duracion": 3.5,
+   "silencio": 0.333,
+   "hablado": 3.167,
+   "fuerte": 2.789
+  },
+  {
+   "archivo": "02f3239466d898.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.922,
+   "hablado": 0.998,
+   "fuerte": 0.798
+  },
+  {
+   "archivo": "02fcb552366446.mp3",
+   "bytes": 21932,
+   "duracion": 2.71,
+   "silencio": 0.324,
+   "hablado": 2.386,
+   "fuerte": 2.047
+  },
+  {
+   "archivo": "03007aa90b5b38.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.89,
+   "hablado": 1.03,
+   "fuerte": 0.84
+  },
+  {
+   "archivo": "0302b475806320.mp3",
+   "bytes": 18284,
+   "duracion": 2.26,
+   "silencio": 0.105,
+   "hablado": 2.155,
+   "fuerte": 1.756
+  },
+  {
+   "archivo": "030bb9d1adce94.mp3",
+   "bytes": 84332,
+   "duracion": 10.51,
+   "silencio": 2.714,
+   "hablado": 7.796,
+   "fuerte": 7.143
+  },
+  {
+   "archivo": "0314f0f579c16b.mp3",
+   "bytes": 19244,
+   "duracion": 2.38,
+   "silencio": 0.287,
+   "hablado": 2.093,
+   "fuerte": 1.586
+  },
+  {
+   "archivo": "031abdf8b1c8d9.mp3",
+   "bytes": 130412,
+   "duracion": 16.27,
+   "silencio": 8.108,
+   "hablado": 8.162,
+   "fuerte": 7.581
+  },
+  {
+   "archivo": "03229091feca0f.mp3",
+   "bytes": 46316,
+   "duracion": 5.76,
+   "silencio": 1.953,
+   "hablado": 3.807,
+   "fuerte": 3.146
+  },
+  {
+   "archivo": "03254c2d0e397d.mp3",
+   "bytes": 106988,
+   "duracion": 13.34,
+   "silencio": 6.109,
+   "hablado": 7.231,
+   "fuerte": 6.735
+  },
+  {
+   "archivo": "032c5c33f47561.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.772,
+   "hablado": 1.148,
+   "fuerte": 0.957
+  },
+  {
+   "archivo": "0331da4f17440c.mp3",
+   "bytes": 29804,
+   "duracion": 3.7,
+   "silencio": 0.831,
+   "hablado": 2.869,
+   "fuerte": 2.286
+  },
+  {
+   "archivo": "0339f2773fd157.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.758,
+   "hablado": 1.162,
+   "fuerte": 0.9
+  },
+  {
+   "archivo": "03504e58eea97f.mp3",
+   "bytes": 91436,
+   "duracion": 11.4,
+   "silencio": 4.784,
+   "hablado": 6.616,
+   "fuerte": 6.126
+  },
+  {
+   "archivo": "0356b03e6827c9.mp3",
+   "bytes": 28844,
+   "duracion": 3.58,
+   "silencio": 0.74,
+   "hablado": 2.84,
+   "fuerte": 2.451
+  },
+  {
+   "archivo": "03646b3a3aa839.mp3",
+   "bytes": 15980,
+   "duracion": 1.97,
+   "silencio": 0.299,
+   "hablado": 1.671,
+   "fuerte": 1.485
+  },
+  {
+   "archivo": "0369562fd6d15b.mp3",
+   "bytes": 64940,
+   "duracion": 8.09,
+   "silencio": 1.524,
+   "hablado": 6.566,
+   "fuerte": 5.958
+  },
+  {
+   "archivo": "036e808762b893.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.922,
+   "hablado": 0.998,
+   "fuerte": 0.878
+  },
+  {
+   "archivo": "036eaf268778e4.mp3",
+   "bytes": 80300,
+   "duracion": 10.01,
+   "silencio": 2.22,
+   "hablado": 7.79,
+   "fuerte": 7.135
+  },
+  {
+   "archivo": "03706236d399f6.mp3",
+   "bytes": 26540,
+   "duracion": 3.29,
+   "silencio": 0.337,
+   "hablado": 2.953,
+   "fuerte": 2.604
+  },
+  {
+   "archivo": "037c6a10848f6a.mp3",
+   "bytes": 43244,
+   "duracion": 5.38,
+   "silencio": 1.306,
+   "hablado": 4.074,
+   "fuerte": 3.697
+  },
+  {
+   "archivo": "038a1ea7e70931.mp3",
+   "bytes": 17324,
+   "duracion": 2.14,
+   "silencio": 0.344,
+   "hablado": 1.796,
+   "fuerte": 1.594
+  },
+  {
+   "archivo": "03b0e462aef58d.mp3",
+   "bytes": 33836,
+   "duracion": 4.2,
+   "silencio": 0.436,
+   "hablado": 3.764,
+   "fuerte": 3.529
+  },
+  {
+   "archivo": "03b43162ea6bd7.mp3",
+   "bytes": 47084,
+   "duracion": 5.86,
+   "silencio": 1.893,
+   "hablado": 3.967,
+   "fuerte": 3.347
+  },
+  {
+   "archivo": "03b8805dc98be0.mp3",
+   "bytes": 52076,
+   "duracion": 6.48,
+   "silencio": 1.902,
+   "hablado": 4.578,
+   "fuerte": 4.117
+  },
+  {
+   "archivo": "03bd6e760b5f05.mp3",
+   "bytes": 21164,
+   "duracion": 2.62,
+   "silencio": 0.335,
+   "hablado": 2.285,
+   "fuerte": 1.917
+  },
+  {
+   "archivo": "03d74a782b2073.mp3",
+   "bytes": 94700,
+   "duracion": 11.81,
+   "silencio": 4.439,
+   "hablado": 7.371,
+   "fuerte": 6.837
+  },
+  {
+   "archivo": "03e5ac1d4df9ee.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.664,
+   "hablado": 1.256,
+   "fuerte": 1.092
+  },
+  {
+   "archivo": "03eaf6acfe2de3.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.915,
+   "hablado": 1.005,
+   "fuerte": 0.778
+  },
+  {
+   "archivo": "03ebdf0e977698.mp3",
+   "bytes": 39788,
+   "duracion": 4.94,
+   "silencio": 1.418,
+   "hablado": 3.522,
+   "fuerte": 3.063
+  },
+  {
+   "archivo": "03ecc3aba0b4d1.mp3",
+   "bytes": 101612,
+   "duracion": 12.67,
+   "silencio": 4.802,
+   "hablado": 7.868,
+   "fuerte": 7.281
+  },
+  {
+   "archivo": "03ee7a0f102b7c.mp3",
+   "bytes": 16556,
+   "duracion": 2.04,
+   "silencio": 0.342,
+   "hablado": 1.698,
+   "fuerte": 1.397
+  },
+  {
+   "archivo": "0406811631c689.mp3",
+   "bytes": 98156,
+   "duracion": 12.24,
+   "silencio": 5.137,
+   "hablado": 7.103,
+   "fuerte": 6.419
+  },
+  {
+   "archivo": "041aeb2fe4069a.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.597,
+   "hablado": 1.323,
+   "fuerte": 1.161
+  },
+  {
+   "archivo": "041e6c50e71674.mp3",
+   "bytes": 41708,
+   "duracion": 5.18,
+   "silencio": 1.679,
+   "hablado": 3.501,
+   "fuerte": 3.06
+  },
+  {
+   "archivo": "042adb94f07662.mp3",
+   "bytes": 29420,
+   "duracion": 3.65,
+   "silencio": 1.142,
+   "hablado": 2.508,
+   "fuerte": 2.185
+  },
+  {
+   "archivo": "042cb7e6913b80.mp3",
+   "bytes": 22316,
+   "duracion": 2.76,
+   "silencio": 0.336,
+   "hablado": 2.424,
+   "fuerte": 2.216
+  },
+  {
+   "archivo": "044a16ccaddf76.mp3",
+   "bytes": 32684,
+   "duracion": 4.06,
+   "silencio": 0.738,
+   "hablado": 3.322,
+   "fuerte": 2.948
+  },
+  {
+   "archivo": "0459cc8e0da96e.mp3",
+   "bytes": 65516,
+   "duracion": 8.16,
+   "silencio": 2.303,
+   "hablado": 5.857,
+   "fuerte": 5.237
+  },
+  {
+   "archivo": "045aeb3d34de4f.mp3",
+   "bytes": 94316,
+   "duracion": 11.76,
+   "silencio": 3.196,
+   "hablado": 8.564,
+   "fuerte": 7.891
+  },
+  {
+   "archivo": "046e13e620f6dc.mp3",
+   "bytes": 31340,
+   "duracion": 3.89,
+   "silencio": 1.415,
+   "hablado": 2.475,
+   "fuerte": 2.082
+  },
+  {
+   "archivo": "04766cda250572.mp3",
+   "bytes": 21548,
+   "duracion": 2.66,
+   "silencio": 0.299,
+   "hablado": 2.361,
+   "fuerte": 2.024
+  },
+  {
+   "archivo": "047788534af079.mp3",
+   "bytes": 63980,
+   "duracion": 7.97,
+   "silencio": 1.613,
+   "hablado": 6.357,
+   "fuerte": 5.655
+  },
+  {
+   "archivo": "047fe7bb24fc29.mp3",
+   "bytes": 18284,
+   "duracion": 2.26,
+   "silencio": 0.324,
+   "hablado": 1.936,
+   "fuerte": 1.671
+  },
+  {
+   "archivo": "0485e5b6b09209.mp3",
+   "bytes": 16172,
+   "duracion": 1.99,
+   "silencio": 0.31,
+   "hablado": 1.68,
+   "fuerte": 1.447
+  },
+  {
+   "archivo": "048865e40107a5.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 1.127,
+   "hablado": 0.793,
+   "fuerte": 0.576
+  },
+  {
+   "archivo": "048a4d094ed505.mp3",
+   "bytes": 96620,
+   "duracion": 12.05,
+   "silencio": 4.409,
+   "hablado": 7.641,
+   "fuerte": 6.862
+  },
+  {
+   "archivo": "048e8be574ce7e.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.272,
+   "hablado": 1.648,
+   "fuerte": 1.496
+  },
+  {
+   "archivo": "048ec0a8ffa299.mp3",
+   "bytes": 87788,
+   "duracion": 10.94,
+   "silencio": 3.509,
+   "hablado": 7.431,
+   "fuerte": 6.787
+  },
+  {
+   "archivo": "04a3e338f2f428.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.581,
+   "hablado": 1.339,
+   "fuerte": 0.991
+  },
+  {
+   "archivo": "04a946050030d7.mp3",
+   "bytes": 32492,
+   "duracion": 4.03,
+   "silencio": 1.254,
+   "hablado": 2.776,
+   "fuerte": 2.462
+  },
+  {
+   "archivo": "04bf88190a1b6e.mp3",
+   "bytes": 83564,
+   "duracion": 10.42,
+   "silencio": 2.662,
+   "hablado": 7.758,
+   "fuerte": 7.122
+  },
+  {
+   "archivo": "04dbab184d0832.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.947,
+   "hablado": 0.973,
+   "fuerte": 0.835
+  },
+  {
+   "archivo": "04e34f13f07af3.mp3",
+   "bytes": 54380,
+   "duracion": 6.77,
+   "silencio": 1.776,
+   "hablado": 4.994,
+   "fuerte": 4.265
+  },
+  {
+   "archivo": "04e9e5b2a92305.mp3",
+   "bytes": 25388,
+   "duracion": 3.14,
+   "silencio": 0.3,
+   "hablado": 2.84,
+   "fuerte": 2.575
+  },
+  {
+   "archivo": "04ebd8e52e1e90.mp3",
+   "bytes": 18284,
+   "duracion": 2.26,
+   "silencio": 0.29,
+   "hablado": 1.97,
+   "fuerte": 1.768
+  },
+  {
+   "archivo": "04ec4d7884a439.mp3",
+   "bytes": 44012,
+   "duracion": 5.47,
+   "silencio": 0.755,
+   "hablado": 4.715,
+   "fuerte": 3.996
+  },
+  {
+   "archivo": "04ee5e3cdf39fe.mp3",
+   "bytes": 56684,
+   "duracion": 7.06,
+   "silencio": 1.471,
+   "hablado": 5.589,
+   "fuerte": 5.086
+  },
+  {
+   "archivo": "04fa73c39da65b.mp3",
+   "bytes": 27884,
+   "duracion": 3.46,
+   "silencio": 0.475,
+   "hablado": 2.985,
+   "fuerte": 2.642
+  },
+  {
+   "archivo": "04fd37bc9c0d13.mp3",
+   "bytes": 86252,
+   "duracion": 10.75,
+   "silencio": 3.791,
+   "hablado": 6.959,
+   "fuerte": 6.255
+  },
+  {
+   "archivo": "050096b2c5f6ad.mp3",
+   "bytes": 21932,
+   "duracion": 2.71,
+   "silencio": 0.513,
+   "hablado": 2.197,
+   "fuerte": 1.783
+  },
+  {
+   "archivo": "050d4f8294d32f.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.316,
+   "hablado": 1.604,
+   "fuerte": 1.38
+  },
+  {
+   "archivo": "0511347443cc39.mp3",
+   "bytes": 102380,
+   "duracion": 12.77,
+   "silencio": 5.462,
+   "hablado": 7.308,
+   "fuerte": 6.607
+  },
+  {
+   "archivo": "051d3a08f63480.mp3",
+   "bytes": 19052,
+   "duracion": 2.35,
+   "silencio": 0.444,
+   "hablado": 1.906,
+   "fuerte": 1.562
+  },
+  {
+   "archivo": "0521b354e93c2f.mp3",
+   "bytes": 119660,
+   "duracion": 14.93,
+   "silencio": 6.164,
+   "hablado": 8.766,
+   "fuerte": 8.109
+  },
+  {
+   "archivo": "052375e1baa458.mp3",
+   "bytes": 16748,
+   "duracion": 2.06,
+   "silencio": 0.353,
+   "hablado": 1.707,
+   "fuerte": 1.528
+  },
+  {
+   "archivo": "0528cbbdb5b685.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.947,
+   "hablado": 0.973,
+   "fuerte": 0.687
+  },
+  {
+   "archivo": "053261cd3d6d87.mp3",
+   "bytes": 88940,
+   "duracion": 11.09,
+   "silencio": 3.944,
+   "hablado": 7.146,
+   "fuerte": 6.5
+  },
+  {
+   "archivo": "053c5585b97486.mp3",
+   "bytes": 30188,
+   "duracion": 3.74,
+   "silencio": 0.78,
+   "hablado": 2.96,
+   "fuerte": 2.64
+  },
+  {
+   "archivo": "054419edfcd5ac.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.672,
+   "hablado": 1.248,
+   "fuerte": 1.03
+  },
+  {
+   "archivo": "05496da9f58632.mp3",
+   "bytes": 42476,
+   "duracion": 5.28,
+   "silencio": 1.514,
+   "hablado": 3.766,
+   "fuerte": 3.457
+  },
+  {
+   "archivo": "054c3d8454235a.mp3",
+   "bytes": 49772,
+   "duracion": 6.19,
+   "silencio": 2.345,
+   "hablado": 3.845,
+   "fuerte": 3.321
+  },
+  {
+   "archivo": "05877b1ef4bbca.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 1.091,
+   "hablado": 0.829,
+   "fuerte": 0.659
+  },
+  {
+   "archivo": "0592f8597337cc.mp3",
+   "bytes": 37100,
+   "duracion": 4.61,
+   "silencio": 1.473,
+   "hablado": 3.137,
+   "fuerte": 2.636
+  },
+  {
+   "archivo": "059318e62c2700.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.337,
+   "hablado": 1.583,
+   "fuerte": 1.449
+  },
+  {
+   "archivo": "0594eaeedb4f44.mp3",
+   "bytes": 18092,
+   "duracion": 2.23,
+   "silencio": 0.33,
+   "hablado": 1.9,
+   "fuerte": 1.651
+  },
+  {
+   "archivo": "05971b1878bde6.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.521,
+   "hablado": 1.399,
+   "fuerte": 1.199
+  },
+  {
+   "archivo": "05a1cb53978893.mp3",
+   "bytes": 62444,
+   "duracion": 7.78,
+   "silencio": 1.193,
+   "hablado": 6.587,
+   "fuerte": 5.85
+  },
+  {
+   "archivo": "05a4c396fd7e5f.mp3",
+   "bytes": 113324,
+   "duracion": 14.14,
+   "silencio": 6.063,
+   "hablado": 8.077,
+   "fuerte": 7.37
+  },
+  {
+   "archivo": "05caddfc547949.mp3",
+   "bytes": 27884,
+   "duracion": 3.46,
+   "silencio": 1.506,
+   "hablado": 1.954,
+   "fuerte": 1.803
+  },
+  {
+   "archivo": "05d546e29ad260.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.688,
+   "hablado": 1.232,
+   "fuerte": 0.985
+  },
+  {
+   "archivo": "05d5d5df8ab0f8.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 1.002,
+   "hablado": 0.918,
+   "fuerte": 0.842
+  },
+  {
+   "archivo": "05d6c2f945ea84.mp3",
+   "bytes": 20012,
+   "duracion": 2.47,
+   "silencio": 0.286,
+   "hablado": 2.184,
+   "fuerte": 1.937
+  },
+  {
+   "archivo": "05d99b22700bc5.mp3",
+   "bytes": 30572,
+   "duracion": 3.79,
+   "silencio": 0.574,
+   "hablado": 3.216,
+   "fuerte": 2.806
+  },
+  {
+   "archivo": "05dcdae3500c5b.mp3",
+   "bytes": 16940,
+   "duracion": 2.09,
+   "silencio": 0.26,
+   "hablado": 1.83,
+   "fuerte": 1.237
+  },
+  {
+   "archivo": "05f08ed2f7e90f.mp3",
+   "bytes": 35180,
+   "duracion": 4.37,
+   "silencio": 1.132,
+   "hablado": 3.238,
+   "fuerte": 2.736
+  },
+  {
+   "archivo": "05f43ae4d84243.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 1.249,
+   "hablado": 0.671,
+   "fuerte": 0.565
+  },
+  {
+   "archivo": "05fa5b65b5e33d.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.557,
+   "hablado": 1.363,
+   "fuerte": 1.001
+  },
+  {
+   "archivo": "05fe1810ee329e.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.736,
+   "hablado": 1.184,
+   "fuerte": 1.042
+  },
+  {
+   "archivo": "060a44fbba5fba.mp3",
+   "bytes": 45356,
+   "duracion": 5.64,
+   "silencio": 2.45,
+   "hablado": 3.19,
+   "fuerte": 2.658
+  },
+  {
+   "archivo": "0614364b3e1166.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.656,
+   "hablado": 1.264,
+   "fuerte": 0.963
+  },
+  {
+   "archivo": "0614639827f6aa.mp3",
+   "bytes": 27500,
+   "duracion": 3.41,
+   "silencio": 1.046,
+   "hablado": 2.364,
+   "fuerte": 2.014
+  },
+  {
+   "archivo": "061f59e81d7316.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.295,
+   "hablado": 1.624,
+   "fuerte": 1.316
+  },
+  {
+   "archivo": "062f313d2532fc.mp3",
+   "bytes": 38252,
+   "duracion": 4.75,
+   "silencio": 0.93,
+   "hablado": 3.82,
+   "fuerte": 3.079
+  },
+  {
+   "archivo": "064c040c3d3853.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.695,
+   "hablado": 1.225,
+   "fuerte": 1.119
+  },
+  {
+   "archivo": "0675569a101d39.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 1.108,
+   "hablado": 0.812,
+   "fuerte": 0.579
+  },
+  {
+   "archivo": "06847155861d49.mp3",
+   "bytes": 17516,
+   "duracion": 2.16,
+   "silencio": 0.291,
+   "hablado": 1.869,
+   "fuerte": 1.677
+  },
+  {
+   "archivo": "069ea6c4fa3684.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.437,
+   "hablado": 1.483,
+   "fuerte": 1.324
+  },
+  {
+   "archivo": "06b45c51aae57c.mp3",
+   "bytes": 18476,
+   "duracion": 2.28,
+   "silencio": 0.871,
+   "hablado": 1.409,
+   "fuerte": 1.287
+  },
+  {
+   "archivo": "06bf0a9da6f3dd.mp3",
+   "bytes": 22316,
+   "duracion": 2.76,
+   "silencio": 0.418,
+   "hablado": 2.342,
+   "fuerte": 1.893
+  },
+  {
+   "archivo": "06ed6abe7d8d1d.mp3",
+   "bytes": 27692,
+   "duracion": 3.43,
+   "silencio": 0.826,
+   "hablado": 2.604,
+   "fuerte": 2.225
+  },
+  {
+   "archivo": "06eed27cc306ea.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.525,
+   "hablado": 1.395,
+   "fuerte": 1.149
+  },
+  {
+   "archivo": "06f4488395503c.mp3",
+   "bytes": 96620,
+   "duracion": 12.05,
+   "silencio": 4.457,
+   "hablado": 7.593,
+   "fuerte": 6.891
+  },
+  {
+   "archivo": "06fe2c656b896a.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.447,
+   "hablado": 1.473,
+   "fuerte": 1.169
+  },
+  {
+   "archivo": "07011e4feb58de.mp3",
+   "bytes": 36332,
+   "duracion": 4.51,
+   "silencio": 1.308,
+   "hablado": 3.202,
+   "fuerte": 2.907
+  },
+  {
+   "archivo": "0712c175f23e3c.mp3",
+   "bytes": 75500,
+   "duracion": 9.41,
+   "silencio": 2.169,
+   "hablado": 7.241,
+   "fuerte": 6.598
+  },
+  {
+   "archivo": "07182454311cc4.mp3",
+   "bytes": 23660,
+   "duracion": 2.93,
+   "silencio": 0.307,
+   "hablado": 2.623,
+   "fuerte": 2.229
+  },
+  {
+   "archivo": "0721918d1584e8.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.441,
+   "hablado": 1.479,
+   "fuerte": 1.396
+  },
+  {
+   "archivo": "07250247935588.mp3",
+   "bytes": 53612,
+   "duracion": 6.67,
+   "silencio": 1.676,
+   "hablado": 4.994,
+   "fuerte": 4.176
+  },
+  {
+   "archivo": "072c3ac8837563.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.989,
+   "hablado": 0.931,
+   "fuerte": 0.748
+  },
+  {
+   "archivo": "073b1785061b18.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 1.314,
+   "hablado": 0.606,
+   "fuerte": 0.549
+  },
+  {
+   "archivo": "0776455b48693a.mp3",
+   "bytes": 37484,
+   "duracion": 4.66,
+   "silencio": 1.219,
+   "hablado": 3.442,
+   "fuerte": 3.052
+  },
+  {
+   "archivo": "077ea960b51d2c.mp3",
+   "bytes": 29420,
+   "duracion": 3.65,
+   "silencio": 0.397,
+   "hablado": 3.253,
+   "fuerte": 2.711
+  },
+  {
+   "archivo": "0783966ad472ab.mp3",
+   "bytes": 41324,
+   "duracion": 5.14,
+   "silencio": 2.119,
+   "hablado": 3.021,
+   "fuerte": 2.81
+  },
+  {
+   "archivo": "078b656fada138.mp3",
+   "bytes": 92396,
+   "duracion": 11.52,
+   "silencio": 5.005,
+   "hablado": 6.515,
+   "fuerte": 5.895
+  },
+  {
+   "archivo": "0790f22ec04b8a.mp3",
+   "bytes": 62060,
+   "duracion": 7.73,
+   "silencio": 1.543,
+   "hablado": 6.187,
+   "fuerte": 5.705
+  },
+  {
+   "archivo": "07967cfdc329f9.mp3",
+   "bytes": 131180,
+   "duracion": 16.37,
+   "silencio": 6.66,
+   "hablado": 9.71,
+   "fuerte": 8.865
+  },
+  {
+   "archivo": "07b22e0ff42dd1.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.839,
+   "hablado": 1.081,
+   "fuerte": 0.888
+  },
+  {
+   "archivo": "07b2450989b30e.mp3",
+   "bytes": 57836,
+   "duracion": 7.2,
+   "silencio": 1.462,
+   "hablado": 5.738,
+   "fuerte": 5.141
+  },
+  {
+   "archivo": "07b4701cf336f4.mp3",
+   "bytes": 6956,
+   "duracion": 0.84,
+   "silencio": 0.32,
+   "hablado": 0.52,
+   "fuerte": 0.379
+  },
+  {
+   "archivo": "07ba9d78e03ed8.mp3",
+   "bytes": 16940,
+   "duracion": 2.09,
+   "silencio": 0.333,
+   "hablado": 1.757,
+   "fuerte": 1.391
+  },
+  {
+   "archivo": "07c75526c4aa9d.mp3",
+   "bytes": 27116,
+   "duracion": 3.36,
+   "silencio": 0.784,
+   "hablado": 2.576,
+   "fuerte": 2.217
+  },
+  {
+   "archivo": "07cf901fd0e34b.mp3",
+   "bytes": 100460,
+   "duracion": 12.53,
+   "silencio": 4.332,
+   "hablado": 8.198,
+   "fuerte": 7.381
+  },
+  {
+   "archivo": "07d7d490aeef84.mp3",
+   "bytes": 27500,
+   "duracion": 3.41,
+   "silencio": 1.017,
+   "hablado": 2.393,
+   "fuerte": 2.183
+  },
+  {
+   "archivo": "0804dabe46464c.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.909,
+   "hablado": 1.011,
+   "fuerte": 0.794
+  },
+  {
+   "archivo": "082bca0063c6e2.mp3",
+   "bytes": 57260,
+   "duracion": 7.13,
+   "silencio": 1.517,
+   "hablado": 5.613,
+   "fuerte": 5.142
+  },
+  {
+   "archivo": "082fd932eca6e4.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.597,
+   "hablado": 1.323,
+   "fuerte": 1.109
+  },
+  {
+   "archivo": "0838141b5c2caa.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.822,
+   "hablado": 1.098,
+   "fuerte": 0.928
+  },
+  {
+   "archivo": "08383e5988e495.mp3",
+   "bytes": 41324,
+   "duracion": 5.14,
+   "silencio": 0.643,
+   "hablado": 4.497,
+   "fuerte": 4.051
+  },
+  {
+   "archivo": "08409529ecd059.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.667,
+   "hablado": 1.253,
+   "fuerte": 1.086
+  },
+  {
+   "archivo": "0844f52b0a2e75.mp3",
+   "bytes": 94124,
+   "duracion": 11.74,
+   "silencio": 3.581,
+   "hablado": 8.159,
+   "fuerte": 7.513
+  },
+  {
+   "archivo": "085367590e59de.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.88,
+   "hablado": 1.04,
+   "fuerte": 0.856
+  },
+  {
+   "archivo": "085d0b65881744.mp3",
+   "bytes": 50732,
+   "duracion": 6.31,
+   "silencio": 1.319,
+   "hablado": 4.991,
+   "fuerte": 4.628
+  },
+  {
+   "archivo": "0861c4743e9f8f.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 1.005,
+   "hablado": 0.915,
+   "fuerte": 0.794
+  },
+  {
+   "archivo": "0871133e6d6580.mp3",
+   "bytes": 22892,
+   "duracion": 2.83,
+   "silencio": 0.303,
+   "hablado": 2.527,
+   "fuerte": 2.165
+  },
+  {
+   "archivo": "088367e9054a3a.mp3",
+   "bytes": 34796,
+   "duracion": 4.32,
+   "silencio": 1.229,
+   "hablado": 3.091,
+   "fuerte": 2.775
+  },
+  {
+   "archivo": "0892e1bc928abe.mp3",
+   "bytes": 110060,
+   "duracion": 13.73,
+   "silencio": 5.289,
+   "hablado": 8.441,
+   "fuerte": 7.819
+  },
+  {
+   "archivo": "0893aec75d6e45.mp3",
+   "bytes": 129644,
+   "duracion": 16.18,
+   "silencio": 8.089,
+   "hablado": 8.091,
+   "fuerte": 7.485
+  },
+  {
+   "archivo": "08965af2777ef3.mp3",
+   "bytes": 16556,
+   "duracion": 2.04,
+   "silencio": 0.292,
+   "hablado": 1.748,
+   "fuerte": 1.468
+  },
+  {
+   "archivo": "0898ba4e33de40.mp3",
+   "bytes": 40364,
+   "duracion": 5.02,
+   "silencio": 1.585,
+   "hablado": 3.435,
+   "fuerte": 2.908
+  },
+  {
+   "archivo": "089b24d04326eb.mp3",
+   "bytes": 27884,
+   "duracion": 3.46,
+   "silencio": 0.289,
+   "hablado": 3.171,
+   "fuerte": 2.964
+  },
+  {
+   "archivo": "089c2c6e92c19c.mp3",
+   "bytes": 101228,
+   "duracion": 12.62,
+   "silencio": 5.038,
+   "hablado": 7.582,
+   "fuerte": 6.945
+  },
+  {
+   "archivo": "089eb442d70de9.mp3",
+   "bytes": 6764,
+   "duracion": 0.82,
+   "silencio": 0.308,
+   "hablado": 0.512,
+   "fuerte": 0.406
+  },
+  {
+   "archivo": "08b4b568b8b363.mp3",
+   "bytes": 40940,
+   "duracion": 5.09,
+   "silencio": 1.481,
+   "hablado": 3.609,
+   "fuerte": 3.077
+  },
+  {
+   "archivo": "08c05473a4ab05.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.897,
+   "hablado": 1.023,
+   "fuerte": 0.842
+  },
+  {
+   "archivo": "08da3f410b70a3.mp3",
+   "bytes": 57260,
+   "duracion": 7.13,
+   "silencio": 2.773,
+   "hablado": 4.357,
+   "fuerte": 3.988
+  },
+  {
+   "archivo": "08e20523603f30.mp3",
+   "bytes": 24428,
+   "duracion": 3.02,
+   "silencio": 0.837,
+   "hablado": 2.183,
+   "fuerte": 1.852
+  },
+  {
+   "archivo": "08e8a0d20b453d.mp3",
+   "bytes": 26732,
+   "duracion": 3.31,
+   "silencio": 0.287,
+   "hablado": 3.023,
+   "fuerte": 2.728
+  },
+  {
+   "archivo": "08f51359ddeac5.mp3",
+   "bytes": 70124,
+   "duracion": 8.74,
+   "silencio": 3.886,
+   "hablado": 4.854,
+   "fuerte": 4.188
+  },
+  {
+   "archivo": "08f5c820348916.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.922,
+   "hablado": 0.998,
+   "fuerte": 0.848
+  },
+  {
+   "archivo": "08fb7a3243fc04.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 1.266,
+   "hablado": 0.654,
+   "fuerte": 0.559
+  },
+  {
+   "archivo": "08fce1e1661cdc.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 1.066,
+   "hablado": 0.854,
+   "fuerte": 0.72
+  },
+  {
+   "archivo": "09022dd3a25ad5.mp3",
+   "bytes": 23084,
+   "duracion": 2.86,
+   "silencio": 0.378,
+   "hablado": 2.482,
+   "fuerte": 2.341
+  },
+  {
+   "archivo": "0910e1ce92f10f.mp3",
+   "bytes": 95468,
+   "duracion": 11.9,
+   "silencio": 4.514,
+   "hablado": 7.386,
+   "fuerte": 6.701
+  },
+  {
+   "archivo": "0917758fa7dc91.mp3",
+   "bytes": 104684,
+   "duracion": 13.06,
+   "silencio": 5.612,
+   "hablado": 7.448,
+   "fuerte": 6.74
+  },
+  {
+   "archivo": "091ca2633fa17b.mp3",
+   "bytes": 32492,
+   "duracion": 4.03,
+   "silencio": 0.296,
+   "hablado": 3.734,
+   "fuerte": 3.198
+  },
+  {
+   "archivo": "091cab2f322e5b.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.672,
+   "hablado": 1.248,
+   "fuerte": 0.977
+  },
+  {
+   "archivo": "092b365bcac300.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.947,
+   "hablado": 0.973,
+   "fuerte": 0.76
+  },
+  {
+   "archivo": "0932f04ace4baa.mp3",
+   "bytes": 35564,
+   "duracion": 4.42,
+   "silencio": 1.407,
+   "hablado": 3.013,
+   "fuerte": 2.748
+  },
+  {
+   "archivo": "0949314087d9f8.mp3",
+   "bytes": 25388,
+   "duracion": 3.14,
+   "silencio": 0.319,
+   "hablado": 2.821,
+   "fuerte": 2.452
+  },
+  {
+   "archivo": "09533805027494.mp3",
+   "bytes": 34220,
+   "duracion": 4.25,
+   "silencio": 0.775,
+   "hablado": 3.474,
+   "fuerte": 2.938
+  },
+  {
+   "archivo": "0953603f36b7ce.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.747,
+   "hablado": 1.173,
+   "fuerte": 1.035
+  },
+  {
+   "archivo": "0955e629865213.mp3",
+   "bytes": 23852,
+   "duracion": 2.95,
+   "silencio": 0.653,
+   "hablado": 2.297,
+   "fuerte": 2.197
+  },
+  {
+   "archivo": "096d914264b57d.mp3",
+   "bytes": 115436,
+   "duracion": 14.4,
+   "silencio": 5.869,
+   "hablado": 8.531,
+   "fuerte": 7.91
+  },
+  {
+   "archivo": "0982ae85ba5839.mp3",
+   "bytes": 32492,
+   "duracion": 4.03,
+   "silencio": 0.803,
+   "hablado": 3.227,
+   "fuerte": 2.785
+  },
+  {
+   "archivo": "0987285899f4c1.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.422,
+   "hablado": 1.498,
+   "fuerte": 1.237
+  },
+  {
+   "archivo": "0995aeb847ae32.mp3",
+   "bytes": 53996,
+   "duracion": 6.72,
+   "silencio": 1.061,
+   "hablado": 5.659,
+   "fuerte": 5.006
+  },
+  {
+   "archivo": "099958b7de84b2.mp3",
+   "bytes": 36332,
+   "duracion": 4.51,
+   "silencio": 1.548,
+   "hablado": 2.962,
+   "fuerte": 2.623
+  },
+  {
+   "archivo": "099cfe4f26cd87.mp3",
+   "bytes": 43244,
+   "duracion": 5.38,
+   "silencio": 2.219,
+   "hablado": 3.161,
+   "fuerte": 2.788
+  },
+  {
+   "archivo": "09a423505a9718.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.897,
+   "hablado": 1.023,
+   "fuerte": 0.855
+  },
+  {
+   "archivo": "09a43b97f232dc.mp3",
+   "bytes": 17324,
+   "duracion": 2.14,
+   "silencio": 0.352,
+   "hablado": 1.788,
+   "fuerte": 1.489
+  },
+  {
+   "archivo": "09b0eb7d831caf.mp3",
+   "bytes": 19244,
+   "duracion": 2.38,
+   "silencio": 0.329,
+   "hablado": 2.051,
+   "fuerte": 1.814
+  },
+  {
+   "archivo": "09b516562a0a58.mp3",
+   "bytes": 27500,
+   "duracion": 3.41,
+   "silencio": 0.865,
+   "hablado": 2.545,
+   "fuerte": 2.334
+  },
+  {
+   "archivo": "09c5d0171ee400.mp3",
+   "bytes": 86828,
+   "duracion": 10.82,
+   "silencio": 3.435,
+   "hablado": 7.385,
+   "fuerte": 6.565
+  },
+  {
+   "archivo": "09c712f87681e1.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.416,
+   "hablado": 1.504,
+   "fuerte": 1.383
+  },
+  {
+   "archivo": "09cb222964c8ff.mp3",
+   "bytes": 50540,
+   "duracion": 6.29,
+   "silencio": 1.287,
+   "hablado": 5.003,
+   "fuerte": 4.129
+  },
+  {
+   "archivo": "09ee2a6ff06ba7.mp3",
+   "bytes": 26156,
+   "duracion": 3.24,
+   "silencio": 0.521,
+   "hablado": 2.719,
+   "fuerte": 2.425
+  },
+  {
+   "archivo": "09f6f7c1d64e71.mp3",
+   "bytes": 54188,
+   "duracion": 6.74,
+   "silencio": 1.008,
+   "hablado": 5.732,
+   "fuerte": 5.235
+  },
+  {
+   "archivo": "09f967facc6786.mp3",
+   "bytes": 31916,
+   "duracion": 3.96,
+   "silencio": 1.085,
+   "hablado": 2.875,
+   "fuerte": 2.633
+  },
+  {
+   "archivo": "0a04d90045bbeb.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.808,
+   "hablado": 1.112,
+   "fuerte": 0.962
+  },
+  {
+   "archivo": "0a099a844cb799.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 1.018,
+   "hablado": 0.902,
+   "fuerte": 0.736
+  },
+  {
+   "archivo": "0a1226cb3d9e7f.mp3",
+   "bytes": 30380,
+   "duracion": 3.77,
+   "silencio": 0.921,
+   "hablado": 2.849,
+   "fuerte": 2.365
+  },
+  {
+   "archivo": "0a195eead153a2.mp3",
+   "bytes": 29612,
+   "duracion": 3.67,
+   "silencio": 0.771,
+   "hablado": 2.899,
+   "fuerte": 2.462
+  },
+  {
+   "archivo": "0a245f7ea13e57.mp3",
+   "bytes": 29420,
+   "duracion": 3.65,
+   "silencio": 1.257,
+   "hablado": 2.393,
+   "fuerte": 2.04
+  },
+  {
+   "archivo": "0a2500633abe36.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 1.251,
+   "hablado": 0.669,
+   "fuerte": 0.617
+  },
+  {
+   "archivo": "0a327adfdd8228.mp3",
+   "bytes": 25004,
+   "duracion": 3.1,
+   "silencio": 0.363,
+   "hablado": 2.737,
+   "fuerte": 2.354
+  },
+  {
+   "archivo": "0a3c4ef2c44426.mp3",
+   "bytes": 31340,
+   "duracion": 3.89,
+   "silencio": 1.131,
+   "hablado": 2.76,
+   "fuerte": 2.492
+  },
+  {
+   "archivo": "0a4c7907f65e6e.mp3",
+   "bytes": 123500,
+   "duracion": 15.41,
+   "silencio": 5.389,
+   "hablado": 10.021,
+   "fuerte": 9.303
+  },
+  {
+   "archivo": "0a4d5cb18a3982.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 1.088,
+   "hablado": 0.832,
+   "fuerte": 0.689
+  },
+  {
+   "archivo": "0a63c024f0d0b6.mp3",
+   "bytes": 69164,
+   "duracion": 8.62,
+   "silencio": 1.633,
+   "hablado": 6.987,
+   "fuerte": 6.333
+  },
+  {
+   "archivo": "0a672450070244.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.601,
+   "hablado": 1.319,
+   "fuerte": 1.134
+  },
+  {
+   "archivo": "0a69d07cbb729a.mp3",
+   "bytes": 25580,
+   "duracion": 3.17,
+   "silencio": 0.859,
+   "hablado": 2.311,
+   "fuerte": 2.021
+  },
+  {
+   "archivo": "0a7dd9a3fe40a0.mp3",
+   "bytes": 20396,
+   "duracion": 2.52,
+   "silencio": 1.335,
+   "hablado": 1.185,
+   "fuerte": 0.954
+  },
+  {
+   "archivo": "0a87b5eaa571f5.mp3",
+   "bytes": 90092,
+   "duracion": 11.23,
+   "silencio": 4.497,
+   "hablado": 6.733,
+   "fuerte": 6.031
+  },
+  {
+   "archivo": "0a977959841344.mp3",
+   "bytes": 103532,
+   "duracion": 12.91,
+   "silencio": 4.997,
+   "hablado": 7.913,
+   "fuerte": 7.204
+  },
+  {
+   "archivo": "0aa185a82b1407.mp3",
+   "bytes": 17516,
+   "duracion": 2.16,
+   "silencio": 0.412,
+   "hablado": 1.748,
+   "fuerte": 1.47
+  },
+  {
+   "archivo": "0aa50ce262aaae.mp3",
+   "bytes": 44780,
+   "duracion": 5.57,
+   "silencio": 0.758,
+   "hablado": 4.812,
+   "fuerte": 4.241
+  },
+  {
+   "archivo": "0aa894b7d49b9f.mp3",
+   "bytes": 19820,
+   "duracion": 2.45,
+   "silencio": 0.339,
+   "hablado": 2.111,
+   "fuerte": 1.716
+  },
+  {
+   "archivo": "0ab6ab3f2f781f.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.872,
+   "hablado": 1.048,
+   "fuerte": 0.947
+  },
+  {
+   "archivo": "0ac8c35483f2d1.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.865,
+   "hablado": 1.055,
+   "fuerte": 0.874
+  },
+  {
+   "archivo": "0ad2e3763f0fc7.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.722,
+   "hablado": 1.198,
+   "fuerte": 1.032
+  },
+  {
+   "archivo": "0ae71444587708.mp3",
+   "bytes": 18284,
+   "duracion": 2.26,
+   "silencio": 0.341,
+   "hablado": 1.919,
+   "fuerte": 1.406
+  },
+  {
+   "archivo": "0aeddb93c02a04.mp3",
+   "bytes": 18476,
+   "duracion": 2.28,
+   "silencio": 0.297,
+   "hablado": 1.983,
+   "fuerte": 1.529
+  },
+  {
+   "archivo": "0af9a7e894ee29.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.835,
+   "hablado": 1.085,
+   "fuerte": 0.86
+  },
+  {
+   "archivo": "0aff01ba2b201d.mp3",
+   "bytes": 106220,
+   "duracion": 13.25,
+   "silencio": 5.763,
+   "hablado": 7.487,
+   "fuerte": 6.81
+  },
+  {
+   "archivo": "0b174e618f4dce.mp3",
+   "bytes": 27308,
+   "duracion": 3.38,
+   "silencio": 0.282,
+   "hablado": 3.098,
+   "fuerte": 2.884
+  },
+  {
+   "archivo": "0b1f07ffca0ded.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.739,
+   "hablado": 1.181,
+   "fuerte": 0.942
+  },
+  {
+   "archivo": "0b20abe74aa294.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.791,
+   "hablado": 1.129,
+   "fuerte": 0.926
+  },
+  {
+   "archivo": "0b242ec447796a.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.446,
+   "hablado": 1.474,
+   "fuerte": 1.264
+  },
+  {
+   "archivo": "0b24777bbcff2d.mp3",
+   "bytes": 103916,
+   "duracion": 12.96,
+   "silencio": 4.783,
+   "hablado": 8.177,
+   "fuerte": 7.673
+  },
+  {
+   "archivo": "0b2a0813ad1690.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 1.06,
+   "hablado": 0.86,
+   "fuerte": 0.652
+  },
+  {
+   "archivo": "0b371ea167017f.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 1.271,
+   "hablado": 0.649,
+   "fuerte": 0.546
+  },
+  {
+   "archivo": "0b610ad828edc9.mp3",
+   "bytes": 97004,
+   "duracion": 12.1,
+   "silencio": 4.217,
+   "hablado": 7.883,
+   "fuerte": 7.086
+  },
+  {
+   "archivo": "0b63edf40e07d8.mp3",
+   "bytes": 73964,
+   "duracion": 9.22,
+   "silencio": 3.069,
+   "hablado": 6.151,
+   "fuerte": 5.64
+  },
+  {
+   "archivo": "0b79d378323466.mp3",
+   "bytes": 20780,
+   "duracion": 2.57,
+   "silencio": 0.298,
+   "hablado": 2.271,
+   "fuerte": 1.83
+  },
+  {
+   "archivo": "0ba156e3bc96c5.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 1.001,
+   "hablado": 0.919,
+   "fuerte": 0.805
+  },
+  {
+   "archivo": "0baca98528d04a.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 1.021,
+   "hablado": 0.899,
+   "fuerte": 0.79
+  },
+  {
+   "archivo": "0bb59e3e9b70d5.mp3",
+   "bytes": 44012,
+   "duracion": 5.47,
+   "silencio": 1.181,
+   "hablado": 4.289,
+   "fuerte": 3.672
+  },
+  {
+   "archivo": "0bca5b5e055712.mp3",
+   "bytes": 29036,
+   "duracion": 3.6,
+   "silencio": 0.335,
+   "hablado": 3.265,
+   "fuerte": 2.848
+  },
+  {
+   "archivo": "0bd6a26cc1637b.mp3",
+   "bytes": 32876,
+   "duracion": 4.08,
+   "silencio": 0.966,
+   "hablado": 3.114,
+   "fuerte": 2.7
+  },
+  {
+   "archivo": "0bdf71d65c6ca3.mp3",
+   "bytes": 25004,
+   "duracion": 3.1,
+   "silencio": 0.637,
+   "hablado": 2.463,
+   "fuerte": 2.036
+  },
+  {
+   "archivo": "0be15e2959a881.mp3",
+   "bytes": 45164,
+   "duracion": 5.62,
+   "silencio": 1.127,
+   "hablado": 4.493,
+   "fuerte": 3.968
+  },
+  {
+   "archivo": "0bea91f50130c7.mp3",
+   "bytes": 24428,
+   "duracion": 3.02,
+   "silencio": 0.331,
+   "hablado": 2.689,
+   "fuerte": 2.468
+  },
+  {
+   "archivo": "0bfd10d2ec6386.mp3",
+   "bytes": 22124,
+   "duracion": 2.74,
+   "silencio": 0.276,
+   "hablado": 2.464,
+   "fuerte": 2.326
+  },
+  {
+   "archivo": "0c0c49a8268e10.mp3",
+   "bytes": 19052,
+   "duracion": 2.35,
+   "silencio": 0.369,
+   "hablado": 1.981,
+   "fuerte": 1.715
+  },
+  {
+   "archivo": "0c16b0f311c39a.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.49,
+   "hablado": 1.43,
+   "fuerte": 1.026
+  },
+  {
+   "archivo": "0c23461d3ed286.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 1.037,
+   "hablado": 0.883,
+   "fuerte": 0.762
+  },
+  {
+   "archivo": "0c2dcbf5f15b01.mp3",
+   "bytes": 117164,
+   "duracion": 14.62,
+   "silencio": 5.128,
+   "hablado": 9.492,
+   "fuerte": 8.873
+  },
+  {
+   "archivo": "0c4f117d310e1e.mp3",
+   "bytes": 32876,
+   "duracion": 4.08,
+   "silencio": 1.131,
+   "hablado": 2.949,
+   "fuerte": 2.432
+  },
+  {
+   "archivo": "0c5265c5b64e45.mp3",
+   "bytes": 73772,
+   "duracion": 9.19,
+   "silencio": 2.518,
+   "hablado": 6.672,
+   "fuerte": 5.961
+  },
+  {
+   "archivo": "0c621a29d770b1.mp3",
+   "bytes": 16556,
+   "duracion": 2.04,
+   "silencio": 1.023,
+   "hablado": 1.017,
+   "fuerte": 0.807
+  },
+  {
+   "archivo": "0c66878650b7cb.mp3",
+   "bytes": 20588,
+   "duracion": 2.54,
+   "silencio": 0.271,
+   "hablado": 2.269,
+   "fuerte": 1.862
+  },
+  {
+   "archivo": "0c837c9e99aef8.mp3",
+   "bytes": 17324,
+   "duracion": 2.14,
+   "silencio": 0.313,
+   "hablado": 1.827,
+   "fuerte": 1.489
+  },
+  {
+   "archivo": "0c975508a21bd5.mp3",
+   "bytes": 17324,
+   "duracion": 2.14,
+   "silencio": 0.443,
+   "hablado": 1.697,
+   "fuerte": 1.434
+  },
+  {
+   "archivo": "0cbff43e308bf0.mp3",
+   "bytes": 16748,
+   "duracion": 2.06,
+   "silencio": 0.306,
+   "hablado": 1.754,
+   "fuerte": 1.4
+  },
+  {
+   "archivo": "0cc1993fc1b8f4.mp3",
+   "bytes": 36908,
+   "duracion": 4.58,
+   "silencio": 1.451,
+   "hablado": 3.129,
+   "fuerte": 2.889
+  },
+  {
+   "archivo": "0cc5fc7d279d97.mp3",
+   "bytes": 29036,
+   "duracion": 3.6,
+   "silencio": 0.455,
+   "hablado": 3.145,
+   "fuerte": 2.827
+  },
+  {
+   "archivo": "0ccaf33561f370.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 1.255,
+   "hablado": 0.665,
+   "fuerte": 0.559
+  },
+  {
+   "archivo": "0cd71155a83114.mp3",
+   "bytes": 78188,
+   "duracion": 9.74,
+   "silencio": 2.472,
+   "hablado": 7.268,
+   "fuerte": 6.429
+  },
+  {
+   "archivo": "0cdad559d89c1c.mp3",
+   "bytes": 61676,
+   "duracion": 7.68,
+   "silencio": 1.85,
+   "hablado": 5.83,
+   "fuerte": 5.145
+  },
+  {
+   "archivo": "0cdb801fd14e33.mp3",
+   "bytes": 31724,
+   "duracion": 3.94,
+   "silencio": 0.894,
+   "hablado": 3.046,
+   "fuerte": 2.63
+  },
+  {
+   "archivo": "0ced6310af85d9.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.314,
+   "hablado": 1.606,
+   "fuerte": 1.383
+  },
+  {
+   "archivo": "0cf2bd60d194e2.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.646,
+   "hablado": 1.274,
+   "fuerte": 1.132
+  },
+  {
+   "archivo": "0d01a30f0b4d31.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.872,
+   "hablado": 1.048,
+   "fuerte": 0.881
+  },
+  {
+   "archivo": "0d0611cb94dc42.mp3",
+   "bytes": 15980,
+   "duracion": 1.97,
+   "silencio": 0.296,
+   "hablado": 1.674,
+   "fuerte": 1.443
+  },
+  {
+   "archivo": "0d076094ce8c7a.mp3",
+   "bytes": 40748,
+   "duracion": 5.06,
+   "silencio": 1.919,
+   "hablado": 3.141,
+   "fuerte": 2.519
+  },
+  {
+   "archivo": "0d09d34ccebeab.mp3",
+   "bytes": 59756,
+   "duracion": 7.44,
+   "silencio": 1.361,
+   "hablado": 6.079,
+   "fuerte": 5.421
+  },
+  {
+   "archivo": "0d0e086c89397e.mp3",
+   "bytes": 24812,
+   "duracion": 3.07,
+   "silencio": 0.448,
+   "hablado": 2.622,
+   "fuerte": 2.405
+  },
+  {
+   "archivo": "0d1789b4e6ac8f.mp3",
+   "bytes": 35948,
+   "duracion": 4.46,
+   "silencio": 2.071,
+   "hablado": 2.389,
+   "fuerte": 2.247
+  },
+  {
+   "archivo": "0d1893921a254b.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.402,
+   "hablado": 1.518,
+   "fuerte": 1.225
+  },
+  {
+   "archivo": "0d23bb2f453f45.mp3",
+   "bytes": 32684,
+   "duracion": 4.06,
+   "silencio": 1.01,
+   "hablado": 3.05,
+   "fuerte": 2.425
+  },
+  {
+   "archivo": "0d36206086fe33.mp3",
+   "bytes": 23084,
+   "duracion": 2.86,
+   "silencio": 0.455,
+   "hablado": 2.405,
+   "fuerte": 2.188
+  },
+  {
+   "archivo": "0d451a95122af8.mp3",
+   "bytes": 24428,
+   "duracion": 3.02,
+   "silencio": 0.322,
+   "hablado": 2.698,
+   "fuerte": 2.532
+  },
+  {
+   "archivo": "0d4e3a81de2811.mp3",
+   "bytes": 59756,
+   "duracion": 7.44,
+   "silencio": 1.456,
+   "hablado": 5.984,
+   "fuerte": 5.453
+  },
+  {
+   "archivo": "0d54efda52657d.mp3",
+   "bytes": 37676,
+   "duracion": 4.68,
+   "silencio": 0.833,
+   "hablado": 3.847,
+   "fuerte": 3.508
+  },
+  {
+   "archivo": "0d6859de1b765d.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.797,
+   "hablado": 1.123,
+   "fuerte": 0.859
+  },
+  {
+   "archivo": "0d6ac22f6a2876.mp3",
+   "bytes": 53996,
+   "duracion": 6.72,
+   "silencio": 2.148,
+   "hablado": 4.572,
+   "fuerte": 4.018
+  },
+  {
+   "archivo": "0d6b8e6914a64a.mp3",
+   "bytes": 16556,
+   "duracion": 2.04,
+   "silencio": 0.189,
+   "hablado": 1.851,
+   "fuerte": 1.602
+  },
+  {
+   "archivo": "0d796602c98ad2.mp3",
+   "bytes": 54380,
+   "duracion": 6.77,
+   "silencio": 2.35,
+   "hablado": 4.42,
+   "fuerte": 3.827
+  },
+  {
+   "archivo": "0d7db497f5ba0a.mp3",
+   "bytes": 96620,
+   "duracion": 12.05,
+   "silencio": 4.692,
+   "hablado": 7.358,
+   "fuerte": 6.743
+  },
+  {
+   "archivo": "0d8114c7809dca.mp3",
+   "bytes": 36140,
+   "duracion": 4.49,
+   "silencio": 0.573,
+   "hablado": 3.917,
+   "fuerte": 3.522
+  },
+  {
+   "archivo": "0d831b530d4552.mp3",
+   "bytes": 34604,
+   "duracion": 4.3,
+   "silencio": 0.964,
+   "hablado": 3.336,
+   "fuerte": 3.07
+  },
+  {
+   "archivo": "0d8d8953e76ff5.mp3",
+   "bytes": 49580,
+   "duracion": 6.17,
+   "silencio": 1.416,
+   "hablado": 4.754,
+   "fuerte": 4.197
+  },
+  {
+   "archivo": "0d8dcd1f7ec54e.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.545,
+   "hablado": 1.375,
+   "fuerte": 1.036
+  },
+  {
+   "archivo": "0d8e25abbe3868.mp3",
+   "bytes": 6764,
+   "duracion": 0.82,
+   "silencio": 0.312,
+   "hablado": 0.508,
+   "fuerte": 0.374
+  },
+  {
+   "archivo": "0d95a8323aa739.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 1.169,
+   "hablado": 0.751,
+   "fuerte": 0.564
+  },
+  {
+   "archivo": "0da0bd2ec1eaa6.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.721,
+   "hablado": 1.199,
+   "fuerte": 1.037
+  },
+  {
+   "archivo": "0db49a76c56a24.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.512,
+   "hablado": 1.407,
+   "fuerte": 1.256
+  },
+  {
+   "archivo": "0dc9418f199939.mp3",
+   "bytes": 39788,
+   "duracion": 4.94,
+   "silencio": 1.791,
+   "hablado": 3.149,
+   "fuerte": 2.764
+  },
+  {
+   "archivo": "0de703e1604be0.mp3",
+   "bytes": 45740,
+   "duracion": 5.69,
+   "silencio": 0.393,
+   "hablado": 5.297,
+   "fuerte": 4.662
+  },
+  {
+   "archivo": "0de958692a647a.mp3",
+   "bytes": 71852,
+   "duracion": 8.95,
+   "silencio": 2.379,
+   "hablado": 6.571,
+   "fuerte": 6.03
+  },
+  {
+   "archivo": "0dea6d31df1f4e.mp3",
+   "bytes": 36524,
+   "duracion": 4.54,
+   "silencio": 0.933,
+   "hablado": 3.607,
+   "fuerte": 3.161
+  },
+  {
+   "archivo": "0dfe1fe2b556ef.mp3",
+   "bytes": 25580,
+   "duracion": 3.17,
+   "silencio": 0.148,
+   "hablado": 3.022,
+   "fuerte": 2.331
+  },
+  {
+   "archivo": "0e058bfa77232c.mp3",
+   "bytes": 15980,
+   "duracion": 1.97,
+   "silencio": 0.384,
+   "hablado": 1.586,
+   "fuerte": 1.306
+  },
+  {
+   "archivo": "0e06b2f088ba17.mp3",
+   "bytes": 96236,
+   "duracion": 12,
+   "silencio": 4.6,
+   "hablado": 7.4,
+   "fuerte": 6.736
+  },
+  {
+   "archivo": "0e0eac91bdcaf0.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.797,
+   "hablado": 1.123,
+   "fuerte": 0.936
+  },
+  {
+   "archivo": "0e1afd7b504638.mp3",
+   "bytes": 41516,
+   "duracion": 5.16,
+   "silencio": 1.122,
+   "hablado": 4.038,
+   "fuerte": 3.217
+  },
+  {
+   "archivo": "0e1c2d5921c62d.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 1.029,
+   "hablado": 0.891,
+   "fuerte": 0.723
+  },
+  {
+   "archivo": "0e2069c122afc7.mp3",
+   "bytes": 118892,
+   "duracion": 14.83,
+   "silencio": 5.818,
+   "hablado": 9.012,
+   "fuerte": 8.267
+  },
+  {
+   "archivo": "0e2f7d0d70c965.mp3",
+   "bytes": 95468,
+   "duracion": 11.9,
+   "silencio": 4.162,
+   "hablado": 7.738,
+   "fuerte": 7.122
+  },
+  {
+   "archivo": "0e31e22065aebe.mp3",
+   "bytes": 44588,
+   "duracion": 5.54,
+   "silencio": 1.934,
+   "hablado": 3.606,
+   "fuerte": 3.245
+  },
+  {
+   "archivo": "0e3f66785a8ae3.mp3",
+   "bytes": 16940,
+   "duracion": 2.09,
+   "silencio": 0.289,
+   "hablado": 1.801,
+   "fuerte": 1.54
+  },
+  {
+   "archivo": "0e45c9c680983c.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.397,
+   "hablado": 1.523,
+   "fuerte": 1.186
+  },
+  {
+   "archivo": "0e46ee71bb54a2.mp3",
+   "bytes": 63788,
+   "duracion": 7.94,
+   "silencio": 1.673,
+   "hablado": 6.267,
+   "fuerte": 5.749
+  },
+  {
+   "archivo": "0e4aff594d09c8.mp3",
+   "bytes": 77804,
+   "duracion": 9.7,
+   "silencio": 2.412,
+   "hablado": 7.288,
+   "fuerte": 6.621
+  },
+  {
+   "archivo": "0e52265bb0d3dd.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.747,
+   "hablado": 1.173,
+   "fuerte": 0.933
+  },
+  {
+   "archivo": "0e5924965e51da.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.922,
+   "hablado": 0.998,
+   "fuerte": 0.817
+  },
+  {
+   "archivo": "0e62ba5228f149.mp3",
+   "bytes": 32876,
+   "duracion": 4.08,
+   "silencio": 1.129,
+   "hablado": 2.951,
+   "fuerte": 2.641
+  },
+  {
+   "archivo": "0e62fe842bcfae.mp3",
+   "bytes": 21548,
+   "duracion": 2.66,
+   "silencio": 0.439,
+   "hablado": 2.221,
+   "fuerte": 1.786
+  },
+  {
+   "archivo": "0e67e90de1d967.mp3",
+   "bytes": 34220,
+   "duracion": 4.25,
+   "silencio": 1.165,
+   "hablado": 3.085,
+   "fuerte": 2.658
+  },
+  {
+   "archivo": "0e6e51c1f4649e.mp3",
+   "bytes": 32108,
+   "duracion": 3.98,
+   "silencio": 0.321,
+   "hablado": 3.659,
+   "fuerte": 3.157
+  },
+  {
+   "archivo": "0e71cb998c9cdc.mp3",
+   "bytes": 30956,
+   "duracion": 3.84,
+   "silencio": 1.442,
+   "hablado": 2.398,
+   "fuerte": 2.149
+  },
+  {
+   "archivo": "0e723c88286a59.mp3",
+   "bytes": 95276,
+   "duracion": 11.88,
+   "silencio": 3.709,
+   "hablado": 8.171,
+   "fuerte": 7.432
+  },
+  {
+   "archivo": "0e731f8af4e7b3.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.784,
+   "hablado": 1.136,
+   "fuerte": 0.917
+  },
+  {
+   "archivo": "0e80566f7944d7.mp3",
+   "bytes": 113132,
+   "duracion": 14.11,
+   "silencio": 5.061,
+   "hablado": 9.049,
+   "fuerte": 8.285
+  },
+  {
+   "archivo": "0e82b92fa1b07b.mp3",
+   "bytes": 23660,
+   "duracion": 2.93,
+   "silencio": 0.315,
+   "hablado": 2.615,
+   "fuerte": 2.348
+  },
+  {
+   "archivo": "0e9b5d10294166.mp3",
+   "bytes": 26540,
+   "duracion": 3.29,
+   "silencio": 0.982,
+   "hablado": 2.308,
+   "fuerte": 1.998
+  },
+  {
+   "archivo": "0ea76ef9396d1e.mp3",
+   "bytes": 37868,
+   "duracion": 4.7,
+   "silencio": 0.997,
+   "hablado": 3.703,
+   "fuerte": 3.275
+  },
+  {
+   "archivo": "0eb4c5f32dd499.mp3",
+   "bytes": 37100,
+   "duracion": 4.61,
+   "silencio": 1.34,
+   "hablado": 3.27,
+   "fuerte": 2.923
+  },
+  {
+   "archivo": "0ec81f233fe316.mp3",
+   "bytes": 29228,
+   "duracion": 3.62,
+   "silencio": 0.644,
+   "hablado": 2.976,
+   "fuerte": 2.44
+  },
+  {
+   "archivo": "0edb50bcc94463.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.749,
+   "hablado": 1.171,
+   "fuerte": 1.012
+  },
+  {
+   "archivo": "0ee335895a9681.mp3",
+   "bytes": 17516,
+   "duracion": 2.16,
+   "silencio": 0.312,
+   "hablado": 1.848,
+   "fuerte": 1.743
+  },
+  {
+   "archivo": "0ee8d61f35b7c6.mp3",
+   "bytes": 94316,
+   "duracion": 11.76,
+   "silencio": 3.688,
+   "hablado": 8.072,
+   "fuerte": 7.405
+  },
+  {
+   "archivo": "0f121f0e2c8e92.mp3",
+   "bytes": 40364,
+   "duracion": 5.02,
+   "silencio": 0.731,
+   "hablado": 4.289,
+   "fuerte": 3.618
+  },
+  {
+   "archivo": "0f22b9593e3d62.mp3",
+   "bytes": 45932,
+   "duracion": 5.71,
+   "silencio": 2.221,
+   "hablado": 3.489,
+   "fuerte": 3.052
+  },
+  {
+   "archivo": "0f34403d4d1c31.mp3",
+   "bytes": 44204,
+   "duracion": 5.5,
+   "silencio": 1.236,
+   "hablado": 4.264,
+   "fuerte": 3.944
+  },
+  {
+   "archivo": "0f349fced6295b.mp3",
+   "bytes": 67052,
+   "duracion": 8.35,
+   "silencio": 2.109,
+   "hablado": 6.241,
+   "fuerte": 5.668
+  },
+  {
+   "archivo": "0f418b773b8773.mp3",
+   "bytes": 40172,
+   "duracion": 4.99,
+   "silencio": 1.426,
+   "hablado": 3.564,
+   "fuerte": 3.196
+  },
+  {
+   "archivo": "0f4a2142bc9e17.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.634,
+   "hablado": 1.286,
+   "fuerte": 1.087
+  },
+  {
+   "archivo": "0f546262103113.mp3",
+   "bytes": 20972,
+   "duracion": 2.59,
+   "silencio": 1.195,
+   "hablado": 1.395,
+   "fuerte": 1.258
+  },
+  {
+   "archivo": "0f8436bb6bbb7c.mp3",
+   "bytes": 37484,
+   "duracion": 4.66,
+   "silencio": 1.402,
+   "hablado": 3.258,
+   "fuerte": 2.993
+  },
+  {
+   "archivo": "0f8c6ad055b430.mp3",
+   "bytes": 34796,
+   "duracion": 4.32,
+   "silencio": 0.932,
+   "hablado": 3.388,
+   "fuerte": 2.95
+  },
+  {
+   "archivo": "0f988fa38f9df4.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.394,
+   "hablado": 1.526,
+   "fuerte": 1.333
+  },
+  {
+   "archivo": "0fac1355de1caf.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.813,
+   "hablado": 1.107,
+   "fuerte": 0.944
+  },
+  {
+   "archivo": "0faf82c9d9aa08.mp3",
+   "bytes": 52268,
+   "duracion": 6.5,
+   "silencio": 1.955,
+   "hablado": 4.545,
+   "fuerte": 4.159
+  },
+  {
+   "archivo": "0fb518798f4df1.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.722,
+   "hablado": 1.198,
+   "fuerte": 0.917
+  },
+  {
+   "archivo": "0fb834fb755bd3.mp3",
+   "bytes": 46316,
+   "duracion": 5.76,
+   "silencio": 1.472,
+   "hablado": 4.288,
+   "fuerte": 3.675
+  },
+  {
+   "archivo": "0fda31c24bfc1d.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.754,
+   "hablado": 1.166,
+   "fuerte": 0.947
+  },
+  {
+   "archivo": "0fdf3bc1f18f05.mp3",
+   "bytes": 16940,
+   "duracion": 2.09,
+   "silencio": 0.497,
+   "hablado": 1.593,
+   "fuerte": 1.414
+  },
+  {
+   "archivo": "0fe4d09cacb178.mp3",
+   "bytes": 39596,
+   "duracion": 4.92,
+   "silencio": 1.631,
+   "hablado": 3.289,
+   "fuerte": 2.889
+  },
+  {
+   "archivo": "0fe5abb1680a44.mp3",
+   "bytes": 20588,
+   "duracion": 2.54,
+   "silencio": 0.355,
+   "hablado": 2.185,
+   "fuerte": 1.824
+  },
+  {
+   "archivo": "0feadf3e11ab52.mp3",
+   "bytes": 67820,
+   "duracion": 8.45,
+   "silencio": 2.396,
+   "hablado": 6.054,
+   "fuerte": 5.372
+  },
+  {
+   "archivo": "0fed46117ae88b.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.572,
+   "hablado": 1.348,
+   "fuerte": 1.061
+  },
+  {
+   "archivo": "0ff39c1196d68e.mp3",
+   "bytes": 16556,
+   "duracion": 2.04,
+   "silencio": 0.763,
+   "hablado": 1.277,
+   "fuerte": 1.064
+  },
+  {
+   "archivo": "0ff4941dfe806b.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.397,
+   "hablado": 1.523,
+   "fuerte": 1.394
+  },
+  {
+   "archivo": "0ff685ca01ea7e.mp3",
+   "bytes": 59756,
+   "duracion": 7.44,
+   "silencio": 1.349,
+   "hablado": 6.091,
+   "fuerte": 5.485
+  },
+  {
+   "archivo": "0ff6fed56c8a16.mp3",
+   "bytes": 22700,
+   "duracion": 2.81,
+   "silencio": 0.372,
+   "hablado": 2.438,
+   "fuerte": 2.036
+  },
+  {
+   "archivo": "0ff90a8c38a028.mp3",
+   "bytes": 56300,
+   "duracion": 7.01,
+   "silencio": 1.379,
+   "hablado": 5.631,
+   "fuerte": 5.158
+  },
+  {
+   "archivo": "10008c5760c59a.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.365,
+   "hablado": 1.555,
+   "fuerte": 1.164
+  },
+  {
+   "archivo": "102e347ec03ccd.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 1.193,
+   "hablado": 0.727,
+   "fuerte": 0.53
+  },
+  {
+   "archivo": "10328ebd868990.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.824,
+   "hablado": 1.096,
+   "fuerte": 0.968
+  },
+  {
+   "archivo": "1034408ef03ede.mp3",
+   "bytes": 23468,
+   "duracion": 2.9,
+   "silencio": 0.5,
+   "hablado": 2.4,
+   "fuerte": 2.149
+  },
+  {
+   "archivo": "1059788971cfe9.mp3",
+   "bytes": 61484,
+   "duracion": 7.66,
+   "silencio": 1.494,
+   "hablado": 6.166,
+   "fuerte": 5.544
+  },
+  {
+   "archivo": "106e951537a0c4.mp3",
+   "bytes": 83564,
+   "duracion": 10.42,
+   "silencio": 2.812,
+   "hablado": 7.608,
+   "fuerte": 7.079
+  },
+  {
+   "archivo": "1079cf82096b34.mp3",
+   "bytes": 64748,
+   "duracion": 8.06,
+   "silencio": 1.461,
+   "hablado": 6.599,
+   "fuerte": 5.972
+  },
+  {
+   "archivo": "109324617359d2.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.847,
+   "hablado": 1.073,
+   "fuerte": 0.963
+  },
+  {
+   "archivo": "10cf4b4ca375b3.mp3",
+   "bytes": 35564,
+   "duracion": 4.42,
+   "silencio": 0.901,
+   "hablado": 3.519,
+   "fuerte": 3.214
+  },
+  {
+   "archivo": "10dfad859837a8.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 1.014,
+   "hablado": 0.906,
+   "fuerte": 0.786
+  },
+  {
+   "archivo": "10ebb55d28ac70.mp3",
+   "bytes": 91244,
+   "duracion": 11.38,
+   "silencio": 4.486,
+   "hablado": 6.894,
+   "fuerte": 6.211
+  },
+  {
+   "archivo": "10f9dec4cec8ef.mp3",
+   "bytes": 43628,
+   "duracion": 5.42,
+   "silencio": 1.278,
+   "hablado": 4.142,
+   "fuerte": 3.616
+  },
+  {
+   "archivo": "10feda94066e64.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 1.084,
+   "hablado": 0.836,
+   "fuerte": 0.728
+  },
+  {
+   "archivo": "11006120a9752f.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.822,
+   "hablado": 1.098,
+   "fuerte": 0.916
+  },
+  {
+   "archivo": "1109d66868cba6.mp3",
+   "bytes": 45164,
+   "duracion": 5.62,
+   "silencio": 1.152,
+   "hablado": 4.468,
+   "fuerte": 3.983
+  },
+  {
+   "archivo": "110ac6740d422c.mp3",
+   "bytes": 62444,
+   "duracion": 7.78,
+   "silencio": 1.042,
+   "hablado": 6.738,
+   "fuerte": 6.025
+  },
+  {
+   "archivo": "110bd2840831dd.mp3",
+   "bytes": 36716,
+   "duracion": 4.56,
+   "silencio": 1.02,
+   "hablado": 3.54,
+   "fuerte": 3.34
+  },
+  {
+   "archivo": "110f4e54e47e84.mp3",
+   "bytes": 16172,
+   "duracion": 1.99,
+   "silencio": 0.318,
+   "hablado": 1.672,
+   "fuerte": 1.403
+  },
+  {
+   "archivo": "111348cdca7297.mp3",
+   "bytes": 81644,
+   "duracion": 10.18,
+   "silencio": 3.161,
+   "hablado": 7.019,
+   "fuerte": 6.419
+  },
+  {
+   "archivo": "11210acafda5bf.mp3",
+   "bytes": 15980,
+   "duracion": 1.97,
+   "silencio": 0.289,
+   "hablado": 1.681,
+   "fuerte": 1.451
+  },
+  {
+   "archivo": "112383e0534cf6.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.341,
+   "hablado": 1.579,
+   "fuerte": 1.324
+  },
+  {
+   "archivo": "1155f6462a1169.mp3",
+   "bytes": 29612,
+   "duracion": 3.67,
+   "silencio": 1.081,
+   "hablado": 2.589,
+   "fuerte": 2.22
+  },
+  {
+   "archivo": "115af6708d1d47.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.625,
+   "hablado": 1.295,
+   "fuerte": 1.09
+  },
+  {
+   "archivo": "11690eace560e5.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.863,
+   "hablado": 1.057,
+   "fuerte": 0.915
+  },
+  {
+   "archivo": "116e0b22d35687.mp3",
+   "bytes": 16556,
+   "duracion": 2.04,
+   "silencio": 0.307,
+   "hablado": 1.733,
+   "fuerte": 1.481
+  },
+  {
+   "archivo": "1173f8ca829837.mp3",
+   "bytes": 18284,
+   "duracion": 2.26,
+   "silencio": 0.324,
+   "hablado": 1.936,
+   "fuerte": 1.633
+  },
+  {
+   "archivo": "117e108847dc03.mp3",
+   "bytes": 57068,
+   "duracion": 7.1,
+   "silencio": 1.627,
+   "hablado": 5.473,
+   "fuerte": 4.998
+  },
+  {
+   "archivo": "118abcb363c725.mp3",
+   "bytes": 60908,
+   "duracion": 7.58,
+   "silencio": 1.696,
+   "hablado": 5.884,
+   "fuerte": 5.146
+  },
+  {
+   "archivo": "118c1a6e3e0976.mp3",
+   "bytes": 29612,
+   "duracion": 3.67,
+   "silencio": 1.074,
+   "hablado": 2.596,
+   "fuerte": 2.22
+  },
+  {
+   "archivo": "11961bea55302c.mp3",
+   "bytes": 86252,
+   "duracion": 10.75,
+   "silencio": 4.386,
+   "hablado": 6.364,
+   "fuerte": 5.899
+  },
+  {
+   "archivo": "11acaaa881c558.mp3",
+   "bytes": 34412,
+   "duracion": 4.27,
+   "silencio": 0.879,
+   "hablado": 3.391,
+   "fuerte": 3.15
+  },
+  {
+   "archivo": "11b5507c54b799.mp3",
+   "bytes": 44972,
+   "duracion": 5.59,
+   "silencio": 1.296,
+   "hablado": 4.294,
+   "fuerte": 3.791
+  },
+  {
+   "archivo": "11da625a733b99.mp3",
+   "bytes": 91244,
+   "duracion": 11.38,
+   "silencio": 3.954,
+   "hablado": 7.426,
+   "fuerte": 6.691
+  },
+  {
+   "archivo": "11e2e25c40024a.mp3",
+   "bytes": 35372,
+   "duracion": 4.39,
+   "silencio": 1.065,
+   "hablado": 3.325,
+   "fuerte": 2.908
+  },
+  {
+   "archivo": "11e4ef1febfb8c.mp3",
+   "bytes": 20780,
+   "duracion": 2.57,
+   "silencio": 0.31,
+   "hablado": 2.26,
+   "fuerte": 1.919
+  },
+  {
+   "archivo": "11ec0912c2a158.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.818,
+   "hablado": 1.102,
+   "fuerte": 0.912
+  },
+  {
+   "archivo": "11f739fb8c6854.mp3",
+   "bytes": 63980,
+   "duracion": 7.97,
+   "silencio": 1.943,
+   "hablado": 6.027,
+   "fuerte": 5.351
+  },
+  {
+   "archivo": "1203efb562850a.mp3",
+   "bytes": 20780,
+   "duracion": 2.57,
+   "silencio": 0.327,
+   "hablado": 2.243,
+   "fuerte": 1.885
+  },
+  {
+   "archivo": "1217346346f081.mp3",
+   "bytes": 38252,
+   "duracion": 4.75,
+   "silencio": 1.627,
+   "hablado": 3.123,
+   "fuerte": 2.859
+  },
+  {
+   "archivo": "121bc4c697db74.mp3",
+   "bytes": 31916,
+   "duracion": 3.96,
+   "silencio": 1.236,
+   "hablado": 2.724,
+   "fuerte": 2.448
+  },
+  {
+   "archivo": "121da4cb2c304f.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.622,
+   "hablado": 1.298,
+   "fuerte": 1.157
+  },
+  {
+   "archivo": "121f08f5d3d4aa.mp3",
+   "bytes": 15980,
+   "duracion": 1.97,
+   "silencio": 0.328,
+   "hablado": 1.642,
+   "fuerte": 1.49
+  },
+  {
+   "archivo": "1222e894a76dcf.mp3",
+   "bytes": 100652,
+   "duracion": 12.55,
+   "silencio": 5.026,
+   "hablado": 7.524,
+   "fuerte": 6.904
+  },
+  {
+   "archivo": "122e567ce58c9d.mp3",
+   "bytes": 78572,
+   "duracion": 9.79,
+   "silencio": 2.88,
+   "hablado": 6.91,
+   "fuerte": 6.34
+  },
+  {
+   "archivo": "12311cd445a810.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 1.209,
+   "hablado": 0.711,
+   "fuerte": 0.616
+  },
+  {
+   "archivo": "12328491be8e54.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.396,
+   "hablado": 1.524,
+   "fuerte": 1.185
+  },
+  {
+   "archivo": "1239a84d0537d7.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.768,
+   "hablado": 1.152,
+   "fuerte": 1.049
+  },
+  {
+   "archivo": "124d69bcfc0cd8.mp3",
+   "bytes": 41708,
+   "duracion": 5.18,
+   "silencio": 0.799,
+   "hablado": 4.381,
+   "fuerte": 3.778
+  },
+  {
+   "archivo": "124e40618a49ef.mp3",
+   "bytes": 31724,
+   "duracion": 3.94,
+   "silencio": 0.609,
+   "hablado": 3.33,
+   "fuerte": 2.892
+  },
+  {
+   "archivo": "125d4ebe6d44af.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.419,
+   "hablado": 1.501,
+   "fuerte": 1.368
+  },
+  {
+   "archivo": "126f2d8820d589.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.84,
+   "hablado": 1.08,
+   "fuerte": 0.889
+  },
+  {
+   "archivo": "128f7663c9908d.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.39,
+   "hablado": 1.53,
+   "fuerte": 1.244
+  },
+  {
+   "archivo": "1294f6b468f590.mp3",
+   "bytes": 59756,
+   "duracion": 7.44,
+   "silencio": 2.034,
+   "hablado": 5.406,
+   "fuerte": 4.932
+  },
+  {
+   "archivo": "1298ef57fe4a2c.mp3",
+   "bytes": 23660,
+   "duracion": 2.93,
+   "silencio": 0.324,
+   "hablado": 2.607,
+   "fuerte": 2.509
+  },
+  {
+   "archivo": "12a547ff13d8b0.mp3",
+   "bytes": 32300,
+   "duracion": 4.01,
+   "silencio": 0.926,
+   "hablado": 3.084,
+   "fuerte": 2.601
+  },
+  {
+   "archivo": "12a7af9bc108dd.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.637,
+   "hablado": 1.283,
+   "fuerte": 1.005
+  },
+  {
+   "archivo": "12b827704a8048.mp3",
+   "bytes": 17516,
+   "duracion": 2.16,
+   "silencio": 0.336,
+   "hablado": 1.824,
+   "fuerte": 1.622
+  },
+  {
+   "archivo": "12b91077b9fb8f.mp3",
+   "bytes": 23852,
+   "duracion": 2.95,
+   "silencio": 0.314,
+   "hablado": 2.636,
+   "fuerte": 2.253
+  },
+  {
+   "archivo": "12bb27779f503c.mp3",
+   "bytes": 46124,
+   "duracion": 5.74,
+   "silencio": 1.189,
+   "hablado": 4.551,
+   "fuerte": 3.842
+  },
+  {
+   "archivo": "12d9611dc2982f.mp3",
+   "bytes": 23852,
+   "duracion": 2.95,
+   "silencio": 0.366,
+   "hablado": 2.584,
+   "fuerte": 1.917
+  },
+  {
+   "archivo": "12dcbf954e4b69.mp3",
+   "bytes": 72044,
+   "duracion": 8.98,
+   "silencio": 3.999,
+   "hablado": 4.981,
+   "fuerte": 4.37
+  },
+  {
+   "archivo": "12de24c6f93b45.mp3",
+   "bytes": 26348,
+   "duracion": 3.26,
+   "silencio": 0.297,
+   "hablado": 2.963,
+   "fuerte": 2.485
+  },
+  {
+   "archivo": "12f3f70300dc30.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.622,
+   "hablado": 1.298,
+   "fuerte": 1.095
+  },
+  {
+   "archivo": "131577aa2702bb.mp3",
+   "bytes": 37100,
+   "duracion": 4.61,
+   "silencio": 1.156,
+   "hablado": 3.454,
+   "fuerte": 2.847
+  },
+  {
+   "archivo": "13163967e936b8.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.634,
+   "hablado": 1.286,
+   "fuerte": 1.062
+  },
+  {
+   "archivo": "13253866258323.mp3",
+   "bytes": 36716,
+   "duracion": 4.56,
+   "silencio": 1.333,
+   "hablado": 3.227,
+   "fuerte": 2.755
+  },
+  {
+   "archivo": "1329438976963c.mp3",
+   "bytes": 34412,
+   "duracion": 4.27,
+   "silencio": 1.291,
+   "hablado": 2.979,
+   "fuerte": 2.637
+  },
+  {
+   "archivo": "1330dc243b936e.mp3",
+   "bytes": 22700,
+   "duracion": 2.81,
+   "silencio": 0.294,
+   "hablado": 2.516,
+   "fuerte": 2.09
+  },
+  {
+   "archivo": "133a4a77cffc7b.mp3",
+   "bytes": 21932,
+   "duracion": 2.71,
+   "silencio": 0.277,
+   "hablado": 2.433,
+   "fuerte": 2.109
+  },
+  {
+   "archivo": "134b6e115c1cc3.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.547,
+   "hablado": 1.373,
+   "fuerte": 1.2
+  },
+  {
+   "archivo": "134d782ee17721.mp3",
+   "bytes": 27500,
+   "duracion": 3.41,
+   "silencio": 0.64,
+   "hablado": 2.77,
+   "fuerte": 2.52
+  },
+  {
+   "archivo": "1358446e362e0f.mp3",
+   "bytes": 21164,
+   "duracion": 2.62,
+   "silencio": 0.592,
+   "hablado": 2.028,
+   "fuerte": 1.771
+  },
+  {
+   "archivo": "135a73cb12e56b.mp3",
+   "bytes": 64748,
+   "duracion": 8.06,
+   "silencio": 0.865,
+   "hablado": 7.195,
+   "fuerte": 6.585
+  },
+  {
+   "archivo": "136094ca506ec0.mp3",
+   "bytes": 51308,
+   "duracion": 6.38,
+   "silencio": 1.807,
+   "hablado": 4.573,
+   "fuerte": 3.825
+  },
+  {
+   "archivo": "13703819447949.mp3",
+   "bytes": 33260,
+   "duracion": 4.13,
+   "silencio": 1.299,
+   "hablado": 2.831,
+   "fuerte": 2.591
+  },
+  {
+   "archivo": "1377d5f483a502.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.372,
+   "hablado": 1.548,
+   "fuerte": 1.437
+  },
+  {
+   "archivo": "1379055548d4f8.mp3",
+   "bytes": 57452,
+   "duracion": 7.15,
+   "silencio": 1.257,
+   "hablado": 5.893,
+   "fuerte": 5.295
+  },
+  {
+   "archivo": "137fe152ea57d3.mp3",
+   "bytes": 26924,
+   "duracion": 3.34,
+   "silencio": 0.503,
+   "hablado": 2.837,
+   "fuerte": 2.614
+  },
+  {
+   "archivo": "13baf4604ee79a.mp3",
+   "bytes": 27692,
+   "duracion": 3.43,
+   "silencio": 0.494,
+   "hablado": 2.936,
+   "fuerte": 2.676
+  },
+  {
+   "archivo": "141cd11ec43409.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.87,
+   "hablado": 1.05,
+   "fuerte": 0.884
+  },
+  {
+   "archivo": "141da4028ffece.mp3",
+   "bytes": 16172,
+   "duracion": 1.99,
+   "silencio": 0.313,
+   "hablado": 1.677,
+   "fuerte": 1.265
+  },
+  {
+   "archivo": "141f0075a23ad4.mp3",
+   "bytes": 52268,
+   "duracion": 6.5,
+   "silencio": 1.215,
+   "hablado": 5.285,
+   "fuerte": 4.681
+  },
+  {
+   "archivo": "1425dc4e9b265f.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.747,
+   "hablado": 1.173,
+   "fuerte": 0.96
+  },
+  {
+   "archivo": "14281595916b06.mp3",
+   "bytes": 23276,
+   "duracion": 2.88,
+   "silencio": 0.317,
+   "hablado": 2.563,
+   "fuerte": 2.353
+  },
+  {
+   "archivo": "1440665cf3a1c0.mp3",
+   "bytes": 104684,
+   "duracion": 13.06,
+   "silencio": 5.038,
+   "hablado": 8.022,
+   "fuerte": 7.249
+  },
+  {
+   "archivo": "14485df1dec396.mp3",
+   "bytes": 25004,
+   "duracion": 3.1,
+   "silencio": 0.307,
+   "hablado": 2.793,
+   "fuerte": 2.516
+  },
+  {
+   "archivo": "146a6e7ab786e3.mp3",
+   "bytes": 66476,
+   "duracion": 8.28,
+   "silencio": 2.379,
+   "hablado": 5.901,
+   "fuerte": 5.251
+  },
+  {
+   "archivo": "1472e45d49da0a.mp3",
+   "bytes": 18476,
+   "duracion": 2.28,
+   "silencio": 0.316,
+   "hablado": 1.964,
+   "fuerte": 1.627
+  },
+  {
+   "archivo": "147bf98f6dbe3b.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.415,
+   "hablado": 1.505,
+   "fuerte": 1.359
+  },
+  {
+   "archivo": "148285e0dcff5b.mp3",
+   "bytes": 35948,
+   "duracion": 4.46,
+   "silencio": 1.43,
+   "hablado": 3.03,
+   "fuerte": 2.695
+  },
+  {
+   "archivo": "148beb1adb3d2a.mp3",
+   "bytes": 133868,
+   "duracion": 16.7,
+   "silencio": 7.467,
+   "hablado": 9.233,
+   "fuerte": 8.599
+  },
+  {
+   "archivo": "149f6492737214.mp3",
+   "bytes": 125420,
+   "duracion": 15.65,
+   "silencio": 6.653,
+   "hablado": 8.997,
+   "fuerte": 8.407
+  },
+  {
+   "archivo": "14a4eb11611164.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.855,
+   "hablado": 1.065,
+   "fuerte": 0.897
+  },
+  {
+   "archivo": "14b1ed33b843e6.mp3",
+   "bytes": 33644,
+   "duracion": 4.18,
+   "silencio": 1.08,
+   "hablado": 3.1,
+   "fuerte": 2.54
+  },
+  {
+   "archivo": "14b468b95db360.mp3",
+   "bytes": 26348,
+   "duracion": 3.26,
+   "silencio": 0.83,
+   "hablado": 2.43,
+   "fuerte": 2.127
+  },
+  {
+   "archivo": "14b4aa1789cf44.mp3",
+   "bytes": 31148,
+   "duracion": 3.86,
+   "silencio": 1.278,
+   "hablado": 2.582,
+   "fuerte": 2.086
+  },
+  {
+   "archivo": "14bb7a0d0249f3.mp3",
+   "bytes": 123116,
+   "duracion": 15.36,
+   "silencio": 7.161,
+   "hablado": 8.199,
+   "fuerte": 7.592
+  },
+  {
+   "archivo": "14cfd3523d4ab3.mp3",
+   "bytes": 16748,
+   "duracion": 2.06,
+   "silencio": 0.42,
+   "hablado": 1.64,
+   "fuerte": 1.426
+  },
+  {
+   "archivo": "14dde4212590c5.mp3",
+   "bytes": 19052,
+   "duracion": 2.35,
+   "silencio": 0.372,
+   "hablado": 1.978,
+   "fuerte": 1.742
+  },
+  {
+   "archivo": "14ee93b6b7301e.mp3",
+   "bytes": 126956,
+   "duracion": 15.84,
+   "silencio": 6.977,
+   "hablado": 8.863,
+   "fuerte": 8.118
+  },
+  {
+   "archivo": "14f71d4c8fb9ea.mp3",
+   "bytes": 19244,
+   "duracion": 2.38,
+   "silencio": 0.296,
+   "hablado": 2.084,
+   "fuerte": 1.715
+  },
+  {
+   "archivo": "14f891946310d7.mp3",
+   "bytes": 28844,
+   "duracion": 3.58,
+   "silencio": 1.941,
+   "hablado": 1.639,
+   "fuerte": 1.4
+  },
+  {
+   "archivo": "14fd1b161996b5.mp3",
+   "bytes": 77036,
+   "duracion": 9.6,
+   "silencio": 3.28,
+   "hablado": 6.32,
+   "fuerte": 5.718
+  },
+  {
+   "archivo": "1500580831f82f.mp3",
+   "bytes": 74348,
+   "duracion": 9.26,
+   "silencio": 3.783,
+   "hablado": 5.477,
+   "fuerte": 4.868
+  },
+  {
+   "archivo": "1502082d47d36d.mp3",
+   "bytes": 40172,
+   "duracion": 4.99,
+   "silencio": 1.579,
+   "hablado": 3.411,
+   "fuerte": 2.792
+  },
+  {
+   "archivo": "151771fa0b7499.mp3",
+   "bytes": 44012,
+   "duracion": 5.47,
+   "silencio": 1.284,
+   "hablado": 4.186,
+   "fuerte": 3.72
+  },
+  {
+   "archivo": "1522ff5fd3f5c2.mp3",
+   "bytes": 124460,
+   "duracion": 15.53,
+   "silencio": 7.039,
+   "hablado": 8.491,
+   "fuerte": 7.722
+  },
+  {
+   "archivo": "1525e238bb0b20.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.447,
+   "hablado": 1.473,
+   "fuerte": 1.188
+  },
+  {
+   "archivo": "1531604cc78479.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.494,
+   "hablado": 1.425,
+   "fuerte": 1.146
+  },
+  {
+   "archivo": "1536cbed085a07.mp3",
+   "bytes": 34412,
+   "duracion": 4.27,
+   "silencio": 0.909,
+   "hablado": 3.361,
+   "fuerte": 3.005
+  },
+  {
+   "archivo": "153f90204d668f.mp3",
+   "bytes": 93548,
+   "duracion": 11.66,
+   "silencio": 4.756,
+   "hablado": 6.904,
+   "fuerte": 6.289
+  },
+  {
+   "archivo": "15409ce3e65ddb.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.897,
+   "hablado": 1.023,
+   "fuerte": 0.868
+  },
+  {
+   "archivo": "1551dda8eb0460.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 1.028,
+   "hablado": 0.892,
+   "fuerte": 0.709
+  },
+  {
+   "archivo": "155ccb72f2603e.mp3",
+   "bytes": 105452,
+   "duracion": 13.15,
+   "silencio": 5.365,
+   "hablado": 7.785,
+   "fuerte": 7.162
+  },
+  {
+   "archivo": "156919c7702f67.mp3",
+   "bytes": 94700,
+   "duracion": 11.81,
+   "silencio": 4.446,
+   "hablado": 7.364,
+   "fuerte": 6.768
+  },
+  {
+   "archivo": "156e4923c4f1e8.mp3",
+   "bytes": 67628,
+   "duracion": 8.42,
+   "silencio": 2.505,
+   "hablado": 5.915,
+   "fuerte": 5.397
+  },
+  {
+   "archivo": "15722b5aaf6f86.mp3",
+   "bytes": 20396,
+   "duracion": 2.52,
+   "silencio": 0.511,
+   "hablado": 2.009,
+   "fuerte": 1.914
+  },
+  {
+   "archivo": "157271cc623c71.mp3",
+   "bytes": 40172,
+   "duracion": 4.99,
+   "silencio": 1.324,
+   "hablado": 3.666,
+   "fuerte": 3.093
+  },
+  {
+   "archivo": "1573c8d90469f0.mp3",
+   "bytes": 79340,
+   "duracion": 9.89,
+   "silencio": 2.959,
+   "hablado": 6.931,
+   "fuerte": 6.447
+  },
+  {
+   "archivo": "1573eb4f4e0218.mp3",
+   "bytes": 33260,
+   "duracion": 4.13,
+   "silencio": 0.934,
+   "hablado": 3.196,
+   "fuerte": 2.896
+  },
+  {
+   "archivo": "15893772750d71.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.712,
+   "hablado": 1.208,
+   "fuerte": 0.978
+  },
+  {
+   "archivo": "159f5551225099.mp3",
+   "bytes": 26156,
+   "duracion": 3.24,
+   "silencio": 0.804,
+   "hablado": 2.436,
+   "fuerte": 1.953
+  },
+  {
+   "archivo": "15a2ea6d381244.mp3",
+   "bytes": 30188,
+   "duracion": 3.74,
+   "silencio": 0.545,
+   "hablado": 3.195,
+   "fuerte": 2.878
+  },
+  {
+   "archivo": "15b8e58d96da2a.mp3",
+   "bytes": 43244,
+   "duracion": 5.38,
+   "silencio": 1.233,
+   "hablado": 4.147,
+   "fuerte": 3.569
+  },
+  {
+   "archivo": "15c0782314367a.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.922,
+   "hablado": 0.998,
+   "fuerte": 0.828
+  },
+  {
+   "archivo": "15c8aa25805f05.mp3",
+   "bytes": 86252,
+   "duracion": 10.75,
+   "silencio": 4.16,
+   "hablado": 6.59,
+   "fuerte": 5.896
+  },
+  {
+   "archivo": "15de960e83d81f.mp3",
+   "bytes": 44780,
+   "duracion": 5.57,
+   "silencio": 0.992,
+   "hablado": 4.578,
+   "fuerte": 3.833
+  },
+  {
+   "archivo": "15e0e9c94f778a.mp3",
+   "bytes": 29996,
+   "duracion": 3.72,
+   "silencio": 0.649,
+   "hablado": 3.071,
+   "fuerte": 2.714
+  },
+  {
+   "archivo": "15e7900bd34def.mp3",
+   "bytes": 18860,
+   "duracion": 2.33,
+   "silencio": 1.058,
+   "hablado": 1.272,
+   "fuerte": 1.064
+  },
+  {
+   "archivo": "15ea7598f78ccb.mp3",
+   "bytes": 16556,
+   "duracion": 2.04,
+   "silencio": 0.309,
+   "hablado": 1.731,
+   "fuerte": 1.458
+  },
+  {
+   "archivo": "15eecbab0480c7.mp3",
+   "bytes": 71660,
+   "duracion": 8.93,
+   "silencio": 1.877,
+   "hablado": 7.053,
+   "fuerte": 6.189
+  },
+  {
+   "archivo": "15f8e00fe8567f.mp3",
+   "bytes": 42092,
+   "duracion": 5.23,
+   "silencio": 1.391,
+   "hablado": 3.839,
+   "fuerte": 3.213
+  },
+  {
+   "archivo": "1604edd5db43b1.mp3",
+   "bytes": 34796,
+   "duracion": 4.32,
+   "silencio": 1.256,
+   "hablado": 3.064,
+   "fuerte": 2.76
+  },
+  {
+   "archivo": "160d98f74cbc03.mp3",
+   "bytes": 23084,
+   "duracion": 2.86,
+   "silencio": 0.516,
+   "hablado": 2.344,
+   "fuerte": 1.98
+  },
+  {
+   "archivo": "161767089358ee.mp3",
+   "bytes": 15980,
+   "duracion": 1.97,
+   "silencio": 0.322,
+   "hablado": 1.648,
+   "fuerte": 1.434
+  },
+  {
+   "archivo": "161dfc9788d3ac.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.947,
+   "hablado": 0.973,
+   "fuerte": 0.763
+  },
+  {
+   "archivo": "16214687aea74d.mp3",
+   "bytes": 87212,
+   "duracion": 10.87,
+   "silencio": 3.46,
+   "hablado": 7.41,
+   "fuerte": 6.753
+  },
+  {
+   "archivo": "162422ee4f3588.mp3",
+   "bytes": 29996,
+   "duracion": 3.72,
+   "silencio": 0.902,
+   "hablado": 2.818,
+   "fuerte": 2.697
+  },
+  {
+   "archivo": "1625a1e40daf79.mp3",
+   "bytes": 70316,
+   "duracion": 8.76,
+   "silencio": 2.768,
+   "hablado": 5.992,
+   "fuerte": 5.3
+  },
+  {
+   "archivo": "16289772a923e0.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.676,
+   "hablado": 1.244,
+   "fuerte": 1.09
+  },
+  {
+   "archivo": "16291d5fd9e953.mp3",
+   "bytes": 116012,
+   "duracion": 14.47,
+   "silencio": 6.652,
+   "hablado": 7.818,
+   "fuerte": 7.15
+  },
+  {
+   "archivo": "1632509f90d1a4.mp3",
+   "bytes": 17324,
+   "duracion": 2.14,
+   "silencio": 0.353,
+   "hablado": 1.787,
+   "fuerte": 1.428
+  },
+  {
+   "archivo": "16344ce7a9a4ef.mp3",
+   "bytes": 50732,
+   "duracion": 6.31,
+   "silencio": 2.003,
+   "hablado": 4.307,
+   "fuerte": 3.817
+  },
+  {
+   "archivo": "1635e084a089f7.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.522,
+   "hablado": 1.398,
+   "fuerte": 1.18
+  },
+  {
+   "archivo": "16460d303dcd37.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.358,
+   "hablado": 1.562,
+   "fuerte": 1.337
+  },
+  {
+   "archivo": "16586ea8e677ff.mp3",
+   "bytes": 110060,
+   "duracion": 13.73,
+   "silencio": 5.783,
+   "hablado": 7.947,
+   "fuerte": 7.115
+  },
+  {
+   "archivo": "1665454f269e49.mp3",
+   "bytes": 33836,
+   "duracion": 4.2,
+   "silencio": 1.131,
+   "hablado": 3.069,
+   "fuerte": 2.809
+  },
+  {
+   "archivo": "166b26adaacde5.mp3",
+   "bytes": 55724,
+   "duracion": 6.94,
+   "silencio": 1.549,
+   "hablado": 5.391,
+   "fuerte": 4.793
+  },
+  {
+   "archivo": "166b52926482ca.mp3",
+   "bytes": 38636,
+   "duracion": 4.8,
+   "silencio": 0.981,
+   "hablado": 3.819,
+   "fuerte": 3.622
+  },
+  {
+   "archivo": "166e89245ff8da.mp3",
+   "bytes": 42860,
+   "duracion": 5.33,
+   "silencio": 1.079,
+   "hablado": 4.251,
+   "fuerte": 3.843
+  },
+  {
+   "archivo": "1670c4aa97c6cb.mp3",
+   "bytes": 22892,
+   "duracion": 2.83,
+   "silencio": 0.602,
+   "hablado": 2.228,
+   "fuerte": 2.017
+  },
+  {
+   "archivo": "1674315a2b5ece.mp3",
+   "bytes": 30188,
+   "duracion": 3.74,
+   "silencio": 0.75,
+   "hablado": 2.99,
+   "fuerte": 2.617
+  },
+  {
+   "archivo": "1696eb6114a567.mp3",
+   "bytes": 25772,
+   "duracion": 3.19,
+   "silencio": 0.317,
+   "hablado": 2.873,
+   "fuerte": 2.523
+  },
+  {
+   "archivo": "169c774d997a3d.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.813,
+   "hablado": 1.107,
+   "fuerte": 0.894
+  },
+  {
+   "archivo": "16a89cf566a2ce.mp3",
+   "bytes": 83180,
+   "duracion": 10.37,
+   "silencio": 3.529,
+   "hablado": 6.841,
+   "fuerte": 6.313
+  },
+  {
+   "archivo": "16ad0edfe494b7.mp3",
+   "bytes": 73580,
+   "duracion": 9.17,
+   "silencio": 1.727,
+   "hablado": 7.443,
+   "fuerte": 6.759
+  },
+  {
+   "archivo": "16ad807864b9cc.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.347,
+   "hablado": 1.573,
+   "fuerte": 1.32
+  },
+  {
+   "archivo": "16af33307fd9b1.mp3",
+   "bytes": 110444,
+   "duracion": 13.78,
+   "silencio": 5.505,
+   "hablado": 8.275,
+   "fuerte": 7.537
+  },
+  {
+   "archivo": "16b6ce732274e6.mp3",
+   "bytes": 19628,
+   "duracion": 2.42,
+   "silencio": 0.316,
+   "hablado": 2.104,
+   "fuerte": 1.816
+  },
+  {
+   "archivo": "16c51e1c28d0ec.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.872,
+   "hablado": 1.048,
+   "fuerte": 0.887
+  },
+  {
+   "archivo": "16d4ed7f02722d.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 1.288,
+   "hablado": 0.632,
+   "fuerte": 0.528
+  },
+  {
+   "archivo": "16d5c98def822d.mp3",
+   "bytes": 20780,
+   "duracion": 2.57,
+   "silencio": 0.275,
+   "hablado": 2.295,
+   "fuerte": 1.897
+  },
+  {
+   "archivo": "16ef6f842209c4.mp3",
+   "bytes": 18476,
+   "duracion": 2.28,
+   "silencio": 0.597,
+   "hablado": 1.683,
+   "fuerte": 1.425
+  },
+  {
+   "archivo": "1700372d51f0e6.mp3",
+   "bytes": 19628,
+   "duracion": 2.42,
+   "silencio": 0.562,
+   "hablado": 1.858,
+   "fuerte": 1.44
+  },
+  {
+   "archivo": "172b4075f23ede.mp3",
+   "bytes": 31340,
+   "duracion": 3.89,
+   "silencio": 0.973,
+   "hablado": 2.917,
+   "fuerte": 2.416
+  },
+  {
+   "archivo": "17311264aebfad.mp3",
+   "bytes": 62060,
+   "duracion": 7.73,
+   "silencio": 2.537,
+   "hablado": 5.193,
+   "fuerte": 4.538
+  },
+  {
+   "archivo": "173b44fdde7e71.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 1.134,
+   "hablado": 0.786,
+   "fuerte": 0.633
+  },
+  {
+   "archivo": "173d169f0f7ddd.mp3",
+   "bytes": 23468,
+   "duracion": 2.9,
+   "silencio": 0.323,
+   "hablado": 2.577,
+   "fuerte": 2.188
+  },
+  {
+   "archivo": "1741c2c8af3137.mp3",
+   "bytes": 19052,
+   "duracion": 2.35,
+   "silencio": 0.995,
+   "hablado": 1.355,
+   "fuerte": 1.202
+  },
+  {
+   "archivo": "1745e461d329e6.mp3",
+   "bytes": 40172,
+   "duracion": 4.99,
+   "silencio": 1.227,
+   "hablado": 3.763,
+   "fuerte": 3.249
+  },
+  {
+   "archivo": "174afebc303237.mp3",
+   "bytes": 22700,
+   "duracion": 2.81,
+   "silencio": 0.317,
+   "hablado": 2.493,
+   "fuerte": 2.28
+  },
+  {
+   "archivo": "175eca345dd94b.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 1.251,
+   "hablado": 0.669,
+   "fuerte": 0.567
+  },
+  {
+   "archivo": "1771e35c84339d.mp3",
+   "bytes": 16748,
+   "duracion": 2.06,
+   "silencio": 0.331,
+   "hablado": 1.729,
+   "fuerte": 1.414
+  },
+  {
+   "archivo": "1773658349977a.mp3",
+   "bytes": 50924,
+   "duracion": 6.34,
+   "silencio": 2.696,
+   "hablado": 3.644,
+   "fuerte": 3.32
+  },
+  {
+   "archivo": "177d9bee416785.mp3",
+   "bytes": 16748,
+   "duracion": 2.06,
+   "silencio": 0.487,
+   "hablado": 1.573,
+   "fuerte": 1.244
+  },
+  {
+   "archivo": "177e0f2cc4dabc.mp3",
+   "bytes": 26924,
+   "duracion": 3.34,
+   "silencio": 0.294,
+   "hablado": 3.046,
+   "fuerte": 2.318
+  },
+  {
+   "archivo": "1781b179759424.mp3",
+   "bytes": 48620,
+   "duracion": 6.05,
+   "silencio": 0.898,
+   "hablado": 5.152,
+   "fuerte": 4.119
+  },
+  {
+   "archivo": "179560524823cf.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.537,
+   "hablado": 1.383,
+   "fuerte": 1.121
+  },
+  {
+   "archivo": "17a127243a6603.mp3",
+   "bytes": 87020,
+   "duracion": 10.85,
+   "silencio": 2.861,
+   "hablado": 7.989,
+   "fuerte": 7.046
+  },
+  {
+   "archivo": "17ad8efe586989.mp3",
+   "bytes": 22124,
+   "duracion": 2.74,
+   "silencio": 0.341,
+   "hablado": 2.399,
+   "fuerte": 1.938
+  },
+  {
+   "archivo": "17b22338dce041.mp3",
+   "bytes": 26348,
+   "duracion": 3.26,
+   "silencio": 0.8,
+   "hablado": 2.46,
+   "fuerte": 2.028
+  },
+  {
+   "archivo": "17b8e31878b06d.mp3",
+   "bytes": 101612,
+   "duracion": 12.67,
+   "silencio": 4.186,
+   "hablado": 8.484,
+   "fuerte": 7.897
+  },
+  {
+   "archivo": "17ba240b759900.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 1.235,
+   "hablado": 0.685,
+   "fuerte": 0.537
+  },
+  {
+   "archivo": "17c23eb0250570.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.631,
+   "hablado": 1.289,
+   "fuerte": 1.082
+  },
+  {
+   "archivo": "17ce9d450e6ace.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.98,
+   "hablado": 0.94,
+   "fuerte": 0.808
+  },
+  {
+   "archivo": "17d824bf5c1f5a.mp3",
+   "bytes": 17324,
+   "duracion": 2.14,
+   "silencio": 0.333,
+   "hablado": 1.807,
+   "fuerte": 1.529
+  },
+  {
+   "archivo": "17d9a6b903bd08.mp3",
+   "bytes": 31724,
+   "duracion": 3.94,
+   "silencio": 1.296,
+   "hablado": 2.644,
+   "fuerte": 2.199
+  },
+  {
+   "archivo": "17e49d0b0747ad.mp3",
+   "bytes": 15788,
+   "duracion": 1.94,
+   "silencio": 0.284,
+   "hablado": 1.656,
+   "fuerte": 1.318
+  },
+  {
+   "archivo": "17ef2b2ac5043e.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.834,
+   "hablado": 1.086,
+   "fuerte": 0.821
+  },
+  {
+   "archivo": "18025e4088c1e1.mp3",
+   "bytes": 18476,
+   "duracion": 2.28,
+   "silencio": 0.312,
+   "hablado": 1.968,
+   "fuerte": 1.536
+  },
+  {
+   "archivo": "181972b278b3ef.mp3",
+   "bytes": 99884,
+   "duracion": 12.46,
+   "silencio": 4.626,
+   "hablado": 7.834,
+   "fuerte": 7.326
+  },
+  {
+   "archivo": "18341d3a48deb1.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.78,
+   "hablado": 1.14,
+   "fuerte": 1.039
+  },
+  {
+   "archivo": "1836f812be2810.mp3",
+   "bytes": 99116,
+   "duracion": 12.36,
+   "silencio": 4.804,
+   "hablado": 7.556,
+   "fuerte": 6.837
+  },
+  {
+   "archivo": "18378a67239ebc.mp3",
+   "bytes": 23852,
+   "duracion": 2.95,
+   "silencio": 0.452,
+   "hablado": 2.498,
+   "fuerte": 2.167
+  },
+  {
+   "archivo": "18462c8a0b13dc.mp3",
+   "bytes": 26924,
+   "duracion": 3.34,
+   "silencio": 0.846,
+   "hablado": 2.494,
+   "fuerte": 2.177
+  },
+  {
+   "archivo": "18467806706c8b.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.341,
+   "hablado": 1.579,
+   "fuerte": 1.255
+  },
+  {
+   "archivo": "184a1e1b075c26.mp3",
+   "bytes": 62060,
+   "duracion": 7.73,
+   "silencio": 1.419,
+   "hablado": 6.311,
+   "fuerte": 5.733
+  },
+  {
+   "archivo": "185a8f2c68124d.mp3",
+   "bytes": 42284,
+   "duracion": 5.26,
+   "silencio": 0.57,
+   "hablado": 4.69,
+   "fuerte": 4.04
+  },
+  {
+   "archivo": "1870b0a87490f9.mp3",
+   "bytes": 20588,
+   "duracion": 2.54,
+   "silencio": 0.31,
+   "hablado": 2.23,
+   "fuerte": 1.831
+  },
+  {
+   "archivo": "18729e73af7368.mp3",
+   "bytes": 17708,
+   "duracion": 2.18,
+   "silencio": 0.305,
+   "hablado": 1.875,
+   "fuerte": 1.714
+  },
+  {
+   "archivo": "18788e50212bcc.mp3",
+   "bytes": 76844,
+   "duracion": 9.58,
+   "silencio": 3.075,
+   "hablado": 6.505,
+   "fuerte": 5.935
+  },
+  {
+   "archivo": "18889d934d69c0.mp3",
+   "bytes": 19628,
+   "duracion": 2.42,
+   "silencio": 0.386,
+   "hablado": 2.034,
+   "fuerte": 1.785
+  },
+  {
+   "archivo": "188ad6a01be8a0.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.539,
+   "hablado": 1.381,
+   "fuerte": 1.159
+  },
+  {
+   "archivo": "18a7233fbe1f87.mp3",
+   "bytes": 26924,
+   "duracion": 3.34,
+   "silencio": 0.956,
+   "hablado": 2.384,
+   "fuerte": 2.031
+  },
+  {
+   "archivo": "18a96ca6e3bfae.mp3",
+   "bytes": 33260,
+   "duracion": 4.13,
+   "silencio": 1.307,
+   "hablado": 2.823,
+   "fuerte": 2.438
+  },
+  {
+   "archivo": "18b6e1425959c4.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.872,
+   "hablado": 1.048,
+   "fuerte": 0.924
+  },
+  {
+   "archivo": "18bc47ed2cee9b.mp3",
+   "bytes": 72620,
+   "duracion": 9.05,
+   "silencio": 1.666,
+   "hablado": 7.384,
+   "fuerte": 6.602
+  },
+  {
+   "archivo": "18bc73e31ed94e.mp3",
+   "bytes": 33068,
+   "duracion": 4.1,
+   "silencio": 1.387,
+   "hablado": 2.713,
+   "fuerte": 2.31
+  },
+  {
+   "archivo": "18bc82b0943701.mp3",
+   "bytes": 87788,
+   "duracion": 10.94,
+   "silencio": 3.762,
+   "hablado": 7.178,
+   "fuerte": 6.518
+  },
+  {
+   "archivo": "18d2104156e38c.mp3",
+   "bytes": 24428,
+   "duracion": 3.02,
+   "silencio": 1.63,
+   "hablado": 1.39,
+   "fuerte": 1.179
+  },
+  {
+   "archivo": "18d43ce8c60dad.mp3",
+   "bytes": 53228,
+   "duracion": 6.62,
+   "silencio": 0.555,
+   "hablado": 6.065,
+   "fuerte": 5.192
+  },
+  {
+   "archivo": "18d859bfb4a62e.mp3",
+   "bytes": 98732,
+   "duracion": 12.31,
+   "silencio": 5.019,
+   "hablado": 7.291,
+   "fuerte": 6.811
+  },
+  {
+   "archivo": "18ddef7feb7406.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.313,
+   "hablado": 1.607,
+   "fuerte": 1.447
+  },
+  {
+   "archivo": "18e3221182eb79.mp3",
+   "bytes": 114284,
+   "duracion": 14.26,
+   "silencio": 6.247,
+   "hablado": 8.013,
+   "fuerte": 7.366
+  },
+  {
+   "archivo": "18e83cc4389176.mp3",
+   "bytes": 25772,
+   "duracion": 3.19,
+   "silencio": 0.701,
+   "hablado": 2.489,
+   "fuerte": 1.983
+  },
+  {
+   "archivo": "1935765862fc5e.mp3",
+   "bytes": 47276,
+   "duracion": 5.88,
+   "silencio": 1.48,
+   "hablado": 4.4,
+   "fuerte": 4.115
+  },
+  {
+   "archivo": "193dacf11516fc.mp3",
+   "bytes": 21356,
+   "duracion": 2.64,
+   "silencio": 0.316,
+   "hablado": 2.324,
+   "fuerte": 1.917
+  },
+  {
+   "archivo": "19426abc25c73d.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.712,
+   "hablado": 1.208,
+   "fuerte": 0.857
+  },
+  {
+   "archivo": "195fdb85d971aa.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.322,
+   "hablado": 1.598,
+   "fuerte": 1.47
+  },
+  {
+   "archivo": "19616c2c52a5f6.mp3",
+   "bytes": 23084,
+   "duracion": 2.86,
+   "silencio": 0.362,
+   "hablado": 2.498,
+   "fuerte": 2.243
+  },
+  {
+   "archivo": "196a28a5b157ef.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.411,
+   "hablado": 1.509,
+   "fuerte": 1.246
+  },
+  {
+   "archivo": "196cd6b4d93f64.mp3",
+   "bytes": 24620,
+   "duracion": 3.05,
+   "silencio": 0.3,
+   "hablado": 2.75,
+   "fuerte": 2.171
+  },
+  {
+   "archivo": "19843e9ea7bf7e.mp3",
+   "bytes": 137900,
+   "duracion": 17.21,
+   "silencio": 9.831,
+   "hablado": 7.379,
+   "fuerte": 6.639
+  },
+  {
+   "archivo": "19868df599062a.mp3",
+   "bytes": 44396,
+   "duracion": 5.52,
+   "silencio": 1.831,
+   "hablado": 3.689,
+   "fuerte": 3.288
+  },
+  {
+   "archivo": "19878b467ddff7.mp3",
+   "bytes": 16172,
+   "duracion": 1.99,
+   "silencio": 0.361,
+   "hablado": 1.629,
+   "fuerte": 1.386
+  },
+  {
+   "archivo": "1990d7b676e11e.mp3",
+   "bytes": 19820,
+   "duracion": 2.45,
+   "silencio": 0.314,
+   "hablado": 2.136,
+   "fuerte": 2.052
+  },
+  {
+   "archivo": "199e5c71cb3d2a.mp3",
+   "bytes": 93932,
+   "duracion": 11.71,
+   "silencio": 3.596,
+   "hablado": 8.114,
+   "fuerte": 7.349
+  },
+  {
+   "archivo": "19bd778c9d680c.mp3",
+   "bytes": 69740,
+   "duracion": 8.69,
+   "silencio": 1.465,
+   "hablado": 7.225,
+   "fuerte": 6.549
+  },
+  {
+   "archivo": "19c29946e88647.mp3",
+   "bytes": 31148,
+   "duracion": 3.86,
+   "silencio": 0.928,
+   "hablado": 2.932,
+   "fuerte": 2.528
+  },
+  {
+   "archivo": "19c2ea83e18c7c.mp3",
+   "bytes": 97388,
+   "duracion": 12.14,
+   "silencio": 4.378,
+   "hablado": 7.762,
+   "fuerte": 6.907
+  },
+  {
+   "archivo": "19cd5fc7349647.mp3",
+   "bytes": 22124,
+   "duracion": 2.74,
+   "silencio": 0.352,
+   "hablado": 2.388,
+   "fuerte": 2.05
+  },
+  {
+   "archivo": "19e05992064664.mp3",
+   "bytes": 111980,
+   "duracion": 13.97,
+   "silencio": 5.57,
+   "hablado": 8.4,
+   "fuerte": 7.775
+  },
+  {
+   "archivo": "19e5a159a77b87.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 1.25,
+   "hablado": 0.67,
+   "fuerte": 0.557
+  },
+  {
+   "archivo": "19e7e96307dc6b.mp3",
+   "bytes": 39020,
+   "duracion": 4.85,
+   "silencio": 2.065,
+   "hablado": 2.785,
+   "fuerte": 2.487
+  },
+  {
+   "archivo": "19e9065a76da0a.mp3",
+   "bytes": 76844,
+   "duracion": 9.58,
+   "silencio": 1.883,
+   "hablado": 7.697,
+   "fuerte": 7.202
+  },
+  {
+   "archivo": "19fe80bca1f3a8.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.417,
+   "hablado": 1.503,
+   "fuerte": 1.117
+  },
+  {
+   "archivo": "1a032be2315fbf.mp3",
+   "bytes": 31340,
+   "duracion": 3.89,
+   "silencio": 1.656,
+   "hablado": 2.234,
+   "fuerte": 1.916
+  },
+  {
+   "archivo": "1a06db2c82d59b.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.417,
+   "hablado": 1.503,
+   "fuerte": 1.322
+  },
+  {
+   "archivo": "1a276fac2fb6c4.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.36,
+   "hablado": 1.56,
+   "fuerte": 1.414
+  },
+  {
+   "archivo": "1a44acd3d36ca1.mp3",
+   "bytes": 25004,
+   "duracion": 3.1,
+   "silencio": 0.304,
+   "hablado": 2.796,
+   "fuerte": 2.188
+  },
+  {
+   "archivo": "1a4bbc14954a60.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.325,
+   "hablado": 1.595,
+   "fuerte": 1.108
+  },
+  {
+   "archivo": "1a571ce8d058fc.mp3",
+   "bytes": 43436,
+   "duracion": 5.4,
+   "silencio": 2.065,
+   "hablado": 3.335,
+   "fuerte": 3.044
+  },
+  {
+   "archivo": "1a57d739df84b2.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.9,
+   "hablado": 1.02,
+   "fuerte": 0.836
+  },
+  {
+   "archivo": "1a58b7654f3457.mp3",
+   "bytes": 57452,
+   "duracion": 7.15,
+   "silencio": 1.949,
+   "hablado": 5.201,
+   "fuerte": 4.276
+  },
+  {
+   "archivo": "1a6541258c1333.mp3",
+   "bytes": 115628,
+   "duracion": 14.42,
+   "silencio": 6.741,
+   "hablado": 7.679,
+   "fuerte": 7.111
+  },
+  {
+   "archivo": "1a745a03f725d2.mp3",
+   "bytes": 68012,
+   "duracion": 8.47,
+   "silencio": 2.459,
+   "hablado": 6.011,
+   "fuerte": 5.107
+  },
+  {
+   "archivo": "1a78f186b441c6.mp3",
+   "bytes": 28844,
+   "duracion": 3.58,
+   "silencio": 0.691,
+   "hablado": 2.889,
+   "fuerte": 2.387
+  },
+  {
+   "archivo": "1a79479e07fb80.mp3",
+   "bytes": 56300,
+   "duracion": 7.01,
+   "silencio": 1.084,
+   "hablado": 5.926,
+   "fuerte": 5.445
+  },
+  {
+   "archivo": "1a9b31f55b4567.mp3",
+   "bytes": 90092,
+   "duracion": 11.23,
+   "silencio": 3.395,
+   "hablado": 7.835,
+   "fuerte": 6.963
+  },
+  {
+   "archivo": "1a9e7e888836c2.mp3",
+   "bytes": 29804,
+   "duracion": 3.7,
+   "silencio": 0.528,
+   "hablado": 3.172,
+   "fuerte": 2.832
+  },
+  {
+   "archivo": "1ab5edcc84f107.mp3",
+   "bytes": 74348,
+   "duracion": 9.26,
+   "silencio": 2.157,
+   "hablado": 7.103,
+   "fuerte": 6.509
+  },
+  {
+   "archivo": "1ab5f21d8a9002.mp3",
+   "bytes": 126572,
+   "duracion": 15.79,
+   "silencio": 6.903,
+   "hablado": 8.887,
+   "fuerte": 8.02
+  },
+  {
+   "archivo": "1ac208406f56de.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 1.037,
+   "hablado": 0.883,
+   "fuerte": 0.738
+  },
+  {
+   "archivo": "1ad3a45848a04c.mp3",
+   "bytes": 95660,
+   "duracion": 11.93,
+   "silencio": 3.155,
+   "hablado": 8.775,
+   "fuerte": 7.584
+  },
+  {
+   "archivo": "1ad3a8cba5406a.mp3",
+   "bytes": 34796,
+   "duracion": 4.32,
+   "silencio": 1.311,
+   "hablado": 3.009,
+   "fuerte": 2.728
+  },
+  {
+   "archivo": "1adae4a4625369.mp3",
+   "bytes": 55724,
+   "duracion": 6.94,
+   "silencio": 2.328,
+   "hablado": 4.612,
+   "fuerte": 4.042
+  },
+  {
+   "archivo": "1ade1c51027d8b.mp3",
+   "bytes": 40940,
+   "duracion": 5.09,
+   "silencio": 1.451,
+   "hablado": 3.639,
+   "fuerte": 3.182
+  },
+  {
+   "archivo": "1af0d8767507e1.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 1.085,
+   "hablado": 0.835,
+   "fuerte": 0.648
+  },
+  {
+   "archivo": "1af5eb1b58c024.mp3",
+   "bytes": 24428,
+   "duracion": 3.02,
+   "silencio": 0.299,
+   "hablado": 2.721,
+   "fuerte": 2.419
+  },
+  {
+   "archivo": "1af6df1a3d1d33.mp3",
+   "bytes": 35180,
+   "duracion": 4.37,
+   "silencio": 0.586,
+   "hablado": 3.784,
+   "fuerte": 3.177
+  },
+  {
+   "archivo": "1afd94652f396f.mp3",
+   "bytes": 22124,
+   "duracion": 2.74,
+   "silencio": 0.353,
+   "hablado": 2.387,
+   "fuerte": 1.956
+  },
+  {
+   "archivo": "1b092364a798ef.mp3",
+   "bytes": 18092,
+   "duracion": 2.23,
+   "silencio": 0.346,
+   "hablado": 1.884,
+   "fuerte": 1.473
+  },
+  {
+   "archivo": "1b0bf7ed14186a.mp3",
+   "bytes": 44780,
+   "duracion": 5.57,
+   "silencio": 0.873,
+   "hablado": 4.697,
+   "fuerte": 3.941
+  },
+  {
+   "archivo": "1b1184f70ae9c4.mp3",
+   "bytes": 84332,
+   "duracion": 10.51,
+   "silencio": 3.471,
+   "hablado": 7.039,
+   "fuerte": 6.426
+  },
+  {
+   "archivo": "1b1ef6ae5a1040.mp3",
+   "bytes": 83564,
+   "duracion": 10.42,
+   "silencio": 3.603,
+   "hablado": 6.817,
+   "fuerte": 6.206
+  },
+  {
+   "archivo": "1b218526df920f.mp3",
+   "bytes": 31724,
+   "duracion": 3.94,
+   "silencio": 0.325,
+   "hablado": 3.615,
+   "fuerte": 3.271
+  },
+  {
+   "archivo": "1b2637bf207caf.mp3",
+   "bytes": 36332,
+   "duracion": 4.51,
+   "silencio": 1.368,
+   "hablado": 3.142,
+   "fuerte": 2.85
+  },
+  {
+   "archivo": "1b2960f49fdec9.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.597,
+   "hablado": 1.323,
+   "fuerte": 1.111
+  },
+  {
+   "archivo": "1b2964c709beb9.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.347,
+   "hablado": 1.573,
+   "fuerte": 1.29
+  },
+  {
+   "archivo": "1b3a23d49deb07.mp3",
+   "bytes": 27692,
+   "duracion": 3.43,
+   "silencio": 0.308,
+   "hablado": 3.122,
+   "fuerte": 2.554
+  },
+  {
+   "archivo": "1b40ed80ff4a0b.mp3",
+   "bytes": 20972,
+   "duracion": 2.59,
+   "silencio": 1.088,
+   "hablado": 1.502,
+   "fuerte": 1.208
+  },
+  {
+   "archivo": "1b42a2f1a86759.mp3",
+   "bytes": 23468,
+   "duracion": 2.9,
+   "silencio": 0.327,
+   "hablado": 2.573,
+   "fuerte": 2.299
+  },
+  {
+   "archivo": "1b42f8c8c42691.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 1.153,
+   "hablado": 0.767,
+   "fuerte": 0.663
+  },
+  {
+   "archivo": "1b433efa370bd3.mp3",
+   "bytes": 29996,
+   "duracion": 3.72,
+   "silencio": 0.723,
+   "hablado": 2.997,
+   "fuerte": 2.525
+  },
+  {
+   "archivo": "1b4fa23ecd1736.mp3",
+   "bytes": 23084,
+   "duracion": 2.86,
+   "silencio": 0.347,
+   "hablado": 2.513,
+   "fuerte": 2.203
+  },
+  {
+   "archivo": "1b50427a72017d.mp3",
+   "bytes": 77804,
+   "duracion": 9.7,
+   "silencio": 2.404,
+   "hablado": 7.296,
+   "fuerte": 6.585
+  },
+  {
+   "archivo": "1b55b16f3615c8.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 1.124,
+   "hablado": 0.796,
+   "fuerte": 0.704
+  },
+  {
+   "archivo": "1b56fcee0d47f1.mp3",
+   "bytes": 24044,
+   "duracion": 2.98,
+   "silencio": 1.3,
+   "hablado": 1.68,
+   "fuerte": 1.501
+  },
+  {
+   "archivo": "1b5b0d8ece3e6a.mp3",
+   "bytes": 67436,
+   "duracion": 8.4,
+   "silencio": 2.157,
+   "hablado": 6.243,
+   "fuerte": 5.672
+  },
+  {
+   "archivo": "1b5c3e44d4fdcb.mp3",
+   "bytes": 26540,
+   "duracion": 3.29,
+   "silencio": 0.315,
+   "hablado": 2.975,
+   "fuerte": 2.45
+  },
+  {
+   "archivo": "1b654d71eb4592.mp3",
+   "bytes": 110252,
+   "duracion": 13.75,
+   "silencio": 7.479,
+   "hablado": 6.271,
+   "fuerte": 5.813
+  },
+  {
+   "archivo": "1b6c80ceb8ff4c.mp3",
+   "bytes": 25580,
+   "duracion": 3.17,
+   "silencio": 0.771,
+   "hablado": 2.399,
+   "fuerte": 1.98
+  },
+  {
+   "archivo": "1b70985a19dae2.mp3",
+   "bytes": 111020,
+   "duracion": 13.85,
+   "silencio": 6.297,
+   "hablado": 7.553,
+   "fuerte": 6.979
+  },
+  {
+   "archivo": "1b791a470b0340.mp3",
+   "bytes": 61292,
+   "duracion": 7.63,
+   "silencio": 1.568,
+   "hablado": 6.063,
+   "fuerte": 5.722
+  },
+  {
+   "archivo": "1b7bd151030cab.mp3",
+   "bytes": 97388,
+   "duracion": 12.14,
+   "silencio": 4.052,
+   "hablado": 8.088,
+   "fuerte": 7.423
+  },
+  {
+   "archivo": "1b86f8727b4ae6.mp3",
+   "bytes": 24620,
+   "duracion": 3.05,
+   "silencio": 0.317,
+   "hablado": 2.733,
+   "fuerte": 2.31
+  },
+  {
+   "archivo": "1ba16f9fa06d48.mp3",
+   "bytes": 85868,
+   "duracion": 10.7,
+   "silencio": 3.279,
+   "hablado": 7.421,
+   "fuerte": 6.748
+  },
+  {
+   "archivo": "1bc6875e58ddf6.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 1.032,
+   "hablado": 0.888,
+   "fuerte": 0.66
+  },
+  {
+   "archivo": "1bdeeca9f379fe.mp3",
+   "bytes": 22124,
+   "duracion": 2.74,
+   "silencio": 0.407,
+   "hablado": 2.333,
+   "fuerte": 1.97
+  },
+  {
+   "archivo": "1c08414c75ebd7.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.599,
+   "hablado": 1.321,
+   "fuerte": 1.139
+  },
+  {
+   "archivo": "1c0b02d991ef2d.mp3",
+   "bytes": 63404,
+   "duracion": 7.9,
+   "silencio": 2.125,
+   "hablado": 5.775,
+   "fuerte": 5.094
+  },
+  {
+   "archivo": "1c2ac9585513dc.mp3",
+   "bytes": 17708,
+   "duracion": 2.18,
+   "silencio": 0.681,
+   "hablado": 1.499,
+   "fuerte": 1.148
+  },
+  {
+   "archivo": "1c2b34b91eee1b.mp3",
+   "bytes": 86636,
+   "duracion": 10.8,
+   "silencio": 4.441,
+   "hablado": 6.359,
+   "fuerte": 5.731
+  },
+  {
+   "archivo": "1c3c787a21dc43.mp3",
+   "bytes": 59564,
+   "duracion": 7.42,
+   "silencio": 1.694,
+   "hablado": 5.726,
+   "fuerte": 4.926
+  },
+  {
+   "archivo": "1c42693b698f07.mp3",
+   "bytes": 22508,
+   "duracion": 2.78,
+   "silencio": 0.425,
+   "hablado": 2.355,
+   "fuerte": 2.068
+  },
+  {
+   "archivo": "1c50ec0a530dc1.mp3",
+   "bytes": 111212,
+   "duracion": 13.87,
+   "silencio": 4.924,
+   "hablado": 8.946,
+   "fuerte": 8.315
+  },
+  {
+   "archivo": "1c5345481193af.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.47,
+   "hablado": 1.45,
+   "fuerte": 1.203
+  },
+  {
+   "archivo": "1c638f1b20f260.mp3",
+   "bytes": 79724,
+   "duracion": 9.94,
+   "silencio": 2.782,
+   "hablado": 7.158,
+   "fuerte": 6.531
+  },
+  {
+   "archivo": "1c6b9382eea3fa.mp3",
+   "bytes": 15980,
+   "duracion": 1.97,
+   "silencio": 0.295,
+   "hablado": 1.675,
+   "fuerte": 1.358
+  },
+  {
+   "archivo": "1c6fad53273b4d.mp3",
+   "bytes": 60332,
+   "duracion": 7.51,
+   "silencio": 2.21,
+   "hablado": 5.3,
+   "fuerte": 4.662
+  },
+  {
+   "archivo": "1c888acd930277.mp3",
+   "bytes": 105836,
+   "duracion": 13.2,
+   "silencio": 5.815,
+   "hablado": 7.385,
+   "fuerte": 6.603
+  },
+  {
+   "archivo": "1c88a908dc7338.mp3",
+   "bytes": 25772,
+   "duracion": 3.19,
+   "silencio": 1.126,
+   "hablado": 2.064,
+   "fuerte": 1.895
+  },
+  {
+   "archivo": "1c8b084e642fe5.mp3",
+   "bytes": 34412,
+   "duracion": 4.27,
+   "silencio": 0.674,
+   "hablado": 3.596,
+   "fuerte": 3.064
+  },
+  {
+   "archivo": "1c945d8fff21a7.mp3",
+   "bytes": 70508,
+   "duracion": 8.78,
+   "silencio": 1.84,
+   "hablado": 6.94,
+   "fuerte": 6.435
+  },
+  {
+   "archivo": "1ca0ef17eaadd4.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.69,
+   "hablado": 1.23,
+   "fuerte": 0.887
+  },
+  {
+   "archivo": "1ca285c6d0bd00.mp3",
+   "bytes": 96620,
+   "duracion": 12.05,
+   "silencio": 4.484,
+   "hablado": 7.566,
+   "fuerte": 6.918
+  },
+  {
+   "archivo": "1ca416b1a2146a.mp3",
+   "bytes": 22124,
+   "duracion": 2.74,
+   "silencio": 0.343,
+   "hablado": 2.397,
+   "fuerte": 2.085
+  },
+  {
+   "archivo": "1cbaab5aee705a.mp3",
+   "bytes": 26348,
+   "duracion": 3.26,
+   "silencio": 0.457,
+   "hablado": 2.803,
+   "fuerte": 2.311
+  },
+  {
+   "archivo": "1cbd51ff5488a3.mp3",
+   "bytes": 63788,
+   "duracion": 7.94,
+   "silencio": 1.751,
+   "hablado": 6.189,
+   "fuerte": 5.526
+  },
+  {
+   "archivo": "1cced770f8f5fc.mp3",
+   "bytes": 16556,
+   "duracion": 2.04,
+   "silencio": 0.317,
+   "hablado": 1.723,
+   "fuerte": 1.477
+  },
+  {
+   "archivo": "1cd5d166043368.mp3",
+   "bytes": 96044,
+   "duracion": 11.98,
+   "silencio": 3.795,
+   "hablado": 8.185,
+   "fuerte": 7.436
+  },
+  {
+   "archivo": "1cd954f3993a11.mp3",
+   "bytes": 38252,
+   "duracion": 4.75,
+   "silencio": 1.46,
+   "hablado": 3.29,
+   "fuerte": 2.895
+  },
+  {
+   "archivo": "1cdbd0b119cb17.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 1.09,
+   "hablado": 0.83,
+   "fuerte": 0.699
+  },
+  {
+   "archivo": "1ce6dc3a75d860.mp3",
+   "bytes": 18476,
+   "duracion": 2.28,
+   "silencio": 0.343,
+   "hablado": 1.937,
+   "fuerte": 1.675
+  },
+  {
+   "archivo": "1ce964be5a61f1.mp3",
+   "bytes": 28268,
+   "duracion": 3.5,
+   "silencio": 0.422,
+   "hablado": 3.078,
+   "fuerte": 2.481
+  },
+  {
+   "archivo": "1cf5aba79231e6.mp3",
+   "bytes": 19628,
+   "duracion": 2.42,
+   "silencio": 0.442,
+   "hablado": 1.978,
+   "fuerte": 1.676
+  },
+  {
+   "archivo": "1d0368e288eacd.mp3",
+   "bytes": 47084,
+   "duracion": 5.86,
+   "silencio": 1.944,
+   "hablado": 3.916,
+   "fuerte": 3.489
+  },
+  {
+   "archivo": "1d07abb8cf98d8.mp3",
+   "bytes": 98540,
+   "duracion": 12.29,
+   "silencio": 4.683,
+   "hablado": 7.607,
+   "fuerte": 7.108
+  },
+  {
+   "archivo": "1d0cc2e65f08c5.mp3",
+   "bytes": 88364,
+   "duracion": 11.02,
+   "silencio": 3.505,
+   "hablado": 7.515,
+   "fuerte": 6.794
+  },
+  {
+   "archivo": "1d111122968aa5.mp3",
+   "bytes": 61484,
+   "duracion": 7.66,
+   "silencio": 0.813,
+   "hablado": 6.847,
+   "fuerte": 6.245
+  },
+  {
+   "archivo": "1d123ac9c884ac.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 1.147,
+   "hablado": 0.773,
+   "fuerte": 0.649
+  },
+  {
+   "archivo": "1d12dab945c9b0.mp3",
+   "bytes": 31916,
+   "duracion": 3.96,
+   "silencio": 0.97,
+   "hablado": 2.99,
+   "fuerte": 2.743
+  },
+  {
+   "archivo": "1d20ea7292c455.mp3",
+   "bytes": 32300,
+   "duracion": 4.01,
+   "silencio": 0.909,
+   "hablado": 3.101,
+   "fuerte": 2.823
+  },
+  {
+   "archivo": "1d23a3b349cbf4.mp3",
+   "bytes": 23660,
+   "duracion": 2.93,
+   "silencio": 0.441,
+   "hablado": 2.49,
+   "fuerte": 2.119
+  },
+  {
+   "archivo": "1d2f7afd40311f.mp3",
+   "bytes": 23660,
+   "duracion": 2.93,
+   "silencio": 1.208,
+   "hablado": 1.722,
+   "fuerte": 1.499
+  },
+  {
+   "archivo": "1d351e8b4f7c61.mp3",
+   "bytes": 15788,
+   "duracion": 1.94,
+   "silencio": 0.375,
+   "hablado": 1.565,
+   "fuerte": 1.366
+  },
+  {
+   "archivo": "1d3553e89863fb.mp3",
+   "bytes": 18476,
+   "duracion": 2.28,
+   "silencio": 0.509,
+   "hablado": 1.771,
+   "fuerte": 1.579
+  },
+  {
+   "archivo": "1d40b482bf1631.mp3",
+   "bytes": 72428,
+   "duracion": 9.02,
+   "silencio": 1.77,
+   "hablado": 7.25,
+   "fuerte": 6.791
+  },
+  {
+   "archivo": "1d5e7a361bbb00.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.916,
+   "hablado": 1.004,
+   "fuerte": 0.679
+  },
+  {
+   "archivo": "1d641c0c3e33aa.mp3",
+   "bytes": 23660,
+   "duracion": 2.93,
+   "silencio": 0.286,
+   "hablado": 2.644,
+   "fuerte": 2.434
+  },
+  {
+   "archivo": "1d6ed836e58ba6.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.832,
+   "hablado": 1.088,
+   "fuerte": 0.755
+  },
+  {
+   "archivo": "1d70df5751a601.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.922,
+   "hablado": 0.998,
+   "fuerte": 0.757
+  },
+  {
+   "archivo": "1d75e5c34e0ddc.mp3",
+   "bytes": 19820,
+   "duracion": 2.45,
+   "silencio": 0.291,
+   "hablado": 2.159,
+   "fuerte": 1.766
+  },
+  {
+   "archivo": "1d76ff072193ee.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.407,
+   "hablado": 1.513,
+   "fuerte": 1.349
+  },
+  {
+   "archivo": "1d89bc3d032ccd.mp3",
+   "bytes": 94124,
+   "duracion": 11.74,
+   "silencio": 4.868,
+   "hablado": 6.872,
+   "fuerte": 6.404
+  },
+  {
+   "archivo": "1d8c667995ef01.mp3",
+   "bytes": 28268,
+   "duracion": 3.5,
+   "silencio": 0.87,
+   "hablado": 2.63,
+   "fuerte": 2.373
+  },
+  {
+   "archivo": "1d90bd55bd77ed.mp3",
+   "bytes": 28652,
+   "duracion": 3.55,
+   "silencio": 0.746,
+   "hablado": 2.804,
+   "fuerte": 2.554
+  },
+  {
+   "archivo": "1da92a8bcf8be7.mp3",
+   "bytes": 94700,
+   "duracion": 11.81,
+   "silencio": 4.446,
+   "hablado": 7.364,
+   "fuerte": 6.792
+  },
+  {
+   "archivo": "1db35103d61329.mp3",
+   "bytes": 24428,
+   "duracion": 3.02,
+   "silencio": 0.646,
+   "hablado": 2.374,
+   "fuerte": 1.853
+  },
+  {
+   "archivo": "1dc28fcb8f9e25.mp3",
+   "bytes": 21356,
+   "duracion": 2.64,
+   "silencio": 0.336,
+   "hablado": 2.304,
+   "fuerte": 1.938
+  },
+  {
+   "archivo": "1dce7ff979e552.mp3",
+   "bytes": 26348,
+   "duracion": 3.26,
+   "silencio": 0.286,
+   "hablado": 2.974,
+   "fuerte": 2.501
+  },
+  {
+   "archivo": "1dd2ca441aaa74.mp3",
+   "bytes": 71660,
+   "duracion": 8.93,
+   "silencio": 1.58,
+   "hablado": 7.35,
+   "fuerte": 6.897
+  },
+  {
+   "archivo": "1deed27bbba5e0.mp3",
+   "bytes": 40556,
+   "duracion": 5.04,
+   "silencio": 2.156,
+   "hablado": 2.884,
+   "fuerte": 2.592
+  },
+  {
+   "archivo": "1df38086f5a2f6.mp3",
+   "bytes": 29228,
+   "duracion": 3.62,
+   "silencio": 0.311,
+   "hablado": 3.309,
+   "fuerte": 2.92
+  },
+  {
+   "archivo": "1df4de12cca046.mp3",
+   "bytes": 15980,
+   "duracion": 1.97,
+   "silencio": 0.296,
+   "hablado": 1.674,
+   "fuerte": 1.247
+  },
+  {
+   "archivo": "1e18f04722774e.mp3",
+   "bytes": 22892,
+   "duracion": 2.83,
+   "silencio": 0.484,
+   "hablado": 2.346,
+   "fuerte": 1.997
+  },
+  {
+   "archivo": "1e1f4233fec9db.mp3",
+   "bytes": 17324,
+   "duracion": 2.14,
+   "silencio": 0.342,
+   "hablado": 1.798,
+   "fuerte": 1.54
+  },
+  {
+   "archivo": "1e28d909867013.mp3",
+   "bytes": 23468,
+   "duracion": 2.9,
+   "silencio": 0.411,
+   "hablado": 2.489,
+   "fuerte": 2.086
+  },
+  {
+   "archivo": "1e3aa6afb0972a.mp3",
+   "bytes": 29804,
+   "duracion": 3.7,
+   "silencio": 1.172,
+   "hablado": 2.528,
+   "fuerte": 2.291
+  },
+  {
+   "archivo": "1e4863c1b2bec9.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.913,
+   "hablado": 1.007,
+   "fuerte": 0.841
+  },
+  {
+   "archivo": "1e67e2dc530924.mp3",
+   "bytes": 45932,
+   "duracion": 5.71,
+   "silencio": 1.491,
+   "hablado": 4.219,
+   "fuerte": 3.716
+  },
+  {
+   "archivo": "1e7b1b36fea697.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.466,
+   "hablado": 1.454,
+   "fuerte": 1.039
+  },
+  {
+   "archivo": "1e7e53d2b69cbd.mp3",
+   "bytes": 87788,
+   "duracion": 10.94,
+   "silencio": 3.813,
+   "hablado": 7.127,
+   "fuerte": 6.514
+  },
+  {
+   "archivo": "1e8a17fedebbde.mp3",
+   "bytes": 23852,
+   "duracion": 2.95,
+   "silencio": 0.343,
+   "hablado": 2.607,
+   "fuerte": 2.338
+  },
+  {
+   "archivo": "1e9099926b7ee2.mp3",
+   "bytes": 18860,
+   "duracion": 2.33,
+   "silencio": 0.401,
+   "hablado": 1.929,
+   "fuerte": 1.696
+  },
+  {
+   "archivo": "1e9adae796e84e.mp3",
+   "bytes": 45548,
+   "duracion": 5.66,
+   "silencio": 1.814,
+   "hablado": 3.846,
+   "fuerte": 3.483
+  },
+  {
+   "archivo": "1e9f469f624a59.mp3",
+   "bytes": 27116,
+   "duracion": 3.36,
+   "silencio": 0.314,
+   "hablado": 3.046,
+   "fuerte": 2.648
+  },
+  {
+   "archivo": "1ea0247fd1f4cd.mp3",
+   "bytes": 91820,
+   "duracion": 11.45,
+   "silencio": 4.364,
+   "hablado": 7.086,
+   "fuerte": 6.56
+  },
+  {
+   "archivo": "1ead3bff2034e6.mp3",
+   "bytes": 124076,
+   "duracion": 15.48,
+   "silencio": 6.537,
+   "hablado": 8.943,
+   "fuerte": 8.299
+  },
+  {
+   "archivo": "1eb014f6816b4f.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.739,
+   "hablado": 1.181,
+   "fuerte": 1.047
+  },
+  {
+   "archivo": "1ec56985407b96.mp3",
+   "bytes": 21356,
+   "duracion": 2.64,
+   "silencio": 0.342,
+   "hablado": 2.298,
+   "fuerte": 2.098
+  },
+  {
+   "archivo": "1ece1dcc01443c.mp3",
+   "bytes": 37484,
+   "duracion": 4.66,
+   "silencio": 1.75,
+   "hablado": 2.91,
+   "fuerte": 2.581
+  },
+  {
+   "archivo": "1ece447d3534cf.mp3",
+   "bytes": 16172,
+   "duracion": 1.99,
+   "silencio": 0.294,
+   "hablado": 1.696,
+   "fuerte": 1.45
+  },
+  {
+   "archivo": "1edeb1263157ee.mp3",
+   "bytes": 20396,
+   "duracion": 2.52,
+   "silencio": 0.653,
+   "hablado": 1.867,
+   "fuerte": 1.613
+  },
+  {
+   "archivo": "1ef1f10f8a16a6.mp3",
+   "bytes": 54764,
+   "duracion": 6.82,
+   "silencio": 1.412,
+   "hablado": 5.408,
+   "fuerte": 4.894
+  },
+  {
+   "archivo": "1ef61ddc252a70.mp3",
+   "bytes": 105644,
+   "duracion": 13.18,
+   "silencio": 4.978,
+   "hablado": 8.202,
+   "fuerte": 7.622
+  },
+  {
+   "archivo": "1ef75ac84c28e9.mp3",
+   "bytes": 17516,
+   "duracion": 2.16,
+   "silencio": 0.305,
+   "hablado": 1.855,
+   "fuerte": 1.527
+  },
+  {
+   "archivo": "1efbd68ac4c66b.mp3",
+   "bytes": 65132,
+   "duracion": 8.11,
+   "silencio": 1.305,
+   "hablado": 6.805,
+   "fuerte": 6.285
+  },
+  {
+   "archivo": "1f0b6cb1ee3a9a.mp3",
+   "bytes": 25580,
+   "duracion": 3.17,
+   "silencio": 1.236,
+   "hablado": 1.934,
+   "fuerte": 1.604
+  },
+  {
+   "archivo": "1f176bf02b2983.mp3",
+   "bytes": 30572,
+   "duracion": 3.79,
+   "silencio": 1.371,
+   "hablado": 2.419,
+   "fuerte": 2.145
+  },
+  {
+   "archivo": "1f17a737f6e6d6.mp3",
+   "bytes": 29228,
+   "duracion": 3.62,
+   "silencio": 1.493,
+   "hablado": 2.127,
+   "fuerte": 1.757
+  },
+  {
+   "archivo": "1f3d816a40e776.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.718,
+   "hablado": 1.202,
+   "fuerte": 1.043
+  },
+  {
+   "archivo": "1f4d7611186220.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.872,
+   "hablado": 1.048,
+   "fuerte": 0.829
+  },
+  {
+   "archivo": "1f501fd51638e4.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.452,
+   "hablado": 1.468,
+   "fuerte": 1.201
+  },
+  {
+   "archivo": "1f72b8ba85ceeb.mp3",
+   "bytes": 55916,
+   "duracion": 6.96,
+   "silencio": 0.843,
+   "hablado": 6.117,
+   "fuerte": 5.57
+  },
+  {
+   "archivo": "1f7d1f3cfadcb0.mp3",
+   "bytes": 24044,
+   "duracion": 2.98,
+   "silencio": 0.328,
+   "hablado": 2.652,
+   "fuerte": 2.3
+  },
+  {
+   "archivo": "1f83113ec39bfc.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 0.548,
+   "hablado": 1.372,
+   "fuerte": 1.176
+  },
+  {
+   "archivo": "1f852a6baddff8.mp3",
+   "bytes": 99692,
+   "duracion": 12.43,
+   "silencio": 4.929,
+   "hablado": 7.501,
+   "fuerte": 6.864
+  },
+  {
+   "archivo": "1f8533056d85f4.mp3",
+   "bytes": 38636,
+   "duracion": 4.8,
+   "silencio": 1.535,
+   "hablado": 3.265,
+   "fuerte": 2.823
+  },
+  {
+   "archivo": "1f98378d8807a6.mp3",
+   "bytes": 33260,
+   "duracion": 4.13,
+   "silencio": 1.328,
+   "hablado": 2.802,
+   "fuerte": 2.292
+  },
+  {
+   "archivo": "1f9ac93d848de8.mp3",
+   "bytes": 87596,
+   "duracion": 10.92,
+   "silencio": 3.125,
+   "hablado": 7.795,
+   "fuerte": 6.975
+  },
+  {
+   "archivo": "1fa086a0bfbff6.mp3",
+   "bytes": 37100,
+   "duracion": 4.61,
+   "silencio": 0.846,
+   "hablado": 3.764,
+   "fuerte": 3.328
+  },
+  {
+   "archivo": "1fc61c0a8b9045.mp3",
+   "bytes": 90860,
+   "duracion": 11.33,
+   "silencio": 3.684,
+   "hablado": 7.646,
+   "fuerte": 6.998
+  },
+  {
+   "archivo": "1fc9dee407bb46.mp3",
+   "bytes": 57452,
+   "duracion": 7.15,
+   "silencio": 1.498,
+   "hablado": 5.652,
+   "fuerte": 5.235
+  },
+  {
+   "archivo": "1fccd37fabe3ba.mp3",
+   "bytes": 21740,
+   "duracion": 2.69,
+   "silencio": 1.194,
+   "hablado": 1.496,
+   "fuerte": 1.185
+  },
+  {
+   "archivo": "1fd3b562559aaf.mp3",
+   "bytes": 31916,
+   "duracion": 3.96,
+   "silencio": 0.521,
+   "hablado": 3.439,
+   "fuerte": 2.958
+  },
+  {
+   "archivo": "1fd6d931e708d6.mp3",
+   "bytes": 32876,
+   "duracion": 4.08,
+   "silencio": 1.083,
+   "hablado": 2.997,
+   "fuerte": 2.646
+  },
+  {
+   "archivo": "1fdc2e636b9330.mp3",
+   "bytes": 15596,
+   "duracion": 1.92,
+   "silencio": 1.128,
+   "hablado": 0.792,
+   "fuerte": 0.694
+  },
+  {
+   "archivo": "1fe762ff1ac3a7.mp3",
+   "bytes": 20396,
+   "duracion": 2.52,
+   "silencio": 0.324,
+   "hablado": 2.196,
+   "fuerte": 1.809
+  },
+  {
+   "archivo": "1ff9ee172432ef.mp3",
+   "bytes": 34604,
+   "duracion": 4.3,
+   "silencio": 0.689,
+   "hablado": 3.611,
+   "fuerte": 3.138
+  }
+ ]
+}

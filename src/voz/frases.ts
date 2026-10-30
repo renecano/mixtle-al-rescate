@@ -135,6 +135,8 @@ export function todasLasFrases(): FraseNarrada[] {
   for (let n = 0; n <= NUMERO_MAXIMO; n++) {
     agregar('comun', 'numeros', `numero.${n}`, [{ numero: n }]);
     agregar('comun', 'numeros', `numero.${n}.ante-sustantivo`, [{ numero: n, antesDeSustantivo: true }]);
+    // Antes de un sustantivo femenino solo cambian los que terminan en "uno": "una", "veintiuna"…
+    if (n % 10 === 1 && n !== 11) agregar('comun', 'numeros', `numero.${n}.femenino`, [{ numero: n, femenino: true }]);
   }
   return lista;
 }

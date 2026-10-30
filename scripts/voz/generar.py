@@ -29,13 +29,15 @@ def duracion_ms(archivo: Path) -> int:
     return round((int(h) * 3600 + int(mi) * 60 + float(s)) * 1000)
 
 
+normalizacion = config.get("normalizacion")
+
 for i, t in enumerate(trabajos, 1):
     destino = salida / t["archivo"]
     if "grabacion" in t:
-        a_mp3(Path(t["grabacion"]), destino)
+        a_mp3(Path(t["grabacion"]), destino, normalizacion)
         origen = t.get("origen", "grabación")
     else:
-        generar(config["proveedor"], config["voz"], config["ajustes"], t["texto"], destino)
+        generar(config["proveedor"], config["voz"], config["ajustes"], t["texto"], destino, normalizacion)
         origen = config["voz"]
     print(f"[{i}/{len(trabajos)}] {origen}: {t['texto'][:60]}", file=sys.stderr, flush=True)
     print("LISTO " + json.dumps({"archivo": t["archivo"], "ms": duracion_ms(destino)}), flush=True)

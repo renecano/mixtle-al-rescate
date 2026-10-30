@@ -12,6 +12,14 @@ export function pythonDelEntorno() {
   return process.platform === 'win32' ? join(VENV, 'Scripts', 'python.exe') : join(VENV, 'bin', 'python');
 }
 
+/** El ffmpeg que trae el entorno de voz (imageio-ffmpeg). */
+export function ffmpegDelEntorno() {
+  const r = spawnSync(pythonDelEntorno(), ['-c', 'import imageio_ffmpeg;print(imageio_ffmpeg.get_ffmpeg_exe())'], { encoding: 'utf8' });
+  const ruta = (r.stdout ?? '').trim();
+  if (!ruta) throw new Error('No encontré ffmpeg (npm run voz:preparar instala el entorno que lo trae).');
+  return ruta;
+}
+
 /** Corre un comando mostrando su salida; termina con error claro si falla. */
 export function correr(comando, args, opciones = {}) {
   const r = spawnSync(comando, args, { stdio: 'inherit', ...opciones });
