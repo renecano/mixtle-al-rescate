@@ -1,0 +1,542 @@
+{
+  "fecha": "2026-10-30",
+  "url": "https://mixtle-al-rescate.vercel.app",
+  "commit": "62bb568 (v3-demo + cierres)",
+  "como": "un navegador a la vez (workers: 1), Chrome instalado, en cinco partes de menos de 10 minutos cada una, contra producción (BASE_URL)",
+  "inicio": "2026-10-30T22:53:48.266Z",
+  "fin": "2026-10-30T23:18:15.302Z",
+  "minutos": 24.5,
+  "total": 58,
+  "pasan": 58,
+  "fallan": [],
+  "pruebas": [
+    {
+      "parte": "1-recorrido-proyector",
+      "archivo": "recorrido.spec.ts",
+      "titulo": "aventura de la unidad 1 completa: grupo → facilitador → intro → 3 niveles → lluvia de basura → diploma → estampa",
+      "proyecto": "proyector-1920x1080",
+      "estado": "passed",
+      "segundos": 217.9,
+      "anotaciones": {
+        "fps nivel 1": "58",
+        "voz": "{\"conAudio\":60,\"conNavegador\":0}"
+      }
+    },
+    {
+      "parte": "1-recorrido-proyector",
+      "archivo": "recorrido.spec.ts",
+      "titulo": "el botón de sonido se recuerda y el juego no se rompe sin localStorage",
+      "proyecto": "proyector-1920x1080",
+      "estado": "passed",
+      "segundos": 7.1,
+      "anotaciones": {}
+    },
+    {
+      "parte": "1-recorrido-proyector",
+      "archivo": "recorrido.spec.ts",
+      "titulo": "Inicio: cada botón mide al menos 64 px reales en esta pantalla",
+      "proyecto": "proyector-1920x1080",
+      "estado": "passed",
+      "segundos": 5.4,
+      "anotaciones": {}
+    },
+    {
+      "parte": "1-recorrido-proyector",
+      "archivo": "recorrido.spec.ts",
+      "titulo": "Nivel1: cada zona de toque mide al menos 64 px reales en esta pantalla",
+      "proyecto": "proyector-1920x1080",
+      "estado": "passed",
+      "segundos": 5.2,
+      "anotaciones": {}
+    },
+    {
+      "parte": "1-recorrido-proyector",
+      "archivo": "recorrido.spec.ts",
+      "titulo": "Nivel2: cada zona de toque mide al menos 64 px reales en esta pantalla",
+      "proyecto": "proyector-1920x1080",
+      "estado": "passed",
+      "segundos": 9.4,
+      "anotaciones": {}
+    },
+    {
+      "parte": "1-recorrido-proyector",
+      "archivo": "recorrido.spec.ts",
+      "titulo": "Nivel3: cada zona de toque mide al menos 64 px reales en esta pantalla",
+      "proyecto": "proyector-1920x1080",
+      "estado": "passed",
+      "segundos": 4.9,
+      "anotaciones": {}
+    },
+    {
+      "parte": "1-recorrido-proyector",
+      "archivo": "recorrido.spec.ts",
+      "titulo": "Bonus: cada zona de toque mide al menos 64 px reales en esta pantalla",
+      "proyecto": "proyector-1920x1080",
+      "estado": "passed",
+      "segundos": 11.8,
+      "anotaciones": {}
+    },
+    {
+      "parte": "2-recorrido-tablet",
+      "archivo": "recorrido.spec.ts",
+      "titulo": "aventura de la unidad 1 completa: grupo → facilitador → intro → 3 niveles → lluvia de basura → diploma → estampa",
+      "proyecto": "tablet-1024x768",
+      "estado": "passed",
+      "segundos": 231.6,
+      "anotaciones": {
+        "fps nivel 1": "57",
+        "voz": "{\"conAudio\":60,\"conNavegador\":0}"
+      }
+    },
+    {
+      "parte": "2-recorrido-tablet",
+      "archivo": "recorrido.spec.ts",
+      "titulo": "el botón de sonido se recuerda y el juego no se rompe sin localStorage",
+      "proyecto": "tablet-1024x768",
+      "estado": "passed",
+      "segundos": 6.5,
+      "anotaciones": {}
+    },
+    {
+      "parte": "2-recorrido-tablet",
+      "archivo": "recorrido.spec.ts",
+      "titulo": "Inicio: cada botón mide al menos 64 px reales en esta pantalla",
+      "proyecto": "tablet-1024x768",
+      "estado": "passed",
+      "segundos": 4.7,
+      "anotaciones": {}
+    },
+    {
+      "parte": "2-recorrido-tablet",
+      "archivo": "recorrido.spec.ts",
+      "titulo": "Nivel1: cada zona de toque mide al menos 64 px reales en esta pantalla",
+      "proyecto": "tablet-1024x768",
+      "estado": "passed",
+      "segundos": 4.6,
+      "anotaciones": {}
+    },
+    {
+      "parte": "2-recorrido-tablet",
+      "archivo": "recorrido.spec.ts",
+      "titulo": "Nivel2: cada zona de toque mide al menos 64 px reales en esta pantalla",
+      "proyecto": "tablet-1024x768",
+      "estado": "passed",
+      "segundos": 8.7,
+      "anotaciones": {}
+    },
+    {
+      "parte": "2-recorrido-tablet",
+      "archivo": "recorrido.spec.ts",
+      "titulo": "Nivel3: cada zona de toque mide al menos 64 px reales en esta pantalla",
+      "proyecto": "tablet-1024x768",
+      "estado": "passed",
+      "segundos": 4.8,
+      "anotaciones": {}
+    },
+    {
+      "parte": "2-recorrido-tablet",
+      "archivo": "recorrido.spec.ts",
+      "titulo": "Bonus: cada zona de toque mide al menos 64 px reales en esta pantalla",
+      "proyecto": "tablet-1024x768",
+      "estado": "passed",
+      "segundos": 11.8,
+      "anotaciones": {}
+    },
+    {
+      "parte": "3-aventuras-proyector",
+      "archivo": "aventuras.spec.ts",
+      "titulo": "unidad 2 — Rescate en el parque: liberar a los animales y separar su basura",
+      "proyecto": "proyector-1920x1080",
+      "estado": "passed",
+      "segundos": 76.7,
+      "anotaciones": {}
+    },
+    {
+      "parte": "3-aventuras-proyector",
+      "archivo": "aventuras.spec.ts",
+      "titulo": "unidad 3 — Siembra un bosquecito: plantar seis arbolitos y regarlos hasta que crezcan",
+      "proyecto": "proyector-1920x1080",
+      "estado": "passed",
+      "segundos": 40.9,
+      "anotaciones": {}
+    },
+    {
+      "parte": "3-aventuras-proyector",
+      "archivo": "aventuras.spec.ts",
+      "titulo": "unidad 4 — En bici a la escuela: cambiar de carril y llegar",
+      "proyecto": "proyector-1920x1080",
+      "estado": "passed",
+      "segundos": 59.1,
+      "anotaciones": {}
+    },
+    {
+      "parte": "3-aventuras-proyector",
+      "archivo": "aventuras.spec.ts",
+      "titulo": "unidad 5 — Mi lonchera sin basura: cada cosa a la lonchera o a \"Mejor no\"",
+      "proyecto": "proyector-1920x1080",
+      "estado": "passed",
+      "segundos": 81.9,
+      "anotaciones": {}
+    },
+    {
+      "parte": "4-aventuras-tablet",
+      "archivo": "aventuras.spec.ts",
+      "titulo": "unidad 2 — Rescate en el parque: liberar a los animales y separar su basura",
+      "proyecto": "tablet-1024x768",
+      "estado": "passed",
+      "segundos": 78.3,
+      "anotaciones": {}
+    },
+    {
+      "parte": "4-aventuras-tablet",
+      "archivo": "aventuras.spec.ts",
+      "titulo": "unidad 3 — Siembra un bosquecito: plantar seis arbolitos y regarlos hasta que crezcan",
+      "proyecto": "tablet-1024x768",
+      "estado": "passed",
+      "segundos": 41.7,
+      "anotaciones": {}
+    },
+    {
+      "parte": "4-aventuras-tablet",
+      "archivo": "aventuras.spec.ts",
+      "titulo": "unidad 4 — En bici a la escuela: cambiar de carril y llegar",
+      "proyecto": "tablet-1024x768",
+      "estado": "passed",
+      "segundos": 59.9,
+      "anotaciones": {}
+    },
+    {
+      "parte": "4-aventuras-tablet",
+      "archivo": "aventuras.spec.ts",
+      "titulo": "unidad 5 — Mi lonchera sin basura: cada cosa a la lonchera o a \"Mejor no\"",
+      "proyecto": "tablet-1024x768",
+      "estado": "passed",
+      "segundos": 82.8,
+      "anotaciones": {}
+    },
+    {
+      "parte": "5-resto",
+      "archivo": "camino.spec.ts",
+      "titulo": "un grupo nuevo completa una lección con un error, ve la pantalla final y su parque crece; el avance se guarda",
+      "proyecto": "proyector-1920x1080",
+      "estado": "passed",
+      "segundos": 33.1,
+      "anotaciones": {}
+    },
+    {
+      "parte": "5-resto",
+      "archivo": "camino.spec.ts",
+      "titulo": "camino, lección y álbum: cada botón mide al menos 64 px reales",
+      "proyecto": "proyector-1920x1080",
+      "estado": "passed",
+      "segundos": 13,
+      "anotaciones": {}
+    },
+    {
+      "parte": "5-resto",
+      "archivo": "camino.spec.ts",
+      "titulo": "un grupo nuevo completa una lección con un error, ve la pantalla final y su parque crece; el avance se guarda",
+      "proyecto": "tablet-1024x768",
+      "estado": "passed",
+      "segundos": 26.2,
+      "anotaciones": {}
+    },
+    {
+      "parte": "5-resto",
+      "archivo": "camino.spec.ts",
+      "titulo": "camino, lección y álbum: cada botón mide al menos 64 px reales",
+      "proyecto": "tablet-1024x768",
+      "estado": "passed",
+      "segundos": 10.5,
+      "anotaciones": {}
+    },
+    {
+      "parte": "5-resto",
+      "archivo": "facilitador.spec.ts",
+      "titulo": "el modo facilitador cabe en pantalla y \"Cerrar\" siempre se ve",
+      "proyecto": "proyector-1920x1080",
+      "estado": "passed",
+      "segundos": 26.6,
+      "anotaciones": {}
+    },
+    {
+      "parte": "5-resto",
+      "archivo": "facilitador.spec.ts",
+      "titulo": "el modo facilitador cabe en pantalla y \"Cerrar\" siempre se ve",
+      "proyecto": "tablet-1024x768",
+      "estado": "passed",
+      "segundos": 10.1,
+      "anotaciones": {}
+    },
+    {
+      "parte": "5-resto",
+      "archivo": "ficha.spec.ts",
+      "titulo": "la mascota del grupo no tapa nada (siguiente parada 0)",
+      "proyecto": "proyector-1920x1080",
+      "estado": "passed",
+      "segundos": 3.7,
+      "anotaciones": {}
+    },
+    {
+      "parte": "5-resto",
+      "archivo": "ficha.spec.ts",
+      "titulo": "la mascota del grupo no tapa nada (siguiente parada 1)",
+      "proyecto": "proyector-1920x1080",
+      "estado": "passed",
+      "segundos": 3.8,
+      "anotaciones": {}
+    },
+    {
+      "parte": "5-resto",
+      "archivo": "ficha.spec.ts",
+      "titulo": "la mascota del grupo no tapa nada (siguiente parada 2)",
+      "proyecto": "proyector-1920x1080",
+      "estado": "passed",
+      "segundos": 3.6,
+      "anotaciones": {}
+    },
+    {
+      "parte": "5-resto",
+      "archivo": "ficha.spec.ts",
+      "titulo": "la mascota del grupo no tapa nada (siguiente parada 3)",
+      "proyecto": "proyector-1920x1080",
+      "estado": "passed",
+      "segundos": 3.4,
+      "anotaciones": {}
+    },
+    {
+      "parte": "5-resto",
+      "archivo": "ficha.spec.ts",
+      "titulo": "la mascota del grupo no tapa nada (siguiente parada 4)",
+      "proyecto": "proyector-1920x1080",
+      "estado": "passed",
+      "segundos": 3.6,
+      "anotaciones": {}
+    },
+    {
+      "parte": "5-resto",
+      "archivo": "ficha.spec.ts",
+      "titulo": "la mascota del grupo no tapa nada (siguiente parada 5)",
+      "proyecto": "proyector-1920x1080",
+      "estado": "passed",
+      "segundos": 3.7,
+      "anotaciones": {}
+    },
+    {
+      "parte": "5-resto",
+      "archivo": "ficha.spec.ts",
+      "titulo": "la mascota del grupo no tapa nada (siguiente parada 6)",
+      "proyecto": "proyector-1920x1080",
+      "estado": "passed",
+      "segundos": 3.6,
+      "anotaciones": {}
+    },
+    {
+      "parte": "5-resto",
+      "archivo": "ficha.spec.ts",
+      "titulo": "la mascota del grupo no tapa nada (siguiente parada 7)",
+      "proyecto": "proyector-1920x1080",
+      "estado": "passed",
+      "segundos": 3.7,
+      "anotaciones": {}
+    },
+    {
+      "parte": "5-resto",
+      "archivo": "ficha.spec.ts",
+      "titulo": "la mascota del grupo no tapa nada (siguiente parada 8)",
+      "proyecto": "proyector-1920x1080",
+      "estado": "passed",
+      "segundos": 3.7,
+      "anotaciones": {}
+    },
+    {
+      "parte": "5-resto",
+      "archivo": "ficha.spec.ts",
+      "titulo": "la mascota del grupo no tapa nada (siguiente parada 0)",
+      "proyecto": "tablet-1024x768",
+      "estado": "passed",
+      "segundos": 3.4,
+      "anotaciones": {}
+    },
+    {
+      "parte": "5-resto",
+      "archivo": "ficha.spec.ts",
+      "titulo": "la mascota del grupo no tapa nada (siguiente parada 1)",
+      "proyecto": "tablet-1024x768",
+      "estado": "passed",
+      "segundos": 3.2,
+      "anotaciones": {}
+    },
+    {
+      "parte": "5-resto",
+      "archivo": "ficha.spec.ts",
+      "titulo": "la mascota del grupo no tapa nada (siguiente parada 2)",
+      "proyecto": "tablet-1024x768",
+      "estado": "passed",
+      "segundos": 3.5,
+      "anotaciones": {}
+    },
+    {
+      "parte": "5-resto",
+      "archivo": "ficha.spec.ts",
+      "titulo": "la mascota del grupo no tapa nada (siguiente parada 3)",
+      "proyecto": "tablet-1024x768",
+      "estado": "passed",
+      "segundos": 3.4,
+      "anotaciones": {}
+    },
+    {
+      "parte": "5-resto",
+      "archivo": "ficha.spec.ts",
+      "titulo": "la mascota del grupo no tapa nada (siguiente parada 4)",
+      "proyecto": "tablet-1024x768",
+      "estado": "passed",
+      "segundos": 3.2,
+      "anotaciones": {}
+    },
+    {
+      "parte": "5-resto",
+      "archivo": "ficha.spec.ts",
+      "titulo": "la mascota del grupo no tapa nada (siguiente parada 5)",
+      "proyecto": "tablet-1024x768",
+      "estado": "passed",
+      "segundos": 3.5,
+      "anotaciones": {}
+    },
+    {
+      "parte": "5-resto",
+      "archivo": "ficha.spec.ts",
+      "titulo": "la mascota del grupo no tapa nada (siguiente parada 6)",
+      "proyecto": "tablet-1024x768",
+      "estado": "passed",
+      "segundos": 3.2,
+      "anotaciones": {}
+    },
+    {
+      "parte": "5-resto",
+      "archivo": "ficha.spec.ts",
+      "titulo": "la mascota del grupo no tapa nada (siguiente parada 7)",
+      "proyecto": "tablet-1024x768",
+      "estado": "passed",
+      "segundos": 3.4,
+      "anotaciones": {}
+    },
+    {
+      "parte": "5-resto",
+      "archivo": "ficha.spec.ts",
+      "titulo": "la mascota del grupo no tapa nada (siguiente parada 8)",
+      "proyecto": "tablet-1024x768",
+      "estado": "passed",
+      "segundos": 3.5,
+      "anotaciones": {}
+    },
+    {
+      "parte": "5-resto",
+      "archivo": "vestidor.spec.ts",
+      "titulo": "vestidor: Colibrí cabe en su recuadro y no tapa las tarjetas, con cualquier accesorio y en todos los tamaños",
+      "proyecto": "proyector-1920x1080",
+      "estado": "passed",
+      "segundos": 12.6,
+      "anotaciones": {}
+    },
+    {
+      "parte": "5-resto",
+      "archivo": "vestidor.spec.ts",
+      "titulo": "vestidor: Ardilla cabe en su recuadro y no tapa las tarjetas, con cualquier accesorio y en todos los tamaños",
+      "proyecto": "proyector-1920x1080",
+      "estado": "passed",
+      "segundos": 13.5,
+      "anotaciones": {}
+    },
+    {
+      "parte": "5-resto",
+      "archivo": "vestidor.spec.ts",
+      "titulo": "vestidor: Monarca cabe en su recuadro y no tapa las tarjetas, con cualquier accesorio y en todos los tamaños",
+      "proyecto": "proyector-1920x1080",
+      "estado": "passed",
+      "segundos": 12.9,
+      "anotaciones": {}
+    },
+    {
+      "parte": "5-resto",
+      "archivo": "vestidor.spec.ts",
+      "titulo": "vestidor: Ajolote cabe en su recuadro y no tapa las tarjetas, con cualquier accesorio y en todos los tamaños",
+      "proyecto": "proyector-1920x1080",
+      "estado": "passed",
+      "segundos": 13.4,
+      "anotaciones": {}
+    },
+    {
+      "parte": "5-resto",
+      "archivo": "vestidor.spec.ts",
+      "titulo": "vestidor: Tlacuache cabe en su recuadro y no tapa las tarjetas, con cualquier accesorio y en todos los tamaños",
+      "proyecto": "proyector-1920x1080",
+      "estado": "passed",
+      "segundos": 13,
+      "anotaciones": {}
+    },
+    {
+      "parte": "5-resto",
+      "archivo": "vestidor.spec.ts",
+      "titulo": "vestidor: Cacomixtle cabe en su recuadro y no tapa las tarjetas, con cualquier accesorio y en todos los tamaños",
+      "proyecto": "proyector-1920x1080",
+      "estado": "passed",
+      "segundos": 13.1,
+      "anotaciones": {}
+    },
+    {
+      "parte": "5-resto",
+      "archivo": "vestidor.spec.ts",
+      "titulo": "vestidor: Colibrí cabe en su recuadro y no tapa las tarjetas, con cualquier accesorio y en todos los tamaños",
+      "proyecto": "tablet-1024x768",
+      "estado": "passed",
+      "segundos": 13.1,
+      "anotaciones": {}
+    },
+    {
+      "parte": "5-resto",
+      "archivo": "vestidor.spec.ts",
+      "titulo": "vestidor: Ardilla cabe en su recuadro y no tapa las tarjetas, con cualquier accesorio y en todos los tamaños",
+      "proyecto": "tablet-1024x768",
+      "estado": "passed",
+      "segundos": 13,
+      "anotaciones": {}
+    },
+    {
+      "parte": "5-resto",
+      "archivo": "vestidor.spec.ts",
+      "titulo": "vestidor: Monarca cabe en su recuadro y no tapa las tarjetas, con cualquier accesorio y en todos los tamaños",
+      "proyecto": "tablet-1024x768",
+      "estado": "passed",
+      "segundos": 13.2,
+      "anotaciones": {}
+    },
+    {
+      "parte": "5-resto",
+      "archivo": "vestidor.spec.ts",
+      "titulo": "vestidor: Ajolote cabe en su recuadro y no tapa las tarjetas, con cualquier accesorio y en todos los tamaños",
+      "proyecto": "tablet-1024x768",
+      "estado": "passed",
+      "segundos": 13.3,
+      "anotaciones": {}
+    },
+    {
+      "parte": "5-resto",
+      "archivo": "vestidor.spec.ts",
+      "titulo": "vestidor: Tlacuache cabe en su recuadro y no tapa las tarjetas, con cualquier accesorio y en todos los tamaños",
+      "proyecto": "tablet-1024x768",
+      "estado": "passed",
+      "segundos": 13.1,
+      "anotaciones": {}
+    },
+    {
+      "parte": "5-resto",
+      "archivo": "vestidor.spec.ts",
+      "titulo": "vestidor: Cacomixtle cabe en su recuadro y no tapa las tarjetas, con cualquier accesorio y en todos los tamaños",
+      "proyecto": "tablet-1024x768",
+      "estado": "passed",
+      "segundos": 13,
+      "anotaciones": {}
+    }
+  ]
+}
