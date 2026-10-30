@@ -167,6 +167,10 @@ Atajos para revisar (solo en desarrollo o con `?e2e` en la dirección): `?galeri
 
 El proyecto es un sitio estático y ya incluye `vercel.json` (Vite, `npm run build`, carpeta `dist`, cabeceras de seguridad y caché; el *service worker* nunca se guarda en caché para que las actualizaciones lleguen).
 
+**Versión estable y cómo volver a ella.** La etiqueta `v3-estable` (commit `cb13f92`, 29 de octubre de 2026) marca la versión revisada con los cinco puntos de René, la voz de Alejo recortada y la actualización automática. Si una versión posterior sale mal, hay dos formas de volver:
+- **Instant Rollback en Vercel:** en el proyecto → *Deployments* → el despliegue de `cb13f92` → ⋯ → *Instant Rollback* (o *Promote to Production*). Es inmediato y no toca el repositorio; las laptops lo reciben como cualquier versión nueva (ver *Cuando se publica una versión nueva*).
+- **Con git:** `git revert --no-commit v3-estable..main && git commit -m "Volver a v3-estable"` y `git push`. Deshace los commits posteriores sin reescribir la historia; Vercel publica el resultado.
+
 **Hoy:** el repositorio es privado en GitHub (`renecano/mixtle-al-rescate`) y el proyecto de Vercel `mixtle-al-rescate` está conectado a él: **cada *push* a `main` se publica solo en producción** (<https://mixtle-al-rescate.vercel.app>). El primer despliegue automático falló porque `vercel.json` tenía un patrón de cabeceras que Vercel no acepta; ya está corregido (una regla por archivo del *service worker*).
 
 **Con GitHub (recomendado):** en [vercel.com](https://vercel.com), *Add New → Project* e importa el repositorio. Cada rama o *pull request* genera una **versión de prueba** (*preview*) con su propia dirección; lo que llega a `main` se publica en **producción**. Así Eco Urban puede revisar cambios antes de que lleguen a los salones.
