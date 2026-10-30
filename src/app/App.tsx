@@ -15,6 +15,7 @@ const Camino = lazy(() => cargarCamino().then((m) => ({ default: m.Camino })));
 const Leccion = lazy(() => cargarLeccion().then((m) => ({ default: m.Leccion })));
 const Aventura = lazy(() => cargarAventura().then((m) => ({ default: m.Aventura })));
 const Album = lazy(() => cargarAlbum().then((m) => ({ default: m.Album })));
+const Revision = lazy(() => import('./pantallas/RevisionMixtle').then((m) => ({ default: m.RevisionMixtle })));
 
 function Pantalla({ pantalla }: { pantalla: NombrePantalla }) {
   switch (pantalla) {
@@ -28,6 +29,8 @@ function Pantalla({ pantalla }: { pantalla: NombrePantalla }) {
       return <Aventura />;
     case 'album':
       return <Album />;
+    case 'revision':
+      return <Revision />;
     default:
       return <Inicio />;
   }

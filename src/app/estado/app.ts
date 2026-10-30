@@ -2,7 +2,7 @@ import { create } from 'zustand';
 import { esEscena } from '../../logica/flujo';
 import { guardarInterruptor, leerInterruptorApagado } from '../../servicios/preferencias';
 
-export type Pantalla = 'inicio' | 'grupos' | 'camino' | 'leccion' | 'aventura' | 'album';
+export type Pantalla = 'inicio' | 'grupos' | 'camino' | 'leccion' | 'aventura' | 'album' | 'revision';
 
 const CLAVE_PROYECTOR = 'mixtle-al-rescate:proyector';
 const CLAVE_SUAVE = 'mixtle-al-rescate:suave';
@@ -36,11 +36,12 @@ interface EstadoApp {
 /**
  * Pantalla inicial. Atajos para revisar (solo en desarrollo o con ?e2e):
  * `?escena=Nivel2` entra directo a esa escena de la aventura 1 (con `&unidad=u2`, a la de esa unidad);
- * `?galeria` muestra todo el arte.
+ * `?galeria` muestra todo el arte; `?mixtle`, todas las apariciones de Mixtle (y los accesorios) lado a lado.
  */
 export function pantallaInicial(busqueda: string, desarrollo: boolean): Pick<EstadoApp, 'pantalla' | 'escenaInicial' | 'unidadId'> {
   const params = new URLSearchParams(busqueda);
   if (params.has('galeria')) return { pantalla: 'aventura', escenaInicial: 'Galeria' };
+  if (params.has('mixtle')) return { pantalla: 'revision' };
   const escena = params.get('escena');
   if (!(desarrollo || params.has('e2e')) || !escena) return { pantalla: 'inicio' };
   const unidadId = params.get('unidad') ?? 'u1';

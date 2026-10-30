@@ -13,8 +13,6 @@ const TINTA = '#2A211C';
 const C = {
   piel: '#B09C8A',
   pielOscura: '#8A7563',
-  crema: '#F4ECDF',
-  rosa: '#E8A99A',
   boca: '#7A2E2E',
   lengua: '#E87B7B',
 };
@@ -40,13 +38,23 @@ const PARPADEAN: readonly ExpresionMixtle[] = ['normal', 'habla', 'pensando', 's
 /*
  * Luz y sombra (arte más rico, v3): la piel y la crema llevan un degradado con la luz arriba a la
  * izquierda, la cabeza un brillo suave y una sombra sobre el cuerpo. Los id son iguales en todas las
- * poses, así que varias Mixtle en la misma página comparten las mismas definiciones sin chocar.
+ * poses; los id llevan un sufijo por instancia (ver defsMixtle).
  */
-const DEFS_MIXTLE = `<defs>
-    <radialGradient id="mx-piel" cx="38%" cy="28%" r="80%"><stop offset="0" stop-color="#C9B6A4"/><stop offset=".55" stop-color="${C.piel}"/><stop offset="1" stop-color="#937D6A"/></radialGradient>
-    <radialGradient id="mx-crema" cx="42%" cy="30%" r="75%"><stop offset="0" stop-color="#FFFBF3"/><stop offset="1" stop-color="#E9DDCB"/></radialGradient>
-    <linearGradient id="mx-oreja" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F3BCAE"/><stop offset="1" stop-color="#D98E7F"/></linearGradient>
+/*
+ * Los degradados se buscan por id en TODO el documento (`url(#mx-piel)`) y el navegador toma el
+ * primero que encuentra. Si ese primero está en un SVG que no se pinta (el logo de la pantalla de
+ * carga de index.html, oculto con display:none), Mixtle sale sin relleno: la cara blanca, el cuerpo
+ * pálido y los brazos (de color plano) café. Pasaba en la tarjeta del recorrido guiado, que va fuera
+ * del árbol de la app (29 de octubre de 2026). Por eso cada Mixtle en línea lleva su propio `sufijo`
+ * en los id; los dibujos que van como imagen (data URI) son documentos aparte y no lo necesitan.
+ */
+function defsMixtle(s: string): string {
+  return `<defs>
+    <radialGradient id="mx-piel${s}" cx="38%" cy="28%" r="80%"><stop offset="0" stop-color="#C9B6A4"/><stop offset=".55" stop-color="${C.piel}"/><stop offset="1" stop-color="#937D6A"/></radialGradient>
+    <radialGradient id="mx-crema${s}" cx="42%" cy="30%" r="75%"><stop offset="0" stop-color="#FFFBF3"/><stop offset="1" stop-color="#E9DDCB"/></radialGradient>
+    <linearGradient id="mx-oreja${s}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F3BCAE"/><stop offset="1" stop-color="#D98E7F"/></linearGradient>
   </defs>`;
+}
 
 function ojosMixtle(expresion: ExpresionMixtle): string {
   const feliz = (x: number) => `<path d="M${x - 19} 158 Q ${x} 134 ${x + 19} 158" fill="none" stroke="${TINTA}" stroke-width="7" stroke-linecap="round"/>`;
@@ -101,11 +109,11 @@ function bocaMixtle(expresion: ExpresionMixtle): string {
 }
 
 /** Ojos cerrados encima de los abiertos; en reposo se muestran un instante (parpadeo, clase mx-parpadeo). */
-function parpadeoMixtle(expresion: ExpresionMixtle): string {
+function parpadeoMixtle(expresion: ExpresionMixtle, s = ''): string {
   if (!PARPADEAN.includes(expresion)) return '';
   const y = expresion === 'pensando' ? 144 : 152;
   return `<g class="mx-parpadeo" opacity="0">
-      <ellipse cx="137" cy="${y}" rx="34" ry="30" fill="url(#mx-crema)"/><ellipse cx="223" cy="${y}" rx="34" ry="30" fill="url(#mx-crema)"/>
+      <ellipse cx="137" cy="${y}" rx="34" ry="30" fill="url(#mx-crema${s})"/><ellipse cx="223" cy="${y}" rx="34" ry="30" fill="url(#mx-crema${s})"/>
       <path d="M118 ${y} Q 137 ${y + 12} 156 ${y} M204 ${y} Q 223 ${y + 12} 242 ${y}" fill="none" stroke="${TINTA}" stroke-width="6" stroke-linecap="round"/>
     </g>`;
 }
@@ -115,12 +123,12 @@ const ZETAS = `<g fill="none" stroke="#2459A6" stroke-linecap="round" stroke-lin
     <path d="M42 70 h24 l-24 26 h24" stroke-width="7"/><path d="M20 36 h16 l-16 17 h16" stroke-width="5"/><path d="M6 10 h11 l-11 12 h11" stroke-width="4"/>
   </g>`;
 
-function cuerpoMixtle(expresion: ExpresionMixtle): string {
+function cuerpoMixtle(expresion: ExpresionMixtle, s = ''): string {
   // Cada oreja va en su propio grupo (clase mx-oreja) para que en reposo se mueva sola.
   const oreja = (x: number, giro: number, lado: string) =>
     `<g class="mx-oreja mx-oreja-${lado}"><g transform="rotate(${giro} ${x} 78)">
        <ellipse cx="${x}" cy="78" rx="38" ry="60" fill="${C.pielOscura}"/>
-       <ellipse cx="${x}" cy="86" rx="23" ry="42" fill="url(#mx-oreja)"/>
+       <ellipse cx="${x}" cy="86" rx="23" ry="42" fill="url(#mx-oreja${s})"/>
        <ellipse cx="${x - 8}" cy="66" rx="7" ry="16" fill="#fff" opacity=".18"/>
      </g></g>`;
   const mejillas = CONTENTO.includes(expresion)
@@ -138,27 +146,27 @@ function cuerpoMixtle(expresion: ExpresionMixtle): string {
     ? `<ellipse cx="136" cy="414" rx="20" ry="24" fill="${C.pielOscura}"/><ellipse cx="224" cy="414" rx="20" ry="24" fill="${C.pielOscura}"/>`
     : `<ellipse cx="116" cy="414" rx="46" ry="18" fill="${C.pielOscura}"/>
     <ellipse cx="244" cy="414" rx="46" ry="18" fill="${C.pielOscura}"/>`;
-  return `${DEFS_MIXTLE}
+  return `${defsMixtle(s)}
     ${colgado ? '' : '<ellipse cx="180" cy="428" rx="125" ry="12" fill="#000" opacity=".12"/>'}
     <g${ladeo}>${oreja(104, -22, 'izq')}${oreja(256, 22, 'der')}</g>
     ${brazosArriba}
-    <path d="M108 252 C 92 330 98 400 128 420 L 232 420 C 262 400 268 330 252 252 C 236 214 124 214 108 252 Z" fill="url(#mx-piel)"/>
-    <ellipse cx="180" cy="332" rx="52" ry="80" fill="url(#mx-crema)"/>
+    <path d="M108 252 C 92 330 98 400 128 420 L 232 420 C 262 400 268 330 252 252 C 236 214 124 214 108 252 Z" fill="url(#mx-piel${s})"/>
+    <ellipse cx="180" cy="332" rx="52" ry="80" fill="url(#mx-crema${s})"/>
     ${pies}
     <path d="M112 318 C 90 352 94 396 122 408 M248 318 C 270 352 266 396 238 408" fill="none" stroke="${C.pielOscura}" stroke-width="5" stroke-linecap="round" opacity=".6"/>
     <ellipse cx="180" cy="242" rx="54" ry="9" fill="#6E5A4A" opacity=".16"/>
     ${patasDelanteras(expresion)}
     <g${ladeo}>
-    <path d="M180 70 C 252 70 282 120 274 166 C 266 206 226 236 180 240 C 134 236 94 206 86 166 C 78 120 108 70 180 70 Z" fill="url(#mx-piel)"/>
+    <path d="M180 70 C 252 70 282 120 274 166 C 266 206 226 236 180 240 C 134 236 94 206 86 166 C 78 120 108 70 180 70 Z" fill="url(#mx-piel${s})"/>
     <path d="M88 172 l-14 8 l16 4 l-10 10 l18 -2 M272 172 l14 8 l-16 4 l10 10 l-18 -2" fill="${C.piel}" stroke="${C.piel}" stroke-width="3" stroke-linejoin="round"/>
-    <path d="M98 176 C 118 216 150 234 180 234 C 210 234 242 216 262 176 C 240 192 214 198 180 198 C 146 198 120 192 98 176 Z" fill="url(#mx-crema)"/>
+    <path d="M98 176 C 118 216 150 234 180 234 C 210 234 242 216 262 176 C 240 192 214 198 180 198 C 146 198 120 192 98 176 Z" fill="url(#mx-crema${s})"/>
     <path d="M180 74 C 166 100 166 128 180 146 C 194 128 194 100 180 74 Z" fill="${C.pielOscura}" opacity=".55"/>
     <path d="M124 98 Q 150 80 186 80" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" opacity=".22"/>
-    <ellipse cx="137" cy="152" rx="35" ry="31" fill="url(#mx-crema)"/>
-    <ellipse cx="223" cy="152" rx="35" ry="31" fill="url(#mx-crema)"/>
+    <ellipse cx="137" cy="152" rx="35" ry="31" fill="url(#mx-crema${s})"/>
+    <ellipse cx="223" cy="152" rx="35" ry="31" fill="url(#mx-crema${s})"/>
     ${ojosMixtle(expresion)}
-    ${parpadeoMixtle(expresion)}
-    <ellipse cx="180" cy="194" rx="37" ry="26" fill="url(#mx-crema)"/>
+    ${parpadeoMixtle(expresion, s)}
+    <ellipse cx="180" cy="194" rx="37" ry="26" fill="url(#mx-crema${s})"/>
     ${mejillas}
     <path d="M165 180 Q 180 171 195 180 Q 193 192 180 197 Q 167 192 165 180 Z" fill="${TINTA}"/>
     <ellipse cx="175" cy="179" rx="5" ry="2.5" fill="#fff" opacity=".6"/>
@@ -304,16 +312,22 @@ function mariposa(feliz: boolean): string {
     ${cara}`;
 }
 
-/** Cuerpo de Mixtle (sin cola) para dibujarlo en línea, por ejemplo en React (caja de 360×440). */
-export function cuerpoDeMixtle(expresion: ExpresionMixtle): string {
-  return cuerpoMixtle(expresion);
+/**
+ * Cuerpo de Mixtle (sin cola) para dibujarlo en línea, por ejemplo en React (caja de 360×440).
+ * `sufijo`: distinto para cada Mixtle que vaya en línea en la misma página (ver defsMixtle).
+ */
+export function cuerpoDeMixtle(expresion: ExpresionMixtle, sufijo = ''): string {
+  return cuerpoMixtle(expresion, sufijo);
 }
 
 /** Mixtle completo, con la cola, para una caja de 472×440 (el logo y la hoja de personaje). */
-export function mixtleCompleto(expresion: ExpresionMixtle): string {
-  if (expresion === 'colgado') return mixtleColgadoCompleto();
-  return `<g transform="translate(212 0)">${COLA_MIXTLE}</g>${cuerpoMixtle(expresion)}`;
+export function mixtleCompleto(expresion: ExpresionMixtle, sufijo = ''): string {
+  if (expresion === 'colgado') return mixtleColgadoCompleto(sufijo);
+  return `<g transform="translate(212 0)">${COLA_MIXTLE}</g>${cuerpoMixtle(expresion, sufijo)}`;
 }
+
+/** La paleta de Mixtle (para la prueba que revisa que todas sus apariciones usen la misma). */
+export const PALETA_MIXTLE = { ...C, tinta: TINTA } as const;
 
 /** Caja de Mixtle colgado de una rama: más alta, porque la cola le cuelga por debajo. */
 export const CAJA_COLGADO = { ancho: 360, alto: 600 } as const;
@@ -329,8 +343,8 @@ const COLA_COLGANDO = (() => {
 })();
 
 /** Mixtle colgado con su cola, para una caja de 360×600. */
-export function mixtleColgadoCompleto(): string {
-  return `${COLA_COLGANDO}${cuerpoMixtle('colgado')}`;
+export function mixtleColgadoCompleto(sufijo = ''): string {
+  return `${COLA_COLGANDO}${cuerpoMixtle('colgado', sufijo)}`;
 }
 
 export const PERSONAJES: ArteSvg[] = [

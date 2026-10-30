@@ -63,6 +63,9 @@ vigilarActualizaciones(() => {
 });
 
 if (!mudando) {
+  // La pantalla de carga de index.html ya cumplió: se quita del documento (oculta seguiría ahí, y su
+  // logo define los mismos degradados que Mixtle; ver personajes.ts).
+  window.requestAnimationFrame(() => document.getElementById('cargando')?.remove());
   createRoot(document.getElementById('app')!).render(
     <StrictMode>
       <App />

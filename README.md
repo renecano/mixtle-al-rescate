@@ -62,6 +62,10 @@ Después de jugar la v3 se corrigió:
 
 Además, el encabezado del camino ya cabe en una línea en la tablet: 80 px de alto en lugar de 177, con botones de 64 px.
 
+### Revisión de René (29 de octubre de 2026, noche)
+
+**Mixtle deslavado en la tarjeta del recorrido guiado.** Se veía con la cara casi blanca, el cuerpo gris pálido, un brazo café y el trazo delgado. No era otra paleta ni otro dibujo: todas las poses salen del mismo código (`src/arte/personajes.ts`). Era un problema de SVG en línea: los degradados de Mixtle se buscan por id en todo el documento y el navegador toma el primero; el primero era el del logo de la pantalla de carga de `index.html`, que queda oculto con `display:none`, y un degradado en un SVG oculto no pinta. En el camino y la lección no se notaba porque hay otro Mixtle dentro de `#app` (antes del logo oculto en el documento); la tarjeta del recorrido va fuera del árbol de la app (portal) y le tocaba el oculto. Ahora cada Mixtle en línea lleva sus degradados con un sufijo propio (`MixtleFigura`, `Logo`), la pantalla de carga se quita del documento al arrancar la app, y `?mixtle` muestra todas las apariciones lado a lado para compararlas. Capturas de antes y después en `docs/capturas-revision-29oct/`.
+
 ## Qué cambió en la v2
 
 | v1 | v2 |
@@ -161,7 +165,7 @@ Todos los comandos son scripts de npm; ninguno necesita bash. Funcionan en Power
 | `npm run actualizacion:probar -- --antes=… --despues=…` | Reproduce el paso de una versión guardada a una nueva (ver *Cuando se publica una versión nueva*) |
 | `npm run capturas` | Regenera las capturas de `docs/capturas/` jugando un recorrido (con `npm run preview` abierto) |
 
-Atajos para revisar (solo en desarrollo o con `?e2e` en la dirección): `?galeria` muestra todo el arte; `?escena=Rescate&unidad=u2` entra directo a una aventura (`Bosque`/`u3`, `Bici`/`u4`, `Lonchera`/`u5`, o una escena de la v1 como `Nivel2`).
+Atajos para revisar (solo en desarrollo o con `?e2e` en la dirección): `?galeria` muestra todo el arte; `?mixtle` (siempre disponible) muestra todas las apariciones de Mixtle lado a lado y los accesorios en las seis mascotas; `?escena=Rescate&unidad=u2` entra directo a una aventura (`Bosque`/`u3`, `Bici`/`u4`, `Lonchera`/`u5`, o una escena de la v1 como `Nivel2`).
 
 ## Desplegar en Vercel
 
@@ -359,11 +363,12 @@ La v3 usa técnicas de marketing y de diseño de juegos para que el juego atraig
 
 
 
-**Pruebas unitarias (Vitest)**, en `tests/`: **1487 pruebas en 41 archivos, todas pasan** (29 de octubre de 2026). Además de las de la v2, la v3 agrega pruebas de marca (logo al día con las fuentes, 8 poses, presupuesto de la primera pantalla), migración y mudanza de datos, nombre (ningún "Caco" en código ni voz), Azure contra un servidor falso, protección de la llave, vitrina y transición, racha y mitad de lección, recompensas, diplomas, accesorios y vestidor, y el ajuste automático por rendimiento. Entre ellas:
+**Pruebas unitarias (Vitest)**, en `tests/`: **1496 pruebas en 43 archivos, todas pasan** (29 de octubre de 2026). Además de las de la v2, la v3 agrega pruebas de marca (logo al día con las fuentes, 8 poses, presupuesto de la primera pantalla), migración y mudanza de datos, nombre (ningún "Caco" en código ni voz), Azure contra un servidor falso, protección de la llave, vitrina y transición, racha y mitad de lección, recompensas, diplomas, accesorios y vestidor, y el ajuste automático por rendimiento. Entre ellas:
 
 - **Contenido válido:** cada unidad tiene 4 o 5 lecciones; cada lección tiene de 6 a 8 ejercicios con al menos 3 tipos; las respuestas correctas existen, los dibujos existen, no hay ejercicios imposibles (parejas sin repetir, "encuentra el error" con 1 a 3 errores dentro de la escena). Cuando una pregunta habla de un bote, dice su color **y su nombre** ("el bote naranja de no reciclable") y el bote se ve en pantalla. Cada archivo de contenido está marcado con `TODO(Eco Urban)`.
 - **Voz:** **toda frase narrada (785) tiene su audio en el manifiesto** y su mp3 existe, y **las 175 frases con números** (fin de lección, cofre, diplomas y la pregunta de cada accesorio) suenan como **un solo audio**, sin piezas encadenadas.
 - **Camino y grupos:** las lecciones se desbloquean en orden; el cofre y la aventura se abren a su tiempo; el avance de cada grupo se guarda y se recupera por separado, y **la app no falla si IndexedDB está bloqueado**.
+- **Arte de Mixtle:** todas las poses del catálogo, el logo, el colgado del inicio y el cuerpo en línea usan la misma paleta, la misma cabeza y ojos y la cola con los mismos anillos; y cada Mixtle en línea define sus propios degradados (dos en la misma página no comparten id, y el logo de la app no comparte id con el de la pantalla de carga): `tests/paletaMixtle.test.ts` y `tests/mixtleFigura.test.tsx`.
 - **Música:** el *ducking* baja la música mientras habla Mixtle y la sube al terminar (también si dos cosas la agachan a la vez); fundido entre pistas, jingle y nada antes del primer toque.
 - **Aventuras y diploma:** el recorrido en bici nunca pone humo en los dos carriles a la vez; la lonchera tiene cosas de los dos tipos, sin patrón para adivinar; la concordancia de los números ("1 animal", "2 animales").
 - Las de la v1 siguen: cada residuo va a exactamente un bote (con 2, 3 o 4 botes), pistas amables que nombran el color, el nombre y el dibujo de cada bote, y contraste AA.

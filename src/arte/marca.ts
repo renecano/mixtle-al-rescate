@@ -35,6 +35,8 @@ const LISTON = `<path d="M150 238 H490 L516 268 L490 298 H150 L124 268 Z" fill="
 interface OpcionesLogo {
   /** Sin Mixtle (por ejemplo, cuando Mixtle ya está en la escena junto al logo). */
   sinMixtle?: boolean;
+  /** Sufijo de los id de los degradados de Mixtle: distinto del logo de la pantalla de carga (ver personajes.ts). */
+  sufijo?: string;
   /** Atributos extra para el <svg> (clase, aria). */
   atributos?: string;
 }
@@ -44,10 +46,10 @@ interface OpcionesLogo {
  * la palabra, el listón "al rescate" y el lema. Las partes llevan clases (logo-palabra, logo-mixtle,
  * logo-liston, logo-lema) para animar su entrada.
  */
-export function logoSvg({ sinMixtle = false, atributos = '' }: OpcionesLogo = {}): string {
+export function logoSvg({ sinMixtle = false, atributos = '', sufijo = '' }: OpcionesLogo = {}): string {
   const mixtle = sinMixtle
     ? ''
-    : `<g class="logo-mixtle"><svg x="456" y="0" width="194" height="181" viewBox="0 0 472 440">${mixtleCompleto('feliz')}</svg></g>`;
+    : `<g class="logo-mixtle"><svg x="456" y="0" width="194" height="181" viewBox="0 0 472 440">${mixtleCompleto('feliz', sufijo)}</svg></g>`;
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${LOGO.ancho} ${LOGO.alto}" ${atributos}>
   ${mixtle}
   <g class="logo-palabra">

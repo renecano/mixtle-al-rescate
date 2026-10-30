@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { useId } from 'react';
+import { useId, useMemo } from 'react';
 import { cuerpoDeMixtle } from '../../arte/personajes';
 import { Arte } from './Arte';
 
@@ -14,15 +14,13 @@ const COLA = { ancho: 260, alto: 440, x: 212, origenX: 28 / 260, origenY: 400 / 
 
 export type ExpresionMixtle = 'normal' | 'feliz' | 'habla' | 'pensando' | 'sorprendido' | 'celebrando' | 'senalando' | 'saluda' | 'animo' | 'duerme';
 
-/** El SVG de cada expresión se arma una sola vez. */
-const SVG_CUERPO = new Map<ExpresionMixtle, string>();
-function svgCuerpo(expresion: ExpresionMixtle): string {
-  let svg = SVG_CUERPO.get(expresion);
-  if (!svg) {
-    svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${CUERPO.ancho} ${CUERPO.alto}" width="100%" height="100%" aria-hidden="true">${cuerpoDeMixtle(expresion)}</svg>`;
-    SVG_CUERPO.set(expresion, svg);
-  }
-  return svg;
+/**
+ * El SVG del cuerpo. `sufijo` distingue los id de los degradados de este Mixtle de los de cualquier
+ * otro en la página: si compartieran id, el navegador tomaría el primero del documento y, cuando ese
+ * está en un SVG oculto (el logo de la pantalla de carga), Mixtle saldría sin relleno.
+ */
+function svgCuerpo(expresion: ExpresionMixtle, sufijo: string): string {
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${CUERPO.ancho} ${CUERPO.alto}" width="100%" height="100%" aria-hidden="true">${cuerpoDeMixtle(expresion, sufijo)}</svg>`;
 }
 
 /** Desfase estable (de 0 a -4 s) a partir de un texto, para que cada Mixtle tenga su propio ritmo. */
@@ -56,7 +54,10 @@ export function MixtleFigura({ alto, expresion = 'normal', espejo = false, class
   // Las partes van en posición absoluta: el contenedor necesita estar posicionado (relative si no se indica otra).
   const posicion = /\b(absolute|fixed|relative|sticky)\b/.test(className) ? '' : 'relative';
   // Cada Mixtle parpadea a su ritmo (si hay dos en pantalla, no parpadean a la vez): el desfase sale de su id.
-  const retraso = desfaseDe(useId());
+  const id = useId();
+  const retraso = desfaseDe(id);
+  const sufijo = `-${id.replace(/[^a-zA-Z0-9]/g, '')}`;
+  const svg = useMemo(() => svgCuerpo(expresion, sufijo), [expresion, sufijo]);
   const cuerpo = movimiento(expresion);
   const animado = expresion === 'celebrando';
   return (
@@ -85,7 +86,7 @@ export function MixtleFigura({ alto, expresion = 'normal', espejo = false, class
         style={{ width: pct(CUERPO.ancho, anchoTotal), ['--mx-retraso' as string]: retraso }}
         animate={cuerpo.animate}
         transition={cuerpo.transition}
-        dangerouslySetInnerHTML={{ __html: svgCuerpo(expresion) }}
+        dangerouslySetInnerHTML={{ __html: svg }}
       />
     </div>
   );

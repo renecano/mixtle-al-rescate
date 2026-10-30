@@ -1,6 +1,7 @@
 import { LEMA, logoSvg } from '../../arte/marca';
 
-const SVG = logoSvg({ atributos: 'width="100%" height="100%" aria-hidden="true" focusable="false"' });
+// Sufijo propio: el logo de la pantalla de carga (index.html, oculto al arrancar la app) usa los id sin sufijo.
+const SVG = logoSvg({ atributos: 'width="100%" height="100%" aria-hidden="true" focusable="false"', sufijo: '-logo' });
 const SVG_SIN_MIXTLE = logoSvg({ sinMixtle: true, atributos: 'width="100%" height="100%" aria-hidden="true" focusable="false"' });
 
 interface Props {
