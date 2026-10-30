@@ -140,12 +140,15 @@ test('aventura de la unidad 1 completa: grupo → facilitador → intro → 3 ni
   // Mixtle habló siempre con su voz grabada (nunca con la del navegador) y sonó la música.
   const cuentaVoz = await page.evaluate(() => window.__mixtle.voz());
   info.annotations.push({ type: 'voz', description: JSON.stringify(cuentaVoz) });
-  expect(cuentaVoz.conAudio).toBeGreaterThan(20);
-  expect(cuentaVoz.conNavegador).toBe(0);
+  expect(cuentaVoz.conAudio, `frases dichas con audio grabado (${JSON.stringify(cuentaVoz)})`).toBeGreaterThan(20);
+  expect(cuentaVoz.conNavegador, `frases dichas con la voz del navegador (${JSON.stringify(cuentaVoz)})`).toBe(0);
   expect(await page.evaluate(() => window.__mixtle.musica())).not.toBeNull();
-  // Los audios se llaman <texto>.<configuración de voz>.mp3 (README: "Nombre de los audios de voz").
-  const audios = peticiones.map((r) => r.url()).filter((u) => /\/voz\/[0-9a-f]{14}(\.[0-9a-f]{8})?\.mp3$/.test(u));
-  expect(audios.length).toBeGreaterThan(20);
+  // Los audios se llaman <texto>.<configuración de voz>.mp3 (README: "Nombre de los audios de voz"). Esta
+  // comprobación es de los NOMBRES, no de si Mixtle habló: el 29 de octubre falló con "0" porque los mp3 ya
+  // llevaban la configuración en el nombre y aquí se esperaba el nombre anterior; el mensaje lo deja claro.
+  const mp3 = peticiones.map((r) => r.url()).filter((u) => /\/voz\/.*\.mp3$/.test(u));
+  const audios = mp3.filter((u) => /\/voz\/[0-9a-f]{14}\.[0-9a-f]{8}\.mp3$/.test(u));
+  expect(audios.length, `mp3 de voz con el nombre <texto>.<configuración>.mp3, de ${mp3.length} mp3 pedidos (por ejemplo ${mp3[0] ?? 'ninguno'})`).toBeGreaterThan(20);
 
   // Privacidad: el juego nunca envía datos (ni imágenes ni nada) a ningún servidor.
   expect(peticiones.filter((r) => r.method() !== 'GET').map((r) => `${r.method()} ${r.url()}`)).toEqual([]);
