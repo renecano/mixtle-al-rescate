@@ -387,13 +387,9 @@ La v3 usa técnicas de marketing y de diseño de juegos para que el juego atraig
 
 Para correrlos contra un sitio ya publicado, sin construir nada en local: `$env:BASE_URL="https://…"; npm run test:e2e`. En una laptop de 8 GB usan **un solo navegador a la vez**; con varios, la memoria se agotó y el sistema cerró las pruebas.
 
-**Última corrida contra producción** (27 de octubre de 2026, en la dirección de entonces, caco-al-rescate.vercel.app, un navegador a la vez, 34.6 min): **22 de 26 pasan.** Las 4 que fallan, sin corregir todavía:
+**Última corrida contra producción** (29 de octubre de 2026, mixtle-al-rescate.vercel.app, un navegador a la vez, 19.9 min): **55 de 56 pasan** (las 22 de antes más las 6 del vestidor, en dos tamaños). La que fallaba, "aventura de la unidad 1 completa" a 1024×768, se quedaba en el modo facilitador: el panel creció con los botones del recorrido y del grupo de demostración, "Cerrar" quedaba fuera de la vista y el toque nunca llegaba; el ayudante de las pruebas ahora trae el botón a la vista antes de tocarlo (`e2e/ayudas.ts`) y esa prueba pasa sola contra producción (4.7 min). La corrida completa con ese arreglo quedó pendiente: Claude Code la detuvo por falta de memoria en la laptop. Las cuatro fallas del 27 de octubre ya no están: la lluvia de basura se arregló ese mismo día (y ahora tiene prueba, `tests/lluvia.test.ts`), la prueba del botón de sonido se actualizó, la de 64 px del camino salta los botones que se van, y la de 64 px del inicio espera a que termine la entrada animada.
 
-| Prueba | Tamaño | Qué pasó |
-|---|---|---|
-| Aventura 1 completa: la lluvia de basura | 1920×1080 | Cuando la basura llega al suelo, mientras Mixtle dice "¡Uy, llegó al suelo!…", **los botes no responden**; la prueba tocó el bote en ese momento y el toque se perdió. En la tablet sí pasó. Un niño que toque en ese par de segundos tampoco obtiene respuesta. |
-| El botón de sonido se recuerda y el juego no se rompe sin `localStorage` | 1920×1080 y 1024×768 | **La prueba está desactualizada:** después de "¡Jugar!" espera la intro de la v1, pero en la v2 aparece "¿Quién va a jugar?". Todo lo anterior pasó: la preferencia se recuerda y el juego arranca con el almacenamiento bloqueado. |
-| Cada botón mide al menos 64 px (camino) | 1024×768 | La prueba se quedó esperando a un botón que ya no estaba en pantalla (el globo de Mixtle se oculta al terminar de hablar) hasta agotar los 8 min. La captura muestra el camino bien. Es un problema de la prueba; en la corrida anterior pasó. |
+En una corrida anterior del mismo día, la prueba de la aventura a 1920×1080 falló una vez con el contador de voces en 0 al final; la prueba sola y la corrida siguiente la pasaron (61 frases con audio, 0 con la voz del navegador) y no se encontró la causa.
 
 **Mediciones** (27 de octubre de 2026, build de producción):
 
