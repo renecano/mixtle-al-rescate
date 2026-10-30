@@ -1,3 +1,4 @@
+import { programarRevisiones, useActualizacion } from './actualizacion';
 import { iniciarDescargaSinInternet } from './sinInternet';
 
 /*
@@ -36,12 +37,18 @@ export function primeraPantallaLista(): void {
 export async function registrarServiceWorker(): Promise<ServiceWorkerRegistration | undefined> {
   if (import.meta.env.DEV || typeof navigator === 'undefined' || !('serviceWorker' in navigator)) return undefined;
   try {
-    const registro = await navigator.serviceWorker.register(`${import.meta.env.BASE_URL}sw.js`, { scope: import.meta.env.BASE_URL });
+    const registro = await navigator.serviceWorker.register(`${import.meta.env.BASE_URL}sw.js`, opcionesDeRegistro());
     activarLaQueEspera(registro);
+    programarRevisiones(registro);
     return registro;
   } catch {
     return undefined;
   }
+}
+
+/** sw.js se pide siempre a la red (`updateViaCache: 'none'`): una copia en la caché HTTP no debe esconder una versión nueva. */
+export function opcionesDeRegistro(): RegistrationOptions {
+  return { scope: import.meta.env.BASE_URL, updateViaCache: 'none' };
 }
 
 /** Lo que se necesita de un registro de service worker (así se prueba con uno falso). */
@@ -51,14 +58,22 @@ interface RegistroSw {
   addEventListener(tipo: 'updatefound', escuchar: () => void): void;
 }
 
-/** Le dice a un service worker en espera que se active (todos los builds entienden este mensaje). */
+/**
+ * Le dice a un service worker en espera que se active (todos los builds entienden este mensaje) y deja
+ * constancia de que hay una versión nueva (el aviso del inicio).
+ */
 export function activarLaQueEspera(registro: RegistroSw): void {
-  const pedir = (sw: ServiceWorker | null) => sw?.postMessage({ type: 'SKIP_WAITING' });
+  const pedir = (sw: ServiceWorker | null) => {
+    if (!sw) return;
+    sw.postMessage({ type: 'SKIP_WAITING' });
+    useActualizacion.setState({ hayNueva: true, esperando: true });
+  };
   pedir(registro.waiting);
   registro.addEventListener('updatefound', () => {
     const nuevo = registro.installing;
     nuevo?.addEventListener('statechange', () => {
       if (nuevo.state === 'installed' && navigator.serviceWorker.controller) pedir(nuevo);
+      if (nuevo.state === 'activated') useActualizacion.setState({ esperando: false });
     });
   });
 }

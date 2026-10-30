@@ -10,6 +10,8 @@ export const TEXTOS_APP = {
     /** La frase de Mixtle (marca): la dice al tocar "¡Jugar!". */
     /** Indicio mientras el navegador aún no deja sonar nada (no se narra: no hay audio todavía). */
     tocaParaEmpezar: 'Toca la pantalla para escuchar',
+    /** Aviso cuando hay una versión nueva y la página no se recargó sola (no se narra). */
+    versionNueva: 'Hay una versión nueva. Toca para actualizar',
     alRescate: '¡Al rescate!',
   },
   grupos: {

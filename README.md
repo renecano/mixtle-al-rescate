@@ -29,7 +29,7 @@ La v3 le da al juego su propia marca y lo hace más llamativo en el proyector, c
 | Kokoro | Voz con **Azure AI Speech**: Mixtle habla con **Alejo** (`es-MX-Alejo:MAI-Voice-2-Flash`, español de México, estilo «excited»), elegido entre las [muestras de 12 voces](docs/muestras-voz/azure.html). Kokoro queda como alterno. |
 | "N días seguidos" en el camino | **Se quitó la racha de días** (se perdía al faltar un día) y las hojitas de cada grupo ya no se ven lado a lado al elegir grupo: no se comparan grupos. |
 
-Medido en esta versión: lo que baja antes de la primera pantalla pesa **235.2 KB** comprimidos (límite 250 KB), y en la laptop de 8 GB el juego va a **59–60 cuadros por segundo** en sus momentos más pesados (ver *Pruebas y evidencia medida*).
+Medido en esta versión: lo que baja antes de la primera pantalla pesa **235.6 KB** comprimidos (límite 250 KB), y en la laptop de 8 GB el juego va a **59–60 cuadros por segundo** en sus momentos más pesados (ver *Pruebas y evidencia medida*).
 
 ### Capturas de la v3
 
@@ -330,7 +330,7 @@ La v3 usa técnicas de marketing y de diseño de juegos para que el juego atraig
 
 | Qué | Resultado |
 |---|---|
-| Lo que se descarga antes de la primera pantalla | **235.2 KB** comprimidos, contando todas las fuentes (límite de la v3: 250 KB). `npm run presupuesto` lo mide en cada `verificar` y falla si se pasa. Las demás pantallas, el arte de los ambientes y los accesorios, Phaser, la voz y la música bajan después. |
+| Lo que se descarga antes de la primera pantalla | **235.6 KB** comprimidos, contando todas las fuentes (límite de la v3: 250 KB). `npm run presupuesto` lo mide en cada `verificar` y falla si se pasa. Las demás pantallas, el arte de los ambientes y los accesorios, Phaser, la voz y la música bajan después. |
 | Cuadros por segundo, Chrome con tarjeta de video (`node scripts/medir-fps.mjs --con-ventana`) | **59–60 fps** en el inicio (entrada y paralaje), la lección con hojitas y chispas, el cofre que estalla y el camino. Hasta 0.7 % de cuadros lentos, a 1920×1080 y a 1024×768 (`docs/rendimiento-v3.json`). |
 | Sin tarjeta de video (peor caso: Chromium sin ventana) | Con todas las animaciones, **11–14 fps** a 1920×1080 y 26–33 fps a 1024×768 (`docs/rendimiento-v3-sin-ventana.json`). Con las **animaciones suaves**, **57–60 fps** (`docs/rendimiento-v3-sin-ventana-suave.json`). Por eso el juego **las enciende solo** si mide menos de 35 fps (comprobado: de 11 a 60 fps). |
 | Decoraciones de los lados del camino | Comparación en las mismas condiciones y en el peor caso (sin tarjeta de video): **con decoraciones 55/60 fps, sin ellas 56/60** (proyector/tablet), mediana 60 (`docs/rendimiento-v3-sin-ventana-camino.json`). Ninguna se cruza con botones, etiquetas, la mascota ni Mixtle en 18 casos medidos. |
@@ -339,7 +339,7 @@ La v3 usa técnicas de marketing y de diseño de juegos para que el juego atraig
 
 
 
-**Pruebas unitarias (Vitest)**, en `tests/`: **1468 pruebas en 39 archivos, todas pasan** (29 de octubre de 2026). Además de las de la v2, la v3 agrega pruebas de marca (logo al día con las fuentes, 8 poses, presupuesto de la primera pantalla), migración y mudanza de datos, nombre (ningún "Caco" en código ni voz), Azure contra un servidor falso, protección de la llave, vitrina y transición, racha y mitad de lección, recompensas, diplomas, accesorios y vestidor, y el ajuste automático por rendimiento. Entre ellas:
+**Pruebas unitarias (Vitest)**, en `tests/`: **1473 pruebas en 39 archivos, todas pasan** (29 de octubre de 2026). Además de las de la v2, la v3 agrega pruebas de marca (logo al día con las fuentes, 8 poses, presupuesto de la primera pantalla), migración y mudanza de datos, nombre (ningún "Caco" en código ni voz), Azure contra un servidor falso, protección de la llave, vitrina y transición, racha y mitad de lección, recompensas, diplomas, accesorios y vestidor, y el ajuste automático por rendimiento. Entre ellas:
 
 - **Contenido válido:** cada unidad tiene 4 o 5 lecciones; cada lección tiene de 6 a 8 ejercicios con al menos 3 tipos; las respuestas correctas existen, los dibujos existen, no hay ejercicios imposibles (parejas sin repetir, "encuentra el error" con 1 a 3 errores dentro de la escena). Cuando una pregunta habla de un bote, dice su color **y su nombre** ("el bote naranja de no reciclable") y el bote se ve en pantalla. Cada archivo de contenido está marcado con `TODO(Eco Urban)`.
 - **Voz:** **toda frase narrada (785) tiene su audio en el manifiesto** y su mp3 existe, y **las 175 frases con números** (fin de lección, cofre, diplomas y la pregunta de cada accesorio) suenan como **un solo audio**, sin piezas encadenadas.
@@ -481,10 +481,39 @@ René abrió el juego en una laptop que tenía la versión anterior guardada por
 
 La prueba termina con error si la nueva no toma el control sola o si el avance cambia. Las dos piezas del arreglo tienen pruebas unitarias en `tests/actualizacion.test.ts`. En producción, con Slow 4G, el *service worker* nuevo tarda más en instalarse (~27 s, ver *Carga en una red lenta*), así que la recarga llega más tarde que en local.
 
+**Segunda vez (29 de octubre, noche): la laptop de René seguía con la versión de las 18:28** aunque producción ya servía la nueva. Se reprodujo con dos builds de hoy (`56fe9d8`, 18:28 → el actual). **Lo que pasaba:** la pestaña ya estaba abierta cuando se publicó la nueva, y una pestaña abierta solo busca versiones nuevas cuando navega (al recargar o abrir el link) o cuando el juego llama a `registration.update()`, cosa que el build de las 18:28 no hacía nunca. Al volver a abrir el link sí se actualizaba (6.8 s, como antes). Además, Vercel sirve `sw.js` desde su CDN (`x-vercel-cache: HIT`, `age` de minutos) aunque lleve `max-age=0`: justo después de un despliegue, una laptop puede recibir el `sw.js` anterior y no volver a preguntar hasta la siguiente navegación.
+
+**Qué se corrigió (segunda vez):**
+- Con la pestaña abierta, el juego busca versiones nuevas **al volver a la pestaña** (como mucho una vez por minuto) y **cada 15 minutos** (`programarRevisiones`, en `src/servicios/actualizacion.ts`).
+- `sw.js` se registra con `updateViaCache: 'none'` y, en Vercel, `sw.js` y el archivo de workbox van con `Cache-Control: no-store`: ninguna caché intermedia debe esconder una versión nueva.
+- La recarga automática ocurre en cualquier **pantalla segura** (inicio, elegir grupo, camino, álbum), no solo en el inicio; **nunca a media lección ni aventura**: ahí espera a que se salga.
+- **Aviso visible en el inicio** por si la recarga no ocurre: "Hay una versión nueva. Toca para actualizar" (`actualizarAhora`: le pide activarse a un *service worker* en espera y recarga; los grupos no se tocan).
+
+**El flujo completo de actualización, de principio a fin:**
+1. Se hace *push* a `main`; Vercel publica el build nuevo (nuevo `sw.js`, nuevo `index.html` con sus archivos).
+2. En la laptop, el juego pide `sw.js` a la red al cargar, al volver a la pestaña (≥ 1 min después) y cada 15 min. Si cambió, el navegador instala el *service worker* nuevo (25 archivos esenciales).
+3. El nuevo se activa sin esperar (`skipWaiting`) y toma las pestañas abiertas (`clientsClaim`); si uno se quedara esperando, el juego le pide activarse (`SKIP_WAITING`).
+4. Al tomar el control, el juego recarga la lista de audios y recarga la página en cuanto está en una pantalla segura; el `index.html` nuevo lo sirve ya el *service worker* nuevo.
+5. Los grupos y su avance siguen en IndexedDB; la descarga para jugar sin internet baja solo lo que cambió.
+
+**Medido con la pestaña ya abierta cuando se publica** (`npm run actualizacion:probar -- --antes=… --despues=… --abierta --pantalla=inicio|camino|leccion`; se espera un minuto y se simula volver a la pestaña; el "siguiente" es un build real del mismo código con un cambio de una línea, es decir, otro bundle y otro `sw.js`, como en cualquier despliegue):
+
+| Pestaña abierta en | Build de las 18:28 → cualquiera | Build actual → siguiente |
+|---|---|---|
+| Inicio | No se actualiza (no vuelve a preguntar) | Se recarga sola a la nueva **2.0 s** después de volver a la pestaña |
+| Camino | No se actualiza | **1.9 s** |
+| A media lección | No se actualiza | No recarga a media lección; al salir al camino se recarga **de inmediato** (0 s) |
+| Volver a abrir el link | 6.8 s | 5.8 s |
+
+En todos los casos el grupo sigue con sus 2 paradas hechas. (Un intento anterior de "siguiente build" renombrando archivos a mano falló por mi culpa: los demás *chunks* importan el principal por su nombre; un build real los renombra todos juntos.)
+
+Las laptops que hoy tienen un build anterior a este arreglo abierto necesitan una navegación (recargar o volver a abrir el link) para recibirlo; a partir de este build, la pestaña abierta se actualiza sola.
+
 **Si una laptop se queda con una versión vieja** (por ejemplo, una que no abrió el juego desde antes de este arreglo):
-1. **Cerrar todas las pestañas del juego** y volver a abrir el link. Con eso el *service worker* nuevo toma el control.
-2. Si sigue igual, en la pestaña del juego: **Ctrl+Shift+R** (recarga sin caché).
-3. **Nunca "Borrar datos del sitio"** desde la configuración del navegador: eso borra los grupos y su avance, que solo viven en esa laptop. Cerrar pestañas y recargar no los tocan.
+1. Si en el inicio se ve **"Hay una versión nueva. Toca para actualizar"**, tocarlo basta.
+2. Si no, **cerrar todas las pestañas del juego** y volver a abrir el link. Con eso el *service worker* nuevo toma el control.
+3. Si sigue igual, en la pestaña del juego: **Ctrl+Shift+R** (recarga sin caché).
+4. **Nunca "Borrar datos del sitio"** desde la configuración del navegador: eso borra los grupos y su avance, que solo viven en esa laptop. Cerrar pestañas y recargar no los tocan.
 - **La primera visita necesita internet:** para que después funcione sin conexión se bajan unos 27 MB (sobre todo las voces), en segundo plano y sin estorbar el juego. Con Slow 4G, los 34 MB de antes del recorte de la voz tardaban ~4.8 min; con 27 MB debería ser menos, pendiente de medir. Conviene abrir el juego una vez con buena señal antes del taller y revisar en el modo facilitador que diga "Listo para usar sin internet".
 
 - **Las aventuras son minijuegos cortos** (2 a 4 minutos). Las del bosquecito y la lonchera siempre tienen el mismo número de cosas: los diplomas muestran el esfuerzo, no un puntaje para comparar grupos.

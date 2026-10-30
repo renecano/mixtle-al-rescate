@@ -1,8 +1,8 @@
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it, vi } from 'vitest';
-import { vigilarActualizaciones } from '../src/servicios/actualizacion';
-import { activarLaQueEspera } from '../src/servicios/arranque';
+import { actualizarAhora, esMomentoSeguro, programarRevisiones, REVISION_CADA_MS, REVISION_MINIMA_MS, useActualizacion, vigilarActualizaciones } from '../src/servicios/actualizacion';
+import { activarLaQueEspera, opcionesDeRegistro } from '../src/servicios/arranque';
 
 /*
  * Una versión nueva publicada debe tomar el control sola. Antes no pasaba: el service worker nuevo se
@@ -51,6 +51,60 @@ describe('el service worker nuevo toma el control sin cerrar las pestañas', () 
     nuevo.cambiar('installed');
     expect(nuevo.mensajes).toEqual([]);
     vi.unstubAllGlobals();
+  });
+
+  it('sw.js se pide siempre a la red: updateViaCache "none"', () => {
+    expect(opcionesDeRegistro().updateViaCache).toBe('none');
+  });
+
+  it('se recarga en pantallas seguras (inicio, grupos, camino, álbum), nunca a media lección ni aventura', () => {
+    for (const p of ['inicio', 'grupos', 'camino', 'album']) expect(esMomentoSeguro(p), p).toBe(true);
+    for (const p of ['leccion', 'aventura']) expect(esMomentoSeguro(p), p).toBe(false);
+  });
+
+  it('con la pestaña abierta busca versiones nuevas al volver a ella (no más de una vez por minuto) y cada 15 min', () => {
+    vi.useFakeTimers();
+    vi.setSystemTime(0);
+    const registro = { update: vi.fn(async () => undefined) };
+    const oyentes: Record<string, () => void> = {};
+    const doc = { visibilityState: 'visible' as DocumentVisibilityState, addEventListener: (ev: string, fn: () => void) => (oyentes[ev] = fn), removeEventListener: vi.fn() };
+    const dejar = programarRevisiones(registro, doc);
+    oyentes.visibilitychange!();
+    expect(registro.update).not.toHaveBeenCalled(); // acaba de cargar: aún no toca
+    vi.setSystemTime(REVISION_MINIMA_MS);
+    oyentes.visibilitychange!();
+    expect(registro.update).toHaveBeenCalledTimes(1);
+    doc.visibilityState = 'hidden';
+    vi.setSystemTime(REVISION_MINIMA_MS * 3);
+    oyentes.visibilitychange!();
+    expect(registro.update).toHaveBeenCalledTimes(1); // al ocultarse no
+    vi.advanceTimersByTime(REVISION_CADA_MS);
+    expect(registro.update).toHaveBeenCalledTimes(2); // cada 15 min
+    dejar();
+    expect(doc.removeEventListener).toHaveBeenCalled();
+    vi.useRealTimers();
+  });
+
+  it('el aviso del inicio: a un service worker esperando se le pide activarse y se recarga', async () => {
+    vi.useFakeTimers();
+    const esperando = swFalso('installed');
+    const recargar = vi.fn();
+    await actualizarAhora({ getRegistration: async () => ({ waiting: esperando }) } as never, recargar);
+    expect(esperando.mensajes).toEqual([{ type: 'SKIP_WAITING' }]);
+    vi.advanceTimersByTime(300);
+    expect(recargar).toHaveBeenCalledTimes(1);
+    vi.useRealTimers();
+  });
+
+  it('deja constancia de que hay versión nueva (para el aviso) al tomar el control o al quedar esperando', () => {
+    useActualizacion.setState({ hayNueva: false, esperando: false });
+    const oyentes: (() => void)[] = [];
+    vigilarActualizaciones(() => undefined, { controller: {}, addEventListener: (_: string, fn: () => void) => oyentes.push(fn) } as never);
+    oyentes.forEach((f) => f());
+    expect(useActualizacion.getState().hayNueva).toBe(true);
+    useActualizacion.setState({ hayNueva: false, esperando: false });
+    activarLaQueEspera({ waiting: swFalso('installed') as never, installing: null, addEventListener: () => undefined });
+    expect(useActualizacion.getState()).toEqual({ hayNueva: true, esperando: true });
   });
 
   it('cuando la versión nueva toma el control, se avisa una vez (y nunca en la primera instalación)', () => {

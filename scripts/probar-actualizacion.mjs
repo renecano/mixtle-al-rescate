@@ -6,6 +6,7 @@
 //   3. Mide: qué versión se ve al abrir, si la nueva toma el control sola, si el juego se recarga a la
 //      nueva al estar en el inicio, y si el grupo y su avance siguen ahí.
 // Uso: node scripts/probar-actualizacion.mjs --antes=<dist anterior> --despues=<dist nueva> [--diagnostico]
+//      [--abierta --pantalla=inicio|camino|leccion]   la pestaña ya estaba abierta en esa pantalla al publicar
 //   Sin --diagnostico termina con error si la nueva no toma el control sola (es una prueba).
 //   Las dos carpetas son builds (npm run build); la anterior se construye aparte, por ejemplo:
 //   git archive --format=zip -o antes.zip <commit>; descomprimir; npx vite build ahí.
@@ -20,6 +21,15 @@ const arg = (n) => process.argv.find((a) => a.startsWith(`--${n}=`))?.slice(n.le
 const ANTES = arg('antes');
 const DESPUES = arg('despues');
 const DIAGNOSTICO = process.argv.includes('--diagnostico');
+/**
+ * --abierta: la pestaña ya estaba abierta cuando se publicó la versión nueva (no se cierra ni se vuelve
+ * a abrir), en la pantalla que diga --pantalla=inicio|camino|leccion. El navegador solo busca versiones
+ * nuevas al navegar; el juego lo hace además al volver a la pestaña (al menos un minuto después de la
+ * última vez) y cada 15 min: se espera ese minuto y se simula volver a la pestaña. A media lección no
+ * debe recargar; al salir al camino, sí.
+ */
+const ABIERTA = process.argv.includes('--abierta');
+const PANTALLA = arg('pantalla') ?? 'inicio';
 if (!ANTES || !DESPUES) {
   console.error('Uso: node scripts/probar-actualizacion.mjs --antes=<dist> --despues=<dist> [--diagnostico]');
   process.exit(2);
@@ -51,7 +61,11 @@ const contexto = await navegador.newContext({ viewport: { width: 1280, height: 8
 let pagina = await contexto.newPage();
 pagina.setDefaultTimeout(60000);
 const errores = [];
-pagina.on('pageerror', (e) => errores.push(e.message));
+const vigilarErrores = (p) => {
+  p.on('pageerror', (e) => errores.push(e.message));
+  p.on('console', (m) => m.type() === 'error' && errores.push(`consola: ${m.text().slice(0, 160)}`));
+};
+vigilarErrores(pagina);
 const grupo = grupoConCofre();
 const resultado = { antes: ANTES, despues: DESPUES };
 
@@ -90,13 +104,81 @@ try {
   await tocarSelector(pagina, `button:has-text("${grupo.etiqueta}")`);
   await esperarPantalla(pagina, 'camino');
   resultado.avanceAntes = await pagina.locator('[data-nodo][data-estado="hecho"]').count();
-  await tocarBoton(pagina, 'Cambiar de grupo');
-  await esperarPantalla(pagina, 'grupos');
-  await pagina.goto(URL_JUEGO);
-  await esperarPantalla(pagina, 'inicio');
-  await pagina.waitForLoadState('load');
+  if (!ABIERTA || PANTALLA === 'inicio') {
+    await tocarBoton(pagina, 'Cambiar de grupo');
+    await esperarPantalla(pagina, 'grupos');
+    await pagina.goto(URL_JUEGO);
+    await esperarPantalla(pagina, 'inicio');
+    await pagina.waitForLoadState('load');
+  } else if (PANTALLA === 'leccion') {
+    // Una lección ya hecha se puede volver a jugar: así se entra a una a media lección.
+    await pagina.locator('[data-nodo^="leccion:"][data-estado="hecho"]').first().click({ force: true });
+    await esperarPantalla(pagina, 'leccion');
+  }
   resultado.swAnterior = await estadoSw();
   console.log(`Versión anterior lista: ${resultado.versionAnterior}, service worker ${JSON.stringify(resultado.swAnterior)}, grupo "${grupo.etiqueta}" con ${resultado.avanceAntes} paradas hechas.`);
+
+  if (ABIERTA) {
+    // 2b. La pestaña sigue abierta en `PANTALLA` cuando se publica la versión nueva.
+    estado.carpeta = DESPUES;
+    resultado.abierta = PANTALLA;
+    let recargas = 0;
+    pagina.on('framenavigated', (f) => f === pagina.mainFrame() && recargas++);
+    console.log(`Versión nueva publicada con la pestaña abierta en "${PANTALLA}". Se espera un minuto y se vuelve a la pestaña…`);
+    await pagina.waitForTimeout(62000);
+    await pagina.evaluate(() => document.dispatchEvent(new Event('visibilitychange')));
+    const tVolver = Date.now();
+    const limiteS = PANTALLA === 'leccion' ? 25 : 60;
+    const linea = [];
+    let ultima = '';
+    while (Date.now() - tVolver < limiteS * 1000) {
+      const v = await version().catch(() => '(recargando)');
+      const s = await estadoSw().catch(() => null);
+      const ahora = `${v} · ${s ? `controla=${s.controla} activo=${s.activo} esperando=${s.esperando} instalando=${s.instalando} precache=${s.precache}` : '…'} · recargas=${recargas}`;
+      if (ahora !== ultima) {
+        ultima = ahora;
+        linea.push(`${((Date.now() - tVolver) / 1000).toFixed(1)} s: ${ahora}`);
+      }
+      if (PANTALLA !== 'leccion' && recargas > 0 && v !== resultado.versionAnterior && v !== '(recargando)') break;
+      await pagina.waitForTimeout(500);
+    }
+    for (const l of linea) console.log(`  ${l}`);
+    if (PANTALLA === 'leccion') {
+      resultado.recargoAMediaLeccion = recargas > 0;
+      console.log(resultado.recargoAMediaLeccion ? 'FALLA: recargó a media lección.' : 'A media lección no recargó (bien). Se sale de la lección…');
+      await tocarBoton(pagina, 'Salir');
+      await tocarBoton(pagina, /Sí, salir/);
+      const tSalir = Date.now();
+      while (Date.now() - tSalir < 30000 && !(recargas > 0 && (await version().catch(() => '')) !== resultado.versionAnterior)) await pagina.waitForTimeout(500);
+      resultado.recargaTrasSalirS = recargas > 0 ? Number(((Date.now() - tSalir) / 1000).toFixed(1)) : null;
+    }
+    if (recargas > 0) await esperar(async () => ['inicio', 'camino', 'grupos'].includes(await pagina.evaluate(() => document.querySelector('[data-pantalla]')?.dataset.pantalla)), 60, 'que termine de recargar');
+    resultado.versionFinal = await version();
+    resultado.swFinal = await estadoSw();
+    resultado.recargaSolaS = recargas > 0 && resultado.versionFinal !== resultado.versionAnterior ? Number(((Date.now() - tVolver) / 1000).toFixed(1)) : null;
+    resultado.tomaElControlSola = resultado.versionFinal !== resultado.versionAnterior && !resultado.recargoAMediaLeccion;
+    console.log(resultado.tomaElControlSola ? `Se recargó sola a ${resultado.versionFinal} a los ${resultado.recargaSolaS} s de volver a la pestaña${resultado.recargaTrasSalirS !== null && resultado.recargaTrasSalirS !== undefined ? ` (${resultado.recargaTrasSalirS} s después de salir de la lección)` : ''}.` : `Se queda en ${resultado.versionFinal}; service worker ${JSON.stringify(resultado.swFinal)}.`);
+    if (resultado.tomaElControlSola) {
+      // El grupo y su avance siguen ahí. (La recarga lleva al inicio: se espera a que termine de entrar.)
+      const pantallaAhora = await pagina.evaluate(() => document.querySelector('[data-pantalla]')?.dataset.pantalla);
+      await esperarPantalla(pagina, pantallaAhora);
+      if (pantallaAhora !== 'camino') {
+        if (pantallaAhora === 'inicio') {
+          await tocarBoton(pagina, /¡Jugar!/);
+          await esperarPantalla(pagina, 'grupos');
+        }
+        await tocarSelector(pagina, `button:has-text("${grupo.etiqueta}")`);
+        await esperarPantalla(pagina, 'camino');
+      }
+      resultado.avanceDespues = await pagina.locator('[data-nodo][data-estado="hecho"]').count();
+      console.log(`Grupo "${grupo.etiqueta}" en la versión nueva: ${resultado.avanceDespues} paradas hechas (antes ${resultado.avanceAntes}).`);
+    }
+    resultado.erroresDePagina = errores;
+    await navegador.close();
+    servidor.close();
+    console.log(JSON.stringify(resultado));
+    process.exit(!DIAGNOSTICO && (!resultado.tomaElControlSola || resultado.avanceDespues !== resultado.avanceAntes || errores.length) ? 1 : 0);
+  }
   // La laptop se cierra con la versión anterior guardada.
   await pagina.close();
 
@@ -104,7 +186,7 @@ try {
   estado.carpeta = DESPUES;
   pagina = await contexto.newPage();
   pagina.setDefaultTimeout(60000);
-  pagina.on('pageerror', (e) => errores.push(e.message));
+  vigilarErrores(pagina);
   // Se cuentan las navegaciones DESPUÉS de la primera (la de abrir el link): cualquier otra es el juego
   // recargándose solo. Lo que se ve "al abrir" se lee en cuanto llega el documento, antes de esperar nada.
   let recargas = -1;

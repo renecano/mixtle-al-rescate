@@ -6,7 +6,7 @@ import './estilos.css';
 import './animaciones.css';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { vigilarActualizaciones } from '../servicios/actualizacion';
+import { esMomentoSeguro, vigilarActualizaciones } from '../servicios/actualizacion';
 import { enDireccionAnterior } from '../servicios/mudanza';
 import { mudarse } from '../servicios/mudarse';
 import { vigilarAudio } from '../servicios/audio/motor';
@@ -42,13 +42,14 @@ useApp.subscribe((s, antes) => {
 document.addEventListener('keydown', () => sonido.desbloquear(), { capture: true });
 
 // Versión nueva publicada: la lista de audios se recarga ya (para que Mixtle use las voces nuevas) y la
-// página se recarga en la pantalla de inicio, nunca a media lección. El avance está en IndexedDB.
+// página se recarga en cuanto está en una pantalla segura (inicio, grupos, camino, álbum), nunca a
+// media lección ni aventura. El avance está en IndexedDB. Ver servicios/actualizacion.ts.
 vigilarActualizaciones(() => {
   void voz.cargarManifiesto();
   const recargar = () => window.location.reload();
-  if (useApp.getState().pantalla === 'inicio') return recargar();
+  if (esMomentoSeguro(useApp.getState().pantalla)) return recargar();
   const dejar = useApp.subscribe((s) => {
-    if (s.pantalla !== 'inicio') return;
+    if (!esMomentoSeguro(s.pantalla)) return;
     dejar();
     recargar();
   });

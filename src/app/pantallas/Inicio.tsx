@@ -3,6 +3,7 @@ import { CAJA_COLGADO, MANOS_COLGADO } from '../../arte/escenas';
 import { FRASE_MIXTLE } from '../../arte/marca';
 import { TEXTOS } from '../../data/textos';
 import { TEXTOS_APP } from '../../contenido/textosApp';
+import { actualizarAhora, useActualizacion } from '../../servicios/actualizacion';
 import { primeraPantallaLista } from '../../servicios/arranque';
 import { precargarPrimerasPantallas } from './cargadores';
 import { reiniciarProgreso } from '../../logica/progreso';
@@ -74,6 +75,7 @@ export function Inicio() {
   const remateSonado = useRef(false);
   // Mientras el navegador no deje sonar nada (hasta el primer toque), un indicio sutil lo dice.
   const [audioBloqueado, setAudioBloqueado] = useState(() => audioSigueBloqueado());
+  const hayVersionNueva = useActualizacion((s) => s.hayNueva || s.esperando);
 
   useEffect(() => musica.poner('tranquila'), []);
   // Si el navegador ya deja sonar (visita de regreso), la música arranca sola en un momento: el indicio se va.
@@ -246,6 +248,17 @@ export function Inicio() {
 
       <BotonesSistema />
 
+      {/* Versión nueva sin recarga automática (no debería pasar): un toque la actualiza; los grupos no se tocan. */}
+      {hayVersionNueva && (
+        <button
+          type="button"
+          className="absolute top-[2%] left-1/2 z-30 -translate-x-1/2 cursor-pointer rounded-full border-4 border-white bg-naranja px-5 py-2 text-[clamp(1rem,2.4vmin,1.5rem)] font-black text-white shadow-[0_0.4rem_0_#8a370f]"
+          onClick={() => void actualizarAhora()}
+          data-version-nueva
+        >
+          {TEXTOS_APP.inicio.versionNueva}
+        </button>
+      )}
       {audioBloqueado && (
         <p
           className="pointer-events-none absolute bottom-[3%] left-[2%] rounded-full bg-verde-oscuro/55 px-4 py-1.5 text-[clamp(0.95rem,2.2vmin,1.4rem)] font-extrabold text-white animate-[flotar_2.4s_ease-in-out_infinite]"
