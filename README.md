@@ -14,6 +14,14 @@ Mixtle, un cacomixtle que vive en los árboles del parque, guía a cada grupo de
 
 **Tráiler (39 s, con la música del juego; grabado con la voz anterior de Mixtle):** [`docs/trailer/mixtle-al-rescate.mp4`](docs/trailer/mixtle-al-rescate.mp4).
 
+## El problema que atiende
+
+Eco Urban A.C. hace educación ambiental en escuelas de Toluca con su programa *Escuelas Comprometidas con el Medio Ambiente* y recupera espacios públicos como el Parque Vicente Guerrero y Paseo Colón. En esos espacios la basura mal tirada y sin separar lastima a los animales del parque, y la separación en origen (orgánico, reciclable, no reciclable) es el hábito que el programa quiere formar desde 1º de primaria, cuando muchas niñas y niños todavía leen con dificultad.
+
+El juego junta las dos cosas que Eco Urban enseña: **cuidar a los animales del parque y separar la basura**, y las amplía a cinco unidades (basura, animales, árboles, aire limpio, reducir y reutilizar) para que un grupo tenga material para varias sesiones. Está pensado para la forma en que Eco Urban trabaja: una persona facilitadora con la laptop proyectada y el grupo entero participando, o tablets por equipo.
+
+**Fuentes.** El encargo y el contexto vienen del equipo de Eco Urban (el *brief* está en [`PROMPT_caco_al_rescate.md`](PROMPT_caco_al_rescate.md) y los rediseños en `PROMPT_v2_rediseno.md` y `PROMPT_v3_mixtle.md`). Cada dato que Mixtle dice tiene su fuente en [`docs/fuentes-contenido.md`](docs/fuentes-contenido.md) (CONABIO, CONANP, SEMARNAT, CONAFOR, UNAM, UAEMéx, DOF y, para reciclaje, ECOCE y la industria responsable), con el matiz de por qué la frase dice exactamente eso. Lo que no tiene fuente confiable no se usa. Las **categorías de separación de Toluca y la ley citada sobre quemar basura** están marcadas `TODO(Eco Urban)` porque faltan confirmarlas con ellos.
+
 ## Qué cambió en la v3
 
 La v3 le da al juego su propia marca y lo hace más llamativo en el proyector, con técnicas de marketing y de diseño de juegos usadas de forma ética para niñas y niños de 6 a 8 años (ver *Diseño persuasivo responsable*).
@@ -30,7 +38,7 @@ La v3 le da al juego su propia marca y lo hace más llamativo en el proyector, c
 | Kokoro | Voz con **Azure AI Speech**: Mixtle habla con **Alejo** (`es-MX-Alejo:MAI-Voice-2-Flash`, español de México, estilo «excited»), elegido entre las [muestras de 12 voces](docs/muestras-voz/azure.html). Kokoro queda como alterno. |
 | "N días seguidos" en el camino | **Se quitó la racha de días** (se perdía al faltar un día) y las hojitas de cada grupo ya no se ven lado a lado al elegir grupo: no se comparan grupos. |
 
-Medido en esta versión: lo que baja antes de la primera pantalla pesa **235.6 KB** comprimidos (límite 250 KB), y en la laptop de 8 GB el juego va a **59–60 cuadros por segundo** en sus momentos más pesados (ver *Pruebas y evidencia medida*).
+Medido en esta versión: lo que baja antes de la primera pantalla pesa **240.4 KB** comprimidos (límite 250 KB; 30 de octubre de 2026), y en la laptop de 8 GB el juego va a **59–60 cuadros por segundo** en sus momentos más pesados (ver *Pruebas y evidencia medida*).
 
 ### Capturas de la v3
 
@@ -80,6 +88,11 @@ Eco Urban vio la versión `v3-demo` y la aprobó. Después se cerraron estos pen
 **El paliacate se nota en la mariposa monarca.** Puesto, casi no se veía: el cuerpo de la mariposa es delgado (18 px de los 220 del dibujo) y el paliacate iba al 15 % del ancho. Ahora va al 34 %, como una bufanda sobre el arranque de las alas, con el nudo bajo la barbilla y el pico sobre el cuerpo (`ANCLAS_MASCOTA.monarca.paliacate` en `src/logica/accesorios.ts`); un grupo Monarca que lo compra lo ve puesto en el camino, el vestidor y el diploma. Capturas en `docs/capturas-revision-30oct/paliacate*.png` (las seis mascotas y el tamaño del diploma); una prueba fija el tamaño mínimo y la posición al cuello (`tests/recompensas.test.tsx`).
 
 **La prueba de la aventura que marcó "0 frases con audio": era la prueba, no el juego.** Se revisó la traza de Playwright de la corrida fallida del 29 de octubre (21:40, contra producción). La anotación de esa misma corrida dice `{"conAudio":60,"conNavegador":0}`: Mixtle dijo 60 frases con su voz grabada y ninguna con la del navegador, y los 862 mp3 pedidos respondieron 200. Lo que falló (línea 147 de la prueba, no la 143 del contador) fue la comprobación de los **nombres** de los mp3: a las 19:08 los audios pasaron a llamarse `<texto>.<configuración>.mp3` (commit `5d6d5d7`) y la prueba seguía esperando `<texto>.mp3`, así que contó 0 archivos con el nombre viejo. Las dos corridas que fallaron empezaron justo después de un *push* con los nombres nuevos; la "prueba sola" que pasó después ya corría con la expresión corregida (commit `f1f48fa`). Se leyó mal el mensaje de Playwright ("Received: 0") al atribuirlo al contador de voz. Lo que se hizo ahora: la comprobación de nombres exige la configuración en el nombre (todos los 798 mp3 la llevan) y cada `expect` de esa parte dice qué está midiendo (frases con audio, frases con la voz del navegador, o nombres de archivo, con un ejemplo), para que no vuelva a confundirse. El juego no tenía ningún problema.
+
+**Lo que quedó pendiente del cierre (30 de octubre de 2026), y cómo se corre.** Las dos tareas con navegador no se pudieron hacer ese día por la regla de memoria de la laptop de 8 GB (si hay menos de ~1.5 GB libres, no se corre): al arrancar había 1.49 a 1.52 GB libres con Edge, WhatsApp, Phone Link y la app de escritorio de Claude abiertos, y Claude Code no tiene permiso para cerrar programas. Con la laptop libre, en PowerShell:
+
+1. **"Listo para usar sin internet" con Slow 4G, en producción y con la voz recortada (~27 MB):** `node scripts/medir-carga.mjs --url=https://mixtle-al-rescate.vercel.app --veces=1 --salida=docs/carga-voz-recortada.json` (unos 8 minutos; se para solo si la memoria baja) y pasar `listoSinInternetS` a la tabla de *Carga en una red lenta*.
+2. **Corrida e2e completa contra producción** (58 pruebas, ~22 min, un navegador): `$env:BASE_URL="https://mixtle-al-rescate.vercel.app"; npx playwright test --reporter=list` y anotar aquí el resultado (meta: 58 de 58) y las fallas que queden, con pantalla y tamaño.
 
 ## Qué cambió en la v2
 
@@ -368,7 +381,7 @@ La v3 usa técnicas de marketing y de diseño de juegos para que el juego atraig
 
 | Qué | Resultado |
 |---|---|
-| Lo que se descarga antes de la primera pantalla | **237.3 KB** comprimidos, contando todas las fuentes (límite de la v3: 250 KB). `npm run presupuesto` lo mide en cada `verificar` y falla si se pasa. Las demás pantallas, el arte de los ambientes y los accesorios, Phaser, la voz y la música bajan después. |
+| Lo que se descarga antes de la primera pantalla | **240.4 KB** comprimidos, contando todas las fuentes (límite de la v3: 250 KB; medido el 30 de octubre de 2026 con `npm run presupuesto`). `npm run presupuesto` lo mide en cada `verificar` y falla si se pasa. Las demás pantallas, el arte de los ambientes y los accesorios, Phaser, la voz y la música bajan después. |
 | Cuadros por segundo, Chrome con tarjeta de video (`node scripts/medir-fps.mjs --con-ventana`) | **59–60 fps** en el inicio (entrada y paralaje), la lección con hojitas y chispas, el cofre que estalla y el camino. Hasta 0.7 % de cuadros lentos, a 1920×1080 y a 1024×768 (`docs/rendimiento-v3.json`). |
 | Sin tarjeta de video (peor caso: Chromium sin ventana) | Con todas las animaciones, **11–14 fps** a 1920×1080 y 26–33 fps a 1024×768 (`docs/rendimiento-v3-sin-ventana.json`). Con las **animaciones suaves**, **57–60 fps** (`docs/rendimiento-v3-sin-ventana-suave.json`). Por eso el juego **las enciende solo** si mide menos de 35 fps (comprobado: de 11 a 60 fps). |
 | Decoraciones de los lados del camino | Comparación en las mismas condiciones y en el peor caso (sin tarjeta de video): **con decoraciones 55/60 fps, sin ellas 56/60** (proyector/tablet), mediana 60 (`docs/rendimiento-v3-sin-ventana-camino.json`). Ninguna se cruza con botones, etiquetas, la mascota ni Mixtle en 18 casos medidos. |
@@ -378,7 +391,7 @@ La v3 usa técnicas de marketing y de diseño de juegos para que el juego atraig
 
 
 
-**Pruebas unitarias (Vitest)**, en `tests/`: **1496 pruebas en 43 archivos, todas pasan** (29 de octubre de 2026). Además de las de la v2, la v3 agrega pruebas de marca (logo al día con las fuentes, 8 poses, presupuesto de la primera pantalla), migración y mudanza de datos, nombre (ningún "Caco" en código ni voz), Azure contra un servidor falso, protección de la llave, vitrina y transición, racha y mitad de lección, recompensas, diplomas, accesorios y vestidor, y el ajuste automático por rendimiento. Entre ellas:
+**Pruebas unitarias (Vitest)**, en `tests/`: **1499 pruebas en 43 archivos, todas pasan** (30 de octubre de 2026, `npm run verificar` en verde: tipos, lint, pruebas, build y presupuesto). Además de las de la v2, la v3 agrega pruebas de marca (logo al día con las fuentes, 8 poses, presupuesto de la primera pantalla), migración y mudanza de datos, nombre (ningún "Caco" en código ni voz), Azure contra un servidor falso, protección de la llave, vitrina y transición, racha y mitad de lección, recompensas, diplomas, accesorios y vestidor, y el ajuste automático por rendimiento. Entre ellas:
 
 - **Contenido válido:** cada unidad tiene 4 o 5 lecciones; cada lección tiene de 6 a 8 ejercicios con al menos 3 tipos; las respuestas correctas existen, los dibujos existen, no hay ejercicios imposibles (parejas sin repetir, "encuentra el error" con 1 a 3 errores dentro de la escena). Cuando una pregunta habla de un bote, dice su color **y su nombre** ("el bote naranja de no reciclable") y el bote se ve en pantalla. Cada archivo de contenido está marcado con `TODO(Eco Urban)`.
 - **Voz:** **toda frase narrada (785) tiene su audio en el manifiesto** y su mp3 existe, y **las 175 frases con números** (fin de lección, cofre, diplomas y la pregunta de cada accesorio) suenan como **un solo audio**, sin piezas encadenadas.
@@ -399,7 +412,7 @@ La v3 usa técnicas de marketing y de diseño de juegos para que el juego atraig
 
 Para correrlos contra un sitio ya publicado, sin construir nada en local: `$env:BASE_URL="https://…"; npm run test:e2e`. En una laptop de 8 GB usan **un solo navegador a la vez**; con varios, la memoria se agotó y el sistema cerró las pruebas.
 
-**Última corrida contra producción** (29 de octubre de 2026, mixtle-al-rescate.vercel.app, un navegador a la vez, 19.9 min): **55 de 56 pasan** (las 22 de antes más las 6 del vestidor, en dos tamaños). La que fallaba, "aventura de la unidad 1 completa" a 1024×768, se quedaba en el modo facilitador: el panel creció con los botones del recorrido y del grupo de demostración, "Cerrar" quedaba fuera de la vista y el toque nunca llegaba; el ayudante de las pruebas ahora trae el botón a la vista antes de tocarlo (`e2e/ayudas.ts`) y esa prueba pasa sola contra producción (4.7 min). La corrida completa con ese arreglo quedó pendiente: Claude Code la detuvo por falta de memoria en la laptop. Las cuatro fallas del 27 de octubre ya no están: la lluvia de basura se arregló ese mismo día (y ahora tiene prueba, `tests/lluvia.test.ts`), la prueba del botón de sonido se actualizó, la de 64 px del camino salta los botones que se van, y la de 64 px del inicio espera a que termine la entrada animada.
+**Última corrida contra producción** (29 de octubre de 2026, mixtle-al-rescate.vercel.app, un navegador a la vez, 19.9 min): **55 de 56 pasan** (las 22 de antes más las 6 del vestidor, en dos tamaños). La que fallaba, "aventura de la unidad 1 completa" a 1024×768, se quedaba en el modo facilitador: el panel creció con los botones del recorrido y del grupo de demostración, "Cerrar" quedaba fuera de la vista y el toque nunca llegaba; el ayudante de las pruebas ahora trae el botón a la vista antes de tocarlo (`e2e/ayudas.ts`) y esa prueba pasa sola contra producción (4.7 min). La corrida completa con ese arreglo **sigue pendiente**: el 29 de octubre se detuvo por falta de memoria en la laptop y el 30 no se pudo arrancar por la misma regla (menos de 1.5 GB libres con Edge, WhatsApp, Phone Link y la app de escritorio de Claude abiertos; ver *Cierre del proyecto*). Con las dos pruebas nuevas del modo facilitador son **58** en total. Las cuatro fallas del 27 de octubre ya no están: la lluvia de basura se arregló ese mismo día (y ahora tiene prueba, `tests/lluvia.test.ts`), la prueba del botón de sonido se actualizó, la de 64 px del camino salta los botones que se van, y la de 64 px del inicio espera a que termine la entrada animada.
 
 En dos corridas anteriores del mismo día, la prueba de la aventura a 1920×1080 falló con "Received: 0"; se anotó como "contador de voces en 0", pero no era eso (ver *Cierre del proyecto*: era la comprobación del nombre de los mp3, desactualizada tras renombrar los audios).
 
@@ -445,7 +458,7 @@ El "antes" es el código anterior (`c62556e`, ya con la voz de Alejo) construido
 | Visita de regreso | No se midió: el *service worker* anterior no se activó en 19 min (ver abajo) | **0.35 y 0.37 s** (meta < 0.5 s); 0.72 s con la transición terminada |
 | Inicio listo (primera visita) | 5.6 s | 5.9 s |
 | *Service worker* activo, desde que se abre la página | **No se activó en 19 min.** Bajaba 862 archivos uno por uno (~18 min para 22.7 MB) | **26.8 s** en local y **27.2 s** en producción (25 archivos) |
-| "Listo para usar sin internet" | — (era parte de la instalación del *service worker*) | **4.8 min** en local y **4.1 min** en producción (831 archivos, 33.9 MB, en segundo plano). Con la voz recortada son **844 archivos, 26.9 MB** (ver *El silencio de la voz*): la nueva medición se detuvo sola por memoria baja tras la primera visita (`docs/carga-voz-recortada.json`) y **está pendiente**; debería tardar menos en proporción |
+| "Listo para usar sin internet" | — (era parte de la instalación del *service worker*) | **4.8 min** en local y **4.1 min** en producción (831 archivos, 33.9 MB, en segundo plano). Con la voz recortada son **844 archivos, 26.9 MB** (ver *El silencio de la voz*): la nueva medición **sigue pendiente**: el 29 de octubre se detuvo sola por memoria baja tras la primera visita y el 30 de octubre volvió a detenerse al arrancar (1.49 GB libres, con la laptop ocupada por otras apps; `docs/carga-voz-recortada.json`). Por regla de tres debería quedar en ~3.3 min (26.9 de 33.9 MB en 4.1 min). Se corre con `node scripts/medir-carga.mjs --url=https://mixtle-al-rescate.vercel.app --veces=1 --salida=docs/carga-voz-recortada.json` con nada más abierto |
 
 **En producción** (<https://mixtle-al-rescate.vercel.app>, 29 de octubre de 2026, por el mismo proxy con Slow 4G; `docs/carga-produccion.json`):
 - "¡Jugar!" → "¿Quién va a jugar?": **0.35 s** en primera visita y **0.36 s** en la de regreso.
@@ -493,8 +506,9 @@ Qué cambió: mientras se ve el camino se adelanta el código de la lección (co
 ## Limitaciones conocidas
 
 - **El contenido lo debe revisar el equipo educativo de Eco Urban.** Todo está marcado con `TODO(Eco Urban)`. Los datos tienen fuente verificada (`docs/fuentes-contenido.md`), pero la redacción para cada grado, las categorías de separación de Toluca y la ley citada sobre quemar basura (artículo por confirmar en el PDF oficial) necesitan su visto bueno.
-- **No se ha probado con niñas y niños** ni en un iPad real con Safari. Se probó con Chrome en Windows (también con emulación táctil a 1024×768). Esa prueba de uso es el siguiente paso recomendado.
+- **No se ha probado con niñas y niños** ni en un iPad real con Safari. Se probó con Chrome en Windows (también con emulación táctil a 1024×768). Esa prueba de uso es el siguiente paso recomendado (ver *Siguiente paso recomendado*).
 - **El avance vive en un solo aparato.** Si se borran los datos del navegador o se cambia de laptop, el grupo empieza de nuevo. Es a propósito (no hay servidor ni cuentas), pero hay que saberlo.
+- **El tráiler tiene la voz anterior de Mixtle** (Kokoro `em_alex`): se grabó antes de cambiar a Alejo de Azure y no se volvió a grabar. Se regenera con `npm run build && node scripts/trailer.mjs` en una computadora libre.
 - **La voz es sintética.** Alejo suena natural, pero algunas palabras pueden sonar raras. El diccionario de pronunciación y la grabación humana (ver arriba) son la forma de corregirlas sin tocar código.
 - **Versiones nuevas:** al publicar una versión, el *service worker* la descarga en segundo plano. En cuanto toma el control, Mixtle usa la lista de audios nueva y la página se recarga sola al volver a la pantalla de inicio (nunca a media lección). La lista de audios siempre se pide primero a internet, para que una versión vieja guardada no deje a Mixtle con audios viejos. Ver *Cuando se publica una versión nueva*.
 
@@ -552,7 +566,7 @@ Las laptops que hoy tienen un build anterior a este arreglo abierto necesitan un
 2. Si no, **cerrar todas las pestañas del juego** y volver a abrir el link. Con eso el *service worker* nuevo toma el control.
 3. Si sigue igual, en la pestaña del juego: **Ctrl+Shift+R** (recarga sin caché).
 4. **Nunca "Borrar datos del sitio"** desde la configuración del navegador: eso borra los grupos y su avance, que solo viven en esa laptop. Cerrar pestañas y recargar no los tocan.
-- **La primera visita necesita internet:** para que después funcione sin conexión se bajan unos 27 MB (sobre todo las voces), en segundo plano y sin estorbar el juego. Con Slow 4G, los 34 MB de antes del recorte de la voz tardaban ~4.8 min; con 27 MB debería ser menos, pendiente de medir. Conviene abrir el juego una vez con buena señal antes del taller y revisar en el modo facilitador que diga "Listo para usar sin internet".
+- **La primera visita necesita internet:** para que después funcione sin conexión se bajan unos 27 MB (sobre todo las voces), en segundo plano y sin estorbar el juego. Con Slow 4G, los 34 MB de antes del recorte de la voz tardaban ~4.1 min en producción; con 27 MB debería ser ~3.3 min, pendiente de medir (ver *Carga en una red lenta*). Conviene abrir el juego una vez con buena señal antes del taller y revisar en el modo facilitador que diga "Listo para usar sin internet".
 
 - **Las aventuras son minijuegos cortos** (2 a 4 minutos). Las del bosquecito y la lonchera siempre tienen el mismo número de cosas: los diplomas muestran el esfuerzo, no un puntaje para comparar grupos.
 - El diploma de la unidad 1 cuenta los residuos separados en el nivel 2 y en la lluvia de basura (12 + 5) y los animales ayudados.
@@ -560,6 +574,21 @@ Las laptops que hoy tienen un build anterior a este arreglo abierto necesitan un
 - **v3: las mediciones de cuadros por segundo dependen de que la computadora esté libre.** Con la ventana de Chrome tapada o la laptop ocupada en otra cosa, Chrome deja de dibujar y las cifras no sirven. `scripts/medir-fps.mjs` lo detecta y lo avisa, y el tráiler se niega a grabarse así. Las cifras de este README se tomaron con la laptop libre, o comparando en las mismas condiciones.
 - **v3: equipos sin aceleración por tarjeta de video.** Ahí las animaciones completas van a 11–33 fps. El juego lo detecta y se calma solo; con las animaciones suaves va a 57–60 fps.
 - **v3: lo que falta confirmar con Eco Urban.** Los precios de los accesorios, que los ambientes de cada unidad se sientan "de Toluca" y la frase de Mixtle ("¡Al rescate!").
+
+## IA responsable
+
+- **Dónde sí hay IA: en la voz, y solo al preparar el juego.** La voz de Mixtle se genera con Azure AI Speech (voz Alejo) en la computadora de quien prepara el juego, se revisa y se guarda como mp3 en el repositorio (`public/voz/`). Se dice en este README y en `CREDITOS.md` que es una voz sintética; el juego no la hace pasar por una persona. Kokoro queda como alterno y una grabación humana tiene prioridad sobre las dos.
+- **Dónde no hay IA: en el juego publicado.** El sitio es estático: no llama a Azure ni a ningún modelo ni servicio de IA mientras se juega (`tests/llave.test.ts` y la prueba e2e de "solo peticiones GET" lo revisan). Las respuestas, pistas y recompensas son reglas escritas y probadas, no un modelo. El módulo de cámara con reconocimiento de imágenes de la v1 **se quitó**: el juego no usa la cámara ni el micrófono y `vercel.json` los bloquea.
+- **Sin datos de niñas y niños.** No se piden nombres ni fotos (la pantalla de grupos lo recuerda), no hay cuentas, servidor ni analítica, y el avance de cada grupo vive solo en su aparato. No hay nada que entrenar ni con qué entrenar.
+- **Cómo se hizo.** El código, el arte en SVG y este README se escribieron con ayuda de Claude Code (los commits lo dicen como coautor), bajo la dirección y revisión de René; el contenido educativo lo valida el equipo de Eco Urban (`TODO(Eco Urban)`).
+
+## Licencia
+
+La licencia del proyecto **está por definir con Eco Urban A.C.**: mientras tanto `package.json` dice `UNLICENSED` (todos los derechos reservados) y el repositorio es privado. El arte y el código son originales; la música es CC0, las tipografías OFL-1.1 y las bibliotecas MIT o Apache-2.0, con el detalle, autor y enlace de cada recurso en [`CREDITOS.md`](CREDITOS.md). Si Eco Urban quiere publicarlo abierto, basta con elegir la licencia (por ejemplo MIT para el código y CC BY 4.0 para el arte y el contenido) y agregar el archivo `LICENSE`.
+
+## Siguiente paso recomendado
+
+**Un piloto con un grupo real** de 1º a 3º en una escuela del programa, con la laptop proyectada y, si se puede, una tablet por equipo: una sesión de la unidad 1 completa (lección, cofre, aventura, diploma). Qué observar: si entienden las consignas solo con la voz, si los toques de 64 px bastan en la tablet, cuánto dura de verdad una lección (se estimó en ~3 min), qué palabras de Alejo suenan raras, y si el facilitador encuentra solo el modo facilitador (logo 3 s). Con eso, el equipo educativo de Eco Urban ajusta la redacción (`src/contenido/`, marcado `TODO(Eco Urban)`) y se decide si se graba una voz humana con `npm run voz:lista`.
 
 ## Estructura
 
@@ -578,9 +607,11 @@ src/
   ui/          piezas de Phaser: Mixtle, botones, globo, botes, animales, clasificador
 tests/         pruebas unitarias (Vitest)
 e2e/           recorridos en el navegador (Playwright)
-scripts/       voces (Kokoro y Azure), música, efectos, marca, capturas, presupuesto, cuadros por segundo, carga con Slow 4G
+scripts/       voces (Kokoro y Azure), música, efectos, marca, capturas (y capturas-revision.mjs), presupuesto, cuadros por segundo,
+               carga con Slow 4G, prueba de actualización, tráiler
                y demo/ (juega como un grupo y siembra grupos de ejemplo)
-docs/          fuentes del contenido, lista de frases, capturas, muestras, marca, direcciones visuales y rendimiento
+docs/          fuentes del contenido, lista de frases, capturas (y capturas-revision-*/ de cada revisión), muestras, marca,
+               direcciones visuales y mediciones (rendimiento, carga, actualización)
 ```
 
 ## Créditos y licencias
