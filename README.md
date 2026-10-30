@@ -8,6 +8,7 @@ Mixtle, un cacomixtle que vive en los árboles del parque, guía a cada grupo de
 - **Dónde:** en la laptop de Eco Urban proyectada en el salón (todo el grupo participa) o en tablets táctiles.
 - **Dónde jugarlo:** <https://mixtle-al-rescate.vercel.app> (producción en Vercel). La dirección anterior, <https://caco-al-rescate.vercel.app>, sigue funcionando: lleva a la nueva **con el avance de los grupos** (ver *Nombre y dirección anteriores*).
 - **Qué es:** un prototipo jugable para revisar con el equipo educativo. No tiene servidor, cuentas ni analítica. El avance de cada grupo se guarda solo en el aparato.
+- **Versión presentada:** la etiqueta git `v3-demo` (commit `0f56540`) es la versión que se presentó a Eco Urban y que aprobaron el **30 de octubre de 2026**. Lo que sigue en este README después de esa fecha son cierres (panel del facilitador en tablet, paliacate de la monarca, mediciones pendientes) sobre esa misma versión.
 
 ![Inicio de Mixtle al rescate](docs/capturas/proyector-1920x1080-v3-1-inicio.png)
 
@@ -175,7 +176,7 @@ Atajos para revisar (solo en desarrollo o con `?e2e` en la dirección): `?galeri
 
 El proyecto es un sitio estático y ya incluye `vercel.json` (Vite, `npm run build`, carpeta `dist`, cabeceras de seguridad y caché; el *service worker* nunca se guarda en caché para que las actualizaciones lleguen).
 
-**Versión estable y cómo volver a ella.** La etiqueta `v3-estable` (commit `cb13f92`, 29 de octubre de 2026) marca la versión revisada con los cinco puntos de René, la voz de Alejo recortada y la actualización automática. Si una versión posterior sale mal, hay dos formas de volver:
+**Versiones etiquetadas y cómo volver a una.** La etiqueta `v3-estable` (commit `cb13f92`, 29 de octubre de 2026) marca la versión revisada con los cinco puntos de René, la voz de Alejo recortada y la actualización automática; `v3-demo` (commit `0f56540`, 30 de octubre de 2026) es la que se presentó a Eco Urban y aprobaron. Si una versión posterior sale mal, hay dos formas de volver (los mismos comandos sirven con `v3-demo` en lugar de `v3-estable`):
 - **Instant Rollback en Vercel:** en el proyecto → *Deployments* → el despliegue de `cb13f92` → ⋯ → *Instant Rollback* (o *Promote to Production*). Es inmediato y no toca el repositorio; las laptops lo reciben como cualquier versión nueva (ver *Cuando se publica una versión nueva*).
 - **Con git:** `git revert --no-commit v3-estable..main && git commit -m "Volver a v3-estable"` y `git push`. Deshace los commits posteriores sin reescribir la historia; Vercel publica el resultado.
 
