@@ -1,15 +1,49 @@
-import { act, render, screen } from '@testing-library/react';
-import { beforeEach, describe, expect, it } from 'vitest';
+import { act, fireEvent, render, screen } from '@testing-library/react';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { PanelFacilitador } from '../src/app/componentes/PanelFacilitador';
+import { useGrupos, usarAlmacen } from '../src/app/estado/grupos';
 import { PROGRESO_VACIO } from '../src/logica/camino';
+import { ETIQUETA_DEMO } from '../src/logica/demo';
 import { nuevoGrupo } from '../src/logica/grupos';
+import { almacenEnMemoria } from '../src/servicios/almacen';
 import { useDescargaSinInternet } from '../src/servicios/sinInternet';
 
 const grupo = { ...nuevoGrupo({ mascota: 'ardilla', color: '#1F6B4A', etiqueta: '2°B' }, 'g', 0), progreso: PROGRESO_VACIO };
-const montar = () => render(<PanelFacilitador grupo={grupo} alCerrar={() => undefined} alRecorrido={() => undefined} />);
+const montar = (alCerrar = () => undefined) => render(<PanelFacilitador grupo={grupo} alCerrar={alCerrar} alRecorrido={() => undefined} />);
 const estado = () => document.querySelector<HTMLElement>('[data-sin-internet]')!;
 
-beforeEach(() => useDescargaSinInternet.setState({ fase: 'esperando', bytesListos: 0, bytesTotales: 0 }));
+beforeEach(() => {
+  useDescargaSinInternet.setState({ fase: 'esperando', bytesListos: 0, bytesTotales: 0 });
+  usarAlmacen(almacenEnMemoria());
+  useGrupos.setState({ grupos: [grupo], actualId: grupo.id, cargado: true, guardadoOk: true });
+});
+
+describe('modo facilitador: grupo de demostración y borrar', () => {
+  it('"Crear grupo de demostración" agrega un grupo Demo, lo deja elegido y cierra el panel', () => {
+    const alCerrar = vi.fn();
+    montar(alCerrar);
+    fireEvent.click(screen.getByRole('button', { name: 'Crear grupo de demostración' }));
+    const grupos = useGrupos.getState().grupos;
+    expect(grupos.map((g) => g.etiqueta)).toEqual(['2°B', ETIQUETA_DEMO]);
+    expect(useGrupos.getState().actualId).toBe(grupos[1]!.id);
+    expect(grupos[0]!.progreso).toEqual(PROGRESO_VACIO);
+    expect(alCerrar).toHaveBeenCalledTimes(1);
+  });
+
+  it('"Borrar este grupo" pide confirmación y entonces lo quita (cancelar no borra)', () => {
+    const alCerrar = vi.fn();
+    montar(alCerrar);
+    fireEvent.click(screen.getByRole('button', { name: 'Borrar este grupo' }));
+    expect(screen.getByText('¿Seguro? Se borra el grupo con todo su avance de este aparato.')).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: 'Cancelar' }));
+    expect(useGrupos.getState().grupos).toHaveLength(1);
+    fireEvent.click(screen.getByRole('button', { name: 'Borrar este grupo' }));
+    fireEvent.click(document.querySelector('[data-confirmar="borrar"] button')!);
+    expect(useGrupos.getState().grupos).toEqual([]);
+    expect(useGrupos.getState().actualId).toBeNull();
+    expect(alCerrar).toHaveBeenCalledTimes(1);
+  });
+});
 
 describe('modo facilitador: ¿se puede usar sin internet?', () => {
   it('muestra el avance de la descarga en porcentaje, y "Listo" al terminar', () => {

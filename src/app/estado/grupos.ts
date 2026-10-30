@@ -9,6 +9,7 @@ import {
   type ProgresoGrupo,
 } from '../../logica/camino';
 import { alternarPuesto, comprarAccesorio, type IdAccesorio } from '../../logica/accesorios';
+import { grupoDemo } from '../../logica/demo';
 import { gruposValidos, nuevoGrupo, type Grupo } from '../../logica/grupos';
 import { almacenIndexedDb, type Almacen } from '../../servicios/almacen';
 
@@ -20,6 +21,10 @@ interface EstadoGrupos {
   guardadoOk: boolean;
   cargar: () => Promise<void>;
   crear: (datos: Pick<Grupo, 'mascota' | 'color' | 'etiqueta'>) => Grupo;
+  /** Modo facilitador: un grupo "Demo" con las 5 unidades terminadas (queda elegido). */
+  crearDemo: () => Grupo;
+  /** Quita un grupo con todo su avance (si era el elegido, ya no hay grupo elegido). */
+  borrar: (id: string) => void;
   elegir: (id: string | null) => void;
   /** Modo facilitador. */
   reiniciar: (id: string) => void;
@@ -78,6 +83,17 @@ export const useGrupos = create<EstadoGrupos>((set, get) => {
       set({ grupos: [...get().grupos, grupo], actualId: grupo.id });
       guardar();
       return grupo;
+    },
+    crearDemo() {
+      const grupo = grupoDemo(idNuevo(), Date.now(), hoyLocal());
+      set({ grupos: [...get().grupos, grupo], actualId: grupo.id });
+      guardar();
+      return grupo;
+    },
+    borrar(id) {
+      const { grupos, actualId } = get();
+      set({ grupos: grupos.filter((g) => g.id !== id), actualId: actualId === id ? null : actualId });
+      guardar();
     },
     elegir(id) {
       set({ actualId: id });

@@ -64,6 +64,7 @@ export function Camino() {
     if (grupo) decir(indiceSiguiente === null ? TEXTOS_APP.camino.terminaron : TEXTOS_APP.camino.hola(mascota(grupo.mascota).nombre), { expresion: 'senalando' });
   };
 
+  // Sin grupo elegido (o si se acaba de borrar el actual): a elegir grupo.
   useEffect(() => {
     if (!grupo) {
       irAGrupos();

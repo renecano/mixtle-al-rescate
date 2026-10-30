@@ -134,6 +134,10 @@ export const TEXTOS_APP = {
     cerrar: 'Cerrar',
     ayuda: 'Mantén presionado el logo 3 segundos para abrir este panel.',
     recorrido: 'Ver otra vez el recorrido por el juego',
+    demo: 'Crear grupo de demostración',
+    demoAyuda: 'Un grupo "Demo" con las 5 unidades terminadas, para enseñar el juego. No toca a los demás grupos.',
+    borrar: 'Borrar este grupo',
+    borrarConfirmar: '¿Seguro? Se borra el grupo con todo su avance de este aparato.',
     /** Estado de la descarga para usar sin internet (voces, música y efectos). */
     sinInternet: {
       listo: 'Listo para usar sin internet',

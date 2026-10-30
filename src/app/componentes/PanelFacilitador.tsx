@@ -12,9 +12,11 @@ import { Modal } from './Modal';
  * lecciones para saltar a una, y el modo proyector. Se abre manteniendo presionado el logo 3 segundos.
  */
 export function PanelFacilitador({ grupo, alCerrar, alRecorrido }: { grupo: Grupo; alCerrar: () => void; alRecorrido: () => void }) {
-  const { reiniciar, desbloquearTodo } = useGrupos();
+  const { reiniciar, desbloquearTodo, crearDemo, borrar } = useGrupos();
   const { proyector, alternarProyector, suave, alternarSuave } = useApp();
-  const [confirmar, setConfirmar] = useState(false);
+  /** Qué acción está pidiendo confirmación (reiniciar o borrar el grupo). */
+  const [confirmar, setConfirmar] = useState<'reiniciar' | 'borrar' | null>(null);
+  const t = TEXTOS_APP.facilitador;
   const fila = 'flex w-full items-center justify-between gap-4 rounded-2xl bg-white px-5 py-3 text-left text-[clamp(1.1rem,2.4vmin,1.5rem)] font-extrabold';
 
   return (
@@ -37,29 +39,50 @@ export function PanelFacilitador({ grupo, alCerrar, alRecorrido }: { grupo: Grup
       <BotonGrande color="azul" className="h-16 text-[clamp(1.1rem,2.4vmin,1.5rem)]" onClick={alRecorrido}>
         {TEXTOS_APP.facilitador.recorrido}
       </BotonGrande>
+      {/* Grupo de demostración: para enseñar el juego completo sin jugarlo (queda elegido). */}
+      <BotonGrande
+        color="morado"
+        className="h-16 text-[clamp(1.1rem,2.4vmin,1.5rem)]"
+        onClick={() => {
+          crearDemo();
+          alCerrar();
+        }}
+      >
+        {t.demo}
+      </BotonGrande>
+      <p className="-mt-3 text-[clamp(0.95rem,2vmin,1.2rem)] font-bold opacity-80">{t.demoAyuda}</p>
       {confirmar ? (
-        <div className="flex w-full flex-col items-center gap-3 rounded-2xl border-4 border-naranja bg-white p-4">
-          <p className="font-bold">{TEXTOS_APP.facilitador.reiniciarConfirmar}</p>
+        <div className="flex w-full flex-col items-center gap-3 rounded-2xl border-4 border-naranja bg-white p-4" data-confirmar={confirmar}>
+          <p className="font-bold">{confirmar === 'borrar' ? t.borrarConfirmar : t.reiniciarConfirmar}</p>
           <div className="flex gap-3">
             <BotonGrande
               color="naranja"
               className="h-16 text-lg"
               onClick={() => {
-                reiniciar(grupo.id);
-                setConfirmar(false);
+                if (confirmar === 'borrar') {
+                  borrar(grupo.id);
+                  alCerrar();
+                } else reiniciar(grupo.id);
+                setConfirmar(null);
               }}
             >
-              {TEXTOS_APP.facilitador.reiniciar}
+              {confirmar === 'borrar' ? t.borrar : t.reiniciar}
             </BotonGrande>
-            <BotonGrande color="gris" className="h-16 text-lg" onClick={() => setConfirmar(false)}>
+            <BotonGrande color="gris" className="h-16 text-lg" onClick={() => setConfirmar(null)}>
               {TEXTOS_APP.grupos.cancelar}
             </BotonGrande>
           </div>
         </div>
       ) : (
-        <BotonGrande color="naranja" className="h-16 text-[clamp(1.1rem,2.4vmin,1.5rem)]" onClick={() => setConfirmar(true)}>
-          {TEXTOS_APP.facilitador.reiniciar}
-        </BotonGrande>
+        <div className="flex flex-wrap justify-center gap-3">
+          <BotonGrande color="naranja" className="h-16 text-[clamp(1.1rem,2.4vmin,1.5rem)]" onClick={() => setConfirmar('reiniciar')}>
+            {t.reiniciar}
+          </BotonGrande>
+          {/* Borrar vale para cualquier grupo (también el de demostración). */}
+          <BotonGrande color="gris" className="h-16 text-[clamp(1.1rem,2.4vmin,1.5rem)]" onClick={() => setConfirmar('borrar')}>
+            {t.borrar}
+          </BotonGrande>
+        </div>
       )}
       <BotonGrande color="verde" className="h-16 text-[clamp(1.1rem,2.4vmin,1.5rem)]" onClick={alCerrar}>
         {TEXTOS_APP.facilitador.cerrar}

@@ -118,7 +118,9 @@ Todos funcionan con toque y con mouse, con zonas de toque de 64 px o más.
 
 ### Modo facilitador
 
-Para la persona que facilita: **mantén presionado el logo de Mixtle (arriba a la izquierda) 3 segundos.** Ahí se puede reiniciar el avance del grupo, abrir todas las lecciones para saltar directo a una, activar el **modo proyector** (todo más grande) y las **animaciones suaves** (menos movimiento, para quien se marea o se distrae; el juego también las enciende solo si el equipo no sostiene las animaciones).
+Para la persona que facilita: **mantén presionado el logo de Mixtle (arriba a la izquierda) 3 segundos.** Ahí se puede reiniciar el avance del grupo, **borrar el grupo** (con confirmación; antes no había forma de borrar uno), abrir todas las lecciones para saltar directo a una, activar el **modo proyector** (todo más grande) y las **animaciones suaves** (menos movimiento, para quien se marea o se distrae; el juego también las enciende solo si el equipo no sostiene las animaciones), ver otra vez el recorrido guiado y revisar si el juego ya está **listo para usar sin internet**.
+
+- **Grupo de demostración.** El botón **"Crear grupo de demostración"** crea un grupo "Demo" (un cacomixtle) como si hubiera terminado las 5 unidades: todas las lecciones (cada ejercicio a la primera), los cofres y las aventuras, las 5 estampas, el parque lleno, los 5 diplomas y hojitas para comprar todos los accesorios. Sirve para enseñar el juego completo en una reunión sin jugarlo. Queda elegido, no toca el avance de los grupos reales y se borra como cualquier otro. Pruebas en `tests/grupoDemo.test.ts` y `tests/panelFacilitador.test.tsx`.
 
 ## Nombre y dirección anteriores
 
