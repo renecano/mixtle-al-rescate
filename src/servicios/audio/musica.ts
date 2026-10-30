@@ -36,6 +36,8 @@ export class Musica {
   private deseada: PistaFondo | null = null;
   private agachadores = 0;
   private desbloqueada = false;
+  /** Cuándo empezó a sonar de verdad la pista de fondo (null si aún no suena). */
+  private arrancoEn: number | null = null;
 
   constructor(
     private readonly crear: FabricaReproductor,
@@ -49,6 +51,33 @@ export class Musica {
 
   get pistaActual(): PistaFondo | null {
     return this.suena;
+  }
+
+  /**
+   * Cuánto hace (ms) que la música empezó a sonar, o null si aún no suena. Con la música activada pero
+   * bloqueada por el navegador, el toque en su botón es el que la arranca (el desbloqueo va en el
+   * pointerdown): si "empezó hace nada", ese toque quería encenderla, no apagarla.
+   */
+  empezoHace(ahora: number): number | null {
+    return this.arrancoEn === null || !this.sonandoAhora ? null : ahora - this.arrancoEn;
+  }
+
+  /** ¿La pista de fondo se está oyendo ahora mismo? */
+  get sonandoAhora(): boolean {
+    return this.desbloqueada && !!this.suena && !!this.reproductores.get(this.suena)?.playing();
+  }
+
+  /**
+   * Llamar en cada toque. Si la pista debería sonar y no suena (el navegador rechazó el primer
+   * intento por falta de un toque), se vuelve a pedir dentro de este toque.
+   */
+  asegurar(): void {
+    if (!this.desbloqueada || !this.activa() || !this.suena) return;
+    const r = this.reproductores.get(this.suena);
+    if (!r || r.playing()) return;
+    r.play();
+    r.fade(0, this.volumenObjetivo, VOLUMEN_MUSICA.fundidoMs);
+    this.arrancoEn = Date.now();
   }
 
   /** Llamar tras el primer toque del usuario. */
@@ -122,6 +151,7 @@ export class Musica {
     if (!this.suena) return;
     const nueva = this.reproductor(this.suena, true);
     if (!nueva.playing()) nueva.play();
+    if (this.arrancoEn === null) this.arrancoEn = Date.now();
     nueva.fade(0, this.volumenObjetivo, VOLUMEN_MUSICA.fundidoMs);
   }
 
@@ -134,5 +164,6 @@ export class Musica {
   private silenciarTodo(): void {
     for (const r of this.reproductores.values()) r.stop();
     this.suena = null;
+    this.arrancoEn = null;
   }
 }

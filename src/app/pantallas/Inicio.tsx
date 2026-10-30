@@ -7,6 +7,7 @@ import { primeraPantallaLista } from '../../servicios/arranque';
 import { precargarPrimerasPantallas } from './cargadores';
 import { reiniciarProgreso } from '../../logica/progreso';
 import { audioListo, musica } from '../../servicios/audio/motor';
+import { estadoMusica } from '../../servicios/estadoSonido';
 import { sonido } from '../../servicios/sonido';
 import { voz } from '../../servicios/voz';
 import { Arte } from '../componentes/Arte';
@@ -58,6 +59,11 @@ function sinMovimiento(): boolean {
  * llega columpiándose de una rama, el logo que aterriza con su remate musical y un solo botón.
  * En modo proyector, si nadie toca la pantalla en 60 s, empieza el modo vitrina (una demo en bucle).
  */
+/** ¿El navegador aún no deja sonar? (el contexto de audio parado, o la música activada sin sonar) */
+function audioSigueBloqueado(): boolean {
+  return !audioListo() || (estadoMusica.estaActivo && !musica.sonandoAhora);
+}
+
 export function Inicio() {
   const jugar = useApp((s) => s.jugar);
   const proyector = useApp((s) => s.proyector);
@@ -66,8 +72,22 @@ export function Inicio() {
   const [saliendo, setSaliendo] = useState(false);
   const [vitrina, setVitrina] = useState(() => typeof location !== 'undefined' && new URLSearchParams(location.search).has('vitrina'));
   const remateSonado = useRef(false);
+  // Mientras el navegador no deje sonar nada (hasta el primer toque), un indicio sutil lo dice.
+  const [audioBloqueado, setAudioBloqueado] = useState(() => audioSigueBloqueado());
 
   useEffect(() => musica.poner('tranquila'), []);
+  // Si el navegador ya deja sonar (visita de regreso), la música arranca sola en un momento: el indicio se va.
+  useEffect(() => {
+    if (!audioBloqueado) return;
+    const t = window.setInterval(() => {
+      if (!audioSigueBloqueado()) setAudioBloqueado(false);
+    }, 300);
+    const fin = window.setTimeout(() => window.clearInterval(t), 4000);
+    return () => {
+      window.clearInterval(t);
+      window.clearTimeout(fin);
+    };
+  }, [audioBloqueado]);
 
   // Mientras se ve el inicio, se adelanta lo que hace falta para que "¡Jugar!" no espere a la red: el
   // código de Grupos y Camino, la voz de "¡Al rescate!" y de la bienvenida, y los primeros efectos.
@@ -136,9 +156,14 @@ export function Inicio() {
     };
   }, [proyector, vitrina]);
 
-  /** Primer toque en el inicio: si el remate no pudo sonar (audio bloqueado), el logo rebota con él. */
+  /**
+   * Cualquier toque en el inicio (no solo "¡Jugar!") arranca la música y desbloquea la voz. El primero:
+   * si el remate no pudo sonar (audio bloqueado), el logo rebota con él, y se quita el indicio.
+   */
   const primerToque = () => {
     sonido.desbloquear();
+    voz.desbloquear();
+    setAudioBloqueado(false);
     if (remateSonado.current) return;
     remateSonado.current = true;
     escena.current?.classList.add('inicio-logo-rebota');
@@ -220,6 +245,15 @@ export function Inicio() {
       </div>
 
       <BotonesSistema />
+
+      {audioBloqueado && (
+        <p
+          className="pointer-events-none absolute bottom-[3%] left-[2%] rounded-full bg-verde-oscuro/55 px-4 py-1.5 text-[clamp(0.95rem,2.2vmin,1.4rem)] font-extrabold text-white animate-[flotar_2.4s_ease-in-out_infinite]"
+          data-toca-para-empezar
+        >
+          {TEXTOS_APP.inicio.tocaParaEmpezar}
+        </p>
+      )}
 
       {vitrina && (
         <Suspense fallback={null}>

@@ -102,6 +102,7 @@ export function desbloquearAudio(): void {
     // Sin audio el juego sigue igual.
   }
   musica.desbloquear();
+  musica.asegurar();
 }
 
 /**

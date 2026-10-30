@@ -8,6 +8,11 @@ class ReproductorFalso implements Reproductor {
   fundidos: [number, number, number][] = [];
   private finales: (() => void)[] = [];
   play() {
+    // Como un navegador que rechaza el primer play() por falta de un toque.
+    if (rechazarPrimerPlay) {
+      rechazarPrimerPlay = false;
+      return;
+    }
     this.sonando = true;
   }
   stop() {
@@ -38,9 +43,11 @@ class ReproductorFalso implements Reproductor {
 let creados: Map<NombrePista, ReproductorFalso>;
 let encendida: boolean;
 let musica: Musica;
+let rechazarPrimerPlay = false;
 
 beforeEach(() => {
   vi.useFakeTimers();
+  rechazarPrimerPlay = false;
   creados = new Map();
   encendida = true;
   musica = new Musica(
@@ -51,6 +58,54 @@ beforeEach(() => {
     },
     () => encendida,
   );
+});
+
+describe('el botón de música cuando el navegador aún la bloquea', () => {
+  it('sabe cuánto hace que la música empezó a sonar de verdad (null si aún no suena)', () => {
+    vi.setSystemTime(10_000);
+    musica.poner('tranquila');
+    expect(musica.empezoHace(Date.now())).toBeNull();
+    // El primer toque la desbloquea: desde ese momento cuenta.
+    musica.desbloquear();
+    expect(musica.empezoHace(Date.now())).toBe(0);
+    vi.setSystemTime(10_300);
+    expect(musica.empezoHace(Date.now())).toBe(300);
+    // Un toque en el botón de música justo cuando la arrancó no debe apagarla: "recién" es menos de 1 s.
+    expect(musica.empezoHace(Date.now())! < 1000).toBe(true);
+    vi.setSystemTime(13_000);
+    expect(musica.empezoHace(Date.now())).toBe(3000);
+  });
+
+  it('si el navegador rechazó el primer intento, el siguiente toque la vuelve a pedir y cuenta desde ahí', () => {
+    vi.setSystemTime(10_000);
+    musica.poner('tranquila');
+    rechazarPrimerPlay = true;
+    musica.desbloquear();
+    const r = creados.get('tranquila')!;
+    expect(r.sonando).toBe(false);
+    expect(musica.sonandoAhora).toBe(false);
+    expect(musica.empezoHace(Date.now())).toBeNull();
+    vi.setSystemTime(15_000);
+    musica.asegurar();
+    expect(r.sonando).toBe(true);
+    expect(musica.empezoHace(Date.now())).toBe(0);
+    // Ya sonando, asegurar no la reinicia.
+    musica.asegurar();
+    expect(r.fundidos.filter((f) => f[0] === 0)).toHaveLength(2);
+  });
+
+  it('apagarla con su botón la deja sin "recién": al volver a encenderla cuenta de nuevo', () => {
+    vi.setSystemTime(10_000);
+    musica.poner('tranquila');
+    musica.desbloquear();
+    encendida = false;
+    musica.cambioDeInterruptor();
+    expect(musica.empezoHace(Date.now())).toBeNull();
+    vi.setSystemTime(20_000);
+    encendida = true;
+    musica.cambioDeInterruptor();
+    expect(musica.empezoHace(Date.now())).toBe(0);
+  });
 });
 
 describe('música de fondo', () => {

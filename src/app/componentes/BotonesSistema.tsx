@@ -1,5 +1,9 @@
 import { useSyncExternalStore } from 'react';
+import { musica } from '../../servicios/audio/motor';
 import { estadoMusica, estadoSonido, type Interruptor } from '../../servicios/estadoSonido';
+
+/** Si la música empezó hace menos de esto, fue este toque el que la arrancó. */
+const RECIEN_MS = 1000;
 import { Arte } from './Arte';
 import { BotonGrande } from './BotonGrande';
 
@@ -43,7 +47,13 @@ export function BotonesSistema({ enLinea = false }: { enLinea?: boolean }) {
         presionado={musicaActiva}
         className={enLinea ? `${TAMANO} max-xl:size-16` : TAMANO}
         icono={<Arte clave={musicaActiva ? 'icono-musica' : 'icono-musica-no'} className={ICONO} />}
-        onClick={() => estadoMusica.alternar()}
+        onClick={() => {
+          // Música activada pero bloqueada por el navegador: el pointerdown de este mismo toque la
+          // acaba de arrancar. Ese toque quería oírla, no apagarla (antes había que tocar dos veces).
+          const hace = musicaActiva ? musica.empezoHace(Date.now()) : null;
+          if (hace !== null && hace < RECIEN_MS) return;
+          estadoMusica.alternar();
+        }}
       />
       <BotonGrande
         color={vozActiva ? 'azul' : 'gris'}

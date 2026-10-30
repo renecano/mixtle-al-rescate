@@ -262,6 +262,17 @@ René revisó la voz de Alejo: en 16 audios al azar, el 32 % del tiempo era sile
 
 ### Grabar una voz humana
 
+### Música y voz en el inicio
+
+Los navegadores no dejan sonar nada hasta el primer toque (y está bien). Lo que cambió (29 de octubre de 2026):
+
+- **Cualquier toque en el inicio arranca la música y desbloquea la voz**, no solo "¡Jugar!": el toque se escucha en toda la pantalla de inicio.
+- **El botón de música la enciende con UN solo toque cuando el navegador aún la bloquea.** Antes había que tocarlo dos veces: el `pointerdown` del toque desbloqueaba el audio y arrancaba la música, y el `click` del mismo toque la apagaba. Ahora la música sabe cuánto hace que empezó a sonar (`musica.empezoHace`): si fue ese mismo toque (menos de 1 s), el botón no la apaga. Con la música ya sonando, el botón la apaga y la enciende como siempre.
+- **Mientras esté bloqueada, un indicio sutil** abajo a la izquierda del inicio ("Toca la pantalla para escuchar") que desaparece con el primer toque. No sale si el navegador ya deja sonar (visita de regreso).
+- **Si el navegador rechazó el primer intento de sonar, cada toque lo vuelve a pedir** (`musica.asegurar`). La primera comprobación falló justo por esto: la música se desbloqueaba una sola vez y nunca se reintentaba.
+
+**Probado en Chrome con el autoplay bloqueado** (headless, con la política real de Chrome, `document-user-activation-required`): al abrir no suena y se ve el indicio; un toque en el fondo la arranca y quita el indicio; en una visita nueva, un solo toque en el botón la arranca sin apagarla; y ya sonando, el botón la apaga y la vuelve a encender (9 de 9). **Queda abierto:** con la bandera antigua `--autoplay-policy=user-gesture-required` (que Chrome ya no usa por defecto), el `<audio>` de la música queda "sonando" pero no avanza del segundo 0 aunque se toque; es el mismo síntoma que se vio al medir a través del proxy. No se probó en un iPad real.
+
 1. Corre `npm run voz:lista`. Genera `docs/frases-mixtle.csv` con columnas `id`, `archivo`, `texto`, `unidad` y `lección`; se abre bien en Excel.
 2. Graba cada frase (por ejemplo, una persona de Eco Urban, o con Canva) y guarda el audio en `voz-grabaciones/` con el **mismo nombre de archivo** de la columna `archivo` (mp3, wav, m4a u ogg).
 3. Corre `npm run voz:generar`. Las grabaciones reemplazan a la voz generada: se normalizan al mismo volumen y quedan marcadas como humanas en el manifiesto. Las frases sin grabar conservan la voz generada.

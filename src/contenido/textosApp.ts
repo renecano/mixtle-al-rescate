@@ -8,6 +8,8 @@ import type { Locucion } from '../voz/locucion';
 export const TEXTOS_APP = {
   inicio: {
     /** La frase de Mixtle (marca): la dice al tocar "¡Jugar!". */
+    /** Indicio mientras el navegador aún no deja sonar nada (no se narra: no hay audio todavía). */
+    tocaParaEmpezar: 'Toca la pantalla para escuchar',
     alRescate: '¡Al rescate!',
   },
   grupos: {
