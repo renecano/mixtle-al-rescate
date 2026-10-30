@@ -19,7 +19,8 @@ export function progresoCompleto(hoy: string): ProgresoGrupo {
     else if (n.tipo === 'cofre') p = abrirCofre(p, n.unidad.id, hoy);
     else p = completarAventura(p, n.unidad, hoy);
   }
-  return p;
+  // Quien facilita ya conoce el juego: el recorrido guiado no sale con este grupo.
+  return { ...p, recorridoVisto: true };
 }
 
 export function grupoDemo(id: string, ahora: number, hoy: string): Grupo {

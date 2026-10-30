@@ -29,7 +29,7 @@ La v3 le da al juego su propia marca y lo hace más llamativo en el proyector, c
 | Kokoro | Voz con **Azure AI Speech**: Mixtle habla con **Alejo** (`es-MX-Alejo:MAI-Voice-2-Flash`, español de México, estilo «excited»), elegido entre las [muestras de 12 voces](docs/muestras-voz/azure.html). Kokoro queda como alterno. |
 | "N días seguidos" en el camino | **Se quitó la racha de días** (se perdía al faltar un día) y las hojitas de cada grupo ya no se ven lado a lado al elegir grupo: no se comparan grupos. |
 
-Medido en esta versión: lo que baja antes de la primera pantalla pesa **234.4 KB** comprimidos (límite 250 KB), y en la laptop de 8 GB el juego va a **59–60 cuadros por segundo** en sus momentos más pesados (ver *Pruebas y evidencia medida*).
+Medido en esta versión: lo que baja antes de la primera pantalla pesa **235.2 KB** comprimidos (límite 250 KB), y en la laptop de 8 GB el juego va a **59–60 cuadros por segundo** en sus momentos más pesados (ver *Pruebas y evidencia medida*).
 
 ### Capturas de la v3
 
@@ -79,7 +79,7 @@ La aventura de la unidad 1 son los tres niveles de la v1, adaptados al camino, y
 
 1. **Inicio → ¿Quién va a jugar?** Se elige el grupo o se crea uno: un animal (colibrí, ardilla, monarca, ajolote, tlacuache o cacomixtle), un color y, si se quiere, una etiqueta corta como "1°A". **Nunca se piden nombres de niñas ni niños**, y la pantalla lo recuerda.
 2. **El camino.** Arriba está el **parque del grupo**: empieza gris y con basura, y se limpia y llena de árboles, flores y animales conforme el grupo avanza. Abajo, el camino en zigzag, por tramos: cada unidad con su postal y su paleta. En cada tramo están sus lecciones, un **cofre** a la mitad y la **aventura** al final. Mixtle se para junto a la siguiente lección y la señala, y la mascota del grupo (vestida) brinca a su lado. Las lecciones se abren en orden y las terminadas se pueden repetir.
-   - **Recorrido guiado (la primera vez).** La primera vez que un aparato llega al camino, Mixtle enseña para qué sirve cada cosa, una a la vez y en voz alta: la siguiente parada, el parque, las hojitas, los días jugados, el álbum, el vestidor, la casita para cambiar de grupo y los botones de pantalla completa, música y voz. Lo señalado se ilumina con un marco dorado y lo demás se oscurece. **«Saltar» está a la vista desde el primer paso** (también Escape), y hay «Atrás» y «Siguiente» (o las flechas del teclado). Ya visto o saltado, no vuelve a salir en ese aparato; para verlo otra vez está **«Ver otra vez el recorrido por el juego»** en el modo facilitador. Con `?e2e` no sale (pruebas, capturas y tráiler), salvo con `?recorrido-guiado`. Se revisó en el juego a 1920×1080 y 1024×768: en los 20 pasos, la tarjeta nunca tapa lo señalado y nada se sale de la pantalla.
+   - **Recorrido guiado (la primera vez de cada grupo).** La primera vez que un grupo llega al camino, Mixtle enseña para qué sirve cada cosa, una a la vez y en voz alta: la siguiente parada, el parque, las hojitas, los días jugados, el álbum, el vestidor, la casita para cambiar de grupo y los botones de pantalla completa, música y voz. Lo señalado se ilumina con un marco dorado y lo demás se oscurece. **«Saltar» está a la vista desde el primer paso** (también Escape), y hay «Atrás» y «Siguiente» (o las flechas del teclado). Se recuerda **en el avance del grupo, no en el aparato** (muchos maestros usan su propio dispositivo con niños distintos en cada grupo): ya visto o saltado por ese grupo, no vuelve a salir; los grupos que ya existían antes de esta marca no lo ven otra vez; para verlo otra vez está **«Ver otra vez el recorrido por el juego»** en el modo facilitador. Con `?e2e` no sale (pruebas, capturas y tráiler), salvo con `?recorrido-guiado`. Se revisó en el juego a 1920×1080 y 1024×768: en los 20 pasos, la tarjeta nunca tapa lo señalado y nada se sale de la pantalla.
 3. **Una lección** (6 a 8 ejercicios, unos 3 minutos). Barra de avance arriba, botón para salir con confirmación amable, y Mixtle narra cada consigna.
    - **Bien:** banner verde, lluvia de hojitas, Mixtle celebra (distinto cada vez) y dice una frase de ánimo. Si salió a la primera, la hojita ganada vuela al contador. Con 3, 5, 7 o 10 seguidas a la primera, "¡3 seguidas!".
    - **Casi:** banner naranja con una pista y "Intentar otra vez". No hay vidas ni castigos; lo que salió mal vuelve al final para repasar.
@@ -262,8 +262,6 @@ René revisó la voz de Alejo: en 16 audios al azar, el 32 % del tiempo era sile
 
 **Lo que gastó en Azure:** 10,992 caracteres (131 frases nuevas: las 125 del diploma de la unidad 4, las 2 reescritas y las piezas femeninas, más 6 retomas por sonido suelto). El mes va en 69,265 de 400,000. Los 667 audios cuyo texto no cambió se reusaron de los originales guardados.
 
-### Grabar una voz humana
-
 ### Música y voz en el inicio
 
 Los navegadores no dejan sonar nada hasta el primer toque (y está bien). Lo que cambió (29 de octubre de 2026):
@@ -274,6 +272,8 @@ Los navegadores no dejan sonar nada hasta el primer toque (y está bien). Lo que
 - **Si el navegador rechazó el primer intento de sonar, cada toque lo vuelve a pedir** (`musica.asegurar`). La primera comprobación falló justo por esto: la música se desbloqueaba una sola vez y nunca se reintentaba.
 
 **Probado en Chrome con el autoplay bloqueado** (headless, con la política real de Chrome, `document-user-activation-required`): al abrir no suena y se ve el indicio; un toque en el fondo la arranca y quita el indicio; en una visita nueva, un solo toque en el botón la arranca sin apagarla; y ya sonando, el botón la apaga y la vuelve a encender (9 de 9). **Queda abierto:** con la bandera antigua `--autoplay-policy=user-gesture-required` (que Chrome ya no usa por defecto), el `<audio>` de la música queda "sonando" pero no avanza del segundo 0 aunque se toque; es el mismo síntoma que se vio al medir a través del proxy. No se probó en un iPad real.
+
+### Grabar una voz humana
 
 1. Corre `npm run voz:lista`. Genera `docs/frases-mixtle.csv` con columnas `id`, `archivo`, `texto`, `unidad` y `lección`; se abre bien en Excel.
 2. Graba cada frase (por ejemplo, una persona de Eco Urban, o con Canva) y guarda el audio en `voz-grabaciones/` con el **mismo nombre de archivo** de la columna `archivo` (mp3, wav, m4a u ogg).
@@ -330,7 +330,7 @@ La v3 usa técnicas de marketing y de diseño de juegos para que el juego atraig
 
 | Qué | Resultado |
 |---|---|
-| Lo que se descarga antes de la primera pantalla | **234.4 KB** comprimidos, contando todas las fuentes (límite de la v3: 250 KB). `npm run presupuesto` lo mide en cada `verificar` y falla si se pasa. Las demás pantallas, el arte de los ambientes y los accesorios, Phaser, la voz y la música bajan después. |
+| Lo que se descarga antes de la primera pantalla | **235.2 KB** comprimidos, contando todas las fuentes (límite de la v3: 250 KB). `npm run presupuesto` lo mide en cada `verificar` y falla si se pasa. Las demás pantallas, el arte de los ambientes y los accesorios, Phaser, la voz y la música bajan después. |
 | Cuadros por segundo, Chrome con tarjeta de video (`node scripts/medir-fps.mjs --con-ventana`) | **59–60 fps** en el inicio (entrada y paralaje), la lección con hojitas y chispas, el cofre que estalla y el camino. Hasta 0.7 % de cuadros lentos, a 1920×1080 y a 1024×768 (`docs/rendimiento-v3.json`). |
 | Sin tarjeta de video (peor caso: Chromium sin ventana) | Con todas las animaciones, **11–14 fps** a 1920×1080 y 26–33 fps a 1024×768 (`docs/rendimiento-v3-sin-ventana.json`). Con las **animaciones suaves**, **57–60 fps** (`docs/rendimiento-v3-sin-ventana-suave.json`). Por eso el juego **las enciende solo** si mide menos de 35 fps (comprobado: de 11 a 60 fps). |
 | Decoraciones de los lados del camino | Comparación en las mismas condiciones y en el peor caso (sin tarjeta de video): **con decoraciones 55/60 fps, sin ellas 56/60** (proyector/tablet), mediana 60 (`docs/rendimiento-v3-sin-ventana-camino.json`). Ninguna se cruza con botones, etiquetas, la mascota ni Mixtle en 18 casos medidos. |
@@ -339,7 +339,7 @@ La v3 usa técnicas de marketing y de diseño de juegos para que el juego atraig
 
 
 
-**Pruebas unitarias (Vitest)**, en `tests/`: **1445 pruebas en 36 archivos, todas pasan** (29 de octubre de 2026). Además de las de la v2, la v3 agrega pruebas de marca (logo al día con las fuentes, 8 poses, presupuesto de la primera pantalla), migración y mudanza de datos, nombre (ningún "Caco" en código ni voz), Azure contra un servidor falso, protección de la llave, vitrina y transición, racha y mitad de lección, recompensas, diplomas, accesorios y vestidor, y el ajuste automático por rendimiento. Entre ellas:
+**Pruebas unitarias (Vitest)**, en `tests/`: **1468 pruebas en 39 archivos, todas pasan** (29 de octubre de 2026). Además de las de la v2, la v3 agrega pruebas de marca (logo al día con las fuentes, 8 poses, presupuesto de la primera pantalla), migración y mudanza de datos, nombre (ningún "Caco" en código ni voz), Azure contra un servidor falso, protección de la llave, vitrina y transición, racha y mitad de lección, recompensas, diplomas, accesorios y vestidor, y el ajuste automático por rendimiento. Entre ellas:
 
 - **Contenido válido:** cada unidad tiene 4 o 5 lecciones; cada lección tiene de 6 a 8 ejercicios con al menos 3 tipos; las respuestas correctas existen, los dibujos existen, no hay ejercicios imposibles (parejas sin repetir, "encuentra el error" con 1 a 3 errores dentro de la escena). Cuando una pregunta habla de un bote, dice su color **y su nombre** ("el bote naranja de no reciclable") y el bote se ve en pantalla. Cada archivo de contenido está marcado con `TODO(Eco Urban)`.
 - **Voz:** **toda frase narrada (785) tiene su audio en el manifiesto** y su mp3 existe, y **las 175 frases con números** (fin de lección, cofre, diplomas y la pregunta de cada accesorio) suenan como **un solo audio**, sin piezas encadenadas.
@@ -415,16 +415,6 @@ El "antes" es el código anterior (`c62556e`, ya con la voz de Alejo) construido
 - "Listo para usar sin internet" a los **4.1 min**.
 - La calibración por el túnel HTTPS dio 4,304 ms para 475 KB: cifrar suma tiempo, pero el límite es el mismo.
 
-**Qué cambió:**
-- **Mientras se ve el inicio se adelanta:**
-  - el código de Grupos y Camino;
-  - el audio de "¡Al rescate!" y de la bienvenida de Grupos;
-  - los efectos del toque y del remate.
-- **"¡Jugar!" no espera a la voz:** la transición empieza de inmediato y Mixtle habla encima. Si su audio no llega en 800 ms, no se dice tarde. La bienvenida de Grupos espera a que termine "¡Al rescate!", como mucho 800 ms.
-- **Los efectos se piden uno por uno, cuando suenan,** en vez de los 22 de golpe al primer toque.
-- **La música va en streaming:** un `<audio>` conectado a una ganancia de Web Audio, así empieza sin bajarse completa y el *ducking* sigue funcionando en iPad.
-- **El *service worker* se registra cuando la primera pantalla ya está lista.** Al instalarse guarda solo lo esencial (25 archivos, 744 KB): `index.html`, el código del inicio, Grupos y Camino, el CSS y las fuentes.
-- **El resto se baja en segundo plano a la caché `mixtle-sin-internet`.** Primero el resto del código, luego imágenes, efectos, voces y música (`src/servicios/sinInternet.ts`). Va de 4 en 4, con prioridad baja y una pausa de 3 s en cada cambio de pantalla. Solo baja lo nuevo o lo que cambió, según la revisión de cada archivo en `sin-internet.json`.
 **Abrir la primera lección** (29 de octubre de 2026). En un aparato recién actualizado, tocar la primera lección tardó mucho; al reiniciar ya fue rápido. Se midió con `node scripts/medir-carga.mjs --leccion` (un grupo recién creado sembrado por la URL; del camino se toca la primera lección y se mide hasta que el primer ejercicio está en pantalla y hasta que Mixtle se oye, con el gancho `__mixtle.narrando()` que solo existe con `?e2e`), en primera visita con Slow 4G, en dos situaciones: en cuanto se llega al camino, y **con la descarga para jugar sin internet en curso** (`--con-descarga`: el caso del aparato recién actualizado). Una corrida de cada una (`docs/carga-leccion-*.json`):
 
 | Tocar la lección → | Antes | Después |
@@ -436,6 +426,16 @@ El "antes" es el código anterior (`c62556e`, ya con la voz de Alejo) construido
 
 Qué cambió: mientras se ve el camino se adelanta el código de la lección (con sus ejercicios); al tocar una lección se adelanta lo primero que dice Mixtle (la bienvenida y la consigna del primer ejercicio, que van en orden) y la descarga en segundo plano se retiene hasta que el primer ejercicio está en pantalla y Mixtle se oye (`src/app/pantallas/precargaLeccion.ts`, como mucho 15 s). **Lo honesto:** en estas mediciones la mejora es pequeña (Mixtle se oye ~10 % antes; la pantalla llega en 0.4 a 1 s) y la lentitud que se vio en el aparato no se reprodujo: en las cuatro situaciones abrir la lección tomó ~1.2 s. Lo más probable es que aquel aparato aún tuviera el *service worker* anterior instalándose (862 archivos uno por uno, ver arriba), o una red peor que Slow 4G. Son corridas únicas: diferencias de unos cientos de ms entre ellas son ruido de la red simulada.
 
+**Qué cambió:**
+- **Mientras se ve el inicio se adelanta:**
+  - el código de Grupos y Camino;
+  - el audio de "¡Al rescate!" y de la bienvenida de Grupos;
+  - los efectos del toque y del remate.
+- **"¡Jugar!" no espera a la voz:** la transición empieza de inmediato y Mixtle habla encima. Si su audio no llega en 800 ms, no se dice tarde. La bienvenida de Grupos espera a que termine "¡Al rescate!", como mucho 800 ms.
+- **Los efectos se piden uno por uno, cuando suenan,** en vez de los 22 de golpe al primer toque.
+- **La música va en streaming:** un `<audio>` conectado a una ganancia de Web Audio, así empieza sin bajarse completa y el *ducking* sigue funcionando en iPad.
+- **El *service worker* se registra cuando la primera pantalla ya está lista.** Al instalarse guarda solo lo esencial (25 archivos, 744 KB): `index.html`, el código del inicio, Grupos y Camino, el CSS y las fuentes.
+- **El resto se baja en segundo plano a la caché `mixtle-sin-internet`.** Primero el resto del código, luego imágenes, efectos, voces y música (`src/servicios/sinInternet.ts`). Va de 4 en 4, con prioridad baja y una pausa de 3 s en cada cambio de pantalla. Solo baja lo nuevo o lo que cambió, según la revisión de cada archivo en `sin-internet.json`.
 - **El modo facilitador muestra el estado:** "Listo para usar sin internet" o el porcentaje.
 
 **Probado sin conexión** (en local, sin limitar la red):

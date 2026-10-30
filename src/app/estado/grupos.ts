@@ -11,6 +11,7 @@ import {
 import { alternarPuesto, comprarAccesorio, type IdAccesorio } from '../../logica/accesorios';
 import { grupoDemo } from '../../logica/demo';
 import { gruposValidos, nuevoGrupo, type Grupo } from '../../logica/grupos';
+import { marcarRecorridoVisto } from '../../logica/recorridoGuiado';
 import { almacenIndexedDb, type Almacen } from '../../servicios/almacen';
 
 interface EstadoGrupos {
@@ -25,6 +26,8 @@ interface EstadoGrupos {
   crearDemo: () => Grupo;
   /** Quita un grupo con todo su avance (si era el elegido, ya no hay grupo elegido). */
   borrar: (id: string) => void;
+  /** El grupo actual ya vio (o saltó) el recorrido guiado. */
+  marcarRecorridoVisto: () => void;
   elegir: (id: string | null) => void;
   /** Modo facilitador. */
   reiniciar: (id: string) => void;
@@ -94,6 +97,9 @@ export const useGrupos = create<EstadoGrupos>((set, get) => {
       const { grupos, actualId } = get();
       set({ grupos: grupos.filter((g) => g.id !== id), actualId: actualId === id ? null : actualId });
       guardar();
+    },
+    marcarRecorridoVisto() {
+      cambiarProgreso(marcarRecorridoVisto);
     },
     elegir(id) {
       set({ actualId: id });

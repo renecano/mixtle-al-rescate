@@ -60,7 +60,8 @@ export function nuevoGrupo(datos: Pick<Grupo, 'mascota' | 'color' | 'etiqueta'>,
     etiqueta: limpiarEtiqueta(datos.etiqueta).trim(),
     creado: ahora,
     desbloquearTodo: false,
-    progreso: structuredClone(PROGRESO_VACIO),
+    // Un grupo nuevo ve el recorrido guiado la primera vez que llega al camino.
+    progreso: { ...structuredClone(PROGRESO_VACIO), recorridoVisto: false },
   };
 }
 

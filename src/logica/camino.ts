@@ -14,6 +14,11 @@ export interface ProgresoGrupo {
   accesorios?: string[];
   puestos?: string[];
   gastadas?: number;
+  /**
+   * Recorrido guiado: false = el grupo es nuevo y aún no lo ve (sale la primera vez que llega al
+   * camino); true = ya lo vio o lo saltó. Sin el campo (grupos de antes): como si ya lo hubiera visto.
+   */
+  recorridoVisto?: boolean;
 }
 
 export const PROGRESO_VACIO: ProgresoGrupo = { lecciones: {}, cofres: [], aventuras: [], estampas: [], hojitas: 0, dias: [] };

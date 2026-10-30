@@ -1,13 +1,13 @@
 import { TEXTOS_APP } from '../contenido/textosApp';
+import type { ProgresoGrupo } from './camino';
 
 /*
- * Recorrido guiado: la primera vez que un aparato llega al camino, Mixtle enseña para qué sirve cada
+ * Recorrido guiado: la primera vez que un GRUPO llega al camino, Mixtle enseña para qué sirve cada
  * cosa (la siguiente lección, el parque, las hojitas, el álbum, el vestidor…), una a la vez y en voz
- * alta. Se puede saltar en cualquier momento y se vuelve a ver desde el modo facilitador.
+ * alta. Se recuerda en el avance del grupo, no en el aparato: muchos maestros usan su propio
+ * dispositivo con niños distintos en cada grupo. Se puede saltar en cualquier momento y se vuelve a
+ * ver desde el modo facilitador.
  */
-
-/** Se guarda "si" cuando ya se vio (o se saltó) en este aparato. */
-export const CLAVE_RECORRIDO_GUIADO = 'mixtle-al-rescate:recorrido-guiado';
 
 /** Lo que se señala: el elemento con `data-recorrido="<objetivo>"` (null: el paso va al centro, sin señalar nada). */
 export interface PasoRecorrido {
@@ -29,14 +29,20 @@ export const PASOS_RECORRIDO: readonly PasoRecorrido[] = [
 ];
 
 /**
- * ¿Se muestra al llegar al camino? Sí, si nunca se vio en este aparato. Con `?e2e` (pruebas,
+ * ¿Se muestra al llegar al camino? Sí, si el grupo es nuevo y aún no lo ha visto (`recorridoVisto`
+ * en falso). Los grupos de antes de que existiera la marca no lo ven otra vez. Con `?e2e` (pruebas,
  * capturas, tráiler) no, para no tapar lo que se revisa, salvo que se pida con `?recorrido-guiado`.
  */
-export function debeMostrarRecorrido(busqueda: string, guardado: string | null): boolean {
+export function debeMostrarRecorrido(busqueda: string, progreso: Pick<ProgresoGrupo, 'recorridoVisto'>): boolean {
   const params = new URLSearchParams(busqueda);
   if (params.has('recorrido-guiado')) return true;
   if (params.has('e2e')) return false;
-  return guardado !== 'si';
+  return progreso.recorridoVisto === false;
+}
+
+/** El grupo ya vio (o saltó) el recorrido: queda en su avance. */
+export function marcarRecorridoVisto(p: ProgresoGrupo): ProgresoGrupo {
+  return { ...p, recorridoVisto: true };
 }
 
 /** Los pasos que se pueden mostrar: los del centro siempre; los demás, si su elemento está en pantalla. */

@@ -3,7 +3,10 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import { RecorridoGuiado } from '../src/app/componentes/RecorridoGuiado';
 import { useNarrador } from '../src/app/estado/narrador';
 import { TEXTOS_APP } from '../src/contenido/textosApp';
-import { debeMostrarRecorrido, PASOS_RECORRIDO, pasosDisponibles } from '../src/logica/recorridoGuiado';
+import { PROGRESO_VACIO } from '../src/logica/camino';
+import { grupoDemo } from '../src/logica/demo';
+import { nuevoGrupo } from '../src/logica/grupos';
+import { debeMostrarRecorrido, marcarRecorridoVisto, PASOS_RECORRIDO, pasosDisponibles } from '../src/logica/recorridoGuiado';
 import { todasLasFrases } from '../src/voz/frases';
 
 const dice = TEXTOS_APP.recorrido.dice;
@@ -40,16 +43,28 @@ async function montar(sin: string[] = []) {
 
 afterEach(() => useNarrador.setState({ subtitulo: '' }));
 
-describe('cuándo aparece el recorrido guiado', () => {
-  it('la primera vez en el aparato sí; ya visto (o saltado), no', () => {
-    expect(debeMostrarRecorrido('', null)).toBe(true);
-    expect(debeMostrarRecorrido('', 'si')).toBe(false);
+describe('cuándo aparece el recorrido guiado (por grupo, no por aparato)', () => {
+  it('la primera vez que un grupo nuevo llega al camino sí; ya visto (o saltado), no', () => {
+    expect(debeMostrarRecorrido('', { recorridoVisto: false })).toBe(true);
+    expect(debeMostrarRecorrido('', { recorridoVisto: true })).toBe(false);
+  });
+
+  it('los grupos que ya existían (sin la marca en su avance) no lo ven otra vez', () => {
+    expect(debeMostrarRecorrido('', {})).toBe(false);
+    expect(debeMostrarRecorrido('', PROGRESO_VACIO)).toBe(false);
+  });
+
+  it('un grupo nuevo nace con la marca en falso, y al terminar (o saltar) queda en verdadero en su avance', () => {
+    expect(nuevoGrupo({ mascota: 'ardilla', color: '#1F6B4A', etiqueta: '2°B' }, 'g', 0).progreso.recorridoVisto).toBe(false);
+    expect(marcarRecorridoVisto({ ...PROGRESO_VACIO, recorridoVisto: false }).recorridoVisto).toBe(true);
+    // El grupo de demostración ya lo vio: es para quien facilita.
+    expect(grupoDemo('demo', 0, '2026-10-29').progreso.recorridoVisto).toBe(true);
   });
 
   it('con ?e2e (pruebas, capturas, tráiler) no tapa nada, salvo que se pida con ?recorrido-guiado', () => {
-    expect(debeMostrarRecorrido('?e2e', null)).toBe(false);
-    expect(debeMostrarRecorrido('?e2e&recorrido-guiado', null)).toBe(true);
-    expect(debeMostrarRecorrido('?recorrido-guiado', 'si')).toBe(true);
+    expect(debeMostrarRecorrido('?e2e', { recorridoVisto: false })).toBe(false);
+    expect(debeMostrarRecorrido('?e2e&recorrido-guiado', { recorridoVisto: false })).toBe(true);
+    expect(debeMostrarRecorrido('?recorrido-guiado', { recorridoVisto: true })).toBe(true);
   });
 
   it('se salta los pasos cuyo elemento no está en pantalla (por ejemplo, sin siguiente lección)', () => {

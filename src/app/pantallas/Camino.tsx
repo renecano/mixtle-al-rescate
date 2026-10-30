@@ -8,8 +8,7 @@ import { accesoriosPuestos } from '../../logica/accesorios';
 import { estadosDelCamino, HOJITAS_COFRE, nodosDelCamino, siguienteNodo, unidadCompleta, type EstadoNodo, type Nodo } from '../../logica/camino';
 import { datosDiplomaUnidad, type DatosDiplomaUnidad } from '../../logica/diplomaUnidad';
 import { mascota, nombreDelGrupo } from '../../logica/grupos';
-import { CLAVE_RECORRIDO_GUIADO, debeMostrarRecorrido } from '../../logica/recorridoGuiado';
-import { guardarInterruptor, leerInterruptorApagado } from '../../servicios/preferencias';
+import { debeMostrarRecorrido } from '../../logica/recorridoGuiado';
 import { sonido } from '../../servicios/sonido';
 import { Arte, registrarArte } from '../componentes/Arte';
 import { BotonGrande } from '../componentes/BotonGrande';
@@ -23,9 +22,9 @@ import { Encabezado } from '../componentes/Encabezado';
 import { Modal } from '../componentes/Modal';
 import { PanelFacilitador } from '../componentes/PanelFacilitador';
 import { ParqueGrupo } from '../componentes/ParqueGrupo';
+import { RecorridoGuiado } from '../componentes/RecorridoGuiado';
 import { precargarLeccion } from './cargadores';
 import { prepararLeccion } from './precargaLeccion';
-import { RecorridoGuiado } from '../componentes/RecorridoGuiado';
 import { useApp } from '../estado/app';
 import { useGrupoActual, useGrupos } from '../estado/grupos';
 import { callar, decir } from '../estado/narrador';
@@ -51,8 +50,9 @@ export function Camino() {
   const [cofre, setCofre] = useState<string | null>(null);
   const [facilitador, setFacilitador] = useState(false);
   const [vestidor, setVestidor] = useState(false);
-  // La primera vez en este aparato, Mixtle enseña para qué sirve cada cosa (se puede saltar).
-  const [recorrido, setRecorrido] = useState(() => debeMostrarRecorrido(location.search, leerInterruptorApagado(CLAVE_RECORRIDO_GUIADO) ? 'si' : null));
+  // La primera vez que este grupo llega al camino, Mixtle enseña para qué sirve cada cosa (se puede saltar).
+  const marcarRecorridoVisto = useGrupos((s) => s.marcarRecorridoVisto);
+  const [recorrido, setRecorrido] = useState(() => debeMostrarRecorrido(location.search, grupo?.progreso ?? {}));
   const nodos = useMemo(() => nodosDelCamino(UNIDADES), []);
   const siguiente = useRef<HTMLDivElement>(null);
 
@@ -66,16 +66,17 @@ export function Camino() {
 
   // Sin grupo elegido (o si se acaba de borrar el actual): a elegir grupo.
   useEffect(() => {
-    if (!grupo) {
-      irAGrupos();
-      return;
-    }
+    if (!grupo) irAGrupos();
+  }, [grupo, irAGrupos]);
+
+  useEffect(() => {
+    if (!grupo) return;
     // Solo se desplaza si la siguiente lección no se ve (así el parque queda a la vista al empezar).
     siguiente.current?.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
-    // Con el recorrido, Mixtle saluda al terminarlo.
-    if (!estampaNueva && !recorrido) saludar();
     // Mientras se ve el camino se adelanta el código de la lección: tocar una no espera una descarga.
     precargarLeccion();
+    // Con el recorrido, Mixtle saluda al terminarlo.
+    if (!estampaNueva && !recorrido) saludar();
     return () => callar();
     // Solo al entrar al camino.
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -84,7 +85,7 @@ export function Camino() {
   if (!grupo || !progreso) return null;
 
   const terminarRecorrido = () => {
-    guardarInterruptor(CLAVE_RECORRIDO_GUIADO, true);
+    marcarRecorridoVisto();
     setRecorrido(false);
     saludar();
   };
