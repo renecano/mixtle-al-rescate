@@ -27,12 +27,38 @@ export function primeraPantallaLista(): void {
   });
 }
 
-/** Registra el service worker (solo en la versión construida). Nunca lanza. */
+/**
+ * Registra el service worker (solo en la versión construida). Si hay una versión nueva ya instalada
+ * pero "esperando" (la de un build anterior sin skipWaiting, o una que llegó mientras tanto), le pide
+ * que tome el control: así el juego no se queda con la versión vieja hasta cerrar todas las pestañas.
+ * Nunca lanza.
+ */
 export async function registrarServiceWorker(): Promise<ServiceWorkerRegistration | undefined> {
   if (import.meta.env.DEV || typeof navigator === 'undefined' || !('serviceWorker' in navigator)) return undefined;
   try {
-    return await navigator.serviceWorker.register(`${import.meta.env.BASE_URL}sw.js`, { scope: import.meta.env.BASE_URL });
+    const registro = await navigator.serviceWorker.register(`${import.meta.env.BASE_URL}sw.js`, { scope: import.meta.env.BASE_URL });
+    activarLaQueEspera(registro);
+    return registro;
   } catch {
     return undefined;
   }
+}
+
+/** Lo que se necesita de un registro de service worker (así se prueba con uno falso). */
+interface RegistroSw {
+  waiting: ServiceWorker | null;
+  installing: ServiceWorker | null;
+  addEventListener(tipo: 'updatefound', escuchar: () => void): void;
+}
+
+/** Le dice a un service worker en espera que se active (todos los builds entienden este mensaje). */
+export function activarLaQueEspera(registro: RegistroSw): void {
+  const pedir = (sw: ServiceWorker | null) => sw?.postMessage({ type: 'SKIP_WAITING' });
+  pedir(registro.waiting);
+  registro.addEventListener('updatefound', () => {
+    const nuevo = registro.installing;
+    nuevo?.addEventListener('statechange', () => {
+      if (nuevo.state === 'installed' && navigator.serviceWorker.controller) pedir(nuevo);
+    });
+  });
 }

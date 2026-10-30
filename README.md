@@ -155,6 +155,8 @@ Todos los comandos son scripts de npm; ninguno necesita bash. Funcionan en Power
 | `npm run test:e2e` | Recorridos completos en el navegador (Playwright) |
 | `npm run verificar` | Tipos + lint + pruebas + build, todo junto |
 | `npm run voz:generar` / `voz:lista` | Voces de Mixtle y lista de frases para grabar (ver abajo) |
+| `npm run voz:silencio` | Mide cuánto silencio tienen los audios de la voz (duración, silencio, hablado, fuerte, MB) |
+| `npm run actualizacion:probar -- --antes=… --despues=…` | Reproduce el paso de una versión guardada a una nueva (ver *Cuando se publica una versión nueva*) |
 | `npm run capturas` | Regenera las capturas de `docs/capturas/` jugando un recorrido (con `npm run preview` abierto) |
 
 Atajos para revisar (solo en desarrollo o con `?e2e` en la dirección): `?galeria` muestra todo el arte; `?escena=Rescate&unidad=u2` entra directo a una aventura (`Bosque`/`u3`, `Bici`/`u4`, `Lonchera`/`u5`, o una escena de la v1 como `Nivel2`).
@@ -234,6 +236,29 @@ La v3 deja listo **Azure AI Speech** como proveedor (`scripts/voz/azure.mjs`: AP
 - **Costo.** El plan gratuito (F0) da 500,000 caracteres al mes. Todas las frases del juego suman 38,902 (las 785 de hoy): regenerar todo cabe más de 10 veces al mes. Generar la voz de Alejo costó 38,902 caracteres; con las muestras, el mes va en 58,009. Si una corrida se corta, la siguiente reusa los audios ya pedidos con la misma firma (voz, estilo, ajustes y texto), sin volver a pagarlos. Antes de cada corrida se cuentan los caracteres y el uso del mes se lleva en `.voz-uso.json` (local, ignorado por git); si el mes pasaría de **400,000**, se detiene, salvo con `--forzar`. Entre peticiones espera ~3 s y reintenta los 429 con espera creciente.
 - **Pruebas.** `tests/azure.test.ts` corre todo contra un servidor falso (SSML, lista de voces, reintento de 429, presupuesto, página de muestras). También se probó `voz:generar` completo contra un servidor falso: SSML con estilo y tono, reintento, normalización y registro de uso.
 
+### El silencio de la voz (recorte)
+
+René revisó la voz de Alejo: en 16 audios al azar, el 32 % del tiempo era silencio. Por ejemplo, el diploma de la unidad 4 ("…Hojitas que juntaron: cero. Nubes de humo que esquivaron: siete…") duraba 17.2 s con 9.8 s de silencio, y "desechables." traía 0.9 s. Medido en todos los audios con `npm run voz:silencio` (silencio = pausas de 0.1 s o más por debajo de −50 dB), antes era el **30.1 %** (29 de octubre de 2026).
+
+**Qué se hizo.**
+1. **Recorte al normalizar** (`voz.config.json` → `normalizacion`, aplicado en `scripts/voz/sintesis.py` a todo audio, venga de Azure, de Kokoro o de una grabación humana): se quita el silencio del inicio y del final dejando 80 ms, y las pausas internas de más de 0.5 s se acortan a 0.35 s (`silenceremove` de ffmpeg, antes de `loudnorm`). Cambiar esos parámetros vuelve a convertir todos los audios desde los originales guardados **sin pedir nada nuevo a Azure**: la firma con la que se reusa el original no incluye la normalización (`scripts/voz/firmas.mjs`).
+2. **Las frases con dos puntos se reescribieron de corrido.** El diploma de la unidad 4 ahora dice "¡Felicidades, guardianes del aire! Juntaron diez hojitas y esquivaron siete nubes de humo. ¡Bravo!" (8.4 s, 1.2 s de silencio), con "una hojita" y "una nube de humo" en singular (los números femeninos existen ahora como piezas: "una", "veintiuna"…). Si juntaron cero hojitas o esquivaron cero nubes, no dice "cero": anima para la próxima vez, como el resumen de lección. También se reescribieron "…su siguiente parada. ¡Tóquenla para jugar!" y "No pasa nada, ahí viene otra vez". Los títulos y temas de las unidades ("Unidad 2: Los animales del parque") y "¡Ganaron una estampa nueva: El tlacuache!" se dejaron como están: son texto en pantalla, y el recorte ya acorta su pausa.
+3. **Los sonidos sueltos vienen del estilo «excited».** 22 audios traían un sonido corto después de una pausa larga (en "tres", "once", "sesenta y un"…). Se pidieron esas frases con y sin estilo: sin el estilo no pasa nunca; con él, cambia de una toma a otra (dos de tres tomas de "tres" salieron limpias). Así que no se corta nada: para las frases cortas (hasta tres palabras, donde un sonido tras una pausa larga no puede ser texto), el generador pide hasta tres tomas y se queda con la más limpia (`scripts/voz/sonidoSuelto.mjs`). Quedó una con sonido suelto tras tres tomas: la pieza "hojitas, y", que solo se usa de respaldo (los resúmenes de lección están grabados completos). No se probó `<break>` en SSML: el recorte y las retomas bastaron.
+
+**Medido antes y después** (`docs/voz-silencio-antes.json`, `-despues.json`, `-comparacion.json`):
+
+| | Antes (785 audios) | Después (798 audios) |
+|---|---|---|
+| Duración total | 3,840.6 s | **3,125.3 s** |
+| Silencio | 1,154.2 s, **30.1 %** | 488.9 s, **15.6 %** |
+| `public/voz` | 30.91 MB | **25.19 MB** |
+| El diploma del ejemplo | 17.2 s, 9.8 s de silencio | 8.4 s, 1.2 s |
+| "desechables." | 1.9 s, 0.9 s de silencio | 1.1 s, 0.0 s |
+
+**Que no se cortaran sílabas.** En los 673 audios cuyo texto no cambió, el tiempo por encima de −35 dB (las sílabas) suma 1,606.2 s antes y 1,611.7 s después; el silencio en ellos bajó de 25.2 % a 13.3 %. Por archivo, los únicos que perdieron más de 50 ms de ese tiempo fueron tres tomas nuevas de Azure ("once", "tres", "sesenta y un": el sonido suelto ya no está) y "Es de metal y tiene forma de vaso." (87 ms): se revisaron sus tramos fuertes uno por uno y todos siguen ahí con la misma duración, con diferencias de hasta 20 ms en los bordes por la nueva ganancia de `loudnorm`. Los 798 se decodificaron con ffmpeg sin errores. Lo que queda de silencio son las pausas de hasta 0.5 s y los respiros del estilo, que están por encima de −50 dB.
+
+**Lo que gastó en Azure:** 10,992 caracteres (131 frases nuevas: las 125 del diploma de la unidad 4, las 2 reescritas y las piezas femeninas, más 6 retomas por sonido suelto). El mes va en 69,265 de 400,000. Los 667 audios cuyo texto no cambió se reusaron de los originales guardados.
+
 ### Grabar una voz humana
 
 1. Corre `npm run voz:lista`. Genera `docs/frases-mixtle.csv` con columnas `id`, `archivo`, `texto`, `unidad` y `lección`; se abre bien en Excel.
@@ -300,7 +325,7 @@ La v3 usa técnicas de marketing y de diseño de juegos para que el juego atraig
 
 
 
-**Pruebas unitarias (Vitest)**, en `tests/`: **1421 pruebas en 35 archivos, todas pasan** (29 de octubre de 2026). Además de las de la v2, la v3 agrega pruebas de marca (logo al día con las fuentes, 8 poses, presupuesto de la primera pantalla), migración y mudanza de datos, nombre (ningún "Caco" en código ni voz), Azure contra un servidor falso, protección de la llave, vitrina y transición, racha y mitad de lección, recompensas, diplomas, accesorios y vestidor, y el ajuste automático por rendimiento. Entre ellas:
+**Pruebas unitarias (Vitest)**, en `tests/`: **1445 pruebas en 36 archivos, todas pasan** (29 de octubre de 2026). Además de las de la v2, la v3 agrega pruebas de marca (logo al día con las fuentes, 8 poses, presupuesto de la primera pantalla), migración y mudanza de datos, nombre (ningún "Caco" en código ni voz), Azure contra un servidor falso, protección de la llave, vitrina y transición, racha y mitad de lección, recompensas, diplomas, accesorios y vestidor, y el ajuste automático por rendimiento. Entre ellas:
 
 - **Contenido válido:** cada unidad tiene 4 o 5 lecciones; cada lección tiene de 6 a 8 ejercicios con al menos 3 tipos; las respuestas correctas existen, los dibujos existen, no hay ejercicios imposibles (parejas sin repetir, "encuentra el error" con 1 a 3 errores dentro de la escena). Cuando una pregunta habla de un bote, dice su color **y su nombre** ("el bote naranja de no reciclable") y el bote se ve en pantalla. Cada archivo de contenido está marcado con `TODO(Eco Urban)`.
 - **Voz:** **toda frase narrada (785) tiene su audio en el manifiesto** y su mp3 existe, y **las 175 frases con números** (fin de lección, cofre, diplomas y la pregunta de cada accesorio) suenan como **un solo audio**, sin piezas encadenadas.
@@ -333,9 +358,9 @@ Para correrlos contra un sitio ya publicado, sin construir nada en local: `$env:
 | Lo que se descarga al abrir el juego | **≈ 158 KB** comprimidos (React 44 KB + app 107 KB + estilos 7 KB) y 48 KB de la fuente Nunito |
 | Phaser (solo al entrar a una aventura) | ≈ 310 KB comprimidos, más 2 a 7 KB por aventura |
 
-| Voces de Mixtle | 785 frases con Alejo (Azure), **29.5 MB** en total (mono, 64 kbps), incluidas 175 frases con números grabadas completas. Las 785 se decodificaron con ffmpeg sin errores. |
+| Voces de Mixtle | 798 frases con Alejo (Azure), **25.2 MB** en total (mono, 64 kbps, silencio recortado), incluidas las frases con números grabadas completas. Las 798 se decodificaron con ffmpeg sin errores. |
 | Música y efectos | 1.3 MB (3 pistas) y 78 KB (12 efectos) |
-| Juego sin internet (PWA) | Al instalarse, el *service worker* guarda lo esencial (25 archivos, 744 KB). Después, en segundo plano, se bajan 831 archivos más (**33.9 MB**: el resto del código, imágenes, efectos, voces y música); el modo facilitador muestra el porcentaje y "Listo para usar sin internet" (ver *Carga en una red lenta*) |
+| Juego sin internet (PWA) | Al instalarse, el *service worker* guarda lo esencial (25 archivos, 744 KB). Después, en segundo plano, se bajan 844 archivos más (**26.9 MB**: el resto del código, imágenes, efectos, voces y música); el modo facilitador muestra el porcentaje y "Listo para usar sin internet" (ver *Carga en una red lenta*) |
 
 **En el sitio publicado** (27 de octubre de 2026, en la dirección de entonces, caco-al-rescate.vercel.app, Chrome en Windows 11, conexión doméstica):
 
@@ -368,7 +393,7 @@ El "antes" es el código anterior (`c62556e`, ya con la voz de Alejo) construido
 | Visita de regreso | No se midió: el *service worker* anterior no se activó en 19 min (ver abajo) | **0.35 y 0.37 s** (meta < 0.5 s); 0.72 s con la transición terminada |
 | Inicio listo (primera visita) | 5.6 s | 5.9 s |
 | *Service worker* activo, desde que se abre la página | **No se activó en 19 min.** Bajaba 862 archivos uno por uno (~18 min para 22.7 MB) | **26.8 s** en local y **27.2 s** en producción (25 archivos) |
-| "Listo para usar sin internet" | — (era parte de la instalación del *service worker*) | **4.8 min** en local y **4.1 min** en producción (831 archivos, 33.9 MB, en segundo plano) |
+| "Listo para usar sin internet" | — (era parte de la instalación del *service worker*) | **4.8 min** en local y **4.1 min** en producción (831 archivos, 33.9 MB, en segundo plano). Con la voz recortada son **844 archivos, 26.9 MB** (ver *El silencio de la voz*): la nueva medición se detuvo sola por memoria baja tras la primera visita (`docs/carga-voz-recortada.json`) y **está pendiente**; debería tardar menos en proporción |
 
 **En producción** (<https://mixtle-al-rescate.vercel.app>, 29 de octubre de 2026, por el mismo proxy con Slow 4G; `docs/carga-produccion.json`):
 - "¡Jugar!" → "¿Quién va a jugar?": **0.35 s** en primera visita y **0.36 s** en la de regreso.
@@ -408,8 +433,34 @@ El "antes" es el código anterior (`c62556e`, ya con la voz de Alejo) construido
 - **No se ha probado con niñas y niños** ni en un iPad real con Safari. Se probó con Chrome en Windows (también con emulación táctil a 1024×768). Esa prueba de uso es el siguiente paso recomendado.
 - **El avance vive en un solo aparato.** Si se borran los datos del navegador o se cambia de laptop, el grupo empieza de nuevo. Es a propósito (no hay servidor ni cuentas), pero hay que saberlo.
 - **La voz es sintética.** Alejo suena natural, pero algunas palabras pueden sonar raras. El diccionario de pronunciación y la grabación humana (ver arriba) son la forma de corregirlas sin tocar código.
-- **Versiones nuevas:** al publicar una versión, el *service worker* la descarga en segundo plano. En cuanto toma el control, Mixtle usa la lista de audios nueva y la página se recarga sola al volver a la pantalla de inicio (nunca a media lección). La lista de audios siempre se pide primero a internet, para que una versión vieja guardada no deje a Mixtle con audios viejos.
-- **La primera visita necesita internet:** para que después funcione sin conexión se bajan unos 34 MB (sobre todo las voces), en segundo plano y sin estorbar el juego. Con Slow 4G tarda ~4.8 min. Conviene abrir el juego una vez con buena señal antes del taller y revisar en el modo facilitador que diga "Listo para usar sin internet".
+- **Versiones nuevas:** al publicar una versión, el *service worker* la descarga en segundo plano. En cuanto toma el control, Mixtle usa la lista de audios nueva y la página se recarga sola al volver a la pantalla de inicio (nunca a media lección). La lista de audios siempre se pide primero a internet, para que una versión vieja guardada no deje a Mixtle con audios viejos. Ver *Cuando se publica una versión nueva*.
+
+### Cuando se publica una versión nueva
+
+René abrió el juego en una laptop que tenía la versión anterior guardada por su *service worker* y siguió viendo la versión vieja (con la voz anterior), aunque producción ya servía la nueva. Se reprodujo y se corrigió (29 de octubre de 2026).
+
+**Qué pasaba.** El *service worker* nuevo se instalaba pero se quedaba **"esperando"**: no se activaba hasta que se cerraran todas las pestañas del juego, y mientras tanto el anterior seguía sirviendo la versión vieja que tenía guardada. La causa: el plugin de la PWA solo pone las banderas `skipWaiting` y `clientsClaim` cuando el registro es automático (`injectRegister: "auto"`), y desde que el *service worker* se registra desde el código del juego no lo era; en la práctica, **ningún build anterior las tuvo**, así que cada versión nueva requería cerrar todas las pestañas.
+
+**Qué se corrigió.**
+- El build pide `skipWaiting` y `clientsClaim` explícitamente (`vite.config.ts`): la versión nueva se activa en cuanto se instala y toma las pestañas abiertas. Con eso, el juego se recarga solo al volver al inicio (como ya hacía `src/servicios/actualizacion.ts`).
+- Al registrar, el juego le pide a cualquier *service worker* que ya esté esperando que se active (`activarLaQueEspera`, en `src/servicios/arranque.ts`): cubre a las laptops que se quedaron con un build anterior en espera.
+- Los grupos y su avance viven en IndexedDB y no se tocan: siguen ahí después de la actualización.
+
+**Cómo se probó** (`npm run actualizacion:probar -- --antes=<build anterior> --despues=<build nuevo>`, `scripts/probar-actualizacion.mjs`). Un servidor local sirve el build anterior; Chrome lo abre, deja que su *service worker* se active y guarde todo (856 archivos), se siembra un grupo con 2 paradas hechas y se cierra la pestaña. Luego el servidor pasa a servir el build nuevo en la misma dirección y se vuelve a abrir el link:
+
+| | Build anterior → build de hoy sin el arreglo | Build anterior → build con el arreglo |
+|---|---|---|
+| Al abrir el link | Se ve la versión anterior (la sirve su *service worker*) | Se ve la versión anterior |
+| El *service worker* nuevo | Instalado y **esperando**; en 60 s no toma el control | Se activa, toma la pestaña y **el juego se recarga solo a los 6.2 s** de abrir |
+| Lo que queda | **La versión vieja**, hasta cerrar la pestaña y volver a abrir | La versión nueva (precache de 24 archivos), con el grupo y sus 2 paradas intactos |
+
+La prueba termina con error si la nueva no toma el control sola o si el avance cambia. Las dos piezas del arreglo tienen pruebas unitarias en `tests/actualizacion.test.ts`. En producción, con Slow 4G, el *service worker* nuevo tarda más en instalarse (~27 s, ver *Carga en una red lenta*), así que la recarga llega más tarde que en local.
+
+**Si una laptop se queda con una versión vieja** (por ejemplo, una que no abrió el juego desde antes de este arreglo):
+1. **Cerrar todas las pestañas del juego** y volver a abrir el link. Con eso el *service worker* nuevo toma el control.
+2. Si sigue igual, en la pestaña del juego: **Ctrl+Shift+R** (recarga sin caché).
+3. **Nunca "Borrar datos del sitio"** desde la configuración del navegador: eso borra los grupos y su avance, que solo viven en esa laptop. Cerrar pestañas y recargar no los tocan.
+- **La primera visita necesita internet:** para que después funcione sin conexión se bajan unos 27 MB (sobre todo las voces), en segundo plano y sin estorbar el juego. Con Slow 4G, los 34 MB de antes del recorte de la voz tardaban ~4.8 min; con 27 MB debería ser menos, pendiente de medir. Conviene abrir el juego una vez con buena señal antes del taller y revisar en el modo facilitador que diga "Listo para usar sin internet".
 
 - **Las aventuras son minijuegos cortos** (2 a 4 minutos). Las del bosquecito y la lonchera siempre tienen el mismo número de cosas: los diplomas muestran el esfuerzo, no un puntaje para comparar grupos.
 - El diploma de la unidad 1 cuenta los residuos separados en el nivel 2 y en la lluvia de basura (12 + 5) y los animales ayudados.

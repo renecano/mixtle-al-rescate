@@ -78,6 +78,13 @@ export default defineConfig({
         ],
       },
       workbox: {
+        // Una versión nueva toma el control sola: se activa sin esperar a que se cierren todas las
+        // pestañas (skipWaiting) y controla las pestañas abiertas (clientsClaim); entonces el juego se
+        // recarga al volver al inicio (src/servicios/actualizacion.ts). El plugin solo pone estas dos
+        // banderas con injectRegister "auto", que aquí no se usa: sin ellas, la versión nueva se quedaba
+        // "esperando" y la laptop seguía con la vieja hasta cerrar todas las pestañas.
+        skipWaiting: true,
+        clientsClaim: true,
         // Al instalarse, el service worker guarda solo lo esencial para arrancar: index.html, el código
         // del inicio, Grupos y Camino, el CSS y las fuentes (ver archivosEsenciales). Workbox guarda un
         // archivo a la vez y cada uno cuesta una ida y vuelta; antes eran 862 (con todo el audio) y con

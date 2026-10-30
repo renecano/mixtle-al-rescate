@@ -1,35 +1,69 @@
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import { describe, expect, it, vi } from 'vitest';
 import { vigilarActualizaciones } from '../src/servicios/actualizacion';
+import { activarLaQueEspera } from '../src/servicios/arranque';
 
-/** Un service worker de mentira: solo lo que usa vigilarActualizaciones. */
-function swFalso(conControlador: boolean) {
-  const eventos = new EventTarget();
-  return {
-    controller: conControlador ? ({} as ServiceWorker) : null,
-    addEventListener: eventos.addEventListener.bind(eventos),
-    cambiarVersion: () => eventos.dispatchEvent(new Event('controllerchange')),
-  };
+/*
+ * Una versión nueva publicada debe tomar el control sola. Antes no pasaba: el service worker nuevo se
+ * quedaba "esperando" y la laptop seguía con la versión vieja hasta cerrar todas las pestañas (René lo
+ * vio con la voz anterior). El escenario completo, con dos builds reales, lo reproduce
+ * scripts/probar-actualizacion.mjs; aquí, las dos piezas que lo hacen posible.
+ */
+
+/** Un service worker falso: solo recibe mensajes y cambia de estado. */
+function swFalso(state = 'installed') {
+  const sw = { state, mensajes: [] as unknown[], oyentes: [] as (() => void)[], postMessage: (m: unknown) => sw.mensajes.push(m), addEventListener: (_: string, fn: () => void) => sw.oyentes.push(fn), cambiar(nuevo: string) { sw.state = nuevo; sw.oyentes.forEach((f) => f()); } };
+  return sw;
 }
 
-describe('versión nueva publicada', () => {
-  it('avisa una sola vez cuando la versión nueva toma el control', () => {
-    const sw = swFalso(true);
-    const aviso = vi.fn();
-    vigilarActualizaciones(aviso, sw as unknown as ServiceWorkerContainer);
-    sw.cambiarVersion();
-    sw.cambiarVersion();
-    expect(aviso).toHaveBeenCalledTimes(1);
+describe('el service worker nuevo toma el control sin cerrar las pestañas', () => {
+  it('el build pide skipWaiting y clientsClaim (el plugin no los pone solo sin injectRegister "auto")', () => {
+    const config = readFileSync(join(process.cwd(), 'vite.config.ts'), 'utf8');
+    const workbox = config.slice(config.indexOf('workbox: {'));
+    expect(workbox).toMatch(/skipWaiting: true/);
+    expect(workbox).toMatch(/clientsClaim: true/);
   });
 
-  it('en la primera visita no avisa (no hay versión vieja que cambiar)', () => {
-    const sw = swFalso(false);
-    const aviso = vi.fn();
-    vigilarActualizaciones(aviso, sw as unknown as ServiceWorkerContainer);
-    sw.cambiarVersion();
-    expect(aviso).not.toHaveBeenCalled();
+  it('al registrar, a un service worker que ya está esperando se le pide activarse', () => {
+    const esperando = swFalso('installed');
+    activarLaQueEspera({ waiting: esperando as never, installing: null, addEventListener: () => undefined });
+    expect(esperando.mensajes).toEqual([{ type: 'SKIP_WAITING' }]);
   });
 
-  it('sin service worker (navegador viejo o pruebas) no hace nada', () => {
-    expect(() => vigilarActualizaciones(vi.fn(), undefined)).not.toThrow();
+  it('si llega una versión nueva mientras se juega, se le pide activarse en cuanto termina de instalarse', () => {
+    const nuevo = swFalso('installing');
+    const oyentes: Record<string, () => void> = {};
+    vi.stubGlobal('navigator', { serviceWorker: { controller: {} } });
+    activarLaQueEspera({ waiting: null, installing: nuevo as never, addEventListener: (ev: string, fn: () => void) => (oyentes[ev] = fn) });
+    oyentes.updatefound!();
+    nuevo.cambiar('installed');
+    expect(nuevo.mensajes).toEqual([{ type: 'SKIP_WAITING' }]);
+    vi.unstubAllGlobals();
+  });
+
+  it('en la primera instalación (sin versión anterior controlando) no se pide nada: no hay a quién reemplazar', () => {
+    const nuevo = swFalso('installing');
+    const oyentes: Record<string, () => void> = {};
+    vi.stubGlobal('navigator', { serviceWorker: { controller: null } });
+    activarLaQueEspera({ waiting: null, installing: nuevo as never, addEventListener: (ev: string, fn: () => void) => (oyentes[ev] = fn) });
+    oyentes.updatefound!();
+    nuevo.cambiar('installed');
+    expect(nuevo.mensajes).toEqual([]);
+    vi.unstubAllGlobals();
+  });
+
+  it('cuando la versión nueva toma el control, se avisa una vez (y nunca en la primera instalación)', () => {
+    const avisos = vi.fn();
+    const oyentes: (() => void)[] = [];
+    vigilarActualizaciones(avisos, { controller: {}, addEventListener: (_: string, fn: () => void) => oyentes.push(fn) } as never);
+    oyentes.forEach((f) => f());
+    oyentes.forEach((f) => f());
+    expect(avisos).toHaveBeenCalledTimes(1);
+    const primeraVez = vi.fn();
+    const oyentes2: (() => void)[] = [];
+    vigilarActualizaciones(primeraVez, { controller: null, addEventListener: (_: string, fn: () => void) => oyentes2.push(fn) } as never);
+    oyentes2.forEach((f) => f());
+    expect(primeraVez).not.toHaveBeenCalled();
   });
 });

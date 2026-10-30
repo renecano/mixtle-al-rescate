@@ -1,0 +1,28 @@
+{
+  "url": "http://mixtle.prueba:4310/",
+  "red": {
+    "latenciaMs": 562.5,
+    "bajadaBps": 180000,
+    "subidaBps": 84375
+  },
+  "metodo": "proxy que limita todo el tráfico de Chrome (página y service worker)",
+  "calibracion": {},
+  "visitas": [],
+  "mediana": {
+    "primera": {
+      "inicioListoS": null,
+      "jugarAGruposMs": null,
+      "jugarAGruposSinCubiertaMs": null,
+      "jugarAMusicaMs": null
+    },
+    "regreso": {
+      "inicioListoS": null,
+      "jugarAGruposMs": null,
+      "jugarAGruposSinCubiertaMs": null,
+      "jugarAMusicaMs": null
+    },
+    "serviceWorkerActivoS": null,
+    "listoSinInternetS": null
+  },
+  "actualizado": "2026-10-30T00:26:44.992Z"
+}
