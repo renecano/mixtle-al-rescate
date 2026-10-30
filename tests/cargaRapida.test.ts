@@ -1,7 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 /*
- * Lo que hace que "¡Jugar!" no espere a la red (medido en docs/carga-*.json con scripts/medir-carga.mjs):
+ * Lo que hace que "¡Jugar!" no espere a la red (medido en docs/mediciones/carga-*.json con scripts/medir-carga.mjs):
  * los efectos se piden de uno en uno cuando se necesitan, y la voz no detiene nada si llega tarde.
  */
 

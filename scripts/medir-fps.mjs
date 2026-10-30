@@ -6,7 +6,7 @@
 //   --suave: con "animaciones suaves" encendidas (modo facilitador).
 //   --solo=camino: solo los escenarios cuyo nombre empieza así (por ejemplo, para comparar el camino
 //   con y sin las decoraciones de los lados en las mismas condiciones).
-// Imprime una tabla y escribe docs/rendimiento-v3.json (o rendimiento-v3-sin-ventana.json).
+// Imprime una tabla y escribe docs/mediciones/rendimiento-v3.json (o rendimiento-v3-sin-ventana.json).
 import { chromium } from '@playwright/test';
 import { writeFileSync } from 'node:fs';
 import { cpus, totalmem } from 'node:os';
@@ -155,5 +155,5 @@ const equipo = {
 };
 const soloArchivo = process.argv.find((x) => x.startsWith('--solo='))?.slice(7);
 const archivo = `rendimiento-v3${conVentana ? '' : '-sin-ventana'}${suave ? '-suave' : ''}${soloArchivo ? `-${soloArchivo}` : ''}.json`;
-writeFileSync(join(process.cwd(), 'docs', archivo), `${JSON.stringify({ fecha: new Date().toISOString().slice(0, 10), equipo, resultados }, null, 2)}\n`);
-console.log(`Equipo: ${equipo.cpu} · ${equipo.nucleos} núcleos · ${equipo.memoriaGB} GB · ${equipo.navegador}. Guardado en docs/${archivo}`);
+writeFileSync(join(process.cwd(), 'docs', 'mediciones', archivo), `${JSON.stringify({ fecha: new Date().toISOString().slice(0, 10), equipo, resultados }, null, 2)}\n`);
+console.log(`Equipo: ${equipo.cpu} · ${equipo.nucleos} núcleos · ${equipo.memoriaGB} GB · ${equipo.navegador}. Guardado en docs/mediciones/${archivo}`);

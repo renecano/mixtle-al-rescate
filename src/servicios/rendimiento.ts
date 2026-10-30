@@ -3,7 +3,7 @@
  * por tarjeta de video), el juego se calma solo: mide los cuadros por segundo reales un momento
  * después de entrar y, si van muy bajos, enciende las "animaciones suaves" en esta sesión (no se
  * guarda: el facilitador puede encenderlas o apagarlas en su panel).
- * Medido (docs/rendimiento-v3*.json): con tarjeta de video, 59–60 fps; sin ella, 11–33 fps con
+ * Medido (docs/mediciones/rendimiento-v3*.json): con tarjeta de video, 59–60 fps; sin ella, 11–33 fps con
  * todas las animaciones y 57–60 fps con las suaves.
  */
 

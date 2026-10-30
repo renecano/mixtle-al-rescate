@@ -4,7 +4,7 @@ import { UNIDADES } from '../src/contenido/unidades';
 import { descargaDetenidaHasta, RETENCION_MAXIMA_MS, retenerDescarga, soltarDescarga } from '../src/servicios/sinInternet';
 
 /*
- * Abrir la primera lección rápido la primera vez (medido en docs/carga-leccion-*.json con
+ * Abrir la primera lección rápido la primera vez (medido en docs/mediciones/carga-leccion-*.json con
  * scripts/medir-carga.mjs --leccion): al tocarla se adelanta lo primero que dice Mixtle y la descarga
  * en segundo plano espera hasta que el primer ejercicio esté en pantalla y narrando.
  */

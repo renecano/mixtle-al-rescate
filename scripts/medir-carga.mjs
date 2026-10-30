@@ -11,7 +11,7 @@
 // conocido bajado desde la página debe tardar lo que dice la red. (Que el service worker también
 // pasa por el límite se vio midiendo: sus 22.7 MB tardaron ~18 min en pasar por el proxy.)
 //
-// Uso: npm run build && node scripts/medir-carga.mjs [--veces=3] [--salida=docs/carga-despues.json]
+// Uso: npm run build && node scripts/medir-carga.mjs [--veces=3] [--salida=docs/mediciones/carga-despues.json]
 //      [--dist=ruta]       servir otra carpeta construida (por ejemplo, la versión anterior)
 //      [--url=https://…]  medir un sitio publicado en lugar de la versión local
 //      [--solo-primera]   solo la primera visita (sin esperar al service worker ni a la descarga)

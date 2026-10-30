@@ -1,6 +1,6 @@
 # Marca de "Mixtle al rescate"
 
-Mini guía para quien haga materiales del juego (Eco Urban, maestras y maestros, diseño). Dirección visual elegida: **A · Parque de día** (ver `docs/direccion-visual/index.html`).
+Mini guía para quien haga materiales del juego (Eco Urban, maestras y maestros, diseño). Dirección visual elegida: **A · Parque de día**.
 
 ## Logo
 

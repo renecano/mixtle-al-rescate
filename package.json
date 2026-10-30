@@ -25,7 +25,6 @@
     "voz:usar": "node scripts/voz/usar.mjs",
     "voz:silencio": "node scripts/voz/medir-silencio.mjs",
     "actualizacion:probar": "node scripts/probar-actualizacion.mjs",
-    "docs:direccion": "node scripts/direccion-visual.mjs",
     "marca:generar": "node scripts/marca.mjs",
     "presupuesto": "node scripts/presupuesto.mjs"
   },

@@ -1,7 +1,7 @@
 // Mide la transición al tocar "¡Jugar!" con la CPU 4× más lenta (como Edge en una laptop modesta): cuadros
 // por segundo durante los 1.6 s que siguen al toque, el peor cuadro y las tareas largas del hilo principal
 // (PerformanceObserver longtask). Uso: npm run build && node scripts/medir-transicion.mjs [veces=3].
-// Resultado del 29 de octubre de 2026 en docs/transicion-jugar-4x.json.
+// Resultado del 29 de octubre de 2026 en docs/mediciones/transicion-jugar-4x.json.
 import { chromium } from '@playwright/test';
 import { preview } from 'vite';
 

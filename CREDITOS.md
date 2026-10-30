@@ -15,7 +15,7 @@ Mixtle es un personaje original: se dibujó a partir de rasgos reales del cacomi
 
 ## Música (solo CC0)
 
-Elegida por René en `docs/muestras-musica/` entre candidatas CC0 verificadas en su página. Los archivos del juego están en `public/musica/` (normalizados y recomprimidos con `npm run musica:instalar`).
+Elegida por el equipo entre candidatas CC0 verificadas en su página (`npm run musica:muestras` las genera en `docs/muestras-musica/`, que no va en el repositorio). Los archivos del juego están en `public/musica/` (normalizados y recomprimidos con `npm run musica:instalar`).
 
 | Pista del juego | Obra | Autor | Fuente | Licencia |
 |---|---|---|---|---|
@@ -23,7 +23,7 @@ Elegida por René en `docs/muestras-musica/` entre candidatas CC0 verificadas en
 | `lecciones.mp3` (lecciones y aventuras) | Children's March Theme | CleytonKauffman | <https://opengameart.org/content/childrens-march-theme> | CC0 |
 | `celebracion.mp3` (al terminar) | Cozy Puzzle Jingle & Result — Clear (Jingle) | MintoDog | <https://opengameart.org/content/cozy-puzzle-jingle-result> | CC0 |
 
-Las demás candidatas de `docs/muestras-musica/` también son CC0; sus fuentes están en `scripts/musica/candidatas.json`.
+Las demás candidatas también son CC0; sus fuentes están en `scripts/musica/candidatas.json`.
 
 ## Voz de Mixtle
 
@@ -35,7 +35,7 @@ Las demás candidatas de `docs/muestras-musica/` también son CC0; sus fuentes e
 | espeak-ng (vía `espeakng-loader`) | Convierte texto a fonemas al generar; no se incluye en el juego | GPL-3.0 (herramienta de desarrollo) |
 | Respaldo | Si a una frase le falta su audio, se usa la voz del navegador (Web Speech API) | Según el navegador |
 
-Muestras que se compararon (`docs/muestras-voz/`, no se usan en el juego):
+Muestras que se compararon al elegir la voz (se generan con `npm run voz:muestras`; no están en el repositorio ni se usan en el juego):
 
 - Piper `es_MX-ald-medium`: datos [Ald Mexican Spanish](https://huggingface.co/datasets/rmcpantoja/Ald_Mexican_Spanish_speech_dataset) (Unlicense), afinado desde `es_ES-davefx` (datos CC0).
 - Piper `es_MX-claude-high`: datos de [HirCoir/Piper-TTS-Spanish](https://huggingface.co/spaces/HirCoir/Piper-TTS-Spanish) (Apache-2.0).

@@ -17,3 +17,7 @@ __pycache__/
 .env*
 # Uso mensual de Azure Speech (local)
 .voz-uso.json
+
+# Muestras para elegir voz y música (se generan con npm run voz:muestras / musica:muestras)
+docs/muestras-voz/
+docs/muestras-musica/
