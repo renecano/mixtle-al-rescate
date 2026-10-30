@@ -62,3 +62,20 @@ describe('modo facilitador: ¿se puede usar sin internet?', () => {
     expect(estado()).toHaveTextContent('sigue al volver la conexión');
   });
 });
+
+describe('modo facilitador: "Cerrar" siempre a la vista', () => {
+  it('"Cerrar" va en el pie fijo de la ventana, fuera de la zona que se desplaza (en la tablet quedaba fuera de la vista)', () => {
+    montar();
+    const cerrar = screen.getByRole('button', { name: 'Cerrar' });
+    expect(cerrar.closest('[data-modal-pie]')).not.toBeNull();
+    expect(cerrar.closest('[data-modal-cuerpo]')).toBeNull();
+    // Lo demás sí va en la zona que se desplaza.
+    expect(screen.getByRole('button', { name: 'Borrar este grupo' }).closest('[data-modal-cuerpo]')).not.toBeNull();
+  });
+
+  it('con la confirmación de borrar abierta, "Cerrar" sigue en el pie', () => {
+    montar();
+    fireEvent.click(screen.getByRole('button', { name: 'Borrar este grupo' }));
+    expect(screen.getByRole('button', { name: 'Cerrar' }).closest('[data-modal-pie]')).not.toBeNull();
+  });
+});

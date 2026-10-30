@@ -1,6 +1,6 @@
 import { mkdir, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
-import { expect, type Page, type Request, type TestInfo } from '@playwright/test';
+import { expect, type Locator, type Page, type Request, type TestInfo } from '@playwright/test';
 
 export interface Tocable {
   nombre: string;
@@ -110,8 +110,8 @@ export async function crearGrupo(page: Page, mascota: string, etiqueta = ''): Pr
   await esperarPantalla(page, 'camino');
 }
 
-/** Modo facilitador: mantener presionado el logo 3 segundos y abrir todas las lecciones. */
-export async function desbloquearTodo(page: Page): Promise<void> {
+/** Abre el modo facilitador: mantener presionado el logo 3 segundos. Devuelve su ventana. */
+export async function abrirFacilitador(page: Page): Promise<Locator> {
   const logo = page.locator('[data-logo]');
   const caja = (await logo.boundingBox())!;
   await page.mouse.move(caja.x + caja.width / 2, caja.y + caja.height / 2);
@@ -120,6 +120,12 @@ export async function desbloquearTodo(page: Page): Promise<void> {
   await page.mouse.up();
   const dialogo = page.getByRole('dialog', { name: 'Modo facilitador' });
   await expect(dialogo).toBeVisible();
+  return dialogo;
+}
+
+/** Modo facilitador: mantener presionado el logo 3 segundos y abrir todas las lecciones. */
+export async function desbloquearTodo(page: Page): Promise<void> {
+  const dialogo = await abrirFacilitador(page);
   await dialogo.getByRole('checkbox').first().check({ force: true });
   await tocarBoton(page, 'Cerrar');
 }

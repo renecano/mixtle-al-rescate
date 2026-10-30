@@ -71,6 +71,12 @@ Además, el encabezado del camino ya cabe en una línea en la tablet: 80 px de a
 
 **La mascota se salía de su recuadro en el vestidor** y tapaba las tarjetas de los accesorios (el cacomixtle por la cola, la ardilla), en una ventana normal de la laptop. La causa: la mascota iba con `height: 100%` dentro de una celda de *grid*, y la fila crecía al tamaño natural del dibujo (472×440 px), así que la vista previa salía siempre a tamaño natural. Ahora la vista previa es un recuadro de tamaño fijo según la pantalla y la mascota se escala para caber a lo alto y a lo ancho, con un margen del 16 % para los accesorios que sobresalen (la capa, la mochila); en pantallas anchas la vista previa va a la izquierda y los accesorios a la derecha. `e2e/vestidor.spec.ts` lo comprueba con las seis mascotas, sin accesorio, con cada uno y con todos, en 1920×1080, 1366×768, 1280×720, 1024×768, una ventana de 1280×650 y esa ventana con el zoom al 125 % (288 medidas por mascota: nada se sale del recuadro ni toca una tarjeta). Las demás pantallas con la mascota o con Mixtle grande (camino, diploma, álbum, fin de unidad) dan su alto de forma explícita y se revisaron a 1280×650 sin encimarse (capturas en la misma carpeta).
 
+### Cierre del proyecto (30 de octubre de 2026)
+
+Eco Urban vio la versión `v3-demo` y la aprobó. Después se cerraron estos pendientes, un commit cada uno:
+
+**El modo facilitador cabe en la tablet y "Cerrar" siempre se ve.** A 1024×768 el panel había crecido (recorrido guiado, grupo de demostración, borrar) y "Cerrar" quedaba fuera de la vista. Ahora el panel es más compacto (filas más bajas, los dos botones para enseñar el juego lado a lado) y la ventana modal tiene un **pie fijo**: lo que va ahí ("Cerrar") no se desplaza con el contenido (`Modal.tsx`, prop `pie`). Medido en la build de producción con `node scripts/capturas-revision.mjs` (capturas en `docs/capturas-revision-30oct/`): a **1920×1080, 1366×768 y 1024×768 todo cabe sin desplazarse** (0 px de sobra) y "Cerrar" queda dentro de la pantalla; en una **ventana de 1280×650** el contenido se desplaza 93 px (la fila de reiniciar y borrar) y "Cerrar" sigue a la vista; con la confirmación de borrar abierta, también. Queda una prueba unitaria (`tests/panelFacilitador.test.tsx`: "Cerrar" va en el pie, fuera de la zona que se desplaza) y una e2e en los cuatro tamaños (`e2e/facilitador.spec.ts`).
+
 ## Qué cambió en la v2
 
 | v1 | v2 |
@@ -385,6 +391,7 @@ La v3 usa técnicas de marketing y de diseño de juegos para que el juego atraig
 - Cada botón mide **al menos 64 px reales** en el camino, la lección y el inicio.
 - **Ninguna petición envía datos** (solo GET) y no hay errores en la consola.
 - **Vestidor:** la mascota cabe en su recuadro y no tapa las tarjetas, con las seis mascotas, cada accesorio y seis tamaños de pantalla (`e2e/vestidor.spec.ts`, con los ganchos `grupoVestido` y `ponerse` de `?e2e`).
+- **Modo facilitador:** cabe en pantalla y "Cerrar" se ve sin desplazar nada, a 1920×1080, 1366×768, 1280×650 y 1024×768, también con la confirmación de borrar abierta (`e2e/facilitador.spec.ts`).
 
 Para correrlos contra un sitio ya publicado, sin construir nada en local: `$env:BASE_URL="https://…"; npm run test:e2e`. En una laptop de 8 GB usan **un solo navegador a la vez**; con varios, la memoria se agotó y el sistema cerró las pruebas.
 
