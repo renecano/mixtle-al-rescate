@@ -82,6 +82,19 @@ export function Camino() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // Si el grupo cambia con el camino ya en pantalla (el facilitador crea el grupo de demostración), el
+  // globo de Mixtle no se puede quedar con el saludo del grupo anterior: saluda al nuevo.
+  const grupoSaludado = useRef(grupo?.id ?? null);
+  useEffect(() => {
+    if (!grupo || grupo.id === grupoSaludado.current) return;
+    grupoSaludado.current = grupo.id;
+    const mostrar = debeMostrarRecorrido(location.search, grupo.progreso);
+    setRecorrido(mostrar);
+    if (!mostrar) saludar();
+    // Solo cuando cambia el grupo.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [grupo?.id]);
+
   if (!grupo || !progreso) return null;
 
   const terminarRecorrido = () => {
