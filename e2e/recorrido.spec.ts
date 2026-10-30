@@ -184,6 +184,9 @@ test('el botón de sonido se recuerda y el juego no se rompe sin localStorage', 
 test('Inicio: cada botón mide al menos 64 px reales en esta pantalla', async ({ page }) => {
   await abrir(page);
   await esperarPantalla(page, 'inicio');
+  // La entrada animada tarda 2.3 s y el botón "¡Jugar!" aparece creciendo al final: se mide con todo en su lugar.
+  await page.locator('[data-pantalla="inicio"][data-entrada-lista="true"]').waitFor({ timeout: 30_000 });
+  await page.waitForTimeout(700);
   const botones = await page.getByRole('button').all();
   expect(botones.length).toBeGreaterThan(0);
   for (const b of botones) {
