@@ -143,7 +143,8 @@ test('aventura de la unidad 1 completa: grupo → facilitador → intro → 3 ni
   expect(cuentaVoz.conAudio).toBeGreaterThan(20);
   expect(cuentaVoz.conNavegador).toBe(0);
   expect(await page.evaluate(() => window.__mixtle.musica())).not.toBeNull();
-  const audios = peticiones.map((r) => r.url()).filter((u) => /\/voz\/[0-9a-f]{14}\.mp3$/.test(u));
+  // Los audios se llaman <texto>.<configuración de voz>.mp3 (README: "Nombre de los audios de voz").
+  const audios = peticiones.map((r) => r.url()).filter((u) => /\/voz\/[0-9a-f]{14}(\.[0-9a-f]{8})?\.mp3$/.test(u));
   expect(audios.length).toBeGreaterThan(20);
 
   // Privacidad: el juego nunca envía datos (ni imágenes ni nada) a ningún servidor.
