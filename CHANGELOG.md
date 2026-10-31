@@ -36,7 +36,7 @@ Fechas de octubre de 2026. Las etiquetas de git marcan las versiones que vio Eco
 ## v2-eco-urban (27 de octubre) — primera versión que vio Eco Urban
 
 - Arquitectura nueva: React para las pantallas y Phaser solo para las aventuras.
-- Camino de aprendizaje con 5 unidades, lecciones de 6 a 8 ejercicios con 7 tipos de ejercicio dirigidos por datos, cofres y una aventura por unidad.
+- Camino de aprendizaje con 5 unidades, 20 lecciones de 6 a 7 ejercicios con 7 tipos de ejercicio dirigidos por datos, cofres y una aventura por unidad.
 - Grupos de salón (animal, color y etiqueta), avance guardado en el aparato, álbum de estampas con animales de Toluca.
 - Voz pregenerada del personaje, igual en todos los equipos, y música CC0 con *ducking*.
 - Se quitó el módulo de cámara de la v1.

@@ -2,7 +2,7 @@
 
 Videojuego educativo para **Eco Urban A.C.** (Toluca, Estado de México), hecho para el programa *Escuelas Comprometidas con el Medio Ambiente*.
 
-Mixtle, un cacomixtle que vive en los árboles del parque, guía a cada grupo de salón por un **camino de aprendizaje** con cinco unidades: separar la basura, los animales del parque, los árboles, el aire limpio y reducir y reutilizar. Cada lección dura unos 3 minutos y cada unidad termina con una **aventura** (un minijuego) y una **estampa** para el álbum.
+Mixtle, un cacomixtle que vive en los árboles del parque, guía a cada grupo de salón por un **camino de aprendizaje** con cinco unidades: *Separa tu basura*, *Los animales del parque*, *Árboles y áreas verdes*, *Aire limpio* y *Reduce y reutiliza*. Son 20 lecciones (4 por unidad) de unos 3 minutos y cada unidad termina con una **aventura** (un minijuego) y una **estampa** para el álbum.
 
 - **Para quién:** niñas y niños de 1º a 3º de primaria (6 a 8 años). Mixtle narra todo en voz alta; el texto acompaña, pero no hace falta saber leer.
 - **Dónde se juega:** en la laptop de Eco Urban proyectada en el salón (todo el grupo participa) o en tablets táctiles. Después de la primera visita funciona **sin internet**.
@@ -22,7 +22,7 @@ Mixtle, un cacomixtle que vive en los árboles del parque, guía a cada grupo de
 
 En corto:
 
-1. **Antes del taller, con buena señal,** abre <https://mixtle-al-rescate.vercel.app> una vez en cada aparato y espera a que el modo facilitador diga **"Listo para usar sin internet"** (unos 27 MB; 3 a 4 minutos con una red lenta). Desde entonces el juego funciona sin conexión.
+1. **Antes del taller, con buena señal,** abre <https://mixtle-al-rescate.vercel.app> una vez en cada aparato y espera a que el modo facilitador diga **"Listo para usar sin internet"** (unos 28 MB; 3.8 minutos con una red lenta). Desde entonces el juego funciona sin conexión.
 2. **Crea el grupo** en "¿Quién va a jugar?": un animal, un color y, si quieren, una etiqueta corta como "2°B". **Nunca se piden nombres** de niñas ni niños.
 3. **El camino.** Arriba está el parque del grupo, que se llena de vida conforme avanzan; abajo, las lecciones por unidad, un cofre a la mitad y la aventura al final. La primera vez, Mixtle hace un **recorrido guiado** de la pantalla (se puede saltar).
 4. **Modo facilitador:** mantén presionado el logo de Mixtle (arriba a la izquierda) 3 segundos. Ahí se puede abrir todas las lecciones para saltar a una, poner el **modo proyector** (todo más grande), las **animaciones suaves**, crear un **grupo de demostración** con todo terminado (para enseñar el juego en una reunión), reiniciar o borrar el grupo, y ver si ya está listo para usar sin internet.
@@ -34,11 +34,11 @@ En corto:
 |---|---|---|
 | 1. Separa tu basura | **Limpia el parque**: recoger la basura, llevar cada residuo a su bote, sembrar donde quedó limpio, y la "lluvia de basura" | Cacomixtle |
 | 2. Los animales del parque | **Rescate en el parque**: liberar a los animales atrapados y separar su basura | Mariposa monarca |
-| 3. Los árboles | **Siembra un bosquecito**: plantar seis arbolitos y regarlos hasta que crezcan | Colibrí |
-| 4. El aire limpio | **En bici a la escuela**: cambiar de carril y esquivar el humo | Ajolote de montaña |
-| 5. Reducir y reutilizar | **Mi lonchera sin basura**: cada cosa a la lonchera o a "Mejor no" | Tlacuache |
+| 3. Árboles y áreas verdes | **Siembra un bosquecito**: plantar seis arbolitos y regarlos hasta que crezcan | Colibrí |
+| 4. Aire limpio | **En bici a la escuela**: cambiar de carril y esquivar el humo | Ajolote de montaña |
+| 5. Reduce y reutiliza | **Mi lonchera sin basura**: cada cosa a la lonchera o a "Mejor no" | Tlacuache |
 
-Cada unidad tiene 4 o 5 lecciones de 6 a 8 ejercicios, con siete tipos de ejercicio (elegir, arrastrar a los botes, parejas, ordenar, encontrar el error, verdadero o falso y completar la escena). Un error nunca castiga: Mixtle dice "¡Casi!", da una pista y el ejercicio vuelve al final para repasar.
+Cada unidad tiene 4 lecciones (20 en total) de 6 a 7 ejercicios, con siete tipos de ejercicio: **Elige la imagen**, **Al bote**, **Parejas**, **¿Sí o no?**, **Ordena los pasos**, **Encuentra el error** y **Escucha y toca** (sin texto, para quienes todavía no leen). Un error nunca castiga: Mixtle dice "¡Casi!", da una pista y el ejercicio vuelve al final para repasar.
 
 | Camino | Acierto en una lección |
 |---|---|
@@ -58,7 +58,7 @@ Cada unidad tiene 4 o 5 lecciones de 6 a 8 ejercicios, con siete tipos de ejerci
 - El avance de cada grupo se guarda **solo en ese aparato** (IndexedDB del navegador). No viaja a ningún servidor; no hay cuentas ni analítica.
 - El juego **solo descarga** (peticiones GET). Las pruebas automáticas verifican que ninguna petición envíe datos.
 - **No usa la cámara ni el micrófono**, y la configuración del sitio los bloquea (`Permissions-Policy`).
-- Las únicas preferencias que se recuerdan son los botones de voz y música y el modo proyector.
+- Las únicas preferencias que se recuerdan en el aparato son los botones de voz y música, el modo proyector y las animaciones suaves.
 
 ### IA responsable
 
@@ -91,7 +91,7 @@ El juego usa técnicas de diseño de juegos para atraer y motivar, todas orienta
 
 Todo el contenido vive en archivos de datos separados de la lógica, marcados con `TODO(Eco Urban)`. Cada dato que Mixtle dice tiene su fuente en [`docs/fuentes-contenido.md`](docs/fuentes-contenido.md) (CONABIO, CONANP, SEMARNAT, CONAFOR, UNAM, UAEMéx, DOF y, para reciclaje, ECOCE y la industria responsable). El detalle completo está en [`docs/notas-tecnicas.md`](docs/notas-tecnicas.md); en corto:
 
-- **Contenido** (textos, lecciones, ejercicios, datos de las estampas): `src/contenido/unidades/u1-separa.ts` … `u5-reutiliza.ts`, `src/contenido/aventuras.ts` y `src/contenido/textosApp.ts`. Los residuos y los botes (de 2 a 4 categorías) están en `src/data/`. Las pruebas automáticas revisan que el contenido siga siendo válido después de un cambio.
+- **Contenido** (textos, las 20 lecciones y sus ejercicios, datos de las estampas): `src/contenido/unidades/u1-separa.ts` … `u5-reutiliza.ts`, `src/contenido/aventuras.ts` y `src/contenido/textosApp.ts`. Los residuos y los botes (de 2 a 4 categorías) están en `src/data/`. Las pruebas automáticas revisan que el contenido siga siendo válido después de un cambio.
 - **Cambiar la voz.** Hay dos caminos: (a) **otra voz de Azure** con `npm run voz:usar -- azure` y los ajustes de `voz.config.json`, y después `npm run voz:generar` (el plan gratuito de Azure alcanza para regenerar todo más de 10 veces al mes; se necesita una llave propia en `.env.local`, nunca en el repositorio); (b) **una voz humana**: `npm run voz:lista` genera `docs/frases-mixtle.csv` con todas las frases; se graban en `voz-grabaciones/` con el nombre indicado y `npm run voz:generar` las toma en lugar de la voz generada. La pronunciación de palabras sueltas ("Mixtle" suena "miks-tle") se ajusta en el diccionario de `voz.config.json` sin tocar el texto en pantalla.
 - **Cambiar la música.** Las tres pistas son CC0 y están en `public/musica/`. `npm run musica:muestras` genera una página para escuchar candidatas; se elige en `scripts/musica/elegidas.json` y se instala con `npm run musica:instalar`. Hay que anotarla en `CREDITOS.md`.
 - **Marca.** El logo, el ícono y la hoja de personaje de Mixtle están en `docs/marca/` y la guía en [`docs/marca.md`](docs/marca.md).
@@ -114,7 +114,7 @@ Medido entre el 27 y el 30 de octubre de 2026 en una laptop de 8 GB (Intel Core 
 | Cuadros por segundo con tarjeta de video | **59–60 fps** en los momentos más pesados, a 1920×1080 y 1024×768 |
 | Equipos sin aceleración por tarjeta de video | 11–33 fps con todo; el juego lo detecta y pasa solo a las **animaciones suaves: 57–60 fps** |
 | "¡Jugar!" → "¿Quién va a jugar?" con red lenta (Slow 4G), primera visita | **0.35–0.38 s** (antes de optimizar: 5.2 s) |
-| "Listo para usar sin internet" con Slow 4G, en producción | **3.8 min** (844 archivos, ~27 MB, en segundo plano sin estorbar) |
+| "Listo para usar sin internet" con Slow 4G, en producción | **3.8 min** (845 archivos, 28 MB, en segundo plano sin estorbar) |
 | Voz | 798 frases con audio grabado, 25 MB; el silencio dentro de los audios bajó de 30 % a 16 % |
 | Diploma | Se imprime en una sola hoja, carta y A4 |
 | Pruebas unitarias (Vitest) | **1499 pruebas en 43 archivos, todas pasan** (contenido válido, voz completa, camino y grupos, arte de Mixtle, música, aventuras, privacidad de la llave) |
@@ -131,7 +131,7 @@ Medido entre el 27 y el 30 de octubre de 2026 en una laptop de 8 GB (Intel Core 
 - **El avance vive en un solo aparato.** Si se borran los datos del navegador o se cambia de laptop, el grupo empieza de nuevo. Es a propósito (no hay servidor ni cuentas).
 - **La voz es sintética** (Alejo, de Azure). Suena natural, pero alguna palabra puede sonar rara; se corrige con el diccionario de pronunciación o grabando una voz humana. Falta que Eco Urban confirme que le gusta esta voz.
 - **El tráiler tiene la voz anterior de Mixtle**; no se volvió a grabar.
-- **La primera visita necesita internet** (unos 27 MB en segundo plano). Conviene abrir el juego una vez con buena señal antes del taller.
+- **La primera visita necesita internet** (unos 28 MB en segundo plano). Conviene abrir el juego una vez con buena señal antes del taller.
 - **Por confirmar con Eco Urban:** los precios de los accesorios del vestidor, que los ambientes de cada unidad se sientan "de Toluca" y la frase de Mixtle ("¡Al rescate!").
 
 ## Siguiente paso recomendado

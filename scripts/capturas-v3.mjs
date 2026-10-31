@@ -18,6 +18,9 @@ const TAMANOS = [
 ];
 mkdirSync(CARPETA, { recursive: true });
 
+/** Con hojitas para cualquier accesorio: así el vestidor se ve con todos los íconos a color (no al 50 %). */
+const conHojitasParaTodo = (g) => ({ ...g, progreso: { ...g.progreso, hojitas: g.progreso.hojitas + 60 } });
+
 const servidor = await preview({ preview: { port: PUERTO, strictPort: true }, logLevel: 'silent' });
 const navegador = await chromium.launch({ channel: 'chrome' });
 const errores = [];
@@ -40,15 +43,17 @@ try {
     await foto('3-camino');
     await tocarSelector(p, '[data-nodo^="leccion:"]');
     await esperarPantalla(p, 'leccion');
-    for (let i = 0; i < 3; i++) {
+    // El acierto se captura en el segundo ejercicio (tarjetas a la vista con el banner); el tercero es "Al bote" y
+    // al acertar el residuo ya se fue al bote.
+    for (let i = 0; i < 2; i++) {
       await resolver(p, await ejercicioEnPantalla(p));
-      await p.waitForTimeout(i < 2 ? 900 : 600);
-      if (i < 2) await seguir(p);
+      await p.waitForTimeout(900);
+      if (i < 1) await seguir(p);
     }
     await foto('4-acierto');
 
     // Grupos de ejemplo: cofre listo y unidad 1 completa (con accesorios).
-    await p.goto(`${URL}/?e2e&demo=v3${fragmento([grupoConCofre(), grupoUnidadCompleta()])}`);
+    await p.goto(`${URL}/?e2e&demo=v3${fragmento([conHojitasParaTodo(grupoConCofre()), grupoUnidadCompleta()])}`);
     await esperarPantalla(p, 'inicio');
     await tocarBoton(p, /¡Jugar!/);
     await esperarPantalla(p, 'grupos');
